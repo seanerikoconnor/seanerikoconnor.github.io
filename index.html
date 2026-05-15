@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en-US">  <!-- Set language of this page to USA English. -->
+
+    <!-- ===================================================================
+    |
+    | NAME
+    |
+    |     index.html
+    |
+    | DESCRIPTION
+    |
+    |     This is my home page.  It goes into the top level directory of my
+    |     web server.  It is named index.html so viewers can't see the rest 
+    |     of the directory.  W3C validated using the Nu Html Checker.
+    |
+    | AUTHOR
+    |
+    |    Sean Erik O'Connor
+    |
+    =================================================================== -->
+
+    <head>
+        <!-- This page uses Unicode characters. -->
+        <meta charset="utf-8">
+
+        <!-- Set viewport to actual device width.  Any other settings makes the web page initially appear zoomed-in on mobile devices. -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Title appears in the web browser tab for this page.  The browser also uses it to bookmark this page. -->
+        <title>Sean Erik O'Connor - Home Page and Free Mathematical Software.</title>
+
+        <!-- Search engines will search using words in this description.  They will also display title in their search results. -->
+        <meta name="description" content="Home page containing my CGI and traditional art work and GNU copylefted free mathematical software" >
+
+        <!-- Some content management software uses the author's name. -->
+        <meta name="author" content="Sean Erik O'Connor" >
+
+        <!-- Protect old faithful. -->
+        <meta name="copyright" content="Copyright (C) 1986-2026 by Sean Erik O'Connor.  All Rights Reserved.">
+
+        <!-- Configure and load MathJax -->
+        <script src="Scripts/load-mathjax.js" async></script>
+
+        <!-- Cascading style sheet for this document. -->
+        <link rel="StyleSheet" href="StyleSheet.css" type="text/css" >
+
+        <!-- Favicons are 32x32 or 16x16, 8 or 24 bit PNG Images which show up left of the web page title in a browser.  -->
+        <link rel="icon" type="image/png" href="Images/favicon.png" >
+
+        <!-- Load the JavaScript email utility. -->
+        <script src="Scripts/email.js"></script>
+    </head>
+
+    <body>
+        <!-- This wraps the whole body in a CSS grid. -->
+        <div class="wrapper titlePage">
+
+            <header class="title">
+                <h1 class="name"><span>Sean Erik O'Connor</span></h1>
+                <hr>
+            </header>
+
+            <!-- A decorative border at the left side of the page. -->
+            <aside class=border>
+                  <img class="border" src="Images/sinXYPlot.png" alt="Sin( x y ) Image Border.">
+            </aside>
+
+           <!-- The main content of this page.  Articles and sections need nonblank headers but I dont' want to
+                display them.  Thus I put a space into them and turn off the display. -->
+            <article class="content">
+                    <h3 style="display: none;">&nbsp;</h3> <!-- non displaying empty header to stop complaints from HTML validators. -->
+                    <div class="illustratedparagraph">
+                        <p>
+                            <!-- Title is the tooltip shown when you hover over the link. -->
+                            <a href="Resume/resume.html" title="Click on me to see my resume">
+                                <img src="Images/psychadelicSean.png" alt="Author's Portrait and link to resume." height="64" width="64">
+                                I'm</a>
+                            a software design engineer with experience in algorithm
+                            design, image processing, pattern recognition, communications engineering,
+                            and real time embedded systems working in Silicon Valley, U.S.A.
+                            My educational background is in pure and applied mathematics,
+                            classical and quantum physics and studio art.
+                            I've developed on Mac, Unix and Windows platforms in C++, C, Python, JavaScript, MATLAB and many
+                            other languages.
+                            I enjoy innovation and applying advanced theory to solving practical problems.
+                            Please see my
+                            <a href="Resume/resume.html">
+                                <em>resume</em>
+                            </a>
+                            for details.
+                        </p>
+                    </div>
+
+                    <div class="illustratedparagraph">
+                        <p>
+                            <a href="./Mathematics/mathematicalSoftware.html">
+                                <img src="Images/compactDisk.png" alt="Image of a CD-ROM." height="64" width="64" >
+                                <em>Mathematical Software</em></a>
+                            For fun, I design and publish specialized mathematical software
+                            including programs for primitive polynomial computation,
+                            CRC code generation, coding and decoding, and cellular automata.
+                            All source code is copylefted under the
+                            <a href="http://www.gnu.org/licenses/">GNU General Public License</a>.
+                            and comes with extensive comments and complete technical
+                            documentation.  This software requires a 
+                            <a href="./ComputerScience/DevelopmentEnvironment/macLinuxComputerSetupForDevelopers.html">
+                            scientific software development environment</a> on either Mac OS or Linux (Ubuntu).
+                        </p>
+                    </div>
+
+                    <div class="illustratedparagraph">
+                        <p>
+                            <a href="Art/Art.html">
+                                <img src="Images/sampleArtLowRes.png" alt="Sample Art Image." height="64" width="64" >
+                                     <em>Fine Arts</em></a>
+                                     I paint and draw in acrylic, pastel and pencil and am 
+                                     <a href="Art/BlenderWorkedExamples.html">learning CGI with Blender</a>
+                                     My style is romantic realism with influences from classic academic art, art nouveau and surrealism.
+                        </p>
+                    </div>
+
+                    <div class="illustratedparagraph">
+                        <p>
+                            <a href="WebPageDesign/webPageDesign.html">
+                                <img src="Images/webPage.png" alt="Web Page Design Button." height="64" width="64" >
+                                <em>Web Page Design</em></a> How I design my web pages using HTML 5 and CSS 3+.  Lots of fully explained examples
+                                in my style sheet and web pages on how I create inline colors using CSS variables, paragraph styles, navigation headers,
+                                layout using Grids and Flexboxes, table styles, typesetting mathematical formulas with MathJax and LaTeX, 
+                                easy to use scroll boxes for code, image art gallery formats, images with timed transitions, calling JavaScript
+                                functions, using SVG images, and tool-tips and canvases, and lots more.
+                         </p>
+                    </div>
+
+                    <div class="illustratedparagraph">
+                        <p>
+                            <a href="Electronics/Electronics.html">
+                                <img src="Images/sparkCoil.png" alt="Spark coil image." height="64" width="64" >
+                                     <em>Hobby Electronics</em></a>
+                            I also design and build hobby electronics.  Audio $\Sigma \Delta$ digitizer, analog power supplies, electronic bell,
+                            spark coil, and electronic flash.
+                        </p>
+                    </div>
+
+                    <div class="illustratedparagraph">
+                        <p>
+                            <a href="ReadingList/readingList.html">
+                                <img src="Images/terraApollo17NASALowRes.png" alt="Earth Image." height="70" width="70" >
+                                     <em>Reading list</em></a>
+                                My list of favorite science fiction, fantasy, mystery and adventure novels.  Also webcomics and movies.
+                        </p>
+                    </div>
+
+                    <div class="illustratedparagraph">
+                        <p>
+                            <!-- JavaScript for hiding my email address from spambots yet it works as usual. -->
+                            <script>
+                                // Insert email address into this file's HTML.
+                                var mailIcon    = '<img src=\"Images/mailbox.png\" alt=\"Mail Box Icon.\" height=\"65\" width=\"65\" >' ;
+                                var mailMessage = '<em>' + mailIcon + "email" + '</em>' ;
+                                document.write( mailto( mailMessage ) ) ;
+                            </script> 
+                            me if you have questions or comments.
+                        </p>
+                    </div>
+            </article>
+
+            <footer class="footnote">
+                <hr>
+
+                <p class="footnote">
+                    Copyright &copy; 1999-2026 by Sean Erik O'Connor.
+                    All Rights Reserved.
+                    &nbsp;&nbsp;&nbsp;
+                    last updated 27 Feb 26.
+                </p>
+
+                <!-- Form to search my site with Google.  From Google's free tools web page.  -->
+                <form method="get" action="http://www.google.com/search">
+
+                    <div id="formContainer">
+                        <input type="hidden" name="ie" value="UTF-8" >
+                        <input type="hidden" name="oe" value="UTF-8" >
+
+                        <!-- Required Google logo -->
+                        &nbsp; &nbsp; <a href="http://www.google.com/">
+                            <img src="http://www.google.com/logos/Logo_25wht.gif" alt="Google" >
+                        </a>
+
+                        <!-- A text input control for the (q)uery search string. -->
+                        <input type="text" name="q" size="32" maxlength="255" value="Primitive Polynomial" >
+
+                        <!-- Submit button:  submits this form when activated. -->
+                        <input type="submit" name="btnG" value="Search my site" >
+
+                        <!--
+                           Build up a search command of the form 
+                               <input type="hidden" name="sitesearch" value="http://seanerikoconnor.freeservers.com">
+                        -->
+                        <script>
+                            var hostname = location.href
+                            var prefix = "<input type=\"hidden\" name=\"sitesearch\" value=\"http://"
+                            var suffix = ".com\" >"
+
+                            if (hostname.match( "freeservers" ))
+                            {
+                                document.write( prefix + "seanerikoconnor.freeservers" + suffix )
+                            }
+                            else if (hostname.match( "file" ))
+                            {
+                                // To see this message in Firefox, open Tools->Browser Tools -> Web Developer Tools then select the Console tab.
+                                console.log( "Local URL:  Google cannot search it." )
+                            }
+                        </script> 
+                    </div>
+                </form>
+
+                <p class="box"> 
+                <a href="https://drawdown.org">Reverse climate change</a>.
+                Good news at <a href="https://fixthenews.com/">Fix the News</a> and <a href="https://www.positive.news/">Positive News</a>.
+                </p>
+   
+                <!-- If I'm pulling up my web page from local files, also add a link to my freeservers web site. -->
+                <script>
+                    var hostname = location.href ;
+                    var prefix = "<em class=\"warning\"> <a href=\"http://" ;
+                    var webSite = "" ;
+                    var suffix = ".com\">Go to my web site</a><\/em>" ;
+
+                    if (hostname.match( "file" ))
+                    {
+                        webSite = "seanerikoconnor.freeservers" ;
+                        document.write( prefix + webSite + suffix ) ;
+                    }
+                </script> 
+            </footer>
+        </div> <!-- wrapper -->
+    </body>
+</html>

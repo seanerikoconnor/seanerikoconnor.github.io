@@ -1,0 +1,1863 @@
+/*=============================================================================
+|
+| NAME
+|
+|     StyleSheet.css
+|
+| DESCRIPTION
+|
+|     External cascading style sheet for my web pages.  Goes into the
+|     top level directory of my web server.  W3C validated as CSS level 3 + SVG
+|
+| USAGE
+|
+|    To link to it in a hypertext document, put the following statement,
+|
+|        <link rel="StyleSheet" href="StyleSheet.css" type="text/css" />
+|
+|    within the <head>...</head> section of an HTML document.
+|
+| LEGAL
+|
+|   Copyright (C) 1999-2026 by Sean Erik O'Connor.  All Rights Reserved.
+|   last updated 24 Apr 26
+|
+=============================================================================*/
+
+/*
+ * HTML elements are two main types.
+ *
+ *   Block elements:  Each one starts on a new line.
+ *
+ *     +--------+
+ *     | block1 |
+ *     +--------+  <-- vertical margins collapse where blocks overlap.
+ *     +--------+  <-- 
+ *     | block2 |
+ *     +--------+
+ *
+ *   Inline elements:  Go with the flow, left to right for English, 
+ *   right to left for Hebrew.
+ *
+ *     +---------+   +---------+
+ *     | inline1 |   | inline2 |
+ *     +---------+   +---------+
+ *  
+ * Floating elements:  Text flows around this element which is floated left.
+ *
+ *     text text text text text text text text
+ *     +---------+ text text text text text 
+ *     | element | text text text text text 
+ *     +---------+ text text text text 
+ *     Hier stehe Ich, Ich kann nicht anders!     <----- <p style="clear: left;"> Hier stehe Ich, Ich kann nicht anders!
+ *                                                       But specifying text with "clear" makes the text start BELOW any element 
+ *                                                       which is floated left above it.
+ * CSS Box Model
+ *
+ *     +------------------------------------+
+ *     |  margin                            |
+ *     |   +-----------border------------+  |
+ *     |   |  padding                    |  |
+ *     |   |     +-----------------+     |  |
+ *     |   |     |C O N T E  N   T |     |  |
+ *     |   |     |+..........+ C O |     |  |
+ *     |   |     |. floating . N T |     |  | <------ Floating elements stay within the CONTENT.
+ *     |   |     |. element  . E N |     |  |        
+ *     |   |     |+..........+ E N |     |  |
+ *     |   |     |T   C O N T E  N |     |  |
+ *     |   |     |T C O N T E N  T |     |  |
+ *     |   |     +-----------------+     |  |
+ *     |   |                     padding |  |
+ *     |   +-----------border------------+  |
+ *     |                            margin  |
+ *     +------------------------------------+
+ *
+ * CSS Nomenclature
+ * 
+ *  selector
+ *   |
+ * --+---                    ---+
+ * em.wow                       |
+ * {                            |
+ *     font-style:  italic ;    |
+ *     --------+------------    |
+ *             |                |
+ *          declaration #1      |
+ *                              +---- rule
+ *      property   value        |
+ *         |         |          |
+ *     ----+-----   -+--        |
+ *     font-weight: bold ;      |
+ * }   --------+--------        |
+ *             |             ---+
+ *        declaration #2
+ * 
+ * 
+ *  Used in HTML as:
+ *     <em class="wow">wowish talk talk</em>
+ */
+
+/*
+ * ------------------------------ Initial Settings ----------------------------- 
+ */
+
+/* CSS rule with universal selector to clear padding and margins in every 
+ * element, overriding all web browser defaults, before we add our own values.
+ */
+* 
+{
+    padding: 0 ;
+    margin:  0 ;
+}
+
+/* 
+ * Make all MathJax equations a little bit larger.  Override any user style sheet settings with !important
+ * This isn't the best solution since it interferes with the MathJax processor.
+ */
+.MathJax
+{
+    font-size: 150% !important;
+}
+
+/* For all elements from the <html> root on downwards, define CSS variables for my custom colors.  Reduce the number of colors to harmonize. */
+:root
+{
+    --kweilin-black:               rgb(   28,  28,  28 ) ;
+
+    --warm-brown:                  rgba( 187, 139,  92, 1) ;
+    --dark-brown:                  rgb(  150,  50,  50);
+
+    --light-gray:                  rgba( 100, 100, 100, 0.1 ) ;
+    --gray-blue:                   rgb(  220, 220, 240 ) ;
+    --light-blue-gray:             rgba( 183, 217, 231, 1) ;
+    --dark-blue-gray:              rgb(  100, 150, 150 ) ;
+    --canvas-gray:                 rgb(  150, 150, 170 ) ;
+    --art-gallery-blue-gray:       rgb(   70,  70,  90 ) ;
+
+    --light-yellow-tint:           rgba( 255, 255, 130, 0.7 ) ;
+
+    --light-red:                   rgb(  255,   0, 102 ) ;
+
+    --purple:                      rgb(  153,   0, 153 ) ; 
+
+    --light-blue:                  rgb(  100, 150, 250 ) ;
+    --dark-blue:                   rgb(    0,   0, 153 ) ;
+    --darkest-blue:                rgb(    0,   0,  80 ) ;
+    --art-gallery-blue:            rgb(   70,  85, 251 ) ;
+    --very-light-blue:             rgb(  220, 220, 240 ) ;
+    --light-blue-background:       rgb(  222, 240, 255 ) ;
+    --lighter-blue-background:     rgb(  170, 205, 205 ) ;
+    --light-blue-tint:             rgba(   0, 100, 255, 0.2 ) ;
+    --light-blue-body-background:  rgb(  170, 235, 245 ) ;
+    --light-blue-paper:            rgb(  239, 247, 247 ) ;                  
+    --cyan-tint:                   rgb(  225, 240, 255 ) ;
+
+    /* Font Families brief description at W3C:
+           https://www.w3.org/Style/Examples/007/fonts.en.html  */
+    --serif:      "Times New Roman", Palatino, serif ;
+    --sans-serif: Verdana, Ariel, Helvetica, sans-serif ;
+    --monospace:  "Courier New", "Courier", "Andale Mono", monospace ;
+    --cursive:    "Snell Roundhand", "Apple Chancery", cursive ;
+    --fantasy:    "Copperplate", "Luminari", fantasy ;   /* These may not show on some computer systems and browsers. */
+}
+
+/*
+ * ------------------------------ Hyperlinks ----------------------------------
+ *
+ * CSS rules for pseudo-class selectors containing property/value pairs.
+ * They MUST be in this order due to CSS cascade rules.
+ */
+
+/* Unvisited links are dark blue. */
+a:link
+{
+    color:               var(--dark-blue) ;
+    background-color:    transparent ;
+}
+
+/* Visited links have purple text.  You must have your browser history enabled 
+ * and set to more than 0 days to see a visited link change color.  
+ * Links stay colored until you clear the browser history and refresh the page.
+ */
+a:visited
+{
+    color:               var(--purple) ;
+    background-color:    transparent ;
+}
+
+/* Selected links have purple text until another element gets selected, including the page background itself.  */
+a:focus
+{
+    color:               var(--purple) ;
+    background-color:    transparent ;
+}
+
+/* When the mouse cursor hovers over a hyperlink, change color to cyan. */
+a:hover
+{
+    color:               var(--light-blue) ;
+    background-color:    transparent ;
+    transition:          all 0.1s ease-in-out ; /* Fade in and out gradually, both color and background color. */
+}
+
+/* When the mouse cursor hovers over a hyperlink containing an image, smoothly enlarge the image slightly. */
+a:hover img
+{
+    transform:                   scale( 1.04 ) ; /* Just larger enough to notice. */
+    /* Make scale changes smooth.  That looks so much more sophisticated. */
+    transition-property:         transform ;
+    transition-duration:         0.3s ;
+    transition-timing-function:  ease-in-out ;
+}
+
+/* Clicked hyperlink is light red. */
+a:active
+{
+    color:               var(--light-red ) ;
+    background-color:    transparent ;
+}
+
+/*
+ * ------------------------------ Body Settings -------------------------------- 
+ */
+
+/* rem units will use the font size from this HTML element. */
+html
+{
+    font-size: 100% ;
+}
+
+ /* Default settings for all my main web pages. */
+body
+{
+    font-family:            var( --sans-serif ) ;  /* A wide sans-serif font is more readable on the web. */
+    font-size:              0.8rem ;               /* Set the body font size a little smaller than the user's default browser setting. */
+    color:                  black ;                /* Black text is easier to read. */
+
+    /*  More vertical space between lines for more pleasant reading.  Use a unitless font height multiplier.  
+        Length and percentage percentage values can give scrunched text due to poor inheritance behavior. */
+    line-height:            1.7 ;
+
+    /*  While waiting for the browser to load the background image of simulated blue paper, color the background solid light blue to match. */
+    background-color:       var(--light-blue-body-background) ;
+    background-image:       url( "Images/blueBackground.jpg" ) ;
+
+    background-repeat:      repeat ;    /*  Tile the background. */
+    background-attachment:  fixed ;     /*  Background image stays fixed while the foreground text scrolls. */
+}
+
+/* Mobile devices don't have hover and usually don't honor fixed background due to increased computation. */
+@media (hover: none)
+{
+    body
+    {
+        background-attachment: initial ;
+    }
+}
+
+/* Body pages of the technical report class have a background which is very light blue simulated 
+ * paper for increased readability.  Apply all the default body property/values first.  This rule,
+ * which is more specific, since it uses a class selector, can override the body background-color,
+ * and background-image properties.
+ */
+body.technicalReport
+{
+    /*  While waiting for the browser to load the background image of simulated blue paper, color the background solid light blue to match. */
+    background-color:  var(--light-blue-paper ) ;
+    background-image:  url( "Images/bluePaper.jpg" ) ;
+}
+
+/* 
+ * ------------------------------ Grid Wrapper for the Body --------------------------
+ *
+ * Web Page Layout
+ *
+ * +--- head ------------------------------------------------------------------------+
+ * |  metas                                                                          |
+ * |  link to stylesheet                                                             |
+ * +--- head ------------------------------------------------------------------------+
+ *
+ * +--- body, body.techincalReport --------------------------------------------------+
+ * |                                                                                 |
+ * |   +------------ div.wrapper, div.technicalReport, div.titlePage ------------+   |
+ * |   |                                                                         |   |
+ * |   |    SEE GRID LAYOUT BELOW                                                |   |
+ * |   |                                                                         |   |
+ * |   +------- div.wrapper -----------------------------------------------------+   |
+ * |                                                                                 |
+ * +--- body ------------------------------------------------------------------------+
+ *
+ * +--------------------------- div.wrapper --------------------------------------------------------+
+ * |                                                                                                |
+ * |                          (((grid columns)))                                                    |
+ * |                                                                                                |
+ * |       [wrapper-aside-col]                                                                      |
+ * |       .                                                                                        |
+ * |       .     [wrapper-nav-col]                                                                  |
+ * |       .     .                                                                                  |
+ * |       .     .        [wrapper-content-col]                                                     |
+ * |       .     .        .                                               [wrapper-end-col]         |
+ * |       .     .        .                                               .                         |
+ * |       +-----+----------------- header.title -------------------------+   [wrapper-title-row]   |
+ * |       |     |                                                        |                         |
+ * |       |     |                    h1                                  |                         |
+ * |       a     |                    hr                                  |                         |
+ * |       s     |                                                        |                         |
+ * |       i     +--------------- header.navigation ----------------------+   [wrapper-nav-row]     |
+ * |       d     |                                                        |                         |
+ * |       e     |     nav hyperlink 1 ... nav hyperlink n                |                         |
+ * |       .     |                                                        |                         |
+ * |       b     +---------+------- article.content ----------------------+   [wrapper-article-row] |
+ * |       o     |         |                                              |                         |
+ * |       r  i  |  nav    |           h2                                 |                         |
+ * |       d  m  |         |           section                            |                         |
+ * |       e  a  |  link 1 |           h3                                 |      (((grid rows)))    |
+ * |       r  g  |    .    |           section                            |                         |
+ * |       |  e  |    .    |           h4                                 |                         |
+ * |       |     |    .    |           section                            |                         |
+ * |       |     |  link n |           ...                                |                         |
+ * |       |     |         |                                              |                         |
+ * |       |     +---------+------- footer.footer ------------------------+   [wrapper-footer-row]  |
+ * |       |     |                                                        |                         |
+ * |       |     |            legal and other stuff                       |                         |
+ * |       |     |                                                        |                         |
+ * |       +-----+--------------------------------------------------------+   [wrapper-end-row]     |
+ * |                                                                                                |
+ * +--------------------------- div.wrapper --------------------------------------------------------+
+ *
+ * The elements inside the wrapper are arranged in this order in the HTML, but of course
+ * the actual placement is specified by the grid.
+ *
+ * <header class="title">
+ *     TITLE OF THIS WEB PAGE
+ * </header>
+ *
+ * <header class="navigation">
+ *     HYPERLINKS
+ * </header>
+ *
+ * <aside class="border">
+ *     BORDER IMAGE
+ * </aside>
+ *
+ *   NOTE:  title pages have no <nav> element
+ *
+ * <nav>
+ *     HYPERLINKS
+ * </nav>
+ *
+ * <article class="content">
+ *     MOST OF THE CONTENT IN THE WEB PAGE.
+ * </article>
+ *
+ * <footer class="footnote">
+ *     COPYRIGHT
+ * </footer>
+ */
+
+/*
+ *   wrapper-aside-col contains the margin with the border image.
+ *      -We make slightly larger than the img.border class to give a thin space on the right.
+ *   wrapper-nav-col is the vertical navigation sidebar.  
+ *      -Minimum is set wide enough so words in the navigation hyperlinks don't overflow to the right.  
+ *      -Maximum is clamped so very wide page doesn't have big stretched out navigation hyperlinks.
+ *   wrapper-content-col is most of the page, so it gets the most relative space.  
+ *      -We use high fr number so that a very wide page shows more content and less navigation hyperlinks. 
+ *   Recall fr is the fraction of the width AFTER subtracting fixed widths such as 1.5rem.
+ *
+ *   wrapper-*-row are set to auto because we want the default behavior of HTML flow;  we don't want to set the height of rows.
+ */
+div.wrapper
+{
+    display:                grid ;  /* Items in this container are grid type.  They are placed in 2D */
+    grid-template-columns:  [wrapper-aside-col] 1.5rem [wrapper-nav-col] minmax( 9rem, 1fr ) [wrapper-content-col] 30fr [wrapper-end-col] ;
+    grid-template-rows:     [wrapper-title-row] auto [wrapper-nav-row] auto [wrapper-article-row] auto [wrapper-footer-row] auto [wrapper-end-row] ;
+}
+
+/* Make up new CSS "subclasses" from which we can do "multiple inheritance".
+ *
+ * For example this wrapper inherits styles from both "wrapper" and "titlePage" classes.
+ *      <div class="wrapper titlePage">
+ *          ...
+ *          <article>
+ *          ...
+ */
+div.technicalReport
+{
+    /* Additional style rules for every element inside the wrapper. */
+}
+
+div.titlePage
+{
+    /* Additional style rules for every element inside the wrapper. */
+}
+
+/* 
+ * See below in the articles section where we have this selector,
+ *     div.titlePage article.content
+ * in which an article which is inside a div inherits from titlePage has a modified style.
+ */
+
+/*
+ * ------------------------------ Header --------------------------------------- 
+ */
+
+/* Top of page header. */
+header.title
+{
+    /* The title spans multiple columns. */
+    grid-column: wrapper-nav-col / wrapper-end-col ;
+    grid-row:    wrapper-title-row ;
+}
+
+/*
+ * ------------------------------ Navigation Bar ------------------------------- 
+ */
+
+/* Horizontal navigation menu bar at the top. */
+header.navigation
+{ 
+    display:         flex ;         /* Items within this container are of flexbox type.  They flow in 1D horizontally. */
+    font-size:       0.75rem ;
+    justify-content: flex-start ;   /* Put the first hyperlink at the beginning. */
+    flex-flow:       row wrap ;     /* Words in the navigation hyperlink wrap around to the next row. Note a single looooong word would overflow the navigation 
+                                       menu into the content. */
+    grid-column:     wrapper-nav-col / wrapper-end-col ;  
+    grid-row:        wrapper-nav-row ;
+    margin:          0.5rem ;   /* One letter wide for top, right, bottom left margins. */
+
+    /* For debugging, place a dotted red line right outside the border. 
+    outline-color:  red; 
+    outline-style:  dotted; 
+    */
+}
+
+/*  Descendent combinator selector.  Apply only to images somewhere within the navigation header heirarchy. */
+header.navigation img
+{
+    vertical-align:  top ;    /* Text bottom aligns with image middle. */
+    margin-left:     1rem ;   /* Prevent text from running into the images. */
+}
+
+/* Hyperlinks in the navigation header have smaller margins. */
+header.navigation a
+{
+    margin-right:   0.5rem ;
+}
+
+/*
+ * ------------------------------ Navigation Button ---------------------------- 
+ */
+nav.backtotop > a
+{
+    display:          block ;    /* Convert hyperlinks from inline to block so we can color the background.  Can't do that with inline elements.  */
+    text-decoration:  none ;     /* Remove default hyperlink underlining. */
+    font-family:      var(--sans-serif) ;
+    font-size:        0.8rem ;   /* Unobtrusive size. */
+    padding-bottom:   0.4rem ;   /* Center the text in the bubble. */
+    padding-left:     0.7rem ;   /* Center the text in the bubble. */
+    border-radius:    1rem ;     /* Rounded edges. */
+    width:            6rem ;     /* Short enough to contain the words, "back to top". */
+    height:           1rem ;
+    clear:            both ;     /* This element starts on a new line below any floated elements, either left or right. */
+}
+
+/* Unclicked hyperlinks show up as black on blue */
+nav.backtotop > a:link
+{
+    color:            var(--art-gallery-blue-gray) ;
+    background-color: var(--light-blue-background) ;
+}
+
+/* Applies to the <a href element in a nav but only when hovering.  */
+/* For the special case of the <nav class="backtotop">Back to top</nav> element, specify the same look and feel. */
+nav.backtotop > a:hover
+{
+    color: white ;                          /* Text color white for contrast. */
+    background-color: var(--light-blue) ;   /* Color the whole block background light blue. */
+}
+
+/* Selected links have purple text until another element gets selected, including the page background itself.  */
+nav.backtotop > a:focus
+{
+    color:            var(--purple) ;
+    background-color: var(--light-blue) ; /* Color the whole block background light blue. */
+}
+
+/*
+ * ------------------------------ Navigation Sidebar --------------------------- 
+ */
+/* Navigation sidebars. */
+nav
+{
+    /* We span multiple rows and columns. */
+    grid-column:       wrapper-nav-col / wrapper-content-col ;
+    grid-row:          wrapper-article-row / wrapper-footer-row ;
+
+    color:             black ;
+
+    background-color:  transparent ;
+    padding:           0.2rem ;
+
+    border:            none ;
+    top:               1rem ;
+    left:              0 ;
+    margin-left:       0.1rem ;
+
+    /*  We can make the position fixed to the viewport, but then for small devices, a long 
+    list of navigation items gets clipped off the bottom of the screen.
+    position:          fixed ;
+    width:             5rem ;
+    margin-left:       1.4rem ;
+    margin-top:        8rem ;
+    */
+
+    /* For debugging, place a dotted red line right outside the border. 
+    outline-color: red; 
+    outline-style: dotted; 
+    */
+}
+
+/*
+ * Child combinator selector for an unordered list which is a child of nav.
+ */
+nav > ul
+{
+    /* Remove all default padding and margins. */
+    padding: 0 ;
+    margin:  0 ;
+}
+
+/*
+ * Special rules when <li> is a child of the <ul> which is a child of nav.
+ */
+nav > ul > li
+{
+    list-style-type:  none ;     /* Remove list bullets. */
+    list-style:       none ;     /* Hack:  because Firefox doesn't listen to list-style-type here. */
+    font-size:        0.55rem ;  /* Small unobtrusive font. */
+    margin-bottom:    0.4rem ;   /* Leave some space between blocks. */
+    background-color: var(--light-blue-background ) ;
+    border-radius:    1rem ;     /* Rounded edges on list items. */
+}
+
+/* Special rules for a hyperlink <a href="..."></a> child of a li which is child of ul which is child of nav.   */
+nav > ul > li > a
+{
+    display:          block ;   /* Convert hyperlinks from inline to block so we can color the background.  Can't do that with inline elements.  */
+    text-decoration:  none ;    /* Remove default hyperlink underlining. */
+    padding-left:     0.2rem ;  /* Add space before and after the text so hover background isn't flush against the text. */
+    padding-right:    0.2rem ;  /* Add space before and after the text so hover background isn't flush against the text. */
+    border-radius:    1rem ;    /* Rounded edges on the hyperlinks. */
+}
+
+/* Unclicked hyperlinks show up as black on blue */
+nav > ul > li > a:link
+{
+    font-family:      var(--sans-serif) ;
+    font-size:        0.7rem ;                /* A little larger to be readable. */
+    color:            var(--art-gallery-blue-gray) ;
+    background-color: var(--very-light-blue-background) ;
+}
+
+/* Applies to the <a href element in a nav but only when hovering.  */
+/* For the special case of the <nav class="backtotop">Back to top</nav> element, specify the same look and feel. */
+nav > ul > li > a:hover
+{
+    color:            white ;                   /* Text color white for contrast. */
+    background-color: var(--light-blue) ;       /* Color the whole block background light blue. */
+    transition:       all 0.15s ease-in-out ;   /* Fade in and out gradually, both color and background color. */
+}
+
+/* Selected links have purple text until another element gets selected, including the page background itself.  */
+nav > ul > li > a:focus
+{
+    color:            var(--purple) ;
+    background-color: var(--light-blue) ; /* Color the whole block background light blue. */
+}
+
+/*
+ * ------------------------------ Article -------------------------------------- 
+ */
+/* Bulk of page goes into an article of content the class.  It is divided into sections. */
+article.content
+{
+    grid-column: wrapper-content-col ;
+    grid-row:  wrapper-article-row / wrapper-footer-row ;
+    margin-left:  1rem ;
+    margin-right: 2rem ;
+}
+
+/* Title pages have no navigation bar, i.e. no <nav>...</nav> in their html.
+ * Widen the article area to fill the space which the nav would have occupied. 
+ */
+div.titlePage article.content
+{
+    grid-column: wrapper-nav-col / wrapper-end-col ;
+}
+
+/*
+ * ------------------------------ Aside ---------------------------------------- 
+ */
+/* Usually will contain an image of class border in the entire left vertical margin for decoration. */
+aside.border
+{
+    grid-column: wrapper-aside-col ;
+    grid-row:    wrapper-title-row / wrapper-end-row ;
+}
+
+/*
+ * ------------------------------ Footnote ------------------------------------- 
+ */
+footer.footnote
+{
+    grid-column: wrapper-nav-col / wrapper-end-col ;
+    grid-row: wrapper-footer-row ;
+}
+
+/*
+ * -------------------------- Headings -----------------------------------------
+ */
+/*  Ordinary page title.  */
+h1
+{
+    font-family:    var(--serif) ;  /* Serif looks more elegant.  Make it larger and centered since it's a title. */
+    font-size:      2.0rem ;
+    text-align:     center ;
+    clear:          both ;          /* This element starts on a new line below any floated elements, either left or right. */
+}
+
+/*
+ *  My name on the title page using a background image since I can't rely on Zapfino font being available on browsers.
+ */
+h1.name
+{
+    min-height:          2.6rem ;        /* Have a minimum font height, otherwise, leave scalable with viewport. */
+    background-image:    url( "Images/SeanErikOConnor.png" )  ; /* PNG image with transparent background. */
+    background-repeat:   no-repeat ;
+    background-size:     contain ;       /* Make the image fit the box when we resize the page. */
+    background-position: center center ; /* Center the image in the box. */
+    margin-top:          0.5rem ;        /* Spacing all around so image doesn't bump into horizontal bars, text or sides of viewport. */
+    margin-bottom:       0.6rem ;
+    margin-left:         1.0rem ;
+    margin-right:        1.0rem ;
+    clear:               both ;          /* This element starts on a new line below any floated elements, either left or right. */
+}
+
+/*
+ * Put my name into the title, but don't display it.
+ * This way text-only browsers can see it.
+ */
+h1.name > span
+{
+    display:          none ;
+}
+
+/*  Elegant green script page title.  iPhone 12 has problems showing Brush Script MT, so use generic cursive
+    in this font stack.  
+ */
+h1.stylish
+{
+    font-family:      var(--cursive) ;
+    font-size:        2.7rem ;
+    text-align:       center ;
+    color:            #009900 ;  /* Green */
+    background-color: transparent ;
+    clear:            both ;    /* This element starts on a new line below any floated elements, either left or right. */
+}
+
+/*  Title for author and date. */
+h2
+{
+    font-family:    var( --serif ) ;
+    font-size:      1.2rem ;
+    text-align:     center ;
+    clear:          both ;  /* This element starts on a new line below any floated elements, either left or right. */
+}
+
+/* Title for email. */
+h2.email
+{
+    font-family:    var( --serif ) ;
+    font-size:      medium ;
+    text-align:     center ;
+    clear:          both ;  /* This element starts on a new line below any floated elements, either left or right. */
+}
+
+/*  Top level section heading. */
+h3
+{
+    font-family:        var( --serif ) ;
+    font-size:          1.0rem ;
+    text-align:         left ;
+    letter-spacing:     0.1rem ;    /* Spread letters out a little horizontally. */
+    color:              white ;     /* White text on horizontal gradient colored brown to blue bar. */
+    background:         linear-gradient(0.25turn, var(--warm-brown) 70%, var(--light-blue-gray)) ;
+    padding-left:       1rem ;      /* Move the text away from the background edge a little. */
+    margin-top:         1rem ;      /* Throw in extra line spacing above and below this heading. */
+    margin-bottom:      1rem ;
+    clear:              both ;      /* This element starts on a new line below any floated elements, either left or right. */
+
+    /* For debugging, place a dotted red line right outside the border. 
+    outline-color: red; 
+    outline-style: dotted; 
+    */  
+}
+
+/*  Subsection heading. */
+h4
+{
+    font-family:    var( --serif ) ;
+    font-size:      1.3rem;
+    text-align:     left ;
+    border-top:     none ;     /* A silver underline extending across the page. */
+    border-left:    none ;
+    border-right:   none ;
+    border-bottom:  solid ;
+    border-color:   silver ;
+    border-width:   0.7rem ;
+    margin-top:     1rem ;     /* Throw in extra line spacing above and below this heading. */
+    margin-bottom:  1rem ;
+    clear:          both ;   /* This element starts on a new line below any floated elements, either left or right. */
+}
+
+/* Sub-subsection heading. */
+h5
+{
+    /* Smaller dark blue text. */
+    font-family:    var( --serif ) ;
+    font-size:      1.0rem ;
+    text-align:     left ;
+    color:          var(--dark-blue) ;
+    border-top:     none ;
+    border-left:    none ;
+    border-right:   none ;
+    border-bottom:  solid ;   /* A thin dark blue underline extending across the page. */
+    border-color:   var(--dark-blue) ;
+    border-width:   0.2rem ;
+    margin-top:     1rem ;    /* Throw in extra line spacing above and below this heading. */
+    margin-bottom:  1rem ;
+    clear:          both ;    /* This element starts on a new line below any floated elements, either left or right. */
+}
+
+/* Sub-sub-subsection heading. */
+h6
+{
+    font-family:    var( --serif ) ;
+    font-style:     italic ;
+    font-size:      1.0rem ;
+    text-align:     left ;
+    color:          var(--warm-brown) ;
+    border-top:     none ;
+    border-left:    none ;
+    border-right:   none ;
+    border-bottom-style:  double ;
+    border-color:   var(--warm-brown) ;
+    border-width:   0.2rem ;
+    margin-top:     1rem ;   /* Throw in extra line spacing above and below this heading. */
+    margin-bottom:  1rem ;
+    clear:          both ;   /* This element starts on a new line below any floated elements, either left or right. */
+}
+
+
+/* Modify to match the lighter background. */
+body.technicalReport h3
+{
+    background:         linear-gradient(0.25turn, var(--warm-brown) 60%, var(--light-blue-paper)) ;
+}
+
+/*
+ * --------------------------- Inline text ----------------------------------
+ *
+ */
+
+/* 
+ * A quotation format.
+ */
+blockquote
+{
+    font-family:  var(--cursive) ;
+    color:        darkblue ;
+    font-size:    1.9rem;
+    line-height:  0.9 ;
+    width:        60% ;
+    margin-left:  6rem ;
+    padding:      0.5rem ;
+    border:       solid ;
+    border-color: var(--light-gray) ;
+}
+
+/* Instead of the usual URL in the citation, place the person's name. */
+blockquote cite
+{
+    display:    block ;
+    color:      var(--darkblue ) ;
+    font-style: italic ;
+    font-size:  1.4rem;   /* A wee bit smaller than the text. */
+    text-align: right ;   /* Name goes to the right. */
+}
+
+/* 
+ * Right before the name, put a hyphen (-).
+ * ::before is a CSS pseudoelement which is placed as the first child of "cite".  
+ */
+blockquote cite::before
+{
+    content: "- " ;
+}
+
+/*  Text for source code.  Use a narrow monospace font so columns of code align.
+ *  We don't need to use <br /> at the end of each line of code:  pre text
+ *  is displayed as written, not flowed.  The font is the same size as
+ *  ordinary paragaphs for compatibility.
+ */
+pre, code
+{
+    display: block ;            /* The default for <code> and <pre> is inline, but we want a block like a paragraph. */
+    font-family:   var(--monospace) ;
+    white-space:   pre-line ;   /* Collapse whitespace.  But break lines at newlines, at <br> and as needed to fill the box. */
+    margin-left:    3rem ;      /* Indent slightly more than a paragraph <p> */
+    margin-top:     1rem ;
+    margin-bottom:  1rem ;
+    /* For debugging, place a dotted red line right outside the border. 
+    outline-color: red; 
+    outline-style: dotted; 
+    */  
+}
+
+/* Comments. */
+pre, code > em
+{
+    font-style:  italic ;
+    color: blue ;
+}
+
+/* Indent code. */
+pre, code > i
+{
+    color: black ;
+    margin-left: 2rem;
+}
+
+/* Double indent code. */
+pre, code > i > i
+{
+    color: black ;
+    margin-left: 2rem;
+}
+
+/* Triple indent code. */
+pre, code > i > i > i
+{
+    color: black ;
+    margin-left: 2rem;
+}
+
+/* Function definitions. */
+pre, code strong
+{
+    font-weight: bold ;
+    text-transform: none ;
+}
+
+/*  Emphasized text --- bold italic. */
+em
+{
+    font-style:  italic ;
+    font-weight: bold ;
+}
+
+/* Two lines for strikeout instead of one for fun. */
+s
+{
+    text-decoration-style: double ;
+}
+
+/* Wavy underline.  Put it below the text so the line isn't interrupted by the font on top of it. */
+em.wavy
+{
+    text-decoration-line:    underline ;
+    text-underline-position: under ;
+    text-decoration-style:   wavy ;
+    font-weight: normal ;  /* Don't need bold face font since we have a bold underline. */
+    font-style:  normal ;
+}
+
+/*  Highly emphasized text red on blue-gray. */
+em.warning
+{
+    color:            red ;
+    background-color: var(--gray-blue) ; /* Gray with blue tint. */
+}
+
+/* 
+ * But when it's within an h3 heading, just make the text red and don't
+ * alter the background color.
+ */
+h3 em.warning
+{
+    color:            red ;
+    background-color: transparent ;
+}
+
+/*  Highly emphasized text blue on blue-gray. */
+em.caution
+{
+    color:            blue ;
+    background-color: var(--gray-blue) ; /* Gray with blue tint. */
+}
+
+/* Italic dark blue, but only when in an h3 heading. */
+h3 em.caution
+{
+    color:            blue ;
+    background-color: transparent ;
+}
+
+/* Used for hotkey commands in Blender. */
+em.hotkey
+{
+    color:             var(--dark-brown) ;
+    padding:           0.1rem ;
+    background-color:  lightblue ;
+}
+
+/*  Strong importance --- generally bold text. */
+strong
+{
+    text-transform:   uppercase ;  /* All bold caps. */
+    font-weight:      bold ;
+}
+
+/*  Fine print */
+small
+{
+    font-size: 0.7rem ;
+}
+
+/* Italic text, but colored blue for more emphasis. */
+i
+{
+    font-style:  italic ;
+    color:       var(--darkest-blue) ;
+}
+
+/* Yellow transparent marker. */
+mark
+{
+    color:       black ;
+    background:  var(--light-yellow-tint) ;
+}
+
+/*
+* ----------------------- Paragraphs ---------------------------------------
+*
+* For example,
+*     <p>I am a ordinary paragraph</p>
+*     <p class = "footnote">I am a footnote</p>
+*
+*/
+
+/*  Ordinary paragraphs with justified text like a book. */
+p
+{
+    font-family:    var(--sans-serif ) ;
+    text-align:     justify ;
+    margin-left:    1rem ;
+    margin-top:     1rem ;
+    margin-bottom:  1rem ;
+    /* For debugging, place a dotted red line right outside the border. 
+    outline-color: red; 
+    outline-style: dotted; 
+    */  
+}
+
+/*  Paragraphs with more vertical spacing. */
+p.spacedout
+{
+    font-size:      medium ;
+    margin-left:    2rem ;
+    margin-top:     3rem ;
+    margin-bottom:  2rem ;
+}
+
+/*  Footnotes.  They are colored unobtrusively with smaller font.  */
+p.footnote
+{
+    font-size:         0.7rem ;
+    color:             gray ;
+    background-color:  transparent ;
+    margin-top:        1rem ;
+    clear:             both ;   /* This element starts on a new line below any floated elements, either left or right. */
+}
+
+/*  Paragraph with a box around it. */
+p.box
+{
+    display:           inline-block ;
+    color:             black ;
+    font-size:         0.8rem ;
+    font-style:        italic ;
+    background-color:  transparent ;
+    padding:           0.5rem ;
+    border:            solid ;
+    border-width:      medium ;
+    border-color:      silver ;
+}
+
+/*  Red change bar.  */
+p.changed
+{
+    padding-left:      0.2rem ;     /* Space the border more leftwards. */
+    border-left:       solid ;
+    border-right:      none ;
+    border-top:        none ;
+    border-bottom:     none ;
+    border-left-width: thick ;
+    border-color:      red ;
+ }
+
+/*  Paragraph with very small print.  */
+p.fineprint
+{
+    font-size:         0.8rem ;
+    font-style:        italic ;
+    background-color:  transparent ;
+    margin-left:       4rem ;
+    margin-right:      4rem ;
+}
+
+/* Used as an example only in my web page design page. */
+p.example
+{
+    font-size:        0.8rem ;    /* Contents is white text. */
+    font-style:       italic ;
+    color:            white ;
+    background-color: var(--art-gallery-blue) ;   /* Padding (background) color. */
+    padding-left:     2rem ;                      /* Padding around the contents. */
+    padding-right:    5rem ;
+    padding-top:      1.5rem ;
+    padding-bottom:   1rem ;
+    border:           dashed ;
+    border-width:     0.3rem ;
+    border-color:     var(--light-red) ;
+    margin-top:       1rem ;     /* Margin is transparent.  We show different offsets to illustrate. */
+    margin-left:      1rem ;
+    margin-bottom:    3rem ;
+    outline-color:    green;     /* Show the area just outside the margin.  */
+    outline-style:    dotted; 
+}
+
+/*
+/*
+ * ------------------------------ Scroll Boxes --------------------------------- 
+ *
+ * Example:
+ *
+ * <div class="scrollBox"> <div class="scrollBoxContent">
+ *     text ...
+ *     text
+ * </div> * </div>
+ *
+ * This was hard to do since the scroll bars overlay the rounded corners, hiding them.
+ * I used a modified form of the solution suggested here: 
+ *     https://stackoverflow.com/questions/16676166/apply-border-radius-to-scrollbars-with-css`
+ *
+ * We could also do .scrollBox instead of div.scrollBox which would apply to other HTML elements, not just div.
+ */
+div.scrollBox, div.scrollBoxTiny, div.scrollBoxSmall, div.scrollBoxMedium, div.scrollBoxLarge, div.scrollBoxHuge
+{
+    font-family:        var(--monospace ) ;
+    font-weight:        bold ;
+    font-size:          0.8rem ;
+    /* Preserve newlines, collapse spaces and tabs, but wrap text. 
+       -Preserve newlines so we don't have to put <br> at the end of every line.
+       -Collapse spaces and tabs.  Text which is indented in the HTML will show up as left justified in the box.
+       -Enable wrapping so when the browser window is made smaller, text will flow to fill the box.
+    */
+    white-space:        pre-line ;
+    height:             12rem ;     /* Reduce for a particular box if there isn't enough text to avoid showing blank lines. */
+    width:              80% ;
+    color:              black ;
+    background-color:   var(--cyan-tint) ;
+    border:             solid ;
+    border-radius:      1rem ;      /* Rounded corners. */
+    border-width:       0.3rem ;
+    border-color:       var(--light-blue) ;
+    margin-top:         1rem ;      /* Vertical separation between adjacent boxes. */
+    margin-left:        3rem ;      /* Slightly inset from the left. */
+    overflow:           hidden ;    /* Clip off any crap bleeding over from the content box below (if any). */
+}
+
+div.scrollBoxTiny
+{
+    height:             3rem ;
+}
+
+div.scrollBoxSmall
+{
+    height:             5rem ;
+}
+
+div.scrollBoxMedium
+{
+    height:             7rem ;
+}
+
+div.scrollBoxLarge
+{
+    height:            13rem ;
+}
+
+div.scrollBoxHuge
+{
+    height:             35rem ;
+}
+
+/* This is the scroll box content which has scroll bars and fits into the scroll box container. */
+div.scrollBoxContent
+{
+    margin-top:   -1.0rem ;
+    /* I don't know why I see a vertical offset in the container, but negative margin eats it up it and it seems to work OK when scaling the browser window.  */
+    height:       100% ;    /* Fit the contents to the container. */
+    overflow:     auto ;    /* Let the browser decide about showing scroll bars. */
+}
+
+/*
+ * ------------------------------ Forms ---------------------------------------- 
+ *
+ * Here's an example where a form contains several lists.
+ * Each list contains several fieldsets.
+ * Each fieldset contains several pairs.  
+ * And each pair is a legend followed by an input control.
+ * 
+ *   <form id="LifePatternsForm">
+ *      <ul>
+ *          <li>
+ *              <!-- Game of Life clipboard controls -->
+ *              <fieldset>
+ *                  <legend>Clipboard</legend>
+ *                  <input type="button" onclick="gameOfLife.writeGameToClipboard()"  value="Write" />
+ *                  <input type="file"   id="GameOfLifeLoadFile"  name="files[]" multiple />
+ *              </fieldset>
+ *           </li>
+ *      </ul>
+ *  </form>
+ */
+
+/* Clear properties for all forms.  We'll set them below. */
+form
+{
+    padding:     0 ;
+    border:      0 ;
+    margin:      0 ;
+    overflow:    auto ;    /* Let the browser decide about showing scroll bars. */
+}
+
+form img
+{
+    vertical-align: middle ;
+}
+
+form ul
+{
+    list-style-type:   none ;   /* Remove bullets. */
+    list-style-image:  none ;
+    padding:           0 ;
+    margin:            0 ;
+}
+
+/* Within a form, the fieldset is the container for the buttons, fields, controls, etc. */
+form fieldset
+{
+    font-family:       var(--sans-serif) ;
+    font-size:         smaller ;
+    color:             navy ;
+
+    padding:           0.1rem ;     /* A little padding to make close together controls more readable. */
+    border:            0 ;
+    margin:            0 ;
+
+    background-color:  lightskyblue ;
+}
+
+/*  Style for input controls of the button or file type within a fieldset container. */
+fieldset input[ type = 'button' ], fieldset input[ type = 'file' ]
+{
+    font-style:        italic ;
+    cursor:            pointer ;    /* Hand when hovering over the button. */
+    padding:           0.3rem ;
+}
+
+/* Within each fieldset, float legends to the left and justify their text to the right.  
+ * The controls following each legend will then line up evenly along a column.
+ */
+fieldset legend
+{
+    text-align:    right ;
+    width:         12rem ;
+    margin-right:  1.5rem ;
+    float:         left ;
+}
+
+/* Style text within all fieldsets. */
+fieldset textarea
+{
+    font-family:       var(--monospace ) ;
+    color:             navy ;
+    cursor:            auto ;   /* Vertical bar cursor when hovering over text. */
+    background-color:  var(--very-light-blue) ;
+    resize:            none ;   /* Don't allow user to resize, only scroll. */
+    width:             100% ;
+}
+
+/*
+ * --------------------- Images ---------------------------------------------
+ */
+
+/* Images by themselves are centered in the containing block and have a decorative frame.
+ *
+ * <img class="centered" src="Images/BlenderScreenshot.png" alt="" />
+ */
+
+/* Fake inheritance in CSS by declaring common properties for all three image classes first.
+ * then overriding properties for each individual class.
+ */
+img.centered, img.centeredsmaller, img.centeredsmallest
+{
+    display:           block ;                       /* Default HTML ordering. */
+    padding:           0.5rem 0.5rem 0.5rem 0.5rem ; /* Thin region of background color surrounding the image. */
+    background-color:  var(--dark-blue-gray) ;
+    border:            solid;                        /* Frame surrounding the background. */
+    border-width:      0.3rem;                       /* Thin frame. */
+    border-color:      var(--kweilin-black) ;
+    border-radius:     1rem ;                        /* Curved edges for image frame. */
+    margin-left:       auto ;                        /* Margin surrounding the border.  Center the image horizontally. */
+    margin-right:      auto ;
+    margin-top:        2rem ;                        /* Small fixed margin gives added space above and below. */
+    margin-bottom:     2rem ;
+    max-width:         100% ;                        /* Image won't be larger than its containing block. */
+}
+
+img.centeredsmaller
+{
+    max-width:         60% ;    /* Shrink the image smaller than its containing block. */
+}
+
+img.centeredsmallest
+{
+    max-width:         25% ;
+}
+
+/* Make an SVG image look like a drawing on top of the paper. */
+img.transparent
+{
+    background: transparent ;
+    max-width:         100% ;   /* Image won't be larger than its containing block.*/
+}
+
+/*
+ * Images in a technical report (all descendents of body) have a lighter frame color to match the lighter body.
+ */
+body.technicalReport img.centered img.centeredsmaller img.centeredsmallest
+{
+    background-color:  var(--lighter-blue-background) ;
+}
+
+/* Inline images which are children of paragraphs (e.g. equations),
+ * and any images which are descendants of table rows and lists.
+ */
+p > img, li img, td img
+{
+     /* Make the image a little larger than the font height.  That stops the image from shrinking and
+      * being aliased as the browser crudely resamples the natural image height.
+      */
+    min-height:     1.3rem ;
+    vertical-align: middle ;    /* Align these images to the middle of the text line vertically. */
+    margin-bottom:  0.5rem ;    /* Leave a little room at the bottom so images won't run together if they are adjacent list items. */
+}
+
+/* Image within a hotkey combination which has a box around the text. */
+em.hotkey > img
+{
+    vertical-align:    middle ;    /* Align these images to the middle of the text line vertically. */
+    background-color:  transparent ;
+    border:            solid ;
+    border-width:      medium ;
+    border-color:      silver ;
+    margin-bottom:     0.5rem ;    /* Leave a little room at the bottom so images won't run together if they are adjacent list items. */
+}
+
+/*
+ *  Left page border in an aside element using an image.
+ *
+ *  <p>
+ *  <img class="border" 
+ *       src="../Images/otherInterestsBorderImage.jpg" 
+ *       alt="Art Gallery Image Border." />
+ *  </p>
+ */
+img.border
+{
+    display:           block ;  /* Normal CSS flow in a page. */
+    /* Blueish color until we load the image. */
+    background-color:  var(--light-blue-body-background) ;   /* Image fills the entire area vertically. Make it thin since it's just for decoration. */
+    top:               0 ;
+    left:              0 ;
+    width:             1.2rem ;
+    height:            100% ;
+    /*  Give us a thin vertical dividing line on the right of the image for contrast. */
+    border-right-style: solid ; 
+    border-right-width: 0.1rem ;
+    border-right-color: blue ;
+}
+
+/*
+ * ----------------------- Canvas--------------------------------------------
+ */
+
+/* Put a blue dotted line around the canvas.*/
+canvas
+{
+    border-width:   0.2rem ;
+    border-style:   dotted ;
+    border-color:   blue ;
+    /* Image won't be larger than its containing block.
+     * The <canvas> element will usually be inside the <body> element, making <body> its containing block.
+     * And <body> is the viewport on mobile devices or browser window on desktops.  
+     */
+    max-width:      100% ;
+}
+
+/*
+ * ---------------------- Horizontal rule -----------------------------------
+ */
+/* Horizontal rule. */
+hr
+{
+    height:            0.3rem ;
+    background-image:  url( "Images/blueBar.png" ) ;
+    background-color:  var(--dark-blue) ;
+    border:            none ;
+    margin-left:       1rem ;
+    margin-right:      1rem ;
+    clear:             both ;  /* This element starts on a new line below any floated elements, either left or right. */
+}
+
+/*
+* --------------------- Figures --------------------------------------------
+*
+* Figure floats to the left, letting text wrap around to the right.
+* It contains one or more images which flow downwards followed by a figure caption.
+*
+*  <figure>
+*     <img src="topImage.jpg" >
+*     <img src="botImage.jpg" >
+*
+*     <figcaption>
+*        These are two figure images.
+*     </figcaption>
+*  </figure>
+*
+* <p>
+* The figure will float to the left and this text will flow around to the right.
+* </p>
+*
+*  To float the figure to the right, use 
+*      <figure style="float: right">
+*/
+figure
+{
+    display:           flex ;                        /* Figure is a flex container.  Items flow in 1D downwards. */
+    flex-flow:         column ;
+    justify-content:   flex-start ;                  /* Justify the first item at the left of this container. */
+    text-align:        center ;
+    background-color:  var(--dark-blue-gray ) ;
+    padding:           1rem 1rem 1rem 1rem ;         /* Padding is colored same as the background color. */
+    border:            0.2rem silver solid ;         /* Border. */
+    border-radius:     1rem ;                        /* Rounded corners. */
+    margin:            1.5rem 1.5rem 1.5rem 1.5rem ; /* Space it away from the other elements in the page. */
+    float:             left ;                        /* Float the figure to the left and have text flow around it to the right. */
+    max-width:         35% ;                         /* Text flows around the figure. */
+}
+
+/* Figure background in a technical report has a lighter color to match the lighter body. */
+body.technicalReport figure
+{
+    background-color: var(--lighter-blue-background) ;
+}
+
+figcaption
+{
+    font-style:   italic ;
+    font-size:    smaller ;
+    text-indent:  0 ;
+}
+
+/* Apply only to an image inside the figure.
+ * Since we use a descendent selector so this also works for an image inside an href inside the figure. 
+ */
+figure img
+{
+    max-width:       100% ;    /* Image isn't larger than its containing block. */
+    padding-left:    0.5rem ;  /* In case we have multiple images, leave some space between. */
+    padding-right:   0.5rem ;
+    padding-top:     0.5rem ;
+    padding-bottom:  0.5rem ;
+}
+
+/* Apply only to a hyperlink directly inside class figure. */
+figure > a
+{
+    padding-left:   0.5rem ;  /* In case we have multiple hyperlinks, leave some space between. */
+    padding-right:  0.5rem ;
+}
+
+/* Override the default of justified. */
+figcaption ol
+{
+    text-align:  left ;
+}
+
+/*
+ * --------------------- Illustrated Paragraph ----------------------------------------------
+ *
+ * Paragraph which starts with an image, and contains text.
+ *
+ * <div class="illustratedparagraph">
+ *     <p>
+ *         <img src=... >
+ *     <p>
+ * </div>
+ *
+ * <p>
+ * The text in this second paragraph will flow to the right.
+ * </p>
+ *
+ */
+div.illustratedparagraph
+{
+    float:         left ;   /* Float this paragraph to the left and have text and other elements flow around to the right. */
+    margin-left:   0 ;      /* Hard against left edge of page. */
+    margin-bottom: 1rem ;   /* Leave space at the bottom. */
+    clear:         both ;   /* This element starts on a new line below any floated elements, either left or right. */
+    /* For debugging, place a dotted red line right outside the border. 
+    outline-color: purple ; 
+    outline-style: dotted ;
+    */
+}
+
+/* Only within an illustrated paragraph, inside the first hyperlink, 
+ * capitalize the text.
+ */
+div.illustratedparagraph a:first-child
+{
+    text-transform:  uppercase ;  /* All bold caps. */
+}
+
+/*  Icon image.  */
+div.illustratedparagraph img
+{
+    float:          left ;    /* Inside this illustrated paragraphs, the image floats to the left, and text flows around to the right. */
+    border:         none ;    /* Turn off the hyperlink border on the image. */
+    margin-right:   0.6rem ;  /* Leave space between image and text. */
+    margin-bottom:  0.3rem ;
+    max-width:      30% ;     /* Shrink the image no larger than a fraction of its containing block. */
+    /* Let text flow around the image in a circle instead of a square box. 
+    shape-outside: circle(50%); 
+    */
+    /* For debugging, place a dotted red line right outside the border. 
+    outline-color: blue ; 
+    outline-style: dashed ;
+    */
+}
+
+/*  This is special text for use to the right of the image.  */
+div.illustratedparagraph p
+{
+   text-align:       justify ;
+   background-color: transparent ;
+}
+
+/*
+ * ----------------------- Lists --------------------------------------------
+ */
+
+/*  Unordered list with a slightly smaller font,
+*  small Images for bullets.
+*/
+ul
+{
+    font-family:       var(--sans-serif ) ;   /* Inherit the font size from body. */
+    padding-left:      0.5rem ;
+    margin-left:       2rem ;
+    margin-top:        1.5rem ;
+    margin-bottom:     1.5rem ;
+    list-style-type:   none ;   /* Remove list bullets -- we will use images instead. */
+    list-style-image:  url( "Images/smallBlueBullet.png" ) ;
+    clear:             both ;    /* This element starts on a new line below any floated elements, either left or right. */
+    /* For debugging, place a dotted red line right outside the border. 
+    outline-color: red; 
+    outline-style: dotted; 
+    */
+}
+
+/*  Ordered list with a slightly smaller font.  */
+ol
+{
+    font-family:       var(--sans-serif ) ;   /* Inherit the font size from body. */
+    padding-left:      0.5rem ;
+    margin-left:       3rem ;
+    clear:             both ;     /* This element starts on a new line below any floated elements, either left or right. */
+}
+
+/*  Unordered list with small black disks. */
+ul.bullet
+{
+    font-size:           0.9rem ;
+    padding-left:        0.5rem ;
+    margin-left:         4rem ;
+    list-style-image:    none ;     /* Remove list bullets. */
+    list-style-type:     disc ;
+}
+
+/*  Unordered list with small black rectangles and text wrap around. */
+ul.minorBullet
+{
+   font-size:           0.9rem ;
+   list-style-image:    none ;      /* Remove list bullets. */
+   list-style-type:     square ;
+   list-style-position: inside ;
+}
+
+/*
+ * ----------------------- Tables -------------------------------------------
+ */
+
+/*  Default tables have a solid black border and are as wide as the page.
+    Collapse internal borders.
+ */
+table
+{
+    border-collapse:    collapse ;
+    border-style:       solid ;
+    border-color:       var(--art-gallery-blue) ;
+    border-width:       thin ;
+    width:              100% ;
+}
+
+/* Both table rows and columns have thin borders. */
+td, th
+{
+    border-style:       solid ;
+    border-color:       var(--art-gallery-blue) ;
+    border-width:       thin ;
+}
+
+/* But table header rows are also lightly colored to make them stand out.  */
+th
+{
+    font-weight: bold ;
+    background: var(--light-blue-tint) ;
+}
+
+/* Table caption appears above the table. */
+caption
+{
+    font-weight: bold ;
+    font-size:   larger ;
+}
+
+/*
+ * ----------------------- Software Viewing and Downloading --------------------------------------
+ *
+ *  Use a grid instead of a table.
+ *  We'll override the <ul> and <li> elements so it looks like an unordered list in the HTML.
+ *  
+ */
+
+ul.download
+{
+    display: grid ;
+    grid-template-columns: 2fr 5fr 1fr 1fr ;   /* Use fractions of the free space (not including fixed size cols (there aren't any here). */
+    column-gap:            0.1rem ;
+    row-gap:               0.1rem ;
+    list-style-type:  none ;     /* Turn off the default image bullets. */
+    list-style-image: none ;
+    /* Text a little smaller to fit better on narrow mobile screens. */
+    font-size: smaller ;
+}
+
+/*  
+ * Where each row is placed in the grid columns.  
+ * outline collapses the lines around each grid cell so they don't get duplicated.
+ */
+li.downloadName
+{
+    grid-column-start: 1 ;
+    outline: thin solid var(--art-gallery-blue) ;
+}
+
+li.downloadDescription
+{
+    grid-column-start: 2 ;
+    outline: thin solid var(--art-gallery-blue) ;
+}
+
+li.downloadView
+{
+    grid-column-start: 3 ;
+    outline: thin solid var(--art-gallery-blue) ;
+}
+
+li.download
+{
+    grid-column-start: 4 ;
+    outline: thin solid var(--art-gallery-blue) ;
+}
+
+li.downloadFooter
+{
+    grid-column:  1  / 5 ;
+    outline: thin solid var(--art-gallery-blue) ;
+}
+
+
+/*
+ * ----------------------- Tooltips -----------------------------------------
+ *
+ *     Show tooltip contents (text only) when hovering a mouse or pen controlled cursor over the tooltip element.
+ *     Mobile devices don't support hover, even with long press gestures.
+ *
+ *     Sample HTML:
+ *         <span data-text="I am the tooltip contents." class="I'm a tooltip:  hover over me to see tooltip contents!">Tooltip text</span>
+ */
+@media (any-hover: hover)
+{
+    /*  Make the style visible as a tooltip. */
+    span.tooltip
+    {
+        /* Since we don't specify any top/bottom/left/right property/values which would shift this element 
+           relative TO ITSELF, this is the same as the default static positioning, i.e. normal document flow.
+           Why do we need this?  Because the child class span.tooltip:before uses absolute positioning; 
+           it needs this parent class to have either relative or absolute positioning for that to work. */
+        position:      relative ;
+
+        /* Indicate the tooltip be a dashed line below its text. */
+        border-bottom: 0.2rem dashed var(--art-gallery-blue-gray);
+    }
+
+    /* Tooltip content.
+     * This child class (:before) of the parent class (span.tooltip) is a pseudoclass which inserts content 
+     * before the first item in the tooltip.span class, i.e. at the start of the tooltip text.  It doesn't
+     * actually change the DOM.  Actually it won't be inserted at all: we will take the position of this 
+     * tooltip content out of the normal document flow anyway by using absolute positioning.
+     * And that's because we want it hover over the tooltip.
+     */
+    span.tooltip:before
+    {  
+        /* Pull the tooltip text from the parent HTML span data-text value. */
+        content:    attr( data-text ) ;
+
+        text-align: center ;
+        color:      white ;
+        background: darkblue ;
+     
+        /* Wide enough for a reasonable chunk of text when hovering. */
+        width:      10rem ;
+
+        /* Take us out of the normal document flow.  The position is relative to the initial containing block,
+         * which is the edge of the padding box of the nearest ancestor element which has a relative position,
+         * in our case, span.tooltip.  So long story short, the tooltip contents will hover in a box whose upper
+         * left corner is the upper left corner padding of the tooltip text.  But then we 
+         * position using top and transform.
+         */
+        position: absolute ;
+
+        left: 50% ;                     /* Place left edge of box 1/2 to the right in the tooltip. */
+        transform: translateX( -50% ) ; /* Then shift it 1/2 way up to center horizontally. */
+        top: -1rem ;  /* Center vertically. */
+
+        padding:       1rem ;
+        border-radius: 1.5rem ;
+
+        /* Tooltip contents is stacked on top of all other display elements. */
+        z-index: 99 ;
+
+        /* Won't show up until we hover. */
+        opacity: 0 ;
+
+        /* Fade in when we set opacity = 1 during hover. */
+        transition:       0.3s  opacity ;
+        transition-delay: 100ms ;
+    }
+
+    /* Mouse cursor is hovering either over the box of the parent element span.tooltip 
+     * OR the box of the child class span.tooltip:before.   In either case, make it opaque. 
+     */
+    span.tooltip:hover:before
+    {
+        opacity: 1 ;
+    }
+}
+
+/*
+ * ----------------------- Art Gallery --------------------------------------
+ */
+
+/* Art gallery:  container for paintings which looks like a wall where we hang the art. */
+div.gallery
+{  
+    display:                flex ;         /* Items within this container are of flexbox type.  They flow in 1D horizontally. */
+    justify-content:        flex-start ;   /* Put the first painting at the beginning. */
+    flex-flow:              row wrap ;     /* Paintings wrap around to the next row. */
+    overflow:               auto ;         /* Let the browser decide about showing scroll bars.  On a mobile device paintings may be too wide for the gallery background. */
+    background-color:       var(--art-gallery-blue-gray) ;    /* Art gallery wall is bluish gray. */
+    background-position:    top left ;
+    background-attachment:  fixed ;
+    background-repeat:      repeat ;
+
+    /* Deep blue frame for the art gallery. */
+    border-color:           var(--art-gallery-blue ) ;
+}
+
+/* Mobile devices don't have hover and usually don't honor fixed background 
+   due to increased computation.  So just let background scroll with the content. */
+@media (hover: none)
+{
+    div.gallery
+    {
+        background-attachment: initial ;
+    }
+}
+
+/* A painting contains a canvas and title. */
+div.painting
+{
+    text-align:       center ;
+    background-color: transparent ;
+
+    /* Items within this container are of flexbox type.  They flow in 1D vertically. */
+    display:          flex ;
+    flex-direction:   column ;
+}
+
+/* Title of a canvas. */
+div.painting p
+{
+    color:       silver ;
+    font-style:  italic ;
+    font-size:   smaller ;
+    text-align:  center ;
+}
+
+/* A canvas is an image with a black frame.  */
+div.painting img
+{
+    background-color: var(--canvas-gray ) ;    /* Silvery gray background behind the canvas of the painting.  When we pad, this will show between canvas and picture frame. 
+                                                * Also if the canvas is round, i.e. image is rectangular, but alpha = 0 outside the circular canvas, this will show.
+                                                */
+    max-width: 18rem ;                                /* Fit the width of the screen on an iPhone 12 Pro */
+    padding:          0.2rem 0.2rem 0.2rem 0.2rem ;   /* Between the painting canvas and the frame. */
+    border-style:     solid ;                         /* The picture frame is black and rather thick. */
+    border-color:     black ;
+    border-width:     0.8rem ;
+    margin: 0.3rem 0.3rem 0.3rem 0.3rem ;             /* A little bit of margin so that the picture frames don't run into each other. */
+    /* For debugging, place a dotted red line right outside the border. 
+    outline-color: red; 
+    outline-style: dotted; 
+    */
+}
+
+/* Use an ID selector to apply to one painting only.  Turn off the padding because 
+ * the image has its own elliptical black frame already.
+ */
+div.painting img#GirlFromKweilin
+{
+    background-color:       var(--kweilin-black ) ;
+    padding:                0 0 0 0 ;
+}
+
+/*
+ * ------------------------------ Smartphone Portrait Mode -----------------
+ *
+ * Save space by removing the border image and the navigation sidebar.
+ *
+ */
+@media screen and (orientation: portrait) and (width < 500px)
+{
+    /* Change the wrapper to have only 1 columns since we omit the left navigation bar and the border image. */
+    div.wrapper
+    {
+        grid-template-columns:  1fr ;
+    }
+
+    aside.border
+    {
+        display: none ;
+    }
+
+    nav
+    {
+        display: none ;
+    }
+}
+
+/*
+ * ------------------------------ Printing ----------------------------------
+ */
+
+/* For printing, omit the navigation and borders.
+ * To test, do print preview from a web browser to see the pdf file.
+ * Or to test on a browser in display mode, temporarily replace "print" with "screen".
+ */
+@media print
+{
+    /* Turn off the grid. */
+    div.wrapper
+    {
+        display: block ;
+    }
+
+    /* Turn off the navigation sidebars. */
+    nav, header.navigation
+    {
+        display: none ;
+    }
+
+    /* Turn off decorative border Images. */
+    aside.border
+    {
+        display: none ;
+    }
+
+    /*  Leave less margin on the left of the page since border image is gone. 
+     *  Remove all background images (printers don't print white).
+     */
+    body
+    {
+        background:    white ;
+        margin-left:   3rem ;
+        margin-right:  2rem ;
+    }
+
+    /* Turn off scrolling in scroll boxes and show the whole content. */
+    div.scrollBox, div.scrollBoxContent
+    {
+        background:    white ;    /* Remove background color (printers don't print white). */
+        overflow:      visible ;  /* No scrollbars;  just show the whole content, even if it goes outside the container. */
+        white-space:   pre-wrap ; /* Preserve whitespace.  Wrap when necessary and on newlines. */
+        width:         auto ;     /* Expand the box size to whatever necessary. */
+        height:        auto ;     /* Expand the box size to whatever necessary. */
+    }
+
+    figure
+    {
+        background:    white ;    /* Remove background color (printers don't print white). */
+    }
+
+    div.gallery
+    {
+        background:    white ;    /* Remove background color (printers don't print white). */
+    }
+}
