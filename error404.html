@@ -1,0 +1,159 @@
+u!DOCTYPE html>
+<html lang="en-US">  <!-- Set language of this page to USA English. -->
+
+<!-- ===================================================================
+|
+| NAME
+| 
+|     error404.html
+|
+| DESCRIPTION
+|
+|     This is my custom broken link error page.
+|     It is a hand-crafted HTML 5 W3C validated document.
+|
+| AUTHOR
+|
+|    Sean Erik O'Connor
+|
+=================================================================== -->
+
+    <head>
+        <!-- This page uses Unicode characters. -->
+        <meta charset="utf-8">
+
+        <!-- Set viewport to actual device width.  Any other settings makes the web page initially appear zoomed-in on mobile devices. -->
+        <meta name="viewport" content="width=device-width">
+
+        <!-- Titles appear in the web browser and the browser's bookmarks. -->
+       <title>Sean Erik O'Connor - Error 404 page.</title>
+
+        <!-- Search engines will show this description below the title. -->
+       <meta name="description" 
+             content="Custom Error 404 web page for Sean Erik O'Connor.">
+
+       <meta name="author" content="Sean Erik O'Connor">
+
+       <!-- Cascading style sheet for this document. -->
+       <link rel="StyleSheet" href="StyleSheet.css" type="text/css">
+
+        <!-- Favicons are 32x32 or 16x16, 8 or 24 bit PNG Images which show up left of the web page title in a browser.  -->
+        <link rel="icon" type="image/png" href="Images/favicon.png">
+    </head>
+
+    <body>
+        <!-- This wraps the whole body in a CSS grid. -->
+        <div class="wrapper titlePage">
+
+            <header class="title">
+                <h1 class="stylish">Sorry About the Broken Link!</h1>
+                <hr>
+            </header>
+
+            <!-- A decorative border at the left side of the page. -->
+            <aside class=border>
+                  <img class="border" src="Images/sinXYPlot.png" alt="Sin( x y ) Image Border.">
+            </aside>
+
+            <header class="navigation">
+                <a href="index.html">
+                    <img src="Images/home.png" alt="Home Page Button." width="32" height="32" >
+                     <em>Home</em>
+                 </a>
+
+                 <a href="Mathematics/mathematicalSoftware.html">
+                     <img src="Images/compactDisk.png" alt="Mathematical Software Button." width="32" height="32" >
+                      <em>Mathematical Software</em>
+                 </a>
+
+                 <a href="Art/Art.html">
+                     <img src="Images/sampleArtLowRes.png" alt="Art Button." width="32" height="32" >
+                      <em>Fine Arts</em>
+                 </a>
+
+                 <a href="WebPageDesign/webPageDesign.html">
+                      <img src="Images/webPage.png" alt="Web Page Design Button." height="32" width="32" >
+                      <em>Web Page Design</em>
+                 </a>
+
+                 <a href="Electronics/Electronics.html">
+                     <img src="Images/sparkCoil.png" alt="Hobby Electronics Button." width="32" height="32" >
+                      <em>Hobby Electronics</em>
+                 </a>
+
+                 <a href="ReadingList/readingList.html">
+                      <img src="Images/terraApollo17NASALowRes.png" alt="Reading List Button." width="32" height="32">
+                      <em>Reading list</em>
+                </a>
+            </header>
+
+           <!-- The main content of this page. -->
+            <article class="content">
+                <h3>Sorry about the broken link!</h3>
+
+                <section>
+                    <h4>Go to my home page!</h4>
+                    <p>
+                        Please click on my 
+                        <a href="index.html"><em>home page</em></a>
+                        or search my site.
+                    </p>
+                </section>
+
+                <section>
+                    <h4>Search my web site with Google</h4>
+                    <!-- Form to search my site with Google.  From Google's free tools web page.  -->
+                    <form method="get" action="http://www.google.com/search">
+
+                        <div id="formContainer">
+                            <input type="hidden" name="ie" value="UTF-8" >
+                            <input type="hidden" name="oe" value="UTF-8" >
+
+                            <!-- Required Google logo -->
+                            <a href="http://www.google.com/">
+                                    <img src="http://www.google.com/logos/Logo_25wht.gif" alt="Google" >
+                            </a>
+
+                            <!-- A text input control for the (q)uery search string. -->
+                            <input type="text" name="q" size="32" maxlength="255"
+                                   value="Primitive Polynomial" >
+
+                            <!-- Submit button:  submits this form when activated. -->
+                            <input type="submit" name="btnG" value="Search my site" >
+
+                            <!-- The URL of my site to search.
+                                  Determine which server we are on and use the appropriate hyperlink.
+                            -->
+                            <script>
+                                var hostname = location.href
+                                var prefix = "<input type=\"hidden\" name=\"sitesearch\" value=\"http://"
+                                var suffix = ".com\" >"
+
+                                if (hostname.match( "freeservers" ))
+                                {
+                                    document.write( prefix + "seanerikoconnor.freeservers" + suffix )
+                                }
+                                else if (hostname.match( "file" ))
+                                {
+                                    document.write( prefix + "seanerikoconnor.freeservers" + suffix )
+                                }
+                            </script> 
+                        </div>
+                    </form>
+               </section>
+           </article>
+
+            <footer class="footnote">
+                <hr>
+                <!-- A copyright footnote to preserve my legal rights. -->
+                <p class="footnote">
+                    Copyright &copy; 1986-2026 by Sean Erik O'Connor.  
+                    All Rights Reserved.
+                    &nbsp;&nbsp;&nbsp;
+                    last updated 27 Feb 26.
+                </p>
+
+            </footer>
+        </div> <!-- wrapper -->
+    </body>
+</html>

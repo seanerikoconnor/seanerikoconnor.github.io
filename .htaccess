@@ -1,0 +1,48 @@
+# BEGIN ERROR DOCUMENT
+# Personalized error document for broken links.
+# See https://httpd.apache.org/docs/2.4/custom-error.html
+ErrorDocument 404 /error404.html
+# END ERROR DOCUMENT
+
+# BEGIN ADD MIME TYPE FOR FILES
+# Tell the server to support a particular MIME type.
+# See https://httpd.apache.org/docs/2.4/mod/mod_mime.html#addtype
+<FilesMatch "\.(h)$">
+<IfModule mod_headers.c>
+Header set Access-Control-Allow-Origin "*"
+</IfModule>
+</FilesMatch>
+
+AddType text/plain h
+AddType text/plain nb
+Addtype text/plain for
+Addtype text/plain FOR
+# END ADD MIME TYPE FOR FILES
+
+# BEGIN DEFLATE COMPRESSION
+# Server will compress these MIME file types.  Browser will decompress.
+# See http://httpd.apache.org/docs/current/mod/mod_deflate.html
+<ifmodule mod_deflate.c>
+AddOutputFilterByType DEFLATE text/text text/html text/plain text/xml text/css application/x-javascript application/javascript
+</ifmodule>
+# END DEFLATE COMPRESSION
+
+## BEGIN BROWSER CACHING
+# Ask the user's browser to cache certain file types for a limited time after 
+# the first web page visit.  The server can then avoid resending them and page
+# loads will be faster.  After the expiration time, files will be sent again.
+# See http://httpd.apache.org/docs/current/mod/mod_expires.html
+<IfModule mod_expires.c>
+ExpiresActive On
+ExpiresByType image/jpg "access plus 1 day"
+ExpiresByType image/jpeg "access plus 1 day"
+ExpiresByType image/gif "access plus 1 week"
+ExpiresByType image/png "access plus 1 day"
+ExpiresByType text/css "access plus 1 week"
+ExpiresByType application/pdf "access plus 1 week"
+ExpiresByType text/x-javascript "access plus 1 day"
+ExpiresByType application/x-shockwave-flash "access plus 1 month"
+ExpiresByType image/x-icon "access plus 1 week"
+ExpiresDefault "access plus 2 days"
+</IfModule>
+## END BROWSER CACHING

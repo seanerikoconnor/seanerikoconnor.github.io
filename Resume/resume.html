@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en-US">  <!-- Set language of this page to USA English. -->
+
+<!-- ===================================================================
+|
+| NAME
+| 
+|     resume.html
+|
+| DESCRIPTION
+|
+|     My resume is a is a hand-crafted HTML 5 W3C validated document.
+|
+| AUTHOR
+|
+|    Sean Erik O'Connor
+|
+=================================================================== -->
+
+    <head>
+        <!-- This page uses Unicode characters. -->
+        <meta charset="utf-8">
+
+        <!-- Set viewport to actual device width.  Any other settings makes the web page initially appear zoomed-in on mobile devices. -->
+        <meta name="viewport" content="width=device-width" />
+
+        <!-- Search engines will show this description below the title. -->
+        <title>Resume of Sean Erik O'Connor</title>
+
+        <meta name="description"       
+              content="Resume of Sean Erik O'Connor">
+
+        <meta name="author"             
+              content="Sean Erik O'Connor">
+
+        <!-- Cascading style sheet for this document. -->
+        <link rel="stylesheet" href="../StyleSheet.css" type="text/css" />
+
+        <!-- Favicons are 32x32 or 16x16, 8 or 24 bit PNG images which show up left of the web page title in a browser.  -->
+        <link rel="icon" type="image/png" href="../Images/favicon.png" >
+
+        <!-- JavaScript email utility -->
+        <script src="../Scripts/email.js"></script>
+    </head>
+
+    <body class="technicalReport">
+
+            <!-- Title page at the top.  -->
+            <header class="title">
+                <h1>SEAN E. O'CONNOR</h1>
+
+                <h2 class="email">
+                    <!-- JavaScript for hiding my email address from spambots yet it works as usual. -->
+                    <script>
+                    <!--
+                        // Insert email address into this file's HTML.
+                        document.write( mailto( "email" ) ) ;
+                    // -->
+                    </script>
+                </h2>
+            </header>
+
+           <!-- The main content of this page. -->
+
+            <!-- Try to fit a target job's SKILLS, KNOWLEDGE and EXPERIENCE.
+                 For each key skill
+                 List accomplishments which demonstrate its usefulness.
+
+                 The very first thing people will look at.  
+                 It's a reader's hook;  don't waste it! -->
+
+            <article class="content">
+                <section>
+                    <h4>PROFESSIONAL SUMMARY:</h4>
+
+                    <p>
+                    Software designer with extensive experience creating and implementing
+                    algorithms in the areas of machine learning, statistical data analysis, image processing, pattern recognition, signal
+                    processing, computer vision, and real time systems.  
+                    </p>
+
+                    <!-- People will look at the bullet items here.  Tell all in order of importance, but briefly.  -->
+                    <h4>SKILLS</h4>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr;">
+                        <p style="padding-left: 1rem ; padding-right:1rem;">
+                        &bullet; 
+                        Algorithm design and development on both large systems and embedded firmware. 
+                        </p>
+
+                        <p style="padding-left: 1rem ; padding-right:1rem;">
+                        &bullet; 
+                        Statistical data analysis, image processing, pattern recognition, signal processing.
+                        </p>
+
+                        <p style="padding-left: 1rem ; padding-right:1rem;">
+                        &bullet; 
+                        Strong mathematical/analytical background including statistics and physics.
+                        </p>
+
+                        <p style="padding-left: 1rem ; padding-right:1rem;">
+                        &bullet; 
+                        Analysis Tools:  Matlab, SageMath, Mathematica, Jupyter Notebook/Lab.
+                        </p>
+
+                        <p style="padding-left: 1rem ; padding-right:1rem;">
+                        &bullet; 
+                        Software Design Methods: Object oriented design, UML, software peer review, Git.
+                        </p>
+
+                        <p style="padding-left: 1rem ; padding-right:1rem;">
+                        &bullet; 
+                        Computer languages (10+ years experience):
+                        C++, C, Python, HTML, CSS, JavaScript
+                        Common Lisp (3 years), LaTeX (2+ years).
+                        </p>
+
+                        <p style="padding-left: 1rem ; padding-right:1rem;">
+                        &bullet; 
+                        Computer Systems: Apple MacOS, Ubuntu/Linux, Microsoft Windows.
+                        </p>
+                    </div>
+
+                    <!-- Again, people tend to read the bullet items.  -->
+                    <h4>PROFESSIONAL EXPERIENCE:</h4>
+
+                    <!-- People are going to value the most recent experience first;  state what I've done in more detail here. -->
+                    <p>
+                    <b>Machine Learning / Image Processing Engineer</b>, Apple Inc., Cupertino. <i>9/2006-2/2025.</i>
+                    </p>
+
+                    <ul class="minorBullet">
+                        <li>
+                            Algorithm design, development, and implementation for fast and reliable finger touch sensing and gesture recognition on 
+                            iPhone, Trackpad, Mouse, iPad, Apple Watch and other products.  Worked with software, Q/A, and hardware teams to ensure we
+                            had a high quality, robust solution which would work for millions of customers.
+                        </li>
+                        <li>
+                            Created new signal processing and machine learning algorithms and applied them to touch sensor signals to improve accuracy 
+                            of finger location, size and shape, in the presence of noise and finger signal variability, 
+                            reject false touches from water and other non-finger objects, 
+                            and suppress interfering signals from hardware such power adapter noise and static discharges.
+                        </li>
+                        <li>
+                            Prototyped algorithms in Python and MATLAB followed by implementation in firmware in C and C++.  Optimized for speed and code size for longer battery life. 
+                            Developed comprehensive unit tests and wrote extensive technical documentation for all my algorithm designs.
+                        </li>
+                    </ul>
+
+                    <p>
+                    <b>Senior Staff Software Design Engineer</b>, KLA-Tencor, San Jose. <i>4/1995-9/2006</i> 
+                    </p>
+
+                    <p>
+                    Designed new machine vision and pattern recognition algorithms for 
+                    automatically detecting defects on semiconductor wafers on both optical and 
+                    SEM inspection systems.
+                    </p>
+
+                    <ul class="minorBullet">
+                        <li>
+                        Designed a method for automatically detecting and measuring any kind of repeating 
+                        patterns on images of semiconductor wafers with no training necessary, even in the presence 
+                        of severe noise and obscuring artifacts.
+                        Used mathematical methods from image processing, robust statistical analysis 
+                        and number theory.
+                        </li>
+
+                        <li>
+                        Developed a hybrid rule-based and statistical classifier
+                        to discriminate between image noise artifacts and real objects at
+                        a &gt; 90% success rate with automatic training of rules and other classifier settings.
+                        </li>
+
+                        <li>
+                        Developed filters to improve image quality in scanning electron microscopy (SEM) images,
+                        including methods to compensate for brightness variation, correction 
+                        of geometric distortion by graylevel morphological filtering, 
+                        suppression of random shot and impulse noise, 
+                        and image low passing and subsampling to increase object signal
+                        to noise ratio.
+                        Developed default algorithm settings, wrote user manual 
+                        and trained application engineers in intuitive use of filter
+                        settings on customer data.
+                        </li>
+
+                        <li>
+                        Analyzed speed bottlenecks in image processing methods for defect detection and
+                        and used methods from graph theory to improve the speed by an order of magnitude.
+                        </li>
+
+                        <li>
+                        Developed a new method for automatically locating and focusing on probe pin positions
+                        reliably in the presence of stray reflections and noise.
+                        Used a collection of image processing techniques based on adaptive thresholding, 
+                        morphological noise cleaning, connected components analysis, blob feature analysis,
+                        robust centroid computation, and computational geometry.
+                        </li>
+                    </ul>
+
+                    <p>
+                    <b>Member of the Technical Staff</b>, Photon Dynamics Inc., Milpitas (since acquired by KLA-Tencor) <i>5/1993-4/1995</i>
+                    </p>
+
+                    <p>
+                    Developed new software to give high accuracy image calibration and registration 
+                    in real time for an automated flat panel display inspection system.
+                    </p>
+
+                    <ul class="minorBullet">
+                        <li>
+                        Developed methods for accurately locating calibration target positions from 
+                        camera images using fast projection, 1D correlation with 2D correlation 
+                        fine tuning.
+                        </li>
+
+                        <li>
+                        Developed a reliable and accurate method for automatically
+                        focusing the camera in real time based upon adaptive noise thresholding
+                        and a modified edge operator with parabolic curve fitting.
+                        </li>
+
+                        <li>
+                        Did a theoretical analysis of the effects of system noise on image gain correction 
+                        and developed methods to reduce it and speed up performance.
+                        </li>
+
+                        <li>
+                        Designed software for real time image acquisition from digital
+                        and analog cameras, working closely with the hardware engineers designing 
+                        the camera.
+                        </li>
+                    </ul>
+
+                    <!-- Put the highlights of my experience here. -->
+
+                    <p>
+                    <b>Senior Engineer</b> TAU Corporation, Los Gatos. <i>9/1991-5/1993 </i>
+                    </p>
+
+                    <p>
+                    Developed C software on a real time image processing
+                    system for monitoring laser welding. 
+                    Designed fast algorithms for
+                    detecting the laser light and displaying its location graphically.
+                    </p>
+
+                    <ul class="minorBullet">
+                        <li>
+                        Implemented the system on a VME compatible 68040 single board computer
+                        with Datacube real time image processing hardware, and controlled by a Sun
+                        workstation running X windows under UNIX.
+                        </li>
+
+                        <li>
+                        Wrote the user manual, installed the system and trained the customer.
+                        </li>
+                    </ul>
+
+                    <p>
+                    Designed the C software for an automated PC-based
+                    image analysis system for automated strain analysis of materials such as
+                    aircraft wings and turbines. 
+                    </p>
+
+                    <ul class="minorBullet">
+                        <li>
+                        Designed fast correlation algorithms for comparing the image of a sample to a reference image to
+                        measure defects and display their locations graphically. 
+                        </li>
+
+                        <li>
+                        Implemented the software on a 80486 PC with a specialized signal processing board,
+                        a camera and frame grabber board and a precision motor driven xy platform.
+                        </li>
+
+                        <li>
+                        Built the system, wrote the user manual, installed it, trained the customer, and shipped
+                        maintainence updates.
+                        </li>
+                    </ul>
+
+                    <!-- People will tend to skip this older job history section on first reading, but I did work
+                         here 10 years and learned a lot, so put the highlights.  -->
+                    <p>
+                    <b>Senior Software Engineer</b>, Lockheed-Martin Corporation, Sunnyvale.</b> <i>2/1981-9/1991</i>
+                    </p>
+
+                    <p>
+                    <i>10/1987-9/1991 Communications Systems Analysis Group</i>
+                    </p>
+
+                    <p>
+                    Responsible for the algorithm and software design in a simulation
+                    study of a communications system for broadcasting error free images over
+                    satellite links.
+                    </p>
+
+                    <ul class="minorBullet">
+                        <li>
+                        Designed and implemented error correction/detection algorithms using the
+                        CRC, Reed-Solomon, BCH and Golay codes to protect images against burst
+                        errors on telephone or satellite links. 
+                        </li>
+
+                        <li>
+                        Developed an improved theoretical
+                        formula for predicting error correction performance which was verified
+                        by simulation.
+                        </li>
+                    </ul>
+
+                    <p>
+                    <i><i>4/1985-10/1987 Communications Systems Analysis Group</i></i>
+                    </p>
+
+                    <p>
+                    Designed the image processing and graphics software
+                    for a portable PC based system for processing, enhancement and transmission
+                    of images over satellite data links. 
+                    </p>
+
+                    <ul class="minorBullet">
+                        <li>
+                        Designed methods for fast image rotations and reflections.
+                        </li>
+
+                        <li>
+                        Designed an algorithm to display satellite images in false color by combining information from
+                        different frequency bands. 
+                        </li>
+
+                        <li>
+                        Wrote C and assembly language software for interfacing to image scanners, cameras, 
+                        image display boards, and image printers.
+                        </li>
+                    </ul>
+
+                    <p>
+                    <i><i>2/1981-4/1985 Scientific Software Support Group</i></i>
+                    </p>
+
+                    <ul class="minorBullet">
+                        <li>
+                        Designed the user interface and graphics software for a topographic map display
+                        on a Sun workstation and implemented it in X windows using the C language.
+                        </li>
+
+                        <li>
+                        Designed a computational geometry algorithm
+                        for automatic detection and suppression of overlapping graphics objects
+                        to automatically declutter the display screen.
+                        </li>
+
+                        <li>
+                        Used the UNIX tools YACC and LEX to write a parser for extracting graphics
+                        data from a database. 
+                        </li>
+
+                        <li>
+                        Designed an algorithm to automatically lay out connections
+                        between graphic symbols for a visual programming language. 
+                        Designed a method to automatically generate code from the diagram using topological
+                        sorting.
+                        </li>
+
+                        <li>
+                        Developed mathematical software for polynomial root finding, numerical Laplace 
+                        transform inversion, exponential integral and other math library functions.
+                        </li>
+                    </ul>
+
+                    <!-- People will read this for research type jobs, so tell all, but briefly. -->
+                    <h4>EDUCATION:</h4>
+
+                    <ul class="bullet">
+                        <li>
+                        <b>Graduate work, partial differential equations, Ph.D. program in Mathematics</b> University of California, Berkeley, California.  6/1979 - 6/1980
+                        </li>
+
+                        <li>
+                        <b>Bachelor of Arts in Mathematics, Minor in Physics</b>, University of California, Berkeley, California  6/1979.
+                        </li>
+
+                        <li>
+                        <b><i>Honors:</i></b> Phi Beta Kappa, Distinction in Scholarship.
+                        </li>
+                    </ul>
+
+                    <!-- List more of my accomplishments which demonstrate my broad knowledge, innovativeness,
+                         and communications skills.
+                    -->
+                    <h4>PATENTS:</h4>
+
+                        <ul class="bullet">
+                            <li>
+                                <a href="https://patents.google.com/patent/US20190102001A1/">Method for transitioning power states of an electronic device</a>, Filed Dec 29, 2017
+                            </li>
+
+                            <li>
+                                <a href="https://patents.google.com/patent/US20190079613A1/">State-based touch threshold</a>, Filed Sep 11, 2017
+                            </li>
+
+                            <li>
+                                <a href="https://patents.google.com/patent/US10152162B1/">Method of optimizing touch detection</a>, Filed Dec 11, 2014
+                            </li>
+
+                            <li>
+                                <a href="https://patents.google.com/patent/US9880655B2/">Method of disambiguating water from a finger touch on a touch sensor panel</a>, Filed Dec 2, 2014
+                            </li>
+
+                            <li>
+                                <a href="https://patents.google.com/patent/US10042484B1/">Coupling correction in capacitive touch panels</a>, Filed Sep 9, 2014
+                            </li>
+
+                            <li>
+                                <a href="https://patents.google.com/patent/US20150346903/">Low power scan for device wake up and unlock</a>, Filed Aug 28, 2014
+                            </li>
+
+                            <li>
+                                <a href="https://patents.google.com/patent/US20080309625/">Multiple simultaneous frequency detection</a>, Filed Jul 23, 2013
+                            </li>
+
+                            <li>
+                                <a href="https://patents.google.com/patent/US20140071092/">ESD detection on a touch input device</a>, Filed Dec 10, 2012
+                            </li>
+
+                            <li>
+                                <a href="https://patents.google.com/patent/US7876311/">Detection of low noise frequencies for multiple frequency sensor panel stimulation</a>, Filed Feb 21, 2012
+                            </li>
+
+                            <li>
+                                <a href="https://patents.google.com/patent/US20130018489/">Combined force and proximity sensing</a>, Filed Jul 14, 2011
+                            </li>
+
+                            <li>
+                                <a href="https://patents.google.com/patent/US7643011/">Noise detection in multi-touch sensors</a>, Filed Jan 5, 2010.
+                            </li>
+
+                            <li>
+                                <a href="https://patents.google.com/patent/US20110074725/">Negative Pixel Compensation</a>, Filed Sep 30, 2009.
+                            </li>
+
+                            <li>
+                            <a href="https://patents.google.com/patent/US20080309626/">Speed/positional mode translations - Gestures for converting from a position control mode to a motion continuation mode</a>, Filed Jun 13, 2007
+                            </li>
+                        </ul>
+
+                    
+                    <h4>PUBLICATIONS:</h4>
+
+                    <ul class="bullet">
+                        <li>
+                        Mathematical software and tutorials published on my web site 
+                        <a href="http://seanerikoconnor.freeservers.com">
+                          http://seanerikoconnor.freeservers.com</a>,
+                        1999-present.
+                        </li>
+
+                        <li>
+                        "PC-Based High Accuracy Displacement Field Measurement System", 
+                        Hassan Mostafavi and Sean O'Connor, 1992.
+                        </li>
+
+                        <li>
+                        "Software for Galois Field Arithmetic and BCH Code Generation", Sean O'Connor, Lockheed Technical
+                        Report F-103441, April 1986.
+                        </li>
+                    </ul>
+                </section>
+            </article>
+
+            <hr>
+
+            <footer class="footnote">
+
+                <!-- A copyright to preserve my legal rights. -->
+                <p class="footnote">
+                    Copyright &copy; 1986-2026 by Sean Erik O'Connor.
+                    All Rights Reserved.
+                    &nbsp;&nbsp;&nbsp;
+                    last updated 01 Jan 26.
+                </p>
+            </footer>
+    </body>
+</html>

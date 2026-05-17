@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en-US">  <!-- Set language of this page to USA English. -->
+
+<!-- ===================================================================
+|
+| NAME
+|
+|     electronics.html
+|
+| DESCRIPTION
+|
+|     This is a sample of some of my hand-crafted electronics.
+|     It is a hand-crafted HTML 5 W3C validated document.
+|
+| AUTHOR
+|
+|    Sean Erik O'Connor
+|
+=================================================================== -->
+
+    <head>
+        <!-- This page uses Unicode characters. -->
+        <meta charset="utf-8">
+
+        <!-- Set viewport to actual device width.  Any other settings makes the web page initially appear zoomed-in on mobile devices. -->
+        <meta name="viewport" content="width=device-width" />
+
+        <!-- Titles appear in the web browser and the browser's bookmarks. -->
+        <title>Hand Crafted Electronics by Sean Erik O'Connor.</title>
+
+        <meta name="description"
+              content="Hand Crafted Electronics." />
+
+        <meta name="author"
+              content="Sean Erik O'Connor" />
+
+        <meta name="copyright"
+              content="Copyright (C) 1979-2026 by Sean Erik O'Connor.  All Rights Reserved." />
+
+        <!-- Cascading style sheet for this document. -->
+        <link rel="stylesheet" href="../StyleSheet.css" type="text/css" />
+
+        <!-- Favicons are 32x32 or 16x16, 8 or 24 bit PNG Images which show up left of the web page title in a browser.  -->
+        <link rel="icon" type="image/png" href="../Images/favicon.png" >
+    </head>
+
+    <body>
+            <!-- This wraps the whole body in a CSS grid. -->
+        <div class="wrapper titlePage">
+
+            <!-- Title page at the top.  -->
+            <header class="title">
+                <h1 class="stylish">Hobby Electronics</h1>
+                <hr>
+            </header>
+
+            <!-- Horizontal navigation bar to all top level pages. -->
+            <header class="navigation">
+                <a href="../index.html">
+                    <img src="../Images/home.png" alt="Home Page Button." width="32" height="32" >
+                     <em>Home</em>
+                 </a>
+
+                 <a href="../Mathematics/mathematicalSoftware.html">
+                     <img src="../Images/compactDisk.png" alt="Mathematical Software Button." width="32" height="32" >
+                      <em>Mathematical Software</em>
+                 </a>
+
+                 <a href="../Art/Art.html">
+                     <img src="../Images/sampleArtLowRes.png" alt="Art Button." width="32" height="32" >
+                      <em>Fine Arts</em>
+                 </a>
+
+                 <a href="../WebPageDesign/webPageDesign.html">
+                      <img src="../Images/webPage.png" alt="Web Page Design Button." height="32" width="32" >
+                      <em>Web Page Design</em>
+                 </a>
+
+                 <a href="../Electronics/Electronics.html">
+                     <img src="../Images/sparkCoil.png" alt="Hobby Electronics Button." width="32" height="32" >
+                      <em>Hobby Electronics</em>
+                 </a>
+
+                 <a href="../ReadingList/readingList.html">
+                      <img src="../Images/terraApollo17NASALowRes.png"
+                           alt="Reading List Button."
+                           width="32" height="32" />
+                      <em>Reading list</em>
+                </a>
+            </header>
+
+            <!-- A decorative border at the left side of the page. -->
+            <aside class=border>
+                  <img class="border"
+                       src="../Images/sinXYPlot.png"
+                       alt="Sin( x y ) Image Border." />
+            </aside>
+
+           <!-- The main content of this page. -->
+            <article class="content">
+                <section>
+                    <h3>Electronic flash.</h3>
+
+                    <div class="illustratedparagraph">
+                        <p>
+                        <a href="Images/ElectronicFlash.jpg">
+                            <img src="Images/ElectronicFlash.jpg"
+                                 alt="Electronic Flash."
+                            />
+                        </a>
+                        An electronic flash in a polished wooden box.
+                        It uses a Xenon flash tube, and is powered by 4 D cells.
+                        There is a digital voltage readout of the bargraph type.
+                        </p>
+                    </div>
+
+                    <div class="illustratedparagraph">
+                        <p>
+                            <a href="Images/ElectronicFlashInside.jpg">
+                                <img src="Images/ElectronicFlashInside.jpg"
+                                     alt="Electronic flash interior."
+                                />
+                            </a>
+                        </p>
+
+                        <p>
+                        The inside of the electronic flash.
+                        </p>
+
+                        <p>
+                        Power comes from 4 1.5 volt D cells in the battery compartment.
+                        The high voltage to power the flash tube (up to 350 volts)
+                        is generated as AC by a transformer and vibrator, is then
+                        full wave rectified and stored in a special capacitor.
+                        </p>
+
+                        <p>
+                        The Xenon flash tube is triggered manually by a switch feeding
+                        a high voltage trigger transformer.
+                        The flash tube is at the focus of a parabola to give a forward
+                        light beam.
+                        </p>
+
+                        <p>
+                        A digital LED bar graph readout monitors the voltage on the
+                        capacitor.
+                        This electronics board is located in the lid of the box.
+                        </p>
+                    </div>
+                </section>
+
+                <section>
+                    <h3>Audio digitizer.</h3>
+
+                    <div class="illustratedparagraph">
+                        <p>
+                            <a href="Images/AudioInputThroughParallelPort.jpg">
+                                <img src="Images/AudioInputThroughParallelPort.jpg"
+                                     alt="Sound interface to PC parallel port."
+                                />
+                            </a>
+                        </p>
+                        <p>
+                        An audio digitizer whose interface is the parallel port of a PC.
+                        </p>
+
+                        <p>
+                        My design is a simple version of a one stage sigma-delta modulator.
+                        The audio from the microphone is amplified by an operational
+                        amplifier stage.
+                        The signal passes through a second op amp with a tunable
+                        bias which removes its DC component.
+                        This is crucial and must be adjusted using and oscilliscope.
+                        It is then digitized to 1 bit by a comparator.
+                        The bit stream feeds into the parallel port interface where it
+                        is sampled by my PC.
+                        </p>
+
+                        <p>
+                        I've written a C program which samples the digital signal from the
+                        parallel port and saves it to a binary file.
+                        To play back the audio, the same program reads the binary file and
+                        toggles the PC speaker on and off through the PC's registers.
+                        </p>
+
+                        <p>
+                        It's astounding that this one-bit quantization works.
+                        The key is that the signal is
+                        greatly oversampled (~10-20 times Nyquist rate) and the inertia of
+                        the speaker averages out and reconstructs the original signal
+                        according to the ergodic theorem.
+                        </p>
+                    </div>
+                </section>
+
+                <section>
+                    <h3>Power Supply</h3>
+
+                    <div class="illustratedparagraph">
+                        <p>
+                            <a href="Images/PowerSupply.jpg">
+                                <img src="Images/PowerSupply.jpg"
+                                     alt="Linear power supply."
+                                />
+                            </a>
+                        </p>
+
+                        <p>
+                        A ruggedized regulated linear power supply.
+                        </p>
+
+                        <p>
+                        The voltage is adjustable from 1.335V to 34.5V
+                        and the current can go up to 2 amps.
+                        We have very steady voltage regulation with very low noise.
+                        </p>
+                    </div>
+
+                    <div class="illustratedparagraph">
+                        <p>
+                            <a href="Images/PowerSupplyInside.jpg">
+                                <img src="Images/PowerSupplyInside.jpg"
+                                     alt="Linear power supply."
+                                />
+                            </a>
+                        </p>
+
+                        <p>
+                        Inside of the power supply.
+                        </p>
+
+                        <p>
+                        Here's a
+                        <a href="Images/PowerSupply2Schematic.png">schematic diagram</a>.
+                        I've used <a href="https://www.gimp.org/">Gimp</a> to hand draw 
+                        <a href="Images/ElectronicCircuitSymbols.png">circuit symbols</a>.
+                        </p>
+
+                        <p>
+                        The design is based on a 723 voltage regulator chip and a 2N2055 power
+                        transistor for precise voltage regulation with low noise.
+                        </p>
+
+                        <p>
+                        After full wave regulation, DC goes to a humongous filter capacitor,
+                        then to the power pass transistor with a huge black painted aluminum
+                        heat sink.
+                        The supply is current limited to about 2 amps maximum.
+                        All components are rated way beyond the design limits for robustness.
+                        </p>
+                    </div>
+
+                    <div class="illustratedparagraph">
+                        <p>
+                            <a href="Images/PowerSupply1.jpg">
+                                <img src="Images/PowerSupply1.jpg"
+                                     alt="Linear power supply."
+                                />
+                            </a>
+                        </p>
+
+                        <p>
+                        A slightly different design for a regulated linear power supply.
+                        Voltage can be varied from 0.751V to 36.9V
+                        </p>
+                    </div>
+
+                    <div class="illustratedparagraph">
+                        <p>
+                            <a href="Images/PowerSupply1Inside.jpg">
+                                <img src="Images/PowerSupply1Inside.jpg"
+                                     alt="Linear power supply."
+                                />
+                            </a>
+                        </p>
+
+                        <p>
+                        Inside of the power supply.
+
+                        Here's a
+                        <a href="Images/PowerSupply1Schematic.png">schematic diagram</a> hand drawn with <a href="https://www.gimp.org/">Gimp</a>.
+                        </p>
+                    </div>
+                </section>
+
+                <section>
+                    <h3>Neon Light Flasher</h3>
+
+                    <div class="illustratedparagraph">
+                        <p>
+                            <a href="Images/NeonFlasher.jpg">
+                                <img src="Images/NeonFlasher.jpg"
+                                     alt="Neon flasher." 
+                                 />
+                            </a>
+                        </p>
+
+                        <p>
+                        A neon light flasher.
+                        </p>
+
+                        <p>
+                        Mostly for fun, but it is ruggedized and waterproof and can be used as a
+                        warning flasher in construction work.
+                        </p>
+
+                        <p>
+                        An audio oscillator feeds power to an audio transformer.
+                        The high voltage is rectified and stored in a capacitor to power the
+                        series of neon lights.
+                        </p>
+                    </div>
+                </section>
+
+                <section>
+                    <h3>Electronic Bell</h3>
+
+                    <div class="illustratedparagraph">
+                        <p>
+                            <a href="Images/ElectronicBell.jpg">
+                                <img src="Images/ElectronicBell.jpg"
+                                     alt="Electronic bell." 
+                                />
+                            </a>
+                        </p>
+
+                        <p>
+                        An electronic bell (shown disassembled).
+                        </p>
+
+                        <p>
+                        The motion of a magnet triggers a Hall effect digital sensor which
+                        applies an impulse to an operational amplifier with a twin-T filter
+                        in its feedback loop, which generates a decaying sinusoid into
+                        a power amplifier which outputs to a minature speaker.
+                        </p>
+
+                        <p>
+                        The exponentially decaying audio frequency sine wave produces
+                        a sweet "bong" sound.
+                        One can adjust the pitch, loudness and duration of the tone.
+                        </p>
+
+                        <p>
+                        This 
+                        <a href="ElectronicBell.html">electronic circuit</a> 
+                        actually acts as an analog computer which
+                        solves for the roots of a 
+                        <a href="http://mathworld.wolfram.com/CubicFormula.html">cubic equation</a>.
+                        </p>
+                    </div>
+                </section>
+
+                <section>
+                    <h3>Spark Coil</h3>
+
+                    <div class="illustratedparagraph">
+                        <p>
+                            <a href="Images/SparkCoilWithJacobsLadder.jpg">
+                                <img src="Images/SparkCoilWithJacobsLadder.jpg"
+                                     alt="Spark Coil." 
+                                />
+                            </a>
+                        </p>
+
+                        <p>
+                        Spark coil for high voltage experiments showing a Jacob's ladder.
+                        </p>
+
+                        <p>
+                        Generates pulsed DC high voltage ~20,000 V from a 12V car battery source.
+                        Uses a standard ignition coil and points from an automobile and 
+                        a handmade mechanical interrupter.
+                        The key is the 0.66&mu;F capacitor shunted across the interrupter:
+                        when the primary current is interrupted, the capacitance and inductance
+                        of the coil form a resonant circuit whose high frequency oscillations
+                        induce a high voltage in the transformer's secondary.
+                        </p>
+
+                        <p>
+                        We can run neon, fluorescent and ultraviolet lamps, 
+                        and do a Jacob's ladder as in Mr. Spock's time viewer,
+                        burn holes in cardboard, make lots of O<sub>3</sub>, etc.
+                        </p>
+                    </div>
+
+                    <div class="illustratedparagraph">
+                        <p>
+                            <a href="Images/InterrupterAssembly.jpg">
+                                <img src="Images/InterrupterAssembly.jpg"
+                                     alt="Spark Coil." />
+                            </a>
+                        </p>
+
+                        <p>
+                        My coil has a mechanical interrupter.  For circuit analysis, see articles by 
+                        <a href="http://home.datacomm.ch/k.schraner/induc_analys.htm">Kurt Schraner</a>
+                        To estimate voltage generated, one can use 
+                        <a href="https://pe2bz.philpem.me.uk/Power/-%20-%20Power-Design%20-%20-/HighVoltage/spherev.htm">
+                            sphere gap tables</a>
+                        </p>
+                    </div>
+                </section>
+
+                <section>
+                    <h3>Electronics Resources</h3>
+                    <ul>
+                        <li><a href="http://www.halted.com"><em class="warning">R.I.P.</em> HSC Electronic Supply</a></li>
+                        <li><a href="https://www.jameco.com/webapp/wcs/stores/servlet/StoreCatalogDisplay?langId=-1&storeId=10001&catalogId=10001">Jameco Electronics</a></li>
+                        <li><a href="http://www.discovercircuits.com/index.htm">Circuits</a></li>
+                        <li><a href="http://steampunkworkshop.com">Steampunk workshop</a></li>
+                    </ul>
+
+                    <h3>Chemistry Resources</h3>
+
+                    <ul>
+                        <li><a href="https://periodictable.com">Periodic table of the elements</a></li>
+                        <li><a href="http://unitednuclear.com">United Nuclear chemical supplies</a></li>
+                        <li><a href="https://www.sciencelab.com/">Science Lab chemical supplies</a></li>
+                        <li><a href="https://www.labproinc.com/">LabPro chemical supplies</a></li>
+                   </ul>
+               </section>
+           </article>
+
+            <footer class="footnote">
+                <hr>
+
+                <!-- A copyright to preserve my legal rights. -->
+                <p class="footnote">
+                    Copyright &copy; 1986-2026 by Sean Erik O'Connor.
+                    All Rights Reserved.
+                    &nbsp;&nbsp;&nbsp;
+                    last updated 27 Feb 26.
+                </p>
+            </footer>
+        </div> <!-- wrapper -->
+    </body>
+</html>
