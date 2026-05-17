@@ -171,7 +171,7 @@
                     Copyright &copy; 1999-2026 by Sean Erik O'Connor.
                     All Rights Reserved.
                     &nbsp;&nbsp;&nbsp;
-                    last updated 27 Feb 26.
+                    last updated 16 May 26.
                 </p>
 
                 <!-- Form to search my site with Google.  From Google's free tools web page.  -->
@@ -221,12 +221,24 @@
    
                 <!-- If I'm pulling up my web page from local files, also add a link to my freeservers web site. -->
                 <script>
+                    // To see this the hostname in Firefox, open Tools->Browser Tools -> Web Developer Tools then select the Console tab.
+                    // On the command line, type in hostname which will give these names, for each of my three hosts:
+                    // Local Hosting:          "file:///Users/seanoconnor/Desktop/Sean/WebSite/index.html"
+                    // Freeservers hosting:    "http://seanerikoconnor.freeservers.com/"
+                    // GitHub hosting:         "https://seanerikoconnor.github.io/"
+
                     var hostname = location.href ;
                     var prefix = "<em class=\"warning\"> <a href=\"http://" ;
                     var webSite = "" ;
-                    var suffix = ".com\">Go to my web site</a><\/em>" ;
+                    var suffix = ".com\">Go to my personal web site</a><\/em>" ;
 
                     if (hostname.match( "file" ))
+                    {
+                        webSite = "seanerikoconnor.freeservers" ;
+                        document.write( prefix + webSite + suffix ) ;
+                    }
+                    // List my personal web site from my GitHub mirror web site.
+                    elif (hostname.match( "seanerikoconnor.github.io" ))
                     {
                         webSite = "seanerikoconnor.freeservers" ;
                         document.write( prefix + webSite + suffix ) ;

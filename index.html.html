@@ -1,0 +1,379 @@
+
+        <!DOCTYPE html>
+        <html lang="en-US">  <!-- Set language of this page to USA English. -->
+        
+        <head>
+            <!-- This page uses Unicode characters. -->
+            <meta charset="utf-8">
+        
+            <!-- Set viewport to actual device width.  Any other settings makes the web page initially appear zoomed-in on mobile devices. -->
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+            <!-- Title appears in the web browser tab for this page.  The browser also uses it to bookmark this page. -->
+            <title>Sean Erik O'Connor - Home Page and Free Mathematical Software.</title>
+        
+            <!-- Search engines will search using words in this description.  They will also display title in their search results. -->
+            <meta name="description" content="Syntax Colored Source Code Listing">
+        
+            <!-- Some content management software uses the author's name. -->
+            <meta name="author" content="Sean Erik O'Connor">
+        
+            <meta name="copyright" content="Copyright (C) 1986-2026 by Sean Erik O'Connor.  All Rights Reserved.">   
+        
+            <!-- Begin style sheet insertion -->
+            <style>
+                /* Default settings for all my main web pages. */
+                body
+                {
+                    /* A wide sans-serif font is more readable on the web. */
+                    font-family:            Verdana, Geneva, "Trebuchet MS", sans-serif ;
+        
+                    /* Set the body font size a little smaller than the user's default browser setting. */
+                    font-size:              0.8em ; 
+        
+                    /* Black text is easier to read. */
+                    color:                  black ;
+        
+                    /*  More vertical space between lines for more pleasant reading.  Use a unitless font height multiplier.  
+                        Length and percentage percentage values can give scrunched text due to poor inheritance behavior. */
+                    line-height:            1.7 ;
+                }
+        
+                <!-- Now prepare to add the syntax coloring style sheet from Pygment -->
+        pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.highlight .hll { background-color: #ffffcc }
+.highlight { background: #f8f8f8; }
+.highlight .c { color: #3D7B7B; font-style: italic } /* Comment */
+.highlight .err { border: 1px solid #F00 } /* Error */
+.highlight .k { color: #008000; font-weight: bold } /* Keyword */
+.highlight .o { color: #666 } /* Operator */
+.highlight .ch { color: #3D7B7B; font-style: italic } /* Comment.Hashbang */
+.highlight .cm { color: #3D7B7B; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #9C6500 } /* Comment.Preproc */
+.highlight .cpf { color: #3D7B7B; font-style: italic } /* Comment.PreprocFile */
+.highlight .c1 { color: #3D7B7B; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #3D7B7B; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #A00000 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .ges { font-weight: bold; font-style: italic } /* Generic.EmphStrong */
+.highlight .gr { color: #E40000 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #008400 } /* Generic.Inserted */
+.highlight .go { color: #717171 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #04D } /* Generic.Traceback */
+.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #B00040 } /* Keyword.Type */
+.highlight .m { color: #666 } /* Literal.Number */
+.highlight .s { color: #BA2121 } /* Literal.String */
+.highlight .na { color: #687822 } /* Name.Attribute */
+.highlight .nb { color: #008000 } /* Name.Builtin */
+.highlight .nc { color: #00F; font-weight: bold } /* Name.Class */
+.highlight .no { color: #800 } /* Name.Constant */
+.highlight .nd { color: #A2F } /* Name.Decorator */
+.highlight .ni { color: #717171; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #CB3F38; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #00F } /* Name.Function */
+.highlight .nl { color: #767600 } /* Name.Label */
+.highlight .nn { color: #00F; font-weight: bold } /* Name.Namespace */
+.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #19177C } /* Name.Variable */
+.highlight .ow { color: #A2F; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #BBB } /* Text.Whitespace */
+.highlight .mb { color: #666 } /* Literal.Number.Bin */
+.highlight .mf { color: #666 } /* Literal.Number.Float */
+.highlight .mh { color: #666 } /* Literal.Number.Hex */
+.highlight .mi { color: #666 } /* Literal.Number.Integer */
+.highlight .mo { color: #666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
+.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
+.highlight .se { color: #AA5D1F; font-weight: bold } /* Literal.String.Escape */
+.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.highlight .si { color: #A45A77; font-weight: bold } /* Literal.String.Interpol */
+.highlight .sx { color: #008000 } /* Literal.String.Other */
+.highlight .sr { color: #A45A77 } /* Literal.String.Regex */
+.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #00F } /* Name.Function.Magic */
+.highlight .vc { color: #19177C } /* Name.Variable.Class */
+.highlight .vg { color: #19177C } /* Name.Variable.Global */
+.highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
+.highlight .il { color: #666 } /* Literal.Number.Integer.Long */
+            </style>
+        </head>
+        
+        <body>
+            <article class="content">
+        <div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="linenos">  2</span><span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en-US&quot;</span><span class="p">&gt;</span>  <span class="cm">&lt;!-- Set language of this page to USA English. --&gt;</span>
+<span class="linenos">  3</span>
+<span class="linenos">  4</span>    <span class="cm">&lt;!-- ===================================================================</span>
+<span class="linenos">  5</span><span class="cm">    |</span>
+<span class="linenos">  6</span><span class="cm">    | NAME</span>
+<span class="linenos">  7</span><span class="cm">    |</span>
+<span class="linenos">  8</span><span class="cm">    |     index.html</span>
+<span class="linenos">  9</span><span class="cm">    |</span>
+<span class="linenos"> 10</span><span class="cm">    | DESCRIPTION</span>
+<span class="linenos"> 11</span><span class="cm">    |</span>
+<span class="linenos"> 12</span><span class="cm">    |     This is my home page.  It goes into the top level directory of my</span>
+<span class="linenos"> 13</span><span class="cm">    |     web server.  It is named index.html so viewers can&#39;t see the rest </span>
+<span class="linenos"> 14</span><span class="cm">    |     of the directory.  W3C validated using the Nu Html Checker.</span>
+<span class="linenos"> 15</span><span class="cm">    |</span>
+<span class="linenos"> 16</span><span class="cm">    | AUTHOR</span>
+<span class="linenos"> 17</span><span class="cm">    |</span>
+<span class="linenos"> 18</span><span class="cm">    |    Sean Erik O&#39;Connor</span>
+<span class="linenos"> 19</span><span class="cm">    |</span>
+<span class="linenos"> 20</span><span class="cm">    =================================================================== --&gt;</span>
+<span class="linenos"> 21</span>
+<span class="linenos"> 22</span>    <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="linenos"> 23</span>        <span class="cm">&lt;!-- This page uses Unicode characters. --&gt;</span>
+<span class="linenos"> 24</span>        <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;utf-8&quot;</span><span class="p">&gt;</span>
+<span class="linenos"> 25</span>
+<span class="linenos"> 26</span>        <span class="cm">&lt;!-- Set viewport to actual device width.  Any other settings makes the web page initially appear zoomed-in on mobile devices. --&gt;</span>
+<span class="linenos"> 27</span>        <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;viewport&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;width=device-width, initial-scale=1&quot;</span><span class="p">&gt;</span>
+<span class="linenos"> 28</span>
+<span class="linenos"> 29</span>        <span class="cm">&lt;!-- Title appears in the web browser tab for this page.  The browser also uses it to bookmark this page. --&gt;</span>
+<span class="linenos"> 30</span>        <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Sean Erik O&#39;Connor - Home Page and Free Mathematical Software.<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+<span class="linenos"> 31</span>
+<span class="linenos"> 32</span>        <span class="cm">&lt;!-- Search engines will search using words in this description.  They will also display title in their search results. --&gt;</span>
+<span class="linenos"> 33</span>        <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;description&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;Home page containing my CGI and traditional art work and GNU copylefted free mathematical software&quot;</span> <span class="p">&gt;</span>
+<span class="linenos"> 34</span>
+<span class="linenos"> 35</span>        <span class="cm">&lt;!-- Some content management software uses the author&#39;s name. --&gt;</span>
+<span class="linenos"> 36</span>        <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;author&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;Sean Erik O&#39;Connor&quot;</span> <span class="p">&gt;</span>
+<span class="linenos"> 37</span>
+<span class="linenos"> 38</span>        <span class="cm">&lt;!-- Protect old faithful. --&gt;</span>
+<span class="linenos"> 39</span>        <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;copyright&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;Copyright (C) 1986-2026 by Sean Erik O&#39;Connor.  All Rights Reserved.&quot;</span><span class="p">&gt;</span>
+<span class="linenos"> 40</span>
+<span class="linenos"> 41</span>        <span class="cm">&lt;!-- Configure and load MathJax --&gt;</span>
+<span class="linenos"> 42</span>        <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;Scripts/load-mathjax.js&quot;</span> <span class="na">async</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="linenos"> 43</span>
+<span class="linenos"> 44</span>        <span class="cm">&lt;!-- Cascading style sheet for this document. --&gt;</span>
+<span class="linenos"> 45</span>        <span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;StyleSheet&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;StyleSheet.css&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/css&quot;</span> <span class="p">&gt;</span>
+<span class="linenos"> 46</span>
+<span class="linenos"> 47</span>        <span class="cm">&lt;!-- Favicons are 32x32 or 16x16, 8 or 24 bit PNG Images which show up left of the web page title in a browser.  --&gt;</span>
+<span class="linenos"> 48</span>        <span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;icon&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;image/png&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;Images/favicon.png&quot;</span> <span class="p">&gt;</span>
+<span class="linenos"> 49</span>
+<span class="linenos"> 50</span>        <span class="cm">&lt;!-- Load the JavaScript email utility. --&gt;</span>
+<span class="linenos"> 51</span>        <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;Scripts/email.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="linenos"> 52</span>    <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="linenos"> 53</span>
+<span class="linenos"> 54</span>    <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="linenos"> 55</span>        <span class="cm">&lt;!-- This wraps the whole body in a CSS grid. --&gt;</span>
+<span class="linenos"> 56</span>        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;wrapper titlePage&quot;</span><span class="p">&gt;</span>
+<span class="linenos"> 57</span>
+<span class="linenos"> 58</span>            <span class="p">&lt;</span><span class="nt">header</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;title&quot;</span><span class="p">&gt;</span>
+<span class="linenos"> 59</span>                <span class="p">&lt;</span><span class="nt">h1</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;name&quot;</span><span class="p">&gt;&lt;</span><span class="nt">span</span><span class="p">&gt;</span>Sean Erik O&#39;Connor<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+<span class="linenos"> 60</span>                <span class="p">&lt;</span><span class="nt">hr</span><span class="p">&gt;</span>
+<span class="linenos"> 61</span>            <span class="p">&lt;/</span><span class="nt">header</span><span class="p">&gt;</span>
+<span class="linenos"> 62</span>
+<span class="linenos"> 63</span>            <span class="cm">&lt;!-- A decorative border at the left side of the page. --&gt;</span>
+<span class="linenos"> 64</span>            <span class="p">&lt;</span><span class="nt">aside</span> <span class="na">class</span><span class="o">=</span><span class="s">border</span><span class="p">&gt;</span>
+<span class="linenos"> 65</span>                  <span class="p">&lt;</span><span class="nt">img</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;border&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;Images/sinXYPlot.png&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;Sin( x y ) Image Border.&quot;</span><span class="p">&gt;</span>
+<span class="linenos"> 66</span>            <span class="p">&lt;/</span><span class="nt">aside</span><span class="p">&gt;</span>
+<span class="linenos"> 67</span>
+<span class="linenos"> 68</span>           <span class="cm">&lt;!-- The main content of this page.  Articles and sections need nonblank headers but I dont&#39; want to</span>
+<span class="linenos"> 69</span><span class="cm">                display them.  Thus I put a space into them and turn off the display. --&gt;</span>
+<span class="linenos"> 70</span>            <span class="p">&lt;</span><span class="nt">article</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;content&quot;</span><span class="p">&gt;</span>
+<span class="linenos"> 71</span>                    <span class="p">&lt;</span><span class="nt">h3</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;display: none;&quot;</span><span class="p">&gt;</span><span class="ni">&amp;nbsp;</span><span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span> <span class="cm">&lt;!-- non displaying empty header to stop complaints from HTML validators. --&gt;</span>
+<span class="linenos"> 72</span>                    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;illustratedparagraph&quot;</span><span class="p">&gt;</span>
+<span class="linenos"> 73</span>                        <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="linenos"> 74</span>                            <span class="cm">&lt;!-- Title is the tooltip shown when you hover over the link. --&gt;</span>
+<span class="linenos"> 75</span>                            <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;Resume/resume.html&quot;</span> <span class="na">title</span><span class="o">=</span><span class="s">&quot;Click on me to see my resume&quot;</span><span class="p">&gt;</span>
+<span class="linenos"> 76</span>                                <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;Images/psychadelicSean.png&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;Author&#39;s Portrait and link to resume.&quot;</span> <span class="na">height</span><span class="o">=</span><span class="s">&quot;64&quot;</span> <span class="na">width</span><span class="o">=</span><span class="s">&quot;64&quot;</span><span class="p">&gt;</span>
+<span class="linenos"> 77</span>                                I&#39;m<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+<span class="linenos"> 78</span>                            a software design engineer with experience in algorithm
+<span class="linenos"> 79</span>                            design, image processing, pattern recognition, communications engineering,
+<span class="linenos"> 80</span>                            and real time embedded systems working in Silicon Valley, U.S.A.
+<span class="linenos"> 81</span>                            My educational background is in pure and applied mathematics,
+<span class="linenos"> 82</span>                            classical and quantum physics and studio art.
+<span class="linenos"> 83</span>                            I&#39;ve developed on Mac, Unix and Windows platforms in C++, C, Python, JavaScript, MATLAB and many
+<span class="linenos"> 84</span>                            other languages.
+<span class="linenos"> 85</span>                            I enjoy innovation and applying advanced theory to solving practical problems.
+<span class="linenos"> 86</span>                            Please see my
+<span class="linenos"> 87</span>                            <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;Resume/resume.html&quot;</span><span class="p">&gt;</span>
+<span class="linenos"> 88</span>                                <span class="p">&lt;</span><span class="nt">em</span><span class="p">&gt;</span>resume<span class="p">&lt;/</span><span class="nt">em</span><span class="p">&gt;</span>
+<span class="linenos"> 89</span>                            <span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+<span class="linenos"> 90</span>                            for details.
+<span class="linenos"> 91</span>                        <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="linenos"> 92</span>                    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos"> 93</span>
+<span class="linenos"> 94</span>                    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;illustratedparagraph&quot;</span><span class="p">&gt;</span>
+<span class="linenos"> 95</span>                        <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="linenos"> 96</span>                            <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;./Mathematics/mathematicalSoftware.html&quot;</span><span class="p">&gt;</span>
+<span class="linenos"> 97</span>                                <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;Images/compactDisk.png&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;Image of a CD-ROM.&quot;</span> <span class="na">height</span><span class="o">=</span><span class="s">&quot;64&quot;</span> <span class="na">width</span><span class="o">=</span><span class="s">&quot;64&quot;</span> <span class="p">&gt;</span>
+<span class="linenos"> 98</span>                                <span class="p">&lt;</span><span class="nt">em</span><span class="p">&gt;</span>Mathematical Software<span class="p">&lt;/</span><span class="nt">em</span><span class="p">&gt;&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+<span class="linenos"> 99</span>                            For fun, I design and publish specialized mathematical software
+<span class="linenos">100</span>                            including programs for primitive polynomial computation,
+<span class="linenos">101</span>                            CRC code generation, coding and decoding, and cellular automata.
+<span class="linenos">102</span>                            All source code is copylefted under the
+<span class="linenos">103</span>                            <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;http://www.gnu.org/licenses/&quot;</span><span class="p">&gt;</span>GNU General Public License<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>.
+<span class="linenos">104</span>                            and comes with extensive comments and complete technical
+<span class="linenos">105</span>                            documentation.  This software requires a 
+<span class="linenos">106</span>                            <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;./ComputerScience/DevelopmentEnvironment/macLinuxComputerSetupForDevelopers.html&quot;</span><span class="p">&gt;</span>
+<span class="linenos">107</span>                            scientific software development environment<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span> on either Mac OS or Linux (Ubuntu).
+<span class="linenos">108</span>                        <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="linenos">109</span>                    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">110</span>
+<span class="linenos">111</span>                    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;illustratedparagraph&quot;</span><span class="p">&gt;</span>
+<span class="linenos">112</span>                        <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="linenos">113</span>                            <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;Art/Art.html&quot;</span><span class="p">&gt;</span>
+<span class="linenos">114</span>                                <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;Images/sampleArtLowRes.png&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;Sample Art Image.&quot;</span> <span class="na">height</span><span class="o">=</span><span class="s">&quot;64&quot;</span> <span class="na">width</span><span class="o">=</span><span class="s">&quot;64&quot;</span> <span class="p">&gt;</span>
+<span class="linenos">115</span>                                     <span class="p">&lt;</span><span class="nt">em</span><span class="p">&gt;</span>Fine Arts<span class="p">&lt;/</span><span class="nt">em</span><span class="p">&gt;&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+<span class="linenos">116</span>                                     I paint and draw in acrylic, pastel and pencil and am 
+<span class="linenos">117</span>                                     <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;Art/BlenderWorkedExamples.html&quot;</span><span class="p">&gt;</span>learning CGI with Blender<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+<span class="linenos">118</span>                                     My style is romantic realism with influences from classic academic art, art nouveau and surrealism.
+<span class="linenos">119</span>                        <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="linenos">120</span>                    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">121</span>
+<span class="linenos">122</span>                    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;illustratedparagraph&quot;</span><span class="p">&gt;</span>
+<span class="linenos">123</span>                        <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="linenos">124</span>                            <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;WebPageDesign/webPageDesign.html&quot;</span><span class="p">&gt;</span>
+<span class="linenos">125</span>                                <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;Images/webPage.png&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;Web Page Design Button.&quot;</span> <span class="na">height</span><span class="o">=</span><span class="s">&quot;64&quot;</span> <span class="na">width</span><span class="o">=</span><span class="s">&quot;64&quot;</span> <span class="p">&gt;</span>
+<span class="linenos">126</span>                                <span class="p">&lt;</span><span class="nt">em</span><span class="p">&gt;</span>Web Page Design<span class="p">&lt;/</span><span class="nt">em</span><span class="p">&gt;&lt;/</span><span class="nt">a</span><span class="p">&gt;</span> How I design my web pages using HTML 5 and CSS 3+.  Lots of fully explained examples
+<span class="linenos">127</span>                                in my style sheet and web pages on how I create inline colors using CSS variables, paragraph styles, navigation headers,
+<span class="linenos">128</span>                                layout using Grids and Flexboxes, table styles, typesetting mathematical formulas with MathJax and LaTeX, 
+<span class="linenos">129</span>                                easy to use scroll boxes for code, image art gallery formats, images with timed transitions, calling JavaScript
+<span class="linenos">130</span>                                functions, using SVG images, and tool-tips and canvases, and lots more.
+<span class="linenos">131</span>                         <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="linenos">132</span>                    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">133</span>
+<span class="linenos">134</span>                    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;illustratedparagraph&quot;</span><span class="p">&gt;</span>
+<span class="linenos">135</span>                        <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="linenos">136</span>                            <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;Electronics/Electronics.html&quot;</span><span class="p">&gt;</span>
+<span class="linenos">137</span>                                <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;Images/sparkCoil.png&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;Spark coil image.&quot;</span> <span class="na">height</span><span class="o">=</span><span class="s">&quot;64&quot;</span> <span class="na">width</span><span class="o">=</span><span class="s">&quot;64&quot;</span> <span class="p">&gt;</span>
+<span class="linenos">138</span>                                     <span class="p">&lt;</span><span class="nt">em</span><span class="p">&gt;</span>Hobby Electronics<span class="p">&lt;/</span><span class="nt">em</span><span class="p">&gt;&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+<span class="linenos">139</span>                            I also design and build hobby electronics.  Audio $\Sigma \Delta$ digitizer, analog power supplies, electronic bell,
+<span class="linenos">140</span>                            spark coil, and electronic flash.
+<span class="linenos">141</span>                        <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="linenos">142</span>                    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">143</span>
+<span class="linenos">144</span>                    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;illustratedparagraph&quot;</span><span class="p">&gt;</span>
+<span class="linenos">145</span>                        <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="linenos">146</span>                            <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;ReadingList/readingList.html&quot;</span><span class="p">&gt;</span>
+<span class="linenos">147</span>                                <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;Images/terraApollo17NASALowRes.png&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;Earth Image.&quot;</span> <span class="na">height</span><span class="o">=</span><span class="s">&quot;70&quot;</span> <span class="na">width</span><span class="o">=</span><span class="s">&quot;70&quot;</span> <span class="p">&gt;</span>
+<span class="linenos">148</span>                                     <span class="p">&lt;</span><span class="nt">em</span><span class="p">&gt;</span>Reading list<span class="p">&lt;/</span><span class="nt">em</span><span class="p">&gt;&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+<span class="linenos">149</span>                                My list of favorite science fiction, fantasy, mystery and adventure novels.  Also webcomics and movies.
+<span class="linenos">150</span>                        <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="linenos">151</span>                    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">152</span>
+<span class="linenos">153</span>                    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;illustratedparagraph&quot;</span><span class="p">&gt;</span>
+<span class="linenos">154</span>                        <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="linenos">155</span>                            <span class="cm">&lt;!-- JavaScript for hiding my email address from spambots yet it works as usual. --&gt;</span>
+<span class="linenos">156</span>                            <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="linenos">157</span><span class="w">                                </span><span class="c1">// Insert email address into this file&#39;s HTML.</span>
+<span class="linenos">158</span><span class="w">                                </span><span class="kd">var</span><span class="w"> </span><span class="nx">mailIcon</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&lt;img src=\&quot;Images/mailbox.png\&quot; alt=\&quot;Mail Box Icon.\&quot; height=\&quot;65\&quot; width=\&quot;65\&quot; &gt;&#39;</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">159</span><span class="w">                                </span><span class="kd">var</span><span class="w"> </span><span class="nx">mailMessage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&lt;em&gt;&#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">mailIcon</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">&quot;email&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;&lt;/em&gt;&#39;</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">160</span><span class="w">                                </span><span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="w"> </span><span class="nx">mailto</span><span class="p">(</span><span class="w"> </span><span class="nx">mailMessage</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">161</span><span class="w">                            </span><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span> 
+<span class="linenos">162</span>                            me if you have questions or comments.
+<span class="linenos">163</span>                        <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="linenos">164</span>                    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">165</span>            <span class="p">&lt;/</span><span class="nt">article</span><span class="p">&gt;</span>
+<span class="linenos">166</span>
+<span class="linenos">167</span>            <span class="p">&lt;</span><span class="nt">footer</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;footnote&quot;</span><span class="p">&gt;</span>
+<span class="linenos">168</span>                <span class="p">&lt;</span><span class="nt">hr</span><span class="p">&gt;</span>
+<span class="linenos">169</span>
+<span class="linenos">170</span>                <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;footnote&quot;</span><span class="p">&gt;</span>
+<span class="linenos">171</span>                    Copyright <span class="ni">&amp;copy;</span> 1999-2026 by Sean Erik O&#39;Connor.
+<span class="linenos">172</span>                    All Rights Reserved.
+<span class="linenos">173</span>                    <span class="ni">&amp;nbsp;&amp;nbsp;&amp;nbsp;</span>
+<span class="linenos">174</span>                    last updated 16 May 26.
+<span class="linenos">175</span>                <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="linenos">176</span>
+<span class="linenos">177</span>                <span class="cm">&lt;!-- Form to search my site with Google.  From Google&#39;s free tools web page.  --&gt;</span>
+<span class="linenos">178</span>                <span class="p">&lt;</span><span class="nt">form</span> <span class="na">method</span><span class="o">=</span><span class="s">&quot;get&quot;</span> <span class="na">action</span><span class="o">=</span><span class="s">&quot;http://www.google.com/search&quot;</span><span class="p">&gt;</span>
+<span class="linenos">179</span>
+<span class="linenos">180</span>                    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;formContainer&quot;</span><span class="p">&gt;</span>
+<span class="linenos">181</span>                        <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;hidden&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;ie&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;UTF-8&quot;</span> <span class="p">&gt;</span>
+<span class="linenos">182</span>                        <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;hidden&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;oe&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;UTF-8&quot;</span> <span class="p">&gt;</span>
+<span class="linenos">183</span>
+<span class="linenos">184</span>                        <span class="cm">&lt;!-- Required Google logo --&gt;</span>
+<span class="linenos">185</span>                        <span class="ni">&amp;nbsp;</span> <span class="ni">&amp;nbsp;</span> <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;http://www.google.com/&quot;</span><span class="p">&gt;</span>
+<span class="linenos">186</span>                            <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;http://www.google.com/logos/Logo_25wht.gif&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;Google&quot;</span> <span class="p">&gt;</span>
+<span class="linenos">187</span>                        <span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+<span class="linenos">188</span>
+<span class="linenos">189</span>                        <span class="cm">&lt;!-- A text input control for the (q)uery search string. --&gt;</span>
+<span class="linenos">190</span>                        <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;q&quot;</span> <span class="na">size</span><span class="o">=</span><span class="s">&quot;32&quot;</span> <span class="na">maxlength</span><span class="o">=</span><span class="s">&quot;255&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;Primitive Polynomial&quot;</span> <span class="p">&gt;</span>
+<span class="linenos">191</span>
+<span class="linenos">192</span>                        <span class="cm">&lt;!-- Submit button:  submits this form when activated. --&gt;</span>
+<span class="linenos">193</span>                        <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;submit&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;btnG&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;Search my site&quot;</span> <span class="p">&gt;</span>
+<span class="linenos">194</span>
+<span class="linenos">195</span>                        <span class="cm">&lt;!--</span>
+<span class="linenos">196</span><span class="cm">                           Build up a search command of the form </span>
+<span class="linenos">197</span><span class="cm">                               &lt;input type=&quot;hidden&quot; name=&quot;sitesearch&quot; value=&quot;http://seanerikoconnor.freeservers.com&quot;&gt;</span>
+<span class="linenos">198</span><span class="cm">                        --&gt;</span>
+<span class="linenos">199</span>                        <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="linenos">200</span><span class="w">                            </span><span class="kd">var</span><span class="w"> </span><span class="nx">hostname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span>
+<span class="linenos">201</span><span class="w">                            </span><span class="kd">var</span><span class="w"> </span><span class="nx">prefix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&lt;input type=\&quot;hidden\&quot; name=\&quot;sitesearch\&quot; value=\&quot;http://&quot;</span>
+<span class="linenos">202</span><span class="w">                            </span><span class="kd">var</span><span class="w"> </span><span class="nx">suffix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;.com\&quot; &gt;&quot;</span>
+<span class="linenos">203</span>
+<span class="linenos">204</span><span class="w">                            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">hostname</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="w"> </span><span class="s2">&quot;freeservers&quot;</span><span class="w"> </span><span class="p">))</span>
+<span class="linenos">205</span><span class="w">                            </span><span class="p">{</span>
+<span class="linenos">206</span><span class="w">                                </span><span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="w"> </span><span class="nx">prefix</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">&quot;seanerikoconnor.freeservers&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">suffix</span><span class="w"> </span><span class="p">)</span>
+<span class="linenos">207</span><span class="w">                            </span><span class="p">}</span>
+<span class="linenos">208</span><span class="w">                            </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">hostname</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="w"> </span><span class="s2">&quot;file&quot;</span><span class="w"> </span><span class="p">))</span>
+<span class="linenos">209</span><span class="w">                            </span><span class="p">{</span>
+<span class="linenos">210</span><span class="w">                                </span><span class="c1">// To see this message in Firefox, open Tools-&gt;Browser Tools -&gt; Web Developer Tools then select the Console tab.</span>
+<span class="linenos">211</span><span class="w">                                </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="w"> </span><span class="s2">&quot;Local URL:  Google cannot search it.&quot;</span><span class="w"> </span><span class="p">)</span>
+<span class="linenos">212</span><span class="w">                            </span><span class="p">}</span>
+<span class="linenos">213</span><span class="w">                        </span><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span> 
+<span class="linenos">214</span>                    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="linenos">215</span>                <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+<span class="linenos">216</span>
+<span class="linenos">217</span>                <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;box&quot;</span><span class="p">&gt;</span> 
+<span class="linenos">218</span>                <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://drawdown.org&quot;</span><span class="p">&gt;</span>Reverse climate change<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>.
+<span class="linenos">219</span>                Good news at <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://fixthenews.com/&quot;</span><span class="p">&gt;</span>Fix the News<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span> and <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://www.positive.news/&quot;</span><span class="p">&gt;</span>Positive News<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>.
+<span class="linenos">220</span>                <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="linenos">221</span>   
+<span class="linenos">222</span>                <span class="cm">&lt;!-- If I&#39;m pulling up my web page from local files, also add a link to my freeservers web site. --&gt;</span>
+<span class="linenos">223</span>                <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="linenos">224</span><span class="w">                    </span><span class="c1">// To see this the hostname in Firefox, open Tools-&gt;Browser Tools -&gt; Web Developer Tools then select the Console tab.</span>
+<span class="linenos">225</span><span class="w">                    </span><span class="c1">// On the command line, type in hostname which will give these names, for each of my three hosts:</span>
+<span class="linenos">226</span><span class="w">                    </span><span class="c1">// Local Hosting:          &quot;file:///Users/seanoconnor/Desktop/Sean/WebSite/index.html&quot;</span>
+<span class="linenos">227</span><span class="w">                    </span><span class="c1">// Freeservers hosting:    &quot;http://seanerikoconnor.freeservers.com/&quot;</span>
+<span class="linenos">228</span><span class="w">                    </span><span class="c1">// GitHub hosting:         &quot;https://seanerikoconnor.github.io/&quot;</span>
+<span class="linenos">229</span>
+<span class="linenos">230</span><span class="w">                    </span><span class="kd">var</span><span class="w"> </span><span class="nx">hostname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">231</span><span class="w">                    </span><span class="kd">var</span><span class="w"> </span><span class="nx">prefix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&lt;em class=\&quot;warning\&quot;&gt; &lt;a href=\&quot;http://&quot;</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">232</span><span class="w">                    </span><span class="kd">var</span><span class="w"> </span><span class="nx">webSite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">233</span><span class="w">                    </span><span class="kd">var</span><span class="w"> </span><span class="nx">suffix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;.com\&quot;&gt;Go to my personal web site&lt;/a&gt;&lt;\/em&gt;&quot;</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">234</span>
+<span class="linenos">235</span><span class="w">                    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">hostname</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="w"> </span><span class="s2">&quot;file&quot;</span><span class="w"> </span><span class="p">))</span>
+<span class="linenos">236</span><span class="w">                    </span><span class="p">{</span>
+<span class="linenos">237</span><span class="w">                        </span><span class="nx">webSite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;seanerikoconnor.freeservers&quot;</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">238</span><span class="w">                        </span><span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="w"> </span><span class="nx">prefix</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">webSite</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">suffix</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">239</span><span class="w">                    </span><span class="p">}</span>
+<span class="linenos">240</span><span class="w">                    </span><span class="c1">// List my personal web site from my GitHub mirror web site.</span>
+<span class="linenos">241</span><span class="w">                    </span><span class="nx">elif</span><span class="w"> </span><span class="p">(</span><span class="nx">hostname</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="w"> </span><span class="s2">&quot;seanerikoconnor.github.io&quot;</span><span class="w"> </span><span class="p">))</span>
+<span class="linenos">242</span><span class="w">                    </span><span class="p">{</span>
+<span class="linenos">243</span><span class="w">                        </span><span class="nx">webSite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;seanerikoconnor.freeservers&quot;</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">244</span><span class="w">                        </span><span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="w"> </span><span class="nx">prefix</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">webSite</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">suffix</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">245</span><span class="w">                    </span><span class="p">}</span>
+<span class="linenos">246</span><span class="w">                </span><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span> 
+<span class="linenos">247</span>            <span class="p">&lt;/</span><span class="nt">footer</span><span class="p">&gt;</span>
+<span class="linenos">248</span>        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span> <span class="cm">&lt;!-- wrapper --&gt;</span>
+<span class="linenos">249</span>    <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="linenos">250</span><span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+
+            </article>
+        </body>
+        
+        </html>
+        
