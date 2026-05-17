@@ -1,0 +1,185 @@
+;---------------------
+; LALR(1) parse tables
+;---------------------
+;
+; Suitable for input to the Common Lisp program 
+;
+;     LR(1)AndLALR(1)Parser.lsp
+;
+
+; TERMINALS
+;
+
+(|a| |b| $)
+
+;  PRODUCTIONS
+;
+;  Productions are numbered starting with 1.
+;  All alternates were expanded into separate productions.
+
+(
+  ( (1)   (S -> S |a| S |b|) )
+  ( (2)   (S -> EPSILON) )
+)
+
+;  GOTO GRAPH
+;                 
+;  Not needed for the parser, but here for reference and debugging.
+; **********
+;  Goto graph of the LR(1) or LALR(1) grammar of the form
+;                
+; (
+;   (                     <-- List of links.
+;       (6 |a| 4)         <-- Transition in Goto graph from state 6 to
+;                             state 4 on symbol a.
+;       (1 |a| 2)         <-- Transition from state 1 to state 2 on a.
+;   )
+;                   
+;   (                     <-- List of sets of items.
+;       ( 0                                <-- State number 0.
+;         3668                             <-- Hash value of core.
+;         (
+;            (SP -> DOT S           |,|  $)  ----+
+;            ( S -> DOT S |a| S |b| |,|  $)      |
+;            ( S -> DOT EPSILON     |,|  $)      +---- Set of items for state 0
+;            ( S -> DOT S |a| S |b| |,| |a|)     |
+;            ( S -> DOT EPSILON     |,| |a|)     |
+;         )                                  ----+
+;       ) 
+
+(
+    (
+        (-1 NIL 0)
+        (0 S 1)
+        (1 |a| 2)
+        (2 S 3)
+        (3 |a| 2)
+        (3 |b| 5)
+    )
+    (
+        (1
+        3542
+            (SP -> S DOT |,| $)
+            (S -> S DOT |a| S |b| |,| $)
+            (S -> S DOT |a| S |b| |,| |a|)
+        )
+        (0
+        3668
+            (SP -> DOT S |,| $)
+            (S -> DOT S |a| S |b| |,| $)
+            (S -> DOT EPSILON |,| $)
+            (S -> DOT S |a| S |b| |,| |a|)
+            (S -> DOT EPSILON |,| |a|)
+        )
+        (5
+        4692
+            (S -> S |a| S |b| DOT |,| |b|)
+            (S -> S |a| S |b| DOT |,| $)
+            (S -> S |a| S |b| DOT |,| |a|)
+        )
+        (2
+        5168
+            (S -> S |a| DOT S |b| |,| |b|)
+            (S -> S |a| DOT S |b| |,| $)
+            (S -> S |a| DOT S |b| |,| |a|)
+            (S -> DOT S |a| S |b| |,| |b|)
+            (S -> DOT EPSILON |,| |b|)
+            (S -> DOT S |a| S |b| |,| |a|)
+            (S -> DOT EPSILON |,| |a|)
+        )
+        (3
+        5308
+            (S -> S |a| S DOT |b| |,| |b|)
+            (S -> S |a| S DOT |b| |,| $)
+            (S -> S |a| S DOT |b| |,| |a|)
+            (S -> S DOT |a| S |b| |,| |b|)
+            (S -> S DOT |a| S |b| |,| |a|)
+        )
+    )
+)
+
+;  ACTION TABLE
+;
+;  (state
+;         (item)
+;         ...
+
+(
+    ( (0) 
+        (
+            ($ (R 2))
+            (|a| (R 2))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (1) 
+        (
+            ($ (ACC NIL))
+            (|a| (S 2))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (2) 
+        (
+            (|b| (R 2))
+            (|a| (R 2))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (3) 
+        (
+            (|b| (S 5))
+            (|a| (S 2))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (5) 
+        (
+            (|b| (R 1))
+            ($ (R 1))
+            (|a| (R 1))
+            (DEFAULT (ERROR))
+        )
+    )
+)
+
+;  GOTO TABLE
+;
+;  (state
+;         (item)
+;         ...
+
+(
+    ( (0) 
+        (
+            (S 1)
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (2) 
+        (
+            (S 3)
+            (DEFAULT (ERROR))
+        )
+    )
+)
+
+
+;  ERROR MESSAGE TABLE
+;
+;  If the action table has an error state, the other non-error
+;  actions show which symbol was failed to appear next on the input.
+;
+;  The user can modify these minimal error messages.
+
+
+
+(
+
+    ((0) ("error - expecting one of the symbols |a| $")) 
+    ((1) ("error - expecting one of the symbols |a| $")) 
+    ((2) ("error - expecting one of the symbols |a| |b|")) 
+    ((3) ("error - expecting one of the symbols |a| |b|")) 
+    ((5) ("error - expecting one of the symbols |a| $ |b|")) 
+)
+

@@ -1,0 +1,5 @@
+(load "LR(1)AndLALR(1)ParserGenerator.lsp")
+(load "LR(1)AndLALR(1)Parser.lsp")
+
+(test-parser-generator)
+(test-parser)

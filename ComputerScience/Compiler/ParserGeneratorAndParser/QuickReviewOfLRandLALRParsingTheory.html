@@ -1,0 +1,1630 @@
+<!DOCTYPE html>
+<html lang="en-US">  <!-- Set language of this page to USA English. -->
+
+<!-- ===================================================================
+|
+| NAME
+| 
+|     QuickReviewOfLRandLALRParsingTheory.html
+|
+| DESCRIPTION
+|
+|     This is the parser generator and parsing theory page.
+|     It is a hand-crafted HTML 5 W3C validated document.
+|
+| AUTHOR
+|
+|    Sean Erik O'Connor
+|
+=================================================================== -->
+    <head>
+        <!-- This page uses Unicode characters. -->
+        <meta charset="utf-8">
+
+        <!-- Set viewport to actual device width.  Any other settings makes the web page initially appear zoomed-in on mobile devices. -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Titles appear in the web browser and the browser's bookmarks. -->
+        <title>Quick Review of LR(k) and LALR(k) Parsing Theory</title>
+
+        <!-- Search engines will show this description below the title. -->
+        <meta name="description" content="Quick review of LR(k) and LALR(k) language and parsing theory.">
+
+        <meta name="author" content="Sean Erik O'Connor">
+
+        <meta name="copyright" content="Copyright (C) 1986-2026 by Sean Erik O'Connor.  All Rights Reserved.">   
+
+        <!-- Configure and load MathJax -->
+        <script src="../../../Scripts/load-mathjax.js" async></script>
+
+        <!-- Cascading style sheet for this document. -->
+        <link rel="stylesheet" href="../../../StyleSheet.css" type="text/css" />
+
+        <!-- Favicons are 32x32 or 16x16, 8 or 24 bit PNG Images which show up left of the web page title in a browser.  -->
+        <link rel="icon" type="image/png" href="../../../Images/favicon.png" >
+    </head>
+
+    <body class="technicalReport">
+
+        <!-- This wraps the whole body in a CSS grid. -->
+        <div class="wrapper technicalReport">
+
+            <!-- Title page at the top.  -->
+            <header class="title">
+                <h1>Review of LR(k) and LALR(k) Parsing Theory</h1>
+                <hr>
+            </header>
+
+            <!-- Horizontal navigation bar to all top level pages. -->
+            <header class="navigation">
+                <a href="../../../index.html">
+                    <img src="../../../Images/home.png" alt="Home Page Button." width="32" height="32" >
+                     <em>Home</em>
+                 </a>
+
+                 <a href="../../../Mathematics/mathematicalSoftware.html">
+                     <img src="../../../Images/compactDisk.png" alt="Mathematical Software Button." width="32" height="32" >
+                      <em>Mathematical Software</em>
+                 </a>
+
+                 <a href="../../../Art/Art.html">
+                     <img src="../../../Images/sampleArtLowRes.png" alt="Art Button." width="32" height="32" >
+                      <em>Fine Arts</em>
+                 </a>
+
+                 <a href="../../../WebPageDesign/webPageDesign.html">
+                      <img src="../../../Images/webPage.png" alt="Web Page Design Button." height="32" width="32" >
+                      <em>Web Page Design</em>
+                 </a>
+
+                 <a href="../../../Electronics/Electronics.html">
+                     <img src="../../../Images/sparkCoil.png" alt="Hobby Electronics Button." width="32" height="32" >
+                      <em>Hobby Electronics</em>
+                 </a>
+
+                 <a href="../../../ReadingList/readingList.html">
+                      <img src="../../../Images/terraApollo17NASALowRes.png"
+                           alt="Reading List Button."
+                           width="32" height="32" />
+                      <em>Reading list</em>
+                </a>
+            </header>
+
+            <!-- A decorative border at the left side of the page. -->
+            <aside class=border>
+                  <img class="border"
+                       src="../../../Images/sinXYPlot.png"
+                       alt="Sin( x y ) Image Border." />
+            </aside>
+
+            <nav>
+                <ul>
+                    <li><a href="#Introduction">Introduction</a></li>
+                    <li><a href="#Terminology">Terminology</a></li>
+                    <li><a href="#FIRSTk">First k Derived Terminals</a></li>
+                    <li><a href="#LRkDefinition">LR(k) Definition</a></li>
+                    <li><a href="#ValidItems">Valid Items</a></li>
+                    <li><a href="#LRkEquivalentDefinition">LR(k) Equivalent Definition</a></li>
+                    <li><a href="#ClosureonSetsofItems">Closure on Sets of Items</a></li>
+                    <li><a href="#GOTOonSetsofItems">GOTO on Sets of Items</a></li>
+                    <li><a href="#SetsofItemsConstruction">Sets of Items Construction</a></li>
+                    <li><a href="#LRkParsingTableGeneration">LR(k) Parsing Table Generation</a></li>
+                    <li><a href="#LRkParsingAlgorithm">LR(k) Parsing Algorithm</a></li>
+                    <li><a href="#AmbiguousGrammars">Ambiguous Grammars</a></li>
+                    <li><a href="#ErrorRecovery">Error Recovery</a></li>
+                    <li><a href="#GeneratingLALR1SetsOfItems">Generating LALR(1) Sets Of Items</a></li>
+                    <li><a href="#Example:GeneratingLR1SetsOfItems">Example:  Generating LR(1) Sets Of Items and Parsing Sentences</a></li>
+                    <li><a href="#Example:GeneratingLALR1SetsOfItems">Example:  Generating LALR(1) Sets Of Items</a></li>
+                    <li><a href="#References">References</a></li>
+                </ul>
+            </nav>
+
+            <!-- The main content of this page. -->
+            <article class="content">
+                <section>
+                    <h3 id="Introduction">Introduction</h3>
+
+                    <p>
+                    This is intended to be a hyperfast review of the basic LR(k) and LALR(k) terminology and concepts;
+                    enough to be able to understand how a parser generator program works.
+                    To illustrate the concepts, I have written
+                    <a href="LRandLALRParserGeneratorAndParser.html">Lisp software</a>
+                    for a LR(1) and LALR(1) parser generator and parser.
+                    </p>
+
+                    <p>
+                    Given the tokens and productions of a grammar, there is an algorithm which can either generate a deterministic finite automaton (DFA) to 
+                    parse the grammar efficiently or else determine our grammar is not LR(k)/LALR(k).
+                    </p>
+
+                    <p>
+                    Each state in our DFA corresponds to a prefix of a possible derivation of our input string.
+                    </p>
+
+                    <p>
+                    A state contains a set of items.
+                    Depending upon the next k symbols of lookahead, an item tells us to either
+                    </p>
+
+                    <ol>
+                      <li>Reduce a set of symbols after the prefix using one of the productions and goto the next state.</li>
+                      <li>Shift more symbols of input onto a stack and goto the next state.</li>
+                    </ol>
+
+                    <p>
+                    We'll end up with a sequence of productions tracing out the derivation of the sentence
+                    in reverse, or stop in an error state.
+                    </p>
+                </section>
+
+                <section>
+                    <h3 id="Terminology">Terminology</h3>
+
+                    <p>
+                    A formal grammar is defined to be the tuple $G = \left( N, \Sigma, P, S \right)$ where 
+
+                    N = finite set of non-terminal symbols, $\Sigma$ = finite set of terminal symbols, P = set of productions of the form $\alpha \rightarrow \beta$, 
+                    S = non-terminal start symbol.  
+
+                    The collection $\{ a, b, c, d, \ldots, 0, 1, \ldots, 9 \}$ denote terminals, while $\{ u, v, w, x, y, z \}$ are strings of terminals.
+
+                    $\{ A, B, C, D, S, \ldots \}$ denote non-terminals, $\{ U, V, W, X, Y, Z \}$ are either terminal or non-terminal symbols.
+                    $\{ \alpha, \beta, \gamma, \delta, \ldots \}$ are strings of either.
+
+                    $| x |$ is the length of the string x.  $\epsilon$ is the empty string.
+
+                    $\Rightarrow$ means directly derives, i.e. if we have a production $\beta \rightarrow \delta$ then $\alpha \beta \gamma \Rightarrow \alpha \delta \gamma$
+
+                    and $\stackrel{*}{\Rightarrow}$ means transitive and reflexive closure of derives.
+
+                    In derivations, rm denotes rightmost derivation, which means expand non-terminal symbols starting with
+                    those on the right.  lm denotes leftmost derivation.
+                    </p>
+
+                    <p>
+                    A language L is context free if all productions $\alpha \rightarrow \beta$, satisfy $| \alpha | = 1$, i.e. the left hand side of a production
+                    is a single non-terminal, i.e. a production is independent of the symbols surrounding it (its context).
+                    </p>
+
+                    <p>
+                    The concatenation of two sets of strings is defined by 
+                    </p>
+
+                    <p>
+                    $$L_1 \oplus_k L_2 = \{ w | \exists x \in L_1, y \in L_2$$
+
+                    such that 
+
+                    $${\LARGE \{ }
+                    \begin{array}{rl}
+                    w = xy \text{ if } |xy| \le k \text{ else } \\
+                    w = \text{ first k symbols of xy }
+                    \end{array}
+                    $$
+                    </p>
+                </section>
+
+                <section>
+                    <h3 id="FIRSTk">First k Derived Terminals</h3>
+
+                    <p>
+                    The first k terminals derived from the string $\alpha$ is defined by 
+                    $FIRST_k \left( \alpha \right) = \{ x | 
+                    \alpha \mathrel{ \substack{* \\ \Rightarrow \\ lm} } x \beta \: and \: |x| = k \: or \:
+                    \alpha \mathrel{ \substack{* \\ \Rightarrow \\ lm} } x \: and \: |x| \lt k \}
+                    $
+                    </p>
+
+                    <p>
+                    First, define $FIRST_k()$ for any string of terminals and non-terminals, 
+                    $\beta = X_1 \ldots X_n \in (N \bigcup \Sigma)^*$ recursively by string concatenation,
+                    </p>
+
+                    <p>
+                    $FIRST_k( \beta ) = FIRST_k( X_1 ) \oplus_k \ldots \oplus_k FIRST_k( X_n )$
+                    </p>
+
+                    <p>
+                    For terminals, define FIRST to be the terminal itself,
+                    </p>
+
+                    <p>
+                    $FIRST_k( a ) = \{ a \} \quad \forall a \in \Sigma \cup \{ \epsilon \}$
+                    </p>
+
+                    <p>
+                    It remains to compute FIRST for all non-terminals, $FIRST_k( X ) \quad \forall X \in N$
+                    </p>
+
+                    <p>
+                    We do this iteratively. We define the function F() which will approximate FIRST.  For terminals, define
+
+                    $F_i( a ) = \{ a\} \quad \forall a \in \Sigma, \quad \forall i \ge 0$
+                    </p>
+
+                    <p>
+                    For non-terminals, we define the zeroth approximation to FIRST by
+
+                    $$F_0( A ) = \{ x | x \in \Sigma^{*k},$$
+
+                    $$A \rightarrow x \: \alpha \in P, \: |x| = k \text{ or } |x| \lt k \text{ and } \alpha = \epsilon \}$$
+                    </p>
+
+                    <p>
+                    Then for all non-terminals A simultaneously, we iterate the formula,
+
+                    $$F_{i+1}( A ) = F_i( A ) \cup \{ x | A \rightarrow Y_1 \ldots Y_n \in P$$
+                    and
+                    $$x \in F_i( Y_1 ) \oplus_k \ldots \oplus_k F_i( Y_n ) \} \quad i \ge 0$$
+                    </p>
+
+                    <p>
+                    Eventually,
+                    </p>
+
+                    <p>
+                    $F_i( A ) \subset F_{i+1}( A ) \subset \ldots \subset F_l( A ) = F_{l+1}( A ) \quad \forall A \in N$
+                    </p>
+
+                    <p>
+                    at which point we terminate and say,
+                    </p>
+
+                    <p>
+                    $FIRST_k( A ) = F_l( A ) \quad \forall A \in N$
+                    </p>
+
+                    <p>
+                    The epsilon-free first k derived symbols, $EFF_k()$, are found by computing FIRST as above, but tagging all symbols which are derived using
+                    epsilon productions of the form, $A \rightarrow \epsilon$ as non-epsilon free, and keeping only the epsilon-free derived terminals.
+                    </p>
+                </section>
+
+                <section>
+                    <h3 id="LRkDefinition">LR(k) Definition</h3>
+
+                    <p>
+                    G is LR(k) iff
+                    </p>
+
+                    <ol>
+                    <li> $S' \underset{rm}{\overset{*}{\Rightarrow}} \alpha A w \underset{rm}{\Rightarrow} \alpha \beta w$ </li>
+
+                    <li> $S' \underset{rm}{\overset{*}{\Rightarrow}} \gamma B x \underset{rm}{\Rightarrow} \alpha \beta y$ </li>
+
+                    <li>$FIRST_k( w ) = FIRST_k( y )$</li>
+                    </ol>
+
+                    <p>
+                    implies $\alpha = \gamma$, $A = B$ and $x = y$
+                    </p>
+
+                    <p>
+                    That is, if we see a string of the form $\alpha \beta w$ and we are given only $FIRST_k( w )$, we must have used the
+                    unique production $A \rightarrow \beta$ and we must have had the same unique prefix $\alpha \beta$.
+
+                    <p>
+                    Or equivalently, knowing the prefix $\alpha \beta$ and only the k terminal symbol lookahead, we can locate 
+                    </p>
+
+                    <ol>
+                    <li>The right end of the handle.</li>
+                    <li>The left end of the handle.</li>
+                    <li>Which reduction to make.</li>
+                    </ol>
+                </section>
+
+                <section>
+                    <h3 id="ValidItems">Valid Items</h3>
+
+                    <p>
+                    An item $[ A \rightarrow \beta_1 \bullet \beta_2, u]$ is valid for viable prefix $\gamma = \alpha \beta_1$
+
+                    if $\exists S \underset{rm}{\overset{*}{\Rightarrow}} \alpha \beta_1 \beta_2 w \ni u = FIRST_k( w )$
+
+                    That is, $\alpha A w \Rightarrow \alpha \beta_1 \beta_2 w$ is a derivation consistent with what we've seen so far in parsing (the prefix) and
+                    consistent with the lookahead.
+
+                    An item with nothing after the dot indicates a reduction by a production is OK at this stage, but an
+                    item with a symbol after the dot indicates we should shift more symbols before making any reductions.
+                    </p>
+                </section>
+
+                <section>
+                    <h3 id="LRkEquivalentDefinition">LR(k) Equivalent Definition</h3>
+
+                    <p>
+                    A language $G$ is $LR(k)$ iff for a viable prefix $\gamma = \alpha \beta$
+
+                    given $[ A \rightarrow \beta \bullet , u ]$ is valid for $\gamma$
+
+                    and there is no other valid item $[ A_1 \rightarrow \beta_1 \bullet \beta_2, \nu ]$
+
+                    valid for $\gamma$ with $u \in EFF_k( \beta_2 \nu )$
+                    </p>
+
+                    <p>
+                    (We may have $\beta_2 = \epsilon$ )
+                    In other words, the sets of items cannot contain any shift-reduce or reduce-reduce conflicts.
+                    </p>
+                </section>
+
+                <section>
+                    <h3 id="ClosureonSetsofItems">Closure on Sets of Items</h3>
+
+                    <p>
+                    Define an operator $\delta$ which generates the set of items having the same prefix consistent with the lookahead:
+                    </p>
+
+                    <p>
+                    $\delta \{ [ A \rightarrow \alpha \bullet X \beta, u ] \} =$
+                    </p>
+
+                    <ol>
+                        <li>$\varnothing \text{ if } X \in \Sigma \text{ or } \neg \exists X \beta$</li>
+
+                        <li>Otherwise, $\{ [X \rightarrow \bullet \delta, x ] | x \in FIRST_k( \beta u ) \text{ and } X \rightarrow \delta \in P \}$</li>
+                    </ol>
+
+                    <p>
+                    Denote the transitive closure of this operator as, $CLOSURE( \{ [ A \rightarrow \alpha \bullet X \beta, u ] \} )$
+                    </p>
+
+                    <p>
+                    The reason for the closure is this:  if an item $[ A \rightarrow \alpha \bullet X \beta, u ]$ 
+                    is valid for viable prefix $\gamma = \delta \alpha$
+                    and lookahead $u = FIRST_k( w )$
+                    </p>
+
+                    <p>
+                    There is a derivation, $\exists S \underset{ rm }{ \overset{ * }{ \Rightarrow } } \delta A w \Rightarrow \delta \alpha X \beta w$
+
+                    Then a production of the form $X \rightarrow \eta$
+
+                    implies the derivation $S \underset{ rm }{ \overset{ * }{ \Rightarrow } } \delta A w \Rightarrow \delta \alpha \eta \beta w$
+
+                    which means the new item $[X \rightarrow \bullet \eta, \nu]$
+
+                    is also valid for the same viable prefix $\gamma = \delta \alpha$
+
+                    where $\nu = FIRST_k( \beta w )$
+                    </p>
+                </section>
+
+                <section>
+                    <h3 id="GOTOonSetsofItems">GOTO on Sets of Items</h3>
+
+                    <p>
+                    Define the GOTO on a set of items $A$ as 
+
+                    $$GOTO( A, X ) = CLOSURE( \{ [ A \rightarrow \alpha X \bullet \beta, u ] \} )$$
+
+                    where
+
+                    $$[A \rightarrow \alpha \bullet X \beta, u] \in A$$
+                    </p>
+                </section>
+
+                <section>
+                    <h3 id="SetsofItemsConstruction">Sets of Items Construction</h3>
+
+                    <p>
+                    We can construct the set of items valid for each viable prefix iteratively.
+                    The set of items valid for viable prefix $X_1 \ldots X_i$
+
+                    is $V_k( X_1 \ldots X_i ) = GOTO( V_k( X_1 \ldots X_{i-1}), X_i)$
+
+                    where the initial state is $V( \epsilon ) = CLOSURE( \{ [S' \rightarrow \bullet S, \epsilon ] \} )$
+
+                    This gives us a GOTO graph having the sets of items as nodes, the GOTO's on symbols as transitions
+                    between states, and the viable prefix for a set of states as the path from the initial state to 
+                    that node.
+                    </p>
+
+                    <p>
+                    The algorithm is as follows:   Begin with $C = CLOSURE[S' \rightarrow \bullet S, \epsilon]$
+                    </p>
+
+                    <p>
+                    Repeat for each item $I \in C$
+                    for each $X \in G$ if $GOTO( I, X ) \neq \varnothing$
+                    and $GOTO( I, X ) \not\in C$
+                    then $C = C \cup GOTO( I, X )$
+                    until no more items can be added to $C$.
+
+                    <img class="centered" src="./LRandLALRParsingTheoryFiles/Fig1.png" alt="Fig. 1." />
+                    </p>
+                </section>
+
+                <section>
+                    <h3 id="LRkParsingTableGeneration">LR(k) Parsing Table Generation</h3>
+
+                    <p>
+                    We generate ACTION and GOTO tables which will be used by our finite state
+                    automaton (FSA) for parsing.
+                    </p>
+
+                    <p>
+                    Let $s_m = \text{ arbitrary state label for a set of items }$ and $u = \text{ k symbol lookahead }$
+                    </p>
+
+                    <p>
+                    Generate the ACTION table as $ACTION[ s_m, u ] =$
+                    </p>
+
+                    <ol>
+                    <li>
+                    $\text{ shift s } \text{ if } [A \rightarrow \beta_1 \bullet \beta_2, \nu] \in s_m, \beta_2 \neq \epsilon, u \in EFF_k( \beta_2, \nu )$
+                    where
+                    $s = GOTO[s_m, u]$
+                    </li>
+
+                    <li>
+                    $\text{ reduce k } \text{ if } [A \rightarrow \beta \bullet , u ] \in s_m \text{ where } A \rightarrow \beta \in P$ is the $k^{th}$ labelled production.
+                    </li>
+
+                    <li>
+                        $\text{ accept } \text{ if } [S' \rightarrow S \bullet , \epsilon ] \in s_m$
+                    </li>
+
+                    <li>
+                        $\text{ error } \text{ Otherwise }$
+                    </li>
+                    </ol>
+
+                    <p>
+                    Define the GOTO table as $GOTO[ s_m, X_i ] = GOTO( A_{s_m}, X_i )$
+                    </p>
+                </section>
+
+                <section>
+                    <h3 id="LRkParsingAlgorithm">LR(k) Parsing Algorithm</h3>
+
+                    <p>
+                    We start in the initial state, $( s_0 | a_i a_{i+1} \ldots a_n \$)$
+                    </p>
+
+                    <p>
+                    where $s_0 = V( \epsilon ) = CLOSURE( [S' \rightarrow \bullet S, \epsilon])$
+                    </p>
+
+                    <p>
+                    Then, starting from a state consisting of a parse stack on the left,
+                    and an input stack on the right of remaining tokens to be parsed,
+                    </p>
+
+                    <p>
+                    $(s_0 X_1 s_1 \ldots X_m s_m | a_i a_{i+1} \ldots a_n \$)$
+                    </p>
+
+                    <p>
+                    We define the transition functions of the DFA on as follows:
+                    </p>
+
+                    <p>
+                    $ACTION[s_m, a_i \ldots a_{i+k-1}] = shift \: s$
+                    </p>
+
+                    <p>
+                    push the new symbol and new state and transition to:
+                    </p>
+
+                    <p>
+                    $(s_0 X_1 s_1 \ldots X_m s_m a_i s | a_{i+1} \ldots a_n \$)$
+                    </p>
+
+                    <p>
+                    where $s = GOTO( s_m, a_i \ldots a_{i+k-1}]$
+                    </p>
+
+                    <p>
+                    If $ACTION[s_m, a_i \ldots a_{i+k-1}] = reduce \quad A \rightarrow \beta$
+                    </p>
+
+                    <p>
+                    transition from
+                    </p>
+
+                    <p>
+                    $(s_0 X_1 s_1 \ldots X_{m-r} s_{m-r} X_{m-r+1} s_{m-r+1} \ldots X_m s_m | a_i a_{i+1} \ldots a_n \$)$
+                    </p>
+
+                    <p>
+                    where $\beta = X_{m-r+1} \ldots X_m$ to the state:
+                    </p>
+
+                    <p>
+                    $(s_0 X_1 s_1 \ldots X_{m-r} s_{m-r} A s | a_i a_{i+1} \ldots a_n \$)$
+                    </p>
+
+                    <p>
+                    where $r = | \beta |$ and $s = GOTO[ s_{m-r}, A ]$
+                    </p>
+
+                    <p>
+                    If $ACTION[ s_m, a_i \ldots a_{i+k-1} ] = accept$
+                    </p>
+
+                    <p>
+                    Halt and accept the input with no error.
+                    </p>
+
+                    <p>
+                    If $ACTION[ s_m, a_i \ldots a_{i+k-1} ] = error$
+                    </p>
+
+                    <p>
+                    Call $ErrorHandler[ s_m, a_i \ldots a_{i+k-1}]$
+                    </p>
+
+                    <p>
+                    where the viable prefix is $X_1 \ldots X_m$ and the error tokens are $a_i \ldots a_{i+k-1}$
+                    </p>
+                </section>
+
+                <section>
+                    <h3 id="AmbiguousGrammars">Ambiguous Grammars</h3>
+
+                    <p>
+                    If the grammar is ambiguous, we don't have to rewrite the grammar to avoid it;  many times we can resolve the conflicts in many cases by 
+                    adding precedence and associativity rules to productions and input symbols.
+                    YACC does this.
+                    </p>
+
+                    <p>
+                    If a state contains items having a shift/reduce conflict,
+                    </p>
+
+                    <p>
+                    $ACTION[s_m, a_i \ldots a_{i+k-1}] = reduce \quad A \rightarrow \beta$
+                    </p>
+
+                    <p>
+                    $ACTION[s_m, a_i \ldots a_{i+k-1}] = shift \quad s$
+                    </p>
+
+                    <p>
+                    we reduce if the precedence of the production $A \rightarrow \beta$
+
+                    is higher than the precedence of the lookahead in the input, $a_i \ldots a_{i+k-1}$
+
+                    The default precedence of the production is the precedence of the rightmost terminal of $\beta$
+
+                    Otherwise, we can set it to be the precedence of any symbol which gives a correct parse.
+                    </p>
+
+                    <p>
+                    If
+                    there is a tie in precedence, we reduce if the production is left associative and shift if the production is right associative.
+                    Nonassociative breaks ties by declaring error.
+                    </p>
+
+                    <p>
+                    If there is a reduce/reduce conflict, we reduce by the earlier listed production in the list.
+                    </p>
+                </section>
+
+                <section>
+                    <h3 id="ErrorRecovery">Error Recovery</h3>
+
+                    <p>
+                    We can add error productions to the language of the form, $A \rightarrow \text{ error } \alpha$
+
+                    where A is a major non-terminal, and $a = \epsilon$ is allowed.
+                    </p>
+
+                    <p>
+                    When the parser gets into an error state, it pops the parse stack until it finds a state containing the item $A \rightarrow \bullet \text{ error } \alpha$
+
+                    shifts the imaginary token, $\text{ error }$ then discards input symbols until it sees lookahead $\alpha$.
+
+                    Then the parser performs a reduction on $A$ and calls an error routine associated with the error production.
+
+                    If $\alpha = \epsilon$ the reduction happens immediately.
+                    </p>
+                </section>
+
+                <section>
+                    <h3 id="GeneratingLALR1SetsOfItems">Generating LALR(1) Sets Of Items</h3>
+
+                    <p>
+                    First a definition,
+                    </p>
+
+                    <p>
+                    The core of an item $[A \rightarrow \beta_1 \bullet \beta_2, u]$ is $[A \rightarrow \beta_1 \bullet \beta_2]$.
+                    </p>
+
+                    <p>
+                    If we can merge the cores of the sets of items in the $LR( k )$ goto graph without generating conflicts to give a much smaller graph, the
+                    grammar is of type $LALR( k )$.
+                    </p>
+
+                    <p>
+                    (1) Construct $LR(1)$ sets of items $I$: 
+                    </p>
+
+                    <p>
+                    $C = \{ I_0, \ldots, I_n \}$
+                    </p>
+
+                    <p>
+                    (2) For each core in C find all sets of items having that core and replace
+                    these sets by their union (remove duplicate cores and merge lookaheads).
+                    </p>
+
+                    <p>
+                    $C' = \{ J_0, \ldots, J_n \}$
+                    </p>
+
+                    <p>
+                    (3) Create the action table as before.
+                    If there are any conflicts, the language is not LALR(1) and we exit.
+                    </p>
+
+                    <p>
+                    (4) Otherwise, construct the goto table as follows.
+                    </p>
+
+                    <p>
+                    For a merged set of items, $J = I_1 \cup I_2 \ldots \cup I_k$
+                    the cores of $goto( I_1, X ) \ldots goto(I_k, X )$
+                    are identical also since $I_1 \ldots I_k$ have the same cores.
+                    </p>
+
+                    <p>
+                    Now let $K = GOTO( I_1, X ) \cup \ldots \cup GOTO( I_k, X )$ then $goto( J, K ) = K$
+
+                    <img class="centered" src="./LRandLALRParsingTheoryFiles/Fig4.png" alt="Fig. 4." />
+                    </p>
+
+                    <p>
+                    And our LALR(1) collection of items is done.
+                    If an LR(1) parser has detected an error on the input, the corresponding LALR(1) parser may do additional reductions.  
+                    However it will not shift the error symbol onto the stack, and will declare error before the next shift.
+                    </p>
+
+                    <p>
+                    We can't create any new shift/reduce conflicts by merging cores.
+                    Suppose we did create a new shift/reduce conflict by merging sets of items:
+                    </p>
+
+                    <p>
+                    $[A \rightarrow \alpha \bullet , a] \quad (reduce \quad A \rightarrow \alpha)$
+                    </p>
+
+                    <p>
+                    and
+                    </p>
+
+                    <p>
+                    $[B \rightarrow \beta \bullet a \gamma, b] \quad (shift \quad a)$
+                    </p>
+
+
+                    <p>
+                    Since cores were the same before the merge, some item must have had
+                    </p>
+
+                    <p>
+                    $[A \rightarrow \alpha \bullet , a] \quad (reduce \quad A \rightarrow \alpha)$
+                    </p>
+
+                    <p>
+                    and
+                    </p>
+
+                    <p>
+                    $[B \rightarrow \beta \bullet a \gamma, c] \quad (shift \quad a)$
+                    </p>
+
+                    <p>
+                    for some lookahead c.
+                    But this is an LR(1) shift/reduce conflict, a contradiction.
+                    However, we can create a reduce/reduce conflict by merging cores.
+                    </p>
+                </section>
+
+                <section>
+                    <h3 id="Example:GeneratingLR1SetsOfItems">Example:  Generating LR(1) Sets Of Items and Parsing Sentences</h3>
+
+                    <p>
+                    Our sample grammar with lookahead k = 1 has two productions,
+                    </p>
+
+                    <ol>
+                        <li>S &rarr; SaSb</li>
+                        <li>S &rarr; &epsilon;</li>
+                    </ol>
+
+                    <p>
+                    First compute FIRST and epsilon-free FIRST of all the token symbols,
+                    </p>
+
+                    <p>
+                    For all i, we have for the terminals,
+                    F<sub>i</sub>(&epsilon;) = {&epsilon;},  
+                    F<sub>i</sub>(a) = {a},  
+                    F<sub>i</sub>(b) = {b}.
+                    </p>
+
+                    <p>
+                    For the non-terminal S, F<sub>0</sub>(S) = {&epsilon;}, 
+                    since that's the only production which derives a
+                    terminal symbol on the left.
+                    Now we iterate
+                    </p>
+
+                    <p>
+                    F<sub>1</sub>(S) = 
+                    {&epsilon;} U 
+                    { F<sub>0</sub>(S)+<sub>1</sub>F<sub>0</sub>(a)+<sub>1</sub>
+                    F<sub>0</sub>(S)+<sub>1</sub> F<sub>0</sub>(b), F<sub>0</sub>(&epsilon;) }
+                    =
+                    { {&epsilon;}+<sub>1</sub>{a}+<sub>1</sub>..., &epsilon; } = {&epsilon;,a}
+                    </p>
+
+                    <p>
+                    F<sub>2</sub>(S) = 
+                    {&epsilon;} U 
+                    { F<sub>1</sub>(S)+<sub>1</sub>F<sub>1</sub>(a)+<sub>1</sub>
+                    F<sub>1</sub>(S)+<sub>1</sub> F<sub>1</sub>(b), F<sub>1</sub>(&epsilon;) }
+                    =
+                    { {&epsilon;,a}+<sub>1</sub>{a}+<sub>1</sub>..., &epsilon; } = {&epsilon;,a}
+                    </p>
+
+                    <p>
+                    The set doesn't change anymore, so we stop and declare,
+                    FIRST(S) = 
+                    F<sub>2</sub>(S) = {&epsilon;,a}
+                    </p>
+
+                    <p>
+                    When we compute EFF, we use a similar algorithm, but any derivations with leading
+                    epsilons were disallowed, so EFF(&epsilon;) = EFF(S) = {}.
+                    </p>
+
+                    <table>
+                      <caption>FIRST and EFF</caption>
+                      <tr>
+                          <th>Symbol</th>
+                          <th>FIRST<sub>1</sub>()</th>
+                          <th>EFF<sub>1</sub>()</th>
+                      </tr>
+                      <tr>
+                          <td>&epsilon;</td>
+                          <td>{&epsilon;}</td>
+                          <td>{}</td>
+                      </tr>
+                      <tr>
+                          <td>a</td>
+                          <td>{a}</td>
+                          <td>{a}</td>
+                      </tr>
+                      <tr>
+                          <td>b</td>
+                          <td>{b}</td>
+                          <td>{b}</td>
+                      </tr>
+                      <tr>
+                          <td>S</td>
+                          <td>{&epsilon;, a}</td>
+                          <td>{}</td>
+                      </tr>
+                    </table>
+
+                    <p>
+                    Now we compute the sets of LR(1) items using GOTO and CLOSURE operations.
+                    </p>
+
+                    <table>
+                      <caption>Sets of LR(1) items</caption>
+                      <tr>
+                          <th>State</th>
+                          <th>GOTO() from state</th>
+                          <th>Viable Prefix</th>
+                          <th>Kernel</th>
+                          <th>Closure</th>
+                      </tr>
+                      <tr>
+                          <td>0</td>                         <!-- State -->
+                          <td>-</td>                         <!-- Goto from state on symbol -->
+                          <td>&epsilon;</td>                  <!-- Viable Prefix -->
+                          <td>1.  [S' &rarr;.S,&epsilon;]</td>       <!-- Kernel Items --> 
+                          <td>                               <!-- Closure -->
+                            <table>      <!-- Table columns are From Item, Item and Lookahead. -->
+                                <tr>
+                                  <th>From Item</th>
+                                  <th>Item</th>
+                                  <th>Lookahead</th>
+                                </tr>
+                                <tr>
+                                  <td>1</td>
+                                  <td>2.  [S &rarr; .SaSb,&epsilon;]</td>
+                                  <td>FIRST(&epsilon;)</td>
+                               </tr>
+                               <tr>
+                                  <td>2</td>
+                                  <td>3.  [S &rarr; .SaSb,a]</td>
+                                  <td>FIRST(aSb&epsilon;)</td>
+                               </tr>
+                               <tr>
+                                  <td>1</td>
+                                  <td>4.  [S &rarr; .&epsilon;,&epsilon;]</td>
+                                  <td>FIRST(&epsilon;)</td>
+                               </tr>
+                               <tr>
+                                  <td>2</td>
+                                  <td>5.  [S &rarr; .&epsilon;,a]</td>
+                                  <td>FIRST(aSb&epsilon;)</td>
+                               </tr>
+                            </table>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>1</td>                         <!-- State -->
+                          <td>State 0 GOTO(S)</td>   <!-- Goto from state on symbol -->
+                          <td>S</td>                         <!-- Viable Prefix -->
+                          <td><ol>                           <!-- Kernel Items --> 
+                              <li>[S' &rarr; S.,&epsilon;]</li>
+                              <li>[S &rarr; S.aSb,&epsilon;]</li>
+                              <li>[S &rarr; S.aSb,a]</li>
+                              </ol>
+                          </td>
+                          <td>                             <!-- Closure -->
+                            <table>    <!-- Table columns are From Item, Item and Lookahead. -->
+                                <tr>
+                                  <th>From Item</th>
+                                  <th>Item</th>
+                                  <th>Lookahead</th>
+                                </tr>
+                                <tr>
+                                  <td>None</td>
+                                  <td>None</td>
+                                  <td>None</td>
+                               </tr>
+                            </table>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>2</td>                         <!-- State -->
+                          <td>State 1 GOTO(a)</td>                     <!-- Goto from state on symbol -->
+                          <td>Sa</td>                         <!-- Viable Prefix -->
+                          <td><ol>                           <!-- Kernel Items --> 
+                              <li>[S &rarr; Sa.Sb,&epsilon;]</li>
+                              <li>[S &rarr; Sa.Sb,a]</li>
+                              </ol>
+                          </td>                             
+                          <td>                               <!-- Closure -->
+                            <table>      <!-- Table columns are From Item, Item and Lookahead. -->
+                                <tr>
+                                  <th>From Item</th>
+                                  <th>Item</th>
+                                  <th>Lookahead</th>
+                                </tr>
+                                <tr>
+                                  <td>1</td>
+                                  <td>3.  [S &rarr; .SaSb,b]</td>
+                                  <td>FIRST(b&epsilon;)</td>
+                               </tr>
+                               <tr>
+                                  <td>2</td>
+                                  <td>4.  [S &rarr; .SaSb,a]</td>
+                                  <td>FIRST(ba)</td>
+                               </tr>
+                               <tr>
+                                  <td>1</td>
+                                  <td>5.  [S &rarr; .&epsilon;,b]</td>
+                                  <td>FIRST(b&epsilon;)</td>
+                               </tr>
+                               <tr>
+                                  <td>3</td>
+                                  <td>6.  [S &rarr; .&epsilon;,a]</td>
+                                  <td>FIRST(aSbb)</td>
+                               </tr>
+                            </table>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>3</td>                         <!-- State -->
+                          <td>State 2 GOTO(S)</td>           <!-- Goto from state on symbol -->
+                          <td>SaS</td>                        <!-- Viable Prefix -->
+                          <td><ol>                           <!-- Kernel Items --> 
+                              <li>[S &rarr; SaS.b,&epsilon;]</li>
+                              <li>[S &rarr; SaS.b,a]</li>
+                              <li>[S &rarr; S.aSb,b]</li>
+                              <li>[S &rarr; S.aSb,a]</li>
+                              </ol>
+                          </td>                             
+                          <td>                             <!-- Closure -->
+                            <table>    <!-- Table columns are From Item, Item and Lookahead. -->
+                                <tr>
+                                  <th>From Item</th>
+                                  <th>Item</th>
+                                  <th>Lookahead</th>
+                                </tr>
+                                <tr>
+                                  <td>None</td>
+                                  <td>None</td>
+                                  <td>None</td>
+                               </tr>
+                            </table>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>4</td>                         <!-- State -->
+                          <td>State 6 GOTO(a), State 3 GOTO(a)</td>           <!-- Goto from state on symbol -->
+                          <td>SaSa</td>                      <!-- Viable Prefix -->
+                          <td><ol>                           <!-- Kernel Items --> 
+                              <li>[S &rarr; Sa.Sb,a]</li>
+                              <li>[S &rarr; Sa.Sb,b]</li>
+                              </ol>
+                          </td>                             
+                          <td>                               <!-- Closure -->
+                            <table>      <!-- Table columns are From Item, Item and Lookahead. -->
+                                <tr>
+                                  <th>From Item</th>
+                                  <th>Item</th>
+                                  <th>Lookahead</th>
+                                </tr>
+                                <tr>
+                                  <td>1</td>
+                                  <td>3.  [S &rarr; .SaSb,b]</td>
+                                  <td>FIRST(ba)</td>
+                               </tr>
+                               <tr>
+                                  <td>2</td>
+                                  <td>4.  [S &rarr; .&epsilon;,b]</td>
+                                  <td>FIRST(bb)</td>
+                               </tr>
+                               <tr>
+                                  <td>2</td>
+                                  <td>5.  [S &rarr; .&epsilon;,b]</td>
+                                  <td>FIRST(bb)</td>
+                               </tr>
+                               <tr>
+                                  <td>3</td>
+                                  <td>6.  [S &rarr; .SaSb,a]</td>
+                                  <td>FIRST(aSbb)</td>
+                               </tr>
+                            </table>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>5</td>                         <!-- State -->
+                          <td>State 3 GOTO(b)</td>           <!-- Goto from state on symbol -->
+                          <td>SaSab</td>                        <!-- Viable Prefix -->
+                          <td><ol>                           <!-- Kernel Items --> 
+                              <li>[S &rarr; SaSb.,&epsilon;]</li>
+                              <li>[S &rarr; SaSb.,a]</li>
+                              </ol>
+                          </td>                             
+                          <td>                             <!-- Closure -->
+                            <table>    <!-- Table columns are From Item, Item and Lookahead. -->
+                                <tr>
+                                  <th>From Item</th>
+                                  <th>Item</th>
+                                  <th>Lookahead</th>
+                                </tr>
+                                <tr>
+                                  <td>None</td>
+                                  <td>None</td>
+                                  <td>None</td>
+                               </tr>
+                            </table>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>6</td>                         <!-- State -->
+                          <td>State 4 GOTO(S)</td>           <!-- Goto from state on symbol -->
+                          <td>SaSab</td>                        <!-- Viable Prefix -->
+                          <td><ol>                           <!-- Kernel Items --> 
+                              <li>[S &rarr; SaS.b,a]</li>
+                              <li>[S &rarr; SaS.b,b]</li>
+                              <li>[S &rarr; S.aSb,b]</li>
+                              <li>[S &rarr; S.aSb,a]</li>
+                              </ol>
+                          </td>                             
+                          <td>                             <!-- Closure -->
+                            <table>    <!-- Table columns are From Item, Item and Lookahead. -->
+                                <tr>
+                                  <th>From Item</th>
+                                  <th>Item</th>
+                                  <th>Lookahead</th>
+                                </tr>
+                                <tr>
+                                  <td>None</td>
+                                  <td>None</td>
+                                  <td>None</td>
+                               </tr>
+                            </table>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>7</td>                         <!-- State -->
+                          <td>State 6 GOTO(b)</td>           <!-- Goto from state on symbol -->
+                          <td>SaSaSb</td>                        <!-- Viable Prefix -->
+                          <td><ol>                           <!-- Kernel Items --> 
+                              <li>[S &rarr; SaSb.,a]</li>
+                              <li>[S &rarr; SaSb.,b]</li>
+                              </ol>
+                          </td>                             
+                          <td>                             <!-- Closure -->
+                            <table>    <!-- Table columns are From Item, Item and Lookahead. -->
+                                <tr>
+                                  <th>From Item</th>
+                                  <th>Item</th>
+                                  <th>Lookahead</th>
+                                </tr>
+                                <tr>
+                                  <td>None</td>
+                                  <td>None</td>
+                                  <td>None</td>
+                               </tr>
+                            </table>
+                          </td>
+                      </tr>
+                    </table>
+                     
+                    <img class="centered" src="./LRandLALRParsingTheoryFiles/Fig2.png" alt="Fig. 2." />
+
+                    <p>
+                    Let's tabulate the GOTO's on the states and symbols, which we'll need to
+                    calculate the state after a shift (for GOTO's on terminal symbols)
+                    and also the state after a reduce (for GOTO's on non-terminal symbols).
+                    </p>
+
+                    <table>
+                      <caption>GOTO on each State and Symbol</caption>
+                      <tr>
+                          <th>State</th>
+                          <th colspan="4">ON symbol GOTO state</th>
+                      </tr>
+                      <tr>
+                          <td>&nbsp;</td>
+                          <th>S</th>
+                          <th>e</th>
+                          <th>a</th>
+                          <th>b</th>
+                      </tr>
+                      <!--    state       S          e          a          b  -->
+                      <tr> <td>0</td> <td>1</td> <td>-</td> <td>-</td> <td>-</td> </tr>
+                      <tr> <td>1</td> <td>-</td> <td>-</td> <td>2</td> <td>-</td> </tr>
+                      <tr> <td>2</td> <td>3</td> <td>-</td> <td>-</td> <td>-</td> </tr>
+                      <tr> <td>3</td> <td>-</td> <td>-</td> <td>4</td> <td>5</td> </tr>
+                      <tr> <td>4</td> <td>6</td> <td>-</td> <td>-</td> <td>-</td> </tr>
+                      <tr> <td>5</td> <td>-</td> <td>-</td> <td>-</td> <td>-</td> </tr>
+                      <tr> <td>6</td> <td>-</td> <td>-</td> <td>4</td> <td>7</td> </tr>
+                      <tr> <td>7</td> <td>-</td> <td>-</td> <td>-</td> <td>-</td> </tr>
+                    </table>
+
+                    <p>
+                    Now we compute the ACTION tables by looking at the types of items.
+                    If the item has nothing after the dot, it's a reduction provided we
+                    see the item's lookahead.
+                    Otherwise, we compute u = EFF() of all the symbols after the item's dot
+                    including the item's k-symbol lookahead.  If we see the u in the
+                    input, we call for a shift, and a goto the next state on u.
+                    </p>
+
+                    <table>
+                      <caption>Sets of Items for Each State, Lookahead and Corresponding Shift/Reduce Actions</caption>
+                      <tr>
+                          <th>State</th>
+                          <th>Items</th>
+                          <th>EFF Lookahead (for a shift only)</th>
+                          <th>Lookahead Symbol/Action</th>
+                      </tr>
+                      <tr>                                  
+                          <td>0</td>         <!-- State 0 -->
+                          <td>               <!-- Items -->
+                            <ol>
+                              <li>S' &rarr; .S,&epsilon;</li>
+                              <li>S' &rarr; .SaSb,&epsilon;</li>
+                              <li>S' &rarr; .SaSb,a</li>
+                              <li>S' &rarr; .,&epsilon;</li>
+                              <li>S' &rarr; .,a</li>
+                            </ol>
+                          </td>
+                          <td>                   <!-- EFF -->
+                            <ol>
+                              <li>EFF(S&epsilon;)=0</li>
+                              <li>EFF(SaSb&epsilon;)=0</li>
+                              <li>EFF(SaSba)=0</li>
+                              <li>-</li>
+                              <li>-</li>
+                            </ol>
+                          </td>
+                          <td>                            <!-- Action -->
+                            <ol>
+                              <li>-</li>
+                              <li>-</li>
+                              <li>-</li>
+                              <li>&epsilon; reduce 2</li>
+                              <li>a reduce 2</li>
+                            </ol>
+                          </td>
+                      </tr>
+                      <tr>                                  
+                          <td>1</td>         <!-- State 1 -->
+                          <td>               <!-- Items -->
+                            <ol>
+                              <li>S' &rarr; S.,&epsilon;</li>
+                              <li>S  &rarr; S.aSb,&epsilon;</li>
+                              <li>S  &rarr; S.aSb,a</li>
+                            </ol>
+                          </td>
+                          <td>                   <!-- EFF -->
+                            <ol>
+                              <li>-</li>
+                              <li>EFF(aSb&epsilon;)=a</li>
+                              <li>EFF(aSba)=a</li>
+                            </ol>
+                          </td>
+                          <td>                            <!-- Action -->
+                            <ol>
+                              <li>accept</li>
+                              <li>a shift 2</li>
+                              <li>a shift 2</li>
+                            </ol>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>2</td>         <!-- State 2 -->
+                          <td>               <!-- Items -->
+                            <ol>
+                              <li>S &rarr; Sa.Sb,&epsilon;</li>
+                              <li>S &rarr; Sa.Sb,a</li>
+                              <li>S &rarr; .SaSb,a</li>
+                              <li>S &rarr; .SaSb,b</li>
+                              <li>S &rarr; .,a</li>
+                              <li>S &rarr; .,b</li>
+                            </ol>
+                          </td>
+                          <td>                   <!-- EFF -->
+                            <ol>
+                              <li>EFF(Sb&epsilon;)=0</li>
+                              <li>EFF(Sba)=0</li>
+                              <li>EFF(SaSba)=0</li>
+                              <li>EFF(SaSbb)=0</li>
+                              <li>-</li>
+                              <li>-</li>
+                            </ol>
+                          </td>
+                          <td>                            <!-- Action -->
+                            <ol>
+                              <li>-</li>
+                              <li>-</li>
+                              <li>-</li>
+                              <li>-</li>
+                              <li>a reduce 2</li>
+                              <li>b reduce 2</li>
+                            </ol>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>3</td>         <!-- State 3 -->
+                          <td>               <!-- Items -->
+                            <ol>
+                              <li>S &rarr; SaS.b,&epsilon;</li>
+                              <li>S &rarr; SaS.b,a</li>
+                              <li>S &rarr; S.aSb,a</li>
+                              <li>S &rarr; S.aSb,b</li>
+                            </ol>
+                          </td>
+                          <td>                   <!-- EFF -->
+                            <ol>
+                              <li>EFF(b&epsilon;)=b</li>
+                              <li>EFF(ba)=b</li>
+                              <li>EFF(aSba)=a</li>
+                              <li>EFF(aSbb)=a</li>
+                            </ol>
+                          </td>
+                          <td>                            <!-- Action -->
+                            <ol>
+                              <li>b shift 5</li>
+                              <li>b shift 5</li>
+                              <li>a shift 4</li>
+                              <li>a shift 4</li>
+                            </ol>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>4</td>         <!-- State 4 -->
+                          <td>               <!-- Items -->
+                            <ol>
+                              <li>S &rarr; Sa.Sb,a</li>
+                              <li>S &rarr; Sa.Sb,b</li>
+                              <li>S &rarr; .SaSb,a</li>
+                              <li>S &rarr; .SaSb,b</li>
+                              <li>S &rarr; .,a</li>
+                              <li>S &rarr; .,b</li>
+                            </ol>
+                          </td>
+                          <td>                   <!-- EFF -->
+                            <ol>
+                              <li>EFF(Sba)=0</li>
+                              <li>EFF(Sbb)=0</li>
+                              <li>EFF(SaSba)=0</li>
+                              <li>EFF(SaSbb)=0</li>
+                              <li>-</li>
+                              <li>-</li>
+                            </ol>
+                          </td>
+                          <td>                            <!-- Action -->
+                            <ol>
+                              <li>-</li>
+                              <li>-</li>
+                              <li>-</li>
+                              <li>-</li>
+                              <li>a reduce 2</li>
+                              <li>b reduce 2</li>
+                            </ol>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>5</td>         <!-- State 5 -->
+                          <td>               <!-- Items -->
+                            <ol>
+                              <li>S &rarr; SaSb.,&epsilon;</li>
+                              <li>S &rarr; SaSb.,a</li>
+                            </ol>
+                          </td>
+                          <td>                   <!-- EFF -->
+                            <ol>
+                              <li>-</li>
+                              <li>-</li>
+                            </ol>
+                          </td>
+                          <td>                            <!-- Action -->
+                            <ol>
+                              <li>&epsilon; reduce 1</li>
+                              <li>a reduce 1</li>
+                            </ol>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>6</td>         <!-- State 6 -->
+                          <td>               <!-- Items -->
+                            <ol>
+                              <li>S &rarr; SaS.b,a</li>
+                              <li>S &rarr; SaS.b,b</li>
+                              <li>S &rarr; S.aSb,a</li>
+                              <li>S &rarr; S.aSb,b</li>
+                            </ol>
+                          </td>
+                          <td>                   <!-- EFF -->
+                            <ol>
+                              <li>EFF(ba)=b</li>
+                              <li>EFF(bb)=b</li>
+                              <li>EFF(aSba)=a</li>
+                              <li>EFF(aSbb)=a</li>
+                              <li>-</li>
+                              <li>-</li>
+                            </ol>
+                          </td>
+                          <td>                            <!-- Action -->
+                            <ol>
+                              <li>b shift 7</li>
+                              <li>b shift 7</li>
+                              <li>a shift 4</li>
+                              <li>a shift 4</li>
+                            </ol>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>7</td>         <!-- State 7 -->
+                          <td>               <!-- Items -->
+                            <ol>
+                              <li>S &rarr; SaSb.,a</li>
+                              <li>S &rarr; SaSb.,b</li>
+                            </ol>
+                          </td>
+                          <td>                   <!-- EFF -->
+                            <ol>
+                              <li>-</li>
+                              <li>-</li>
+                            </ol>
+                          </td>
+                          <td>                            <!-- Action -->
+                            <ol>
+                              <li>a reduce 1</li>
+                              <li>b reduce 1</li>
+                            </ol>
+                          </td>
+                      </tr>
+                    </table>
+
+
+                    <p>
+                    Collecting together the shift and reduce actions for each state,
+                    and the goto on each non-terminal gives us the ACTION and GOTO 
+                    tables:  the heart of the parser.
+                    Error states are easily associated with error messages.
+                    </p>
+
+                    <table>
+                      <caption>Shift and Reduce Actions and GOTOs</caption>
+                      <tr>
+                          <th>State</th>
+                          <th colspan="3">ACTION</th>
+                          <th>GOTO</th>
+                      </tr>
+                      <tr>
+                          <td>&nbsp;</td>  <!-- force cell to display properly -->
+                          <td>&epsilon;</td>
+                          <td>a</td>
+                          <td>b</td>
+                          <td>S</td>
+                      </tr>
+                      <!--    state       e                                         a                           b              S            -->
+                      <tr> <td>0</td> <td>r2</td>                              <td>r2</td> <td>error - b not expected</td> <td>1</td>     </tr>
+                      <tr> <td>1</td> <td>accept</td>                          <td>s2</td> <td>error - b not expected</td> <td>error</td> </tr>
+                      <tr> <td>2</td> <td>error - expecting a or b</td>        <td>r2</td> <td>r2</td>                     <td>3</td>     </tr>
+                      <tr> <td>3</td> <td>error - expecting a or b</td>        <td>s4</td> <td>s5</td>                     <td>error</td> </tr>
+                      <tr> <td>4</td> <td>error - expecting a or b</td>        <td>r2</td> <td>r2</td>                     <td>6</td>     </tr>
+                      <tr> <td>5</td> <td>r1</td>                              <td>r1</td> <td>error - b not expected</td> <td>error</td> </tr>
+                      <tr> <td>6</td> <td>error - premature end of input</td>  <td>s4</td> <td>s7</td>                     <td>error</td> </tr>
+                      <tr> <td>7</td> <td>error</td>                           <td>r1</td> <td>r1</td>                     <td>error</td> </tr>
+                    </table>
+
+                    <table>
+                      <caption>Example of Parsing a Grammatical Sentence.</caption>
+                      <tr>
+                          <th>Parse Stack</th>
+                          <th>Action</th>
+                      </tr>
+
+                      <tr>
+                          <td>(0 | &epsilon; a a b b)</td>
+                          <td>r2: S  &rarr;  &epsilon;</td>
+                      </tr>
+                      <tr>
+                          <td>(0 S 1 | a a b b)</td>
+                          <td>s2:</td>
+                      </tr>
+                      <tr>
+                          <td>(0 S 1 a 2 | a b b)</td>
+                          <td>r2: S  &rarr;  &epsilon;</td>
+                      </tr>
+                      <tr> 
+                          <td>(0 S 1 a 2 S 3 | a b b)</td>
+                          <td>s4</td>
+                      </tr>
+                      <tr> 
+                          <td>(0 S 1 a 2 S 3 a 4 | b b)</td>
+                          <td>r2: S  &rarr;  &epsilon;</td>
+                      </tr>
+                      <tr>
+                          <td>(0 S 1 a 2 S 3 a 4 S 6 | b b)</td>
+                          <td>s7</td>
+                      </tr>
+                      <tr>
+                          <td>(0 S 1 a 2 S 3 a 4 S 6 b 7 | b)</td>
+                          <td>r1: S  &rarr;  SaSb</td>
+                      </tr>
+                      <tr>
+                          <td>(0 S 1 a 2 S 3 | b)</td>
+                          <td>s5</td>
+                      </tr>
+                      <tr>
+                          <td>(0 S 1 a 2 S 3 b 5| )</td>
+                          <td>r1: S  &rarr;  SaSb</td>
+                      </tr>
+                      <tr>
+                          <td>(0 S 1| )</td>
+                          <td>accept:  S' &rarr; S</td>
+                      </tr>
+                    </table>
+
+                    <p>
+                    We've just traced out a rightmost derivation in reverse:
+                    </p>
+
+                    <p>
+                    <b>S'</b>  &rarr;  <b>S</b>  &rarr;  Sa<b>S</b>b  &rarr;  SaSa<b>S</b>bb  &rarr;  Sa<b>S</b>abb  &rarr;  <b>S</b>aabb  &rarr;  aabb
+                    </p>
+
+                    <table>
+                      <caption>Example of Parsing an UNgrammatical Sentence.</caption>
+                      <tr>
+                          <th>Parse Stack</th>
+                          <th>Action</th>
+                      </tr>
+
+                      <tr> 
+                          <td>(0 | a a b)</td>
+                          <td>r2: S  &rarr;  &epsilon;</td>
+                      </tr>
+                      <tr>
+                          <td>(0 S 1 | a a b)</td>
+                          <td>s2:</td>
+                      </tr>
+                      <tr>
+                          <td>(0 S 1 a 2 | a b)</td>
+                          <td>r2: S  &rarr;  &epsilon;</td>
+                      </tr>
+                      <tr> 
+                          <td>(0 S 1 a 2 S 3 | a b)</td>
+                          <td>s4</td>
+                      </tr>
+                      <tr> 
+                          <td>(0 S 1 a 2 S 3 a 4 | b)</td>
+                          <td>r2: S  &rarr;  &epsilon;</td>
+                      </tr>
+                      <tr> 
+                          <td>(0 S 1 a 2 S 3 a 4 S 6 | b)</td>
+                          <td>s7</td>
+                      </tr>
+                      <tr>
+                          <td>(0 S 1 a 2 S 3 a 4 S 6 b 7 | b)</td>
+                          <td>error: Expecting a or b next in the derivation S'=>SaSaSb...</td>
+                      </tr>
+                    </table>
+                </section>
+
+                <section>
+                    <h3 id="Example:GeneratingLALR1SetsOfItems">Example:  Generating LALR(1) Sets Of Items</h3>
+
+                    <p>
+                    Now we compute the sets of LALR(1) items by merging the cores of the LR(1) items above.
+                    New state numbers show which LR(1) states were merged.
+                    There are no reduce/reduce conflicts, and the parse tables become much smaller.
+                    </p>
+
+                    <img class="centered" src="./LRandLALRParsingTheoryFiles/Fig3.png" alt="Fig. 3." />
+
+                    <table>
+                      <caption>Sets of LALR(1) items</caption>
+                      <tr>
+                          <th>State</th>
+                          <th>GOTO From State</th>
+                          <th>Viable Prefix</th>
+                          <th>Items</th>
+                      </tr>
+                      <tr>                                  
+                          <td>0</td>         <!-- State 0 -->
+                          <td>-</td>         <!-- Goto From State -->
+                          <td>&epsilon;</td> <!-- Viable Prefix -->
+                          <td>               <!-- Items -->
+                            <ol>
+                              <li>[S' &rarr; .S,&epsilon;]</li>
+                              <li>[S' &rarr; .SaSb,&epsilon;]</li>
+                              <li>[S' &rarr; .SaSb,a]</li>
+                              <li>[S' &rarr; .,&epsilon;] &epsilon; reduce 2</li>
+                              <li>[S' &rarr; .,a] a reduce 2</li>
+                            </ol>
+                          </td>
+                      </tr>
+                      <tr>                                  
+                          <td>1</td>         <!-- State 1 -->
+                          <td>0 GOTO(S)</td> <!-- Goto From State -->
+                          <td>S</td>         <!-- Viable Prefix -->
+                          <td>               <!-- Items -->
+                            <ol>
+                              <li>[S' &rarr; S.,&epsilon;] accept</li>
+                              <li>[S  &rarr; S.aSb,&epsilon;] a shift 2</li>
+                              <li>[S  &rarr; S.aSb,a] a shift 2</li>
+                            </ol>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>24</td>        <!-- State 24 -->
+                          <td>1 GOTO(a), 3 GOTO(a)</td>         <!-- Goto From State 1 -->
+                          <td>Sa</td>        <!-- Viable Prefix -->
+                          <td>               <!-- Items -->
+                            <ol>
+                              <li>[S &rarr; Sa.Sb,&epsilon;]</li>
+                              <li>[S &rarr; Sa.Sb,a]</li>
+                              <li>[S &rarr; Sa.Sb,b]</li>
+                              <li>[S &rarr; .SaSb,a]</li>
+                              <li>[S &rarr; .SaSb,b]</li>
+                              <li>[S &rarr; .,a] a reduce 2</li>
+                              <li>[S &rarr; .,b] b reduce 2</li>
+                            </ol>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>36</td>        <!-- State 36 -->
+                          <td>24 GOTO(S)</td><!-- Goto From State 24 -->
+                          <td>SaS</td>       <!-- Viable Prefix -->
+                          <td>               <!-- Items -->
+                            <ol>
+                              <li>[S &rarr; SaS.b,&epsilon;] b shift 57</li>
+                              <li>[S &rarr; SaS.b,a] b shift 57</li>
+                              <li>[S &rarr; SaS.b,b] b shift 57</li>
+                              <li>[S &rarr; S.aSb,a] a shift 24</li>
+                              <li>[S &rarr; S.aSb,b] a shift 24</li>
+                            </ol>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>57</td>        <!-- State 57 -->
+                          <td>36 GOTO(b)</td><!-- Goto From State 36 -->
+                          <td>SaSb</td>      <!-- Viable Prefix -->
+                          <td>               <!-- Items -->
+                            <ol>
+                              <li>[S &rarr; SaSb.,&epsilon;] &epsilon; reduce 1</li>
+                              <li>[S &rarr; SaSb.,a] a reduce 1</li>
+                              <li>[S &rarr; SaSb.,b] b reduce 1</li>
+                            </ol>
+                          </td>
+                      </tr>
+                    </table>
+
+                    <p>
+                    Collecting together the shift and reduce actions for each state,
+                    and the goto on each non-terminal gives us the ACTION and GOTO 
+                    tables:  the heart of the parser.
+                    Error states are easily associated with error messages.
+                    </p>
+
+                    <table>
+                      <caption>Shift and Reduce Actions for Each State</caption>
+                      <tr>
+                          <th>State</th>
+                          <th colspan="3">ACTION</th>
+                          <th>GOTO</th>
+                      </tr>
+                      <tr>
+                          <td>&nbsp;</td>  <!-- force cell to display properly -->
+                          <td>&epsilon;</td>
+                          <td>a</td>
+                          <td>b</td>
+                          <td>S</td>
+                      </tr>
+                      <!--    state        e                                         a                           b              S            -->
+                      <tr> <td> 0</td> <td>r2</td>                              <td>r2</td> <td>error - b not expected</td> <td>1</td>     </tr>
+                      <tr> <td> 1</td> <td>accept</td>                          <td>s24</td> <td>error - b not expected</td><td>error</td> </tr>
+                      <tr> <td>24</td> <td>error - expecting a or b</td>        <td>r2</td> <td>r2</td>                     <td>36</td>    </tr>
+                      <tr> <td>36</td> <td>error - expecting a or b</td>        <td>s24</td> <td>s57</td>                   <td>error</td> </tr>
+                      <tr> <td>57</td> <td>r1</td>                              <td>r1</td> <td>r1</td>                     <td>error</td> </tr>
+                    </table>
+                </section>
+
+                <section>
+                    <h3 id="References">References</h3>
+                    <ul>
+                        <li>
+                        <em>A. V. Aho, R. Sethi, J. D. Ullman, COMPILERS, PRINCIPLES, 
+                            TECHNIQUES AND TOOLS, Addison-Wesley, 1986</em>
+                        is the basic book.
+                        </li>
+
+                        <li>
+                        <em>Principles of Compiler Design "The Dragon Book", 
+                            A. V. Aho, J. D. Ullman, Addison-Wesley, 1979)</em>
+                        is the older edition.
+                        </li>
+
+                        <li>
+                        <em>
+                        THE THEORY OF PARSING, TRANSLATION AND COMPILING, VOLUME 1: PARSING, 
+                        Alfred V. Aho and Jeffrey D. Ullman, Prentice-Hall, 1972.
+                        </em>
+                        is additional theoretical reading (especially about first 
+                        derived terminals).
+                        </li>
+
+                        <li>
+                        There is a good introductory compiler book online, 
+                        <a href="http://dickgrune.com/Books/PTAPG_1st_Edition/"> Parsing Techniques - A Practical Guide Dick Grune and Ceriel J.H. Jacobs</a>.
+                        </li>
+                    </ul>
+               </section>
+            </article>
+
+            <footer class="footnote">
+                <hr>
+
+                <!-- A copyright to preserve my legal rights. -->
+                <p class="footnote">
+                    Copyright &copy; 1986-2026 by Sean Erik O'Connor.
+                    All Rights Reserved.
+                    &nbsp;&nbsp;&nbsp;
+                    last updated 27 Feb 26.
+                </p>
+            </footer>
+        </div> <!-- wrapper -->
+    </body>
+</html>

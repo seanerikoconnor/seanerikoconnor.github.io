@@ -1,0 +1,499 @@
+
+        <!DOCTYPE html>
+        <html lang="en-US">  <!-- Set language of this page to USA English. -->
+        
+        <head>
+            <!-- This page uses Unicode characters. -->
+            <meta charset="utf-8">
+        
+            <!-- Set viewport to actual device width.  Any other settings makes the web page initially appear zoomed-in on mobile devices. -->
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+            <!-- Title appears in the web browser tab for this page.  The browser also uses it to bookmark this page. -->
+            <title>Sean Erik O'Connor - Home Page and Free Mathematical Software.</title>
+        
+            <!-- Search engines will search using words in this description.  They will also display title in their search results. -->
+            <meta name="description" content="Syntax Colored Source Code Listing">
+        
+            <!-- Some content management software uses the author's name. -->
+            <meta name="author" content="Sean Erik O'Connor">
+        
+            <meta name="copyright" content="Copyright (C) 1986-2026 by Sean Erik O'Connor.  All Rights Reserved.">   
+        
+            <!-- Begin style sheet insertion -->
+            <style>
+                /* Default settings for all my main web pages. */
+                body
+                {
+                    /* A wide sans-serif font is more readable on the web. */
+                    font-family:            Verdana, Geneva, "Trebuchet MS", sans-serif ;
+        
+                    /* Set the body font size a little smaller than the user's default browser setting. */
+                    font-size:              0.8em ; 
+        
+                    /* Black text is easier to read. */
+                    color:                  black ;
+        
+                    /*  More vertical space between lines for more pleasant reading.  Use a unitless font height multiplier.  
+                        Length and percentage percentage values can give scrunched text due to poor inheritance behavior. */
+                    line-height:            1.7 ;
+                }
+        
+                <!-- Now prepare to add the syntax coloring style sheet from Pygment -->
+        pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.highlight .hll { background-color: #ffffcc }
+.highlight { background: #f8f8f8; }
+.highlight .c { color: #3D7B7B; font-style: italic } /* Comment */
+.highlight .err { border: 1px solid #F00 } /* Error */
+.highlight .k { color: #008000; font-weight: bold } /* Keyword */
+.highlight .o { color: #666 } /* Operator */
+.highlight .ch { color: #3D7B7B; font-style: italic } /* Comment.Hashbang */
+.highlight .cm { color: #3D7B7B; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #9C6500 } /* Comment.Preproc */
+.highlight .cpf { color: #3D7B7B; font-style: italic } /* Comment.PreprocFile */
+.highlight .c1 { color: #3D7B7B; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #3D7B7B; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #A00000 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .ges { font-weight: bold; font-style: italic } /* Generic.EmphStrong */
+.highlight .gr { color: #E40000 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #008400 } /* Generic.Inserted */
+.highlight .go { color: #717171 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #04D } /* Generic.Traceback */
+.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #B00040 } /* Keyword.Type */
+.highlight .m { color: #666 } /* Literal.Number */
+.highlight .s { color: #BA2121 } /* Literal.String */
+.highlight .na { color: #687822 } /* Name.Attribute */
+.highlight .nb { color: #008000 } /* Name.Builtin */
+.highlight .nc { color: #00F; font-weight: bold } /* Name.Class */
+.highlight .no { color: #800 } /* Name.Constant */
+.highlight .nd { color: #A2F } /* Name.Decorator */
+.highlight .ni { color: #717171; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #CB3F38; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #00F } /* Name.Function */
+.highlight .nl { color: #767600 } /* Name.Label */
+.highlight .nn { color: #00F; font-weight: bold } /* Name.Namespace */
+.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #19177C } /* Name.Variable */
+.highlight .ow { color: #A2F; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #BBB } /* Text.Whitespace */
+.highlight .mb { color: #666 } /* Literal.Number.Bin */
+.highlight .mf { color: #666 } /* Literal.Number.Float */
+.highlight .mh { color: #666 } /* Literal.Number.Hex */
+.highlight .mi { color: #666 } /* Literal.Number.Integer */
+.highlight .mo { color: #666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
+.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
+.highlight .se { color: #AA5D1F; font-weight: bold } /* Literal.String.Escape */
+.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.highlight .si { color: #A45A77; font-weight: bold } /* Literal.String.Interpol */
+.highlight .sx { color: #008000 } /* Literal.String.Other */
+.highlight .sr { color: #A45A77 } /* Literal.String.Regex */
+.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #00F } /* Name.Function.Magic */
+.highlight .vc { color: #19177C } /* Name.Variable.Class */
+.highlight .vg { color: #19177C } /* Name.Variable.Global */
+.highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
+.highlight .il { color: #666 } /* Literal.Number.Integer.Long */
+            </style>
+        </head>
+        
+        <body>
+            <article class="content">
+        <div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="c">&quot;=============================================================================</span>
+<span class="linenos">  2</span><span class="c">&quot;</span>
+<span class="linenos">  3</span><span class="c">&quot; NAME</span>
+<span class="linenos">  4</span><span class="c">&quot;</span>
+<span class="linenos">  5</span><span class="c">&quot;     .vimrc</span>
+<span class="linenos">  6</span><span class="c">&quot;</span>
+<span class="linenos">  7</span><span class="c">&quot; DESCRIPTION</span>
+<span class="linenos">  8</span><span class="c">&quot;</span>
+<span class="linenos">  9</span><span class="c">&quot;     Settings for Vim editor loaded upon startup.</span>
+<span class="linenos"> 10</span><span class="c">&quot;</span>
+<span class="linenos"> 11</span><span class="c">&quot; NOTES</span>
+<span class="linenos"> 12</span><span class="c">&quot;</span>
+<span class="linenos"> 13</span><span class="c">&quot;     UNIX, Mac OS X:  Copy to ~/.vimrc</span>
+<span class="linenos"> 14</span><span class="c">&quot;     Windows:         Copy to C:/Program Files/vim/_vimrc</span>
+<span class="linenos"> 15</span><span class="c">&quot;</span>
+<span class="linenos"> 16</span><span class="c">&quot; AUTHOR</span>
+<span class="linenos"> 17</span><span class="c">&quot;</span>
+<span class="linenos"> 18</span><span class="c">&quot;     Bram Moolenaar             &lt;Bram@vim.org&gt;</span>
+<span class="linenos"> 19</span><span class="c">&quot;     Sean Erik O&#39;Connor         10 Oct 2024</span>
+<span class="linenos"> 20</span><span class="c">&quot;</span>
+<span class="linenos"> 21</span><span class="c">&quot;=============================================================================</span>
+<span class="linenos"> 22</span>
+<span class="linenos"> 23</span><span class="k">set</span> <span class="nb">fileformat</span><span class="p">=</span>unix
+<span class="linenos"> 24</span><span class="k">set</span> <span class="nb">encoding</span><span class="p">=</span>UTF<span class="m">-8</span>
+<span class="linenos"> 25</span>
+<span class="linenos"> 26</span><span class="c">&quot; Use Vim settings, rather then Vi settings (much better!).</span>
+<span class="linenos"> 27</span><span class="c">&quot; This must be first, because it changes other options as a side effect.</span>
+<span class="linenos"> 28</span><span class="k">set</span> <span class="nb">nocompatible</span>
+<span class="linenos"> 29</span>
+<span class="linenos"> 30</span><span class="c">&quot; Vim can detect the file type.</span>
+<span class="linenos"> 31</span><span class="k">filetype</span> <span class="k">on</span>
+<span class="linenos"> 32</span>
+<span class="linenos"> 33</span><span class="c">&quot; Enable plugins</span>
+<span class="linenos"> 34</span><span class="k">filetype</span> plugin <span class="k">on</span>
+<span class="linenos"> 35</span>
+<span class="linenos"> 36</span><span class="c">&quot; Mouse and window behavior tuned for Microslime Windows.</span>
+<span class="linenos"> 37</span>behave mswin
+<span class="linenos"> 38</span>
+<span class="linenos"> 39</span><span class="c">&quot; Restore Control-F to page forward instead of find dialog box.</span>
+<span class="linenos"> 40</span><span class="c">&quot;unmap&lt;C-F&gt;</span>
+<span class="linenos"> 41</span>
+<span class="linenos"> 42</span><span class="c">&quot; Allow backspacing over everything in insert mode.</span>
+<span class="linenos"> 43</span><span class="k">set</span> <span class="nb">backspace</span><span class="p">=</span>indent<span class="p">,</span><span class="nb">eol</span><span class="p">,</span><span class="k">start</span>
+<span class="linenos"> 44</span>
+<span class="linenos"> 45</span><span class="c">&quot; Turn on backup option.</span>
+<span class="linenos"> 46</span><span class="k">set</span> <span class="nb">backup</span>
+<span class="linenos"> 47</span>
+<span class="linenos"> 48</span><span class="c">&quot; Create the backup directory if it doesn&#39;t exist.</span>
+<span class="linenos"> 49</span><span class="k">if</span> <span class="p">!</span>isdirectory<span class="p">(</span>$HOME.<span class="s1">&#39;/.vim/.backup&#39;</span><span class="p">)</span>
+<span class="linenos"> 50</span>    <span class="k">silent</span> <span class="k">call</span> mkdir<span class="p">(</span> $HOME.<span class="s1">&#39;/.vim/.backup&#39;</span><span class="p">,</span> <span class="s1">&#39;p&#39;</span> <span class="p">)</span>
+<span class="linenos"> 51</span><span class="k">endif</span>
+<span class="linenos"> 52</span>
+<span class="linenos"> 53</span><span class="c">&quot; Store backups in the home directory ~/.vim/.backup.</span>
+<span class="linenos"> 54</span><span class="k">set</span> <span class="nb">backupdir</span><span class="p">=~</span><span class="sr">/.vim/</span>.<span class="nb">backup</span>
+<span class="linenos"> 55</span>
+<span class="linenos"> 56</span><span class="c">&quot; Make a backup before overwriting the current buffer.</span>
+<span class="linenos"> 57</span><span class="k">set</span> <span class="nb">writebackup</span>
+<span class="linenos"> 58</span>
+<span class="linenos"> 59</span><span class="c">&quot; Overwrite the original backup file.</span>
+<span class="linenos"> 60</span><span class="k">set</span> <span class="nb">backupcopy</span><span class="p">=</span>yes
+<span class="linenos"> 61</span>
+<span class="linenos"> 62</span><span class="c">&quot; Put swap files in the home directory ~/.vim/.swp</span>
+<span class="linenos"> 63</span><span class="k">if</span> <span class="p">!</span>isdirectory<span class="p">(</span>$HOME.<span class="s2">&quot;/.vim/.swp&quot;</span><span class="p">)</span>
+<span class="linenos"> 64</span>    <span class="k">silent</span> <span class="k">call</span> mkdir<span class="p">(</span> $HOME.<span class="s1">&#39;/.vim/.swp&#39;</span><span class="p">,</span> <span class="s1">&#39;p&#39;</span> <span class="p">)</span>
+<span class="linenos"> 65</span><span class="k">endif</span>
+<span class="linenos"> 66</span>
+<span class="linenos"> 67</span><span class="k">set</span> <span class="nb">directory</span><span class="p">=~</span><span class="sr">/.vim/</span>.swp
+<span class="linenos"> 68</span>
+<span class="linenos"> 69</span><span class="k">set</span> <span class="k">history</span><span class="p">=</span><span class="m">2000</span>     <span class="c">&quot; Keep 2000 lines of command line history.</span>
+<span class="linenos"> 70</span><span class="k">set</span> <span class="nb">ruler</span>           <span class="c">&quot; Show the cursor position all the time.</span>
+<span class="linenos"> 71</span><span class="k">set</span> <span class="nb">showcmd</span>         <span class="c">&quot; Display incomplete commands.</span>
+<span class="linenos"> 72</span>
+<span class="linenos"> 73</span><span class="k">set</span> <span class="nb">incsearch</span>       <span class="c">&quot; Do incremental searching.</span>
+<span class="linenos"> 74</span><span class="k">set</span> <span class="nb">hlsearch</span>        <span class="c">&quot; Searches are highlighted.</span>
+<span class="linenos"> 75</span>
+<span class="linenos"> 76</span><span class="k">set</span> <span class="nb">wildmenu</span>        <span class="c">&quot; File name completing using tabs cycles through all possibilities.</span>
+<span class="linenos"> 77</span><span class="k">set</span> <span class="nb">wildmode</span><span class="p">=</span><span class="nb">list</span>:longest <span class="c">&quot; Make similar to bash completion.</span>
+<span class="linenos"> 78</span><span class="k">set</span> <span class="nb">wildignore</span><span class="p">=</span>*.docx<span class="p">,</span>*.jpg<span class="p">,</span>*.png<span class="p">,</span>*.gif<span class="p">,</span>*.pyc<span class="p">,</span>*.xlsx:<span class="k">w</span>  <span class="c">&quot; Ignore these files when doing file name completion.</span>
+<span class="linenos"> 79</span>
+<span class="linenos"> 80</span><span class="k">set</span> <span class="nb">lazyredraw</span>      <span class="c">&quot; Don&#39;t redraw screen while running macros.</span>
+<span class="linenos"> 81</span>
+<span class="linenos"> 82</span><span class="k">set</span> <span class="nb">lines</span><span class="p">=</span><span class="m">80</span>        <span class="c">&quot; Number of lines visible on the screen.</span>
+<span class="linenos"> 83</span><span class="k">set</span> <span class="nb">columns</span><span class="p">=</span><span class="m">160</span>     <span class="c">&quot; Number of columns visible on the screen.</span>
+<span class="linenos"> 84</span><span class="k">winpos</span> <span class="m">700</span> <span class="m">100</span>      <span class="c">&quot; Initial window position (MacBookPro).</span>
+<span class="linenos"> 85</span><span class="k">set</span> <span class="nb">winwidth</span><span class="p">=</span><span class="m">240</span>    <span class="c">&quot; Initial window width.</span>
+<span class="linenos"> 86</span><span class="k">set</span> <span class="nb">winminwidth</span><span class="p">=</span><span class="m">150</span> <span class="c">&quot; Minimum width.</span>
+<span class="linenos"> 87</span>
+<span class="linenos"> 88</span><span class="k">set</span> <span class="nb">cursorline</span>      <span class="c">&quot; Highlight the current line.</span>
+<span class="linenos"> 89</span><span class="k">set</span> <span class="k">number</span>          <span class="c">&quot; Show line numbers.</span>
+<span class="linenos"> 90</span><span class="k">set</span> <span class="nb">nosmartindent</span>   <span class="c">&quot; Don&#39;t use smart indenting.</span>
+<span class="linenos"> 91</span>
+<span class="linenos"> 92</span><span class="k">set</span> <span class="nb">tabstop</span><span class="p">=</span><span class="m">4</span>       <span class="c">&quot; Tabs are 4 spaces wide.</span>
+<span class="linenos"> 93</span><span class="k">set</span> <span class="nb">softtabstop</span><span class="p">=</span><span class="m">4</span>   <span class="c">&quot; When editing, tabs are 4 spaces wide.</span>
+<span class="linenos"> 94</span><span class="k">set</span> <span class="nb">shiftwidth</span><span class="p">=</span><span class="m">4</span>    <span class="c">&quot; Indent 4 spaces.</span>
+<span class="linenos"> 95</span><span class="k">set</span> <span class="nb">expandtab</span>       <span class="c">&quot; Expand tabs into spaces.</span>
+<span class="linenos"> 96</span><span class="k">set</span> <span class="nb">smarttab</span>        <span class="c">&quot; tab in front of a line inserts shiftwidth spaces, and backspace will delete that many spaces.</span>
+<span class="linenos"> 97</span>
+<span class="linenos"> 98</span><span class="k">set</span> <span class="nb">showmatch</span>       <span class="c">&quot; Show matching parentheses.</span>
+<span class="linenos"> 99</span><span class="k">set</span> <span class="nb">matchtime</span><span class="p">=</span><span class="m">5</span>     <span class="c">&quot; Match time is 1/2 sec.</span>
+<span class="linenos">100</span>
+<span class="linenos">101</span><span class="c">&quot; Error blink and bell.</span>
+<span class="linenos">102</span><span class="k">set</span> <span class="nb">errorbells</span>
+<span class="linenos">103</span><span class="k">set</span> <span class="nb">visualbell</span>
+<span class="linenos">104</span>
+<span class="linenos">105</span><span class="c">&quot; Set file paths to my most commonly used directories (MacBookPro).</span>
+<span class="linenos">106</span><span class="k">set</span> <span class="nb">path</span><span class="p">=</span><span class="s2">&quot;~/Applications/vim/**&quot;</span>
+<span class="linenos">107</span><span class="k">set</span> <span class="nb">path</span><span class="p">+=</span><span class="s2">&quot;~/Desktop/Sean/WebSite/**&quot;</span>
+<span class="linenos">108</span>
+<span class="linenos">109</span><span class="c">&quot; Default directory is my current active subdirectory</span>
+<span class="linenos">110</span><span class="c">&quot; in my web page directory.</span>
+<span class="linenos">111</span><span class="c">&quot; This is where :e . takes us.</span>
+<span class="linenos">112</span><span class="k">cd</span> <span class="p">~</span><span class="sr">/Desktop/</span>Sean<span class="sr">/WebSite/</span>Mathematics<span class="sr">/AbstractAlgebra/</span>PrimitivePolynomials<span class="sr">/Project/</span>SourceCode
+<span class="linenos">113</span>
+<span class="linenos">114</span><span class="c">&quot; Set paths for tags files generated by Ctags.  See :help tags</span>
+<span class="linenos">115</span><span class="c">&quot; &quot;./tags&quot; means search for the file &quot;tags&quot; in the same directory as the current f i l e  you are editing.</span>
+<span class="linenos">116</span><span class="c">&quot; &quot;tags&quot; means search for the file &quot;tags&quot; in the current working directory (the directory shown by the command :pwd)</span>
+<span class="linenos">117</span><span class="c">&quot; NOTE:  this is affected if you set autochdir (see below).</span>
+<span class="linenos">118</span><span class="c">&quot; Then search from the directory containing tags to your home directory.</span>
+<span class="linenos">119</span><span class="k">set</span> <span class="k">tags</span><span class="p">=</span>./<span class="k">tags</span><span class="p">,</span><span class="k">tags</span>;<span class="p">~</span>
+<span class="linenos">120</span>
+<span class="linenos">121</span><span class="c">&quot; Automatically change the current working directory to the one containing the file which was opened.  See :help autochdir</span>
+<span class="linenos">122</span><span class="c">&quot;Note: When this option is on some plugins may not work.</span>
+<span class="linenos">123</span><span class="k">set</span> <span class="nb">autochdir</span>
+<span class="linenos">124</span>
+<span class="linenos">125</span><span class="c">&quot; Color them the same as the C group-name &quot;Type&quot;.</span>
+<span class="linenos">126</span><span class="nb">highlight</span> link xType Type
+<span class="linenos">127</span>
+<span class="linenos">128</span><span class="c">&quot; Persistent undo:  undo changes even after saving the file and exiting Vim.</span>
+<span class="linenos">129</span><span class="k">if</span> has<span class="p">(</span><span class="s1">&#39;persistent_undo&#39;</span><span class="p">)</span>
+<span class="linenos">130</span>    <span class="k">set</span> <span class="nb">undofile</span>
+<span class="linenos">131</span>    <span class="k">set</span> <span class="nb">undodir</span><span class="p">=</span>$HOME<span class="sr">/.vim/</span>.<span class="nb">backup</span>
+<span class="linenos">132</span><span class="k">endif</span>
+<span class="linenos">133</span>
+<span class="linenos">134</span><span class="c">&quot; ===============================================================================</span>
+<span class="linenos">135</span><span class="c">&quot; | Color scheme and font for the full gVim GUI.</span>
+<span class="linenos">136</span><span class="c">&quot; | Use the default for launching vim from a command window.</span>
+<span class="linenos">137</span><span class="c">&quot; ===============================================================================</span>
+<span class="linenos">138</span><span class="k">if</span> has<span class="p">(</span><span class="s2">&quot;gui_running&quot;</span><span class="p">)</span>
+<span class="linenos">139</span>
+<span class="linenos">140</span>    <span class="k">colorscheme</span> torte
+<span class="linenos">141</span>
+<span class="linenos">142</span><span class="c">    &quot; To verify the if condition, on the Vim command line, do</span>
+<span class="linenos">143</span><span class="c">    &quot;    :echom has(&quot;x11&quot;)</span>
+<span class="linenos">144</span><span class="c">    &quot; and look for 1 or 0.</span>
+<span class="linenos">145</span><span class="c">    &quot;</span>
+<span class="linenos">146</span><span class="c">    &quot; To find out the font type:</span>
+<span class="linenos">147</span><span class="c">    &quot;     In the Vim command line, do</span>
+<span class="linenos">148</span><span class="c">    &quot;         :set guifont=*</span>
+<span class="linenos">149</span><span class="c">    &quot;     to make a menu come up.</span>
+<span class="linenos">150</span><span class="c">    &quot;</span>
+<span class="linenos">151</span><span class="c">    &quot;     Select the font from the menu.</span>
+<span class="linenos">152</span><span class="c">    &quot;</span>
+<span class="linenos">153</span><span class="c">    &quot;     Do the command</span>
+<span class="linenos">154</span><span class="c">    &quot;         :set guifont?</span>
+<span class="linenos">155</span><span class="c">    &quot;     to find out the name.</span>
+<span class="linenos">156</span><span class="c">    &quot;</span>
+<span class="linenos">157</span><span class="c">    &quot;     In the if tests below, add</span>
+<span class="linenos">158</span><span class="c">    &quot;         set guifont=&lt;name of the font&gt;</span>
+<span class="linenos">159</span><span class="c">    &quot;     Escape all spaces with backslashes.</span>
+<span class="linenos">160</span><span class="c">    &quot;</span>
+<span class="linenos">161</span>    <span class="k">if</span> has<span class="p">(</span><span class="s2">&quot;gui_win32&quot;</span><span class="p">)</span>
+<span class="linenos">162</span>        <span class="k">set</span> <span class="nb">guifont</span><span class="p">=</span>Courier_New:h13:<span class="k">b</span>
+<span class="linenos">163</span><span class="c">    &quot; Test for Mac first.</span>
+<span class="linenos">164</span>    <span class="k">elseif</span> has<span class="p">(</span><span class="s2">&quot;mac&quot;</span><span class="p">)</span>
+<span class="linenos">165</span>        <span class="k">set</span> <span class="nb">guifont</span><span class="p">=</span>Menlo\ Regular:h12
+<span class="linenos">166</span><span class="c">    &quot; On Ubuntu Linux:</span>
+<span class="linenos">167</span>    <span class="k">elseif</span> has<span class="p">(</span><span class="s2">&quot;x11&quot;</span><span class="p">)</span>
+<span class="linenos">168</span>        <span class="k">set</span> <span class="nb">guifont</span><span class="p">=</span>DejaVu\ Sans\ Mono\ <span class="m">10</span>
+<span class="linenos">169</span><span class="c">    &quot; Otherwise</span>
+<span class="linenos">170</span>    <span class="k">else</span>
+<span class="linenos">171</span>        <span class="k">set</span> <span class="nb">guifont</span><span class="p">=</span>*
+<span class="linenos">172</span>    <span class="k">endif</span>
+<span class="linenos">173</span><span class="k">endif</span>
+<span class="linenos">174</span>
+<span class="linenos">175</span><span class="c">&quot; Switch syntax highlighting on, when the terminal has colors.</span>
+<span class="linenos">176</span><span class="c">&quot; Also switch on highlighting the last used search pattern.</span>
+<span class="linenos">177</span><span class="k">if</span> &amp;<span class="nb">t_Co</span> <span class="p">&gt;</span> <span class="m">2</span> <span class="p">||</span> has<span class="p">(</span><span class="s2">&quot;gui_running&quot;</span><span class="p">)</span>
+<span class="linenos">178</span>  <span class="nb">syntax</span> <span class="k">on</span>     <span class="c">&quot; Turn on syntax highlighting.</span>
+<span class="linenos">179</span>  <span class="k">set</span> <span class="nb">hlsearch</span>  <span class="c">&quot; Searches are highlighted.</span>
+<span class="linenos">180</span><span class="k">endif</span>
+<span class="linenos">181</span>
+<span class="linenos">182</span><span class="c">&quot; ===============================================================================</span>
+<span class="linenos">183</span><span class="c">&quot; |  Abbreviations</span>
+<span class="linenos">184</span><span class="c">&quot; ===============================================================================</span>
+<span class="linenos">185</span>
+<span class="linenos">186</span><span class="c">&quot; Abbreviations.  My name:</span>
+<span class="linenos">187</span><span class="p">:</span>iabbrev soc Sean Erik O&#39;Connor
+<span class="linenos">188</span>
+<span class="linenos">189</span><span class="c">&quot; Right arrow.</span>
+<span class="linenos">190</span><span class="p">:</span>iabbrev rar &amp;#<span class="m">10148</span>;
+<span class="linenos">191</span>
+<span class="linenos">192</span><span class="p">:</span>iabbrev <span class="k">bf</span> \mathbf{
+<span class="linenos">193</span><span class="p">:</span>iabbrev fb }
+<span class="linenos">194</span>
+<span class="linenos">195</span><span class="c">&quot; ===============================================================================</span>
+<span class="linenos">196</span><span class="c">&quot; |  Shortcuts - HTML and CSS</span>
+<span class="linenos">197</span><span class="c">&quot; ===============================================================================</span>
+<span class="linenos">198</span>
+<span class="linenos">199</span><span class="c">&quot; Remapping looks like</span>
+<span class="linenos">200</span><span class="c">&quot;     &lt;map_mode&gt; &lt;what you type&gt; &lt;what is executed&gt;</span>
+<span class="linenos">201</span><span class="c">&quot; These are the map modes:</span>
+<span class="linenos">202</span><span class="c">&quot;     nnoremap - Map keys in normal mode.</span>
+<span class="linenos">203</span><span class="c">&quot;     inoremap - Map keys in insert mode.</span>
+<span class="linenos">204</span><span class="c">&quot;     vnoremap - Map keys in visual mode.</span>
+<span class="linenos">205</span>
+<span class="linenos">206</span><span class="c">&quot; Let comma be the character which starts any mapping command.</span>
+<span class="linenos">207</span><span class="k">let</span> mapleader<span class="p">=</span><span class="s2">&quot;,&quot;</span>
+<span class="linenos">208</span>
+<span class="linenos">209</span><span class="c">&quot; Insert Blender hotkeys.</span>
+<span class="linenos">210</span><span class="nb">nnoremap</span> <span class="p">,</span>bhot <span class="k">a</span> <span class="p">&lt;</span><span class="k">em</span> class<span class="p">=</span><span class="s2">&quot;hotkey&quot;</span><span class="p">&gt;&lt;</span>/<span class="k">em</span><span class="p">&gt;&lt;</span>ESC<span class="p">&gt;</span><span class="m">4</span>hi
+<span class="linenos">211</span>
+<span class="linenos">212</span><span class="c">&quot; Insert html emphasis.</span>
+<span class="linenos">213</span><span class="nb">nnoremap</span> <span class="p">,</span><span class="k">em</span> <span class="k">a</span> <span class="p">&lt;</span><span class="k">em</span><span class="p">&gt;&lt;</span>/<span class="k">em</span><span class="p">&gt;&lt;</span>ESC<span class="p">&gt;</span><span class="m">4</span>hi
+<span class="linenos">214</span>
+<span class="linenos">215</span><span class="c">&quot; Insert an HTML element with the indentation at the same level as the neighbors.</span>
+<span class="linenos">216</span><span class="c">&quot;     First CR finishes the call to function HTMLParagraph()</span>
+<span class="linenos">217</span><span class="c">&quot;     Second CR takes us out of command mode :</span>
+<span class="linenos">218</span><span class="c">&quot;     To see the echom debug statements, type :messages.  To clear all</span>
+<span class="linenos">219</span><span class="c">&quot;     messages type :messages clear</span>
+<span class="linenos">220</span><span class="k">function</span><span class="p">!</span> InsertHTMLElement<span class="p">(</span> prefix<span class="p">,</span> suffix <span class="p">)</span>
+<span class="linenos">221</span>    <span class="k">echom</span> <span class="s2">&quot;HTMLParagraph&quot;</span>
+<span class="linenos">222</span><span class="c">    &quot; Scan the previous few lines until you see a line which has an indent &gt; 0.  </span>
+<span class="linenos">223</span><span class="c">    &quot; An indent value of -1 means the line does not exist (past the top or bottom of the file.  Zero means a blank line.</span>
+<span class="linenos">224</span>    <span class="k">let</span> current_line_num <span class="p">=</span> line<span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
+<span class="linenos">225</span>    <span class="k">let</span> num_lines_to_search <span class="p">=</span> <span class="m">10</span>
+<span class="linenos">226</span>    <span class="k">let</span> previous_nonzero_indent <span class="p">=</span> <span class="m">0</span>
+<span class="linenos">227</span>    <span class="k">for</span> line_num <span class="k">in</span> range<span class="p">(</span> current_line_num<span class="m">-1</span><span class="p">,</span> current_line_num <span class="p">-</span> num_lines_to_search<span class="p">,</span> <span class="m">-1</span><span class="p">)</span>
+<span class="linenos">228</span>        <span class="k">echom</span> <span class="s1">&#39;line_num = &#39;</span> line_num
+<span class="linenos">229</span>        <span class="k">let</span> line_indent <span class="p">=</span> indent<span class="p">(</span> line_num <span class="p">)</span>
+<span class="linenos">230</span>        <span class="k">echom</span> <span class="s1">&#39;line_indent = &#39;</span> line_indent
+<span class="linenos">231</span>        <span class="k">if</span> line_indent <span class="p">&gt;</span> <span class="m">0</span>
+<span class="linenos">232</span>            <span class="k">let</span> previous_nonzero_indent <span class="p">=</span> line_indent
+<span class="linenos">233</span>            <span class="k">break</span>
+<span class="linenos">234</span>        <span class="k">endif</span>
+<span class="linenos">235</span>    <span class="k">endfor</span>
+<span class="linenos">236</span>    <span class="k">echom</span> <span class="s1">&#39;previous_nonzero_indent = &#39;</span> previous_nonzero_indent
+<span class="linenos">237</span><span class="c">    &quot;Create indentation with blanks.</span>
+<span class="linenos">238</span>    <span class="k">let</span> blanks <span class="p">=</span> repeat<span class="p">(</span> <span class="s2">&quot; &quot;</span><span class="p">,</span> previous_nonzero_indent <span class="p">)</span>
+<span class="linenos">239</span>    <span class="k">echom</span> <span class="s1">&#39;blanks = &#39;</span> <span class="s1">&#39;|&#39;</span> .. blanks .. <span class="s1">&#39;|&#39;</span>
+<span class="linenos">240</span><span class="c">    &quot; Create  the HTML element in the form of a list.</span>
+<span class="linenos">241</span><span class="c">    &quot;&quot;&quot;&quot;&quot;let HTMLElementLines = [ blanks .. &#39;&lt;div class=&quot;scrollBox&quot;&gt; &lt;div class=&quot;scrollBoxContent&quot;&gt;&#39;, blanks, blanks .. &#39;&lt;/div&gt;&lt;/div&gt;&#39;, &#39;&#39;]</span>
+<span class="linenos">242</span>    <span class="k">let</span> HTMLElementLines <span class="p">=</span> [ blanks .. <span class="k">a</span>:prefix<span class="p">,</span> blanks<span class="p">,</span> blanks .. <span class="k">a</span>:suffix<span class="p">,</span> <span class="s1">&#39;&#39;</span>]
+<span class="linenos">243</span>    echo <span class="s1">&#39;HTMLElementLines = &#39;</span> HTMLElementLines
+<span class="linenos">244</span><span class="c">    &quot; Append the scroll box lines after the current line.</span>
+<span class="linenos">245</span>    <span class="k">call</span> append<span class="p">(</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> HTMLElementLines <span class="p">)</span>
+<span class="linenos">246</span><span class="k">endfunction</span>
+<span class="linenos">247</span>
+<span class="linenos">248</span><span class="c">&quot; The commands after the CR CR place the cursor into insert position.</span>
+<span class="linenos">249</span>
+<span class="linenos">250</span><span class="c">&quot; Insert a scroll box.</span>
+<span class="linenos">251</span><span class="nb">nnoremap</span> <span class="p">&lt;</span>leader<span class="p">&gt;</span><span class="k">sb</span> :<span class="k">call</span> InsertHTMLElement<span class="p">(</span> <span class="s1">&#39;&lt;div class=&quot;scrollBox&quot;&gt; &lt;div class=&quot;scrollBoxContent&quot;&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;/div&gt;&lt;/div&gt;&#39;</span> <span class="p">)&lt;</span>CR<span class="p">&gt;&lt;</span>CR<span class="p">&gt;</span>jjA
+<span class="linenos">252</span>
+<span class="linenos">253</span><span class="c">&quot; Insert an html paragraph.</span>
+<span class="linenos">254</span><span class="nb">nnoremap</span> <span class="p">&lt;</span>leader<span class="p">&gt;</span>par :<span class="k">call</span> InsertHTMLElement<span class="p">(</span> <span class="s1">&#39;&lt;p&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;/p&gt;&#39;</span> <span class="p">)&lt;</span>CR<span class="p">&gt;&lt;</span>CR<span class="p">&gt;</span>jjA
+<span class="linenos">255</span>
+<span class="linenos">256</span><span class="c">&quot; Insert hyperlink.</span>
+<span class="linenos">257</span><span class="nb">nnoremap</span> <span class="p">&lt;</span>leader<span class="p">&gt;</span>hr :<span class="k">call</span> InsertHTMLElement<span class="p">(</span><span class="s1">&#39;&lt;a href=&quot;&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;/a&gt;&#39;</span><span class="p">)&lt;</span>CR<span class="p">&gt;&lt;</span>CR<span class="p">&gt;</span>kA<span class="p">&lt;</span>ESC<span class="p">&gt;</span>jj$JJa&quot;<span class="p">&gt;&lt;</span>ESC<span class="p">&gt;</span>hhxi
+<span class="linenos">258</span>
+<span class="linenos">259</span><span class="c">&quot; Insert an image.</span>
+<span class="linenos">260</span><span class="nb">nnoremap</span> <span class="p">&lt;</span>leader<span class="p">&gt;</span><span class="nb">im</span> :<span class="k">call</span> InsertHTMLElement<span class="p">(</span><span class="s1">&#39;&lt;img class=&quot;centeredsmaller&quot; alt=&quot;X&quot; src=&quot;Images/X.jpg&quot;&gt;&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)&lt;</span>CR<span class="p">&gt;&lt;</span>CR<span class="p">&gt;</span>jfXfXxi
+<span class="linenos">261</span>
+<span class="linenos">262</span><span class="c">&quot; Insert a mathematical thingies.</span>
+<span class="linenos">263</span><span class="nb">nnoremap</span> <span class="p">&lt;</span>leader<span class="p">&gt;</span><span class="nb">def</span>  :<span class="k">call</span> InsertHTMLElement<span class="p">(</span><span class="s1">&#39;&lt;em&gt;Definition&lt;/em&gt;&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)&lt;</span>CR<span class="p">&gt;&lt;</span>CR<span class="p">&gt;</span>jA  
+<span class="linenos">264</span><span class="nb">nnoremap</span> <span class="p">&lt;</span>leader<span class="p">&gt;</span>lem  :<span class="k">call</span> InsertHTMLElement<span class="p">(</span><span class="s1">&#39;&lt;em&gt;Lemma&lt;/em&gt;&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)&lt;</span>CR<span class="p">&gt;&lt;</span>CR<span class="p">&gt;</span>jA  
+<span class="linenos">265</span><span class="nb">nnoremap</span> <span class="p">&lt;</span>leader<span class="p">&gt;</span>prop :<span class="k">call</span> InsertHTMLElement<span class="p">(</span><span class="s1">&#39;&lt;em&gt;Proposition&lt;/em&gt;&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)&lt;</span>CR<span class="p">&gt;&lt;</span>CR<span class="p">&gt;</span>jA  
+<span class="linenos">266</span><span class="nb">nnoremap</span> <span class="p">&lt;</span>leader<span class="p">&gt;</span><span class="k">th</span>   :<span class="k">call</span> InsertHTMLElement<span class="p">(</span><span class="s1">&#39;&lt;em&gt;Theorem&lt;/em&gt;&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)&lt;</span>CR<span class="p">&gt;&lt;</span>CR<span class="p">&gt;</span>jA  
+<span class="linenos">267</span><span class="nb">nnoremap</span> <span class="p">&lt;</span>leader<span class="p">&gt;</span>pf   :<span class="k">call</span> InsertHTMLElement<span class="p">(</span><span class="s1">&#39;&lt;em&gt;Proof&lt;/em&gt;&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)&lt;</span>CR<span class="p">&gt;&lt;</span>CR<span class="p">&gt;</span>jA  
+<span class="linenos">268</span><span class="nb">nnoremap</span> <span class="p">&lt;</span>leader<span class="p">&gt;</span>cor  :<span class="k">call</span> InsertHTMLElement<span class="p">(</span><span class="s1">&#39;&lt;em&gt;Corrollary&lt;/em&gt;&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)&lt;</span>CR<span class="p">&gt;&lt;</span>CR<span class="p">&gt;</span>jA  
+<span class="linenos">269</span><span class="nb">nnoremap</span> <span class="p">&lt;</span>leader<span class="p">&gt;</span>qed  :<span class="k">call</span> InsertHTMLElement<span class="p">(</span><span class="s1">&#39;$\blacksquare$&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)&lt;</span>CR<span class="p">&gt;&lt;</span>CR<span class="p">&gt;</span>jA  
+<span class="linenos">270</span>
+<span class="linenos">271</span><span class="c">&quot; Insert a nonbreaking space.</span>
+<span class="linenos">272</span><span class="nb">nnoremap</span> <span class="p">,</span>s <span class="k">i</span>&amp;nbsp;<span class="p">&lt;</span>ESC<span class="p">&gt;</span>
+<span class="linenos">273</span>
+<span class="linenos">274</span><span class="c">&quot; ===============================================================================</span>
+<span class="linenos">275</span><span class="c">&quot; |  Shortcuts - miscellaneous</span>
+<span class="linenos">276</span><span class="c">&quot; ===============================================================================</span>
+<span class="linenos">277</span>
+<span class="linenos">278</span><span class="c">&quot; Make jk the same as ESCAPE in insert mode.</span>
+<span class="linenos">279</span><span class="nb">inoremap</span> jk <span class="p">&lt;</span>esc<span class="p">&gt;</span>
+<span class="linenos">280</span>
+<span class="linenos">281</span><span class="c">&quot; Reload this VIM resource file.</span>
+<span class="linenos">282</span><span class="nb">nnoremap</span> <span class="p">,</span>sou :source $MYVIMRC<span class="p">&lt;</span>CR<span class="p">&gt;</span>
+<span class="linenos">283</span>
+<span class="linenos">284</span><span class="c">&quot; Save the file.</span>
+<span class="linenos">285</span><span class="nb">nnoremap</span> <span class="p">,</span><span class="k">sa</span>   :<span class="k">w</span><span class="p">&lt;</span>CR<span class="p">&gt;</span>
+<span class="linenos">286</span>
+<span class="linenos">287</span><span class="c">&quot; ===============================================================================</span>
+<span class="linenos">288</span><span class="c">&quot; |  Shortcuts - formatting</span>
+<span class="linenos">289</span><span class="c">&quot; ===============================================================================</span>
+<span class="linenos">290</span>
+<span class="linenos">291</span><span class="c">&quot; Trim blanks at end of all lines. Turn off search highlighting.</span>
+<span class="linenos">292</span><span class="nb">nnoremap</span> <span class="p">,</span>tbe :%s<span class="sr">/\s*$/</span>/<span class="p">&lt;</span>CR<span class="p">&gt;&lt;</span>ESC<span class="p">&gt;</span>:<span class="k">nohlsearch</span><span class="p">&lt;</span>CR<span class="p">&gt;&lt;</span>ESC<span class="p">&gt;</span>
+<span class="linenos">293</span>
+<span class="linenos">294</span><span class="c">&quot; Make p in Visual mode replace the selected text with the &quot;&quot; register.</span>
+<span class="linenos">295</span><span class="nb">vnoremap</span> <span class="k">p</span> <span class="p">&lt;</span>Esc<span class="p">&gt;</span>:<span class="k">let</span> current_reg <span class="p">=</span> @&quot;<span class="p">&lt;</span>CR<span class="p">&gt;</span>gvs<span class="p">&lt;</span>C<span class="p">-</span>R<span class="p">&gt;=</span>current_reg<span class="p">&lt;</span>CR<span class="p">&gt;&lt;</span>Esc<span class="p">&gt;</span>
+<span class="linenos">296</span>
+<span class="linenos">297</span><span class="c">&quot; Turn off highlighting after searches.</span>
+<span class="linenos">298</span><span class="nb">nnoremap</span> <span class="p">,&lt;</span>SPACE<span class="p">&gt;</span> :<span class="k">nohlsearch</span><span class="p">&lt;</span>CR<span class="p">&gt;</span>
+<span class="linenos">299</span>
+<span class="linenos">300</span><span class="c">&quot; Toggle comment lines.  You can highlight the range</span>
+<span class="linenos">301</span><span class="c">&quot; with the mouse and then type ,to</span>
+<span class="linenos">302</span><span class="nb">nnoremap</span> <span class="p">,</span><span class="k">to</span> :<span class="k">call</span> ToggleComment<span class="p">()&lt;</span>CR<span class="p">&gt;</span>
+<span class="linenos">303</span>
+<span class="linenos">304</span><span class="k">function</span><span class="p">!</span> ToggleComment<span class="p">()</span>
+<span class="linenos">305</span><span class="c">    &quot; Get the line under the cursor</span>
+<span class="linenos">306</span><span class="c">    &quot; Check if it begins with |</span>
+<span class="linenos">307</span>    <span class="k">if</span> getline<span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span> <span class="p">=~</span> <span class="s1">&#39;^|&#39;</span>
+<span class="linenos">308</span>        <span class="k">let</span> s:savedSearchPat<span class="p">=</span>@/
+<span class="linenos">309</span>        s<span class="sr">/^|/</span>/
+<span class="linenos">310</span>        <span class="k">let</span> @/<span class="p">=</span>s:savedSearchPat
+<span class="linenos">311</span>    <span class="k">else</span>
+<span class="linenos">312</span>        <span class="k">let</span> s:savedSearchPat<span class="p">=</span>@/
+<span class="linenos">313</span>        s<span class="sr">/^/</span><span class="p">|</span>/
+<span class="linenos">314</span>        <span class="k">let</span> @/<span class="p">=</span>s:savedSearchPat
+<span class="linenos">315</span>    <span class="k">endif</span>
+<span class="linenos">316</span><span class="k">endfunction</span>
+<span class="linenos">317</span>
+<span class="linenos">318</span><span class="c">&quot; Convert C comments on a line to C++ comments.</span>
+<span class="linenos">319</span><span class="nb">nnoremap</span> <span class="p">,</span><span class="k">cc</span> :<span class="k">call</span> ConvertCCommentToCpp<span class="p">()&lt;</span>CR<span class="p">&gt;</span>
+<span class="linenos">320</span>
+<span class="linenos">321</span><span class="k">function</span><span class="p">!</span> ConvertCCommentToCpp<span class="p">()</span>
+<span class="linenos">322</span><span class="c">    &quot; Get the line under the cursor</span>
+<span class="linenos">323</span><span class="c">    &quot; Check if contains a /*</span>
+<span class="linenos">324</span>    <span class="k">if</span> getline<span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span> <span class="p">=~</span> <span class="s1">&#39;\/\*&#39;</span>
+<span class="linenos">325</span>        <span class="k">let</span> s:savedSearchPat<span class="p">=</span>@/
+<span class="linenos">326</span>        s<span class="sr">/\/\*/</span>\<span class="sr">/\//</span>
+<span class="linenos">327</span>        <span class="k">let</span> @/<span class="p">=</span>s:savedSearchPat
+<span class="linenos">328</span>    <span class="k">endif</span>
+<span class="linenos">329</span>    <span class="k">if</span> getline<span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span> <span class="p">=~</span> <span class="s1">&#39;\*\/&#39;</span>
+<span class="linenos">330</span>        <span class="k">let</span> s:savedSearchPat<span class="p">=</span>@/
+<span class="linenos">331</span>        s<span class="sr">/\*\//</span>/
+<span class="linenos">332</span>        <span class="k">let</span> @/<span class="p">=</span>s:savedSearchPat
+<span class="linenos">333</span>    <span class="k">endif</span>
+<span class="linenos">334</span><span class="k">endfunction</span>
+<span class="linenos">335</span>
+<span class="linenos">336</span><span class="c">&quot; Justify a paragraph.</span>
+<span class="linenos">337</span><span class="nb">nnoremap</span> <span class="p">,</span><span class="k">j</span> gqap
+<span class="linenos">338</span>
+<span class="linenos">339</span><span class="k">function</span><span class="p">!</span> HardcopyPDF<span class="p">()</span>
+<span class="linenos">340</span><span class="c">    &quot; https://askubuntu.com/questions/705973/how-can-i-print-from-vim-to-pdf</span>
+<span class="linenos">341</span><span class="c">    &quot; Vim hardcopy generates a PostScript file.</span>
+<span class="linenos">342</span><span class="c">    &quot; Convert to PDF, delete the PS file, tell where the PDF is located.</span>
+<span class="linenos">343</span>    <span class="k">hardcopy</span> <span class="p">&gt;</span> %.<span class="k">ps</span> <span class="p">|</span> <span class="p">!</span>ps2pdf %.<span class="k">ps</span> &amp;&amp; rm %.<span class="k">ps</span> &amp;&amp; <span class="k">echom</span> <span class="s1">&#39;Created: %.pdf&#39;</span>
+<span class="linenos">344</span><span class="k">endfunction</span>
+<span class="linenos">345</span>
+<span class="linenos">346</span><span class="c">&quot; Hardcopy to *.pdf file.</span>
+<span class="linenos">347</span><span class="nb">nnoremap</span> <span class="p">,</span>pdf :<span class="k">call</span> HardcopyPDF<span class="p">()&lt;</span>CR<span class="p">&gt;</span>
+<span class="linenos">348</span>
+<span class="linenos">349</span><span class="c">&quot; Special one time mapping.  Change master_xyz to local_xyz</span>
+<span class="linenos">350</span><span class="nb">nnoremap</span> <span class="p">,</span><span class="k">ll</span> /master<span class="p">&lt;</span>CR<span class="p">&gt;</span>dt_ilocal<span class="p">&lt;</span>ESC<span class="p">&gt;</span>
+<span class="linenos">351</span>
+<span class="linenos">352</span><span class="c">&quot; ===============================================================================</span>
+<span class="linenos">353</span><span class="c">&quot; |  Folding</span>
+<span class="linenos">354</span><span class="c">&quot; ===============================================================================</span>
+<span class="linenos">355</span><span class="c">&quot; zR - open all folds</span>
+<span class="linenos">356</span><span class="c">&quot; zM - close all folds</span>
+<span class="linenos">357</span><span class="c">&quot; zj, zk - move between folds</span>
+<span class="linenos">358</span><span class="c">&quot; za - toggle folds;  mapped to shortcut ,,</span>
+<span class="linenos">359</span><span class="c">&quot; :help usr_28</span>
+<span class="linenos">360</span><span class="k">set</span> <span class="nb">foldmethod</span><span class="p">=</span>indent  <span class="c">&quot; Folding based on indentation.</span>
+<span class="linenos">361</span><span class="k">set</span> <span class="nb">foldcolumn</span><span class="p">=</span><span class="m">2</span>       <span class="c">&quot; Show the status of the folds in the left column.</span>
+<span class="linenos">362</span><span class="nb">nnoremap</span> <span class="p">&lt;</span>leader<span class="p">&gt;,</span> za
+<span class="linenos">363</span>
+<span class="linenos">364</span><span class="c">&quot; Save the folds in this file upon write, and load again upon read.</span>
+<span class="linenos">365</span><span class="c">&quot; Saved in ~/.vim/view</span>
+<span class="linenos">366</span>augroup remember_folds
+<span class="linenos">367</span>    autocmd<span class="p">!</span> <span class="p">|</span> <span class="c">&quot; Clear all existing autocommands</span>
+<span class="linenos">368</span>    autocmd <span class="nb">BufWinLeave</span> * <span class="k">silent</span><span class="p">!</span> <span class="k">mkview</span>
+<span class="linenos">369</span>    autocmd <span class="nb">BufWinEnter</span> * <span class="k">silent</span><span class="p">!</span> loadview
+<span class="linenos">370</span>augroup END
+</pre></div>
+
+            </article>
+        </body>
+        
+        </html>
+        

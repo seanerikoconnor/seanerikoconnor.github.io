@@ -1,0 +1,30 @@
+;  Grammar.dat
+;
+; ---------------------------------------------------------------------------
+;  Grammar for Cunningham numbers factorization of p^n - 1.
+; this is a test
+;
+;  The factorization is given in the form p n <factors> where
+;  each factor is of the form p^m.  Long numbers are continued on the next line with
+;  backslashes.  Factors are separated by a period.
+;       
+;         398    12  2^4.3.3583.4588543.34266607.2146612951394313997.8670122322845042\
+;                    61471.3742361194240057889227626965547117.118815764353631151\
+;                    104263170678136736311820574318029752573406120157089\
+;                    84828478898969687279497327343
+;
+; ---------------------------------------------------------------------------
+
+;  Productions.
+
+( 
+    (S             -> integer integer Factorization)
+    (Factorization -> Factorization period Factor / Factor) 
+    (Factor        -> BigInteger ^ BigInteger / BigInteger)
+    (BigInteger    -> BigInteger backslash integer / integer)
+)
+
+
+;  Terminal symbols.
+
+( integer period ^ backslash )

@@ -1,0 +1,399 @@
+;---------------------
+; LALR(1) parse tables
+;---------------------
+;
+; Suitable for input to the Common Lisp program 
+;
+;     LR(1)AndLALR(1)Parser.lsp
+;
+
+; TERMINALS
+;
+
+(COMMA + INTEGER ^ X $)
+
+;  PRODUCTIONS
+;
+;  Productions are numbered starting with 1.
+;  All alternates were expanded into separate productions.
+
+(
+  ( (1)   (S -> POLY MOD) )
+  ( (2)   (MOD -> COMMA INTEGER) )
+  ( (3)   (MOD -> EPSILON) )
+  ( (4)   (POLY -> POLY + TERM) )
+  ( (5)   (POLY -> TERM) )
+  ( (6)   (TERM -> MULTIPLIER POWER) )
+  ( (7)   (MULTIPLIER -> INTEGER) )
+  ( (8)   (MULTIPLIER -> EPSILON) )
+  ( (9)   (POWER -> X) )
+  ( (10)   (POWER -> X ^ INTEGER) )
+  ( (11)   (POWER -> EPSILON) )
+)
+
+;  GOTO GRAPH
+;                 
+;  Not needed for the parser, but here for reference and debugging.
+; **********
+;  Goto graph of the LR(1) or LALR(1) grammar of the form
+;                
+; (
+;   (                     <-- List of links.
+;       (6 |a| 4)         <-- Transition in Goto graph from state 6 to
+;                             state 4 on symbol a.
+;       (1 |a| 2)         <-- Transition from state 1 to state 2 on a.
+;   )
+;                   
+;   (                     <-- List of sets of items.
+;       ( 0                                <-- State number 0.
+;         3668                             <-- Hash value of core.
+;         (
+;            (SP -> DOT S           |,|  $)  ----+
+;            ( S -> DOT S |a| S |b| |,|  $)      |
+;            ( S -> DOT EPSILON     |,|  $)      +---- Set of items for state 0
+;            ( S -> DOT S |a| S |b| |,| |a|)     |
+;            ( S -> DOT EPSILON     |,| |a|)     |
+;         )                                  ----+
+;       ) 
+
+(
+    (
+        (-1 NIL 0)
+        (0 S 1)
+        (0 POLY 2)
+        (0 INTEGER 3)
+        (0 TERM 4)
+        (0 MULTIPLIER 5)
+        (2 MOD 6)
+        (2 COMMA 7)
+        (2 + 8)
+        (5 POWER 9)
+        (5 X 10)
+        (7 INTEGER 11)
+        (8 INTEGER 3)
+        (8 TERM 12)
+        (8 MULTIPLIER 5)
+        (10 ^ 13)
+        (13 INTEGER 14)
+    )
+    (
+        (1
+        1752
+            (SP -> S DOT |,| $)
+        )
+        (4
+        2922
+            (POLY -> TERM DOT |,| COMMA)
+            (POLY -> TERM DOT |,| $)
+            (POLY -> TERM DOT |,| +)
+        )
+        (7
+        3307
+            (MOD -> COMMA DOT INTEGER |,| $)
+        )
+        (6
+        3876
+            (S -> POLY MOD DOT |,| $)
+        )
+        (13
+        4194
+            (POWER -> X ^ DOT INTEGER |,| COMMA)
+            (POWER -> X ^ DOT INTEGER |,| $)
+            (POWER -> X ^ DOT INTEGER |,| +)
+        )
+        (3
+        4917
+            (MULTIPLIER -> INTEGER DOT |,| X)
+            (MULTIPLIER -> INTEGER DOT |,| COMMA)
+            (MULTIPLIER -> INTEGER DOT |,| $)
+            (MULTIPLIER -> INTEGER DOT |,| +)
+        )
+        (10
+        5558
+            (POWER -> X DOT |,| COMMA)
+            (POWER -> X DOT ^ INTEGER |,| COMMA)
+            (POWER -> X DOT |,| $)
+            (POWER -> X DOT ^ INTEGER |,| $)
+            (POWER -> X DOT |,| +)
+            (POWER -> X DOT ^ INTEGER |,| +)
+        )
+        (11
+        5812
+            (MOD -> COMMA INTEGER DOT |,| $)
+        )
+        (12
+        6705
+            (POLY -> POLY + TERM DOT |,| COMMA)
+            (POLY -> POLY + TERM DOT |,| $)
+            (POLY -> POLY + TERM DOT |,| +)
+        )
+        (14
+        7215
+            (POWER -> X ^ INTEGER DOT |,| COMMA)
+            (POWER -> X ^ INTEGER DOT |,| $)
+            (POWER -> X ^ INTEGER DOT |,| +)
+        )
+        (9
+        7288
+            (TERM -> MULTIPLIER POWER DOT |,| COMMA)
+            (TERM -> MULTIPLIER POWER DOT |,| $)
+            (TERM -> MULTIPLIER POWER DOT |,| +)
+        )
+        (2
+        9449
+            (S -> POLY DOT MOD |,| $)
+            (POLY -> POLY DOT + TERM |,| COMMA)
+            (POLY -> POLY DOT + TERM |,| $)
+            (POLY -> POLY DOT + TERM |,| +)
+            (MOD -> DOT COMMA INTEGER |,| $)
+            (MOD -> DOT EPSILON |,| $)
+        )
+        (5
+        10416
+            (TERM -> MULTIPLIER DOT POWER |,| COMMA)
+            (TERM -> MULTIPLIER DOT POWER |,| $)
+            (TERM -> MULTIPLIER DOT POWER |,| +)
+            (POWER -> DOT X |,| COMMA)
+            (POWER -> DOT X ^ INTEGER |,| COMMA)
+            (POWER -> DOT EPSILON |,| COMMA)
+            (POWER -> DOT X |,| $)
+            (POWER -> DOT X ^ INTEGER |,| $)
+            (POWER -> DOT EPSILON |,| $)
+            (POWER -> DOT X |,| +)
+            (POWER -> DOT X ^ INTEGER |,| +)
+            (POWER -> DOT EPSILON |,| +)
+        )
+        (8
+        12416
+            (POLY -> POLY + DOT TERM |,| COMMA)
+            (POLY -> POLY + DOT TERM |,| $)
+            (POLY -> POLY + DOT TERM |,| +)
+            (TERM -> DOT MULTIPLIER POWER |,| COMMA)
+            (TERM -> DOT MULTIPLIER POWER |,| $)
+            (TERM -> DOT MULTIPLIER POWER |,| +)
+            (MULTIPLIER -> DOT INTEGER |,| X)
+            (MULTIPLIER -> DOT INTEGER |,| COMMA)
+            (MULTIPLIER -> DOT EPSILON |,| X)
+            (MULTIPLIER -> DOT EPSILON |,| COMMA)
+            (MULTIPLIER -> DOT INTEGER |,| $)
+            (MULTIPLIER -> DOT EPSILON |,| $)
+            (MULTIPLIER -> DOT INTEGER |,| +)
+            (MULTIPLIER -> DOT EPSILON |,| +)
+        )
+        (0
+        14102
+            (SP -> DOT S |,| $)
+            (S -> DOT POLY MOD |,| $)
+            (POLY -> DOT POLY + TERM |,| COMMA)
+            (POLY -> DOT POLY + TERM |,| $)
+            (POLY -> DOT TERM |,| COMMA)
+            (POLY -> DOT TERM |,| $)
+            (POLY -> DOT POLY + TERM |,| +)
+            (POLY -> DOT TERM |,| +)
+            (TERM -> DOT MULTIPLIER POWER |,| COMMA)
+            (TERM -> DOT MULTIPLIER POWER |,| $)
+            (TERM -> DOT MULTIPLIER POWER |,| +)
+            (MULTIPLIER -> DOT INTEGER |,| X)
+            (MULTIPLIER -> DOT INTEGER |,| COMMA)
+            (MULTIPLIER -> DOT EPSILON |,| X)
+            (MULTIPLIER -> DOT EPSILON |,| COMMA)
+            (MULTIPLIER -> DOT INTEGER |,| $)
+            (MULTIPLIER -> DOT EPSILON |,| $)
+            (MULTIPLIER -> DOT INTEGER |,| +)
+            (MULTIPLIER -> DOT EPSILON |,| +)
+        )
+    )
+)
+
+;  ACTION TABLE
+;
+;  (state
+;         (item)
+;         ...
+
+(
+    ( (0) 
+        (
+            (INTEGER (S 3))
+            (X (R 8))
+            (COMMA (R 8))
+            ($ (R 8))
+            (+ (R 8))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (1) 
+        (
+            ($ (ACC NIL))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (2) 
+        (
+            (COMMA (S 7))
+            (+ (S 8))
+            ($ (R 3))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (3) 
+        (
+            (X (R 7))
+            (COMMA (R 7))
+            ($ (R 7))
+            (+ (R 7))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (4) 
+        (
+            (COMMA (R 5))
+            ($ (R 5))
+            (+ (R 5))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (5) 
+        (
+            (X (S 10))
+            (COMMA (R 11))
+            ($ (R 11))
+            (+ (R 11))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (6) 
+        (
+            ($ (R 1))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (7) 
+        (
+            (INTEGER (S 11))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (8) 
+        (
+            (INTEGER (S 3))
+            (X (R 8))
+            (COMMA (R 8))
+            ($ (R 8))
+            (+ (R 8))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (9) 
+        (
+            (COMMA (R 6))
+            ($ (R 6))
+            (+ (R 6))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (10) 
+        (
+            (COMMA (R 9))
+            (^ (S 13))
+            ($ (R 9))
+            (+ (R 9))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (11) 
+        (
+            ($ (R 2))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (12) 
+        (
+            (COMMA (R 4))
+            ($ (R 4))
+            (+ (R 4))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (13) 
+        (
+            (INTEGER (S 14))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (14) 
+        (
+            (COMMA (R 10))
+            ($ (R 10))
+            (+ (R 10))
+            (DEFAULT (ERROR))
+        )
+    )
+)
+
+;  GOTO TABLE
+;
+;  (state
+;         (item)
+;         ...
+
+(
+    ( (0) 
+        (
+            (S 1)
+            (POLY 2)
+            (TERM 4)
+            (MULTIPLIER 5)
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (2) 
+        (
+            (MOD 6)
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (5) 
+        (
+            (POWER 9)
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (8) 
+        (
+            (TERM 12)
+            (MULTIPLIER 5)
+            (DEFAULT (ERROR))
+        )
+    )
+)
+
+
+;  ERROR MESSAGE TABLE
+;
+;  If the action table has an error state, the other non-error
+;  actions show which symbol was failed to appear next on the input.
+;
+;  The user can modify these minimal error messages.
+
+
+
+(
+
+    ((0) ("error - expecting one of the symbols + $ COMMA X INTEGER")) 
+    ((1) ("error - expecting one of the symbols $")) 
+    ((2) ("error - expecting one of the symbols $ + COMMA")) 
+    ((3) ("error - expecting one of the symbols + $ COMMA X")) 
+    ((4) ("error - expecting one of the symbols + $ COMMA")) 
+    ((5) ("error - expecting one of the symbols + $ COMMA X")) 
+    ((6) ("error - expecting one of the symbols $")) 
+    ((7) ("error - expecting one of the symbols INTEGER")) 
+    ((8) ("error - expecting one of the symbols + $ COMMA X INTEGER")) 
+    ((9) ("error - expecting one of the symbols + $ COMMA")) 
+    ((10) ("error - expecting one of the symbols + $ ^ COMMA")) 
+    ((11) ("error - expecting one of the symbols $")) 
+    ((12) ("error - expecting one of the symbols + $ COMMA")) 
+    ((13) ("error - expecting one of the symbols INTEGER")) 
+    ((14) ("error - expecting one of the symbols + $ COMMA")) 
+)
+

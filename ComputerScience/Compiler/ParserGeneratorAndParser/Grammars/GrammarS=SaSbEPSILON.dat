@@ -1,0 +1,26 @@
+; ---------------------------------------------------------------------------
+;
+;  GrammarS=SaSb,EPSILON.dat
+;
+; ---------------------------------------------------------------------------
+;
+;  The sample grammar with epsilon productions,
+;
+;      S -> S a S b | EPSILON
+;
+;  from page 386 and 389-90 of
+;
+;  THE THEORY OF PARSING, TRANSLATION AND COMPILING, VOL. 1: PARSING,
+;  Alfred V. Aho and Jeffrey D. Ullman, Addison-Wesley, 1986.
+;
+
+; Productions.
+
+( 
+   (S -> S |a| S |b| / EPSILON)
+)
+
+
+; Terminal symbols, put between || delimiters to suppress LISP conversion to upper case upon read.
+
+( |a| |b| )

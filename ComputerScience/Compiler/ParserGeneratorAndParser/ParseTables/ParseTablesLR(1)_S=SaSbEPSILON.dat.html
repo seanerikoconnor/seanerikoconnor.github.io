@@ -1,0 +1,363 @@
+
+        <!DOCTYPE html>
+        <html lang="en-US">  <!-- Set language of this page to USA English. -->
+        
+        <head>
+            <!-- This page uses Unicode characters. -->
+            <meta charset="utf-8">
+        
+            <!-- Set viewport to actual device width.  Any other settings makes the web page initially appear zoomed-in on mobile devices. -->
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+            <!-- Title appears in the web browser tab for this page.  The browser also uses it to bookmark this page. -->
+            <title>Sean Erik O'Connor - Home Page and Free Mathematical Software.</title>
+        
+            <!-- Search engines will search using words in this description.  They will also display title in their search results. -->
+            <meta name="description" content="Syntax Colored Source Code Listing">
+        
+            <!-- Some content management software uses the author's name. -->
+            <meta name="author" content="Sean Erik O'Connor">
+        
+            <meta name="copyright" content="Copyright (C) 1986-2026 by Sean Erik O'Connor.  All Rights Reserved.">   
+        
+            <!-- Begin style sheet insertion -->
+            <style>
+                /* Default settings for all my main web pages. */
+                body
+                {
+                    /* A wide sans-serif font is more readable on the web. */
+                    font-family:            Verdana, Geneva, "Trebuchet MS", sans-serif ;
+        
+                    /* Set the body font size a little smaller than the user's default browser setting. */
+                    font-size:              0.8em ; 
+        
+                    /* Black text is easier to read. */
+                    color:                  black ;
+        
+                    /*  More vertical space between lines for more pleasant reading.  Use a unitless font height multiplier.  
+                        Length and percentage percentage values can give scrunched text due to poor inheritance behavior. */
+                    line-height:            1.7 ;
+                }
+        
+                <!-- Now prepare to add the syntax coloring style sheet from Pygment -->
+        pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.highlight .hll { background-color: #ffffcc }
+.highlight { background: #f8f8f8; }
+.highlight .c { color: #3D7B7B; font-style: italic } /* Comment */
+.highlight .err { border: 1px solid #F00 } /* Error */
+.highlight .k { color: #008000; font-weight: bold } /* Keyword */
+.highlight .o { color: #666 } /* Operator */
+.highlight .ch { color: #3D7B7B; font-style: italic } /* Comment.Hashbang */
+.highlight .cm { color: #3D7B7B; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #9C6500 } /* Comment.Preproc */
+.highlight .cpf { color: #3D7B7B; font-style: italic } /* Comment.PreprocFile */
+.highlight .c1 { color: #3D7B7B; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #3D7B7B; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #A00000 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .ges { font-weight: bold; font-style: italic } /* Generic.EmphStrong */
+.highlight .gr { color: #E40000 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #008400 } /* Generic.Inserted */
+.highlight .go { color: #717171 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #04D } /* Generic.Traceback */
+.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #B00040 } /* Keyword.Type */
+.highlight .m { color: #666 } /* Literal.Number */
+.highlight .s { color: #BA2121 } /* Literal.String */
+.highlight .na { color: #687822 } /* Name.Attribute */
+.highlight .nb { color: #008000 } /* Name.Builtin */
+.highlight .nc { color: #00F; font-weight: bold } /* Name.Class */
+.highlight .no { color: #800 } /* Name.Constant */
+.highlight .nd { color: #A2F } /* Name.Decorator */
+.highlight .ni { color: #717171; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #CB3F38; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #00F } /* Name.Function */
+.highlight .nl { color: #767600 } /* Name.Label */
+.highlight .nn { color: #00F; font-weight: bold } /* Name.Namespace */
+.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #19177C } /* Name.Variable */
+.highlight .ow { color: #A2F; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #BBB } /* Text.Whitespace */
+.highlight .mb { color: #666 } /* Literal.Number.Bin */
+.highlight .mf { color: #666 } /* Literal.Number.Float */
+.highlight .mh { color: #666 } /* Literal.Number.Hex */
+.highlight .mi { color: #666 } /* Literal.Number.Integer */
+.highlight .mo { color: #666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
+.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
+.highlight .se { color: #AA5D1F; font-weight: bold } /* Literal.String.Escape */
+.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.highlight .si { color: #A45A77; font-weight: bold } /* Literal.String.Interpol */
+.highlight .sx { color: #008000 } /* Literal.String.Other */
+.highlight .sr { color: #A45A77 } /* Literal.String.Regex */
+.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #00F } /* Name.Function.Magic */
+.highlight .vc { color: #19177C } /* Name.Variable.Class */
+.highlight .vg { color: #19177C } /* Name.Variable.Global */
+.highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
+.highlight .il { color: #666 } /* Literal.Number.Integer.Long */
+            </style>
+        </head>
+        
+        <body>
+            <article class="content">
+        <div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="go">;---------------------</span>
+<span class="linenos">  2</span><span class="go">; LR(1) parse tables</span>
+<span class="linenos">  3</span><span class="go">;---------------------</span>
+<span class="linenos">  4</span><span class="go">;</span>
+<span class="linenos">  5</span><span class="go">; Suitable for input to the Common Lisp program </span>
+<span class="linenos">  6</span><span class="go">;</span>
+<span class="linenos">  7</span><span class="go">;     LR(1)AndLALR(1)Parser.lsp</span>
+<span class="linenos">  8</span><span class="go">;</span>
+<span class="linenos">  9</span>
+<span class="linenos"> 10</span><span class="go">; TERMINALS</span>
+<span class="linenos"> 11</span><span class="go">;</span>
+<span class="linenos"> 12</span>
+<span class="linenos"> 13</span><span class="go">(|a| |b| $)</span>
+<span class="linenos"> 14</span>
+<span class="linenos"> 15</span><span class="go">;  PRODUCTIONS</span>
+<span class="linenos"> 16</span><span class="go">;</span>
+<span class="linenos"> 17</span><span class="go">;  Productions are numbered starting with 1.</span>
+<span class="linenos"> 18</span><span class="go">;  All alternates were expanded into separate productions.</span>
+<span class="linenos"> 19</span>
+<span class="linenos"> 20</span><span class="go">(</span>
+<span class="linenos"> 21</span><span class="go">  ( (1)   (S -&gt; S |a| S |b|) )</span>
+<span class="linenos"> 22</span><span class="go">  ( (2)   (S -&gt; EPSILON) )</span>
+<span class="linenos"> 23</span><span class="go">)</span>
+<span class="linenos"> 24</span>
+<span class="linenos"> 25</span><span class="go">;  GOTO GRAPH</span>
+<span class="linenos"> 26</span><span class="go">;                 </span>
+<span class="linenos"> 27</span><span class="go">;  Not needed for the parser, but here for reference and debugging.</span>
+<span class="linenos"> 28</span><span class="go">; **********</span>
+<span class="linenos"> 29</span><span class="go">;  Goto graph of the LR(1) or LALR(1) grammar of the form</span>
+<span class="linenos"> 30</span><span class="go">;                </span>
+<span class="linenos"> 31</span><span class="go">; (</span>
+<span class="linenos"> 32</span><span class="go">;   (                     &lt;-- List of links.</span>
+<span class="linenos"> 33</span><span class="go">;       (6 |a| 4)         &lt;-- Transition in Goto graph from state 6 to</span>
+<span class="linenos"> 34</span><span class="go">;                             state 4 on symbol a.</span>
+<span class="linenos"> 35</span><span class="go">;       (1 |a| 2)         &lt;-- Transition from state 1 to state 2 on a.</span>
+<span class="linenos"> 36</span><span class="go">;   )</span>
+<span class="linenos"> 37</span><span class="go">;                   </span>
+<span class="linenos"> 38</span><span class="go">;   (                     &lt;-- List of sets of items.</span>
+<span class="linenos"> 39</span><span class="go">;       ( 0                                &lt;-- State number 0.</span>
+<span class="linenos"> 40</span><span class="go">;         3668                             &lt;-- Hash value of core.</span>
+<span class="linenos"> 41</span><span class="go">;         (</span>
+<span class="linenos"> 42</span><span class="go">;            (SP -&gt; DOT S           |,|  $)  ----+</span>
+<span class="linenos"> 43</span><span class="go">;            ( S -&gt; DOT S |a| S |b| |,|  $)      |</span>
+<span class="linenos"> 44</span><span class="go">;            ( S -&gt; DOT EPSILON     |,|  $)      +---- Set of items for state 0</span>
+<span class="linenos"> 45</span><span class="go">;            ( S -&gt; DOT S |a| S |b| |,| |a|)     |</span>
+<span class="linenos"> 46</span><span class="go">;            ( S -&gt; DOT EPSILON     |,| |a|)     |</span>
+<span class="linenos"> 47</span><span class="go">;         )                                  ----+</span>
+<span class="linenos"> 48</span><span class="go">;       ) </span>
+<span class="linenos"> 49</span>
+<span class="linenos"> 50</span><span class="go">(</span>
+<span class="linenos"> 51</span><span class="go">    (</span>
+<span class="linenos"> 52</span><span class="go">        (-1 NIL 0)</span>
+<span class="linenos"> 53</span><span class="go">        (0 S 1)</span>
+<span class="linenos"> 54</span><span class="go">        (1 |a| 2)</span>
+<span class="linenos"> 55</span><span class="go">        (2 S 3)</span>
+<span class="linenos"> 56</span><span class="go">        (3 |a| 4)</span>
+<span class="linenos"> 57</span><span class="go">        (3 |b| 5)</span>
+<span class="linenos"> 58</span><span class="go">        (4 S 6)</span>
+<span class="linenos"> 59</span><span class="go">        (6 |a| 4)</span>
+<span class="linenos"> 60</span><span class="go">        (6 |b| 7)</span>
+<span class="linenos"> 61</span><span class="go">    )</span>
+<span class="linenos"> 62</span><span class="go">    (</span>
+<span class="linenos"> 63</span><span class="go">        (0</span>
+<span class="linenos"> 64</span><span class="go">        3668</span>
+<span class="linenos"> 65</span><span class="go">            (SP -&gt; DOT S |,| $)</span>
+<span class="linenos"> 66</span><span class="go">            (S -&gt; DOT S |a| S |b| |,| $)</span>
+<span class="linenos"> 67</span><span class="go">            (S -&gt; DOT EPSILON |,| $)</span>
+<span class="linenos"> 68</span><span class="go">            (S -&gt; DOT S |a| S |b| |,| |a|)</span>
+<span class="linenos"> 69</span><span class="go">            (S -&gt; DOT EPSILON |,| |a|)</span>
+<span class="linenos"> 70</span><span class="go">        )</span>
+<span class="linenos"> 71</span><span class="go">        (1</span>
+<span class="linenos"> 72</span><span class="go">        3542</span>
+<span class="linenos"> 73</span><span class="go">            (SP -&gt; S DOT |,| $)</span>
+<span class="linenos"> 74</span><span class="go">            (S -&gt; S DOT |a| S |b| |,| $)</span>
+<span class="linenos"> 75</span><span class="go">            (S -&gt; S DOT |a| S |b| |,| |a|)</span>
+<span class="linenos"> 76</span><span class="go">        )</span>
+<span class="linenos"> 77</span><span class="go">        (2</span>
+<span class="linenos"> 78</span><span class="go">        5168</span>
+<span class="linenos"> 79</span><span class="go">            (S -&gt; S |a| DOT S |b| |,| $)</span>
+<span class="linenos"> 80</span><span class="go">            (S -&gt; S |a| DOT S |b| |,| |a|)</span>
+<span class="linenos"> 81</span><span class="go">            (S -&gt; DOT S |a| S |b| |,| |b|)</span>
+<span class="linenos"> 82</span><span class="go">            (S -&gt; DOT EPSILON |,| |b|)</span>
+<span class="linenos"> 83</span><span class="go">            (S -&gt; DOT S |a| S |b| |,| |a|)</span>
+<span class="linenos"> 84</span><span class="go">            (S -&gt; DOT EPSILON |,| |a|)</span>
+<span class="linenos"> 85</span><span class="go">        )</span>
+<span class="linenos"> 86</span><span class="go">        (3</span>
+<span class="linenos"> 87</span><span class="go">        5308</span>
+<span class="linenos"> 88</span><span class="go">            (S -&gt; S |a| S DOT |b| |,| $)</span>
+<span class="linenos"> 89</span><span class="go">            (S -&gt; S |a| S DOT |b| |,| |a|)</span>
+<span class="linenos"> 90</span><span class="go">            (S -&gt; S DOT |a| S |b| |,| |b|)</span>
+<span class="linenos"> 91</span><span class="go">            (S -&gt; S DOT |a| S |b| |,| |a|)</span>
+<span class="linenos"> 92</span><span class="go">        )</span>
+<span class="linenos"> 93</span><span class="go">        (4</span>
+<span class="linenos"> 94</span><span class="go">        5168</span>
+<span class="linenos"> 95</span><span class="go">            (S -&gt; S |a| DOT S |b| |,| |b|)</span>
+<span class="linenos"> 96</span><span class="go">            (S -&gt; S |a| DOT S |b| |,| |a|)</span>
+<span class="linenos"> 97</span><span class="go">            (S -&gt; DOT S |a| S |b| |,| |b|)</span>
+<span class="linenos"> 98</span><span class="go">            (S -&gt; DOT EPSILON |,| |b|)</span>
+<span class="linenos"> 99</span><span class="go">            (S -&gt; DOT S |a| S |b| |,| |a|)</span>
+<span class="linenos">100</span><span class="go">            (S -&gt; DOT EPSILON |,| |a|)</span>
+<span class="linenos">101</span><span class="go">        )</span>
+<span class="linenos">102</span><span class="go">        (5</span>
+<span class="linenos">103</span><span class="go">        4692</span>
+<span class="linenos">104</span><span class="go">            (S -&gt; S |a| S |b| DOT |,| $)</span>
+<span class="linenos">105</span><span class="go">            (S -&gt; S |a| S |b| DOT |,| |a|)</span>
+<span class="linenos">106</span><span class="go">        )</span>
+<span class="linenos">107</span><span class="go">        (6</span>
+<span class="linenos">108</span><span class="go">        5308</span>
+<span class="linenos">109</span><span class="go">            (S -&gt; S |a| S DOT |b| |,| |b|)</span>
+<span class="linenos">110</span><span class="go">            (S -&gt; S |a| S DOT |b| |,| |a|)</span>
+<span class="linenos">111</span><span class="go">            (S -&gt; S DOT |a| S |b| |,| |b|)</span>
+<span class="linenos">112</span><span class="go">            (S -&gt; S DOT |a| S |b| |,| |a|)</span>
+<span class="linenos">113</span><span class="go">        )</span>
+<span class="linenos">114</span><span class="go">        (7</span>
+<span class="linenos">115</span><span class="go">        4692</span>
+<span class="linenos">116</span><span class="go">            (S -&gt; S |a| S |b| DOT |,| |b|)</span>
+<span class="linenos">117</span><span class="go">            (S -&gt; S |a| S |b| DOT |,| |a|)</span>
+<span class="linenos">118</span><span class="go">        )</span>
+<span class="linenos">119</span><span class="go">    )</span>
+<span class="linenos">120</span><span class="go">)</span>
+<span class="linenos">121</span>
+<span class="linenos">122</span><span class="go">;  ACTION TABLE</span>
+<span class="linenos">123</span><span class="go">;</span>
+<span class="linenos">124</span><span class="go">;  (state</span>
+<span class="linenos">125</span><span class="go">;         (item)</span>
+<span class="linenos">126</span><span class="go">;         ...</span>
+<span class="linenos">127</span>
+<span class="linenos">128</span><span class="go">(</span>
+<span class="linenos">129</span><span class="go">    ( (0) </span>
+<span class="linenos">130</span><span class="go">        (</span>
+<span class="linenos">131</span><span class="go">            ($ (R 2))</span>
+<span class="linenos">132</span><span class="go">            (|a| (R 2))</span>
+<span class="linenos">133</span><span class="go">            (DEFAULT (ERROR))</span>
+<span class="linenos">134</span><span class="go">        )</span>
+<span class="linenos">135</span><span class="go">    )</span>
+<span class="linenos">136</span><span class="go">    ( (1) </span>
+<span class="linenos">137</span><span class="go">        (</span>
+<span class="linenos">138</span><span class="go">            ($ (ACC NIL))</span>
+<span class="linenos">139</span><span class="go">            (|a| (S 2))</span>
+<span class="linenos">140</span><span class="go">            (DEFAULT (ERROR))</span>
+<span class="linenos">141</span><span class="go">        )</span>
+<span class="linenos">142</span><span class="go">    )</span>
+<span class="linenos">143</span><span class="go">    ( (2) </span>
+<span class="linenos">144</span><span class="go">        (</span>
+<span class="linenos">145</span><span class="go">            (|b| (R 2))</span>
+<span class="linenos">146</span><span class="go">            (|a| (R 2))</span>
+<span class="linenos">147</span><span class="go">            (DEFAULT (ERROR))</span>
+<span class="linenos">148</span><span class="go">        )</span>
+<span class="linenos">149</span><span class="go">    )</span>
+<span class="linenos">150</span><span class="go">    ( (3) </span>
+<span class="linenos">151</span><span class="go">        (</span>
+<span class="linenos">152</span><span class="go">            (|b| (S 5))</span>
+<span class="linenos">153</span><span class="go">            (|a| (S 4))</span>
+<span class="linenos">154</span><span class="go">            (DEFAULT (ERROR))</span>
+<span class="linenos">155</span><span class="go">        )</span>
+<span class="linenos">156</span><span class="go">    )</span>
+<span class="linenos">157</span><span class="go">    ( (4) </span>
+<span class="linenos">158</span><span class="go">        (</span>
+<span class="linenos">159</span><span class="go">            (|b| (R 2))</span>
+<span class="linenos">160</span><span class="go">            (|a| (R 2))</span>
+<span class="linenos">161</span><span class="go">            (DEFAULT (ERROR))</span>
+<span class="linenos">162</span><span class="go">        )</span>
+<span class="linenos">163</span><span class="go">    )</span>
+<span class="linenos">164</span><span class="go">    ( (5) </span>
+<span class="linenos">165</span><span class="go">        (</span>
+<span class="linenos">166</span><span class="go">            ($ (R 1))</span>
+<span class="linenos">167</span><span class="go">            (|a| (R 1))</span>
+<span class="linenos">168</span><span class="go">            (DEFAULT (ERROR))</span>
+<span class="linenos">169</span><span class="go">        )</span>
+<span class="linenos">170</span><span class="go">    )</span>
+<span class="linenos">171</span><span class="go">    ( (6) </span>
+<span class="linenos">172</span><span class="go">        (</span>
+<span class="linenos">173</span><span class="go">            (|b| (S 7))</span>
+<span class="linenos">174</span><span class="go">            (|a| (S 4))</span>
+<span class="linenos">175</span><span class="go">            (DEFAULT (ERROR))</span>
+<span class="linenos">176</span><span class="go">        )</span>
+<span class="linenos">177</span><span class="go">    )</span>
+<span class="linenos">178</span><span class="go">    ( (7) </span>
+<span class="linenos">179</span><span class="go">        (</span>
+<span class="linenos">180</span><span class="go">            (|b| (R 1))</span>
+<span class="linenos">181</span><span class="go">            (|a| (R 1))</span>
+<span class="linenos">182</span><span class="go">            (DEFAULT (ERROR))</span>
+<span class="linenos">183</span><span class="go">        )</span>
+<span class="linenos">184</span><span class="go">    )</span>
+<span class="linenos">185</span><span class="go">)</span>
+<span class="linenos">186</span>
+<span class="linenos">187</span><span class="go">;  GOTO TABLE</span>
+<span class="linenos">188</span><span class="go">;</span>
+<span class="linenos">189</span><span class="go">;  (state</span>
+<span class="linenos">190</span><span class="go">;         (item)</span>
+<span class="linenos">191</span><span class="go">;         ...</span>
+<span class="linenos">192</span>
+<span class="linenos">193</span><span class="go">(</span>
+<span class="linenos">194</span><span class="go">    ( (0) </span>
+<span class="linenos">195</span><span class="go">        (</span>
+<span class="linenos">196</span><span class="go">            (S 1)</span>
+<span class="linenos">197</span><span class="go">            (DEFAULT (ERROR))</span>
+<span class="linenos">198</span><span class="go">        )</span>
+<span class="linenos">199</span><span class="go">    )</span>
+<span class="linenos">200</span><span class="go">    ( (2) </span>
+<span class="linenos">201</span><span class="go">        (</span>
+<span class="linenos">202</span><span class="go">            (S 3)</span>
+<span class="linenos">203</span><span class="go">            (DEFAULT (ERROR))</span>
+<span class="linenos">204</span><span class="go">        )</span>
+<span class="linenos">205</span><span class="go">    )</span>
+<span class="linenos">206</span><span class="go">    ( (4) </span>
+<span class="linenos">207</span><span class="go">        (</span>
+<span class="linenos">208</span><span class="go">            (S 6)</span>
+<span class="linenos">209</span><span class="go">            (DEFAULT (ERROR))</span>
+<span class="linenos">210</span><span class="go">        )</span>
+<span class="linenos">211</span><span class="go">    )</span>
+<span class="linenos">212</span><span class="go">)</span>
+<span class="linenos">213</span>
+<span class="linenos">214</span>
+<span class="linenos">215</span><span class="go">;  ERROR MESSAGE TABLE</span>
+<span class="linenos">216</span><span class="go">;</span>
+<span class="linenos">217</span><span class="go">;  If the action table has an error state, the other non-error</span>
+<span class="linenos">218</span><span class="go">;  actions show which symbol was failed to appear next on the input.</span>
+<span class="linenos">219</span><span class="go">;</span>
+<span class="linenos">220</span><span class="go">;  The user can modify these minimal error messages.</span>
+<span class="linenos">221</span>
+<span class="linenos">222</span>
+<span class="linenos">223</span>
+<span class="linenos">224</span><span class="go">(</span>
+<span class="linenos">225</span>
+<span class="linenos">226</span><span class="go">    ((0) (&quot;error - expecting one of the symbols |a| $&quot;)) </span>
+<span class="linenos">227</span><span class="go">    ((1) (&quot;error - expecting one of the symbols |a| $&quot;)) </span>
+<span class="linenos">228</span><span class="go">    ((2) (&quot;error - expecting one of the symbols |a| |b|&quot;)) </span>
+<span class="linenos">229</span><span class="go">    ((3) (&quot;error - expecting one of the symbols |a| |b|&quot;)) </span>
+<span class="linenos">230</span><span class="go">    ((4) (&quot;error - expecting one of the symbols |a| |b|&quot;)) </span>
+<span class="linenos">231</span><span class="go">    ((5) (&quot;error - expecting one of the symbols |a| $&quot;)) </span>
+<span class="linenos">232</span><span class="go">    ((6) (&quot;error - expecting one of the symbols |a| |b|&quot;)) </span>
+<span class="linenos">233</span><span class="go">    ((7) (&quot;error - expecting one of the symbols |a| |b|&quot;)) </span>
+<span class="linenos">234</span><span class="go">)</span>
+</pre></div>
+
+            </article>
+        </body>
+        
+        </html>
+        

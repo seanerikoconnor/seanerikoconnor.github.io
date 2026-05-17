@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en-US">  <!-- Set language of this page to USA English. -->
+
+<!-- ===================================================================
+|
+| NAME
+| 
+|     Life.html
+|
+| DESCRIPTION
+|
+|     This is the game of life web page.
+|     It is a hand-crafted HTML 5 W3C validated document.
+|
+| AUTHOR
+|
+|    Sean Erik O'Connor
+|
+=================================================================== -->
+
+    <head>
+        <!-- This page uses Unicode characters. -->
+        <meta charset="utf-8">
+
+        <!-- Set viewport to actual device width.  Any other settings makes the web page initially appear zoomed-in on mobile devices. -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Titles appear in the web browser and the browser's bookmarks. -->
+       <title>Game of Life</title>
+
+        <!-- Search engines will show this description below the title. -->
+        <meta name="description" content="Game of Life implemented in JavaScript and Windows --- free software.">
+
+        <meta name="author" content="Sean Erik O'Connor" >
+
+        <meta name="copyright" content="Copyright (C) 1999-2026 by Sean Erik O'Connor.  All Rights Reserved.">
+
+        <!-- Point to the JavaScript Game of Life -->
+        <script src="Scripts/gameOfLife.js"></script>
+
+        <!-- Cascading style sheet for this document. -->
+        <link rel="stylesheet" href="../../../StyleSheet.css" type="text/css" />
+
+        <!-- Favicons are 32x32 or 16x16, 8 or 24 bit PNG Images which show up left of the web page title in a browser.  -->
+        <link rel="icon" type="image/png" href="../../../Images/favicon.png" >
+    </head>
+
+    <body>
+        <!-- This wraps the whole body in a CSS grid. -->
+        <div class="wrapper titlePage">
+
+            <!-- Title page at the top.  -->
+            <header class="title">
+                <h1>GAME OF LIFE</h1>
+                <hr>
+            </header>
+
+            <!-- Horizontal navigation bar to all top level pages. -->
+            <header class="navigation">
+                <a href="../../../index.html">
+                    <img src="../../../Images/home.png" alt="Home Page Button." width="32" height="32" >
+                     <em>Home</em>
+                 </a>
+
+                 <a href="../../../Mathematics/mathematicalSoftware.html">
+                     <img src="../../../Images/compactDisk.png" alt="Mathematical Software Button." width="32" height="32" >
+                      <em>Mathematical Software</em>
+                 </a>
+
+                 <a href="../../../Art/Art.html">
+                     <img src="../../../Images/sampleArtLowRes.png" alt="Art Button." width="32" height="32" >
+                      <em>Fine Arts</em>
+                 </a>
+
+                 <a href="../../../WebPageDesign/webPageDesign.html">
+                     <img src="../../../Images/webPage.png" alt="Web Page Design Button." height="32" width="32" >
+                      <em>Web Page Design</em>
+                 </a>
+
+                 <a href="../../../Electronics/Electronics.html">
+                     <img src="../../../Images/sparkCoil.png" alt="Hobby Electronics Button." width="32" height="32" >
+                      <em>Hobby Electronics</em>
+                 </a>
+
+                 <a href="../../../ReadingList/readingList.html">
+                      <img src="../../../Images/terraApollo17NASALowRes.png"
+                           alt="Reading List Button."
+                           width="32" height="32" />
+                      <em>Reading list</em>
+                </a>
+            </header>
+
+            <!-- A decorative border at the left side of the page. -->
+            <aside class=border>
+                  <img class="border"
+                       src="../../../Images/sinXYPlot.png"
+                       alt="Sin( x y ) Image Border." />
+            </aside>
+
+            <!-- The main content of this page. -->
+            <article class="content">
+                <section>
+                    <h3>Game of Life in JavaScript</h3>
+
+                    <p>
+                    This is an implementation of J. H. Conway's cellular automata 
+                    <a href="http://conwaylife.com/wiki/Main_Page">game of life</a>
+                    in JavaScript where the game board is a topologically a torus.  See my 
+                    <a href="theory.html">design notes</a>
+                    for a description of the game and how it is designed.
+                    </p>
+
+                    <!-- Game of Life canvas -->
+                    <p>
+                        <canvas id="GameOfLifeCanvas" 
+                                width="1000" height="1000" 
+                                style="background-color:  rgb( 170, 235, 245 ) ;"> 
+                            <em>Your browser does not support the canvas API so I can't show game of life!</em> 
+                        </canvas>
+                    </p>
+
+                    <!-- Game of Life form controls -->
+                    <form id="GameOFLifePatternsForm">
+                        <ul>
+                            <li>
+                                <!-- Buttons to start/stop, single step and reset the game.  
+                                     Upon click, call the JavaScript functions runStopGame(), singleStepGame() and clearGame(). 
+                                  -->
+                                  <fieldset>
+                                      <legend>Game Controls</legend>
+
+                                      <input type="button" onclick="gameOfLife.runStopGame()"    value="Run/Stop" />
+                                      <input type="button" onclick="gameOfLife.singleStepGame()" value="Single Step" />
+                                      <input type="button" onclick="gameOfLife.clearGame()"      value="Clear" />
+                                 </fieldset>
+                            </li>
+
+                            <li>
+                                <!-- Check box buttons to select number of neighbors for survival and birth.  
+                                     If the user toggles the button, call the JavaScript function changeRules( flag ) 
+                                     where flag = true for survival or false for birth.
+                                     Default to the Conway rules. 
+                                  -->
+                               <fieldset>
+                                   <legend>Neighbors to survive</legend>
+
+                                   <label> 1 <input type="checkbox" name="GameOfLifeSurvivalRules" value="1"         onchange="gameOfLife.changeRules( true )"> </label>
+                                   <label> 2 <input type="checkbox" name="GameOfLifeSurvivalRules" value="2" checked onchange="gameOfLife.changeRules( true )"> </label>
+                                   <label> 3 <input type="checkbox" name="GameOfLifeSurvivalRules" value="3" checked onchange="gameOfLife.changeRules( true )"> </label>
+                                   <label> 4 <input type="checkbox" name="GameOfLifeSurvivalRules" value="4"         onchange="gameOfLife.changeRules( true )"> </label>
+                                   <label> 5 <input type="checkbox" name="GameOfLifeSurvivalRules" value="5"         onchange="gameOfLife.changeRules( true )"> </label>
+                                   <label> 6 <input type="checkbox" name="GameOfLifeSurvivalRules" value="6"         onchange="gameOfLife.changeRules( true )"> </label>
+                                   <label> 7 <input type="checkbox" name="GameOfLifeSurvivalRules" value="7"         onchange="gameOfLife.changeRules( true )"> </label>
+                                   <label> 8 <input type="checkbox" name="GameOfLifeSurvivalRules" value="8"         onchange="gameOfLife.changeRules( true )"> </label>
+                               </fieldset>
+                            </li>
+
+                            <li>
+                                <fieldset>
+                                     <legend>Neighbors for birth</legend>
+
+                                     <label> 1 <input type="checkbox" name="GameOfLifeBirthRules" value="1"            onchange="gameOfLife.changeRules( false )"> </label>
+                                     <label> 2 <input type="checkbox" name="GameOfLifeBirthRules" value="2"            onchange="gameOfLife.changeRules( false )"> </label>
+                                     <label> 3 <input type="checkbox" name="GameOfLifeBirthRules" value="3" checked    onchange="gameOfLife.changeRules( false )"> </label>
+                                     <label> 4 <input type="checkbox" name="GameOfLifeBirthRules" value="4"            onchange="gameOfLife.changeRules( false )"> </label>
+                                     <label> 5 <input type="checkbox" name="GameOfLifeBirthRules" value="5"            onchange="gameOfLife.changeRules( false )"> </label>
+                                     <label> 6 <input type="checkbox" name="GameOfLifeBirthRules" value="6"            onchange="gameOfLife.changeRules( false )"> </label>
+                                     <label> 7 <input type="checkbox" name="GameOfLifeBirthRules" value="7"            onchange="gameOfLife.changeRules( false )"> </label>
+                                     <label> 8 <input type="checkbox" name="GameOfLifeBirthRules" value="8"            onchange="gameOfLife.changeRules( false )"> </label>
+                                 </fieldset>
+                            </li>
+
+                            <li>
+                                <!-- Game of Life File I/O -->
+                                <fieldset>
+                                    <legend>File I/O</legend>
+
+                                    <!-- Tag the input form with unique id GameOfLifeLoadFile.
+                                         Get the element by its id in the JavaScript function initializeGameOfLife().
+                                         Add an event listener to the element which responds to changes by calling a function make_fileSelectForReading(). 
+                                         The function argument is an event which is the list of files.
+                                     -->
+                                    <input type="file"   id="GameOfLifeLoadFile"  name="files[]" multiple />
+                                </fieldset>
+                            </li>
+
+                            <li>
+                                <!-- Game of Life clipboard controls -->
+                                <fieldset>
+                                    <legend>Clipboard</legend>
+
+                                    <input type="button" onclick="gameOfLife.writeGameToClipboard()"  value="Write" />
+                                    <input type="button" onclick="gameOfLife.readGameFromClipboard()" value="Read" />
+                                </fieldset>
+                            </li>
+
+                            <li>
+                                <!-- Radio buttons for loading sample life patterns. 
+                                     Call the JavaScript function loadSampleLifePattern(). 
+                                -->
+                                <fieldset>
+                                    <legend>Life Pattern</legend>
+
+                                    <!-- Tag the selection in the form with unique id LifePatterns.
+                                     Get the element by its id in the JavaScript function initializeGameOfLife().
+                                     Add an event listener to the element which responds to changes by calling a function make_loadSampleLifePattern().
+                                     The function argument is an event which is the option selected. 
+                                    -->
+                                    <select id="GameOfLifePatterns">
+                                        <option selected value="glidergun">Glider Gun</option>
+                                        <option value="replicator">Replicator</option>
+                                        <option value="crab">Crab</option>
+                                        <option value="shickengine">Schick Engine</option>
+                                        <option value="trafficcircle">Traffic Circle</option>
+                                        <option value="highlifeglidergun">High Life Glider Gun</option>
+                                    </select>
+                                </fieldset>
+                            </li>
+
+                            <li>
+                                <!-- Game of life status.  JavaScript accesses the span by its id and rewrites its contents.  -->
+                                <span style="color: navy;  font-size: 0.8em;" id="GameOfLifeState"> --- Game State --- </span>
+                            </li>
+                        </ul>
+                    </form>
+
+                        <!-- Clipboard form for Game of Life files. -->
+                        <form>
+                            <ul>
+                                <li>
+                                    Game of Life Clipboard
+                                    <fieldset>
+                                        <textarea id="GameOfLifeClipboard" rows="10">
+                                        ---Life file---
+                                        </textarea>
+                                    </fieldset>
+                                </li>
+
+                                <li>
+                                    <!-- Game of life cell state -->
+                                    <span style="color: navy;  font-size: 0.6em ; clear: both;" id="GameOfLifeCellState"> --- Cell State --- </span>
+                                </li>
+                            </ul>
+                        </form>
+
+                    <!-- Output window for game of life.  
+                         We'll override the CSS font style to make the states small enough to fit 
+                         into the scroll box horizontally. -->
+                    <div style="font-size: 0.8rem;" class="scrollBoxHuge"> <div class="scrollBoxContent" id="GameOfLifeDebug">
+                            --- Life Counter States Go Here ---
+                    </div> </div>
+
+                    <!-- Initialize the Game of Life application after all HTML elements have been defined. -->
+                    <script>
+                        gameOfLife.init() ;
+                    </script>
+                </section>
+
+                <section>
+                    <h3>Download</h3>
+
+                    <p>
+                        Source code <em>Version 3.4</em> is distributed under the terms of the
+                        <a href="http://www.gnu.org/licenses/">GNU General Public License</a>.
+                    </p>
+                    
+                    <ul class="download">
+                        <li class="downloadName">gameOfLife.js</li>
+                        <li class="downloadDescription">Game of Life implemented in <i>JavaScript</i>.</li>
+                        <li class="downloadView"> 
+                            <a href="Scripts/gameOfLife.js.html">
+                                <img src="../../../Images/eye.png" alt="Eye icon for source code viewing." width="30" height="30" >View</a>
+                        </li>
+                        <li class="download"> 
+                            <a href="Scripts/gameOfLife.js" download="Scripts/gameOfLife.js">
+                                <img src="../../../Images/compactDisk.png" alt="Compact disk icon for source code download." width="25" height="25" >Download</a>
+                        </li>
+
+                        <li class="downloadName">life.html</li>
+                        <li class="downloadDescription">HTML code for this page which calls gameOfLife.js</li>
+                        <li class="downloadView"> 
+                            <a href="life.html.html">
+                                <img src="../../../Images/eye.png" alt="Eye icon for source code viewing." width="30" height="30" >View</a>
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>Software Design</h3>
+
+                        <img class="centered" alt="thingumbob" src="Images/GameOfLifeSoftwareDesign02.jpg">
+                        <img class="centered" alt="thingumbob" src="Images/GameOfLifeSoftwareDesign03.jpg">
+                        <img class="centered" alt="thingumbob" src="Images/GameOfLifeSoftwareDesign04.jpg">
+                        <img class="centered" alt="thingumbob" src="Images/GameOfLifeSoftwareDesign05.jpg">
+                        <img class="centered" alt="thingumbob" src="Images/GameOfLifeSoftwareDesign06.jpg">
+                        <img class="centered" alt="thingumbob" src="Images/GameOfLifeSoftwareDesign07.jpg">
+
+                </section>
+
+
+                <section>
+                    <h3>Debugging</h3>
+
+                    The web browsers have developer tools for debugging,
+                    
+                    <figure>
+                        <img src="Images/FirefoxWebDeveloperJavaScriptDebugger.jpg" alt="Safari Web Browser Developer Tools" >
+
+                       <figcaption>
+                           Safari Web Browser Developer Tools
+                       </figcaption>
+                    </figure>
+               </section>
+            </article>
+
+            <footer class="footnote">
+                <hr>
+
+                <!-- A copyright to preserve my legal rights. -->
+                <p class="footnote">
+                    Copyright &copy; 1986-2026 by Sean Erik O'Connor.
+                    All Rights Reserved.
+                    &nbsp;&nbsp;&nbsp;
+                    last updated 27 Feb 26.
+                </p>
+            </footer>
+        </div> <!-- wrapper -->
+    </body>
+</html>

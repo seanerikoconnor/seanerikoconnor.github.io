@@ -1,0 +1,31 @@
+; ---------------------------------------------------------------------------
+; | File: grammar4.dat             Sean O'Connor                    5-30-89 |
+; ---------------------------------------------------------------------------
+;
+;  This is the grammar,
+;
+;     S -> A S | b
+;     A -> S A | a
+;
+;  which is neither LR(1) nor LALR(1).
+;
+;  Exercise 4.33, page 272 of
+;
+;      COMPILERS: PRINCIPLES, TECHNIQUES, AND TOOLS,
+;      Alfred V. Aho, Ravi Sethi, and Jeffrey D. Ullman,
+;      Addison-Wesley, 1986
+;
+; ---------------------------------------------------------------------------
+
+
+;  Productions.
+
+( 
+   (S -> A S / |b|)
+   (A -> S A / |a|)
+)
+
+
+;  Terminal symbols.
+
+( |a| |b| )

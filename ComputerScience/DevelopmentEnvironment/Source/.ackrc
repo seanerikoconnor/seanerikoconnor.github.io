@@ -1,0 +1,25 @@
+# Tell ack to search in C and Python files only.
+# See the manual at
+#     https://beyondgrep.com/documentation/ack-v3.6.0-man.html
+#
+# Install ack as a Perl file from
+#     https://beyondgrep.com/install/
+# using
+#     curl https://beyondgrep.com/ack-v3.6.0 > ack
+#     chmod +x ack
+#     sudo cp ack /usr/local/bin
+#
+# View the different file types with
+#
+#     ack --help-types
+#
+--type=cc 
+--type=cpp
+--type=python
+--type=html
+--type=css
+--type=make
+--type=lisp
+
+# To the existing file type cc, add .txt and .paths as a possible extension to enable searching *.txt files.
+--type-add=cc:ext:txt,log,paths,ipynb

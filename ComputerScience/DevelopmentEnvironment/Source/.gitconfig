@@ -1,0 +1,53 @@
+[user]
+    # Identify me as a user on git.
+	email = seanerikoconnor@gmail.com
+	name = Sean Erik O'Connor
+
+[core]
+    # I use the Vim editor.
+	editor = vim
+	excludesfile = /Users/seanoconnor/.gitignore_global
+
+[merge]
+    # I use Apple opendiff.
+	tool = opendiff
+	conflictstyle = diff3
+
+[difftool]
+  prompt = false # Don't prompt the user to hit RETURN before the next file difference.
+
+[difftool "opendiff"]
+    #  cmd = echo 'base(ancestor base for the merge) = ' \"$BASE\" 'local(file on current branch) 
+    #= ' \"$LOCAL\" 'remote(file to be merged) = ' \"$REMOTE\"  'merged(what mergetool should write) = ' \"$MERGED\"
+    cmd = opendiff \"$LOCAL\" \"$REMOTE\" -merge \"$MERGED\"
+
+[mergetool "opendiff"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+
+[push]
+	default = simple
+
+[credential]
+	helper = cache
+
+[alias]
+    # Custom shorthands for commands.
+	unstage = reset HEAD --
+	uncheckin = checkout --
+    
+[difftool "sourcetree"]
+    cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+
+[commit]
+	template = /Users/seanoconnor/.stCommitMsg
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

@@ -1,0 +1,295 @@
+;---------------------
+; LR(1) parse tables
+;---------------------
+;
+; Suitable for input to the Common Lisp program 
+;
+;     LR(1)AndLALR(1)Parser.lsp
+;
+
+; TERMINALS
+;
+
+(|a| |b| |c| |d| |e| $)
+
+;  PRODUCTIONS
+;
+;  Productions are numbered starting with 1.
+;  All alternates were expanded into separate productions.
+
+(
+  ( (1)   (S -> |a| A |d|) )
+  ( (2)   (S -> |b| B |d|) )
+  ( (3)   (S -> |a| B |e|) )
+  ( (4)   (S -> |b| A |e|) )
+  ( (5)   (A -> |c|) )
+  ( (6)   (B -> |c|) )
+)
+
+;  GOTO GRAPH
+;                 
+;  Not needed for the parser, but here for reference and debugging.
+; **********
+;  Goto graph of the LR(1) or LALR(1) grammar of the form
+;                
+; (
+;   (                     <-- List of links.
+;       (6 |a| 4)         <-- Transition in Goto graph from state 6 to
+;                             state 4 on symbol a.
+;       (1 |a| 2)         <-- Transition from state 1 to state 2 on a.
+;   )
+;                   
+;   (                     <-- List of sets of items.
+;       ( 0                                <-- State number 0.
+;         3668                             <-- Hash value of core.
+;         (
+;            (SP -> DOT S           |,|  $)  ----+
+;            ( S -> DOT S |a| S |b| |,|  $)      |
+;            ( S -> DOT EPSILON     |,|  $)      +---- Set of items for state 0
+;            ( S -> DOT S |a| S |b| |,| |a|)     |
+;            ( S -> DOT EPSILON     |,| |a|)     |
+;         )                                  ----+
+;       ) 
+
+(
+    (
+        (-1 NIL 0)
+        (0 S 1)
+        (0 |a| 2)
+        (0 |b| 3)
+        (2 A 4)
+        (2 B 5)
+        (2 |c| 6)
+        (3 A 7)
+        (3 B 8)
+        (3 |c| 9)
+        (4 |d| 10)
+        (5 |e| 11)
+        (7 |e| 12)
+        (8 |d| 13)
+    )
+    (
+        (0
+        3295
+            (SP -> DOT S |,| $)
+            (S -> DOT |a| A |d| |,| $)
+            (S -> DOT |b| B |d| |,| $)
+            (S -> DOT |a| B |e| |,| $)
+            (S -> DOT |b| A |e| |,| $)
+        )
+        (1
+        1752
+            (SP -> S DOT |,| $)
+        )
+        (2
+        5252
+            (S -> |a| DOT A |d| |,| $)
+            (S -> |a| DOT B |e| |,| $)
+            (A -> DOT |c| |,| |d|)
+            (B -> DOT |c| |,| |e|)
+        )
+        (3
+        3535
+            (S -> |b| DOT B |d| |,| $)
+            (S -> |b| DOT A |e| |,| $)
+            (B -> DOT |c| |,| |d|)
+            (A -> DOT |c| |,| |e|)
+        )
+        (4
+        2432
+            (S -> |a| A DOT |d| |,| $)
+        )
+        (5
+        2437
+            (S -> |a| B DOT |e| |,| $)
+        )
+        (6
+        3015
+            (A -> |c| DOT |,| |d|)
+            (B -> |c| DOT |,| |e|)
+        )
+        (7
+        2437
+            (S -> |b| A DOT |e| |,| $)
+        )
+        (8
+        2440
+            (S -> |b| B DOT |d| |,| $)
+        )
+        (9
+        3015
+            (B -> |c| DOT |,| |d|)
+            (A -> |c| DOT |,| |e|)
+        )
+        (10
+        3415
+            (S -> |a| A |d| DOT |,| $)
+        )
+        (11
+        3425
+            (S -> |a| B |e| DOT |,| $)
+        )
+        (12
+        3425
+            (S -> |b| A |e| DOT |,| $)
+        )
+        (13
+        3425
+            (S -> |b| B |d| DOT |,| $)
+        )
+    )
+)
+
+;  ACTION TABLE
+;
+;  (state
+;         (item)
+;         ...
+
+(
+    ( (0) 
+        (
+            (|a| (S 2))
+            (|b| (S 3))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (1) 
+        (
+            ($ (ACC NIL))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (2) 
+        (
+            (|c| (S 6))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (3) 
+        (
+            (|c| (S 9))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (4) 
+        (
+            (|d| (S 10))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (5) 
+        (
+            (|e| (S 11))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (6) 
+        (
+            (|d| (R 5))
+            (|e| (R 6))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (7) 
+        (
+            (|e| (S 12))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (8) 
+        (
+            (|d| (S 13))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (9) 
+        (
+            (|d| (R 6))
+            (|e| (R 5))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (10) 
+        (
+            ($ (R 1))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (11) 
+        (
+            ($ (R 3))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (12) 
+        (
+            ($ (R 4))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (13) 
+        (
+            ($ (R 2))
+            (DEFAULT (ERROR))
+        )
+    )
+)
+
+;  GOTO TABLE
+;
+;  (state
+;         (item)
+;         ...
+
+(
+    ( (0) 
+        (
+            (S 1)
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (2) 
+        (
+            (A 4)
+            (B 5)
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (3) 
+        (
+            (A 7)
+            (B 8)
+            (DEFAULT (ERROR))
+        )
+    )
+)
+
+
+;  ERROR MESSAGE TABLE
+;
+;  If the action table has an error state, the other non-error
+;  actions show which symbol was failed to appear next on the input.
+;
+;  The user can modify these minimal error messages.
+
+
+
+(
+
+    ((0) ("error - expecting one of the symbols |b| |a|")) 
+    ((1) ("error - expecting one of the symbols $")) 
+    ((2) ("error - expecting one of the symbols |c|")) 
+    ((3) ("error - expecting one of the symbols |c|")) 
+    ((4) ("error - expecting one of the symbols |d|")) 
+    ((5) ("error - expecting one of the symbols |e|")) 
+    ((6) ("error - expecting one of the symbols |e| |d|")) 
+    ((7) ("error - expecting one of the symbols |e|")) 
+    ((8) ("error - expecting one of the symbols |d|")) 
+    ((9) ("error - expecting one of the symbols |e| |d|")) 
+    ((10) ("error - expecting one of the symbols $")) 
+    ((11) ("error - expecting one of the symbols $")) 
+    ((12) ("error - expecting one of the symbols $")) 
+    ((13) ("error - expecting one of the symbols $")) 
+)
+

@@ -1,0 +1,14 @@
+#Life 1.05
+#D Gliders collide with a block producing a spaceship.
+#N
+#P -5 -5
+..*
+*.*
+.**
+#P -3 3
+**
+**
+#P 2 3
+*
+*.*
+**

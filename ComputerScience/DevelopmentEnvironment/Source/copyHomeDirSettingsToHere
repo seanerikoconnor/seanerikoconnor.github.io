@@ -1,0 +1,21 @@
+#!/bin/sh
+#
+# Copy startup shell scripts to this directory
+
+# Bourne Again Shell
+cp ~/.bash_profile      .bash_profile
+cp ~/.bashrc            .bashrc
+cp ~/.bash_logout       .bash_logout
+
+# Git configuration
+cp ~/.gitconfig         .gitconfig
+cp ~/.gitignore_global  .gitignore_global
+
+# Vim configuration
+cp ~/.vimrc             .vimrc
+
+# Ack configuration
+cp ~/.ackrc             .ackrc
+
+# Steel Bank Common Lisp
+cp ~/.sbclrc            .sbclrc

@@ -1,0 +1,330 @@
+
+
+
+Parsing the sentence: (INTEGER X ^ INTEGER + INTEGER X + INTEGER COMMA INTEGER)
+
+PARSE STACK                                 INPUT STACK   ACTION                   
+
+(0)                                (INTEGER X ^ INTEGER + INTEGER X + INTEGER COMMA INTEGER $)   (SHIFT 3)                
+
+(0 INTEGER 3)                      (X ^ INTEGER + INTEGER X + INTEGER COMMA INTEGER $)   (REDUCE 7 (MULTIPLIER -> INTEGER))
+
+(0 MULTIPLIER 5)                   (X ^ INTEGER + INTEGER X + INTEGER COMMA INTEGER $)   (SHIFT 10)               
+
+(0 MULTIPLIER 5 X 10)              (^ INTEGER + INTEGER X + INTEGER COMMA INTEGER $)   (SHIFT 13)               
+
+(0 MULTIPLIER 5 X 10 ^ 13)         (INTEGER + INTEGER X + INTEGER COMMA INTEGER $)   (SHIFT 14)               
+
+(0 MULTIPLIER 5 X 10 ^ 13 INTEGER 14)(+ INTEGER X + INTEGER COMMA INTEGER $)   (REDUCE 10 (POWER -> X ^ INTEGER))
+
+(0 MULTIPLIER 5 POWER 9)           (+ INTEGER X + INTEGER COMMA INTEGER $)   (REDUCE 6 (TERM -> MULTIPLIER POWER))
+
+(0 TERM 4)                         (+ INTEGER X + INTEGER COMMA INTEGER $)   (REDUCE 5 (POLY -> TERM))
+
+(0 POLY 2)                         (+ INTEGER X + INTEGER COMMA INTEGER $)   (SHIFT 8)                
+
+(0 POLY 2 + 8)                     (INTEGER X + INTEGER COMMA INTEGER $)   (SHIFT 3)                
+
+(0 POLY 2 + 8 INTEGER 3)           (X + INTEGER COMMA INTEGER $)   (REDUCE 7 (MULTIPLIER -> INTEGER))
+
+(0 POLY 2 + 8 MULTIPLIER 5)        (X + INTEGER COMMA INTEGER $)   (SHIFT 10)               
+
+(0 POLY 2 + 8 MULTIPLIER 5 X 10)   (+ INTEGER COMMA INTEGER $)   (REDUCE 9 (POWER -> X))  
+
+(0 POLY 2 + 8 MULTIPLIER 5 POWER 9)(+ INTEGER COMMA INTEGER $)   (REDUCE 6 (TERM -> MULTIPLIER POWER))
+
+(0 POLY 2 + 8 TERM 12)             (+ INTEGER COMMA INTEGER $)   (REDUCE 4 (POLY -> POLY + TERM))
+
+(0 POLY 2)                         (+ INTEGER COMMA INTEGER $)   (SHIFT 8)                
+
+(0 POLY 2 + 8)                     (INTEGER COMMA INTEGER $)   (SHIFT 3)                
+
+(0 POLY 2 + 8 INTEGER 3)              (COMMA INTEGER $)   (REDUCE 7 (MULTIPLIER -> INTEGER))
+
+(0 POLY 2 + 8 MULTIPLIER 5)           (COMMA INTEGER $)   (REDUCE 11 (POWER -> EPSILON))
+
+(0 POLY 2 + 8 MULTIPLIER 5 POWER 9)   (COMMA INTEGER $)   (REDUCE 6 (TERM -> MULTIPLIER POWER))
+
+(0 POLY 2 + 8 TERM 12)                (COMMA INTEGER $)   (REDUCE 4 (POLY -> POLY + TERM))
+
+(0 POLY 2)                            (COMMA INTEGER $)   (SHIFT 7)                
+
+(0 POLY 2 COMMA 7)                          (INTEGER $)   (SHIFT 11)               
+
+(0 POLY 2 COMMA 7 INTEGER 11)                       ($)   (REDUCE 2 (MOD -> COMMA INTEGER))
+
+(0 POLY 2 MOD 6)                                    ($)   (REDUCE 1 (S -> POLY MOD))
+
+(0 S 1)                                             ($)   (ACCEPT)                 
+
+Sentence was grammatical.
+
+
+
+
+Parsing the sentence: (INTEGER X ^ INTEGER + INTEGER X + INTEGER)
+
+PARSE STACK                                 INPUT STACK   ACTION                   
+
+(0)                                (INTEGER X ^ INTEGER + INTEGER X + INTEGER $)   (SHIFT 3)                
+
+(0 INTEGER 3)                      (X ^ INTEGER + INTEGER X + INTEGER $)   (REDUCE 7 (MULTIPLIER -> INTEGER))
+
+(0 MULTIPLIER 5)                   (X ^ INTEGER + INTEGER X + INTEGER $)   (SHIFT 10)               
+
+(0 MULTIPLIER 5 X 10)              (^ INTEGER + INTEGER X + INTEGER $)   (SHIFT 13)               
+
+(0 MULTIPLIER 5 X 10 ^ 13)         (INTEGER + INTEGER X + INTEGER $)   (SHIFT 14)               
+
+(0 MULTIPLIER 5 X 10 ^ 13 INTEGER 14)(+ INTEGER X + INTEGER $)   (REDUCE 10 (POWER -> X ^ INTEGER))
+
+(0 MULTIPLIER 5 POWER 9)           (+ INTEGER X + INTEGER $)   (REDUCE 6 (TERM -> MULTIPLIER POWER))
+
+(0 TERM 4)                         (+ INTEGER X + INTEGER $)   (REDUCE 5 (POLY -> TERM))
+
+(0 POLY 2)                         (+ INTEGER X + INTEGER $)   (SHIFT 8)                
+
+(0 POLY 2 + 8)                     (INTEGER X + INTEGER $)   (SHIFT 3)                
+
+(0 POLY 2 + 8 INTEGER 3)                (X + INTEGER $)   (REDUCE 7 (MULTIPLIER -> INTEGER))
+
+(0 POLY 2 + 8 MULTIPLIER 5)             (X + INTEGER $)   (SHIFT 10)               
+
+(0 POLY 2 + 8 MULTIPLIER 5 X 10)          (+ INTEGER $)   (REDUCE 9 (POWER -> X))  
+
+(0 POLY 2 + 8 MULTIPLIER 5 POWER 9)       (+ INTEGER $)   (REDUCE 6 (TERM -> MULTIPLIER POWER))
+
+(0 POLY 2 + 8 TERM 12)                    (+ INTEGER $)   (REDUCE 4 (POLY -> POLY + TERM))
+
+(0 POLY 2)                                (+ INTEGER $)   (SHIFT 8)                
+
+(0 POLY 2 + 8)                              (INTEGER $)   (SHIFT 3)                
+
+(0 POLY 2 + 8 INTEGER 3)                            ($)   (REDUCE 7 (MULTIPLIER -> INTEGER))
+
+(0 POLY 2 + 8 MULTIPLIER 5)                         ($)   (REDUCE 11 (POWER -> EPSILON))
+
+(0 POLY 2 + 8 MULTIPLIER 5 POWER 9)                 ($)   (REDUCE 6 (TERM -> MULTIPLIER POWER))
+
+(0 POLY 2 + 8 TERM 12)                              ($)   (REDUCE 4 (POLY -> POLY + TERM))
+
+(0 POLY 2)                                          ($)   (REDUCE 3 (MOD -> EPSILON))
+
+(0 POLY 2 MOD 6)                                    ($)   (REDUCE 1 (S -> POLY MOD))
+
+(0 S 1)                                             ($)   (ACCEPT)                 
+
+Sentence was grammatical.
+
+
+
+
+Parsing the sentence: (X ^ INTEGER)
+
+PARSE STACK                                 INPUT STACK   ACTION                   
+
+(0)                                     (X ^ INTEGER $)   (REDUCE 8 (MULTIPLIER -> EPSILON))
+
+(0 MULTIPLIER 5)                        (X ^ INTEGER $)   (SHIFT 10)               
+
+(0 MULTIPLIER 5 X 10)                     (^ INTEGER $)   (SHIFT 13)               
+
+(0 MULTIPLIER 5 X 10 ^ 13)                  (INTEGER $)   (SHIFT 14)               
+
+(0 MULTIPLIER 5 X 10 ^ 13 INTEGER 14)                 ($)   (REDUCE 10 (POWER -> X ^ INTEGER))
+
+(0 MULTIPLIER 5 POWER 9)                            ($)   (REDUCE 6 (TERM -> MULTIPLIER POWER))
+
+(0 TERM 4)                                          ($)   (REDUCE 5 (POLY -> TERM))
+
+(0 POLY 2)                                          ($)   (REDUCE 3 (MOD -> EPSILON))
+
+(0 POLY 2 MOD 6)                                    ($)   (REDUCE 1 (S -> POLY MOD))
+
+(0 S 1)                                             ($)   (ACCEPT)                 
+
+Sentence was grammatical.
+
+
+
+
+Parsing the sentence: (INTEGER X + INTEGER)
+
+PARSE STACK                                 INPUT STACK   ACTION                   
+
+(0)                                (INTEGER X + INTEGER $)   (SHIFT 3)                
+
+(0 INTEGER 3)                           (X + INTEGER $)   (REDUCE 7 (MULTIPLIER -> INTEGER))
+
+(0 MULTIPLIER 5)                        (X + INTEGER $)   (SHIFT 10)               
+
+(0 MULTIPLIER 5 X 10)                     (+ INTEGER $)   (REDUCE 9 (POWER -> X))  
+
+(0 MULTIPLIER 5 POWER 9)                  (+ INTEGER $)   (REDUCE 6 (TERM -> MULTIPLIER POWER))
+
+(0 TERM 4)                                (+ INTEGER $)   (REDUCE 5 (POLY -> TERM))
+
+(0 POLY 2)                                (+ INTEGER $)   (SHIFT 8)                
+
+(0 POLY 2 + 8)                              (INTEGER $)   (SHIFT 3)                
+
+(0 POLY 2 + 8 INTEGER 3)                            ($)   (REDUCE 7 (MULTIPLIER -> INTEGER))
+
+(0 POLY 2 + 8 MULTIPLIER 5)                         ($)   (REDUCE 11 (POWER -> EPSILON))
+
+(0 POLY 2 + 8 MULTIPLIER 5 POWER 9)                 ($)   (REDUCE 6 (TERM -> MULTIPLIER POWER))
+
+(0 POLY 2 + 8 TERM 12)                              ($)   (REDUCE 4 (POLY -> POLY + TERM))
+
+(0 POLY 2)                                          ($)   (REDUCE 3 (MOD -> EPSILON))
+
+(0 POLY 2 MOD 6)                                    ($)   (REDUCE 1 (S -> POLY MOD))
+
+(0 S 1)                                             ($)   (ACCEPT)                 
+
+Sentence was grammatical.
+
+
+
+
+Parsing the sentence: (X + INTEGER)
+
+PARSE STACK                                 INPUT STACK   ACTION                   
+
+(0)                                     (X + INTEGER $)   (REDUCE 8 (MULTIPLIER -> EPSILON))
+
+(0 MULTIPLIER 5)                        (X + INTEGER $)   (SHIFT 10)               
+
+(0 MULTIPLIER 5 X 10)                     (+ INTEGER $)   (REDUCE 9 (POWER -> X))  
+
+(0 MULTIPLIER 5 POWER 9)                  (+ INTEGER $)   (REDUCE 6 (TERM -> MULTIPLIER POWER))
+
+(0 TERM 4)                                (+ INTEGER $)   (REDUCE 5 (POLY -> TERM))
+
+(0 POLY 2)                                (+ INTEGER $)   (SHIFT 8)                
+
+(0 POLY 2 + 8)                              (INTEGER $)   (SHIFT 3)                
+
+(0 POLY 2 + 8 INTEGER 3)                            ($)   (REDUCE 7 (MULTIPLIER -> INTEGER))
+
+(0 POLY 2 + 8 MULTIPLIER 5)                         ($)   (REDUCE 11 (POWER -> EPSILON))
+
+(0 POLY 2 + 8 MULTIPLIER 5 POWER 9)                 ($)   (REDUCE 6 (TERM -> MULTIPLIER POWER))
+
+(0 POLY 2 + 8 TERM 12)                              ($)   (REDUCE 4 (POLY -> POLY + TERM))
+
+(0 POLY 2)                                          ($)   (REDUCE 3 (MOD -> EPSILON))
+
+(0 POLY 2 MOD 6)                                    ($)   (REDUCE 1 (S -> POLY MOD))
+
+(0 S 1)                                             ($)   (ACCEPT)                 
+
+Sentence was grammatical.
+
+
+
+
+Parsing the sentence: (X)
+
+PARSE STACK                                 INPUT STACK   ACTION                   
+
+(0)                                               (X $)   (REDUCE 8 (MULTIPLIER -> EPSILON))
+
+(0 MULTIPLIER 5)                                  (X $)   (SHIFT 10)               
+
+(0 MULTIPLIER 5 X 10)                               ($)   (REDUCE 9 (POWER -> X))  
+
+(0 MULTIPLIER 5 POWER 9)                            ($)   (REDUCE 6 (TERM -> MULTIPLIER POWER))
+
+(0 TERM 4)                                          ($)   (REDUCE 5 (POLY -> TERM))
+
+(0 POLY 2)                                          ($)   (REDUCE 3 (MOD -> EPSILON))
+
+(0 POLY 2 MOD 6)                                    ($)   (REDUCE 1 (S -> POLY MOD))
+
+(0 S 1)                                             ($)   (ACCEPT)                 
+
+Sentence was grammatical.
+
+
+
+
+Parsing the sentence: (INTEGER)
+
+PARSE STACK                                 INPUT STACK   ACTION                   
+
+(0)                                         (INTEGER $)   (SHIFT 3)                
+
+(0 INTEGER 3)                                       ($)   (REDUCE 7 (MULTIPLIER -> INTEGER))
+
+(0 MULTIPLIER 5)                                    ($)   (REDUCE 11 (POWER -> EPSILON))
+
+(0 MULTIPLIER 5 POWER 9)                            ($)   (REDUCE 6 (TERM -> MULTIPLIER POWER))
+
+(0 TERM 4)                                          ($)   (REDUCE 5 (POLY -> TERM))
+
+(0 POLY 2)                                          ($)   (REDUCE 3 (MOD -> EPSILON))
+
+(0 POLY 2 MOD 6)                                    ($)   (REDUCE 1 (S -> POLY MOD))
+
+(0 S 1)                                             ($)   (ACCEPT)                 
+
+Sentence was grammatical.
+
+
+
+
+Parsing the sentence: NIL
+
+PARSE STACK                                 INPUT STACK   ACTION                   
+
+(0)                                                 ($)   (REDUCE 8 (MULTIPLIER -> EPSILON))
+
+(0 MULTIPLIER 5)                                    ($)   (REDUCE 11 (POWER -> EPSILON))
+
+(0 MULTIPLIER 5 POWER 9)                            ($)   (REDUCE 6 (TERM -> MULTIPLIER POWER))
+
+(0 TERM 4)                                          ($)   (REDUCE 5 (POLY -> TERM))
+
+(0 POLY 2)                                          ($)   (REDUCE 3 (MOD -> EPSILON))
+
+(0 POLY 2 MOD 6)                                    ($)   (REDUCE 1 (S -> POLY MOD))
+
+(0 S 1)                                             ($)   (ACCEPT)                 
+
+Sentence was grammatical.
+
+
+
+
+Parsing the sentence: (X ^)
+
+PARSE STACK                                 INPUT STACK   ACTION                   
+
+(0)                                             (X ^ $)   (REDUCE 8 (MULTIPLIER -> EPSILON))
+
+(0 MULTIPLIER 5)                                (X ^ $)   (SHIFT 10)               
+
+(0 MULTIPLIER 5 X 10)                             (^ $)   (SHIFT 13)               
+
+(0 MULTIPLIER 5 X 10 ^ 13)                          ($)   ERROR                    
+
+error - expecting one of the symbols INTEGER
+
+Sentence was not in the grammar.
+
+
+
+
+Parsing the sentence: (INTEGER INTEGER)
+
+PARSE STACK                                 INPUT STACK   ACTION                   
+
+(0)                                 (INTEGER INTEGER $)   (SHIFT 3)                
+
+(0 INTEGER 3)                               (INTEGER $)   ERROR                    
+
+error - expecting one of the symbols + $ COMMA X
+
+Sentence was not in the grammar.
+

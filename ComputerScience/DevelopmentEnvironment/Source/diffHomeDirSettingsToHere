@@ -1,0 +1,21 @@
+#!/bin/sh
+#
+# Diff startup shell scripts to this directory
+
+# Bourne Again Shell
+diff ~/.bash_profile      .bash_profile
+diff ~/.bashrc            .bashrc
+diff ~/.bash_logout       .bash_logout
+
+# Git configuration
+diff ~/.gitconfig         .gitconfig
+diff ~/.gitignore_global  .gitignore_global
+
+# Vim configuration
+diff ~/.vimrc             .vimrc
+
+# Ack configuration
+diff ~/.ackrc             .ackrc
+
+# Steel Bank Common Lisp
+diff ~/.sbclrc            .sbclrc

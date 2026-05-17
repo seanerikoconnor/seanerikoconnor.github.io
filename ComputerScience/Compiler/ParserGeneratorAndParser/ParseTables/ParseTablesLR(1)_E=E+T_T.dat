@@ -1,0 +1,593 @@
+;---------------------
+; LR(1) parse tables
+;---------------------
+;
+; Suitable for input to the Common Lisp program 
+;
+;     LR(1)AndLALR(1)Parser.lsp
+;
+
+; TERMINALS
+;
+
+(+ * [ ] ID $)
+
+;  PRODUCTIONS
+;
+;  Productions are numbered starting with 1.
+;  All alternates were expanded into separate productions.
+
+(
+  ( (1)   (E -> E + T) )
+  ( (2)   (E -> T) )
+  ( (3)   (T -> T * F) )
+  ( (4)   (T -> F) )
+  ( (5)   (F -> [ E ]) )
+  ( (6)   (F -> ID) )
+)
+
+;  GOTO GRAPH
+;                 
+;  Not needed for the parser, but here for reference and debugging.
+; **********
+;  Goto graph of the LR(1) or LALR(1) grammar of the form
+;                
+; (
+;   (                     <-- List of links.
+;       (6 |a| 4)         <-- Transition in Goto graph from state 6 to
+;                             state 4 on symbol a.
+;       (1 |a| 2)         <-- Transition from state 1 to state 2 on a.
+;   )
+;                   
+;   (                     <-- List of sets of items.
+;       ( 0                                <-- State number 0.
+;         3668                             <-- Hash value of core.
+;         (
+;            (SP -> DOT S           |,|  $)  ----+
+;            ( S -> DOT S |a| S |b| |,|  $)      |
+;            ( S -> DOT EPSILON     |,|  $)      +---- Set of items for state 0
+;            ( S -> DOT S |a| S |b| |,| |a|)     |
+;            ( S -> DOT EPSILON     |,| |a|)     |
+;         )                                  ----+
+;       ) 
+
+(
+    (
+        (-1 NIL 0)
+        (0 E 1)
+        (0 T 2)
+        (0 F 3)
+        (0 [ 4)
+        (0 ID 5)
+        (1 + 6)
+        (2 * 7)
+        (4 E 8)
+        (4 T 9)
+        (4 F 10)
+        (4 [ 11)
+        (4 ID 12)
+        (6 T 13)
+        (6 F 3)
+        (6 [ 4)
+        (6 ID 5)
+        (7 F 14)
+        (7 [ 4)
+        (7 ID 5)
+        (8 + 15)
+        (8 ] 16)
+        (9 * 17)
+        (11 E 18)
+        (11 T 9)
+        (11 F 10)
+        (11 [ 11)
+        (11 ID 12)
+        (13 * 7)
+        (15 T 19)
+        (15 F 10)
+        (15 [ 11)
+        (15 ID 12)
+        (17 F 20)
+        (17 [ 11)
+        (17 ID 12)
+        (18 + 15)
+        (18 ] 21)
+        (19 * 17)
+    )
+    (
+        (0
+        6959
+            (SP -> DOT E |,| $)
+            (E -> DOT E + T |,| $)
+            (E -> DOT T |,| $)
+            (E -> DOT E + T |,| +)
+            (E -> DOT T |,| +)
+            (T -> DOT T * F |,| $)
+            (T -> DOT F |,| $)
+            (T -> DOT T * F |,| +)
+            (T -> DOT F |,| +)
+            (T -> DOT T * F |,| *)
+            (T -> DOT F |,| *)
+            (F -> DOT [ E ] |,| $)
+            (F -> DOT ID |,| $)
+            (F -> DOT [ E ] |,| +)
+            (F -> DOT ID |,| +)
+            (F -> DOT [ E ] |,| *)
+            (F -> DOT ID |,| *)
+        )
+        (1
+        3265
+            (SP -> E DOT |,| $)
+            (E -> E DOT + T |,| $)
+            (E -> E DOT + T |,| +)
+        )
+        (2
+        3103
+            (E -> T DOT |,| $)
+            (E -> T DOT |,| +)
+            (T -> T DOT * F |,| $)
+            (T -> T DOT * F |,| +)
+            (T -> T DOT * F |,| *)
+        )
+        (3
+        1476
+            (T -> F DOT |,| $)
+            (T -> F DOT |,| +)
+            (T -> F DOT |,| *)
+        )
+        (4
+        7547
+            (F -> [ DOT E ] |,| $)
+            (F -> [ DOT E ] |,| +)
+            (F -> [ DOT E ] |,| *)
+            (E -> DOT E + T |,| ])
+            (E -> DOT T |,| ])
+            (E -> DOT E + T |,| +)
+            (E -> DOT T |,| +)
+            (T -> DOT T * F |,| ])
+            (T -> DOT F |,| ])
+            (T -> DOT T * F |,| +)
+            (T -> DOT F |,| +)
+            (T -> DOT T * F |,| *)
+            (T -> DOT F |,| *)
+            (F -> DOT [ E ] |,| ])
+            (F -> DOT ID |,| ])
+            (F -> DOT [ E ] |,| +)
+            (F -> DOT ID |,| +)
+            (F -> DOT [ E ] |,| *)
+            (F -> DOT ID |,| *)
+        )
+        (5
+        1647
+            (F -> ID DOT |,| $)
+            (F -> ID DOT |,| +)
+            (F -> ID DOT |,| *)
+        )
+        (6
+        6140
+            (E -> E + DOT T |,| $)
+            (E -> E + DOT T |,| +)
+            (T -> DOT T * F |,| $)
+            (T -> DOT F |,| $)
+            (T -> DOT T * F |,| +)
+            (T -> DOT F |,| +)
+            (T -> DOT T * F |,| *)
+            (T -> DOT F |,| *)
+            (F -> DOT [ E ] |,| $)
+            (F -> DOT ID |,| $)
+            (F -> DOT [ E ] |,| +)
+            (F -> DOT ID |,| +)
+            (F -> DOT [ E ] |,| *)
+            (F -> DOT ID |,| *)
+        )
+        (7
+        4288
+            (T -> T * DOT F |,| $)
+            (T -> T * DOT F |,| +)
+            (T -> T * DOT F |,| *)
+            (F -> DOT [ E ] |,| $)
+            (F -> DOT ID |,| $)
+            (F -> DOT [ E ] |,| +)
+            (F -> DOT ID |,| +)
+            (F -> DOT [ E ] |,| *)
+            (F -> DOT ID |,| *)
+        )
+        (8
+        3920
+            (F -> [ E DOT ] |,| $)
+            (F -> [ E DOT ] |,| +)
+            (F -> [ E DOT ] |,| *)
+            (E -> E DOT + T |,| ])
+            (E -> E DOT + T |,| +)
+        )
+        (9
+        3103
+            (E -> T DOT |,| ])
+            (E -> T DOT |,| +)
+            (T -> T DOT * F |,| ])
+            (T -> T DOT * F |,| +)
+            (T -> T DOT * F |,| *)
+        )
+        (10
+        1476
+            (T -> F DOT |,| ])
+            (T -> F DOT |,| +)
+            (T -> F DOT |,| *)
+        )
+        (11
+        7547
+            (F -> [ DOT E ] |,| ])
+            (F -> [ DOT E ] |,| +)
+            (F -> [ DOT E ] |,| *)
+            (E -> DOT E + T |,| ])
+            (E -> DOT T |,| ])
+            (E -> DOT E + T |,| +)
+            (E -> DOT T |,| +)
+            (T -> DOT T * F |,| ])
+            (T -> DOT F |,| ])
+            (T -> DOT T * F |,| +)
+            (T -> DOT F |,| +)
+            (T -> DOT T * F |,| *)
+            (T -> DOT F |,| *)
+            (F -> DOT [ E ] |,| ])
+            (F -> DOT ID |,| ])
+            (F -> DOT [ E ] |,| +)
+            (F -> DOT ID |,| +)
+            (F -> DOT [ E ] |,| *)
+            (F -> DOT ID |,| *)
+        )
+        (12
+        1647
+            (F -> ID DOT |,| ])
+            (F -> ID DOT |,| +)
+            (F -> ID DOT |,| *)
+        )
+        (13
+        4645
+            (E -> E + T DOT |,| $)
+            (E -> E + T DOT |,| +)
+            (T -> T DOT * F |,| $)
+            (T -> T DOT * F |,| +)
+            (T -> T DOT * F |,| *)
+        )
+        (14
+        3090
+            (T -> T * F DOT |,| $)
+            (T -> T * F DOT |,| +)
+            (T -> T * F DOT |,| *)
+        )
+        (15
+        6140
+            (E -> E + DOT T |,| ])
+            (E -> E + DOT T |,| +)
+            (T -> DOT T * F |,| ])
+            (T -> DOT F |,| ])
+            (T -> DOT T * F |,| +)
+            (T -> DOT F |,| +)
+            (T -> DOT T * F |,| *)
+            (T -> DOT F |,| *)
+            (F -> DOT [ E ] |,| ])
+            (F -> DOT ID |,| ])
+            (F -> DOT [ E ] |,| +)
+            (F -> DOT ID |,| +)
+            (F -> DOT [ E ] |,| *)
+            (F -> DOT ID |,| *)
+        )
+        (16
+        3305
+            (F -> [ E ] DOT |,| $)
+            (F -> [ E ] DOT |,| +)
+            (F -> [ E ] DOT |,| *)
+        )
+        (17
+        4288
+            (T -> T * DOT F |,| ])
+            (T -> T * DOT F |,| +)
+            (T -> T * DOT F |,| *)
+            (F -> DOT [ E ] |,| ])
+            (F -> DOT ID |,| ])
+            (F -> DOT [ E ] |,| +)
+            (F -> DOT ID |,| +)
+            (F -> DOT [ E ] |,| *)
+            (F -> DOT ID |,| *)
+        )
+        (18
+        3920
+            (F -> [ E DOT ] |,| ])
+            (F -> [ E DOT ] |,| +)
+            (F -> [ E DOT ] |,| *)
+            (E -> E DOT + T |,| ])
+            (E -> E DOT + T |,| +)
+        )
+        (19
+        4645
+            (E -> E + T DOT |,| ])
+            (E -> E + T DOT |,| +)
+            (T -> T DOT * F |,| ])
+            (T -> T DOT * F |,| +)
+            (T -> T DOT * F |,| *)
+        )
+        (20
+        3090
+            (T -> T * F DOT |,| ])
+            (T -> T * F DOT |,| +)
+            (T -> T * F DOT |,| *)
+        )
+        (21
+        3305
+            (F -> [ E ] DOT |,| ])
+            (F -> [ E ] DOT |,| +)
+            (F -> [ E ] DOT |,| *)
+        )
+    )
+)
+
+;  ACTION TABLE
+;
+;  (state
+;         (item)
+;         ...
+
+(
+    ( (0) 
+        (
+            ([ (S 4))
+            (ID (S 5))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (1) 
+        (
+            ($ (ACC NIL))
+            (+ (S 6))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (2) 
+        (
+            ($ (R 2))
+            (+ (R 2))
+            (* (S 7))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (3) 
+        (
+            ($ (R 4))
+            (+ (R 4))
+            (* (R 4))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (4) 
+        (
+            ([ (S 11))
+            (ID (S 12))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (5) 
+        (
+            ($ (R 6))
+            (+ (R 6))
+            (* (R 6))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (6) 
+        (
+            ([ (S 4))
+            (ID (S 5))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (7) 
+        (
+            ([ (S 4))
+            (ID (S 5))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (8) 
+        (
+            (] (S 16))
+            (+ (S 15))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (9) 
+        (
+            (] (R 2))
+            (+ (R 2))
+            (* (S 17))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (10) 
+        (
+            (] (R 4))
+            (+ (R 4))
+            (* (R 4))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (11) 
+        (
+            ([ (S 11))
+            (ID (S 12))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (12) 
+        (
+            (] (R 6))
+            (+ (R 6))
+            (* (R 6))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (13) 
+        (
+            ($ (R 1))
+            (+ (R 1))
+            (* (S 7))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (14) 
+        (
+            ($ (R 3))
+            (+ (R 3))
+            (* (R 3))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (15) 
+        (
+            ([ (S 11))
+            (ID (S 12))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (16) 
+        (
+            ($ (R 5))
+            (+ (R 5))
+            (* (R 5))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (17) 
+        (
+            ([ (S 11))
+            (ID (S 12))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (18) 
+        (
+            (] (S 21))
+            (+ (S 15))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (19) 
+        (
+            (] (R 1))
+            (+ (R 1))
+            (* (S 17))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (20) 
+        (
+            (] (R 3))
+            (+ (R 3))
+            (* (R 3))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (21) 
+        (
+            (] (R 5))
+            (+ (R 5))
+            (* (R 5))
+            (DEFAULT (ERROR))
+        )
+    )
+)
+
+;  GOTO TABLE
+;
+;  (state
+;         (item)
+;         ...
+
+(
+    ( (0) 
+        (
+            (E 1)
+            (T 2)
+            (F 3)
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (4) 
+        (
+            (E 8)
+            (T 9)
+            (F 10)
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (6) 
+        (
+            (T 13)
+            (F 3)
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (7) 
+        (
+            (F 14)
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (11) 
+        (
+            (E 18)
+            (T 9)
+            (F 10)
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (15) 
+        (
+            (T 19)
+            (F 10)
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (17) 
+        (
+            (F 20)
+            (DEFAULT (ERROR))
+        )
+    )
+)
+
+
+;  ERROR MESSAGE TABLE
+;
+;  If the action table has an error state, the other non-error
+;  actions show which symbol was failed to appear next on the input.
+;
+;  The user can modify these minimal error messages.
+
+
+
+(
+
+    ((0) ("error - expecting one of the symbols ID [")) 
+    ((1) ("error - expecting one of the symbols + $")) 
+    ((2) ("error - expecting one of the symbols * + $")) 
+    ((3) ("error - expecting one of the symbols * + $")) 
+    ((4) ("error - expecting one of the symbols ID [")) 
+    ((5) ("error - expecting one of the symbols * + $")) 
+    ((6) ("error - expecting one of the symbols ID [")) 
+    ((7) ("error - expecting one of the symbols ID [")) 
+    ((8) ("error - expecting one of the symbols + ]")) 
+    ((9) ("error - expecting one of the symbols * + ]")) 
+    ((10) ("error - expecting one of the symbols * + ]")) 
+    ((11) ("error - expecting one of the symbols ID [")) 
+    ((12) ("error - expecting one of the symbols * + ]")) 
+    ((13) ("error - expecting one of the symbols * + $")) 
+    ((14) ("error - expecting one of the symbols * + $")) 
+    ((15) ("error - expecting one of the symbols ID [")) 
+    ((16) ("error - expecting one of the symbols * + $")) 
+    ((17) ("error - expecting one of the symbols ID [")) 
+    ((18) ("error - expecting one of the symbols + ]")) 
+    ((19) ("error - expecting one of the symbols * + ]")) 
+    ((20) ("error - expecting one of the symbols * + ]")) 
+    ((21) ("error - expecting one of the symbols * + ]")) 
+)
+

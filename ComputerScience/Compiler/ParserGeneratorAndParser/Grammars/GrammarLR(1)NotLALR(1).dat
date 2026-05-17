@@ -1,0 +1,33 @@
+; ---------------------------------------------------------------------------
+; | File: grammar3.dat             Sean O'Connor                    5-30-89 |
+; ---------------------------------------------------------------------------
+;
+;  This is the grammar,
+;
+;     S -> a A d | b B d | a B e | b A e
+;     A -> c
+;     B -> c 
+;
+;  which is LR(1), but not LALR(1) --- it generates a reduce-reduce conflict.
+;
+;  Example 4.44, pages 237-238 of
+;
+;      COMPILERS: PRINCIPLES, TECHNIQUES, AND TOOLS,
+;      Alfred V. Aho, Ravi Sethi, and Jeffrey D. Ullman,
+;      Addison-Wesley, 1986
+;
+; ---------------------------------------------------------------------------
+
+
+;  Productions.
+
+( 
+   (S -> |a| A |d| / |b| B |d| / |a| B |e| / |b| A |e| )
+   (A -> |c|)
+   (B -> |c|)
+ )
+
+
+;  Terminal symbols.
+
+( |a| |b| |c| |d| |e| )

@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en-US">  <!-- Set language of this page to USA English. -->
+
+<!-- ===================================================================
+|
+| NAME
+|
+|     theory.html
+|
+| DESCRIPTION
+|
+|     This game of life theory web page.
+|     It is a hand-crafted HTML 5 W3C validated document.
+|
+| AUTHOR
+|
+|    Sean Erik O'Connor
+|
+=================================================================== -->
+
+    <head>
+        <!-- This page uses Unicode characters. -->
+        <meta charset="utf-8">
+
+        <!-- Set viewport to actual device width.  Any other settings makes the web page initially appear zoomed-in on mobile devices. -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Titles appear in the web browser and the browser's bookmarks. -->
+        <title>Game of Life Design Notes</title>
+
+        <!-- Search engines will show this description below the title. -->
+        <meta name="description" content="Design notes for the game of life implementation and algorithmic description.">
+
+        <meta name="author" content="Sean Erik O'Connor" >
+
+        <meta name="copyright" content="Copyright (C) 1999-2026 by Sean Erik O'Connor.  All Rights Reserved.">
+
+        <!-- Configure and load MathJax -->
+        <script src="../../../Scripts/load-mathjax.js" async></script>
+
+        <!-- Cascading style sheet for this document. -->
+        <link rel="stylesheet" href="../../../StyleSheet.css" type="text/css" />
+
+        <!-- Favicons are 32x32 or 16x16, 8 or 24 bit PNG Images which show up left of the web page title in a browser.  -->
+        <link rel="icon" type="image/png" href="../../../Images/favicon.png" >
+    </head>
+
+    <body class="technicalReport">
+
+        <!-- This wraps the whole body in a CSS grid. -->
+        <div class="wrapper technicalReport">
+
+            <!-- Title page at the top.  -->
+            <header class="title">
+                <h1>GAME OF LIFE DESIGN NOTES</h1>
+                <hr>
+            </header>
+
+            <!-- Horizontal navigation bar to all top level pages. -->
+            <header class="navigation">
+                <a href="../../../index.html">
+                    <img src="../../../Images/home.png" alt="Home Page Button."
+                         width="32" height="32" />
+                     <em>Home</em>
+                 </a>
+
+                 <a href="../../../Mathematics/mathematicalSoftware.html">
+                     <img src="../../../Images/compactDisk.png" alt="Mathematical Software Button."
+                          width="32" height="32" />
+                      <em>Mathematical Software</em>
+                 </a>
+
+                 <a href="../../../Art/Art.html">
+                     <img src="../../../Images/sampleArtLowRes.png" alt="Art Button."
+                          width="32" height="32" />
+                      <em>Fine Arts</em>
+                 </a>
+
+                 <a href="../../../WebPageDesign/webPageDesign.html">
+                     <img src="../../../Images/webPage.png" alt="Web Page Design Button." height="32" width="32" >
+                      <em>Web Page Design</em>
+                 </a>
+
+                 <a href="../../../Electronics/Electronics.html">
+                     <img src="../../../Images/sparkCoil.png" alt="Hobby Electronics Button." width="32" height="32" >
+                      <em>Hobby Electronics</em>
+                 </a>
+
+                 <a href="../../../ReadingList/readingList.html">
+                      <img src="../../../Images/terraApollo17NASALowRes.png"
+                           alt="Reading List Button."
+                           width="32" height="32" />
+                      <em>Reading list</em>
+                </a>
+            </header>
+
+            <!-- A decorative border at the left side of the page. -->
+            <aside class=border>
+                  <img class="border"
+                       src="../../../Images/sinXYPlot.png"
+                       alt="Sin( x y ) Image Border." />
+            </aside>
+
+            <nav>
+                <ul>
+                   <li><a href="#Introduction">Introduction</a></li>
+                   <li><a href="#FileFormat">.LIF File Format</a></li>
+                   <li><a href="#ConComp">Finding Connected Components</a></li>
+                   <li><a href="#References">More Information</a></li>
+               </ul>
+            </nav>
+
+            <!-- The main content of this page. -->
+            <article class="content">
+                <section>
+                    <h3 id="Introduction">Introduction</h3>
+
+                    <p>
+                    Life is played on a two dimensional game board which is partitioned
+                    into cells.  
+                    Cells may be occupied with counters.  
+                    The default (Conway) rules are:
+                    </p>
+
+                    <ul>
+                        <li>1.  BIRTH.  Each empty cell adjacent to exactly 3 neighbors will have a
+                        birth in the next generation.  Otherwise, the cell remains empty.
+                        </li>
+
+                        <li>2.  DEATH.  Each occupied cell with exactly 0 or 1 neighbors dies of 
+                        isolation and loneliness.  Each occupied cell with 4 or more 
+                        neighbors dies of overpopulation.
+                        </li>
+
+                         <li>3.  SURVIVAL.  Each occupied cell with exactly 2 or 3 neighbors survives 
+                         to the next generation.
+                         </li>
+                    </ul>
+
+                    <p>
+                    The HiLife variant has the additional stipulation that 6 neighbors also give a
+                    birth in the next generation.
+                    In this set of rules there is an object called the replicator.
+                    </p>
+
+                    <p>
+                    All births and deaths occur simultaneously.  Applying all rules to an 
+                    entire board creates a new generation.  Ultimately, the society dies 
+                    out, reaches some steady state (constant or oscillating).
+                    </p>
+
+                    <p>
+                    The ideal game board is infinite.  For this program, we wrap around 
+                    at the boundaries of the board, so topologically, we play on a torus.
+                    </p>
+
+                    <p>
+                    Currently, the game board is set to to a fixed size of 200 x 200 cells.
+                    This value is adjustable in the header file winlife.h
+                    </p>
+
+                    <p>
+                    The game board wraps around the left edge to the right edge and the top
+                    edge to the bottom edge.
+                    Topologically, it is a torus.
+                    </p>
+                </section>
+
+                <section>
+                    <h3 id="FileFormat">.LIF File Format</h3>
+
+                    <p>
+                    There are a few <a href="http://www.mirekw.com/ca/ca_files_formats.html">life file formats</a>.
+                    </p>
+
+                    <h4>Alan Hensel's writers.doc file for Life 1.05</h4>
+
+                    <p>
+                    The first line of a .LIF file always identifies the kind of format
+                    it uses, for compatibility purposes.  The standard is:
+                    </p>
+
+                    <code>
+#Life 1.05
+                    </code>
+
+                    <p>
+                    where 1.05 is the current format version number.  A lower number is
+                    acceptable, and a higher number means that something may be outside
+                    these specifications.  1.05 is the latest.
+                    </p>
+
+                    <p>
+                    The "#Life" line is followed by optional description lines, which
+                    begin with "#D" and are followed by no more than 78 characters of
+                    text.  Leading and trailing spaces are ignored, so the following two
+                    "#D" lines are equivalent:
+                    </p>
+
+                    <code>
+#D&nbsp;This is a Description line
+
+#D&nbsp;&nbsp;&nbsp;&nbsp;This is a Description line   
+                    </code>
+
+                    <p>
+                    There should be no more than 22 "#D" lines in a .LIF file.
+                    </p>
+
+                    <p>
+                    Next comes an optional rule specification.  If no rules are
+                    specified, then the pattern will run with whatever rules the Life
+                    program is currently set to.  The patterns in the collection here
+                    enforce "Normal" Conway rules using the "#N" specifier.  Alternate
+                    rules use "#R" ("#N" is exactly the same as "#R 23/3").
+                    </p>
+
+                    <p>
+                    Rules are encoded as Survival/Birth, each list being a string of
+                    digits representing neighbor counts.  Since there are exactly eight
+                    possible neighbors in a Conway-like rule, there is no need to
+                    separate the digits, and "9" is prohibited in both lists.
+                    </p>
+
+                    <p>
+                    For example,
+                    </p>
+
+                    <code>
+#R 125/36
+                    </code>
+
+                    <p>
+                    means that the pattern should be run in a universe where 1, 2, or 5
+                    neighbors are necessary for a cell's survival, and 3 or 6 neighbors
+                    allows a cell to come alive.
+                    </p>
+
+                    <p>
+                    Next come the cell blocks.  Each cell block begins with a "#P" line,
+                    followed by "x y" coordinates of the upper-left hand corner of the
+                    block, assuming that 0 0 is the center of the current window to the
+                    Life universe.
+                    </p>
+
+                    <p>
+                    This is followed by lines that draw out the pattern in a visual way,
+                    using the "." and "*" characters (off, on).  Each line must be
+                    between 1 and 80 characters wide, inclusive; therefore, a blank line
+                    is represented by a single dot, whereas any other line may truncate
+                    all dots to the right of the last "*".  There is no limit to the
+                    number of lines in a cell block.
+                    </p>
+
+                    <p>
+                    Any line of zero length (just another carriage return) is completely
+                    ignored.  Carriage returns are MSDOS-style (both 10 and 13).
+                    </p>
+
+                    <p>
+                    <b>About Xlife compatibility:</b>
+
+                    Xlife recognizes the symbol "#C" for a comment, instead of "#D".
+                    The default extension is ".life" instead of ".LIF".  Wlife (a port
+                    of Xlife for Microsoft Windows) does not have these compatibility
+                    problems.
+                    </p>
+                </section>
+
+                <section>
+                    <h3 id="ConComp">Finding Connected Components</h3>
+
+                    <h4>Introduction</h4>
+
+                    <p>
+                    To find clusters of counters, we adapt Tarjan's depth first search graph traversal algorithm for finding 
+                    the connected components of a graph. 
+                    </p>
+
+                    <p>
+                    We treat the cells as 8-connected nodes in a graph, where only occupied cells have edge links, 
+                    i.e. we traverse only from one occupied cell to its occupied neighbor.
+                    </p>
+
+                    <p>
+                    The algorithm is from the book 
+                    <a href="http://books.google.com/books/about/Graph_Algorithms.html?id=m3QTSMYm5rkC">Graph Algorithms</a> by Shimon Even.
+                    </p>
+
+                    <h4>Pseudocode</h4>
+
+                    <code>
+                    for cell in GameBoard
+                    <i>cell.label = cell.edge = cell.father = 0</i>   <em>Clear all cell's labels, edges and fathers.</em>
+                    </code>
+
+                    <code>
+                    for cell in GameBoard
+                    <i>if startcell.occupied and startcell.label = 0</i>   <em>Find next occupied unlabelled cell.</em>
+                    <i><i>label = CreateNewLabel()</i></i>
+                    <i><i><strong>DepthFirstTraversal( startcell, label )</strong></i></i>
+                    </code>
+
+                    <code>
+                    <strong>define DepthFirstTraversal( startcell, startlabel )</strong>
+                    cell = startcell
+                    cell.label = -1     <em>Label this cell with the starting label.</em>
+
+                    forever
+                    <i>edge = FindNextUnmarkedEdge( cell )</i>
+                    <i>if (there exists an unmarked edge e)</i>
+                    <i><i>nextCell = nextCell( cell, edge )</i></i> <em>Follow edge to next cell.</em>
+                    <i><i>markEdges( cell, nextCell )</i></i> <em>Mark edges between cells.</em>
+                    <i><i>if (nextCell.occupied and nextCell.label = 0)</i></i>
+                    <i><i><i>nextCell.father = cell</i></i></i> <em>Cell was entered for the first time.  Record the father.</em>
+                    <i><i><i>cell.label = startlabel</i></i></i> <em>Label the cell</em>
+                    <i><i><i>cell = nextCell</i></i></i> <em>Step to next cell.</em>
+                    <i><i>else</i></i> <em>New cell was either already labelled or unoccupied.</em>
+                    <i><i><i>Pretend we've traversed the edge twice.</i></i></i>
+                    <i>else</i>  <em>All edges were marked.</em>
+                    <i><i>if (cell.label = -1)</i></i> <em>Back at the starting cell.</em>
+                    <i><i><i>break</i></i></i>
+                    <i><i>cell = cell.father</i></i> <em>Backtrack along the father edge.</em>
+                    </code>
+
+                    <figure>
+                        <img src="Images/Fig06.png" >
+
+                        <figcaption>
+                        Some of the cases in the pseudocode.
+                        </figcaption>
+                    </figure>
+
+                    <h4>Proof of Correctness</h4>
+
+                    <h5>Can't traverse edges twice in the same direction.</h5>
+
+                    <figure>
+                        <img src="Images/Fig03.png" >
+
+                        <figcaption>
+                        Can't traverse edges twice.
+                        </figcaption>
+                    </figure>
+
+                    <p>
+                    We can't traverse an edge twice in a marked direction because the algorithm 
+                    won't permit it.
+                    So we must show that we can't traverse an edge twice in the backtrack direction.
+                    </p>
+
+                    <p>
+                    Assume to the contrary that $e$ is the first edge traversed twice in the same direction, from $u \rightarrow v$
+                    We must have marked all edges of $u$, else we wouldn't be backtracking out of it now along $e$.
+                    </p>
+
+                    <p>
+                    Now $u \neq s$, the start vertex because $s$ has no father vertex.
+                    </p>
+
+                    <p>
+                    Now what about an edge $e' \ne e$ incident on $u$?  $e'$ is not a backtrack edge since there can be only one father.
+                    </p>
+
+                    <p>
+                    Suppose $e'$ is unmarked.  We either marked it upon leaving $u$, or we entered $u$ by it, marking it and then left along it again since $u \ne $s and $s$ is already labelled.
+                    </p>
+
+                    <p>
+                    After $e'$ is marked, we cannot leave $u$ by it.
+                    </p>
+
+                    <p>
+                    Thus we leave $u$ $d(u) + 1$ times, once along each of the other marked edges $e'$, and twice along $e$.
+                    </p>
+
+                    <p>
+                    Thus we must have entered $d(u) + 1$ times, but then some other edge $e'$ must have been entered twice, contradicting our assumption. $\blacksquare$
+                    </p>
+
+
+                    <h5>The algorithm always terminates.</h5>
+
+                    <p>
+                    We either mark an edge $e$ or backtrack along it.
+                    From above, once we've done both to edge $e$ any further traversals are impossible.
+                    Thus the number of edges we can traverse decreases to zero eventually. $\blacksquare$
+                    </p>
+
+                    <h5>We must terminate in the starting vertex $s$.</h5>
+
+                    <p>
+                    So we must terminate from above.  But we can't terminate in any node $u \neq s$.  The algorithm would either force us to exit along an unmarked edge or backtrack out of $u$ to its father.  And only the start node $s$ has no father.  So we must terminate in $s$. $\blacksquare$
+                    </p>
+
+                    <h5>The start vertex $s$, has all its edges traversed once in each direction. </h5>
+
+                    <p>
+                    Upon termination in s, all outward edges were marked or else the algorithm
+                    would make us leave again.
+                    We started in $s$ and ended in $s$ so the number of entrances and exits must be the same.
+                    But since we can't traverse the same edge twice in the same direction, we must have traversed each edge once in each direction. $\blacksquare$
+                    </p>
+
+
+                    <h5>Upon termination, we've traversed all edges in the graph once in each direction.</h5>
+
+                    <figure>
+                        <img src="Images/Fig04.png" >
+
+                        <figcaption>All edges have been traversed.</figcaption>
+                    </figure>
+
+                    <p>
+                    Let $S = \text{ vertices whose edges were traversed once in each direction }$.
+                    This contains the starting vertex $s$ at least.
+                    </p>
+
+                    <p>
+                    Then $V-S = \text{ remaining vertices whose edges haven't been traversed once in each direction}$. 
+                    If this is empty, we're done, so assume it isn't empty.
+                    </p>
+
+                    <p>
+                    Let $e$ be the first edge traversed from node $v \in S$ to $u \in V-S$.
+                    Then $father( u ) = v$.
+                    Since $e$ connects to $v \in S$ this edge $e$ must have been traversed once in each direction.
+                    But then all other edges $e'$ and $e''$, etc. must have been marked already, since only then can we backtrack exit along $e$.
+                    So we must have left $u$ $d(u)$ times.
+                    But $u \ne s$, so we must have entered $u$ $d(u)$ times.
+                    Thus all edges of $u$ must have been traversed once in each direction, making $u \in S$, a contradiction.
+                    $\blacksquare$
+                    </p>
+                </section>
+
+                <section>
+                    <h3 id="References">More Information</h3>
+
+                    <p>
+                        See 
+                        <a href="http://www.ibiblio.org/lifepatterns/october1970.html">Mathematical Games, SCIENTIFIC AMERICAN, Vol. 223, No. 4, October 1970, pgs. 120-123</a>
+                        for an early description of the game and its origins and 
+                            <a href="http://www.conwaylife.com/wiki/Conway%27s_Game_of_Life">Conway's Game of Life Wiki</a>.
+                        for more information.
+                    </p>
+               </section>
+            </article>
+
+            <footer class="footnote">
+                <hr>
+
+                <!-- A copyright to preserve my legal rights. -->
+                <p class="footnote">
+                    Copyright &copy; 1986-2026 by Sean Erik O'Connor.
+                    All Rights Reserved.
+                    &nbsp;&nbsp;&nbsp;
+                    last updated 27 Feb 26.
+                </p>
+            </footer>
+        </div> <!-- wrapper -->
+    </body>
+</html>

@@ -1,0 +1,182 @@
+
+        <!DOCTYPE html>
+        <html lang="en-US">  <!-- Set language of this page to USA English. -->
+        
+        <head>
+            <!-- This page uses Unicode characters. -->
+            <meta charset="utf-8">
+        
+            <!-- Set viewport to actual device width.  Any other settings makes the web page initially appear zoomed-in on mobile devices. -->
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+            <!-- Title appears in the web browser tab for this page.  The browser also uses it to bookmark this page. -->
+            <title>Sean Erik O'Connor - Home Page and Free Mathematical Software.</title>
+        
+            <!-- Search engines will search using words in this description.  They will also display title in their search results. -->
+            <meta name="description" content="Syntax Colored Source Code Listing">
+        
+            <!-- Some content management software uses the author's name. -->
+            <meta name="author" content="Sean Erik O'Connor">
+        
+            <meta name="copyright" content="Copyright (C) 1986-2026 by Sean Erik O'Connor.  All Rights Reserved.">   
+        
+            <!-- Begin style sheet insertion -->
+            <style>
+                /* Default settings for all my main web pages. */
+                body
+                {
+                    /* A wide sans-serif font is more readable on the web. */
+                    font-family:            Verdana, Geneva, "Trebuchet MS", sans-serif ;
+        
+                    /* Set the body font size a little smaller than the user's default browser setting. */
+                    font-size:              0.8em ; 
+        
+                    /* Black text is easier to read. */
+                    color:                  black ;
+        
+                    /*  More vertical space between lines for more pleasant reading.  Use a unitless font height multiplier.  
+                        Length and percentage percentage values can give scrunched text due to poor inheritance behavior. */
+                    line-height:            1.7 ;
+                }
+        
+                <!-- Now prepare to add the syntax coloring style sheet from Pygment -->
+        pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.highlight .hll { background-color: #ffffcc }
+.highlight { background: #f8f8f8; }
+.highlight .c { color: #3D7B7B; font-style: italic } /* Comment */
+.highlight .err { border: 1px solid #F00 } /* Error */
+.highlight .k { color: #008000; font-weight: bold } /* Keyword */
+.highlight .o { color: #666 } /* Operator */
+.highlight .ch { color: #3D7B7B; font-style: italic } /* Comment.Hashbang */
+.highlight .cm { color: #3D7B7B; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #9C6500 } /* Comment.Preproc */
+.highlight .cpf { color: #3D7B7B; font-style: italic } /* Comment.PreprocFile */
+.highlight .c1 { color: #3D7B7B; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #3D7B7B; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #A00000 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .ges { font-weight: bold; font-style: italic } /* Generic.EmphStrong */
+.highlight .gr { color: #E40000 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #008400 } /* Generic.Inserted */
+.highlight .go { color: #717171 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #04D } /* Generic.Traceback */
+.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #B00040 } /* Keyword.Type */
+.highlight .m { color: #666 } /* Literal.Number */
+.highlight .s { color: #BA2121 } /* Literal.String */
+.highlight .na { color: #687822 } /* Name.Attribute */
+.highlight .nb { color: #008000 } /* Name.Builtin */
+.highlight .nc { color: #00F; font-weight: bold } /* Name.Class */
+.highlight .no { color: #800 } /* Name.Constant */
+.highlight .nd { color: #A2F } /* Name.Decorator */
+.highlight .ni { color: #717171; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #CB3F38; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #00F } /* Name.Function */
+.highlight .nl { color: #767600 } /* Name.Label */
+.highlight .nn { color: #00F; font-weight: bold } /* Name.Namespace */
+.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #19177C } /* Name.Variable */
+.highlight .ow { color: #A2F; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #BBB } /* Text.Whitespace */
+.highlight .mb { color: #666 } /* Literal.Number.Bin */
+.highlight .mf { color: #666 } /* Literal.Number.Float */
+.highlight .mh { color: #666 } /* Literal.Number.Hex */
+.highlight .mi { color: #666 } /* Literal.Number.Integer */
+.highlight .mo { color: #666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
+.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
+.highlight .se { color: #AA5D1F; font-weight: bold } /* Literal.String.Escape */
+.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.highlight .si { color: #A45A77; font-weight: bold } /* Literal.String.Interpol */
+.highlight .sx { color: #008000 } /* Literal.String.Other */
+.highlight .sr { color: #A45A77 } /* Literal.String.Regex */
+.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #00F } /* Name.Function.Magic */
+.highlight .vc { color: #19177C } /* Name.Variable.Class */
+.highlight .vg { color: #19177C } /* Name.Variable.Global */
+.highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
+.highlight .il { color: #666 } /* Literal.Number.Integer.Long */
+            </style>
+        </head>
+        
+        <body>
+            <article class="content">
+        <div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="go">[user]</span>
+<span class="linenos"> 2</span><span class="go">    # Identify me as a user on git.</span>
+<span class="linenos"> 3</span><span class="go">	email = seanerikoconnor@gmail.com</span>
+<span class="linenos"> 4</span><span class="go">	name = Sean Erik O&#39;Connor</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="go">[core]</span>
+<span class="linenos"> 7</span><span class="go">    # I use the Vim editor.</span>
+<span class="linenos"> 8</span><span class="go">	editor = vim</span>
+<span class="linenos"> 9</span><span class="go">	excludesfile = /Users/seanoconnor/.gitignore_global</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="go">[merge]</span>
+<span class="linenos">12</span><span class="go">    # I use Apple opendiff.</span>
+<span class="linenos">13</span><span class="go">	tool = opendiff</span>
+<span class="linenos">14</span><span class="go">	conflictstyle = diff3</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span><span class="go">[difftool]</span>
+<span class="linenos">17</span><span class="go">  prompt = false # Don&#39;t prompt the user to hit RETURN before the next file difference.</span>
+<span class="linenos">18</span>
+<span class="linenos">19</span><span class="go">[difftool &quot;opendiff&quot;]</span>
+<span class="linenos">20</span><span class="go">    #  cmd = echo &#39;base(ancestor base for the merge) = &#39; \&quot;$BASE\&quot; &#39;local(file on current branch) </span>
+<span class="linenos">21</span><span class="go">    #= &#39; \&quot;$LOCAL\&quot; &#39;remote(file to be merged) = &#39; \&quot;$REMOTE\&quot;  &#39;merged(what mergetool should write) = &#39; \&quot;$MERGED\&quot;</span>
+<span class="linenos">22</span><span class="go">    cmd = opendiff \&quot;$LOCAL\&quot; \&quot;$REMOTE\&quot; -merge \&quot;$MERGED\&quot;</span>
+<span class="linenos">23</span>
+<span class="linenos">24</span><span class="go">[mergetool &quot;opendiff&quot;]</span>
+<span class="linenos">25</span><span class="go">	cmd = opendiff \&quot;$LOCAL\&quot; \&quot;$REMOTE\&quot; -ancestor \&quot;$BASE\&quot; -merge \&quot;$MERGED\&quot;</span>
+<span class="linenos">26</span><span class="go">	trustExitCode = true</span>
+<span class="linenos">27</span>
+<span class="linenos">28</span><span class="go">[push]</span>
+<span class="linenos">29</span><span class="go">	default = simple</span>
+<span class="linenos">30</span>
+<span class="linenos">31</span><span class="go">[credential]</span>
+<span class="linenos">32</span><span class="go">	helper = cache</span>
+<span class="linenos">33</span>
+<span class="linenos">34</span><span class="go">[alias]</span>
+<span class="linenos">35</span><span class="go">    # Custom shorthands for commands.</span>
+<span class="linenos">36</span><span class="go">	unstage = reset HEAD --</span>
+<span class="linenos">37</span><span class="go">	uncheckin = checkout --</span>
+<span class="linenos">38</span><span class="go">    </span>
+<span class="linenos">39</span><span class="go">[difftool &quot;sourcetree&quot;]</span>
+<span class="linenos">40</span><span class="go">    cmd = opendiff \&quot;$LOCAL\&quot; \&quot;$REMOTE\&quot;</span>
+<span class="linenos">41</span><span class="go">	path = </span>
+<span class="linenos">42</span>
+<span class="linenos">43</span><span class="go">[mergetool &quot;sourcetree&quot;]</span>
+<span class="linenos">44</span><span class="go">	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \&quot;$LOCAL\&quot; \&quot;$REMOTE\&quot; -ancestor \&quot;$BASE\&quot; -merge \&quot;$MERGED\&quot;</span>
+<span class="linenos">45</span><span class="go">	trustExitCode = true</span>
+<span class="linenos">46</span>
+<span class="linenos">47</span><span class="go">[commit]</span>
+<span class="linenos">48</span><span class="go">	template = /Users/seanoconnor/.stCommitMsg</span>
+<span class="linenos">49</span><span class="go">[filter &quot;lfs&quot;]</span>
+<span class="linenos">50</span><span class="go">	clean = git-lfs clean -- %f</span>
+<span class="linenos">51</span><span class="go">	smudge = git-lfs smudge -- %f</span>
+<span class="linenos">52</span><span class="go">	process = git-lfs filter-process</span>
+<span class="linenos">53</span><span class="go">	required = true</span>
+</pre></div>
+
+            </article>
+        </body>
+        
+        </html>
+        

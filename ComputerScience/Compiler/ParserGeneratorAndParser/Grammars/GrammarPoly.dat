@@ -1,0 +1,29 @@
+;  GrammarPoly.dat
+;
+; ---------------------------------------------------------------------------
+;
+;  Grammar for a polynomial with an optional modulus.
+;  Examples:  
+;
+;       x ^ 2 + 1
+;       3 x ^ 5 + 2 x + 1, 3
+;       x, 2
+;       5
+;
+; ---------------------------------------------------------------------------
+
+;  Productions.
+
+( 
+    (S          -> Poly Mod)
+    (Mod        -> comma integer / EPSILON)
+    (Poly       -> Poly + Term / Term)
+    (Term       -> Multiplier Power)
+    (Multiplier -> integer / EPSILON)
+    (Power      -> x / x ^ integer / EPSILON )
+)
+
+
+;  Terminal symbols.
+
+( comma + integer ^ x )

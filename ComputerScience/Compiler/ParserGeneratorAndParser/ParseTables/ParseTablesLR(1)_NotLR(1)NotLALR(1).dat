@@ -1,0 +1,408 @@
+;---------------------
+; LR(1) parse tables
+;---------------------
+;
+; Suitable for input to the Common Lisp program 
+;
+;     LR(1)AndLALR(1)Parser.lsp
+;
+
+; TERMINALS
+;
+
+(|a| |b| $)
+
+;  PRODUCTIONS
+;
+;  Productions are numbered starting with 1.
+;  All alternates were expanded into separate productions.
+
+(
+  ( (1)   (S -> A S) )
+  ( (2)   (S -> |b|) )
+  ( (3)   (A -> S A) )
+  ( (4)   (A -> |a|) )
+)
+
+;  GOTO GRAPH
+;                 
+;  Not needed for the parser, but here for reference and debugging.
+; **********
+;  Goto graph of the LR(1) or LALR(1) grammar of the form
+;                
+; (
+;   (                     <-- List of links.
+;       (6 |a| 4)         <-- Transition in Goto graph from state 6 to
+;                             state 4 on symbol a.
+;       (1 |a| 2)         <-- Transition from state 1 to state 2 on a.
+;   )
+;                   
+;   (                     <-- List of sets of items.
+;       ( 0                                <-- State number 0.
+;         3668                             <-- Hash value of core.
+;         (
+;            (SP -> DOT S           |,|  $)  ----+
+;            ( S -> DOT S |a| S |b| |,|  $)      |
+;            ( S -> DOT EPSILON     |,|  $)      +---- Set of items for state 0
+;            ( S -> DOT S |a| S |b| |,| |a|)     |
+;            ( S -> DOT EPSILON     |,| |a|)     |
+;         )                                  ----+
+;       ) 
+
+(
+    (
+        (-1 NIL 0)
+        (0 S 1)
+        (0 A 2)
+        (0 |b| 3)
+        (0 |a| 4)
+        (1 S 5)
+        (1 A 6)
+        (1 |b| 7)
+        (1 |a| 4)
+        (2 S 8)
+        (2 A 2)
+        (2 |b| 3)
+        (2 |a| 4)
+        (5 S 5)
+        (5 A 6)
+        (5 |b| 7)
+        (5 |a| 4)
+        (6 S 9)
+        (6 A 10)
+        (6 |b| 7)
+        (6 |a| 4)
+        (8 S 5)
+        (8 A 6)
+        (8 |b| 7)
+        (8 |a| 4)
+        (9 S 5)
+        (9 A 6)
+        (9 |b| 7)
+        (9 |a| 4)
+        (10 S 9)
+        (10 A 10)
+        (10 |b| 7)
+        (10 |a| 4)
+    )
+    (
+        (0
+        4872
+            (SP -> DOT S |,| $)
+            (S -> DOT A S |,| $)
+            (S -> DOT |b| |,| $)
+            (A -> DOT S A |,| |b|)
+            (A -> DOT S A |,| |a|)
+            (A -> DOT |a| |,| |b|)
+            (A -> DOT |a| |,| |a|)
+            (S -> DOT A S |,| |a|)
+            (S -> DOT A S |,| |b|)
+            (S -> DOT |b| |,| |a|)
+            (S -> DOT |b| |,| |b|)
+        )
+        (1
+        7062
+            (SP -> S DOT |,| $)
+            (A -> S DOT A |,| |b|)
+            (A -> S DOT A |,| |a|)
+            (A -> DOT S A |,| |b|)
+            (A -> DOT |a| |,| |b|)
+            (A -> DOT S A |,| |a|)
+            (A -> DOT |a| |,| |a|)
+            (S -> DOT A S |,| |a|)
+            (S -> DOT A S |,| |b|)
+            (S -> DOT |b| |,| |a|)
+            (S -> DOT |b| |,| |b|)
+        )
+        (2
+        5328
+            (S -> A DOT S |,| $)
+            (S -> A DOT S |,| |a|)
+            (S -> A DOT S |,| |b|)
+            (S -> DOT A S |,| $)
+            (S -> DOT |b| |,| $)
+            (S -> DOT A S |,| |a|)
+            (S -> DOT |b| |,| |a|)
+            (S -> DOT A S |,| |b|)
+            (S -> DOT |b| |,| |b|)
+            (A -> DOT S A |,| |b|)
+            (A -> DOT S A |,| |a|)
+            (A -> DOT |a| |,| |b|)
+            (A -> DOT |a| |,| |a|)
+        )
+        (3
+        1557
+            (S -> |b| DOT |,| $)
+            (S -> |b| DOT |,| |a|)
+            (S -> |b| DOT |,| |b|)
+        )
+        (4
+        1500
+            (A -> |a| DOT |,| |b|)
+            (A -> |a| DOT |,| |a|)
+        )
+        (5
+        5310
+            (A -> S DOT A |,| |b|)
+            (A -> S DOT A |,| |a|)
+            (A -> DOT S A |,| |b|)
+            (A -> DOT |a| |,| |b|)
+            (A -> DOT S A |,| |a|)
+            (A -> DOT |a| |,| |a|)
+            (S -> DOT A S |,| |a|)
+            (S -> DOT A S |,| |b|)
+            (S -> DOT |b| |,| |a|)
+            (S -> DOT |b| |,| |b|)
+        )
+        (6
+        7532
+            (A -> S A DOT |,| |b|)
+            (A -> S A DOT |,| |a|)
+            (S -> A DOT S |,| |a|)
+            (S -> A DOT S |,| |b|)
+            (S -> DOT A S |,| |a|)
+            (S -> DOT |b| |,| |a|)
+            (S -> DOT A S |,| |b|)
+            (S -> DOT |b| |,| |b|)
+            (A -> DOT S A |,| |b|)
+            (A -> DOT S A |,| |a|)
+            (A -> DOT |a| |,| |b|)
+            (A -> DOT |a| |,| |a|)
+        )
+        (7
+        1557
+            (S -> |b| DOT |,| |a|)
+            (S -> |b| DOT |,| |b|)
+        )
+        (8
+        7586
+            (S -> A S DOT |,| $)
+            (S -> A S DOT |,| |a|)
+            (S -> A S DOT |,| |b|)
+            (A -> S DOT A |,| |b|)
+            (A -> S DOT A |,| |a|)
+            (A -> DOT S A |,| |b|)
+            (A -> DOT |a| |,| |b|)
+            (A -> DOT S A |,| |a|)
+            (A -> DOT |a| |,| |a|)
+            (S -> DOT A S |,| |a|)
+            (S -> DOT A S |,| |b|)
+            (S -> DOT |b| |,| |a|)
+            (S -> DOT |b| |,| |b|)
+        )
+        (9
+        7586
+            (S -> A S DOT |,| |a|)
+            (S -> A S DOT |,| |b|)
+            (A -> S DOT A |,| |b|)
+            (A -> S DOT A |,| |a|)
+            (A -> DOT S A |,| |b|)
+            (A -> DOT |a| |,| |b|)
+            (A -> DOT S A |,| |a|)
+            (A -> DOT |a| |,| |a|)
+            (S -> DOT A S |,| |a|)
+            (S -> DOT A S |,| |b|)
+            (S -> DOT |b| |,| |a|)
+            (S -> DOT |b| |,| |b|)
+        )
+        (10
+        5328
+            (S -> A DOT S |,| |a|)
+            (S -> A DOT S |,| |b|)
+            (S -> DOT A S |,| |a|)
+            (S -> DOT |b| |,| |a|)
+            (S -> DOT A S |,| |b|)
+            (S -> DOT |b| |,| |b|)
+            (A -> DOT S A |,| |b|)
+            (A -> DOT S A |,| |a|)
+            (A -> DOT |a| |,| |b|)
+            (A -> DOT |a| |,| |a|)
+        )
+    )
+)
+
+;  ACTION TABLE
+;
+;  (state
+;         (item)
+;         ...
+
+(
+    ( (0) 
+        (
+            (|b| (S 3))
+            (|a| (S 4))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (1) 
+        (
+            ($ (ACC NIL))
+            (|a| (S 4))
+            (|b| (S 7))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (2) 
+        (
+            (|b| (S 3))
+            (|a| (S 4))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (3) 
+        (
+            ($ (R 2))
+            (|a| (R 2))
+            (|b| (R 2))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (4) 
+        (
+            (|b| (R 4))
+            (|a| (R 4))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (5) 
+        (
+            (|a| (S 4))
+            (|b| (S 7))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (6) 
+        (
+            (|b| (R 3))
+            (|a| (R 3))
+            (DEFAULT (ERROR))
+            (CONFLICT ((|b| (S 7)) (|b| (R 3))))
+            (CONFLICT ((|a| (S 4)) (|a| (R 3))))
+        )
+    )
+    ( (7) 
+        (
+            (|a| (R 2))
+            (|b| (R 2))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (8) 
+        (
+            ($ (R 1))
+            (|a| (R 1))
+            (|b| (R 1))
+            (DEFAULT (ERROR))
+            (CONFLICT ((|a| (S 4)) (|a| (R 1))))
+            (CONFLICT ((|b| (S 7)) (|b| (R 1))))
+        )
+    )
+    ( (9) 
+        (
+            (|a| (R 1))
+            (|b| (R 1))
+            (DEFAULT (ERROR))
+            (CONFLICT ((|a| (S 4)) (|a| (R 1))))
+            (CONFLICT ((|b| (S 7)) (|b| (R 1))))
+        )
+    )
+    ( (10) 
+        (
+            (|b| (S 7))
+            (|a| (S 4))
+            (DEFAULT (ERROR))
+        )
+    )
+)
+
+;  GOTO TABLE
+;
+;  (state
+;         (item)
+;         ...
+
+(
+    ( (0) 
+        (
+            (S 1)
+            (A 2)
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (1) 
+        (
+            (S 5)
+            (A 6)
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (2) 
+        (
+            (S 8)
+            (A 2)
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (5) 
+        (
+            (S 5)
+            (A 6)
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (6) 
+        (
+            (S 9)
+            (A 10)
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (8) 
+        (
+            (S 5)
+            (A 6)
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (9) 
+        (
+            (S 5)
+            (A 6)
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (10) 
+        (
+            (S 9)
+            (A 10)
+            (DEFAULT (ERROR))
+        )
+    )
+)
+
+
+;  ERROR MESSAGE TABLE
+;
+;  If the action table has an error state, the other non-error
+;  actions show which symbol was failed to appear next on the input.
+;
+;  The user can modify these minimal error messages.
+
+
+
+(
+
+    ((0) ("error - expecting one of the symbols |a| |b|")) 
+    ((1) ("error - expecting one of the symbols |b| |a| $")) 
+    ((2) ("error - expecting one of the symbols |a| |b|")) 
+    ((3) ("error - expecting one of the symbols |b| |a| $")) 
+    ((4) ("error - expecting one of the symbols |a| |b|")) 
+    ((5) ("error - expecting one of the symbols |b| |a|")) 
+    ((6) ("error - expecting one of the symbols |a| |b|")) 
+    ((7) ("error - expecting one of the symbols |b| |a|")) 
+    ((8) ("error - expecting one of the symbols |b| |a| $")) 
+    ((9) ("error - expecting one of the symbols |b| |a|")) 
+    ((10) ("error - expecting one of the symbols |a| |b|")) 
+)
+

@@ -1,0 +1,367 @@
+;---------------------
+; LALR(1) parse tables
+;---------------------
+;
+; Suitable for input to the Common Lisp program 
+;
+;     LR(1)AndLALR(1)Parser.lsp
+;
+
+; TERMINALS
+;
+
+(INTEGER PERIOD ^ BACKSLASH $)
+
+;  PRODUCTIONS
+;
+;  Productions are numbered starting with 1.
+;  All alternates were expanded into separate productions.
+
+(
+  ( (1)   (S -> INTEGER INTEGER FACTORIZATION) )
+  ( (2)   (FACTORIZATION -> FACTORIZATION PERIOD FACTOR) )
+  ( (3)   (FACTORIZATION -> FACTOR) )
+  ( (4)   (FACTOR -> BIGINTEGER ^ BIGINTEGER) )
+  ( (5)   (FACTOR -> BIGINTEGER) )
+  ( (6)   (BIGINTEGER -> BIGINTEGER BACKSLASH INTEGER) )
+  ( (7)   (BIGINTEGER -> INTEGER) )
+)
+
+;  GOTO GRAPH
+;                 
+;  Not needed for the parser, but here for reference and debugging.
+; **********
+;  Goto graph of the LR(1) or LALR(1) grammar of the form
+;                
+; (
+;   (                     <-- List of links.
+;       (6 |a| 4)         <-- Transition in Goto graph from state 6 to
+;                             state 4 on symbol a.
+;       (1 |a| 2)         <-- Transition from state 1 to state 2 on a.
+;   )
+;                   
+;   (                     <-- List of sets of items.
+;       ( 0                                <-- State number 0.
+;         3668                             <-- Hash value of core.
+;         (
+;            (SP -> DOT S           |,|  $)  ----+
+;            ( S -> DOT S |a| S |b| |,|  $)      |
+;            ( S -> DOT EPSILON     |,|  $)      +---- Set of items for state 0
+;            ( S -> DOT S |a| S |b| |,| |a|)     |
+;            ( S -> DOT EPSILON     |,| |a|)     |
+;         )                                  ----+
+;       ) 
+
+(
+    (
+        (-1 NIL 0)
+        (0 S 1)
+        (0 INTEGER 2)
+        (2 INTEGER 3)
+        (3 INTEGER 4)
+        (3 FACTORIZATION 5)
+        (3 FACTOR 6)
+        (3 BIGINTEGER 7)
+        (5 PERIOD 8)
+        (7 ^ 9)
+        (7 BACKSLASH 10)
+        (8 INTEGER 4)
+        (8 FACTOR 11)
+        (8 BIGINTEGER 7)
+        (9 INTEGER 4)
+        (9 BIGINTEGER 13)
+        (10 INTEGER 14)
+        (13 BACKSLASH 10)
+    )
+    (
+        (1
+        1752
+            (SP -> S DOT |,| $)
+        )
+        (0
+        3968
+            (SP -> DOT S |,| $)
+            (S -> DOT INTEGER INTEGER FACTORIZATION |,| $)
+        )
+        (2
+        4356
+            (S -> INTEGER DOT INTEGER FACTORIZATION |,| $)
+        )
+        (4
+        4800
+            (BIGINTEGER -> INTEGER DOT |,| ^)
+            (BIGINTEGER -> INTEGER DOT |,| $)
+            (BIGINTEGER -> INTEGER DOT |,| PERIOD)
+            (BIGINTEGER -> INTEGER DOT |,| BACKSLASH)
+        )
+        (6
+        5322
+            (FACTORIZATION -> FACTOR DOT |,| $)
+            (FACTORIZATION -> FACTOR DOT |,| PERIOD)
+        )
+        (10
+        10374
+            (BIGINTEGER -> BIGINTEGER BACKSLASH DOT INTEGER |,| ^)
+            (BIGINTEGER -> BIGINTEGER BACKSLASH DOT INTEGER |,| $)
+            (BIGINTEGER -> BIGINTEGER BACKSLASH DOT INTEGER |,| PERIOD)
+            (BIGINTEGER -> BIGINTEGER BACKSLASH DOT INTEGER |,| BACKSLASH)
+        )
+        (9
+        13932
+            (FACTOR -> BIGINTEGER ^ DOT BIGINTEGER |,| $)
+            (FACTOR -> BIGINTEGER ^ DOT BIGINTEGER |,| PERIOD)
+            (BIGINTEGER -> DOT BIGINTEGER BACKSLASH INTEGER |,| $)
+            (BIGINTEGER -> DOT INTEGER |,| $)
+            (BIGINTEGER -> DOT BIGINTEGER BACKSLASH INTEGER |,| PERIOD)
+            (BIGINTEGER -> DOT INTEGER |,| PERIOD)
+            (BIGINTEGER -> DOT BIGINTEGER BACKSLASH INTEGER |,| BACKSLASH)
+            (BIGINTEGER -> DOT INTEGER |,| BACKSLASH)
+        )
+        (14
+        14940
+            (BIGINTEGER -> BIGINTEGER BACKSLASH INTEGER DOT |,| ^)
+            (BIGINTEGER -> BIGINTEGER BACKSLASH INTEGER DOT |,| $)
+            (BIGINTEGER -> BIGINTEGER BACKSLASH INTEGER DOT |,| PERIOD)
+            (BIGINTEGER -> BIGINTEGER BACKSLASH INTEGER DOT |,| BACKSLASH)
+        )
+        (11
+        16070
+            (FACTORIZATION -> FACTORIZATION PERIOD FACTOR DOT |,| $)
+            (FACTORIZATION -> FACTORIZATION PERIOD FACTOR DOT |,| PERIOD)
+        )
+        (7
+        16564
+            (FACTOR -> BIGINTEGER DOT ^ BIGINTEGER |,| $)
+            (FACTOR -> BIGINTEGER DOT |,| $)
+            (FACTOR -> BIGINTEGER DOT ^ BIGINTEGER |,| PERIOD)
+            (FACTOR -> BIGINTEGER DOT |,| PERIOD)
+            (BIGINTEGER -> BIGINTEGER DOT BACKSLASH INTEGER |,| ^)
+            (BIGINTEGER -> BIGINTEGER DOT BACKSLASH INTEGER |,| $)
+            (BIGINTEGER -> BIGINTEGER DOT BACKSLASH INTEGER |,| PERIOD)
+            (BIGINTEGER -> BIGINTEGER DOT BACKSLASH INTEGER |,| BACKSLASH)
+        )
+        (13
+        18363
+            (FACTOR -> BIGINTEGER ^ BIGINTEGER DOT |,| $)
+            (FACTOR -> BIGINTEGER ^ BIGINTEGER DOT |,| PERIOD)
+            (BIGINTEGER -> BIGINTEGER DOT BACKSLASH INTEGER |,| $)
+            (BIGINTEGER -> BIGINTEGER DOT BACKSLASH INTEGER |,| PERIOD)
+            (BIGINTEGER -> BIGINTEGER DOT BACKSLASH INTEGER |,| BACKSLASH)
+        )
+        (5
+        20156
+            (S -> INTEGER INTEGER FACTORIZATION DOT |,| $)
+            (FACTORIZATION -> FACTORIZATION DOT PERIOD FACTOR |,| $)
+            (FACTORIZATION -> FACTORIZATION DOT PERIOD FACTOR |,| PERIOD)
+        )
+        (8
+        23693
+            (FACTORIZATION -> FACTORIZATION PERIOD DOT FACTOR |,| $)
+            (FACTORIZATION -> FACTORIZATION PERIOD DOT FACTOR |,| PERIOD)
+            (FACTOR -> DOT BIGINTEGER ^ BIGINTEGER |,| $)
+            (FACTOR -> DOT BIGINTEGER |,| $)
+            (FACTOR -> DOT BIGINTEGER ^ BIGINTEGER |,| PERIOD)
+            (FACTOR -> DOT BIGINTEGER |,| PERIOD)
+            (BIGINTEGER -> DOT BIGINTEGER BACKSLASH INTEGER |,| ^)
+            (BIGINTEGER -> DOT INTEGER |,| ^)
+            (BIGINTEGER -> DOT BIGINTEGER BACKSLASH INTEGER |,| $)
+            (BIGINTEGER -> DOT INTEGER |,| $)
+            (BIGINTEGER -> DOT BIGINTEGER BACKSLASH INTEGER |,| PERIOD)
+            (BIGINTEGER -> DOT INTEGER |,| PERIOD)
+            (BIGINTEGER -> DOT BIGINTEGER BACKSLASH INTEGER |,| BACKSLASH)
+            (BIGINTEGER -> DOT INTEGER |,| BACKSLASH)
+        )
+        (3
+        26701
+            (S -> INTEGER INTEGER DOT FACTORIZATION |,| $)
+            (FACTORIZATION -> DOT FACTORIZATION PERIOD FACTOR |,| $)
+            (FACTORIZATION -> DOT FACTOR |,| $)
+            (FACTORIZATION -> DOT FACTORIZATION PERIOD FACTOR |,| PERIOD)
+            (FACTORIZATION -> DOT FACTOR |,| PERIOD)
+            (FACTOR -> DOT BIGINTEGER ^ BIGINTEGER |,| $)
+            (FACTOR -> DOT BIGINTEGER |,| $)
+            (FACTOR -> DOT BIGINTEGER ^ BIGINTEGER |,| PERIOD)
+            (FACTOR -> DOT BIGINTEGER |,| PERIOD)
+            (BIGINTEGER -> DOT BIGINTEGER BACKSLASH INTEGER |,| ^)
+            (BIGINTEGER -> DOT INTEGER |,| ^)
+            (BIGINTEGER -> DOT BIGINTEGER BACKSLASH INTEGER |,| $)
+            (BIGINTEGER -> DOT INTEGER |,| $)
+            (BIGINTEGER -> DOT BIGINTEGER BACKSLASH INTEGER |,| PERIOD)
+            (BIGINTEGER -> DOT INTEGER |,| PERIOD)
+            (BIGINTEGER -> DOT BIGINTEGER BACKSLASH INTEGER |,| BACKSLASH)
+            (BIGINTEGER -> DOT INTEGER |,| BACKSLASH)
+        )
+    )
+)
+
+;  ACTION TABLE
+;
+;  (state
+;         (item)
+;         ...
+
+(
+    ( (0) 
+        (
+            (INTEGER (S 2))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (1) 
+        (
+            ($ (ACC NIL))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (2) 
+        (
+            (INTEGER (S 3))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (3) 
+        (
+            (INTEGER (S 4))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (4) 
+        (
+            (^ (R 7))
+            ($ (R 7))
+            (PERIOD (R 7))
+            (BACKSLASH (R 7))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (5) 
+        (
+            ($ (R 1))
+            (PERIOD (S 8))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (6) 
+        (
+            ($ (R 3))
+            (PERIOD (R 3))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (7) 
+        (
+            (^ (S 9))
+            ($ (R 5))
+            (PERIOD (R 5))
+            (BACKSLASH (S 10))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (8) 
+        (
+            (INTEGER (S 4))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (9) 
+        (
+            (INTEGER (S 4))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (10) 
+        (
+            (INTEGER (S 14))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (11) 
+        (
+            ($ (R 2))
+            (PERIOD (R 2))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (13) 
+        (
+            ($ (R 4))
+            (PERIOD (R 4))
+            (BACKSLASH (S 10))
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (14) 
+        (
+            (^ (R 6))
+            ($ (R 6))
+            (PERIOD (R 6))
+            (BACKSLASH (R 6))
+            (DEFAULT (ERROR))
+        )
+    )
+)
+
+;  GOTO TABLE
+;
+;  (state
+;         (item)
+;         ...
+
+(
+    ( (0) 
+        (
+            (S 1)
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (3) 
+        (
+            (FACTORIZATION 5)
+            (FACTOR 6)
+            (BIGINTEGER 7)
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (8) 
+        (
+            (FACTOR 11)
+            (BIGINTEGER 7)
+            (DEFAULT (ERROR))
+        )
+    )
+    ( (9) 
+        (
+            (BIGINTEGER 13)
+            (DEFAULT (ERROR))
+        )
+    )
+)
+
+
+;  ERROR MESSAGE TABLE
+;
+;  If the action table has an error state, the other non-error
+;  actions show which symbol was failed to appear next on the input.
+;
+;  The user can modify these minimal error messages.
+
+
+
+(
+
+    ((0) ("error - expecting one of the symbols INTEGER")) 
+    ((1) ("error - expecting one of the symbols $")) 
+    ((2) ("error - expecting one of the symbols INTEGER")) 
+    ((3) ("error - expecting one of the symbols INTEGER")) 
+    ((4) ("error - expecting one of the symbols BACKSLASH PERIOD $ ^")) 
+    ((5) ("error - expecting one of the symbols PERIOD $")) 
+    ((6) ("error - expecting one of the symbols PERIOD $")) 
+    ((7) ("error - expecting one of the symbols BACKSLASH PERIOD $ ^")) 
+    ((8) ("error - expecting one of the symbols INTEGER")) 
+    ((9) ("error - expecting one of the symbols INTEGER")) 
+    ((10) ("error - expecting one of the symbols INTEGER")) 
+    ((11) ("error - expecting one of the symbols PERIOD $")) 
+    ((13) ("error - expecting one of the symbols BACKSLASH PERIOD $")) 
+    ((14) ("error - expecting one of the symbols BACKSLASH PERIOD $ ^")) 
+)
+

@@ -1,0 +1,202 @@
+
+
+
+Parsing the sentence: (ID + [ ID * ID ])
+
+PARSE STACK                                 INPUT STACK   ACTION                   
+
+(0)                                (ID + [ ID * ID ] $)   (SHIFT 5)                
+
+(0 ID 5)                              (+ [ ID * ID ] $)   (REDUCE 6 (F -> ID))     
+
+(0 F 3)                               (+ [ ID * ID ] $)   (REDUCE 4 (T -> F))      
+
+(0 T 2)                               (+ [ ID * ID ] $)   (REDUCE 2 (E -> T))      
+
+(0 E 1)                               (+ [ ID * ID ] $)   (SHIFT 6)                
+
+(0 E 1 + 6)                             ([ ID * ID ] $)   (SHIFT 4)                
+
+(0 E 1 + 6 [ 4)                           (ID * ID ] $)   (SHIFT 5)                
+
+(0 E 1 + 6 [ 4 ID 5)                         (* ID ] $)   (REDUCE 6 (F -> ID))     
+
+(0 E 1 + 6 [ 4 F 3)                          (* ID ] $)   (REDUCE 4 (T -> F))      
+
+(0 E 1 + 6 [ 4 T 2)                          (* ID ] $)   (SHIFT 7)                
+
+(0 E 1 + 6 [ 4 T 2 * 7)                        (ID ] $)   (SHIFT 5)                
+
+(0 E 1 + 6 [ 4 T 2 * 7 ID 5)                      (] $)   (REDUCE 6 (F -> ID))     
+
+(0 E 1 + 6 [ 4 T 2 * 7 F 14)                      (] $)   (REDUCE 3 (T -> T * F))  
+
+(0 E 1 + 6 [ 4 T 2)                               (] $)   (REDUCE 2 (E -> T))      
+
+(0 E 1 + 6 [ 4 E 8)                               (] $)   (SHIFT 16)               
+
+(0 E 1 + 6 [ 4 E 8 ] 16)                            ($)   (REDUCE 5 (F -> [ E ]))  
+
+(0 E 1 + 6 F 3)                                     ($)   (REDUCE 4 (T -> F))      
+
+(0 E 1 + 6 T 13)                                    ($)   (REDUCE 1 (E -> E + T))  
+
+(0 E 1)                                             ($)   (ACCEPT)                 
+
+Sentence was grammatical.
+
+
+
+
+Parsing the sentence: (ID * ID + ID)
+
+PARSE STACK                                 INPUT STACK   ACTION                   
+
+(0)                                    (ID * ID + ID $)   (SHIFT 5)                
+
+(0 ID 5)                                  (* ID + ID $)   (REDUCE 6 (F -> ID))     
+
+(0 F 3)                                   (* ID + ID $)   (REDUCE 4 (T -> F))      
+
+(0 T 2)                                   (* ID + ID $)   (SHIFT 7)                
+
+(0 T 2 * 7)                                 (ID + ID $)   (SHIFT 5)                
+
+(0 T 2 * 7 ID 5)                               (+ ID $)   (REDUCE 6 (F -> ID))     
+
+(0 T 2 * 7 F 14)                               (+ ID $)   (REDUCE 3 (T -> T * F))  
+
+(0 T 2)                                        (+ ID $)   (REDUCE 2 (E -> T))      
+
+(0 E 1)                                        (+ ID $)   (SHIFT 6)                
+
+(0 E 1 + 6)                                      (ID $)   (SHIFT 5)                
+
+(0 E 1 + 6 ID 5)                                    ($)   (REDUCE 6 (F -> ID))     
+
+(0 E 1 + 6 F 3)                                     ($)   (REDUCE 4 (T -> F))      
+
+(0 E 1 + 6 T 13)                                    ($)   (REDUCE 1 (E -> E + T))  
+
+(0 E 1)                                             ($)   (ACCEPT)                 
+
+Sentence was grammatical.
+
+
+
+
+Parsing the sentence: NIL
+
+PARSE STACK                                 INPUT STACK   ACTION                   
+
+(0)                                                 ($)   ERROR                    
+
+error - expecting one of the symbols ID [
+
+Sentence was not in the grammar.
+
+
+
+
+Parsing the sentence: (ID + ID XXX)
+
+PARSE STACK                                 INPUT STACK   ACTION                   
+
+(0)                                     (ID + ID XXX $)   (SHIFT 5)                
+
+(0 ID 5)                                   (+ ID XXX $)   (REDUCE 6 (F -> ID))     
+
+(0 F 3)                                    (+ ID XXX $)   (REDUCE 4 (T -> F))      
+
+(0 T 2)                                    (+ ID XXX $)   (REDUCE 2 (E -> T))      
+
+(0 E 1)                                    (+ ID XXX $)   (SHIFT 6)                
+
+(0 E 1 + 6)                                  (ID XXX $)   (SHIFT 5)                
+
+(0 E 1 + 6 ID 5)                                (XXX $)   ERROR                    
+
+error - expecting one of the symbols * + $ ]
+
+Sentence was not in the grammar.
+
+
+
+
+Parsing the sentence: ([ ])
+
+PARSE STACK                                 INPUT STACK   ACTION                   
+
+(0)                                             ([ ] $)   (SHIFT 4)                
+
+(0 [ 4)                                           (] $)   ERROR                    
+
+error - expecting one of the symbols ID [
+
+Sentence was not in the grammar.
+
+
+
+
+Parsing the sentence: (ID +)
+
+PARSE STACK                                 INPUT STACK   ACTION                   
+
+(0)                                            (ID + $)   (SHIFT 5)                
+
+(0 ID 5)                                          (+ $)   (REDUCE 6 (F -> ID))     
+
+(0 F 3)                                           (+ $)   (REDUCE 4 (T -> F))      
+
+(0 T 2)                                           (+ $)   (REDUCE 2 (E -> T))      
+
+(0 E 1)                                           (+ $)   (SHIFT 6)                
+
+(0 E 1 + 6)                                         ($)   ERROR                    
+
+error - expecting one of the symbols [ ID
+
+Sentence was not in the grammar.
+
+
+
+
+Parsing the sentence: (ID *)
+
+PARSE STACK                                 INPUT STACK   ACTION                   
+
+(0)                                            (ID * $)   (SHIFT 5)                
+
+(0 ID 5)                                          (* $)   (REDUCE 6 (F -> ID))     
+
+(0 F 3)                                           (* $)   (REDUCE 4 (T -> F))      
+
+(0 T 2)                                           (* $)   (SHIFT 7)                
+
+(0 T 2 * 7)                                         ($)   ERROR                    
+
+error - expecting one of the symbols [ ID
+
+Sentence was not in the grammar.
+
+
+
+
+Parsing the sentence: (ID ])
+
+PARSE STACK                                 INPUT STACK   ACTION                   
+
+(0)                                            (ID ] $)   (SHIFT 5)                
+
+(0 ID 5)                                          (] $)   (REDUCE 6 (F -> ID))     
+
+(0 F 3)                                           (] $)   (REDUCE 4 (T -> F))      
+
+(0 T 2)                                           (] $)   (REDUCE 2 (E -> T))      
+
+(0 E 1)                                           (] $)   ERROR                    
+
+error - expecting one of the symbols + $
+
+Sentence was not in the grammar.
+

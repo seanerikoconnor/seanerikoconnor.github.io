@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="en-US">  <!-- Set language of this page to USA English. -->
+
+<!-- ===================================================================
+|
+| NAME
+| 
+|     LRandLALRParserGeneratorAndParser.html
+|
+| DESCRIPTION
+|
+|     Parser generator and parser web page.
+|     It is a hand-crafted HTML 5 W3C validated document.
+|
+| AUTHOR
+|
+|    Sean Erik O'Connor
+|
+=================================================================== -->
+
+    <head>
+        <!-- This page uses Unicode characters. -->
+        <meta charset="utf-8">
+
+        <!-- Set viewport to actual device width.  Any other settings makes the web page initially appear zoomed-in on mobile devices. -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Titles appear in the web browser and the browser's bookmarks. -->
+        <title>LR(1) AND LALR(1) PARSER GENERATOR AND PARSER IN LISP.</title>
+
+        <!-- Search engines will show this description below the title. -->
+       <meta name="description" 
+             content="Common Lisp Implementation of an LR(1) and LALR(1) Parser Generator and Parser." />
+
+       <meta name="author" content="Sean Erik O'Connor">
+
+       <!-- Cascading style sheet for this document. -->
+       <link rel="StyleSheet" href="../../../StyleSheet.css" type="text/css" /> 
+
+        <!-- Favicons are 32x32 or 16x16, 8 or 24 bit PNG Images which show up left of the web page title in a browser.  -->
+        <link rel="icon" type="image/png" href="../../../Images/favicon.png" />
+    </head>
+
+    <body>
+        <!-- This wraps the whole body in a CSS grid. -->
+        <div class="wrapper titlePage">
+
+            <header class="title">
+                <h1>LR( 1 ) and LALR( 1 ) Parser Generator and Parser in Lisp</h1>
+                <hr>
+            </header>
+
+            <!-- A decorative border at the left side of the page. -->
+            <aside class=border>
+                  <img class="border"
+                       src="../../../Images/sinXYPlot.png"
+                       alt="Sin( x y ) Image Border." />
+            </aside>
+
+            <header class="navigation">
+                <a href="../../../index.html">
+                    <img src="../../../Images/home.png" alt="Home Page Button." width="32" height="32" >
+                     <em>Home</em>
+                 </a>
+
+                 <a href="../../../Mathematics/mathematicalSoftware.html">
+                     <img src="../../../Images/compactDisk.png" alt="Mathematical Software Button." width="32" height="32" >
+                      <em>Mathematical Software</em>
+                 </a>
+
+                 <a href="../../../Art/Art.html">
+                     <img src="../../../Images/sampleArtLowRes.png" alt="Art Button." width="32" height="32" >
+                      <em>Fine Arts</em>
+                 </a>
+
+                 <a href="../../../WebPageDesign/webPageDesign.html">
+                      <img src="../../../Images/webPage.png" alt="Web Page Design Button." height="32" width="32" >
+                      <em>Web Page Design</em>
+                 </a>
+
+                 <a href="../../../Electronics/Electronics.html">
+                     <img src="../../../Images/sparkCoil.png" alt="Hobby Electronics Button." width="32" height="32" >
+                      <em>Hobby Electronics</em>
+                 </a>
+
+                 <a href="../../../ReadingList/readingList.html">
+                      <img src="../../../Images/terraApollo17NASALowRes.png"
+                           alt="Reading List Button."
+                           width="32" height="32" />
+                      <em>Reading list</em>
+                </a>
+            </header>
+
+           <!-- The main content of this page. -->
+            <article class="content">
+                <section>
+                     <h3>Overview</h3>
+
+                     <p>
+                     This is an implementation in 
+                     <a href="http://www.sbcl.org">Common Lisp</a>
+                     of a parser generator and parser
+                     for LR(1) and LALR(1) grammars which can handle &epsilon; productions.
+                     </p>
+                </section>
+
+                <section>
+                    <h3>Features</h3>
+
+                    <p>
+                    The parser generator creates the sets of items, goto graph, and action and 
+                    goto tables for both LR(1) and LALR(1) grammars. 
+                    It gives the same parsing tables (and conflicts) as the 
+                    <a href="http://www.gnu.org/software/bison/bison.html"> <em>bison or yacc</em> </a>
+                    compiler-compiler utility of UNIX, except for possible renumbering of states. 
+                    I've tested the program on several grammars, including those with 
+                    &epsilon; productions and parsing conflicts. 
+                    </p>
+
+                    <p>
+                    The input to the program is the grammar.dat file which lists the productions 
+                    of the grammar. 
+                    The output is the parse tables file, parser.dat file which lists the 
+                    productions, the parser's sets of items (i.e. goto graph), the action table 
+                    and the goto table. 
+                    </p>
+
+                    <p>
+                    The companion bottom up parser accepts the LR(1) or LALR(1) a parse tables file
+                    generated above and a set of sentences to be parsed.
+                    It writes the results of the parsing to an output file. 
+                    </p>
+
+                    <p>
+                    The parse tables file contains the productions, goto graph (for debugging),
+                    action table, goto table, and a table of error messages. 
+                    </p>
+
+                    <p>
+                    It would be wise to review 
+                    <a href="QuickReviewOfLRandLALRParsingTheory.html">parsing theory</a>.
+                    </p>
+                </section>
+
+                <section>
+                    <h3>Download</h3>
+
+                    <p>
+                    Source code <em>Version 5.6</em> is distributed under the terms of the
+                        <a href="http://www.gnu.org/licenses/">GNU General Public License</a>.
+                    You will need to download each of the files below.
+                    </p>
+                     
+                    <ul class="download">
+                        <li class="downloadName">LR(1)AndLALR(1)ParserGenerator.lsp</li>
+                        <li class="downloadDescription">LR(1) and LALR(1) parser generator program in Common LISP.</li>
+                        <li class="downloadView"> 
+                            <a href="./SourceCode/LR(1)AndLALR(1)ParserGenerator.lsp.html">
+                                <img src="../../../Images/eye.png" alt="Eye icon for source code viewing." width="30" height="30" >View</a>
+                        </li>
+                        <li class="download"> 
+                            <a href="./SourceCode/LR(1)AndLALR(1)ParserGenerator.lsp" download="./SourceCode/LR(1)AndLALR(1)ParserGenerator.lsp">
+                                <img src="../../../Images/compactDisk.png" alt="Compact disk icon for source code download." width="25" height="25" >Download</a>
+                        </li>
+
+                        <li class="downloadName">GrammarS=SaSbEPSILON.dat</li>
+                        <li class="downloadDescription">The grammar S &rarr; SaSb | &epsilon; containing productions and terminal symbols.</li>
+                        <li class="downloadView"> 
+                            <a href="./Grammars/GrammarS=SaSbEPSILON.dat.html">
+                                <img src="../../../Images/eye.png" alt="Eye icon for source code viewing." width="30" height="30" >View</a>
+                        </li>
+                        <li class="download"> 
+                            <a href="./Grammars/GrammarS=SaSbEPSILON.dat" download="./Grammars/GrammarS=SaSbEPSILON.dat">
+                                <img src="../../../Images/compactDisk.png" alt="Compact disk icon for source code download." width="25" height="25" >Download</a>
+                        </li>
+
+                        <li class="downloadName">ParseTablesLALR(1)_S=SaSbEPSILON.dat</li>
+                        <li class="downloadDescription">Parse tables for the grammar S &rarr; SaSb | &epsilon; generated by the parser generator program containing goto graph, action and goto tables..</li>
+                        <li class="downloadView"> 
+                            <a href="./ParseTables/ParseTablesLALR(1)_S=SaSbEPSILON.dat.html">
+                                <img src="../../../Images/eye.png" alt="Eye icon for source code viewing." width="30" height="30" >View</a>
+                        </li>
+                        <li class="download"> 
+                            <a href="./ParseTables/ParseTablesLALR(1)_S=SaSbEPSILON.dat" download="./ParseTables/ParseTablesLALR(1)_S=SaSbEPSILON.dat">
+                                <img src="../../../Images/compactDisk.png" alt="Compact disk icon for source code download." width="25" height="25" >Download</a>
+                        </li>
+                    </ul>
+                    <p>
+                    &nbsp;
+                    </p>
+
+                    <ul class="download">
+                        <li class="downloadName">ParserGenerator/LR(1)AndLALR(1)Parser.lsp</li>
+                        <li class="downloadDescription">LR(1) and LALR(1) parser program in Common LISP.</li>
+                        <li class="downloadView"> 
+                            <a href="./SourceCode/LR(1)AndLALR(1)Parser.lsp.html">
+                                <img src="../../../Images/eye.png" alt="Eye icon for source code viewing." width="30" height="30" >View</a>
+                        </li>
+                        <li class="download"> 
+                            <a href="./SourceCode/LR(1)AndLALR(1)Parser.lsp" download="./SourceCode/LR(1)AndLALR(1)Parser.lsp">
+                                <img src="../../../Images/compactDisk.png" alt="Compact disk icon for source code download." width="25" height="25" >Download</a>
+                        </li>
+
+                        <li class="downloadName">SentencesS=SaSbEPSILON.dat</li>
+                        <li class="downloadDescription">Sentences to be parsed for the grammar S &rarr; SaSb | &epsilon;.</li>
+                        <li class="downloadView"> 
+                            <a href="./Sentences/SentencesS=SaSbEPSILON.dat.html">
+                                <img src="../../../Images/eye.png" alt="Eye icon for source code viewing." width="30" height="30" >View</a>
+                        </li>
+                        <li class="download"> 
+                            <a href="./Sentences/SentencesS=SaSbEPSILON.dat" download="./Sentences/SentencesS=SaSbEPSILON.dat">
+                                <img src="../../../Images/compactDisk.png" alt="Compact disk icon for source code download." width="25" height="25" >Download</a>
+                        </li>
+
+                        <li class="downloadName">ParsedSentencesLALR(1)S=SaSbEPSILON.dat</li>
+                        <li class="downloadDescription">Parsed sentences for the grammar S &rarr; SaSb | &epsilon;.</li>
+                        <li class="downloadView"> 
+                            <a href="./Sentences/ParsedSentencesLALR(1)S=SaSbEPSILON.dat.html">
+                                <img src="../../../Images/eye.png" alt="Eye icon for source code viewing." width="30" height="30" >View</a>
+                        </li>
+                        <li class="download"> 
+                            <a href="./Sentences/ParsedSentencesLALR(1)S=SaSbEPSILON.dat" download="./Sentences/ParsedSentencesLALR(1)S=SaSbEPSILON.dat">
+                                <img src="../../../Images/compactDisk.png" alt="Compact disk icon for source code download." width="25" height="25" >Download</a>
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>Install and Run</h3>
+
+                    <p>
+                    Let's work through an example of creating a grammar and a parser for it and trying it out on a few test sentences in the language.
+                    </p>
+
+                    <p>
+                    Install <a href="../../../ComputerScience/DevelopmentEnvironment/macLinuxComputerSetupForDevelopers.html#CommonLisp">Common Lisp</a>.  I like to use <em>Steel Bank Common Lisp</em>.
+                    </p>
+
+                    <p>
+                    Define a grammar in the file <em>grammar.dat</em>.  This one happens to be for parsing numbers in a table of factorizations
+                    where we have primes to powers separated by . and where really large prime factors are continued on multiple lines using the
+                    backslash continuation character \
+                    It took me a few iterations on the productions until they were general enough to avoid failing on some of my test sentences.
+                    </p>
+
+                    <div class="scrollBox"> <div class="scrollBoxContent">
+                    ;  Grammar.dat
+                    ;
+                    ; ---------------------------------------------------------------------------
+                    ;  Grammar for Cunningham numbers factorization of p^n - 1.
+                    ;
+                    ;  The factorization is given in the form p n &lt;factors&gt; where
+                    ;  each factor is of the form p^m.  Long numbers are continued on the next line with
+                    ;  backslashes.  Factors are separated by a period.
+                    ;       
+                    ;         398    12  2^4.3.3583.4588543.34266607.2146612951394313997.8670122322845042\
+                    ;                    61471.3742361194240057889227626965547117.118815764353631151\
+                    ;                    104263170678136736311820574318029752573406120157089\
+                    ;                    84828478898969687279497327343
+                    ;
+                    ; ---------------------------------------------------------------------------
+
+                    ;  Productions.
+
+                    ( 
+                        (S             -&gt; integer integer Factorization)
+                        (Factorization -&gt; Factorization period Factor / Factor) 
+                        (Factor        -&gt; BigInteger ^ BigInteger / BigInteger)
+                        (BigInteger    -&gt; BigInteger backslash integer / integer)
+                    )
+
+
+                    ;  Terminal symbols.
+
+                    ( integer period ^ backslash )
+                    </div></div>
+
+                    <p>
+                    Start the LISP interpreter's read-evaluate-print-loop and load the parser generator.
+                    </p>
+
+                    <div class="scrollBox"> <div class="scrollBoxContent">
+                    $ ls
+                    LR(1)AndLALR(1)Parser.lsp  LR(1)AndLALR(1)ParserGenerator.lsp  grammar.dat
+
+                    $ sbcl
+                    This is SBCL 1.1.6.0-3c5581a, an implementation of ANSI Common Lisp.
+                    More information about SBCL is available at &lt;http://www.sbcl.org/&gt;.
+                    ...
+                    * (load "LR(1)AndLALR(1)ParserGenerator.lsp")
+                    T
+
+                    * (parser-generator "grammar.dat" "parser.dat")
+                            LR(1)AndLALR(1)ParserGenerator Version 5.6
+                            An LR(1) and LALR(1) Parser Generator written in Common Lisp.
+                            Copyright (C) 1989-2026 by Sean Erik O'Connor.  All Rights Reserved.
+                    NIL
+                    * (quit)
+                    </div></div>
+
+                    <p>
+                    The file <em>parser.dat</em> now contains the parse tables,
+                    </p>
+
+                    <div class="scrollBox"> <div class="scrollBoxContent">
+                    ;---------------------
+                    ; LALR(1) parse tables
+                    ;---------------------
+                    ;
+                    ; Suitable for input to the Common Lisp program 
+                    ;
+                    ;     LR(1)AndLALR(1)Parser.lsp
+                    ;
+
+                    ; TERMINALS
+                    ;
+
+                    (INTEGER PERIOD ^ BACKSLASH $)
+
+                    ;  PRODUCTIONS
+                    ;
+                    ;  Productions are numbered starting with 1.
+                    ;  All alternates were expanded into separate productions.
+
+                    (
+                      ( (1)   (S -&gt; INTEGER INTEGER FACTORIZATION) )
+                      ( (2)   (FACTORIZATION -&gt; FACTORIZATION PERIOD FACTOR) )
+                      ( (3)   (FACTORIZATION -&gt; FACTOR) )
+                      ( (4)   (FACTOR -&gt; BIGINTEGER ^ BIGINTEGER) )
+                      ( (5)   (FACTOR -&gt; BIGINTEGER) )
+                      ( (6)   (BIGINTEGER -&gt; BIGINTEGER BACKSLASH INTEGER) )
+                      ( (7)   (BIGINTEGER -&gt; INTEGER) )
+                    )
+
+                    ;  GOTO GRAPH
+                    ;                 
+                    ;  Not needed for the parser, but here for reference and debugging.
+                    ; **********
+                    ;  Goto graph of the LR(1) or LALR(1) grammar of the form
+                    ;                
+                    ; (
+                    ;   (                     &lt;-- List of links.
+                    ;       (6 |a| 4)         &lt;-- Transition in Goto graph from state 6 to
+                    ;                             state 4 on symbol a.
+                    ;       (1 |a| 2)         &lt;-- Transition from state 1 to state 2 on a.
+                    ;   )
+                    ;                   
+                    ;   (                     &lt;-- List of sets of items.
+                    ;       ( 0                                &lt;-- State number 0.
+                    ;         3668                             &lt;-- Hash value of core.
+                    ;         (
+                    ;            (SP -&gt; DOT S           |,|  $)  ----+
+                    ;            ( S -&gt; DOT S |a| S |b| |,|  $)      |
+                    ;            ( S -&gt; DOT EPSILON     |,|  $)      +---- Set of items for state 0
+                    ;            ( S -&gt; DOT S |a| S |b| |,| |a|)     |
+                    ;            ( S -&gt; DOT EPSILON     |,| |a|)     |
+                    ;         )                                  ----+
+                    ;       ) 
+
+                    (
+                        (
+                            (-1 NIL 0)
+                            (0 S 1)
+                            (0 INTEGER 2)
+                            (2 INTEGER 3)
+                            (3 INTEGER 4)
+                            (3 FACTORIZATION 5)
+                            (3 FACTOR 6)
+                            (3 BIGINTEGER 7)
+                            (5 PERIOD 8)
+                            (7 ^ 9)
+                            (7 BACKSLASH 10)
+                            (8 INTEGER 4)
+                            (8 FACTOR 11)
+                            (8 BIGINTEGER 7)
+                            (9 INTEGER 4)
+                            (9 BIGINTEGER 13)
+                            (10 INTEGER 14)
+                            (13 BACKSLASH 10)
+                        )
+                        (
+                            (1
+                            1752
+                                (SP -&gt; S DOT |,| $)
+                            )
+                            (0
+                            3968
+                                (SP -&gt; DOT S |,| $)
+                                (S -&gt; DOT INTEGER INTEGER FACTORIZATION |,| $)
+                            )
+                            (2
+                            4356
+                                (S -&gt; INTEGER DOT INTEGER FACTORIZATION |,| $)
+                            )
+                            (4
+                            4800
+                                (BIGINTEGER -&gt; INTEGER DOT |,| ^)
+                                (BIGINTEGER -&gt; INTEGER DOT |,| $)
+                                (BIGINTEGER -&gt; INTEGER DOT |,| PERIOD)
+                                (BIGINTEGER -&gt; INTEGER DOT |,| BACKSLASH)
+                            )
+                            (6
+                            5322
+                                (FACTORIZATION -&gt; FACTOR DOT |,| $)
+                                (FACTORIZATION -&gt; FACTOR DOT |,| PERIOD)
+                            )
+                            (10
+                            10374
+                                (BIGINTEGER -&gt; BIGINTEGER BACKSLASH DOT INTEGER |,| ^)
+                                (BIGINTEGER -&gt; BIGINTEGER BACKSLASH DOT INTEGER |,| $)
+                                (BIGINTEGER -&gt; BIGINTEGER BACKSLASH DOT INTEGER |,| PERIOD)
+                                (BIGINTEGER -&gt; BIGINTEGER BACKSLASH DOT INTEGER |,| BACKSLASH)
+                            )
+                            (9
+                            13932
+                                (FACTOR -&gt; BIGINTEGER ^ DOT BIGINTEGER |,| $)
+                                (FACTOR -&gt; BIGINTEGER ^ DOT BIGINTEGER |,| PERIOD)
+                                (BIGINTEGER -&gt; DOT BIGINTEGER BACKSLASH INTEGER |,| $)
+                                (BIGINTEGER -&gt; DOT INTEGER |,| $)
+                                (BIGINTEGER -&gt; DOT BIGINTEGER BACKSLASH INTEGER |,| PERIOD)
+                                (BIGINTEGER -&gt; DOT INTEGER |,| PERIOD)
+                                (BIGINTEGER -&gt; DOT BIGINTEGER BACKSLASH INTEGER |,| BACKSLASH)
+                                (BIGINTEGER -&gt; DOT INTEGER |,| BACKSLASH)
+                            )
+                            (14
+                            14940
+                                (BIGINTEGER -&gt; BIGINTEGER BACKSLASH INTEGER DOT |,| ^)
+                                (BIGINTEGER -&gt; BIGINTEGER BACKSLASH INTEGER DOT |,| $)
+                                (BIGINTEGER -&gt; BIGINTEGER BACKSLASH INTEGER DOT |,| PERIOD)
+                                (BIGINTEGER -&gt; BIGINTEGER BACKSLASH INTEGER DOT |,| BACKSLASH)
+                            )
+                            (11
+                            16070
+                                (FACTORIZATION -&gt; FACTORIZATION PERIOD FACTOR DOT |,| $)
+                                (FACTORIZATION -&gt; FACTORIZATION PERIOD FACTOR DOT |,| PERIOD)
+                            )
+                            (7
+                            16564
+                                (FACTOR -&gt; BIGINTEGER DOT ^ BIGINTEGER |,| $)
+                                (FACTOR -&gt; BIGINTEGER DOT |,| $)
+                                (FACTOR -&gt; BIGINTEGER DOT ^ BIGINTEGER |,| PERIOD)
+                                (FACTOR -&gt; BIGINTEGER DOT |,| PERIOD)
+                                (BIGINTEGER -&gt; BIGINTEGER DOT BACKSLASH INTEGER |,| ^)
+                                (BIGINTEGER -&gt; BIGINTEGER DOT BACKSLASH INTEGER |,| $)
+                                (BIGINTEGER -&gt; BIGINTEGER DOT BACKSLASH INTEGER |,| PERIOD)
+                                (BIGINTEGER -&gt; BIGINTEGER DOT BACKSLASH INTEGER |,| BACKSLASH)
+                            )
+                            (13
+                            18363
+                                (FACTOR -&gt; BIGINTEGER ^ BIGINTEGER DOT |,| $)
+                                (FACTOR -&gt; BIGINTEGER ^ BIGINTEGER DOT |,| PERIOD)
+                                (BIGINTEGER -&gt; BIGINTEGER DOT BACKSLASH INTEGER |,| $)
+                                (BIGINTEGER -&gt; BIGINTEGER DOT BACKSLASH INTEGER |,| PERIOD)
+                                (BIGINTEGER -&gt; BIGINTEGER DOT BACKSLASH INTEGER |,| BACKSLASH)
+                            )
+                            (5
+                            20156
+                                (S -&gt; INTEGER INTEGER FACTORIZATION DOT |,| $)
+                                (FACTORIZATION -&gt; FACTORIZATION DOT PERIOD FACTOR |,| $)
+                                (FACTORIZATION -&gt; FACTORIZATION DOT PERIOD FACTOR |,| PERIOD)
+                            )
+                            (8
+                            23693
+                                (FACTORIZATION -&gt; FACTORIZATION PERIOD DOT FACTOR |,| $)
+                                (FACTORIZATION -&gt; FACTORIZATION PERIOD DOT FACTOR |,| PERIOD)
+                                (FACTOR -&gt; DOT BIGINTEGER ^ BIGINTEGER |,| $)
+                                (FACTOR -&gt; DOT BIGINTEGER |,| $)
+                                (FACTOR -&gt; DOT BIGINTEGER ^ BIGINTEGER |,| PERIOD)
+                                (FACTOR -&gt; DOT BIGINTEGER |,| PERIOD)
+                                (BIGINTEGER -&gt; DOT BIGINTEGER BACKSLASH INTEGER |,| ^)
+                                (BIGINTEGER -&gt; DOT INTEGER |,| ^)
+                                (BIGINTEGER -&gt; DOT BIGINTEGER BACKSLASH INTEGER |,| $)
+                                (BIGINTEGER -&gt; DOT INTEGER |,| $)
+                                (BIGINTEGER -&gt; DOT BIGINTEGER BACKSLASH INTEGER |,| PERIOD)
+                                (BIGINTEGER -&gt; DOT INTEGER |,| PERIOD)
+                                (BIGINTEGER -&gt; DOT BIGINTEGER BACKSLASH INTEGER |,| BACKSLASH)
+                                (BIGINTEGER -&gt; DOT INTEGER |,| BACKSLASH)
+                            )
+                            (3
+                            26701
+                                (S -&gt; INTEGER INTEGER DOT FACTORIZATION |,| $)
+                                (FACTORIZATION -&gt; DOT FACTORIZATION PERIOD FACTOR |,| $)
+                                (FACTORIZATION -&gt; DOT FACTOR |,| $)
+                                (FACTORIZATION -&gt; DOT FACTORIZATION PERIOD FACTOR |,| PERIOD)
+                                (FACTORIZATION -&gt; DOT FACTOR |,| PERIOD)
+                                (FACTOR -&gt; DOT BIGINTEGER ^ BIGINTEGER |,| $)
+                                (FACTOR -&gt; DOT BIGINTEGER |,| $)
+                                (FACTOR -&gt; DOT BIGINTEGER ^ BIGINTEGER |,| PERIOD)
+                                (FACTOR -&gt; DOT BIGINTEGER |,| PERIOD)
+                                (BIGINTEGER -&gt; DOT BIGINTEGER BACKSLASH INTEGER |,| ^)
+                                (BIGINTEGER -&gt; DOT INTEGER |,| ^)
+                                (BIGINTEGER -&gt; DOT BIGINTEGER BACKSLASH INTEGER |,| $)
+                                (BIGINTEGER -&gt; DOT INTEGER |,| $)
+                                (BIGINTEGER -&gt; DOT BIGINTEGER BACKSLASH INTEGER |,| PERIOD)
+                                (BIGINTEGER -&gt; DOT INTEGER |,| PERIOD)
+                                (BIGINTEGER -&gt; DOT BIGINTEGER BACKSLASH INTEGER |,| BACKSLASH)
+                                (BIGINTEGER -&gt; DOT INTEGER |,| BACKSLASH)
+                            )
+                        )
+                    )
+
+                    ;  ACTION TABLE
+                    ;
+                    ;  (state
+                    ;         (item)
+                    ;         ...
+
+                    (
+                        ( (0) 
+                            (
+                                (INTEGER (S 2))
+                                (DEFAULT (ERROR))
+                            )
+                        )
+                        ( (1) 
+                            (
+                                ($ (ACC NIL))
+                                (DEFAULT (ERROR))
+                            )
+                        )
+                        ( (2) 
+                            (
+                                (INTEGER (S 3))
+                                (DEFAULT (ERROR))
+                            )
+                        )
+                        ( (3) 
+                            (
+                                (INTEGER (S 4))
+                                (DEFAULT (ERROR))
+                            )
+                        )
+                        ( (4) 
+                            (
+                                (^ (R 7))
+                                ($ (R 7))
+                                (PERIOD (R 7))
+                                (BACKSLASH (R 7))
+                                (DEFAULT (ERROR))
+                            )
+                        )
+                        ( (5) 
+                            (
+                                ($ (R 1))
+                                (PERIOD (S 8))
+                                (DEFAULT (ERROR))
+                            )
+                        )
+                        ( (6) 
+                            (
+                                ($ (R 3))
+                                (PERIOD (R 3))
+                                (DEFAULT (ERROR))
+                            )
+                        )
+                        ( (7) 
+                            (
+                                (^ (S 9))
+                                ($ (R 5))
+                                (PERIOD (R 5))
+                                (BACKSLASH (S 10))
+                                (DEFAULT (ERROR))
+                            )
+                        )
+                        ( (8) 
+                            (
+                                (INTEGER (S 4))
+                                (DEFAULT (ERROR))
+                            )
+                        )
+                        ( (9) 
+                            (
+                                (INTEGER (S 4))
+                                (DEFAULT (ERROR))
+                            )
+                        )
+                        ( (10) 
+                            (
+                                (INTEGER (S 14))
+                                (DEFAULT (ERROR))
+                            )
+                        )
+                        ( (11) 
+                            (
+                                ($ (R 2))
+                                (PERIOD (R 2))
+                                (DEFAULT (ERROR))
+                            )
+                        )
+                        ( (13) 
+                            (
+                                ($ (R 4))
+                                (PERIOD (R 4))
+                                (BACKSLASH (S 10))
+                                (DEFAULT (ERROR))
+                            )
+                        )
+                        ( (14) 
+                            (
+                                (^ (R 6))
+                                ($ (R 6))
+                                (PERIOD (R 6))
+                                (BACKSLASH (R 6))
+                                (DEFAULT (ERROR))
+                            )
+                        )
+                    )
+
+                    ;  GOTO TABLE
+                    ;
+                    ;  (state
+                    ;         (item)
+                    ;         ...
+
+                    (
+                        ( (0) 
+                            (
+                                (S 1)
+                                (DEFAULT (ERROR))
+                            )
+                        )
+                        ( (3) 
+                            (
+                                (FACTORIZATION 5)
+                                (FACTOR 6)
+                                (BIGINTEGER 7)
+                                (DEFAULT (ERROR))
+                            )
+                        )
+                        ( (8) 
+                            (
+                                (FACTOR 11)
+                                (BIGINTEGER 7)
+                                (DEFAULT (ERROR))
+                            )
+                        )
+                        ( (9) 
+                            (
+                                (BIGINTEGER 13)
+                                (DEFAULT (ERROR))
+                            )
+                        )
+                    )
+
+
+                    ;  ERROR MESSAGE TABLE
+                    ;
+                    ;  If the action table has an error state, the other non-error
+                    ;  actions show which symbol was failed to appear next on the input.
+                    ;
+                    ;  The user can modify these minimal error messages.
+
+
+
+                    (
+
+                        ((0) ("error - expecting one of the symbols INTEGER")) 
+                        ((1) ("error - expecting one of the symbols $")) 
+                        ((2) ("error - expecting one of the symbols INTEGER")) 
+                        ((3) ("error - expecting one of the symbols INTEGER")) 
+                        ((4) ("error - expecting one of the symbols BACKSLASH PERIOD $ ^")) 
+                        ((5) ("error - expecting one of the symbols PERIOD $")) 
+                        ((6) ("error - expecting one of the symbols PERIOD $")) 
+                        ((7) ("error - expecting one of the symbols BACKSLASH PERIOD $ ^")) 
+                        ((8) ("error - expecting one of the symbols INTEGER")) 
+                        ((9) ("error - expecting one of the symbols INTEGER")) 
+                        ((10) ("error - expecting one of the symbols INTEGER")) 
+                        ((11) ("error - expecting one of the symbols PERIOD $")) 
+                        ((13) ("error - expecting one of the symbols BACKSLASH PERIOD $")) 
+                        ((14) ("error - expecting one of the symbols BACKSLASH PERIOD $ ^")) 
+                    )
+                    </div></div>
+
+                    <p>
+                    Let's try out the parser which inputs sentences and parses them using the parse tables just generated.
+                    Here are a few test sentences,
+                    </p>
+
+                    <div class="scrollBox"> <div class="scrollBoxContent">
+                    ; Not correct, e.g. 2
+                    (integer)
+
+                    ; Minimum correct sentence, e.g.  2 33 234234
+                    (integer integer    integer)
+
+                    ; Successively more complex sentences. e.g. 2 10  989080890\
+                    ;                                                 123213123
+                    (integer integer    integer backslash integer)
+
+                    ; 2 10  989080890 . 2132312
+                    (integer integer    integer period integer)
+
+                    ; 2 10   3 ^ 6
+                    (integer integer    integer ^ integer)
+
+                    ; 2 10  55 . 3333232432\
+                    ;            23434234
+                    (integer integer    integer period integer backslash integer)
+
+                    ; 2 10  55 . 3333232432 . 12313 . 21 ^ 22332\
+                    ;                                      23434234\
+                    ;                                      454 . 23 ^ 32
+                    (integer integer    integer period integer period integer ^ integer backslash integer backslash integer period integer ^ integer)
+                    </div></div>
+
+                    <p>
+                    Start LISP interpreter's read-evaluate-print-loop and load the parser.
+                    </p>
+
+                    <div class="scrollBox"> <div class="scrollBoxContent">
+                    $ sbcl
+                    This is SBCL 1.1.6.0-3c5581a, an implementation of ANSI Common Lisp.
+                    More information about SBCL is available at &lt;http://www.sbcl.org/&gt;.
+                    ...
+
+                    * (load "LR(1)AndLALR(1)Parser.lsp")
+                    T
+
+                    * (parser "parser.dat" "sentences.dat" "parsed-sentences.dat")
+
+                        LR(1)AndLALR(1)ParserGenerator Version 5.6
+                                    
+                        An LR(1) and LALR(1) Parser Generator written in Common Lisp.
+                                    
+                        Copyright (C) 1989-2026 by Sean Erik O'Connor.  All Rights Reserved.
+                        ...
+                    NIL
+                    * (quit)
+                    </div></div>
+
+                    <p>
+                    Here are the parsed sentences,
+                    </p>
+
+                    <div class="scrollBox"> <div class="scrollBoxContent">
+                    Parsing the sentence: (INTEGER)
+
+                    PARSE STACK                                 INPUT STACK   ACTION                   
+
+                    (0)                                         (INTEGER $)   (SHIFT 2)                
+
+                    (0 INTEGER 2)                                       ($)   ERROR                    
+
+                    error - expecting one of the symbols INTEGER
+
+                    Sentence was not in the grammar.
+
+
+
+
+                    Parsing the sentence: (INTEGER INTEGER INTEGER)
+
+                    PARSE STACK                                 INPUT STACK   ACTION                   
+
+                    (0)                                (INTEGER INTEGER INTEGER $)   (SHIFT 2)                
+
+                    (0 INTEGER 2)                       (INTEGER INTEGER $)   (SHIFT 3)                
+
+                    (0 INTEGER 2 INTEGER 3)                     (INTEGER $)   (SHIFT 4)                
+
+                    (0 INTEGER 2 INTEGER 3 INTEGER 4)                   ($)   (REDUCE 7 (BIGINTEGER -&gt; INTEGER))
+
+                    (0 INTEGER 2 INTEGER 3 BIGINTEGER 7)                 ($)   (REDUCE 5 (FACTOR -&gt; BIGINTEGER))
+
+                    (0 INTEGER 2 INTEGER 3 FACTOR 6)                    ($)   (REDUCE 3 (FACTORIZATION -&gt; FACTOR))
+
+                    (0 INTEGER 2 INTEGER 3 FACTORIZATION 5)                 ($)   (REDUCE 1 (S -&gt; INTEGER INTEGER FACTORIZATION))
+
+                    (0 S 1)                                             ($)   (ACCEPT)                 
+
+                    Sentence was grammatical.
+
+
+
+
+                    Parsing the sentence: (INTEGER INTEGER INTEGER BACKSLASH INTEGER)
+
+                    PARSE STACK                                 INPUT STACK   ACTION                   
+
+                    (0)                                (INTEGER INTEGER INTEGER BACKSLASH INTEGER $)   (SHIFT 2)                
+
+                    (0 INTEGER 2)                      (INTEGER INTEGER BACKSLASH INTEGER $)   (SHIFT 3)                
+
+                    (0 INTEGER 2 INTEGER 3)            (INTEGER BACKSLASH INTEGER $)   (SHIFT 4)                
+
+                    (0 INTEGER 2 INTEGER 3 INTEGER 4)  (BACKSLASH INTEGER $)   (REDUCE 7 (BIGINTEGER -&gt; INTEGER))
+
+                    (0 INTEGER 2 INTEGER 3 BIGINTEGER 7)(BACKSLASH INTEGER $)   (SHIFT 10)               
+
+                    (0 INTEGER 2 INTEGER 3 BIGINTEGER 7 BACKSLASH 10)         (INTEGER $)   (SHIFT 14)               
+
+                    (0 INTEGER 2 INTEGER 3 BIGINTEGER 7 BACKSLASH 10 INTEGER 14)                 ($)   (REDUCE 6 (BIGINTEGER -&gt; BIGINTEGER BACKSLASH INTEGER))
+
+                    (0 INTEGER 2 INTEGER 3 BIGINTEGER 7)                 ($)   (REDUCE 5 (FACTOR -&gt; BIGINTEGER))
+
+                    (0 INTEGER 2 INTEGER 3 FACTOR 6)                    ($)   (REDUCE 3 (FACTORIZATION -&gt; FACTOR))
+
+                    (0 INTEGER 2 INTEGER 3 FACTORIZATION 5)                 ($)   (REDUCE 1 (S -&gt; INTEGER INTEGER FACTORIZATION))
+
+                    (0 S 1)                                             ($)   (ACCEPT)                 
+
+                    Sentence was grammatical.
+
+
+
+
+                    Parsing the sentence: (INTEGER INTEGER INTEGER PERIOD INTEGER)
+
+                    PARSE STACK                                 INPUT STACK   ACTION                   
+
+                    (0)                                (INTEGER INTEGER INTEGER PERIOD INTEGER $)   (SHIFT 2)                
+
+                    (0 INTEGER 2)                      (INTEGER INTEGER PERIOD INTEGER $)   (SHIFT 3)                
+
+                    (0 INTEGER 2 INTEGER 3)            (INTEGER PERIOD INTEGER $)   (SHIFT 4)                
+
+                    (0 INTEGER 2 INTEGER 3 INTEGER 4)    (PERIOD INTEGER $)   (REDUCE 7 (BIGINTEGER -&gt; INTEGER))
+
+                    (0 INTEGER 2 INTEGER 3 BIGINTEGER 7)  (PERIOD INTEGER $)   (REDUCE 5 (FACTOR -&gt; BIGINTEGER))
+
+                    (0 INTEGER 2 INTEGER 3 FACTOR 6)     (PERIOD INTEGER $)   (REDUCE 3 (FACTORIZATION -&gt; FACTOR))
+
+                    (0 INTEGER 2 INTEGER 3 FACTORIZATION 5)  (PERIOD INTEGER $)   (SHIFT 8)                
+
+                    (0 INTEGER 2 INTEGER 3 FACTORIZATION 5 PERIOD 8)         (INTEGER $)   (SHIFT 4)                
+
+                    (0 INTEGER 2 INTEGER 3 FACTORIZATION 5 PERIOD 8 INTEGER 4)                 ($)   (REDUCE 7 (BIGINTEGER -&gt; INTEGER))
+
+                    (0 INTEGER 2 INTEGER 3 FACTORIZATION 5 PERIOD 8 BIGINTEGER 7)                 ($)   (REDUCE 5 (FACTOR -&gt; BIGINTEGER))
+
+                    (0 INTEGER 2 INTEGER 3 FACTORIZATION 5 PERIOD 8 FACTOR 11)                 ($)   (REDUCE 2 (FACTORIZATION -&gt; FACTORIZATION PERIOD FACTOR))
+
+                    (0 INTEGER 2 INTEGER 3 FACTORIZATION 5)                 ($)   (REDUCE 1 (S -&gt; INTEGER INTEGER FACTORIZATION))
+
+                    (0 S 1)                                             ($)   (ACCEPT)                 
+
+                    Sentence was grammatical.
+
+
+
+
+                    Parsing the sentence: (INTEGER INTEGER INTEGER ^ INTEGER)
+
+                    PARSE STACK                                 INPUT STACK   ACTION                   
+
+                    (0)                                (INTEGER INTEGER INTEGER ^ INTEGER $)   (SHIFT 2)                
+
+                    (0 INTEGER 2)                      (INTEGER INTEGER ^ INTEGER $)   (SHIFT 3)                
+
+                    (0 INTEGER 2 INTEGER 3)            (INTEGER ^ INTEGER $)   (SHIFT 4)                
+
+                    (0 INTEGER 2 INTEGER 3 INTEGER 4)         (^ INTEGER $)   (REDUCE 7 (BIGINTEGER -&gt; INTEGER))
+
+                    (0 INTEGER 2 INTEGER 3 BIGINTEGER 7)       (^ INTEGER $)   (SHIFT 9)                
+
+                    (0 INTEGER 2 INTEGER 3 BIGINTEGER 7 ^ 9)         (INTEGER $)   (SHIFT 4)                
+
+                    (0 INTEGER 2 INTEGER 3 BIGINTEGER 7 ^ 9 INTEGER 4)                 ($)   (REDUCE 7 (BIGINTEGER -&gt; INTEGER))
+
+                    (0 INTEGER 2 INTEGER 3 BIGINTEGER 7 ^ 9 BIGINTEGER 13)                 ($)   (REDUCE 4 (FACTOR -&gt; BIGINTEGER ^ BIGINTEGER))
+
+                    (0 INTEGER 2 INTEGER 3 FACTOR 6)                    ($)   (REDUCE 3 (FACTORIZATION -&gt; FACTOR))
+
+                    (0 INTEGER 2 INTEGER 3 FACTORIZATION 5)                 ($)   (REDUCE 1 (S -&gt; INTEGER INTEGER FACTORIZATION))
+
+                    (0 S 1)                                             ($)   (ACCEPT)                 
+
+                    Sentence was grammatical.
+
+
+
+
+                    Parsing the sentence: (INTEGER INTEGER INTEGER PERIOD INTEGER BACKSLASH INTEGER)
+
+                    PARSE STACK                                 INPUT STACK   ACTION                   
+
+                    (0)                                (INTEGER INTEGER INTEGER PERIOD INTEGER BACKSLASH INTEGER $)   (SHIFT 2)                
+
+                    (0 INTEGER 2)                      (INTEGER INTEGER PERIOD INTEGER BACKSLASH INTEGER $)   (SHIFT 3)                
+
+                    (0 INTEGER 2 INTEGER 3)            (INTEGER PERIOD INTEGER BACKSLASH INTEGER $)   (SHIFT 4)                
+
+                    (0 INTEGER 2 INTEGER 3 INTEGER 4)  (PERIOD INTEGER BACKSLASH INTEGER $)   (REDUCE 7 (BIGINTEGER -&gt; INTEGER))
+
+                    (0 INTEGER 2 INTEGER 3 BIGINTEGER 7)(PERIOD INTEGER BACKSLASH INTEGER $)   (REDUCE 5 (FACTOR -&gt; BIGINTEGER))
+
+                    (0 INTEGER 2 INTEGER 3 FACTOR 6)   (PERIOD INTEGER BACKSLASH INTEGER $)   (REDUCE 3 (FACTORIZATION -&gt; FACTOR))
+
+                    (0 INTEGER 2 INTEGER 3 FACTORIZATION 5)(PERIOD INTEGER BACKSLASH INTEGER $)   (SHIFT 8)                
+
+                    (0 INTEGER 2 INTEGER 3 FACTORIZATION 5 PERIOD 8)(INTEGER BACKSLASH INTEGER $)   (SHIFT 4)                
+
+                    (0 INTEGER 2 INTEGER 3 FACTORIZATION 5 PERIOD 8 INTEGER 4)(BACKSLASH INTEGER $)   (REDUCE 7 (BIGINTEGER -&gt; INTEGER))
+
+                    (0 INTEGER 2 INTEGER 3 FACTORIZATION 5 PERIOD 8 BIGINTEGER 7)(BACKSLASH INTEGER $)   (SHIFT 10)               
+
+                    (0 INTEGER 2 INTEGER 3 FACTORIZATION 5 PERIOD 8 BIGINTEGER 7 BACKSLASH 10)         (INTEGER $)   (SHIFT 14)               
+
+                    (0 INTEGER 2 INTEGER 3 FACTORIZATION 5 PERIOD 8 BIGINTEGER 7 BACKSLASH 10
+                     INTEGER 14)                 ($)   (REDUCE 6 (BIGINTEGER -&gt; BIGINTEGER BACKSLASH INTEGER))
+
+                    (0 INTEGER 2 INTEGER 3 FACTORIZATION 5 PERIOD 8 BIGINTEGER 7)                 ($)   (REDUCE 5 (FACTOR -&gt; BIGINTEGER))
+
+                    (0 INTEGER 2 INTEGER 3 FACTORIZATION 5 PERIOD 8 FACTOR 11)                 ($)   (REDUCE 2 (FACTORIZATION -&gt; FACTORIZATION PERIOD FACTOR))
+
+                    (0 INTEGER 2 INTEGER 3 FACTORIZATION 5)                 ($)   (REDUCE 1 (S -&gt; INTEGER INTEGER FACTORIZATION))
+
+                    (0 S 1)                                             ($)   (ACCEPT)                 
+
+                    Sentence was grammatical.
+
+
+
+
+                    Parsing the sentence: (INTEGER INTEGER INTEGER PERIOD INTEGER PERIOD INTEGER ^
+                                           INTEGER BACKSLASH INTEGER BACKSLASH INTEGER PERIOD
+                                           INTEGER ^ INTEGER)
+
+                    PARSE STACK                                 INPUT STACK   ACTION                   
+
+                    (0)                                (INTEGER INTEGER INTEGER PERIOD INTEGER PERIOD INTEGER ^ INTEGER BACKSLASH
+                     INTEGER BACKSLASH INTEGER PERIOD INTEGER ^ INTEGER $)   (SHIFT 2)                
+
+                    (0 INTEGER 2)                      (INTEGER INTEGER PERIOD INTEGER PERIOD INTEGER ^ INTEGER BACKSLASH INTEGER
+                     BACKSLASH INTEGER PERIOD INTEGER ^ INTEGER $)   (SHIFT 3)                
+
+                    (0 INTEGER 2 INTEGER 3)            (INTEGER PERIOD INTEGER PERIOD INTEGER ^ INTEGER BACKSLASH INTEGER BACKSLASH
+                     INTEGER PERIOD INTEGER ^ INTEGER $)   (SHIFT 4)                
+
+                    (0 INTEGER 2 INTEGER 3 INTEGER 4)  (PERIOD INTEGER PERIOD INTEGER ^ INTEGER BACKSLASH INTEGER BACKSLASH INTEGER
+                     PERIOD INTEGER ^ INTEGER $)   (REDUCE 7 (BIGINTEGER -&gt; INTEGER))
+
+                    (0 INTEGER 2 INTEGER 3 BIGINTEGER 7)(PERIOD INTEGER PERIOD INTEGER ^ INTEGER BACKSLASH INTEGER BACKSLASH INTEGER
+                     PERIOD INTEGER ^ INTEGER $)   (REDUCE 5 (FACTOR -&gt; BIGINTEGER))
+
+                    (0 INTEGER 2 INTEGER 3 FACTOR 6)   (PERIOD INTEGER PERIOD INTEGER ^ INTEGER BACKSLASH INTEGER BACKSLASH INTEGER
+                     PERIOD INTEGER ^ INTEGER $)   (REDUCE 3 (FACTORIZATION -&gt; FACTOR))
+
+                    (0 INTEGER 2 INTEGER 3 FACTORIZATION 5)(PERIOD INTEGER PERIOD INTEGER ^ INTEGER BACKSLASH INTEGER BACKSLASH INTEGER
+                     PERIOD INTEGER ^ INTEGER $)   (SHIFT 8)                
+
+                    (0 INTEGER 2 INTEGER 3 FACTORIZATION 5 PERIOD 8)(INTEGER PERIOD INTEGER ^ INTEGER BACKSLASH INTEGER BACKSLASH INTEGER PERIOD
+                     INTEGER ^ INTEGER $)   (SHIFT 4)                
+
+                    (0 INTEGER 2 INTEGER 3 FACTORIZATION 5 PERIOD 8 INTEGER 4)(PERIOD INTEGER ^ INTEGER BACKSLASH INTEGER BACKSLASH INTEGER PERIOD INTEGER ^
+                     INTEGER $)   (REDUCE 7 (BIGINTEGER -&gt; INTEGER))
+
+                    (0 INTEGER 2 INTEGER 3 FACTORIZATION 5 PERIOD 8 BIGINTEGER 7)(PERIOD INTEGER ^ INTEGER BACKSLASH INTEGER BACKSLASH INTEGER PERIOD INTEGER ^
+                     INTEGER $)   (REDUCE 5 (FACTOR -&gt; BIGINTEGER))
+
+                    (0 INTEGER 2 INTEGER 3 FACTORIZATION 5 PERIOD 8 FACTOR 11)(PERIOD INTEGER ^ INTEGER BACKSLASH INTEGER BACKSLASH INTEGER PERIOD INTEGER ^
+                     INTEGER $)   (REDUCE 2 (FACTORIZATION -&gt; FACTORIZATION PERIOD FACTOR))
+
+                    (0 INTEGER 2 INTEGER 3 FACTORIZATION 5)(PERIOD INTEGER ^ INTEGER BACKSLASH INTEGER BACKSLASH INTEGER PERIOD INTEGER ^
+                     INTEGER $)   (SHIFT 8)                
+
+                    (0 INTEGER 2 INTEGER 3 FACTORIZATION 5 PERIOD 8)(INTEGER ^ INTEGER BACKSLASH INTEGER BACKSLASH INTEGER PERIOD INTEGER ^ INTEGER
+                     $)   (SHIFT 4)                
+
+                    (0 INTEGER 2 INTEGER 3 FACTORIZATION 5 PERIOD 8 INTEGER 4)(^ INTEGER BACKSLASH INTEGER BACKSLASH INTEGER PERIOD INTEGER ^ INTEGER $)   (REDUCE 7 (BIGINTEGER -&gt; INTEGER))
+
+                    (0 INTEGER 2 INTEGER 3 FACTORIZATION 5 PERIOD 8 BIGINTEGER 7)(^ INTEGER BACKSLASH INTEGER BACKSLASH INTEGER PERIOD INTEGER ^ INTEGER $)   (SHIFT 9)                
+
+                    (0 INTEGER 2 INTEGER 3 FACTORIZATION 5 PERIOD 8 BIGINTEGER 7 ^ 9)(INTEGER BACKSLASH INTEGER BACKSLASH INTEGER PERIOD INTEGER ^ INTEGER $)   (SHIFT 4)                
+
+                    (0 INTEGER 2 INTEGER 3 FACTORIZATION 5 PERIOD 8 BIGINTEGER 7 ^ 9 INTEGER 4)(BACKSLASH INTEGER BACKSLASH INTEGER PERIOD INTEGER ^ INTEGER $)   (REDUCE 7 (BIGINTEGER -&gt; INTEGER))
+
+                    (0 INTEGER 2 INTEGER 3 FACTORIZATION 5 PERIOD 8 BIGINTEGER 7 ^ 9 BIGINTEGER 13)(BACKSLASH INTEGER BACKSLASH INTEGER PERIOD INTEGER ^ INTEGER $)   (SHIFT 10)               
+
+                    (0 INTEGER 2 INTEGER 3 FACTORIZATION 5 PERIOD 8 BIGINTEGER 7 ^ 9 BIGINTEGER 13
+                     BACKSLASH 10)(INTEGER BACKSLASH INTEGER PERIOD INTEGER ^ INTEGER $)   (SHIFT 14)               
+
+                    (0 INTEGER 2 INTEGER 3 FACTORIZATION 5 PERIOD 8 BIGINTEGER 7 ^ 9 BIGINTEGER 13
+                     BACKSLASH 10 INTEGER 14)(BACKSLASH INTEGER PERIOD INTEGER ^ INTEGER $)   (REDUCE 6 (BIGINTEGER -&gt; BIGINTEGER BACKSLASH INTEGER))
+
+                    (0 INTEGER 2 INTEGER 3 FACTORIZATION 5 PERIOD 8 BIGINTEGER 7 ^ 9 BIGINTEGER 13)(BACKSLASH INTEGER PERIOD INTEGER ^ INTEGER $)   (SHIFT 10)               
+
+                    (0 INTEGER 2 INTEGER 3 FACTORIZATION 5 PERIOD 8 BIGINTEGER 7 ^ 9 BIGINTEGER 13
+                     BACKSLASH 10)(INTEGER PERIOD INTEGER ^ INTEGER $)   (SHIFT 14)               
+
+                    (0 INTEGER 2 INTEGER 3 FACTORIZATION 5 PERIOD 8 BIGINTEGER 7 ^ 9 BIGINTEGER 13
+                     BACKSLASH 10 INTEGER 14)(PERIOD INTEGER ^ INTEGER $)   (REDUCE 6 (BIGINTEGER -&gt; BIGINTEGER BACKSLASH INTEGER))
+
+                    (0 INTEGER 2 INTEGER 3 FACTORIZATION 5 PERIOD 8 BIGINTEGER 7 ^ 9 BIGINTEGER 13)(PERIOD INTEGER ^ INTEGER $)   (REDUCE 4 (FACTOR -&gt; BIGINTEGER ^ BIGINTEGER))
+
+                    (0 INTEGER 2 INTEGER 3 FACTORIZATION 5 PERIOD 8 FACTOR 11)(PERIOD INTEGER ^ INTEGER $)   (REDUCE 2 (FACTORIZATION -&gt; FACTORIZATION PERIOD FACTOR))
+
+                    (0 INTEGER 2 INTEGER 3 FACTORIZATION 5)(PERIOD INTEGER ^ INTEGER $)   (SHIFT 8)                
+
+                    (0 INTEGER 2 INTEGER 3 FACTORIZATION 5 PERIOD 8)(INTEGER ^ INTEGER $)   (SHIFT 4)                
+
+                    (0 INTEGER 2 INTEGER 3 FACTORIZATION 5 PERIOD 8 INTEGER 4)       (^ INTEGER $)   (REDUCE 7 (BIGINTEGER -&gt; INTEGER))
+
+                    (0 INTEGER 2 INTEGER 3 FACTORIZATION 5 PERIOD 8 BIGINTEGER 7)       (^ INTEGER $)   (SHIFT 9)                
+
+                    (0 INTEGER 2 INTEGER 3 FACTORIZATION 5 PERIOD 8 BIGINTEGER 7 ^ 9)         (INTEGER $)   (SHIFT 4)                
+
+                    (0 INTEGER 2 INTEGER 3 FACTORIZATION 5 PERIOD 8 BIGINTEGER 7 ^ 9 INTEGER 4)                 ($)   (REDUCE 7 (BIGINTEGER -&gt; INTEGER))
+
+                    (0 INTEGER 2 INTEGER 3 FACTORIZATION 5 PERIOD 8 BIGINTEGER 7 ^ 9 BIGINTEGER 13)                 ($)   (REDUCE 4 (FACTOR -&gt; BIGINTEGER ^ BIGINTEGER))
+
+                    (0 INTEGER 2 INTEGER 3 FACTORIZATION 5 PERIOD 8 FACTOR 11)                 ($)   (REDUCE 2 (FACTORIZATION -&gt; FACTORIZATION PERIOD FACTOR))
+
+                    (0 INTEGER 2 INTEGER 3 FACTORIZATION 5)                 ($)   (REDUCE 1 (S -&gt; INTEGER INTEGER FACTORIZATION))
+
+                    (0 S 1)                                             ($)   (ACCEPT)                 
+
+                    Sentence was grammatical.
+                    </div></div>
+
+                    <p>
+                    Looks good!
+                    </p>
+               </section>
+           </article>
+
+            <footer class="footnote">
+                <hr>
+                <!-- A copyright footnote to preserve my legal rights. -->
+                <p class="footnote">
+                    Copyright &copy; 1986-2026 by Sean Erik O'Connor.  
+                    All Rights Reserved.
+                    &nbsp;&nbsp;&nbsp;
+                    last updated 27 Feb 26.
+                </p>
+
+            </footer>
+        </div> <!-- wrapper -->
+    </body>
+</html>

@@ -1,0 +1,56 @@
+
+
+
+Parsing the sentence: (|a| |a| |b| |b|)
+
+PARSE STACK                                 INPUT STACK   ACTION                   
+
+(0)                                 (|a| |a| |b| |b| $)   (REDUCE 2 (S -> EPSILON))
+
+(0 S 1)                             (|a| |a| |b| |b| $)   (SHIFT 2)                
+
+(0 S 1 |a| 2)                           (|a| |b| |b| $)   (REDUCE 2 (S -> EPSILON))
+
+(0 S 1 |a| 2 S 3)                       (|a| |b| |b| $)   (SHIFT 2)                
+
+(0 S 1 |a| 2 S 3 |a| 2)                     (|b| |b| $)   (REDUCE 2 (S -> EPSILON))
+
+(0 S 1 |a| 2 S 3 |a| 2 S 3)                 (|b| |b| $)   (SHIFT 5)                
+
+(0 S 1 |a| 2 S 3 |a| 2 S 3 |b| 5)               (|b| $)   (REDUCE 1 (S -> S |a| S |b|))
+
+(0 S 1 |a| 2 S 3)                               (|b| $)   (SHIFT 5)                
+
+(0 S 1 |a| 2 S 3 |b| 5)                             ($)   (REDUCE 1 (S -> S |a| S |b|))
+
+(0 S 1)                                             ($)   (ACCEPT)                 
+
+Sentence was grammatical.
+
+
+
+
+Parsing the sentence: (|a| |a| |b|)
+
+PARSE STACK                                 INPUT STACK   ACTION                   
+
+(0)                                     (|a| |a| |b| $)   (REDUCE 2 (S -> EPSILON))
+
+(0 S 1)                                 (|a| |a| |b| $)   (SHIFT 2)                
+
+(0 S 1 |a| 2)                               (|a| |b| $)   (REDUCE 2 (S -> EPSILON))
+
+(0 S 1 |a| 2 S 3)                           (|a| |b| $)   (SHIFT 2)                
+
+(0 S 1 |a| 2 S 3 |a| 2)                         (|b| $)   (REDUCE 2 (S -> EPSILON))
+
+(0 S 1 |a| 2 S 3 |a| 2 S 3)                     (|b| $)   (SHIFT 5)                
+
+(0 S 1 |a| 2 S 3 |a| 2 S 3 |b| 5)                   ($)   (REDUCE 1 (S -> S |a| S |b|))
+
+(0 S 1 |a| 2 S 3)                                   ($)   ERROR                    
+
+error - expecting one of the symbols |a| |b|
+
+Sentence was not in the grammar.
+
