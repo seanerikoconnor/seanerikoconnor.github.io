@@ -1,0 +1,12 @@
+# Ignore these subdirectories in this top level WebRoot repository. 
+
+Art/
+CommunicationTheory/
+ComputerScience/
+Finance/
+Mathematics/
+WebPageDesign/
+mathjax/
+private/
+
+.gitignore
