@@ -1,0 +1,1087 @@
+
+        <!DOCTYPE html>
+        <html lang="en-US">  <!-- Set language of this page to USA English. -->
+        
+        <head>
+            <!-- This page uses Unicode characters. -->
+            <meta charset="utf-8">
+        
+            <!-- Set viewport to actual device width.  Any other settings makes the web page initially appear zoomed-in on mobile devices. -->
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+            <!-- Title appears in the web browser tab for this page.  The browser also uses it to bookmark this page. -->
+            <title>Sean Erik O'Connor - Home Page and Free Mathematical Software.</title>
+        
+            <!-- Search engines will search using words in this description.  They will also display title in their search results. -->
+            <meta name="description" content="Syntax Colored Source Code Listing">
+        
+            <!-- Some content management software uses the author's name. -->
+            <meta name="author" content="Sean Erik O'Connor">
+        
+            <meta name="copyright" content="Copyright (C) 1986-2026 by Sean Erik O'Connor.  All Rights Reserved.">   
+        
+            <!-- Begin style sheet insertion -->
+            <style>
+                /* Default settings for all my main web pages. */
+                body
+                {
+                    /* A wide sans-serif font is more readable on the web. */
+                    font-family:            Verdana, Geneva, "Trebuchet MS", sans-serif ;
+        
+                    /* Set the body font size a little smaller than the user's default browser setting. */
+                    font-size:              0.8em ; 
+        
+                    /* Black text is easier to read. */
+                    color:                  black ;
+        
+                    /*  More vertical space between lines for more pleasant reading.  Use a unitless font height multiplier.  
+                        Length and percentage percentage values can give scrunched text due to poor inheritance behavior. */
+                    line-height:            1.7 ;
+                }
+        
+                <!-- Now prepare to add the syntax coloring style sheet from Pygment -->
+        pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.highlight .hll { background-color: #ffffcc }
+.highlight { background: #f8f8f8; }
+.highlight .c { color: #3D7B7B; font-style: italic } /* Comment */
+.highlight .err { border: 1px solid #F00 } /* Error */
+.highlight .k { color: #008000; font-weight: bold } /* Keyword */
+.highlight .o { color: #666 } /* Operator */
+.highlight .ch { color: #3D7B7B; font-style: italic } /* Comment.Hashbang */
+.highlight .cm { color: #3D7B7B; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #9C6500 } /* Comment.Preproc */
+.highlight .cpf { color: #3D7B7B; font-style: italic } /* Comment.PreprocFile */
+.highlight .c1 { color: #3D7B7B; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #3D7B7B; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #A00000 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .ges { font-weight: bold; font-style: italic } /* Generic.EmphStrong */
+.highlight .gr { color: #E40000 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #008400 } /* Generic.Inserted */
+.highlight .go { color: #717171 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #04D } /* Generic.Traceback */
+.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #B00040 } /* Keyword.Type */
+.highlight .m { color: #666 } /* Literal.Number */
+.highlight .s { color: #BA2121 } /* Literal.String */
+.highlight .na { color: #687822 } /* Name.Attribute */
+.highlight .nb { color: #008000 } /* Name.Builtin */
+.highlight .nc { color: #00F; font-weight: bold } /* Name.Class */
+.highlight .no { color: #800 } /* Name.Constant */
+.highlight .nd { color: #A2F } /* Name.Decorator */
+.highlight .ni { color: #717171; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #CB3F38; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #00F } /* Name.Function */
+.highlight .nl { color: #767600 } /* Name.Label */
+.highlight .nn { color: #00F; font-weight: bold } /* Name.Namespace */
+.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #19177C } /* Name.Variable */
+.highlight .ow { color: #A2F; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #BBB } /* Text.Whitespace */
+.highlight .mb { color: #666 } /* Literal.Number.Bin */
+.highlight .mf { color: #666 } /* Literal.Number.Float */
+.highlight .mh { color: #666 } /* Literal.Number.Hex */
+.highlight .mi { color: #666 } /* Literal.Number.Integer */
+.highlight .mo { color: #666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
+.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
+.highlight .se { color: #AA5D1F; font-weight: bold } /* Literal.String.Escape */
+.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.highlight .si { color: #A45A77; font-weight: bold } /* Literal.String.Interpol */
+.highlight .sx { color: #008000 } /* Literal.String.Other */
+.highlight .sr { color: #A45A77 } /* Literal.String.Regex */
+.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #00F } /* Name.Function.Magic */
+.highlight .vc { color: #19177C } /* Name.Variable.Class */
+.highlight .vg { color: #19177C } /* Name.Variable.Global */
+.highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
+.highlight .il { color: #666 } /* Literal.Number.Integer.Long */
+            </style>
+        </head>
+        
+        <body>
+            <article class="content">
+        <div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="go">Factorisations Of Cunningham Numbers C+(5,n) = 5^n + 1</span>
+<span class="linenos">  2</span>
+<span class="linenos">  3</span><span class="go">Canonical Representation Of Factorisations</span>
+<span class="linenos">  4</span>
+<span class="linenos">  5</span><span class="go">1. Factorisations are given from smallest to largest factor, with a period &#39;.&#39;</span>
+<span class="linenos">  6</span><span class="go">   separating factors.</span>
+<span class="linenos">  7</span><span class="go">2. Multiplicity of factors is indicated with the carat &#39;^&#39; in ascii tradition</span>
+<span class="linenos">  8</span><span class="go">   for the text version of the tables but not the HTML version.</span>
+<span class="linenos">  9</span><span class="go">3. The backslash &#39;\&#39; is used to indicate continuation of a line, the decimal</span>
+<span class="linenos"> 10</span><span class="go">   digit representation of the number does not stop but continues on the next</span>
+<span class="linenos"> 11</span><span class="go">   line as if no break had occured. This can sometimes make for bad breaks, but</span>
+<span class="linenos"> 12</span><span class="go">   such is life.</span>
+<span class="linenos"> 13</span>
+<span class="linenos"> 14</span><span class="go">Notation Used In The Tables</span>
+<span class="linenos"> 15</span>
+<span class="linenos"> 16</span><span class="go">1. #Fac is the number of (non distinct) prime factors in an expression.</span>
+<span class="linenos"> 17</span><span class="go">2. A plussed #Fac means that more prime factors exist but they are unknown due</span>
+<span class="linenos"> 18</span><span class="go">   to an unfactored composite in the expression.</span>
+<span class="linenos"> 19</span>
+<span class="linenos"> 20</span><span class="go">========================================================================================================================</span>
+<span class="linenos"> 21</span>
+<span class="linenos"> 22</span><span class="go">   n  #Fac  Factorisation</span>
+<span class="linenos"> 23</span><span class="go">   1     2  2.3</span>
+<span class="linenos"> 24</span><span class="go">   2     2  2.13</span>
+<span class="linenos"> 25</span><span class="go">   3     4  2.3^2.7</span>
+<span class="linenos"> 26</span><span class="go">   4     2  2.313</span>
+<span class="linenos"> 27</span><span class="go">   5     3  2.3.521</span>
+<span class="linenos"> 28</span><span class="go">   6     3  2.13.601</span>
+<span class="linenos"> 29</span><span class="go">   7     4  2.3.29.449</span>
+<span class="linenos"> 30</span><span class="go">   8     3  2.17.11489</span>
+<span class="linenos"> 31</span><span class="go">   9     6  2.3^3.7.5167</span>
+<span class="linenos"> 32</span><span class="go">  10     4  2.13.41.9161</span>
+<span class="linenos"> 33</span><span class="go">  11     5  2.3.23.67.5281</span>
+<span class="linenos"> 34</span><span class="go">  12     3  2.313.390001</span>
+<span class="linenos"> 35</span><span class="go">  13     4  2.3.5227.38923</span>
+<span class="linenos"> 36</span><span class="go">  14     3  2.13.234750601</span>
+<span class="linenos"> 37</span><span class="go">  15     7  2.3^2.7.61.521.7621</span>
+<span class="linenos"> 38</span><span class="go">  16     3  2.2593.29423041</span>
+<span class="linenos"> 39</span><span class="go">  17     4  2.3.3061.41540861</span>
+<span class="linenos"> 40</span><span class="go">  18     5  2.13.37.601.6597973</span>
+<span class="linenos"> 41</span><span class="go">  19     5  2.3.761.19609.213029</span>
+<span class="linenos"> 42</span><span class="go">  20     4  2.241.313.632133361</span>
+<span class="linenos"> 43</span><span class="go">  21    10  2.3^2.7^2.29.43.127.449.7603</span>
+<span class="linenos"> 44</span><span class="go">  22     4  2.13.89.1030330938209</span>
+<span class="linenos"> 45</span><span class="go">  23     4  2.3.47.42272797713043</span>
+<span class="linenos"> 46</span><span class="go">  24     4  2.17.11489.152587500001</span>
+<span class="linenos"> 47</span><span class="go">  25     5  2.3.521.1901.50150933101</span>
+<span class="linenos"> 48</span><span class="go">  26     5  2.13^2.53.83181652304609</span>
+<span class="linenos"> 49</span><span class="go">  27    10  2.3^4.7.163.487.5167.16018507</span>
+<span class="linenos"> 50</span><span class="go">  28     3  2.313.59509429687890001</span>
+<span class="linenos"> 51</span><span class="go">  29     4  2.3.5096867.6090817323763</span>
+<span class="linenos"> 52</span><span class="go">  30     7  2.13.41.601.2281.9161.69566521</span>
+<span class="linenos"> 53</span><span class="go">  31     5  2.3.1303.21207101.28086211607</span>
+<span class="linenos"> 54</span><span class="go">  32     4  2.641.75068993.241931001601</span>
+<span class="linenos"> 55</span><span class="go">  33     9  2.3^2.7.23.67.5281.595123.190771747</span>
+<span class="linenos"> 56</span><span class="go">  34     6  2.13.1973.20129.45289.12447002677</span>
+<span class="linenos"> 57</span><span class="go">  35     7  2.3.29.449.521.15216601.4698932281</span>
+<span class="linenos"> 58</span><span class="go">  36     6  2.73.313.390001.543097.1503418321</span>
+<span class="linenos"> 59</span><span class="go">  37     5  2.3.9103.29010221.45920153384867</span>
+<span class="linenos"> 60</span><span class="go">  38     4  2.13.4885168129.2864226125209369</span>
+<span class="linenos"> 61</span><span class="go">  39     8  2.3^2.7.3121.5227.38923.22735632934561</span>
+<span class="linenos"> 62</span><span class="go">  40     5  2.17.11489.25601.909456847814334401</span>
+<span class="linenos"> 63</span><span class="go">  41     6  2.3.83.43543.221401.9472026608675509</span>
+<span class="linenos"> 64</span><span class="go">  42     6  2.13.601.2521.234750601.24587411156281</span>
+<span class="linenos"> 65</span><span class="go">  43     6  2.3.1549.9547.7866608083.1628744948329</span>
+<span class="linenos"> 66</span><span class="go">  44     3  2.313.9080418348371887359375390001</span>
+<span class="linenos"> 67</span><span class="go">  45    10  2.3^3.7.61.521.5167.7621.60081451169922001</span>
+<span class="linenos"> 68</span><span class="go">  46     3  2.13.5465713352000770660547109750601</span>
+<span class="linenos"> 69</span><span class="go">  47     5  2.3.2069.15888756269.3602372010909260861</span>
+<span class="linenos"> 70</span><span class="go">  48     5  2.97.2593.29423041.240031591394168814433</span>
+<span class="linenos"> 71</span><span class="go">  49     7  2.3.29.449.49105547.1866013003.2481357870461</span>
+<span class="linenos"> 72</span><span class="go">  50     7  2.13.41.9161.239201.424256201.89620825374601</span>
+<span class="linenos"> 73</span><span class="go">  51    10  2.3^2.7.103.3061.8467.528667.41540861.60119016343</span>
+<span class="linenos"> 74</span><span class="go">  52     5  2.313.51169.537181587281.129044008326199409</span>
+<span class="linenos"> 75</span><span class="go">  53     5  2.3.107.28838378869.599659003321309822423087</span>
+<span class="linenos"> 76</span><span class="go">  54     6  2.13.37.601.6597973.14551915228363037109375001</span>
+<span class="linenos"> 77</span><span class="go">  55     7  2.3.23.67.521.5281.10910444855403996246103496881</span>
+<span class="linenos"> 78</span><span class="go">  56     7  2.17.113.337.11489.2520917617.37007700327977836913</span>
+<span class="linenos"> 79</span><span class="go">  57     9  2.3^2.7.229.761.19609.213029.75649382555448580095589</span>
+<span class="linenos"> 80</span><span class="go">  58     3  2.13.1334402673828313149547634216455312875601</span>
+<span class="linenos"> 81</span><span class="go">  59     6  2.3.827.5242462229.3237765225301.2059647179472887</span>
+<span class="linenos"> 82</span><span class="go">  60     6  2.241.313.390001.632133361.23320317172851318360001</span>
+<span class="linenos"> 83</span><span class="go">  61     6  2.3.367.9029.15571335384347.14008364639128540436401</span>
+<span class="linenos"> 84</span><span class="go">  62     4  2.13.8124604717965111529.102651353523520067851969</span>
+<span class="linenos"> 85</span><span class="go">  63    16  2.3^3.7^2.29.43.127.449.883.5167.7603.406729.24132781.1692416503</span>
+<span class="linenos"> 86</span><span class="go">  64     4  2.769.3666499598977.96132956782643741951225664001</span>
+<span class="linenos"> 87</span><span class="go">  65     8  2.3.521.5227.18461.38923.15188886343541.15199221608544481</span>
+<span class="linenos"> 88</span><span class="go">  66     7  2.13.89.601.1453.1030330938209.6509387183417404924784917</span>
+<span class="linenos"> 89</span><span class="go">  67     3  2.3.11293772630057337854244300009061892827351888021</span>
+<span class="linenos"> 90</span><span class="go">  68     7  2.137.313.623017.938894988049.1361753880209.4959636586609</span>
+<span class="linenos"> 91</span><span class="go">  69     9  2.3^2.7.47.66163549.253592389.42272797713043.403316413944121</span>
+<span class="linenos"> 92</span><span class="go">  70     7  2.13.41.281.9161.234750601.13148832195720299503896018648521</span>
+<span class="linenos"> 93</span><span class="go">  71     5  2.3.4261.5747338499820296170481.288231038713838413442281</span>
+<span class="linenos"> 94</span><span class="go">  72     6  2.17.1297.11489.152587500001.2739177855667309845605995807633</span>
+<span class="linenos"> 95</span><span class="go">  73     5  2.3.63554310563.777612767772190289.3570677866897550288203</span>
+<span class="linenos"> 96</span><span class="go">  74     5  2.13.9769.40849.510241095096183757930733363918820917976121</span>
+<span class="linenos"> 97</span><span class="go">  75    13  2.3^2.7.61.521.1901.7621.118801.20775901.24665701.149439601.50150933101</span>
+<span class="linenos"> 98</span><span class="go">  76     5  2.313.457.21363981507860375753.21654472202540732126905077281</span>
+<span class="linenos"> 99</span><span class="go">  77     9  2.3.23.29.67.449.5281.20828886541.49970061516036179615325895945741</span>
+<span class="linenos">100</span><span class="go">  78    10  2.13^2.53.157.601.8684521.4056854881.83181652304609.667929705480493</span>
+<span class="linenos">101</span><span class="go">  79     6  2.3.18251687.7897663181.511465533067.37399095525167136010188229</span>
+<span class="linenos">102</span><span class="go">  80     6  2.2593.29423041.131349761.167597261761.24625444126052524088217281</span>
+<span class="linenos">103</span><span class="go">  81    14  2.3^5.7.163.487.1783.5023.5167.16018507.2066067271380136212224701233463</span>
+<span class="linenos">104</span><span class="go">  82     6  2.13.193357.6355001.1148205782281.56373078952722628530598981268453</span>
+<span class="linenos">105</span><span class="go">  83     5  2.3.167.4029666108840585686296627.2560787702841639767474730913969</span>
+<span class="linenos">106</span><span class="go">  84     7  2.313.6553.90217.390001.59509429687890001.6019022585035590658668001</span>
+<span class="linenos">107</span><span class="go">  85     9  2.3.521.3061.41540861.75752681.247515241.504156421.68795069664507129341</span>
+<span class="linenos">108</span><span class="go">  86     5  2.13.173.2171388367013.132331554743163541916284364878460504933118649</span>
+<span class="linenos">109</span><span class="go">  87     9  2.3^2.7.349.5096867.6090817323763.210390487070809.22500358133965991972941</span>
+<span class="linenos">110</span><span class="go">  88     7  2.17.11489.13729.929281.71225159567951317923809.91029014606406186465761</span>
+<span class="linenos">111</span><span class="go">  89     5  2.3.39387996609449861.56522267529181963.12094715786677995586454978647</span>
+<span class="linenos">112</span><span class="go">  90    12  2.13.37.41.601.2281.9161.6597973.20478961.69566521.6794091374761.25535754811081</span>
+<span class="linenos">113</span><span class="go">  91     8  2.3.29.449.5227.38923.15887476811320661.15994146485373751289418997754783021</span>
+<span class="linenos">114</span><span class="go">  92     4  2.313.150220315444217.214752088491462210591995581828628861192144614553</span>
+<span class="linenos">115</span><span class="go">  93    10  2.3^2.7.1303.21207101.258065887.28086211607.75005167927.53345671490722200466369</span>
+<span class="linenos">116</span><span class="go">  94     6  2.13.5077.12409.329573417220613.935213864500231208652603316429973471246089</span>
+<span class="linenos">117</span><span class="go">  95     9  2.3.521.761.4561.19609.213029.179763436784239734042181.309828362361188845069741</span>
+<span class="linenos">118</span><span class="go">  96     7  2.193.641.75068993.241931001601.5207826497153857.539344757336151926206665601</span>
+<span class="linenos">119</span><span class="go">  97     7  2.3.29683.261707.547663.90130760102421063383.27430239803369083066006288929529</span>
+<span class="linenos">120</span><span class="go">  98     7  2.13.197.234750601.164204573839769.74535675530760254357.21441970593484574539001</span>
+<span class="linenos">121</span><span class="go">  99    12  2.3^3.7.23.67.5167.5281.595123.190771747.874300184250616439267985523227691404297001</span>
+<span class="linenos">122</span><span class="go"> 100     8  2.241.313.4001.132001.776401.632133361.201729070811027930976007420652223887947601</span>
+<span class="linenos">123</span><span class="go"> 101     3  2.3.6573840876841765045097738044023218580610053625908525039752324422200521</span>
+<span class="linenos">124</span><span class="go"> 102    12  2.13.601.1973.6733.20129.45289.4613053.19724557.34288117.12447002677.26837241260899651321</span>
+<span class="linenos">125</span><span class="go"> 103     3  2.3.164346021921044126127443451100580464515251340647713125993808110555013021</span>
+<span class="linenos">126</span><span class="go"> 104     8  2.17.11489.247161617.825256433.2220784177.31308249137777.889988147002015336570560929</span>
+<span class="linenos">127</span><span class="go"> 105    18  2.3^2.7^2.29.43.61.127.421.449.521.7603.7621.5236141.15216601.4698932281.1354224218968567573270561</span>
+<span class="linenos">128</span><span class="go"> 106     4  2.13.8871726015923707071209.534366212823606171881874993300544219189772104182089</span>
+<span class="linenos">129</span><span class="go"> 107     4  2.3.643.159745355677531226795726527119537776550594226912629399294136965936054647</span>
+<span class="linenos">130</span><span class="go"> 108    11  2.73.313.73009.390001.543097.1853281.3314953.1503418321.36280398313.13012873776055827785521</span>
+<span class="linenos">131</span><span class="go"> 109     5  2.3.19403.4046322895447485867367.32707684672709516281678338357373622217207225350621</span>
+<span class="linenos">132</span><span class="go"> 110    10  2.13.41.89.9161.245521.1458601.1030330938209.2802204291103029121.85725237432926769781584361</span>
+<span class="linenos">133</span><span class="go"> 111    13  2.3^2.7.223.5107.9103.668221.13844587.29010221.107903101.45920153384867.221746234901611997486023</span>
+<span class="linenos">134</span><span class="go"> 112     8  2.2593.271489.1149569.10922689.29423041.465314420407473281.7957141013471106527440814723329</span>
+<span class="linenos">135</span><span class="go"> 113     6  2.3.227.1387189.12249784663.416072767607140626504228216362738974973739625245422473584889</span>
+<span class="linenos">136</span><span class="go"> 114     9  2.13.601.22573.53590717.4885168129.2108505761893.2864226125209369.86336058161143199543775877</span>
+<span class="linenos">137</span><span class="go"> 115     7  2.3.47.521.73141.42272797713043.529958401900871889532705668013589387152384352866888324141</span>
+<span class="linenos">138</span><span class="go"> 116     8  2.233.313.929.33409.397823386118610689.1547355341777494553.431947226814793053965448991778881</span>
+<span class="linenos">139</span><span class="go"> 117    13  2.3^3.7.3121.5167.5227.38923.40483.43236180703.22735632934561.121949664589584488031947458631250949</span>
+<span class="linenos">140</span><span class="go"> 118     3  2.13.1157409822348098469384602128957288052006070702052516944254770910797210840078500601</span>
+<span class="linenos">141</span><span class="go"> 119    10  2.3.29.449.2381.3061.25229.4172141.41540861.60433492605929799024858062086345509864222351309382109</span>
+<span class="linenos">142</span><span class="go"> 120     8  2.17.11489.25601.2172116161.152587500001.909456847814334401.249573426944146284704352710315893441</span>
+<span class="linenos">143</span><span class="go"> 121    10  2.3.23.67.5281.374499841.304639362281.11449313571047243.4600715686162128721.12819112747383653095727</span>
+<span class="linenos">144</span><span class="go"> 122     7  2.13.733.61001.19811275733.26933356951273517.30319589876521738837586350091112786441985691445677</span>
+<span class="linenos">145</span><span class="go"> 123    10  2.3^2.7.83.43543.221401.9472026608675509.30970420211207224741561.3179610795566616049227976098726121</span>
+<span class="linenos">146</span><span class="go"> 124     3  2.313.751114601164400963558298106851275193494354988352771579238818981647550964507812890001</span>
+<span class="linenos">147</span><span class="go"> 125     8  2.3.521.1901.3001.50150933101.51204738027593108331001.51336267539863487576798868866296350032791001</span>
+<span class="linenos">148</span><span class="go"> 126    11  2.13.37.601.2521.6597973.234750601.4661402165281.24587411156281.147053007410401.308942475257273345172721</span>
+<span class="linenos">149</span><span class="go"> 127     6  2.3.509.2287.2735581.3076137716865400512817630590222174947182195052472086065321936995866231846027</span>
+<span class="linenos">150</span><span class="go"> 128     4  2.257.23653200983830003298459393.24171717725330873572798545219226642215966994254472458802413313</span>
+<span class="linenos">151</span><span class="go"> 129    12  2.3^2.7.1549.9547.327845761.558801427.1420986601.7866608083.1628744948329.236419892853700126919767791480523</span>
+<span class="linenos">152</span><span class="go"> 130    10  2.13^2.41.53.9161.87881.14402441.83181652304609.10371047328004711415976187888122003157511900197790591281</span>
+<span class="linenos">153</span><span class="go"> 131     4  2.3.263.23278959735865959837783914314445613074672559346722265555860894056527591481597100222820867</span>
+<span class="linenos">154</span><span class="go"> 132     7  2.313.390001.331660297.112835047682166217.9080418348371887359375390001.2213895710934906295050485076049</span>
+<span class="linenos">155</span><span class="go"> 133    10  2.3.29.449.761.2129.19609.213029.354047.4905684062582720880172275280025711696216945281088701822552533098887</span>
+<span class="linenos">156</span><span class="go"> 134     4  2.13.20369.8670367881621696201246383264395739338019619427601080980701370016748806481465099715917129</span>
+<span class="linenos">157</span><span class="go"> 135    18  2.3^4.7.61.163.487.521.5167.7621.164701.16018507.31472682400981.182517282870121.60081451169922001.223823944\</span>
+<span class="linenos">158</span><span class="go">            168266601</span>
+<span class="linenos">159</span><span class="go"> 136     6  2.17^2.11489.999329.17298244498006001776733260622470717119751907722059351560259725074404263356882341457</span>
+<span class="linenos">160</span><span class="go"> 137     8  2.3.823.2741.22469.7642530702770043710321.61562630761411218787053569.4011366712134698762723279325243498287</span>
+<span class="linenos">161</span><span class="go"> 138     9  2.13.277.601.70942489.22600337281.66988220431117.1129448349501082362870332521.54657133520007706605471097506\</span>
+<span class="linenos">162</span><span class="go">            01</span>
+<span class="linenos">163</span><span class="go"> 139     6  2.3.172694671812043.417786018853823.2459716746919477501.13476012762896826693076454784079583396699156093189</span>
+<span class="linenos">164</span><span class="go"> 140     7  2.241.313.632133361.59509429687890001.514845603025661988644048801.24554874798220986864643786538129965751201</span>
+<span class="linenos">165</span><span class="go"> 141    12  2.3^2.7.283.1129.2069.15888756269.24048335089.37516308093487.3602372010909260861.83401839008933340130657770\</span>
+<span class="linenos">166</span><span class="go">            875911981</span>
+<span class="linenos">167</span><span class="go"> 142     9  2.13.853.72497533.8367932201.200771218157.554474665573.1095832589179957.10928221322658064610359890149344296\</span>
+<span class="linenos">168</span><span class="go">            10237</span>
+<span class="linenos">169</span><span class="go"> 143    12  2.3.23.67.5227.5281.38923.2010581.2253938672701.567618483045329.3028704600213534236926361.11587897416475392\</span>
+<span class="linenos">170</span><span class="go">            7617074729</span>
+<span class="linenos">171</span><span class="go"> 144     6  2.97.2593.29423041.240031591394168814433.126217744835361888865876570445245761220576241612434387207031250000\</span>
+<span class="linenos">172</span><span class="go">            01</span>
+<span class="linenos">173</span><span class="go"> 145     9  2.3.521.5096867.98047293061.3532907090761.6090817323763.17149742984461.388917369321230148861862121856409329\</span>
+<span class="linenos">174</span><span class="go">            475801</span>
+<span class="linenos">175</span><span class="go"> 146     7  2.13.293.27133517.84128413.772557938155429260697128053.8344490393750630749901287104215820511970406163545961\</span>
+<span class="linenos">176</span><span class="go">            8689</span>
+<span class="linenos">177</span><span class="go"> 147    16  2.3^2.7^3.29.43.127.449.7603.49105547.1866013003.9887502829.2481357870461.746966736310231309784898470362787\</span>
+<span class="linenos">178</span><span class="go">            834256167309467</span>
+<span class="linenos">179</span><span class="go"> 148     6  2.313.3257.3542233.10044059578457.3863510929006128731397775997106278623741777873312669722258159878450119598\</span>
+<span class="linenos">180</span><span class="go">            00953</span>
+<span class="linenos">181</span><span class="go"> 149     8  2.3.85229.4394309.12703371381749.1084802496290323.864203844381482464122519761.52361917935772260201994833743\</span>
+<span class="linenos">182</span><span class="go">            50559063</span>
+<span class="linenos">183</span><span class="go"> 150    13  2.13.41.601.2281.9161.14401.239201.69566521.424256201.89620825374601.299541552154912341601.1917567520615207\</span>
+<span class="linenos">184</span><span class="go">            7061206122104001</span>
+<span class="linenos">185</span><span class="go"> 151     4  2.3.43367201.1346350114076627740439648525400870859446925821002870129660381936156650470599755601672561817284\</span>
+<span class="linenos">186</span><span class="go">            1821</span>
+<span class="linenos">187</span><span class="go"> 152     8  2.17.11489.14897.4189729.11524380579073027969.101284922414513827611672455293249.615506112662870422746709179\</span>
+<span class="linenos">188</span><span class="go">            075698731217</span>
+<span class="linenos">189</span><span class="go"> 153    17  2.3^3.7.103.307.3061.5167.6427.8467.528667.6297787.41540861.45618058027.60119016343.22444466626277271120628\</span>
+<span class="linenos">190</span><span class="go">            423571194332041248441</span>
+<span class="linenos">191</span><span class="go"> 154     9  2.13.89.8009.40987409.234750601.1030330938209.74353801974761.3205545310095322669335676987039639070961467094\</span>
+<span class="linenos">192</span><span class="go">            8349354111761</span>
+<span class="linenos">193</span><span class="go"> 155    10  2.3.521.1303.21701.21207101.28086211607.108674992710961.145475949458129109023753501.26305238718580315281455\</span>
+<span class="linenos">194</span><span class="go">            86480948032725521</span>
+<span class="linenos">195</span><span class="go"> 156     8  2.313.51169.390001.537181587281.129044008326199409.319143533738738955692755921.3961217425535388935161067587\</span>
+<span class="linenos">196</span><span class="go">            3223022522481</span>
+<span class="linenos">197</span><span class="go"> 157     5  2.3.1585387.223975620462535382927.2569232394939842779680495564023980943892727812972458042294041029133650710\</span>
+<span class="linenos">198</span><span class="go">            2459744229</span>
+<span class="linenos">199</span><span class="go"> 158     7  2.13.317.41081.72997.10390269663517.10657497440017967338967647718253054242742650521015293652487517794112636\</span>
+<span class="linenos">200</span><span class="go">            89062240801237</span>
+<span class="linenos">201</span><span class="go"> 159    10  2.3^2.7.107.5407.1725469.28838378869.599659003321309822423087.629126000698440176948173290025536367961358687\</span>
+<span class="linenos">202</span><span class="go">            591029988395118907</span>
+<span class="linenos">203</span><span class="go"> 160     6  2.641.75068993.241931001601.46957667265666758402894952584920394200961.6258266324069263267587145223441885541\</span>
+<span class="linenos">204</span><span class="go">            709510944641</span>
+<span class="linenos">205</span><span class="go"> 161     8  2.3.29.47.449.116243.42272797713043.18960485330630458608726423548435017513366985359855739634899671100737360\</span>
+<span class="linenos">206</span><span class="go">            80198781935695267</span>
+<span class="linenos">207</span><span class="go"> 162     9  2.13.37.601.6597973.503731168597.14551915228363037109375001.720314410420100602530036001.8492577938450345455\</span>
+<span class="linenos">208</span><span class="go">            181723282785204933</span>
+<span class="linenos">209</span><span class="go"> 163     6  2.3.1981740926993660561.286075553470422974507.721493104094461397911450801.348497483550115442544224379540353\</span>
+<span class="linenos">210</span><span class="go">            249271092076223</span>
+<span class="linenos">211</span><span class="go"> 164     7  2.313.2953.811755457273.46964872205858855033.2211877372577215640856618933593.274336455529883240823514187708\</span>
+<span class="linenos">212</span><span class="go">            17073340037603441</span>
+<span class="linenos">213</span><span class="go"> 165    16  2.3^2.7.23.61.67.521.661.5281.7621.595123.9651181.190771747.10910444855403996246103496881.10895236801197932\</span>
+<span class="linenos">214</span><span class="go">            042869534022823840857626381681</span>
+<span class="linenos">215</span><span class="go"> 166     6  2.13.997.4649.99006230951147470700089.896045657712933264240211729388605474603462200808101295164294346037293\</span>
+<span class="linenos">216</span><span class="go">            2436601305246853</span>
+<span class="linenos">217</span><span class="go"> 167     5  2.3.4978061451403.50902967640396173052637279626869845515838501.35158967909030207343496611675401197018177156\</span>
+<span class="linenos">218</span><span class="go">            4516376842044907</span>
+<span class="linenos">219</span><span class="go"> 168    11  2.17.113.337.11489.12433.2520917617.152587500001.37007700327977836913.44763922656823409574575008753.2267866\</span>
+<span class="linenos">220</span><span class="go">            3531006893220213039493696449</span>
+<span class="linenos">221</span><span class="go"> 169     6  2.3.5227.38923.493481.2218453039442110882133181987181140975254661304315275239985248150354057020847251976922\</span>
+<span class="linenos">222</span><span class="go">            5708903579067059921</span>
+<span class="linenos">223</span><span class="go"> 170    14  2.13.41.1361.1973.9161.14281.20129.45289.14239201.87393601.12447002677.1972618762904267665190337601.6405730\</span>
+<span class="linenos">224</span><span class="go">            905595298015162543537765377017161</span>
+<span class="linenos">225</span><span class="go"> 171    14  2.3^3.7.229.761.5167.19609.213029.60272250820183.75649382555448580095589.6267476427578502461453809.82226283\</span>
+<span class="linenos">226</span><span class="go">            00623099463003315779263154383</span>
+<span class="linenos">227</span><span class="go"> 172     6  2.313.18233.30185745097.2646713294612838233.183189037749367561353160052737923198105661589251022209827163406\</span>
+<span class="linenos">228</span><span class="go">            2217297884703623956697</span>
+<span class="linenos">229</span><span class="go"> 173     5  2.3.347.42794294406607.937441455241963094607957706948612301160760445304907763236810669171892433701043108759\</span>
+<span class="linenos">230</span><span class="go">            79970232855261687349</span>
+<span class="linenos">231</span><span class="go"> 174     8  2.13.601.382801.506670253.146817720340602448117.1334402673828313149547634216455312875601.703346099946949634\</span>
+<span class="linenos">232</span><span class="go">            05747806474103032308808001</span>
+<span class="linenos">233</span><span class="go"> 175    13  2.3.29.449.521.701.1901.2801.15216601.4698932281.50150933101.6309154245455368301.60748729625391012923689977\</span>
+<span class="linenos">234</span><span class="go">            527382296073385364682787107908201</span>
+<span class="linenos">235</span><span class="go"> 176    10  2.353.2593.1827937.2704769.29423041.1800750547615213217.609201485490930587260897.830940907997357679202561.4\</span>
+<span class="linenos">236</span><span class="go">            300806813670912100945629926401</span>
+<span class="linenos">237</span><span class="go"> 177    15  2.3^2.7.709.827.1063.347629.5242462229.49987218529.3237765225301.2059647179472887.130325543183670643.504583\</span>
+<span class="linenos">238</span><span class="go">            856881942565107.1663887084465861537223</span>
+<span class="linenos">239</span><span class="go"> 178     4  2.13.20365288294844141313970353677.492943178875032482640838985113395959050145702649364199012184405675798010\</span>
+<span class="linenos">240</span><span class="go">            53361633437921664941413</span>
+<span class="linenos">241</span><span class="go"> 179     8  2.3.21320258969.12021304420747747.227138023883511049.20324346366468227562461.9711234996179070876201114229.1\</span>
+<span class="linenos">242</span><span class="go">            893017204291990900535319125287</span>
+<span class="linenos">243</span><span class="go"> 180    14  2.73.241.313.8641.390001.440641.543097.632133361.1503418321.356646293281.50735307557193841.2332031717285131\</span>
+<span class="linenos">244</span><span class="go">            8360001.183199167868426942613978977201</span>
+<span class="linenos">245</span><span class="go"> 181     6  2.3.1087.28961.101723.1698076598320997975868223540073977077839321323584898520172503381664545593585083705639\</span>
+<span class="linenos">246</span><span class="go">            04333431096051133215931383061</span>
+<span class="linenos">247</span><span class="go"> 182     9  2.13^2.53.234750601.3640732369.83181652304609.141437955091157453.905647598617510606277355455025729417798709\</span>
+<span class="linenos">248</span><span class="go">            22788399250312667071190788497493</span>
+<span class="linenos">249</span><span class="go"> 183    13  2.3^2.7.367.9029.17203.11833147.2880471241.15571335384347.1117197595048793563.14008364639128540436401.13671\</span>
+<span class="linenos">250</span><span class="go">            72296621765608583209862989093193371834027</span>
+<span class="linenos">251</span><span class="go"> 184     7  2.17.11489.14966561.7323187654220815881445121.36153673470666026958084532869022033.2634784118655786958605265\</span>
+<span class="linenos">252</span><span class="go">            74080287248856096438703401625137</span>
+<span class="linenos">253</span><span class="go"> 185     9  2.3.521.2221.3701.9103.29010221.45920153384867.654418058067838415738219243693599843014730577527147788290112\</span>
+<span class="linenos">254</span><span class="go">            2358940971377123359179724468647761</span>
+<span class="linenos">255</span><span class="go"> 186    10  2.13.373.601.1117.1489.10269119521.8124604717965111529.102651353523520067851969.122805029678209774239568680\</span>
+<span class="linenos">256</span><span class="go">            554379023530649238353837445060117108769</span>
+<span class="linenos">257</span><span class="go"> 187    11  2.3.23.67.1123.3061.5281.12343.41540861.17871635646349095375983368709164224334356049680569.3314493287892012\</span>
+<span class="linenos">258</span><span class="go">            3499901728500119115510249577864305170741</span>
+<span class="linenos">259</span><span class="go"> 188     8  2.313.90617.755009.951281.12795134934601897.4760594190627487654169124325931441.1027093115067605645962209945\</span>
+<span class="linenos">260</span><span class="go">            69542246072758985784591096622629841</span>
+<span class="linenos">261</span><span class="go"> 189    25  2.3^4.7^2.29.43.127.163.449.487.883.5167.7603.406729.2932903.16018507.24132781.238040587.1692416503.3916103\</span>
+<span class="linenos">262</span><span class="go">            733109.1743424593819524631667.646479299170153749876240547</span>
+<span class="linenos">263</span><span class="go"> 190     9  2.13.41.9161.98041.4885168129.2574645949207561.2864226125209369.1847517969374521769913141675853260704573278\</span>
+<span class="linenos">264</span><span class="go">            12271209511954118637043330121263546401</span>
+<span class="linenos">265</span><span class="go"> 191     6  2.3.383.17932621608157901.45343989264399047245009865403089.170512920696746400054529876722477509119362358780\</span>
+<span class="linenos">266</span><span class="go">            13818247660621722169977358186200783</span>
+<span class="linenos">267</span><span class="go"> 192     5  2.769.3666499598977.96132956782643741951225664001.293873587705571876992184134305561419454666388650920794134\</span>
+<span class="linenos">268</span><span class="go">            435709565877914428710937500000001</span>
+<span class="linenos">269</span><span class="go"> 193     6  2.3.69481.1046447.13302022772145301912117245535348604521034254056544901.13726461675345855998503776486003750\</span>
+<span class="linenos">270</span><span class="go">            9634175051850677845943197547205305803</span>
+<span class="linenos">271</span><span class="go"> 194     7  2.13.25997.52769.66477837920609.374962321852666418369.44796169453018986606747600023879343914002283927926228\</span>
+<span class="linenos">272</span><span class="go">            16603378315956666439857992939659088517</span>
+<span class="linenos">273</span><span class="go"> 195    17  2.3^2.7.61.521.3121.5227.7621.18461.38923.15188886343541.22735632934561.14011933046202781.15199221608544481.</span>
+<span class="linenos">274</span><span class="go">            1755692053873139750161.431114130336966439253639900581</span>
+<span class="linenos">275</span><span class="go"> 196     7  2.313.19993.2333311009.38811185416697.59509429687890001.147622727330564392184665023057776385708019199790699\</span>
+<span class="linenos">276</span><span class="go">            5442200755205808187780477708230044943809</span>
+<span class="linenos">277</span><span class="go"> 197     5  2.3.20420627.1526268143138331950101.26621939467987778370303050034163650569379983914376366150847938501340454\</span>
+<span class="linenos">278</span><span class="go">            43158227244202925103830353865072242023</span>
+<span class="linenos">279</span><span class="go"> 198    13  2.13.37.89.397.601.1453.6597973.766142400277.1030330938209.750213207760936191769333.65093871834174049247849\</span>
+<span class="linenos">280</span><span class="go">            17.3297187189058986706552403293506970234679435613</span>
+<span class="linenos">281</span><span class="go"> 199     6  2.3.2389.75223.44656987140518535039596003383.25847788637576493064735387231606659022294152874735850603816262\</span>
+<span class="linenos">282</span><span class="go">            0747129373479612613318712406500802052921</span>
+<span class="linenos">283</span><span class="go"> 200    10  2.17.1601.11489.25601.103390853395201.909456847814334401.45804743639930233601.66821990643053759006038097200\</span>
+<span class="linenos">284</span><span class="go">            1.1350508667305393222650192018347020888226557601</span>
+<span class="linenos">285</span><span class="go"> 201     8  2.3^2.7.116555713473655927.30825527446446607747.11293772630057337854244300009061892827351888021.60857933695\</span>
+<span class="linenos">286</span><span class="go">            796127207474423394841702190927664498955594149</span>
+<span class="linenos">287</span><span class="go"> 202     8  2.13.809.3637.5728721.3375268261753121.54234164649457019858090786783366331533.19392633174315228382465789474\</span>
+<span class="linenos">288</span><span class="go">            390829973032729104217863659755739551860491049</span>
+<span class="linenos">289</span><span class="go"> 203    10  2.3.29^2.449.5096867.6090817323763.23039208450560482164167.104193411347291769738017451047.46071314775951042\</span>
+<span class="linenos">290</span><span class="go">            545073861671336487915817343677044617013083047061</span>
+<span class="linenos">291</span><span class="go"> 204    11  2.137.313.2857.390001.623017.938894988049.1361753880209.4959636586609.65127801352770865664923661368506241.1\</span>
+<span class="linenos">292</span><span class="go">            581897033493188819771058354415252729838488128568473</span>
+<span class="linenos">293</span><span class="go"> 205    13  2.3.83.521.821.43543.221401.2175461.33996220923281.9472026608675509.24834433083178321.378828567297103286736\</span>
+<span class="linenos">294</span><span class="go">            4321.1436881369899172813331496702637026412971521496281</span>
+<span class="linenos">295</span><span class="go"> 206     4  2.13.720016715917900826434290826659207222585733.51940361280161112840277088349043555612572630726432155957078\</span>
+<span class="linenos">296</span><span class="go">            345666923882097062216387267033949767996597</span>
+<span class="linenos">297</span><span class="go"> 207    18  2.3^3.7.47.3727.5167.17389.314227.66163549.253592389.2401937749.67153740229.42272797713043.403316413944121.</span>
+<span class="linenos">298</span><span class="go">            215293115466454807184993896087.261794963011004419067612691823</span>
+<span class="linenos">299</span><span class="go"> 208     7  2.2593.29423041.149343725750590533761.5102538254078186071676415499055681.5717693557043829027825513019667841\</span>
+<span class="linenos">300</span><span class="go">            281.36563411153650218096672403025041869676415681</span>
+<span class="linenos">301</span><span class="go"> 209    12  2.3.23.67.761.5281.19609.213029.10123543.213379486321.45859681134648298337859101583259138328629.79043432189\</span>
+<span class="linenos">302</span><span class="go">            88026792460670575380007658393207937835306387915213621763</span>
+<span class="linenos">303</span><span class="go"> 210    13  2.13.41.281.601.2281.2521.9161.69566521.234750601.24587411156281.13148832195720299503896018648521.121370995\</span>
+<span class="linenos">304</span><span class="go">            88195811990457939447127785109605610509438872341015390625601</span>
+<span class="linenos">305</span><span class="go"> 211     7  2.3.22144561409.8785612071234927581234843.1550760729196823058417670649.918070215174670579428275434919984594\</span>
+<span class="linenos">306</span><span class="go">            27.18283522301529013619136533441360526422166770221</span>
+<span class="linenos">307</span><span class="go"> 212     4  2.313.24452081.99254626689654927640261616814658525132905567631588500916331176516657585603171303538495567643\</span>
+<span class="linenos">308</span><span class="go">            1972387484913025322167258482406322245836062321</span>
+<span class="linenos">309</span><span class="go"> 213     9  2.3^2.7.4261.5747338499820296170481.288231038713838413442281.2893657379733917265396310772669592883.29517135\</span>
+<span class="linenos">310</span><span class="go">            796279606458249021809310932933544054168008265017565907</span>
+<span class="linenos">311</span><span class="go"> 214     7  2.13.25253.23252612956243152283169.18394448899336309965200241530917.997778184811820085932891049469009.13555\</span>
+<span class="linenos">312</span><span class="go">            07900603939940964116623682001125857705117367958794481</span>
+<span class="linenos">313</span><span class="go"> 215     9  2.3.521.1549.1721.9547.7866608083.1628744948329.18630398830832209087447878158239549678421689290147277623426\</span>
+<span class="linenos">314</span><span class="go">            59345237037936896409322508402835718902635373797579083961</span>
+<span class="linenos">315</span><span class="go"> 216    12  2.17.433.1297.11489.177553.39209617.170735041.152587500001.246414260277520913233.27391778556673098456059958\</span>
+<span class="linenos">316</span><span class="go">            07633.353576679271952201845697742761955433356587636207473909249</span>
+<span class="linenos">317</span><span class="go"> 217    12  2.3.29.449.1303.51647.21207101.44245867.28086211607.1027650404358607.20864888505062314147.15980751282110028\</span>
+<span class="linenos">318</span><span class="go">            000355021636790133307675677495182783203962552902537435305384361</span>
+<span class="linenos">319</span><span class="go"> 218     7  2.13.938804357.36987176266711133.43330701999236285089.89818280744210450462726655090961.67561745444007943379\</span>
+<span class="linenos">320</span><span class="go">            840300576339494809849148808966563919486171726828018449</span>
+<span class="linenos">321</span><span class="go"> 219    10  2.3^2.7.1526556583.63554310563.777612767772190289.3570677866897550288203.2496038864033071063210783213587815\</span>
+<span class="linenos">322</span><span class="go">            41.140099662405761231019979868685126328277639556707922162027</span>
+<span class="linenos">323</span><span class="go"> 220    11  2.241.313.881.21121.148721.632133361.25301535619781301761.43117673217579194979701441.9080418348371887359375\</span>
+<span class="linenos">324</span><span class="go">            390001.2270022335821931671919407906452434826267020529374760481</span>
+<span class="linenos">325</span><span class="go"> 221    13  2.3.443.3061.4421.5227.27847.38923.495041.41540861.123067090303.510410130722343681961.112724166972118037845\</span>
+<span class="linenos">326</span><span class="go">            230138264683627950084289403279188216519809605870473314982904376247</span>
+<span class="linenos">327</span><span class="go"> 222     9  2.13.601.9769.40849.20968892312069830573.59981541210593338548049087060890529.510241095096183757930733363918\</span>
+<span class="linenos">328</span><span class="go">            820917976121.37076015900302580943561817766744592450248087653</span>
+<span class="linenos">329</span><span class="go"> 223     7  2.3.187373521.1588248792798900263.64020956436201443428737029803881709.2897241524694004748801717783894063698\</span>
+<span class="linenos">330</span><span class="go">            2760270727.223988698226129145976861549596872406162886461889</span>
+<span class="linenos">331</span><span class="go"> 224     9  2.641.3137.75068993.181398083777.241931001601.35822800438975049964261933857034881.2593161252309265102249142\</span>
+<span class="linenos">332</span><span class="go">            836830904141299137.3013731527783874841519029441798704972855617</span>
+<span class="linenos">333</span><span class="go"> 225    21  2.3^3.7.61.521.1901.5167.7621.118801.119701.826201.2596501.20775901.24665701.149439601.50150933101.60081451\</span>
+<span class="linenos">334</span><span class="go">            169922001.64317527962486535125801.45551133373066976666756345380132758853411801</span>
+<span class="linenos">335</span><span class="go"> 226     4  2.13.11913287466894338293503913814067039110653443245880449.299375330744935058822120011413844587636359972557\</span>
+<span class="linenos">336</span><span class="go">            019488016835484047975190304405264322554578369464076896449</span>
+<span class="linenos">337</span><span class="go"> 227     6  2.3.1769057265869086021.11015757643914646321123501403.298963773893167948239115560463.1326370648383993503928\</span>
+<span class="linenos">338</span><span class="go">            2091600845743927450307950710544046874853586856167990675671309</span>
+<span class="linenos">339</span><span class="go"> 228    10  2.313.457.7753.390001.738721.21363981507860375753.21654472202540732126905077281.152455777495078401684021115\</span>
+<span class="linenos">340</span><span class="go">            87736212639440481.514376148524480573187638668347984260342703417817</span>
+<span class="linenos">341</span><span class="go"> 229     3  2.3.1931878203483031971735278782056062246545606655603016147110957843186240281299806957811100043085004394550\</span>
+<span class="linenos">342</span><span class="go">            176520383333936993254983012964961138398696978886922200521</span>
+<span class="linenos">343</span><span class="go"> 230    10  2.13.41.9161.118681.140761.33453655481.38522606861373961.5465713352000770660547109750601.504349121667965070\</span>
+<span class="linenos">344</span><span class="go">            94161247659171464695898783120363948083087401302659807735459270852721</span>
+<span class="linenos">345</span><span class="go"> 231    22  2.3^2.7^2.23.29.43.67.127.449.463.5281.7603.42967.595123.190771747.1430975701.20828886541.26628684484621434\</span>
+<span class="linenos">346</span><span class="go">            7.49970061516036179615325895945741.83365695988047293970582062995265919785848642157983</span>
+<span class="linenos">347</span><span class="go"> 232     6  2.17.11489.33632031931522326531782695489.4177156944967188156130003670858609781761.2640255523310423533831944\</span>
+<span class="linenos">348</span><span class="go">            2328856531137164572437977963719678731913017716301867197206739969</span>
+<span class="linenos">349</span><span class="go"> 233     5  2.3.467.29096873590481178947.888580036951809088968430360180059684895100049543306253316791756497528041268030\</span>
+<span class="linenos">350</span><span class="go">            19842475515755925076634817265771552381731912343896807964928729</span>
+<span class="linenos">351</span><span class="go"> 234    15  2.13^2.37.53.157.601.6597973.8684521.138485881.4056854881.83181652304609.667929705480493.139192519157572420\</span>
+<span class="linenos">352</span><span class="go">            9.232641412062106104464534334268950230199217617625830345847188370309210702969</span>
+<span class="linenos">353</span><span class="go"> 235    10  2.3.521.2069.14975141.15888756269.25019393608870061.3602372010909260861.7469015808480614081.174828412257612\</span>
+<span class="linenos">354</span><span class="go">            061799021522519995254988231119864410877975161851794945994462465314005201</span>
+<span class="linenos">355</span><span class="go"> 236     6  2.313.1889.66553.38710282321.297249242512358547491888615800368810090644753770361512598340893519308181290105\</span>
+<span class="linenos">356</span><span class="go">            058946371421922976978001552810415740409113594833528895845309317193</span>
+<span class="linenos">357</span><span class="go"> 237    14  2.3^2.7.1423.53089.18251687.787597927.7897663181.511465533067.3620406337123.51977539194197989.3739909552516\</span>
+<span class="linenos">358</span><span class="go">            7136010188229.1164003671031840852279211540691561294860398543359475864272947567</span>
+<span class="linenos">359</span><span class="go"> 238     9  2.13.1973.20129.45289.234750601.12447002677.2237307921069778921841.7405398120228724799756680881405962947339\</span>
+<span class="linenos">360</span><span class="go">            3915891803581711148577403834011144005362915406259110375202349726764998161</span>
+<span class="linenos">361</span><span class="go"> 239     6  2.3.17209.5729889967417247.1003240831021866550564937680732854800270693763847709.190709650350975600597511573\</span>
+<span class="linenos">362</span><span class="go">            537074759959866927496969840395008199081200941371758954231555682717703</span>
+<span class="linenos">363</span><span class="go"> 240    10  2.97.2593.29423041.131349761.167597261761.240031591394168814433.24625444126052524088217281.5829544764937408\</span>
+<span class="linenos">364</span><span class="go">            38084778148633415817921.504110697416787256482965615383149818328388849980481</span>
+<span class="linenos">365</span><span class="go"> 241     8  2.3.1447.271849.533122367.525411589067580318444083.366585579705641176488670059469.1167673959458414577549414\</span>
+<span class="linenos">366</span><span class="go">            5205626192419555992756747267172857370328139883136197761510200401226586823</span>
+<span class="linenos">367</span><span class="go"> 242     7  2.13.89.30493.1030330938209.9916251976518642052563357297077883532184524093.19626969441971133431230867480956\</span>
+<span class="linenos">368</span><span class="go">            807705605182297144094327462085370666665673932596981762425465565943459649</span>
+<span class="linenos">369</span><span class="go"> 243    22  2.3^6.7.163.487.1783.5023.5167.8263.39367.16018507.17995609.985562803.5986535931982369.20660672713801362122\</span>
+<span class="linenos">370</span><span class="go">            24701233463.83881765148602365370510261987969.19681371898296689920357961741191524896341</span>
+<span class="linenos">371</span><span class="go"> 244     5  2.313.57097.1475034311407732073353.670951783974042907912226123756532467688715663159804244679320960558202326\</span>
+<span class="linenos">372</span><span class="go">            4174532698965573854290986610705488759007489169066861168277603749377361</span>
+<span class="linenos">373</span><span class="go"> 245    17  2.3.29.449.521.114661.187181.5758481.15216601.49105547.1866013003.4698932281.2481357870461.2033402201383445\</span>
+<span class="linenos">374</span><span class="go">            1721.194043546506490017613781.1935635465952890802398761.2831618864926501222192648515199021</span>
+<span class="linenos">375</span><span class="go"> 246    10  2.13.601.193357.4560841.6355001.1148205782281.65465466516157.56373078952722628530598981268453.2383137167038\</span>
+<span class="linenos">376</span><span class="go">            8697065065192675930465380775139525592118520673227203184752375647822570321712173</span>
+<span class="linenos">377</span><span class="go"> 247    14  2.3.761.4447.5227.19609.38923.213029.5853901.29599987.5513798691623.6655472266225553901469.1412014803745487\</span>
+<span class="linenos">378</span><span class="go">            3337452770514154962809.28538367422393897507312436111481389107448579960825321689534963</span>
+<span class="linenos">379</span><span class="go"> 248     6  2.17.11489.1284020836753.557639293920224377596990976991388831169.790450154755619157376613015946858388883831\</span>
+<span class="linenos">380</span><span class="go">            801801547007731871765274357243854208801159194280210861245252105840761661393</span>
+<span class="linenos">381</span><span class="go"> 249     9  2.3^2.7.167.4029666108840585686296627.7726419616728409660092049.2560787702841639767474730913969.65890550251\</span>
+<span class="linenos">382</span><span class="go">            1560410367980761943121888014700797430466198154608059606100480995518466151786569</span>
+<span class="linenos">383</span><span class="go"> 250     8  2.13.41.9161.239201.424256201.89620825374601.62230152778611417071440640537801241705253289524803135869146374\</span>
+<span class="linenos">384</span><span class="go">            502938930588831915683699616470008647052536332466843305155634880065917968750001</span>
+<span class="linenos">385</span><span class="go"> 251     6  2.3.503.27258601.545241957223015210665999453076925707499365608184793723.61611108429804127840405543530130793\</span>
+<span class="linenos">386</span><span class="go">            2305409497322714304853728146276608287868239763397715591474410926303139478609</span>
+<span class="linenos">387</span><span class="go"> 252    16  2.73.313.1009.6553.90217.390001.543097.11824849.1503418321.2759159593.49969930916222857.59509429687890001.6\</span>
+<span class="linenos">388</span><span class="go">            019022585035590658668001.1317365481915494093702637365041.20691977917423851603099240431281921</span>
+<span class="linenos">389</span><span class="go"> 253    10  2.3.23^2.47.67.5281.390782201041.42272797713043.79235459419556856529731378902030010024161675675411498075584\</span>
+<span class="linenos">390</span><span class="go">            5049659473252114054341357731910108675821183384311348946372430040850204947728933967</span>
+<span class="linenos">391</span><span class="go"> 254     9  2.13.18797.23369.60961.8134741350985769921.510854629111063017581573.533607565353936742048782478767182331532\</span>
+<span class="linenos">392</span><span class="go">            76708896801.22375046196344815488773928630234428774788573245515481731276565201962689</span>
+<span class="linenos">393</span><span class="go"> 255    21  2.3^2.7.61.103.521.3061.7621.8467.528667.41540861.75752681.247515241.504156421.60119016343.206249584501.850\</span>
+<span class="linenos">394</span><span class="go">            77293022121.68795069664507129341.18654796603647183092401.754364998275305205241055404472944499950501</span>
+<span class="linenos">395</span><span class="go"> 256     6  2.1655809.101199664791578113.4563566430220614493697.12025702000065183805751513732616276516181800961.4695555\</span>
+<span class="linenos">396</span><span class="go">            596393879529570509800156232075658173303955183176829795300834096134412809302652417</span>
+<span class="linenos">397</span><span class="go"> 257     5  2.3.176303.46830908691848972641835440256561849621017565302707681386771586166779822642173925770149.871660923\</span>
+<span class="linenos">398</span><span class="go">            0642801481624017355133845708277292079942805108633387068543815670793059281372643</span>
+<span class="linenos">399</span><span class="go"> 258     9  2.13.173.601.56175373.2171388367013.132331554743163541916284364878460504933118649.4602103796185414861907092\</span>
+<span class="linenos">400</span><span class="go">            047176726769629261949140369401.10751372263597693323197191948943421482771809119300449437</span>
+<span class="linenos">401</span><span class="go"> 259    10  2.3.29.449.4663.9103.29010221.45920153384867.13879650012159635243.17605675509611093397930890420523767487539\</span>
+<span class="linenos">402</span><span class="go">            2267408594919567631957463221599371454526488678276749409038187469765514321189864280227109</span>
+<span class="linenos">403</span><span class="go"> 260     9  2.241.313.2081.51169.632133361.537181587281.129044008326199409.76676639028844184006008718377454967406853361\</span>
+<span class="linenos">404</span><span class="go">            576121278457944709519246349343012579984382593428234928972925256755874760273452678132321</span>
+<span class="linenos">405</span><span class="go"> 261    17  2.3^3.7.349.523.5167.79867.4144681.5096867.999092863.185737685563.6090817323763.210390487070809.22500358133\</span>
+<span class="linenos">406</span><span class="go">            965991972941.83860023803592831778413203310797051672264892775678957210527952911327386300030209549</span>
+<span class="linenos">407</span><span class="go"> 262     7  2.13.1049.17293.48821081.8573118546001560555564908129.68355857853928690361627153319577985562928345356646192\</span>
+<span class="linenos">408</span><span class="go">            80105824197657575862667591681015470369431575488848332527524348650007759179678568461357</span>
+<span class="linenos">409</span><span class="go"> 263     6  2.3.119929.4732879447956367560040127.72214204545848874937749773069.2743390328027669600854427075867498580333\</span>
+<span class="linenos">410</span><span class="go">            5625513467171826139073557277051435730333245778039123585951380639780548433177683458023</span>
+<span class="linenos">411</span><span class="go"> 264    10  2.17.11489.13729.929281.152587500001.518378519354634577.71225159567951317923809.91029014606406186465761.131\</span>
+<span class="linenos">412</span><span class="go">            99418800349353397166435126188619938031531902761650943853405597771206184725761965971620006513</span>
+<span class="linenos">413</span><span class="go"> 265     7  2.3.107.521.28838378869.599659003321309822423087.2916105257814909404214431407159142311974105528258101300426\</span>
+<span class="linenos">414</span><span class="go">            8125363041947115550050994779248468470887432798762873264848903982789253891086395322246881</span>
+<span class="linenos">415</span><span class="go"> 266     9  2.13.1597.170773.234750601.4885168129.126286794969133.2864226125209369.286729389765313125721925609608357082\</span>
+<span class="linenos">416</span><span class="go">            524297322817234204933292092804164870508572541729524098355670110769591837945046868835094054837</span>
+<span class="linenos">417</span><span class="go"> 267    12  2.3^2.7.448027.59483329.39387996609449861.56522267529181963.32539908261456858140701.56086502499313161545149.</span>
+<span class="linenos">418</span><span class="go">            12094715786677995586454978647.25554497240416675085996838334731502917554555803913686729349216443</span>
+<span class="linenos">419</span><span class="go"> 268     3  2.313.33681143588595920844564134349105492037412017196065519329321926597789598373705302211662541119647190380\</span>
+<span class="linenos">420</span><span class="go">            393508253771113342078436606690357719421008432512113722632406302690565490875000390001</span>
+<span class="linenos">421</span><span class="go"> 269     6  2.3.8609.93386204629.15538110699419449.14065211648838307662853906951386776432136444641200925751390085539440\</span>
+<span class="linenos">422</span><span class="go">            45823522163128174903217879263307020440149313962923860815105463691667756707417255437008189</span>
+<span class="linenos">423</span><span class="go"> 270    17  2.13.37.41.601.2281.9161.618841.2068201.6597973.20478961.69566521.6794091374761.25535754811081.145519152283\</span>
+<span class="linenos">424</span><span class="go">            63037109375001.16083519052368819871675081022117017825998721.2178350318451629713664416578164597856017075041</span>
+<span class="linenos">425</span><span class="go"> 271     8  2.3.1627.13009.412463.37013723.2476120019041.54899577214530050822671280800368705147929730883264723591048887\</span>
+<span class="linenos">426</span><span class="go">            0410786403103321377076681472139600431691693675851008527491087173038076397762407527663492366283</span>
+<span class="linenos">427</span><span class="go"> 272     6  2.2593.29423041.1365734376353.49976306070196257283631828680511971486533249391205707849296189627727603451312\</span>
+<span class="linenos">428</span><span class="go">            03329.12652918664617947426477879732458003878159582375911335747641722847513047110593155679073</span>
+<span class="linenos">429</span><span class="go"> 273    21  2.3^2.7^2.29.43.127.449.547.3121.5227.7603.9829.38923.842474804263.22735632934561.15887476811320661.5090739\</span>
+<span class="linenos">430</span><span class="go">            3322559047.15994146485373751289418997754783021.163354471571453401776598901856644800772438984659959748995711\</span>
+<span class="linenos">431</span><span class="go">            119647</span>
+<span class="linenos">432</span><span class="go"> 274     5  2.13.6891114051994032697301089.16945508997411292389468001.1085085059884206033028266894754821853303409972577\</span>
+<span class="linenos">433</span><span class="go">            21722911157247084463296349972520841040525423914104014514549190067967991024668951175106370209</span>
+<span class="linenos">434</span><span class="go"> 275    12  2.3.23.67.521.1901.5281.50150933101.44053990045343516701.10910444855403996246103496881.33091345029362307277\</span>
+<span class="linenos">435</span><span class="go">            616279711411801.42701206902125495080163281810124542922932362698519988490206538220015274789384460811501</span>
+<span class="linenos">436</span><span class="go"> 276     9  2.313.1657.390001.3368857.150220315444217.32786998209813096333308538793.21475208849146221059199558182862886\</span>
+<span class="linenos">437</span><span class="go">            1192144614553.5713580297400455526194678448318974464450846410412055403350070619073906801700347365993</span>
+<span class="linenos">438</span><span class="go"> 277     7  2.3.1109.9650681.1490305991985489901.126388159761055343234292253502483.340461968680545087257768257630324104\</span>
+<span class="linenos">439</span><span class="go">            3027569651855880269754035774883927538283747389724506151895432018122564778647374603403890510597403</span>
+<span class="linenos">440</span><span class="go"> 278     4  2.13.557.14217808560883935694348714745122742628389392573497093846668713512231973704115668901818819496899128\</span>
+<span class="linenos">441</span><span class="go">            267341527525859631886877015780761896727104627241166150753931528110248588493803562075537618493</span>
+<span class="linenos">442</span><span class="go"> 279    16  2.3^3.7.1303.5167.59707.21207101.258065887.28086211607.75005167927.53345671490722200466369.6293523585961325\</span>
+<span class="linenos">443</span><span class="go">            272635001.601177658416693050177473038760106861025677463.2911649829058989499392272051259037690721796899560261</span>
+<span class="linenos">444</span><span class="go"> 280    14  2.17.113.337.3361.11489.25601.1046757601.2520917617.554715662634844481.909456847814334401.37007700327977836\</span>
+<span class="linenos">445</span><span class="go">            913.211311163972244819619417326617601756161.386308654549105435537960887775236459152847305377131752519829563\</span>
+<span class="linenos">446</span><span class="go">            201</span>
+<span class="linenos">447</span><span class="go"> 281     5  2.3.563.1756844213936466378726696505807.4336889137177634879514312129287229217495826017828741718713806747369\</span>
+<span class="linenos">448</span><span class="go">            704691783152660349639319296562472133565943758699358792457753637846258758645871265622490896622981</span>
+<span class="linenos">449</span><span class="go"> 282    12  2.13.601.5077.12409.329573417220613.351416125984969.254754032198578321.5846086878571351849.4056894906182746\</span>
+<span class="linenos">450</span><span class="go">            738319224618717.935213864500231208652603316429973471246089.199748978556217905863773912674922888018124776453</span>
+<span class="linenos">451</span><span class="go"> 283     6  2.3.28867.10794921762136794464572609.30179284347246492551575903205690040477057659950513333027154449865801.1\</span>
+<span class="linenos">452</span><span class="go">            1403282630625540105724132767011020938228463317177988534505391699668129652357030647875794412727789407</span>
+<span class="linenos">453</span><span class="go"> 284     5  2.313.65873251351400529678881604643622504978360233.79054223989942445013826694675156397992474744610986129.98\</span>
+<span class="linenos">454</span><span class="go">            6899021920506421641853945368855784039236472058352275128044434665223658509967954426861701015855193</span>
+<span class="linenos">455</span><span class="go"> 285    18  2.3^2.7.61.229.521.761.4561.7621.19609.213029.75649382555448580095589.179763436784239734042181.309828362361\</span>
+<span class="linenos">456</span><span class="go">            188845069741.390722946406448237780581.9979141069997419042168820999353619521.9663551892386573805111806345944\</span>
+<span class="linenos">457</span><span class="go">            581671821</span>
+<span class="linenos">458</span><span class="go"> 286    10  2.13^2.53.89.1030330938209.83181652304609.110809516598326058545635442124799433394333.2578624895510885609549\</span>
+<span class="linenos">459</span><span class="go">            6727464834574220267319237679109854509573.206000914519895279890095544630484749397467553630073173435284124689</span>
+<span class="linenos">460</span><span class="go"> 287    12  2.3.29.83.449.1723.43543.221401.49669943.59428670579923.9472026608675509.1335370486500791458005205044291253\</span>
+<span class="linenos">461</span><span class="go">            68852059144421079573976262148651481647289815587555583514185707106890690545742073152600407119202256700683711\</span>
+<span class="linenos">462</span><span class="go">            623</span>
+<span class="linenos">463</span><span class="go"> 288    11  2.193.577.641.597889.75068993.241931001601.5207826497153857.539344757336151926206665601.3840159952088227441\</span>
+<span class="linenos">464</span><span class="go">            6151769918729734539171500659227280833.120252784624157540982474216872663629060480857056892916201696725823956\</span>
+<span class="linenos">465</span><span class="go">            49</span>
+<span class="linenos">466</span><span class="go"> 289     9  2.3.3061.1644989.8528969.41540861.7225344822016874223743.12156847076444678217726556516258597180670422099432\</span>
+<span class="linenos">467</span><span class="go">            269314205601.10693062703280568569932417392486626220178668772845830558089170255922593409573680162209144318227</span>
+<span class="linenos">468</span><span class="go"> 290    10  2.13.41.9161.13921.11483163641.16972510486384731643441.1334402673828313149547634216455312875601.18391238303\</span>
+<span class="linenos">469</span><span class="go">            600748207500870642686179481538321537172841.7730813945229296145376156636566577318461065950820374166888726998\</span>
+<span class="linenos">470</span><span class="go">            6961</span>
+<span class="linenos">471</span><span class="go"> 291    12  2.3^2.7.29683.261707.547663.20721014227435723.90130760102421063383.27430239803369083066006288929529.1022435\</span>
+<span class="linenos">472</span><span class="go">            94151983391750660845889189.89518836675695542884136283748736726258289612780506382162271982403430634278399444\</span>
+<span class="linenos">473</span><span class="go">            818023</span>
+<span class="linenos">474</span><span class="go"> 292     5  2.313.1753.38907833.294339110898388933030666438674087732674377365128415431429470554533124038312593501057315\</span>
+<span class="linenos">475</span><span class="go">            81447812688927508644069337331887947192580302492291089490612485533127588619024028737968920842242864491249</span>
+<span class="linenos">476</span><span class="go"> 293     5  2.3.587.645187.27652621595416388816309450757463893359314786265446220142974870448287186651034682727907018634\</span>
+<span class="linenos">477</span><span class="go">            80787591386184625104081324951513331405294504778655243334445281211100285422361968298113365768118900330409</span>
+<span class="linenos">478</span><span class="go"> 294    12  2.13.197.601.2521.234750601.24587411156281.164204573839769.74535675530760254357.21441970593484574539001.267\</span>
+<span class="linenos">479</span><span class="go">            53443613214655421212169339114233130011764853739132929.99903576869256190727097232331401591366261430459324620\</span>
+<span class="linenos">480</span><span class="go">            368165169</span>
+<span class="linenos">481</span><span class="go"> 295    12  2.3.521.827.1181.3541.5242462229.3237765225301.140145823858841.2059647179472887.9625600889207570043521.3081\</span>
+<span class="linenos">482</span><span class="go">            05509459469582808932157672885014138141302615672020115520442245474436826711280696390946595616105390751387136\</span>
+<span class="linenos">483</span><span class="go">            404940601</span>
+<span class="linenos">484</span><span class="go"> 296     7  2.17.593.11489.177601.814954734175776096337.234275325448310273240720847382379510291179164033146594531057224\</span>
+<span class="linenos">485</span><span class="go">            67242984898304395826389977507393606379787781113710382324519656965500546047810519385730327103343044978295000\</span>
+<span class="linenos">486</span><span class="go">            161</span>
+<span class="linenos">487</span><span class="go"> 297    18  2.3^4.7.23.67.163.487.5167.5281.595123.5448169.16018507.190771747.87430018425061643926798552322769140429700\</span>
+<span class="linenos">488</span><span class="go">            1.119770657058443160281537518316862275048778196623176372780073452568635809927132580847984553891610070160017\</span>
+<span class="linenos">489</span><span class="go">            755144682654929</span>
+<span class="linenos">490</span><span class="go"> 298     6  2.13.244957.18988882573081.52509417634810887468425272956814828347615306977561.30921565910847342185025713538\</span>
+<span class="linenos">491</span><span class="go">            17505967520325943711930306328555707757944907238114399245062794536681328774008922132412772351283181220537622\</span>
+<span class="linenos">492</span><span class="go">            773</span>
+<span class="linenos">493</span><span class="go"> 299    10  2.3.47.5227.38923.42272797713043.1034424565011113115503.15218649781150668794223283.246060234401750432554390\</span>
+<span class="linenos">494</span><span class="go">            6769.104507151041360708915177644551123504427120616981976515110117935008829856507036208190394497312560896411\</span>
+<span class="linenos">495</span><span class="go">            8095980501</span>
+<span class="linenos">496</span><span class="go"> 300    14  2.241.313.1201.4001.132001.390001.776401.632133361.7477331283039457201.23320317172851318360001.194372172505\</span>
+<span class="linenos">497</span><span class="go">            6298631352604586154656001.201729070811027930976007420652223887947601.39199179355932934712339557467086860874\</span>
+<span class="linenos">498</span><span class="go">            4081863837205601</span>
+<span class="linenos">499</span><span class="go"> 301    14  2.3.29.449.1549.9547.14449.42743.176989.7866608083.1628744948329.26041733579107.713983562233510543544798298\</span>
+<span class="linenos">500</span><span class="go">            66663025664388644310993593530081301.81584866596087610173781731852394733050825934160371467689420649933398466\</span>
+<span class="linenos">501</span><span class="go">            4006434088162821</span>
+<span class="linenos">502</span><span class="go"> 302     7  2.13.7853.8286881.4033512514609.677865814845240957392304024923821548572964677269102015272785066256481.26528\</span>
+<span class="linenos">503</span><span class="go">            58709272953558298190241295261238697560239747367425356456005509211749863085081404679531890769573476044917390\</span>
+<span class="linenos">504</span><span class="go">            255133</span>
+<span class="linenos">505</span><span class="go"> 303    11  2.3^2.7.607.24847.1740662887.61597393790041.1148540966490621244258779533654923677123377383.3988737283283188\</span>
+<span class="linenos">506</span><span class="go">            6959898996681003213829746870017190150937561596249.657384087684176504509773804402321858061005362590852503975\</span>
+<span class="linenos">507</span><span class="go">            2324422200521</span>
+<span class="linenos">508</span><span class="go"> 304     8  2.2593.40129.52289.29423041.912480527030336132161.218353713527382179771166705049588259776583489.48095936740\</span>
+<span class="linenos">509</span><span class="go">            57555780818464805806029123111820973831312258084693614519057307923544773790338982981289704543145180809253527\</span>
+<span class="linenos">510</span><span class="go">            087843649</span>
+<span class="linenos">511</span><span class="go"> 305    14  2.3.367.521.9029.15056021.22351621.15571335384347.2835547919074635255541.14008364639128540436401.3356831787\</span>
+<span class="linenos">512</span><span class="go">            5306837620981.107157282220986614613635281.668544860298171106062168575595041.2958729646174200657073450606534\</span>
+<span class="linenos">513</span><span class="go">            40400179552194131601</span>
+<span class="linenos">514</span><span class="go"> 306    19  2.13.37.601.613.1973.6733.20129.45289.4613053.6597973.19724557.34288117.455983453.2194449013.12447002677.26\</span>
+<span class="linenos">515</span><span class="go">            837241260899651321.95566927072257854677.2717852932594736844734177439752595496864754063162569355014287852575\</span>
+<span class="linenos">516</span><span class="go">            743906620072157673210014009</span>
+<span class="linenos">517</span><span class="go"> 307     8  2.3.1229.11025070531745749.814616586610803721.2297296977063162527.75440744459065806966503434856483134981675\</span>
+<span class="linenos">518</span><span class="go">            6299325427713589455248131953556687063.334141537205971086171561322657547068030679414706280196190247076001038\</span>
+<span class="linenos">519</span><span class="go">            668427384981</span>
+<span class="linenos">520</span><span class="go"> 308     6  2.313.617.59509429687890001.9080418348371887359375390001.91877716423752381554433330723311380038370717409912\</span>
+<span class="linenos">521</span><span class="go">            19082243076620466424544955630694606254965633525064593890268344167494043515430901975110032806495985852454817\</span>
+<span class="linenos">522</span><span class="go">            66216953</span>
+<span class="linenos">523</span><span class="go"> 309    13  2.3^2.7.1487527.4527469.642310267.24193913287.330545029709161.422879580647947.1517713338849924001.208541827\</span>
+<span class="linenos">524</span><span class="go">            2967581164158673946858019191907546357968893257944408109.164346021921044126127443451100580464515251340647713\</span>
+<span class="linenos">525</span><span class="go">            125993808110555013021</span>
+<span class="linenos">526</span><span class="go"> 310     7  2.13.41.9161.8124604717965111529.102651353523520067851969.5886190798491425273358979547117559032605600068524\</span>
+<span class="linenos">527</span><span class="go">            32693759900095717214289758553829465315345416733918818330453188872635064288891572345985281581306456588211154\</span>
+<span class="linenos">528</span><span class="go">            937490234401</span>
+<span class="linenos">529</span><span class="go"> 311     7  2.3.1867.27920959867.508715203947869243644884276021265065029502587.1313276290045182196870684015810882946684\</span>
+<span class="linenos">530</span><span class="go">            7315743095478589617724372773046827.114713522193543755768678561557464253464162638002092137016087394756208135\</span>
+<span class="linenos">531</span><span class="go">            60935030594061</span>
+<span class="linenos">532</span><span class="go"> 312    13  2.17.1249.1873.11489.247161617.825256433.2220784177.152587500001.31308249137777.889988147002015336570560929.</span>
+<span class="linenos">533</span><span class="go">            293876827247645824001934037873.2317268649609509683548504810269795393929912977535736858839119472990007145158\</span>
+<span class="linenos">534</span><span class="go">            15042588252898798221281</span>
+<span class="linenos">535</span><span class="go"> 313     5  2.3.4321661135227604368687.90107330782710173585723984396630473536745919968792358417711960610369521.25647749\</span>
+<span class="linenos">536</span><span class="go">            97476565996267263192618409874068789075016711391542509610020580521170675847539018291731169392035162105875494\</span>
+<span class="linenos">537</span><span class="go">            98020412623</span>
+<span class="linenos">538</span><span class="go"> 314     6  2.13.15980089.388038314748637665126113925790477.27289632244578428221067151753717946331354799527586948276226\</span>
+<span class="linenos">539</span><span class="go">            31951336401498830595178459933.68101476335728830546049658249962412077753488016214227648411040685251094839487\</span>
+<span class="linenos">540</span><span class="go">            89470456241249</span>
+<span class="linenos">541</span><span class="go"> 315    28  2.3^3.7^2.29.43.61.127.421.449.521.883.5167.7603.7621.35281.406729.5236141.15216601.24132781.1692416503.469\</span>
+<span class="linenos">542</span><span class="go">            8932281.60081451169922001.69850912140360790741.1354224218968567573270561.1805125273335450218125433646589434\</span>
+<span class="linenos">543</span><span class="go">            9322142690723800025632555622807896394415181</span>
+<span class="linenos">544</span><span class="go"> 316     7  2.313.1195838801.10005578153.70432242073.82932824137.171212015325907099214634835049236663220566649857769329\</span>
+<span class="linenos">545</span><span class="go">            73945819373154151909996080500174023250073602590987065497425624822899935601815886071102401091845462081044863\</span>
+<span class="linenos">546</span><span class="go">            83779541650572217</span>
+<span class="linenos">547</span><span class="go"> 317     7  2.3.4084229.172992716783529233443.3620382004977001942052983.998349008578576111331868104928413077313657947.2\</span>
+<span class="linenos">548</span><span class="go">            44436148300101477377014970360366272095029203594901455200155685811779422018191393449081864816683381128348098\</span>
+<span class="linenos">549</span><span class="go">            48691488801944243</span>
+<span class="linenos">550</span><span class="go"> 318    10  2.13.601.19081.20947933.8871726015923707071209.436276206825076349879647249.11094858255912165314161670782821\</span>
+<span class="linenos">551</span><span class="go">            8569.534366212823606171881874993300544219189772104182089.13065945813561929951293324966348236801906704730505\</span>
+<span class="linenos">552</span><span class="go">            82865220279874180513077</span>
+<span class="linenos">553</span><span class="go"> 319    10  2.3.23.67.5281.5096867.28476798241.6090817323763.76276878979955184439531431817934729.2843795602157019395163\</span>
+<span class="linenos">554</span><span class="go">            47227136651212066204952606313572310128263031548504372943876446007820714564280032086514697726047473302703464\</span>
+<span class="linenos">555</span><span class="go">            6440676313018412401129</span>
+<span class="linenos">556</span><span class="go"> 320     7  2.769.17921.3666499598977.96132956782643741951225664001.337864878037285319192774417916785579901606498497318\</span>
+<span class="linenos">557</span><span class="go">            71941121.14263162237265056135073034024191895464606615364468066076172296550633567465898815862411873250786660\</span>
+<span class="linenos">558</span><span class="go">            3295855752524060161</span>
+<span class="linenos">559</span><span class="go"> 321    11  2.3^2.7.643.2303573383935650005163767.273860673667943993469496783.15508073443324126840152709489.47537128212\</span>
+<span class="linenos">560</span><span class="go">            54698015771925989227.388901052230014194434133688780424918707.1597453556775312267957265271195377765505942269\</span>
+<span class="linenos">561</span><span class="go">            12629399294136965936054647</span>
+<span class="linenos">562</span><span class="go"> 322    11  2.13.1289.424397.234750601.4195885464702037.1198400376705575705576881.5465713352000770660547109750601.12658\</span>
+<span class="linenos">563</span><span class="go">            289026799429610110288303852317.37458200184731560512972757879121310733.2689934999714011958129302866978302491\</span>
+<span class="linenos">564</span><span class="go">            4275139187299799907195037041</span>
+<span class="linenos">565</span><span class="go"> 323    13  2.3.647.761.3061.18089.19609.213029.41540861.727007771958290921190121741.1106833331463912890399339855877003\</span>
+<span class="linenos">566</span><span class="go">            093911395487.708062099953126128600812802478694643865554550280893749088603.361852038737893203912320967309328\</span>
+<span class="linenos">567</span><span class="go">            726432558549326348688107031007</span>
+<span class="linenos">568</span><span class="go"> 324    15  2.73.313.73009.390001.543097.1853281.3314953.1503418321.36280398313.209290024478377.13012873776055827785521.</span>
+<span class="linenos">569</span><span class="go">            177309277461360218309390137951788241.14448621958263887100257660421295942561.1770983519165327974708449010203\</span>
+<span class="linenos">570</span><span class="go">            7222907770443239248416682814366713</span>
+<span class="linenos">571</span><span class="go"> 325    14  2.3.521.1301.1901.5227.18461.38923.2024275501.31306627301.50150933101.15188886343541.15199221608544481.6866\</span>
+<span class="linenos">572</span><span class="go">            83787590239334634617416657990861004524348764850744384095025290448967381405460289328446001690911760797522283\</span>
+<span class="linenos">573</span><span class="go">            6293735144161064798831211382415901</span>
+<span class="linenos">574</span><span class="go"> 326     9  2.13.653.2609.189895001.23288351985517693013.25666218950437934848265249.836678744221945580045751077.1738953\</span>
+<span class="linenos">575</span><span class="go">            16739770960251975959879642446028322971705672708185824230254331604101875089522967119390709375564973172613016\</span>
+<span class="linenos">576</span><span class="go">            549320587592593688639357837</span>
+<span class="linenos">577</span><span class="go"> 327    13  2.3^2.7.19403.10787032338307.16566453047149.24753046968859330729.4046322895447485867367.2968051747086139877\</span>
+<span class="linenos">578</span><span class="go">            6947048909.23801279212976547698450531783389.3617509684166728982433372138866223619511385223.3270768467270951\</span>
+<span class="linenos">579</span><span class="go">            6281678338357373622217207225350621</span>
+<span class="linenos">580</span><span class="go"> 328     9  2.17.11489.17713.20907377.94877599143390227898211503024977.6610600308177707547653044400736535499160769.1591\</span>
+<span class="linenos">581</span><span class="go">            4295375933233944181803813597505865874635752388929.126653326888698832993851829631634752894827124218592382604\</span>
+<span class="linenos">582</span><span class="go">            84825587837069368838482791313</span>
+<span class="linenos">583</span><span class="go"> 329    11  2.3.29.449.2069.15888756269.2549057618736721.3602372010909260861.13563720869035756711741.191403458989315659\</span>
+<span class="linenos">584</span><span class="go">            56181098154647.14934428424742866525789398868700864769440757374666034182648051287901777005165867393699748019\</span>
+<span class="linenos">585</span><span class="go">            015326702306474892687805486092843</span>
+<span class="linenos">586</span><span class="go"> 330    18  2.13.41.89.601.1321.1453.2281.9161.245521.1458601.69566521.4411608961.1030330938209.2802204291103029121.650\</span>
+<span class="linenos">587</span><span class="go">            9387183417404924784917.85725237432926769781584361.112900369965376849361084620706148857847448431491693010072\</span>
+<span class="linenos">588</span><span class="go">            9417396519638407021348100079394478099858521</span>
+<span class="linenos">589</span><span class="go"> 331     8  2.3.48989.274069.404483.35098027085436321411407.14703211603168958718319959084980411929686832421319815961186\</span>
+<span class="linenos">590</span><span class="go">            8120979439312119595150567.135946023767947424826125555217770832932304850424262011411352230027130873273757209\</span>
+<span class="linenos">591</span><span class="go">            57979504923159697035594719903</span>
+<span class="linenos">592</span><span class="go"> 332     6  2.313.2058554713.65438094203676554432094356953.92204567651115096086964349490379361.147001448331590502211634\</span>
+<span class="linenos">593</span><span class="go">            90721178449615563190719170040409328540173821174945928242949080186442164367696305787934001220345422060326953\</span>
+<span class="linenos">594</span><span class="go">            78615531176143974429665569</span>
+<span class="linenos">595</span><span class="go"> 333    19  2.3^3.7.223.5107.5167.9103.668221.13844587.29010221.107903101.45920153384867.8260482604912643089.2508567921\</span>
+<span class="linenos">596</span><span class="go">            5566320053389.221746234901611997486023.20880879276654535886445179571008053406388481.22120817788166006338361\</span>
+<span class="linenos">597</span><span class="go">            49649258700302156280234191018218437095047301</span>
+<span class="linenos">598</span><span class="go"> 334     4  2.13.8100833605910528579098552256792313716093.1356683017127455719593614828984108814345203946612326133217748\</span>
+<span class="linenos">599</span><span class="go">            45183684937498851415800504746213313268234672571379784030997345271572797233623573343495602984792234072627747\</span>
+<span class="linenos">600</span><span class="go">            6426690445853977409068157</span>
+<span class="linenos">601</span><span class="go"> 335     9  2.3.521.6701.628301435347801.3337802987674672671171503141.4813691646990247186027072585399061245861.11293772\</span>
+<span class="linenos">602</span><span class="go">            630057337854244300009061892827351888021.5982418666121250637003444955683875303526666316186721002313277342555\</span>
+<span class="linenos">603</span><span class="go">            83996646136258358478473172210981</span>
+<span class="linenos">604</span><span class="go"> 336    14  2.97.673.2593.2689.271489.1149569.10922689.29423041.8906835789071809.465314420407473281.2400315913941688144\</span>
+<span class="linenos">605</span><span class="go">            33.7957141013471106527440814723329.988351715813242404867381009870260450545542564992411407624141988925021096\</span>
+<span class="linenos">606</span><span class="go">            8212771087993446733069484711298541995937</span>
+<span class="linenos">607</span><span class="go"> 337     5  2.3.99347042703101.8681942880812709284936701.69018949167414664973012064537636490617329224090104366411587889\</span>
+<span class="linenos">608</span><span class="go">            47890720022637937589905834844072904601584774889466861443951281758053433176713484973168772324363830242977004\</span>
+<span class="linenos">609</span><span class="go">            892822930780690877961909721</span>
+<span class="linenos">610</span><span class="go"> 338    13  2.13^3.53.677.83181652304609.349709778373997142089.452629512771138390982997.4020226117864755963006649.13147\</span>
+<span class="linenos">611</span><span class="go">            11044344945942445899409.68455761994776074550081198997.23777592894897000951946676500412019326689598309306804\</span>
+<span class="linenos">612</span><span class="go">            8200638302282232251201875143074099561</span>
+<span class="linenos">613</span><span class="go"> 339    15  2.3^2.7.227.18307.1387189.4392763.2987233423.12249784663.117825760147.16509399574192003102207.4572256641324\</span>
+<span class="linenos">614</span><span class="go">            54497901028516937139615332312607324601.20666904979310671041516061524864261565756430095111123.41607276760714\</span>
+<span class="linenos">615</span><span class="go">            0626504228216362738974973739625245422473584889</span>
+<span class="linenos">616</span><span class="go"> 340    14  2.137.241.313.8161.17681.623017.632133361.938894988049.1361753880209.4959636586609.488860554023918620409412\</span>
+<span class="linenos">617</span><span class="go">            01.11441045552404091443187740021633178237681.10718018776165572959395182234060789183587397669024483750657762\</span>
+<span class="linenos">618</span><span class="go">            42253825938741304175015824505434778591137681</span>
+<span class="linenos">619</span><span class="go"> 341    15  2.3.23.67.683.1303.5281.21143.21207101.28086211607.3055305555941.853869447408847.2846800854247901.192636189\</span>
+<span class="linenos">620</span><span class="go">            7054962585928331464880223029383.285137366099960703838789357051884335881219598093934294583417304643262364527\</span>
+<span class="linenos">621</span><span class="go">            0559740316000962560270348166526697016279959589</span>
+<span class="linenos">622</span><span class="go"> 342    17  2.13.37.601.22573.6597973.50164561.53590717.4885168129.197991079813.2108505761893.2864226125209369.90492378\</span>
+<span class="linenos">623</span><span class="go">            184051683013.17095269917121096397448449.86336058161143199543775877.7429367931326116783831780610130726189759\</span>
+<span class="linenos">624</span><span class="go">            289.83189068119266158032956049808362953344214449</span>
+<span class="linenos">625</span><span class="go"> 343    12  2.3.29.449.15078281.49105547.1866013003.2481357870461.670548333797224163.497030883351192430344613753441.705\</span>
+<span class="linenos">626</span><span class="go">            782575459215386450100057697624063.8858191148190846636916947082745036394309008600488087465353534643228649477\</span>
+<span class="linenos">627</span><span class="go">            860893923381798135232188846998886608972249</span>
+<span class="linenos">628</span><span class="go"> 344     9  2.17.11489.183399473.3070535057.1895865454086555461541559224248353738347577409.2568041714500286313054360802\</span>
+<span class="linenos">629</span><span class="go">            775479764283217061617.21457141563832546841295670414405769092880003276804641.1214302105371318485498960668379\</span>
+<span class="linenos">630</span><span class="go">            48452405847439515802342908036017933160017</span>
+<span class="linenos">631</span><span class="go"> 345    18  2.3^2.7.47.61.521.1381.7621.73141.66163549.253592389.42272797713043.403316413944121.43100384224227086881.16\</span>
+<span class="linenos">632</span><span class="go">            3263999306942963967949719201.529958401900871889532705668013589387152384352866888324141.90276299796161875154\</span>
+<span class="linenos">633</span><span class="go">            782227925720261322804987188389111237355784971962061</span>
+<span class="linenos">634</span><span class="go"> 346     8  2.13.3379037.1490847569.2133076820179418693.1611335060191887691514988317272249.1266506529256816065886234123\</span>
+<span class="linenos">635</span><span class="go">            6706446394393651689827307239018375490401710303833081.122355128471455060800108498689127221051218346824514400\</span>
+<span class="linenos">636</span><span class="go">            10203653486444272668980321807632698174401</span>
+<span class="linenos">637</span><span class="go"> 347     3  2.3.5813534501557795116250526673916325680806020074578850612463001725400963520847260516741170358582417956793\</span>
+<span class="linenos">638</span><span class="go">            12670060920221065379100220888223648644023790186585104352576709684288157658109456229121920860609784865076961\</span>
+<span class="linenos">639</span><span class="go">            79804346077920248111089070638021</span>
+<span class="linenos">640</span><span class="go"> 348    16  2.233.313.929.33409.390001.19316392153.26160681101041.701570688430849.867521757880801.5163011441108401.3978\</span>
+<span class="linenos">641</span><span class="go">            23386118610689.1547355341777494553.2062003172288320153.431947226814793053965448991778881.113463453082738583\</span>
+<span class="linenos">642</span><span class="go">            1715402457275514385555591229776712159084628202370321</span>
+<span class="linenos">643</span><span class="go"> 349     7  2.3.8942070323.699603551730901.3562202055870367855123667.13230628055680385455368125711624915539881638881.49\</span>
+<span class="linenos">644</span><span class="go">            29367141148464532682448691403517375217668591382393634956929353166193328373744480108319339740156356855697222\</span>
+<span class="linenos">645</span><span class="go">            784509499620114964650144673042768729101</span>
+<span class="linenos">646</span><span class="go"> 350    13  2.13.41.281.9161.21001.239201.234750601.424256201.89620825374601.4813889390953505801.1314883219572029950389\</span>
+<span class="linenos">647</span><span class="go">            6018648521.559841389377650790774553362298333824035406295576518218906570638707828509444252135566525788475922\</span>
+<span class="linenos">648</span><span class="go">            9837284372437175442361009252625604213662803413201</span>
+<span class="linenos">649</span><span class="go"> 351    20  2.3^4.7.163.487.3121.5167.5227.38923.40483.87049.3771847.16018507.43236180703.22735632934561.12194966458958\</span>
+<span class="linenos">650</span><span class="go">            4488031947458631250949.289203340262035336544587669505853866463589819991701171913528760161962821631596803335\</span>
+<span class="linenos">651</span><span class="go">            96398116512897782573228363827201867752006602475467221167</span>
+<span class="linenos">652</span><span class="go"> 352     7  2.641.1409.75068993.369059329.241931001601.9003144209994103293150822413566458993676938648658002147735111373\</span>
+<span class="linenos">653</span><span class="go">            91908264686703545645947779737367074113163197020924797677564009540450113638261001195103698380292282000658381\</span>
+<span class="linenos">654</span><span class="go">            25423529460804958222291076451922315543041</span>
+<span class="linenos">655</span><span class="go"> 353     6  2.3.4943.1492860183629.311097747680747987333189194659909321638799527688296763838041281210218364166931245866\</span>
+<span class="linenos">656</span><span class="go">            5059833729.395688718147180079546931673690661543022875638106123413400547906230840546579671205817731745728281\</span>
+<span class="linenos">657</span><span class="go">            58697703625167740236709716167398278884267</span>
+<span class="linenos">658</span><span class="go"> 354     7  2.13.601.23662955437126651591573.53882334745083765366364264913460045270910934362265818081.11574098223480984\</span>
+<span class="linenos">659</span><span class="go">            69384602128957288052006070702052516944254770910797210840078500601.11817650989492728687905538584058313300435\</span>
+<span class="linenos">660</span><span class="go">            77805235058572380336655996109256197563091277</span>
+<span class="linenos">661</span><span class="go"> 355    10  2.3.521.4261.5747338499820296170481.288231038713838413442281.65672997381060914413551821.3053502209259003363\</span>
+<span class="linenos">662</span><span class="go">            1541127783262141.74471924884930043544078514028591910663403841084468153468520680321.413490800792162420740859\</span>
+<span class="linenos">663</span><span class="go">            67957223247278690392304488604557198926427756601</span>
+<span class="linenos">664</span><span class="go"> 356     6  2.313.2137.187090930562706936930665593.840552573146809635459322735649.3238359587476288620824124245717256931\</span>
+<span class="linenos">665</span><span class="go">            88530712038105966395680602861802221244041531023208708176695383180286433412147971290094140355543883571416204\</span>
+<span class="linenos">666</span><span class="go">            4296997155474594182911627844900222477161489</span>
+<span class="linenos">667</span><span class="go"> 357    22  2.3^2.7^2.29.43.103.127.449.2381.3061.7603.8467.9283.25229.528667.4172141.41540861.60119016343.604334926059\</span>
+<span class="linenos">668</span><span class="go">            29799024858062086345509864222351309382109.14415752819963800782984985011661104019315492501472958597131741576\</span>
+<span class="linenos">669</span><span class="go">            076617934901365121793726414756479672440770257431935629866424465387</span>
+<span class="linenos">670</span><span class="go"> 358     5  2.13.12227975198457533.12963766440395958108028956666113786671783201.413240099172117661958952580457428850279\</span>
+<span class="linenos">671</span><span class="go">            45893085166551190887224159230200065868915573215715434190244020903234467725114563594137473938136304891041609\</span>
+<span class="linenos">672</span><span class="go">            31703138631334385038010266080756242783269997</span>
+<span class="linenos">673</span><span class="go"> 359     4  2.3.14870544741210523.9544505405615995881346081185499031873841050688772886865199639064118433786398818392384\</span>
+<span class="linenos">674</span><span class="go">            48588405740665505995920649701120817941454181767382566746350397534709483477733089299635869063440562641588450\</span>
+<span class="linenos">675</span><span class="go">            363681666991033711793705166397158945964327</span>
+<span class="linenos">676</span><span class="go"> 360    15  2.17.1297.11489.25601.30241.43201.2172116161.152587500001.471354274081.909456847814334401.27391778556673098\</span>
+<span class="linenos">677</span><span class="go">            45605995807633.79940197070487174977181201851988481.249573426944146284704352710315893441.3236221363460004875\</span>
+<span class="linenos">678</span><span class="go">            100771466602275852677212969303218121797861854482326311555201</span>
+<span class="linenos">679</span><span class="go"> 361     9  2.3.761.19609.140069.213029.59588684185483.60038687894961237758216490828529334797799158531738019377142501.2\</span>
+<span class="linenos">680</span><span class="go">            22743206247544159068422873479275958332986657663334096346275287809343086276880371951914641788171163211803447\</span>
+<span class="linenos">681</span><span class="go">            667485573968208520897913187729898667487113965075263</span>
+<span class="linenos">682</span><span class="go"> 362     7  2.13.154213.2533277.86564869877242671760001073123441054018653341555831481170927885921849.262485966241485530\</span>
+<span class="linenos">683</span><span class="go">            50824877034935176486858851402041142186152349997098987103244077169.46122919149256382407782109923986735290703\</span>
+<span class="linenos">684</span><span class="go">            9192407313296445886915568650421157506783471194521</span>
+<span class="linenos">685</span><span class="go"> 363    16  2.3^2.7.23.67.727.5281.595123.190771747.374499841.304639362281.11449313571047243.4600715686162128721.128191\</span>
+<span class="linenos">686</span><span class="go">            12747383653095727.81633149417374709255792976715151636651903858767286545247520132132560201702748767306953216\</span>
+<span class="linenos">687</span><span class="go">            15906377560636566688773956129931355930641748298067174226809663</span>
+<span class="linenos">688</span><span class="go"> 364     8  2.313.51169.537181587281.59509429687890001.129044008326199409.6165310743305738342794703714473897.3266634871\</span>
+<span class="linenos">689</span><span class="go">            67477676793829536072089443777753867977717283128243819924938513381798425686030346332754793488091480736565010\</span>
+<span class="linenos">690</span><span class="go">            657781872061359733218704618643812443521573956486233</span>
+<span class="linenos">691</span><span class="go"> 365     9  2.3.521.63554310563.497997249288521.777612767772190289.143360969004690255541.3570677866897550288203.3378669\</span>
+<span class="linenos">692</span><span class="go">            18676035677894733589353312543360624795046003001367378792767589362820746406339907557736488781224043037643650\</span>
+<span class="linenos">693</span><span class="go">            17532134894379942467721010282801122516944930706856821</span>
+<span class="linenos">694</span><span class="go"> 366    11  2.13.601.733.61001.19811275733.26933356951273517.1852487492507928532657573.30319589876521738837586350091112\</span>
+<span class="linenos">695</span><span class="go">            786441985691445677.1516076648359626759533497301564169122568069234484288723988182009.20957049687160049139770\</span>
+<span class="linenos">696</span><span class="go">            6356197190888365106785360142430079376859928745134342405493</span>
+<span class="linenos">697</span><span class="go"> 367     6  2.3.73219364069.70057995652034894429.271678868498047684472197624493589018540082655035239263.397833014422582\</span>
+<span class="linenos">698</span><span class="go">            27470723604029291154003629313874564317573285497885212152644108188481742043855293376449437548728944089439609\</span>
+<span class="linenos">699</span><span class="go">            25627183916373554297455674327413884903080658237667</span>
+<span class="linenos">700</span><span class="go"> 368    10  2.2593.22817.29423041.3391255113651617.7673924820048666337.38355937362039743393.1181985669274649173537.7493\</span>
+<span class="linenos">701</span><span class="go">            353841203143623854928106556769000270872084897.5403609163584573203169321616748057761018527974263457137952823\</span>
+<span class="linenos">702</span><span class="go">            080283799442157872106307441254410097917211862755237759041</span>
+<span class="linenos">703</span><span class="go"> 369    15  2.3^3.7.83.5167.43543.221401.9472026608675509.10483773125218147.30970420211207224741561.3179610795566616049\</span>
+<span class="linenos">704</span><span class="go">            227976098726121.385154539484973387271332423670150148442074718416231171285497783.141289118477939729778448133\</span>
+<span class="linenos">705</span><span class="go">            919314171991693999656826572212361643496074391062952379104713901</span>
+<span class="linenos">706</span><span class="go"> 370    11  2.13.41.1481.9161.9769.40849.5121318001.510241095096183757930733363918820917976121.342142681455048231243983\</span>
+<span class="linenos">707</span><span class="go">            5046536542938992016153828755834325845679285556193708609094915113001.805843090985617236621945762989637577612\</span>
+<span class="linenos">708</span><span class="go">            18492869383758688337154371828881180097072914155227398188321</span>
+<span class="linenos">709</span><span class="go"> 371    16  2.3.29.107.449.743.31907.171403.42073627.28838378869.2340865442872909.83529561196595406306863.5996590033213\</span>
+<span class="linenos">710</span><span class="go">            09822423087.4294105917163012848027061867115931367.241881732025657819145103362017436952827107.41421079199770\</span>
+<span class="linenos">711</span><span class="go">            87349762636082306899007969096951930174801764096846333493032905381787</span>
+<span class="linenos">712</span><span class="go"> 372     6  2.313.390001.854099353.751114601164400963558298106851275193494354988352771579238818981647550964507812890001.</span>
+<span class="linenos">713</span><span class="go">            66372314417686855850657188747273109966217437651982044961366791449471504812972029426215201122285587305344442\</span>
+<span class="linenos">714</span><span class="go">            2255912326637578382542749871549490902781942091907017</span>
+<span class="linenos">715</span><span class="go"> 373     7  2.3.16827523.855947877694729.3402270307745780791746163.1115437554311175682133208999650271452402824193881571\</span>
+<span class="linenos">716</span><span class="go">            5700967871500680683519826453861993140068830879201.158481574612760758392042190140760783722234715933379681881\</span>
+<span class="linenos">717</span><span class="go">            340617998642932127397267332732464299519601361071586557801</span>
+<span class="linenos">718</span><span class="go"> 374    13  2.13.89.1973.20129.36653.45289.12447002677.1030330938209.1833280694213.273799167334154011397.92304244922483\</span>
+<span class="linenos">719</span><span class="go">            0739177821000828273466092937049.286709734067912546161776106578945478483609122325153341728246639684547267160\</span>
+<span class="linenos">720</span><span class="go">            4044609241424526172772241415497338252089404326048770931979055332853</span>
+<span class="linenos">721</span><span class="go"> 375    20  2.3^2.7.61.521.1901.3001.7621.9001.118801.994501.20775901.24665701.149439601.50150933101.84719274001.512047\</span>
+<span class="linenos">722</span><span class="go">            38027593108331001.51336267539863487576798868866296350032791001.82058326537119972055593414659610713569485820\</span>
+<span class="linenos">723</span><span class="go">            985963160912969748249517645961639317622624198161116613861643899967220222501</span>
+<span class="linenos">724</span><span class="go"> 376     5  2.17.11489.80637397290342655433338510282666959378353.206264259567494835146760331024412150284209731004416194\</span>
+<span class="linenos">725</span><span class="go">            81797758901630113224983970512010730539025183401350698324699396893802721973936804059257072091897107781287083\</span>
+<span class="linenos">726</span><span class="go">            88860522756072267185209439554461388308047573929460156017</span>
+<span class="linenos">727</span><span class="go"> 377    14  2.3.5227.9049.38923.5096867.26156261.140848709.6090817323763.590546419655063.658682853381229.28926741320174\</span>
+<span class="linenos">728</span><span class="go">            89.1143735337011486830184857527605073769700916831409126204412747203317982036209727.199810419301284267448680\</span>
+<span class="linenos">729</span><span class="go">            765139548943382575014953705068143568424993874431223927649111595516701</span>
+<span class="linenos">730</span><span class="go"> 378    16  2.13.37.601.757.2521.6597973.234750601.4661402165281.24587411156281.147053007410401.30894247525727334517272\</span>
+<span class="linenos">731</span><span class="go">            1.14551915228363037109375001.20692918440938644983866317355828595289.819438001747398504074179279584891660651\</span>
+<span class="linenos">732</span><span class="go">            265447170220801.739753809636044037087566545818757788398126536653312205237</span>
+<span class="linenos">733</span><span class="go"> 379     6  2.3.4549.37850067509.1343210014472411202426336065918923.585266783436526564237740798710207811278073478239626\</span>
+<span class="linenos">734</span><span class="go">            10684004220315776617597897572673764465822484672917681588659724296627276240064571393480540816287828626742409\</span>
+<span class="linenos">735</span><span class="go">            55984786641570754883282726024586372368002670342607737181047</span>
+<span class="linenos">736</span><span class="go"> 380     9  2.241.313.457.13681.632133361.21363981507860375753.21654472202540732126905077281.14721013865063556728974089\</span>
+<span class="linenos">737</span><span class="go">            31151315654103443561110054837865195839913493512683854850325425119904333255716051510239270422227806785281142\</span>
+<span class="linenos">738</span><span class="go">            28338231193463980881780181050150502042096536359100642928201616721</span>
+<span class="linenos">739</span><span class="go"> 381    14  2.3^2.7.509.2287.23623.2735581.88128349.2906725201.967413475393459207.560679020564216733169.307613771686540\</span>
+<span class="linenos">740</span><span class="go">            0512817630590222174947182195052472086065321936995866231846027.501164970760430112926443003257929316053637411\</span>
+<span class="linenos">741</span><span class="go">            64567945635824747420212771457187363742792084016298108729590292265691341</span>
+<span class="linenos">742</span><span class="go"> 382     9  2.13.1053557.206218283317.146292198125317.234499916148809.1450381225491210600799800528142580736112755564637.</span>
+<span class="linenos">743</span><span class="go">            518795406863113189776769006766478178496100854556415486885838669324460646241.6962111192510507782098308490379\</span>
+<span class="linenos">744</span><span class="go">            604866565798991333684816664108297321330350525130599140100354755129</span>
+<span class="linenos">745</span><span class="go"> 383     4  2.3.1229484358695370753227654433426732739703690155623777747990746886217328545100432947511341672133668827760\</span>
+<span class="linenos">746</span><span class="go">            8976323156483762962209189.688077572077643887777427587310196577364209752496240459098409529422055135211992013\</span>
+<span class="linenos">747</span><span class="go">            37256576052531523635656105835368224940198176474192193946889</span>
+<span class="linenos">748</span><span class="go"> 384     9  2.257.11059201.11046880513.23653200983830003298459393.54263502654032658722910258215691970561.24171717725330\</span>
+<span class="linenos">749</span><span class="go">            873572798545219226642215966994254472458802413313.3912172197047458397717591518650453267896298552283906907814\</span>
+<span class="linenos">750</span><span class="go">            6049.332990555673879874070232416078317140063176358589203457367131393</span>
+<span class="linenos">751</span><span class="go"> 385    18  2.3.23.29.67.449.521.5281.15216601.40420381.4698932281.5394824821.20828886541.10910444855403996246103496881.</span>
+<span class="linenos">752</span><span class="go">            49970061516036179615325895945741.3652217646340731768196856238641110981.719300698351276678486696329303260306\</span>
+<span class="linenos">753</span><span class="go">            0201.82360586791365803960787425676101320198702713980022004896969002452534074341</span>
+<span class="linenos">754</span><span class="go"> 386     8  2.13.773.157489.3357768242667569.29236154014192628894921.21882049701754592077873238037024104817293923613135\</span>
+<span class="linenos">755</span><span class="go">            78427539575673958230643241.93316759240303726323889849126798311670774669956870546546149104717393742398076577\</span>
+<span class="linenos">756</span><span class="go">            7084167919078654658049835605910121418107579718271130713245930995837</span>
+<span class="linenos">757</span><span class="go"> 387    18  2.3^3.7.1549.5167.9547.711307.327845761.558801427.1420986601.7866608083.1628744948329.311491116057601.23641\</span>
+<span class="linenos">758</span><span class="go">            9892853700126919767791480523.200253796299662273123815420919014088858469902515816181549623.31391921310264352\</span>
+<span class="linenos">759</span><span class="go">            17081283246450995426703127086652865459535995974954292707792169854791682265799741</span>
+<span class="linenos">760</span><span class="go"> 388     6  2.313.2558473.8761354357601.2263044155863595424435070827541937027775094467601.49950775733647778754917837651\</span>
+<span class="linenos">761</span><span class="go">            09347350208937722207538254773646346435013011197933072006586088584481360642405909911095398682450337729664393\</span>
+<span class="linenos">762</span><span class="go">            56449659659425305477790676334100518752438637620956391612155608137</span>
+<span class="linenos">763</span><span class="go"> 389     5  2.3.1918549.48068494242378795231504544271776290114219988766562497441519080834409520287020602836042833042725\</span>
+<span class="linenos">764</span><span class="go">            81020645686839107.14333327455169657829624474751750075877161785865136180694584200015755764989472305714890333\</span>
+<span class="linenos">765</span><span class="go">            99669793974075062472978418579376199064115600540184147354879864247</span>
+<span class="linenos">766</span><span class="go"> 390    19  2.13^2.41.53.157.601.2281.9161.87881.8684521.14402441.69566521.4056854881.83181652304609.667929705480493.10\</span>
+<span class="linenos">767</span><span class="go">            6819198985704526442073820024512172507707681.10371047328004711415976187888122003157511900197790591281.143412\</span>
+<span class="linenos">768</span><span class="go">            1724520982424909664814056641660699632750456603894247357462095700708417050660312660321</span>
+<span class="linenos">769</span><span class="go"> 391    10  2.3.47.3061.104789.41540861.338342444887.42272797713043.513765906786138686731576770204403.71810063677402678\</span>
+<span class="linenos">770</span><span class="go">            84440487994377287003565049490495530191530188649094834033965169693676706292195140073616051956969804669825455\</span>
+<span class="linenos">771</span><span class="go">            7201977104424052528587048244435270577035138131662897328100137234312558089</span>
+<span class="linenos">772</span><span class="go"> 392    13  2.17.113.337.11489.487649.31312961.119324017.2520917617.3963317569.37007700327977836913.1361344245912420515\</span>
+<span class="linenos">773</span><span class="go">            21.72666674223449165153364103549167069004698295695577839150646170809349814595344990355005186190310710701164\</span>
+<span class="linenos">774</span><span class="go">            45900616579411323322773091486191804944528626144883308950756107561068393341733073</span>
+<span class="linenos">775</span><span class="go"> 393    14  2.3^2.7.263.787.5503.14149.365886952009.2346813979937685523.31486724064290126361763951427593381.23254416633\</span>
+<span class="linenos">776</span><span class="go">            3069010693505967345270131281.166787436343376111244438979552735670861818633598160717049112400295327.23278959\</span>
+<span class="linenos">777</span><span class="go">            735865959837783914314445613074672559346722265555860894056527591481597100222820867</span>
+<span class="linenos">778</span><span class="go"> 394     7  2.13.21277.52009.168565108839546843599332960034300611817889542621431425201409954169.73790636581458670049969\</span>
+<span class="linenos">779</span><span class="go">            68757052882572460928182601795153223334695744694124049076609742477.69254902323586114144956089269759897211315\</span>
+<span class="linenos">780</span><span class="go">            36099456581136320790480083300076689646426757988979275628187755824488089</span>
+<span class="linenos">781</span><span class="go"> 395    13  2.3.521.7901.18251687.7897663181.511465533067.2452107355981.2450102857830301.106534495441595594244841.16579\</span>
+<span class="linenos">782</span><span class="go">            0458765148163402161.37399095525167136010188229.171485735868458516873851312122680545586407845742388779605606\</span>
+<span class="linenos">783</span><span class="go">            370310866377625691561070425267966838500935258968636641095325780513288313959149301</span>
+<span class="linenos">784</span><span class="go"> 396    14  2.73.313.390001.543097.331660297.1503418321.4352560631862697.112835047682166217.346866834441245977.34693111\</span>
+<span class="linenos">785</span><span class="go">            18976860338738481.9080418348371887359375390001.2213895710934906295050485076049.1080563237077462528326468779\</span>
+<span class="linenos">786</span><span class="go">            79621239204112909690094959643615441293403934709669138264918650738409885959859965809</span>
+<span class="linenos">787</span><span class="go"> 397     5  2.3.37372787.1459459760312913433363588319246268309853566494104595852491932349900699487549204386483046526924\</span>
+<span class="linenos">788</span><span class="go">            066112853387.9466574565217770197307744956946186571416027870859251942099365157785086414152593612327097699199\</span>
+<span class="linenos">789</span><span class="go">            4232850386308965330761702465475511787457282932906641627210677952797609</span>
+<span class="linenos">790</span><span class="go"> 398     6  2.13.797.24688871653296457340343698107085412267529334706921796439672401.43957618883658549260781315813837206\</span>
+<span class="linenos">791</span><span class="go">            01975211005397936900428559139073819674326507718509772527692224009.68880240538897902641405820233418555833156\</span>
+<span class="linenos">792</span><span class="go">            093876041986960021870413548930522035492758242193558005027549132550841637</span>
+<span class="linenos">793</span><span class="go"> 399    19  2.3^2.7^2.29.43.127.229.449.761.2129.7603.19609.213029.354047.75649382555448580095589.490568406258272088017\</span>
+<span class="linenos">794</span><span class="go">            2275280025711696216945281088701822552533098887.797637900278303482153393898441364402208602708651133759211737\</span>
+<span class="linenos">795</span><span class="go">            8330472304993003280640941895179468566146773985687239150535537000905605213334484100343437521</span>
+<span class="linenos">796</span><span class="go"> 400     9  2.2593.29423041.131349761.167597261761.10467247667093179201.24625444126052524088217281.57081659087438986342\</span>
+<span class="linenos">797</span><span class="go">            6712610221376823983504352706521883023381652903468683124270020472964342360390401.783560076323105116310535310\</span>
+<span class="linenos">798</span><span class="go">            9871851898738295732904084174621530049314756920200268556563336013502822700910401</span>
+<span class="linenos">799</span><span class="go"> 401    6+  2.3.3209.68860956180521243.333064937028925224769589.4384790085369774103285456000292268048139047478298194831\</span>
+<span class="linenos">800</span><span class="go">            93474303065407064273968193693681454306786606240768233766041182414376495373103915565381942107319759381581110\</span>
+<span class="linenos">801</span><span class="go">            40403761205437557960008802455150413157703750987968312028530080065099628047</span>
+<span class="linenos">802</span><span class="go"> 402    10  2.13.601.15277.20369.4807375693.6815632610027885089.3595995025826369977659826406670547615979975895153952282\</span>
+<span class="linenos">803</span><span class="go">            217794900186926613.19490155031799482557643354197416311765006976384991708349107499762834952621125413.8670367\</span>
+<span class="linenos">804</span><span class="go">            881621696201246383264395739338019619427601080980701370016748806481465099715917129</span>
+<span class="linenos">805</span><span class="go"> 403    13  2.3.1303.5227.38923.21207101.142958609.28086211607.50422342829.8134973129579141.793899011193308548529.29099\</span>
+<span class="linenos">806</span><span class="go">            7650534397141563820246300495954484696648210147356023.377171271264019544781940860805129677621949182971661165\</span>
+<span class="linenos">807</span><span class="go">            79032230597529026058909984277833273807558729442826119051153822080914726127669366229943</span>
+<span class="linenos">808</span><span class="go"> 404     6  2.313.12873449497.176729217433.579264071033.293377996504351975984685345210187688678276878966180486022631746\</span>
+<span class="linenos">809</span><span class="go">            26342177716424562916330378454175071533172187829452269961588317415089367912756399748646703536911337978045921\</span>
+<span class="linenos">810</span><span class="go">            01079747638441256001948553147245035471060725023795032917967419464141316394297</span>
+<span class="linenos">811</span><span class="go"> 405    25  2.3^5.7.61.163.487.521.1783.5023.5167.7621.164701.16018507.31472682400981.182517282870121.359683606111861.6\</span>
+<span class="linenos">812</span><span class="go">            0081451169922001.223823944168266601.2066067271380136212224701233463.27958214476418447045648661835559283181.</span>
+<span class="linenos">813</span><span class="go">            944258408137585813686274318096745451193284210327185749808249978686500799118335443897718426923221761</span>
+<span class="linenos">814</span><span class="go"> 406     7  2.13.234750601.918848200649.46233876772514796806449.1334402673828313149547634216455312875601.17488425681382\</span>
+<span class="linenos">815</span><span class="go">            98458045257601684793234593547969933099253811690561466786673174774246726762957390943422504207885701995847523\</span>
+<span class="linenos">816</span><span class="go">            06021850151352790020795665996100456793243773362125450679788391486220145801449001</span>
+<span class="linenos">817</span><span class="go"> 407    14  2.3.23.67.5281.9103.488401.29010221.73108132021.45920153384867.706404287882271194070912641.2633787366584523\</span>
+<span class="linenos">818</span><span class="go">            5353307452756064083.419923501988747088508592525569165716040432773229.18316240934698960595853929134480013361\</span>
+<span class="linenos">819</span><span class="go">            86533664336817868177406126080360001095210839136872428958423781084876599357252745850131403</span>
+<span class="linenos">820</span><span class="go"> 408    11  2.17^2.11489.999329.5530033.469036801.152587500001.3290490848983782585870394810161320136439633.172982444980\</span>
+<span class="linenos">821</span><span class="go">            06001776733260622470717119751907722059351560259725074404263356882341457.10118750612833604636408256392828672\</span>
+<span class="linenos">822</span><span class="go">            868036542607326272507395241804409707299154436598389468483180547134027249666032762199809</span>
+<span class="linenos">823</span><span class="go"> 409    4+  2.3.567508524694081.222130468958368235014449612772499191904080359461165692865312988045807600255209611634492\</span>
+<span class="linenos">824</span><span class="go">            90298382273047089274534644125933999879801523003469746038753395599895231263625950327553189200852155774189283\</span>
+<span class="linenos">825</span><span class="go">            37973006077699741354269232148958227516670615077936848652323435151840458192241</span>
+<span class="linenos">826</span><span class="go"> 410    13  2.13.41^2.9161.193357.583841.2896241.6355001.1148205782281.56373078952722628530598981268453.341672233800896\</span>
+<span class="linenos">827</span><span class="go">            9429001531147103886888986064390011829175980595779171884858582418606948161.205547335532354322571924522363473\</span>
+<span class="linenos">828</span><span class="go">            218660990516313723918941062269187360078186045063274781645868336691707663027409024593944521</span>
+<span class="linenos">829</span><span class="go"> 411    14  2.3^2.7.823.2741.22469.280303.7642530702770043710321.61562630761411218787053569.401136671213469876272327932\</span>
+<span class="linenos">830</span><span class="go">            5243498287.2110554780135004202099793136762963590324098107950957883.3852735458397598071150011401658661874155\</span>
+<span class="linenos">831</span><span class="go">            403923682368550872409.6882850374806260430077929203262003138314292639090823541797416587200741</span>
+<span class="linenos">832</span><span class="go"> 412     5  2.313.875089.143724625337.120083695147478349599236521768348619708722839302316184279565678835958256839159381\</span>
+<span class="linenos">833</span><span class="go">            84622691383836142564117344821972160887203857381833752947883348021228210299060555836845066925190454271575342\</span>
+<span class="linenos">834</span><span class="go">            453881499842130612654502850629556154811880956025876535220043586804644902971902857</span>
+<span class="linenos">835</span><span class="go"> 413    15  2.3.29.449.827.5783.791309.74811647.5242462229.28335417881.3237765225301.287948481625309.2059647179472887.3\</span>
+<span class="linenos">836</span><span class="go">            282021109520923560321134176260604100350947683991956506748824076292276237936814589.2282879025029677240741699\</span>
+<span class="linenos">837</span><span class="go">            54693200949144948616614837576689562394566460424510359033514987513660045495845412052219387661189</span>
+<span class="linenos">838</span><span class="go"> 414    13  2.13.37.277.601.6597973.70942489.22600337281.66988220431117.1271333135249191801.112944834950108236287033252\</span>
+<span class="linenos">839</span><span class="go">            1.5465713352000770660547109750601.2653686238883000197657061479569700938485986603604510429799538751693910305\</span>
+<span class="linenos">840</span><span class="go">            0284391519921270200266020570774632891535911474197133033184368701020941269921450966213883798201</span>
+<span class="linenos">841</span><span class="go"> 415    10  2.3.167.521.961347785521.55785954324461.4029666108840585686296627.2560787702841639767474730913969.542386699\</span>
+<span class="linenos">842</span><span class="go">            809206521167664377679235482113503370942017294492342497725064744615307084697173312788543096361.7542047924512\</span>
+<span class="linenos">843</span><span class="go">            18350821809245865692448592809318994740143792927132204178344974350929553423826459243126941</span>
+<span class="linenos">844</span><span class="go"> 416    10  2.641.75068993.9900401473.241931001601.98759854245313.50303941887027464825562881.46707270100788914727202773\</span>
+<span class="linenos">845</span><span class="go">            53744610046303535783924992577.2347390534950637681414328340159351238530716731893251495801040097664641.470626\</span>
+<span class="linenos">846</span><span class="go">            70440352628271337989558755628292132257924252803642888174360778029934069458934063253906497</span>
+<span class="linenos">847</span><span class="go"> 417    14  2.3^2.7.1669.7507.68389.2972602849.172694671812043.417786018853823.2459716746919477501.13476012762896826693\</span>
+<span class="linenos">848</span><span class="go">            076454784079583396699156093189.6231277854493137343731235390182847738574371509013997365267599966040325313227\</span>
+<span class="linenos">849</span><span class="go">            4229.61775873933561822868939164780106728448682191472989758671367944958192295171443783987527125103</span>
+<span class="linenos">850</span><span class="go"> 418    12  2.13.89.31769.1680361.4885168129.1030330938209.2864226125209369.7201636278388333.76891527486997630150967815\</span>
+<span class="linenos">851</span><span class="go">            266363922266871691437.7293390130472310665600675212700263966827345840062770755179292076238924652068686889500\</span>
+<span class="linenos">852</span><span class="go">            5797.205394895123013305086261984743039887353305854886413600753015478393337865352490308306595797</span>
+<span class="linenos">853</span><span class="go"> 419    6+  2.3.281595692549.79779766571538167749.18570424577878762265812169.295080129007577916723099345886712078105712\</span>
+<span class="linenos">854</span><span class="go">            22279122615606043146902015817703877929123635909764059545100877212366316963507356624875006093641351996503454\</span>
+<span class="linenos">855</span><span class="go">            010547874799726762800558041263597487951962981254146140693707970769977593778052391566709</span>
+<span class="linenos">856</span><span class="go"> 420    15  2.241.313.6553.90217.390001.632133361.59509429687890001.23320317172851318360001.6019022585035590658668001.5\</span>
+<span class="linenos">857</span><span class="go">            14845603025661988644048801.782349962686680131171831761.24554874798220986864643786538129965751201.1236823726\</span>
+<span class="linenos">858</span><span class="go">            89587234320272170926306609340495521.1643757109388117682724285686131351474922275677604301152980315921</span>
+<span class="linenos">859</span><span class="go"> 421    6+  2.3.75781.205114040909.2670138546849776123377091323.7415339786845546712022892662807999428557695544862622871\</span>
+<span class="linenos">860</span><span class="go">            38691090191927508759688849541407962314013639190936263917152403754420946716157650429403659513976534741851521\</span>
+<span class="linenos">861</span><span class="go">            4286806346116172371692490351622375169743167739054396111811720852827313316867740036509963</span>
+<span class="linenos">862</span><span class="go"> 422    5+  2.13.49701926718842398034917.1838688342673461699900627759697114609.3885859863425607930702651581959725877839\</span>
+<span class="linenos">863</span><span class="go">            50127480145947618548791513497655390571209561306072334101939984989248503400285461614836689567500474945216351\</span>
+<span class="linenos">864</span><span class="go">            4208030151359969357925764767518867383066073369732140010282744175931167592624365319891317</span>
+<span class="linenos">865</span><span class="go"> 423    18  2.3^3.7.283.1129.2069.5167.15888756269.24048335089.222529765609.37516308093487.47221880173493743.3602372010\</span>
+<span class="linenos">866</span><span class="go">            909260861.83401839008933340130657770875911981.8636976339699869318683821732318207901297057837683243210682129\</span>
+<span class="linenos">867</span><span class="go">            853674321.91472045581463309713197880782873292013879455397208236756143623908246975772273657984315533741263</span>
+<span class="linenos">868</span><span class="go"> 424    5+  2.17.11489.1500134897.3939039882297618025178575956216466021877573368359680605265326238355913167134382468014\</span>
+<span class="linenos">869</span><span class="go">            96527991004839837919966322109800771664425615951853520485457149098379871565260319487793799027807068007336791\</span>
+<span class="linenos">870</span><span class="go">            927383094023359317798690131275125538546408805263190222062754420752409517064366634564577233</span>
+<span class="linenos">871</span><span class="go"> 425    14  2.3.521.1901.3061.56101.41540861.75752681.247515241.504156421.50150933101.24320833768392901.687950696645071\</span>
+<span class="linenos">872</span><span class="go">            29341.34323477134486954389127795864309984848519257978046406302463346498379230734030404418945080629443290280\</span>
+<span class="linenos">873</span><span class="go">            896625363280973466371608046901190780599426952296592736272630235643551206490598822889548124957977661001</span>
+<span class="linenos">874</span><span class="go"> 426    15  2.13.601.853.72497533.299097157.8367932201.200771218157.554474665573.1095832589179957.109803446248564024381\</span>
+<span class="linenos">875</span><span class="go">            21.33861120548112135250672625281.1092822132265806461035989014934429610237.104235329837167277085419941047319\</span>
+<span class="linenos">876</span><span class="go">            4161120444561.46180883008246062834267178183590139214368357998845911136412329630491397525346500842880806213</span>
+<span class="linenos">877</span><span class="go"> 427    13  2.3.29.367.449.1709.9029.78569.15571335384347.14008364639128540436401.2478342640892955029371216779549673912\</span>
+<span class="linenos">878</span><span class="go">            736487569.563755283862496929168659991708057447948580426252052767.272352888219513462443536540624136265195782\</span>
+<span class="linenos">879</span><span class="go">            2673755720745626178581944304857470575651366951292535191262712823827955524329324491207238166486348539107</span>
+<span class="linenos">880</span><span class="go"> 428     7  2.313.857.881695186297.1151785652724457273.1161803970449055432131784880415625128129.22792066858787868108948\</span>
+<span class="linenos">881</span><span class="go">            42594521738923247796767281723435843727235815924335821297330028921324655629678148571648147020922754023818954\</span>
+<span class="linenos">882</span><span class="go">            32816130992542261820467328816294254536305773232222057758288927258127687265555928311457646327657</span>
+<span class="linenos">883</span><span class="go"> 429    22  2.3^2.7.23.67.3121.5227.5281.8581.38923.595123.2010581.190771747.2253938672701.22735632934561.3474451085476\</span>
+<span class="linenos">884</span><span class="go">            9.567618483045329.3028704600213534236926361.115878974164753927617074729.18538918397035986453797788078200765\</span>
+<span class="linenos">885</span><span class="go">            174683046595921.8601453369333445519020725745067512086205839758051141693516405664901250989040475754111481365\</span>
+<span class="linenos">886</span><span class="go">            7732190509</span>
+<span class="linenos">887</span><span class="go"> 430    12  2.13.41.173.9161.2383921.2171388367013.19138570947468281.132331554743163541916284364878460504933118649.2952\</span>
+<span class="linenos">888</span><span class="go">            3508733582324644807542345334789774261776361.340732317219318187306456127459311407346619258419020582677053361\</span>
+<span class="linenos">889</span><span class="go">            801.16187213283261799744241670327508751111470174529639589756398839278861060299617088374811863647961892041</span>
+<span class="linenos">890</span><span class="go"> 431    5+  2.3.863.1319723.2638924937195497021393768779396591789312744431159722082484810331131799671095640876395257338\</span>
+<span class="linenos">891</span><span class="go">            97241993156165634151611270141117380989656644388657836033542893522360343589631398372619429466597324373845365\</span>
+<span class="linenos">892</span><span class="go">            5580479291371919617711132521342529157056674042622901189653331592938463415377083621183553469529</span>
+<span class="linenos">893</span><span class="go"> 432    10  2.97.2593.16417.29423041.240031591394168814433.76946093484599331535592157286631660929.181663583107606970541\</span>
+<span class="linenos">894</span><span class="go">            9094985033611385104065844528715474020035550753.126217744835361888865876570445245761220576241612434387207031\</span>
+<span class="linenos">895</span><span class="go">            25000001.876219671157904126554469332538521752965497567898354602047426306060259937967278542122775879169</span>
+<span class="linenos">896</span><span class="go"> 433     6  2.3.59838112849.137082542813711740361.624163714774174098161847127318429399626202874611955449064731214011703\</span>
+<span class="linenos">897</span><span class="go">            4401495008827086088786497184191229779873774610991168214097728569.146758096149997812115429184666519883972969\</span>
+<span class="linenos">898</span><span class="go">            6036838927875996666183436932880522249525332132032375709607853337873409958027533458628135639904081</span>
+<span class="linenos">899</span><span class="go"> 434    10  2.13.32117.26490493.234750601.339914790655637.493140571225597.8124604717965111529.102651353523520067851969.</span>
+<span class="linenos">900</span><span class="go">            31050535283032085450796323518597042169307643961147494100307558406635523639772665061583626102939815175765863\</span>
+<span class="linenos">901</span><span class="go">            61124980320818528909802804827573798103726185724741780548010962858622818068337719929040715089128974500689</span>
+<span class="linenos">902</span><span class="go"> 435    18  2.3^2.7.61.349.521.7621.5096867.98047293061.3532907090761.6090817323763.17149742984461.210390487070809.2250\</span>
+<span class="linenos">903</span><span class="go">            0358133965991972941.388917369321230148861862121856409329475801.87371688002770870902056098565110419151320432\</span>
+<span class="linenos">904</span><span class="go">            07241598729973141.35672084085061593268789861883403282141740113051185764313563370007148509570793311281960352\</span>
+<span class="linenos">905</span><span class="go">            3389181</span>
+<span class="linenos">906</span><span class="go"> 436    5+  2.313.464777.1942414084717961809.99715141616973501904685897444278095060179574214053755134968728235936052690\</span>
+<span class="linenos">907</span><span class="go">            40412817923123623765257215350048034447326473976620691089073182212153955740197892347490967746917195849065543\</span>
+<span class="linenos">908</span><span class="go">            2440644144363324575337556279165606234650465453531321030168138606363883489777558973258753052984457</span>
+<span class="linenos">909</span><span class="go"> 437     9  2.3.47.761.19609.213029.42272797713043.383527035556992289388236087.1938683792059660512544584447852353482653\</span>
+<span class="linenos">910</span><span class="go">            58228202082447449622318611984113543913798121318289798185761155520936156388798246924607361163033857104079086\</span>
+<span class="linenos">911</span><span class="go">            48595231797964239909274694793091781459480147780753609858352963453985275162889833747890802000656659363263</span>
+<span class="linenos">912</span><span class="go"> 438    13  2.13.293.601.877.27133517.84128413.7032466681.1278677279155561.4725897742147117.772557938155429260697128053.</span>
+<span class="linenos">913</span><span class="go">            83444903937506307499012871042158205119704061635459618689.56106638412011647613673136638817384350756609522696\</span>
+<span class="linenos">914</span><span class="go">            119978833602871939825002803049326397266508408352377313016256420503330197288806624340656551419904974989580729</span>
+<span class="linenos">915</span><span class="go"> 439    5+  2.3.471487.662755721911092119744737643749343823193619423487281.37571405734233053047188922200726985611271220\</span>
+<span class="linenos">916</span><span class="go">            89779329085395209141430240688617649976903350559109506727772798831554433516815144340875242273951341257588232\</span>
+<span class="linenos">917</span><span class="go">            591087929390785862052965404837957227698082468997930181994280340807337222243417665564247436871753843</span>
+<span class="linenos">918</span><span class="go"> 440    15  2.17.11489.13729.25601.359041.929281.16079210384161.909456847814334401.71225159567951317923809.910290146064\</span>
+<span class="linenos">919</span><span class="go">            06186465761.13901852309409971054059871521.30705281217618182630071422092483681.87530085823642527016184874776\</span>
+<span class="linenos">920</span><span class="go">            489974647524641.2170454234720304100840006466140128138486407289945009658507010902973455820673434537551391343\</span>
+<span class="linenos">921</span><span class="go">            77738561</span>
+<span class="linenos">922</span><span class="go"> 441    27  2.3^3.7^3.29.43.127.449.883.5167.7603.406729.24132781.49105547.63019783.1692416503.1866013003.9887502829.24\</span>
+<span class="linenos">923</span><span class="go">            81357870461.177942365089147.334983841832046709.746966736310231309784898470362787834256167309467.14127632377\</span>
+<span class="linenos">924</span><span class="go">            21728611106087634318515911781756690338345284469111587.26037038557617126481141484699552577028232958479770782\</span>
+<span class="linenos">925</span><span class="go">            537842422294728958147</span>
+<span class="linenos">926</span><span class="go"> 442    14  2.13^2.53.1973.20129.45289.12447002677.1925383738253.83181652304609.938705194413297601737101686241293330600\</span>
+<span class="linenos">927</span><span class="go">            757.27060574572993511759497340055450978609641029013.8236443738642303027336453331644376378492747440274033886\</span>
+<span class="linenos">928</span><span class="go">            009.6552269227380588107021575405365137303652117282521870253512616765687024223369679774420850700688468839922\</span>
+<span class="linenos">929</span><span class="go">            6010293</span>
+<span class="linenos">930</span><span class="go"> 443    7+  2.3.887.8861.32783.58799821946580083201519815867.4843168839352927116816144939805111042863564940077865418675\</span>
+<span class="linenos">931</span><span class="go">            15224579276498811724771966672402220582359674280056024372123542097012829842386866263385339444234759007047729\</span>
+<span class="linenos">932</span><span class="go">            16555282566157952036834137488330184217199157679944025581606707664635051687682467686194244969945896997923</span>
+<span class="linenos">933</span><span class="go"> 444    12  2.313.3257.390001.3542233.10044059578457.662457647768722978873.288243041871591634870747489.2110210599897098\</span>
+<span class="linenos">934</span><span class="go">            921988264554383969.12183357210260619534067632764355337.3863510929006128731397775997106278623741777873312669\</span>
+<span class="linenos">935</span><span class="go">            72225815987845011959800953.41024739725253439517530519530051576851245411575348916635079160519359136843236967\</span>
+<span class="linenos">936</span><span class="go">            4850561</span>
+<span class="linenos">937</span><span class="go"> 445    11  2.3.521.414780941.74122686370301.39387996609449861.56522267529181963.12094715786677995586454978647.11810500\</span>
+<span class="linenos">938</span><span class="go">            3026044634237696289344460081081.5895518746203541920435931300822793257683987241.6108344989550220212572302662\</span>
+<span class="linenos">939</span><span class="go">            53718562525949848360246884541631541968270715079776742390644738267041944248952464170223662290305755936222833\</span>
+<span class="linenos">940</span><span class="go">            54121</span>
+<span class="linenos">941</span><span class="go"> 446    4+  2.13.16682721313249361967072668559607434769.126876646431969131248319416777617657609816262352185725739418103\</span>
+<span class="linenos">942</span><span class="go">            76109512369080682305920576066411541441793545426910790513131276599612172542317915146682369243980679086956096\</span>
+<span class="linenos">943</span><span class="go">            40634544119411528279856117295599523508756585014999606191801294345497929157159126474604671472228159016729</span>
+<span class="linenos">944</span><span class="go"> 447    14  2.3^2.7.1789.85229.4394309.2493584477509.12703371381749.1084802496290323.63998602029097150801.8642038443814\</span>
+<span class="linenos">945</span><span class="go">            82464122519761.5236191793577226020199483374350559063.327519440614843397437210712095688248987314511720628568\</span>
+<span class="linenos">946</span><span class="go">            53260628961802122625420101452564398664094878377300919990822841151970783579238742112257359491362587856637906\</span>
+<span class="linenos">947</span><span class="go">            99581458481</span>
+<span class="linenos">948</span><span class="go"> 448    10  2.769.2195201.3666499598977.3711466630036481.156991808999010049.1214606229579135791230337.96132956782643741\</span>
+<span class="linenos">949</span><span class="go">            951225664001.23371863775658144623538828456854573496104607906605333794952273409.6989658678375689842993980333\</span>
+<span class="linenos">950</span><span class="go">            95117263633121275562035049049008890847786442548362928940407820059804253774285034574979465129314235059775249\</span>
+<span class="linenos">951</span><span class="go">            213313</span>
+<span class="linenos">952</span><span class="go"> 449    6+  2.3.6287.24247.248636782340798457034945031270021.3024919675770951451778277121739196889689853694247917653428\</span>
+<span class="linenos">953</span><span class="go">            54767331044221635712477834626792613032656075735501373705728594072489218860928352718211474153185187887752679\</span>
+<span class="linenos">954</span><span class="go">            576596644813372431628782914657416607377069823690435064705314695619058422023101892905226035069177007891347509</span>
+<span class="linenos">955</span><span class="go"> 450    25  2.13.37.41.601.1801.2281.9161.14401.239201.2516401.5115601.6597973.20478961.69566521.424256201.679409137476\</span>
+<span class="linenos">956</span><span class="go">            1.25535754811081.89620825374601.299541552154912341601.19175675206152077061206122104001.58603562769859820939\</span>
+<span class="linenos">957</span><span class="go">            0491847184601.19112388231871991649234058440147001.670159729536080076087493765952253601.32523217969063955353\</span>
+<span class="linenos">958</span><span class="go">            43817456883197099528575121001</span>
+</pre></div>
+
+            </article>
+        </body>
+        
+        </html>
+        

@@ -1,0 +1,664 @@
+
+        <!DOCTYPE html>
+        <html lang="en-US">  <!-- Set language of this page to USA English. -->
+        
+        <head>
+            <!-- This page uses Unicode characters. -->
+            <meta charset="utf-8">
+        
+            <!-- Set viewport to actual device width.  Any other settings makes the web page initially appear zoomed-in on mobile devices. -->
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+            <!-- Title appears in the web browser tab for this page.  The browser also uses it to bookmark this page. -->
+            <title>Sean Erik O'Connor - Home Page and Free Mathematical Software.</title>
+        
+            <!-- Search engines will search using words in this description.  They will also display title in their search results. -->
+            <meta name="description" content="Syntax Colored Source Code Listing">
+        
+            <!-- Some content management software uses the author's name. -->
+            <meta name="author" content="Sean Erik O'Connor">
+        
+            <meta name="copyright" content="Copyright (C) 1986-2026 by Sean Erik O'Connor.  All Rights Reserved.">   
+        
+            <!-- Begin style sheet insertion -->
+            <style>
+                /* Default settings for all my main web pages. */
+                body
+                {
+                    /* A wide sans-serif font is more readable on the web. */
+                    font-family:            Verdana, Geneva, "Trebuchet MS", sans-serif ;
+        
+                    /* Set the body font size a little smaller than the user's default browser setting. */
+                    font-size:              0.8em ; 
+        
+                    /* Black text is easier to read. */
+                    color:                  black ;
+        
+                    /*  More vertical space between lines for more pleasant reading.  Use a unitless font height multiplier.  
+                        Length and percentage percentage values can give scrunched text due to poor inheritance behavior. */
+                    line-height:            1.7 ;
+                }
+        
+                <!-- Now prepare to add the syntax coloring style sheet from Pygment -->
+        pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.highlight .hll { background-color: #ffffcc }
+.highlight { background: #f8f8f8; }
+.highlight .c { color: #3D7B7B; font-style: italic } /* Comment */
+.highlight .err { border: 1px solid #F00 } /* Error */
+.highlight .k { color: #008000; font-weight: bold } /* Keyword */
+.highlight .o { color: #666 } /* Operator */
+.highlight .ch { color: #3D7B7B; font-style: italic } /* Comment.Hashbang */
+.highlight .cm { color: #3D7B7B; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #9C6500 } /* Comment.Preproc */
+.highlight .cpf { color: #3D7B7B; font-style: italic } /* Comment.PreprocFile */
+.highlight .c1 { color: #3D7B7B; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #3D7B7B; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #A00000 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .ges { font-weight: bold; font-style: italic } /* Generic.EmphStrong */
+.highlight .gr { color: #E40000 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #008400 } /* Generic.Inserted */
+.highlight .go { color: #717171 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #04D } /* Generic.Traceback */
+.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #B00040 } /* Keyword.Type */
+.highlight .m { color: #666 } /* Literal.Number */
+.highlight .s { color: #BA2121 } /* Literal.String */
+.highlight .na { color: #687822 } /* Name.Attribute */
+.highlight .nb { color: #008000 } /* Name.Builtin */
+.highlight .nc { color: #00F; font-weight: bold } /* Name.Class */
+.highlight .no { color: #800 } /* Name.Constant */
+.highlight .nd { color: #A2F } /* Name.Decorator */
+.highlight .ni { color: #717171; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #CB3F38; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #00F } /* Name.Function */
+.highlight .nl { color: #767600 } /* Name.Label */
+.highlight .nn { color: #00F; font-weight: bold } /* Name.Namespace */
+.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #19177C } /* Name.Variable */
+.highlight .ow { color: #A2F; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #BBB } /* Text.Whitespace */
+.highlight .mb { color: #666 } /* Literal.Number.Bin */
+.highlight .mf { color: #666 } /* Literal.Number.Float */
+.highlight .mh { color: #666 } /* Literal.Number.Hex */
+.highlight .mi { color: #666 } /* Literal.Number.Integer */
+.highlight .mo { color: #666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
+.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
+.highlight .se { color: #AA5D1F; font-weight: bold } /* Literal.String.Escape */
+.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.highlight .si { color: #A45A77; font-weight: bold } /* Literal.String.Interpol */
+.highlight .sx { color: #008000 } /* Literal.String.Other */
+.highlight .sr { color: #A45A77 } /* Literal.String.Regex */
+.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #00F } /* Name.Function.Magic */
+.highlight .vc { color: #19177C } /* Name.Variable.Class */
+.highlight .vg { color: #19177C } /* Name.Variable.Global */
+.highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
+.highlight .il { color: #666 } /* Literal.Number.Integer.Long */
+            </style>
+        </head>
+        
+        <body>
+            <article class="content">
+        <div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="cm">/*==============================================================================</span>
+<span class="linenos">  2</span><span class="cm">| </span>
+<span class="linenos">  3</span><span class="cm">|  NAME     </span>
+<span class="linenos">  4</span><span class="cm">|</span>
+<span class="linenos">  5</span><span class="cm">|     ppFactor.hpp</span>
+<span class="linenos">  6</span><span class="cm">|</span>
+<span class="linenos">  7</span><span class="cm">|  DESCRIPTION   </span>
+<span class="linenos">  8</span><span class="cm">|</span>
+<span class="linenos">  9</span><span class="cm">|     Header for integer factoring classes.</span>
+<span class="linenos"> 10</span><span class="cm">|</span>
+<span class="linenos"> 11</span><span class="cm">|     User manual and technical documentation are described in detail in my web page at</span>
+<span class="linenos"> 12</span><span class="cm">|     http://seanerikoconnor.freeservers.com/Mathematics/AbstractAlgebra/PrimitivePolynomials/overview.html</span>
+<span class="linenos"> 13</span><span class="cm">|</span>
+<span class="linenos"> 14</span><span class="cm">|  LEGAL</span>
+<span class="linenos"> 15</span><span class="cm">|</span>
+<span class="linenos"> 16</span><span class="cm">|     Primpoly Version 16.4 - A Program for Computing Primitive Polynomials.</span>
+<span class="linenos"> 17</span><span class="cm">|     Copyright (C) 1999-2026 by Sean Erik O&#39;Connor.  All Rights Reserved.</span>
+<span class="linenos"> 18</span><span class="cm">|</span>
+<span class="linenos"> 19</span><span class="cm">|     This program is free software: you can redistribute it and/or modify</span>
+<span class="linenos"> 20</span><span class="cm">|     it under the terms of the GNU General Public License as published by</span>
+<span class="linenos"> 21</span><span class="cm">|     the Free Software Foundation, either version 3 of the License, or</span>
+<span class="linenos"> 22</span><span class="cm">|     (at your option) any later version.</span>
+<span class="linenos"> 23</span><span class="cm">|</span>
+<span class="linenos"> 24</span><span class="cm">|     This program is distributed in the hope that it will be useful,</span>
+<span class="linenos"> 25</span><span class="cm">|     but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="linenos"> 26</span><span class="cm">|     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="linenos"> 27</span><span class="cm">|     GNU General Public License for more details.</span>
+<span class="linenos"> 28</span><span class="cm">|</span>
+<span class="linenos"> 29</span><span class="cm">|     You should have received a copy of the GNU General Public License</span>
+<span class="linenos"> 30</span><span class="cm">|     along with this program.  If not, see http://www.gnu.org/licenses/.</span>
+<span class="linenos"> 31</span><span class="cm">|     </span>
+<span class="linenos"> 32</span><span class="cm">|     The author&#39;s address is seanerikoconnor!AT!gmail!DOT!com</span>
+<span class="linenos"> 33</span><span class="cm">|     with the !DOT! replaced by . and the !AT! replaced by @</span>
+<span class="linenos"> 34</span><span class="cm">|</span>
+<span class="linenos"> 35</span><span class="cm">==============================================================================*/</span>
+<span class="linenos"> 36</span>
+<span class="linenos"> 37</span><span class="c1">// Wrap this header file to prevent duplication if it is included</span>
+<span class="linenos"> 38</span><span class="c1">// accidentally more than once.</span>
+<span class="linenos"> 39</span><span class="cp">#ifndef __PPFACTOR_H__</span>
+<span class="linenos"> 40</span><span class="cp">#define __PPFACTOR_H__</span>
+<span class="linenos"> 41</span>
+<span class="linenos"> 42</span>
+<span class="linenos"> 43</span><span class="cm">/*=============================================================================</span>
+<span class="linenos"> 44</span><span class="cm">|</span>
+<span class="linenos"> 45</span><span class="cm">| NAME</span>
+<span class="linenos"> 46</span><span class="cm">|</span>
+<span class="linenos"> 47</span><span class="cm">|     FactorError           General factor error, including internal memory errors.</span>
+<span class="linenos"> 48</span><span class="cm">|     FactorRangeError      Input range error.</span>
+<span class="linenos"> 49</span><span class="cm">|</span>
+<span class="linenos"> 50</span><span class="cm">| DESCRIPTION</span>
+<span class="linenos"> 51</span><span class="cm">|</span>
+<span class="linenos"> 52</span><span class="cm">|     Exception classes for the Factor class</span>
+<span class="linenos"> 53</span><span class="cm">|     derived from the STL exception class runtime_error.</span>
+<span class="linenos"> 54</span><span class="cm">|</span>
+<span class="linenos"> 55</span><span class="cm">+============================================================================*/</span>
+<span class="linenos"> 56</span>
+<span class="linenos"> 57</span><span class="k">class</span><span class="w"> </span><span class="nc">FactorError</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">runtime_error</span>
+<span class="linenos"> 58</span><span class="p">{</span>
+<span class="linenos"> 59</span><span class="w">    </span><span class="k">public</span><span class="o">:</span>
+<span class="linenos"> 60</span><span class="w">        </span><span class="c1">// Throw with error message, file name and line number.</span>
+<span class="linenos"> 61</span><span class="w">         </span><span class="n">FactorError</span><span class="p">(</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">description</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">file</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="p">)</span>
+<span class="linenos"> 62</span><span class="w">         </span><span class="o">:</span><span class="w"> </span><span class="n">runtime_error</span><span class="p">(</span><span class="w"> </span><span class="n">description</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; in file &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; at line &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">to_string</span><span class="p">(</span><span class="n">line</span><span class="p">)</span><span class="w"> </span><span class="p">)</span>
+<span class="linenos"> 63</span><span class="w">         </span><span class="p">{</span>
+<span class="linenos"> 64</span><span class="w">         </span><span class="p">}</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos"> 65</span>
+<span class="linenos"> 66</span><span class="w">        </span><span class="c1">// Throw with an error message.</span>
+<span class="linenos"> 67</span><span class="w">        </span><span class="n">FactorError</span><span class="p">(</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">description</span><span class="w"> </span><span class="p">)</span>
+<span class="linenos"> 68</span><span class="w">			</span><span class="o">:</span><span class="w"> </span><span class="n">runtime_error</span><span class="p">(</span><span class="w"> </span><span class="n">description</span><span class="w"> </span><span class="p">)</span>
+<span class="linenos"> 69</span><span class="w">        </span><span class="p">{</span>
+<span class="linenos"> 70</span><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos"> 71</span>
+<span class="linenos"> 72</span><span class="w">        </span><span class="c1">// Default throw with no error message.</span>
+<span class="linenos"> 73</span><span class="w">        </span><span class="n">FactorError</span><span class="p">()</span>
+<span class="linenos"> 74</span><span class="w">			</span><span class="o">:</span><span class="w"> </span><span class="n">runtime_error</span><span class="p">(</span><span class="w"> </span><span class="s">&quot;Factor error:  &quot;</span><span class="w"> </span><span class="p">)</span>
+<span class="linenos"> 75</span><span class="w">        </span><span class="p">{</span>
+<span class="linenos"> 76</span><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos"> 77</span>
+<span class="linenos"> 78</span><span class="p">}</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="c1">// end class BigIntMathError</span>
+<span class="linenos"> 79</span>
+<span class="linenos"> 80</span>
+<span class="linenos"> 81</span><span class="k">class</span><span class="w"> </span><span class="nc">FactorRangeError</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">FactorError</span>
+<span class="linenos"> 82</span><span class="p">{</span>
+<span class="linenos"> 83</span><span class="w">    </span><span class="k">public</span><span class="o">:</span>
+<span class="linenos"> 84</span><span class="w">        </span><span class="c1">// Throw with error message, file name and line number.</span>
+<span class="linenos"> 85</span><span class="w">        </span><span class="n">FactorRangeError</span><span class="p">(</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">description</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">file</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="p">)</span>
+<span class="linenos"> 86</span><span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="n">FactorError</span><span class="p">(</span><span class="w"> </span><span class="n">description</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; in file &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; at line &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">to_string</span><span class="p">(</span><span class="n">line</span><span class="p">)</span><span class="w"> </span><span class="p">)</span>
+<span class="linenos"> 87</span><span class="w">        </span><span class="p">{</span>
+<span class="linenos"> 88</span><span class="w">        </span><span class="p">};</span>
+<span class="linenos"> 89</span><span class="w">    </span>
+<span class="linenos"> 90</span><span class="w">        </span><span class="c1">// Throw with an error message.</span>
+<span class="linenos"> 91</span><span class="w">        </span><span class="n">FactorRangeError</span><span class="p">(</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">description</span><span class="w"> </span><span class="p">)</span>
+<span class="linenos"> 92</span><span class="w">			</span><span class="o">:</span><span class="w"> </span><span class="n">FactorError</span><span class="p">(</span><span class="w"> </span><span class="n">description</span><span class="w"> </span><span class="p">)</span>
+<span class="linenos"> 93</span><span class="w">        </span><span class="p">{</span>
+<span class="linenos"> 94</span><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos"> 95</span>
+<span class="linenos"> 96</span><span class="w">        </span><span class="c1">// Default throw with no error message.</span>
+<span class="linenos"> 97</span><span class="w">        </span><span class="n">FactorRangeError</span><span class="p">()</span>
+<span class="linenos"> 98</span><span class="w">			</span><span class="o">:</span><span class="w"> </span><span class="n">FactorError</span><span class="p">(</span><span class="w"> </span><span class="s">&quot;Factor range error:  &quot;</span><span class="w"> </span><span class="p">)</span>
+<span class="linenos"> 99</span><span class="w">        </span><span class="p">{</span>
+<span class="linenos">100</span><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">101</span>
+<span class="linenos">102</span><span class="p">}</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="c1">// end class FactorRangeError</span>
+<span class="linenos">103</span>
+<span class="linenos">104</span>
+<span class="linenos">105</span><span class="cm">/*=============================================================================</span>
+<span class="linenos">106</span><span class="cm"> |</span>
+<span class="linenos">107</span><span class="cm"> | NAME</span>
+<span class="linenos">108</span><span class="cm"> |</span>
+<span class="linenos">109</span><span class="cm"> |     PrimeFactor</span>
+<span class="linenos">110</span><span class="cm"> |</span>
+<span class="linenos">111</span><span class="cm"> | DESCRIPTION</span>
+<span class="linenos">112</span><span class="cm"> |</span>
+<span class="linenos">113</span><span class="cm"> |     Class to neatly package up unique prime factors to powers.</span>
+<span class="linenos">114</span><span class="cm"> |</span>
+<span class="linenos">115</span><span class="cm"> +============================================================================*/</span>
+<span class="linenos">116</span>
+<span class="linenos">117</span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">IntType</span><span class="o">&gt;</span>
+<span class="linenos">118</span><span class="k">class</span><span class="w"> </span><span class="nc">PrimeFactor</span>
+<span class="linenos">119</span><span class="p">{</span>
+<span class="linenos">120</span><span class="w">    </span><span class="k">public</span><span class="o">:</span>
+<span class="linenos">121</span><span class="w">        </span><span class="k">explicit</span><span class="w"> </span><span class="n">PrimeFactor</span><span class="p">(</span><span class="w"> </span><span class="n">IntType</span><span class="w"> </span><span class="n">prime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">IntType</span><span class="o">&gt;</span><span class="p">(</span><span class="w"> </span><span class="mi">0u</span><span class="w"> </span><span class="p">),</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">)</span>
+<span class="linenos">122</span><span class="w">            </span><span class="o">:</span><span class="w"> </span><span class="n">prime_</span><span class="p">(</span><span class="w"> </span><span class="n">prime</span><span class="w"> </span><span class="p">)</span>
+<span class="linenos">123</span><span class="w">            </span><span class="p">,</span><span class="w"> </span><span class="n">count_</span><span class="p">(</span><span class="w"> </span><span class="n">count</span><span class="w"> </span><span class="p">)</span>
+<span class="linenos">124</span><span class="w">        </span><span class="p">{</span>
+<span class="linenos">125</span><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">126</span>
+<span class="linenos">127</span><span class="w">        </span><span class="o">~</span><span class="n">PrimeFactor</span><span class="p">()</span>
+<span class="linenos">128</span><span class="w">        </span><span class="p">{</span>
+<span class="linenos">129</span><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">130</span>
+<span class="linenos">131</span><span class="w">        </span><span class="n">PrimeFactor</span><span class="p">(</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">PrimeFactor</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">factor</span><span class="w"> </span><span class="p">)</span>
+<span class="linenos">132</span><span class="w">            </span><span class="o">:</span><span class="w"> </span><span class="n">prime_</span><span class="p">(</span><span class="w"> </span><span class="n">factor</span><span class="p">.</span><span class="n">prime_</span><span class="w"> </span><span class="p">)</span>
+<span class="linenos">133</span><span class="w">            </span><span class="p">,</span><span class="w"> </span><span class="n">count_</span><span class="p">(</span><span class="w"> </span><span class="n">factor</span><span class="p">.</span><span class="n">count_</span><span class="w"> </span><span class="p">)</span>
+<span class="linenos">134</span><span class="w">        </span><span class="p">{</span>
+<span class="linenos">135</span><span class="w">        </span><span class="p">}</span>
+<span class="linenos">136</span>
+<span class="linenos">137</span><span class="w">        </span><span class="n">PrimeFactor</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">PrimeFactor</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">factor</span><span class="w"> </span><span class="p">)</span>
+<span class="linenos">138</span><span class="w">        </span><span class="p">{</span>
+<span class="linenos">139</span><span class="w">            </span><span class="c1">// Check for assigning to oneself:  just pass back a reference to the unchanged object.</span>
+<span class="linenos">140</span><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="o">&amp;</span><span class="n">factor</span><span class="p">)</span>
+<span class="linenos">141</span><span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="o">*</span><span class="k">this</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">142</span>
+<span class="linenos">143</span><span class="w">            </span><span class="n">prime_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">factor</span><span class="p">.</span><span class="n">prime_</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">144</span><span class="w">            </span><span class="n">count_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">factor</span><span class="p">.</span><span class="n">count_</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">145</span><span class="w">			</span>
+<span class="linenos">146</span><span class="w">			</span><span class="k">return</span><span class="w"> </span><span class="o">*</span><span class="k">this</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">147</span><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">148</span><span class="w">    </span>
+<span class="linenos">149</span><span class="w">        </span><span class="c1">// Print function for a factor.</span>
+<span class="linenos">150</span><span class="w">        </span><span class="k">friend</span><span class="w"> </span><span class="n">ostream</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="w"> </span><span class="n">ostream</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">out</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">PrimeFactor</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">factor</span><span class="w"> </span><span class="p">)</span>
+<span class="linenos">151</span><span class="w">        </span><span class="p">{</span>
+<span class="linenos">152</span><span class="w">            </span><span class="n">out</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">factor</span><span class="p">.</span><span class="n">prime_</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; ^ &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">factor</span><span class="p">.</span><span class="n">count_</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">153</span><span class="w">        </span>
+<span class="linenos">154</span><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">out</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">155</span><span class="w">        </span><span class="p">}</span>
+<span class="linenos">156</span>
+<span class="linenos">157</span><span class="w">    </span><span class="c1">// Allow direct access to this simple data type for convenience.</span>
+<span class="linenos">158</span><span class="w">    </span><span class="k">public</span><span class="o">:</span>
+<span class="linenos">159</span><span class="w">        </span><span class="n">IntType</span><span class="w"> </span><span class="n">prime_</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">160</span><span class="w">        </span><span class="kt">int</span><span class="w">     </span><span class="n">count_</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">161</span><span class="p">}</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">162</span>
+<span class="linenos">163</span>
+<span class="linenos">164</span><span class="cm">/*=============================================================================</span>
+<span class="linenos">165</span><span class="cm"> |</span>
+<span class="linenos">166</span><span class="cm"> | NAME</span>
+<span class="linenos">167</span><span class="cm"> |</span>
+<span class="linenos">168</span><span class="cm"> |     CompareFactor</span>
+<span class="linenos">169</span><span class="cm"> |</span>
+<span class="linenos">170</span><span class="cm"> | DESCRIPTION</span>
+<span class="linenos">171</span><span class="cm"> |</span>
+<span class="linenos">172</span><span class="cm"> |     Class to sort unique prime factors to powers into order by prime size.</span>
+<span class="linenos">173</span><span class="cm"> |</span>
+<span class="linenos">174</span><span class="cm"> +============================================================================*/</span>
+<span class="linenos">175</span>
+<span class="linenos">176</span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">IntType</span><span class="o">&gt;</span>
+<span class="linenos">177</span><span class="k">class</span><span class="w"> </span><span class="nc">CompareFactor</span>
+<span class="linenos">178</span><span class="p">{</span>
+<span class="linenos">179</span><span class="w">    </span><span class="k">public</span><span class="o">:</span>
+<span class="linenos">180</span><span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="k">operator</span><span class="p">()(</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">PrimeFactor</span><span class="o">&lt;</span><span class="n">IntType</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">s1</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">PrimeFactor</span><span class="o">&lt;</span><span class="n">IntType</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">s2</span><span class="w"> </span><span class="p">)</span>
+<span class="linenos">181</span><span class="w">        </span><span class="p">{</span>
+<span class="linenos">182</span><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">s1</span><span class="p">.</span><span class="n">prime_</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">s2</span><span class="p">.</span><span class="n">prime_</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">183</span><span class="w">        </span><span class="p">}</span>
+<span class="linenos">184</span><span class="p">}</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">185</span>
+<span class="linenos">186</span>
+<span class="linenos">187</span><span class="cm">/*=============================================================================</span>
+<span class="linenos">188</span><span class="cm"> |</span>
+<span class="linenos">189</span><span class="cm"> | NAME</span>
+<span class="linenos">190</span><span class="cm"> |</span>
+<span class="linenos">191</span><span class="cm"> |     Unit</span>
+<span class="linenos">192</span><span class="cm"> |</span>
+<span class="linenos">193</span><span class="cm"> | DESCRIPTION</span>
+<span class="linenos">194</span><span class="cm"> |                                                  0     e</span>
+<span class="linenos">195</span><span class="cm"> |     Class to check for unit factors of the form p  or 1  = 1</span>
+<span class="linenos">196</span><span class="cm"> |</span>
+<span class="linenos">197</span><span class="cm"> +============================================================================*/</span>
+<span class="linenos">198</span>
+<span class="linenos">199</span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">IntType</span><span class="o">&gt;</span>
+<span class="linenos">200</span><span class="k">class</span><span class="w"> </span><span class="nc">Unit</span>
+<span class="linenos">201</span><span class="p">{</span>
+<span class="linenos">202</span><span class="w">    </span><span class="k">public</span><span class="o">:</span>
+<span class="linenos">203</span><span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="k">operator</span><span class="p">()(</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">PrimeFactor</span><span class="o">&lt;</span><span class="n">IntType</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="p">)</span>
+<span class="linenos">204</span><span class="w">        </span><span class="p">{</span>
+<span class="linenos">205</span><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">count_</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0u</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">prime_</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">IntType</span><span class="o">&gt;</span><span class="p">(</span><span class="w"> </span><span class="mi">1u</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">206</span><span class="w">        </span><span class="p">}</span>
+<span class="linenos">207</span><span class="p">}</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">208</span>
+<span class="linenos">209</span>
+<span class="linenos">210</span><span class="cm">/*=============================================================================</span>
+<span class="linenos">211</span><span class="cm">|</span>
+<span class="linenos">212</span><span class="cm">| NAME</span>
+<span class="linenos">213</span><span class="cm">|</span>
+<span class="linenos">214</span><span class="cm">|     Factorization</span>
+<span class="linenos">215</span><span class="cm">|</span>
+<span class="linenos">216</span><span class="cm">| DESCRIPTION</span>
+<span class="linenos">217</span><span class="cm">|</span>
+<span class="linenos">218</span><span class="cm">|     Class for single and multiprecision factoring.</span>
+<span class="linenos">219</span><span class="cm">|</span>
+<span class="linenos">220</span><span class="cm">| EXAMPLE</span>
+<span class="linenos">221</span><span class="cm">|</span>
+<span class="linenos">222</span><span class="cm">|     ppuint p{ 2 } ;</span>
+<span class="linenos">223</span><span class="cm">|     ppuint n{ 4 } ;</span>
+<span class="linenos">224</span><span class="cm">|     BigInt p_to_n_minus_1 { power( p, 4 ) - 1 } ;</span>
+<span class="linenos">225</span><span class="cm">|</span>
+<span class="linenos">226</span><span class="cm">|                                       n                                         n</span>
+<span class="linenos">227</span><span class="cm">|     This will give us the factors of p - 1.  We can pass in either p and n or (p  - 1), but p and n might be</span>
+<span class="linenos">228</span><span class="cm">|     the better choice for really large numbers because then we can look up the factorization in a table instead</span>
+<span class="linenos">229</span><span class="cm">|     of computing it.</span>
+<span class="linenos">230</span><span class="cm">|</span>
+<span class="linenos">231</span><span class="cm">|     Factorization&lt;BigInt&gt; factors_of_p_to_n_minus_1( p_to_n_minus_1, FactoringAlgorithm::Automatic, p, n ) ;</span>
+<span class="linenos">232</span><span class="cm">|</span>
+<span class="linenos">233</span><span class="cm">|     And so will this for a smaller sized integer.</span>
+<span class="linenos">234</span><span class="cm">|</span>
+<span class="linenos">235</span><span class="cm">|     Factorization&lt;ppuint&gt; fact( power( p, 4 ) - 1 ) ;</span>
+<span class="linenos">236</span><span class="cm">|</span>
+<span class="linenos">237</span><span class="cm">|     int numDistinctFactors = fact.num() ;</span>
+<span class="linenos">238</span><span class="cm">|     for (int i = 0 ;  i &lt; numDistinctFactors ;  ++i)</span>
+<span class="linenos">239</span><span class="cm">|     {</span>
+<span class="linenos">240</span><span class="cm">|         BigInt primeFactor  = fact[ i ] ;</span>
+<span class="linenos">241</span><span class="cm">|         int    multiplicity = fact.multiplicity( i ) ;</span>
+<span class="linenos">242</span><span class="cm">|     }</span>
+<span class="linenos">243</span><span class="cm">|</span>
+<span class="linenos">244</span><span class="cm">| NOTES</span>
+<span class="linenos">245</span><span class="cm">|</span>
+<span class="linenos">246</span><span class="cm">|     The member functions and friends are documented in detail ppBigInt.cpp</span>
+<span class="linenos">247</span><span class="cm">|</span>
+<span class="linenos">248</span><span class="cm">+============================================================================*/</span>
+<span class="linenos">249</span>
+<span class="linenos">250</span><span class="c1">// Different flavors of factoring algorithm.</span>
+<span class="linenos">251</span><span class="k">enum</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">FactoringAlgorithm</span>
+<span class="linenos">252</span><span class="p">{</span><span class="w"> </span>
+<span class="linenos">253</span><span class="w">    </span><span class="n">Automatic</span><span class="p">,</span>
+<span class="linenos">254</span><span class="w">    </span><span class="n">TrialDivisionAlgorithm</span><span class="p">,</span>
+<span class="linenos">255</span><span class="w">    </span><span class="n">pollardRhoAlgorithm</span><span class="p">,</span>
+<span class="linenos">256</span><span class="w">    </span><span class="n">FactorTable</span>
+<span class="linenos">257</span><span class="p">}</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">258</span>
+<span class="linenos">259</span>
+<span class="linenos">260</span><span class="c1">// We need both single precision and multi-precision factoring, so use</span>
+<span class="linenos">261</span><span class="c1">// a template with an integer type.</span>
+<span class="linenos">262</span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">IntType</span><span class="o">&gt;</span>
+<span class="linenos">263</span><span class="k">class</span><span class="w"> </span><span class="nc">Factorization</span>
+<span class="linenos">264</span><span class="p">{</span>
+<span class="linenos">265</span><span class="w">    </span><span class="k">public</span><span class="o">:</span>
+<span class="linenos">266</span><span class="w">		</span><span class="c1">// Factor n into distinct primes.  Default constructor factors nothing.</span>
+<span class="linenos">267</span><span class="w">        </span><span class="n">Factorization</span><span class="p">(</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">IntType</span><span class="w"> </span><span class="n">num</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">IntType</span><span class="o">&gt;</span><span class="p">(</span><span class="w"> </span><span class="mi">1u</span><span class="w"> </span><span class="p">),</span>
+<span class="linenos">268</span><span class="w">                       </span><span class="n">FactoringAlgorithm</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FactoringAlgorithm</span><span class="o">::</span><span class="n">Automatic</span><span class="p">,</span><span class="w"> </span><span class="n">ppuint</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">ppuint</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">269</span>
+<span class="linenos">270</span><span class="w">       </span><span class="o">~</span><span class="n">Factorization</span><span class="p">()</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">271</span><span class="w">	   </span>
+<span class="linenos">272</span><span class="w">        </span><span class="c1">// Copy constructor.</span>
+<span class="linenos">273</span><span class="w">        </span><span class="n">Factorization</span><span class="p">(</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Factorization</span><span class="o">&lt;</span><span class="n">IntType</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">274</span><span class="w">		</span>
+<span class="linenos">275</span><span class="w">        </span><span class="c1">// Assignment operator.</span>
+<span class="linenos">276</span><span class="w">        </span><span class="n">Factorization</span><span class="o">&lt;</span><span class="n">IntType</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Factorization</span><span class="o">&lt;</span><span class="n">IntType</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">g</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">277</span>
+<span class="linenos">278</span><span class="w">	    </span><span class="c1">// Return the number of distinct factors.</span>
+<span class="linenos">279</span><span class="w">		</span><span class="n">ppuint</span><span class="w"> </span><span class="nf">numDistinctFactors</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">280</span>
+<span class="linenos">281</span><span class="w">        </span><span class="c1">// Return the ith prime factor along with its multiplicity as an lvalue so we can change either.</span>
+<span class="linenos">282</span><span class="w">		</span><span class="n">PrimeFactor</span><span class="o">&lt;</span><span class="n">IntType</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="p">[](</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">283</span><span class="w">    </span>
+<span class="linenos">284</span><span class="w">        </span><span class="c1">// Return the ith prime factor.</span>
+<span class="linenos">285</span><span class="w">        </span><span class="n">IntType</span><span class="w"> </span><span class="nf">primeFactor</span><span class="p">(</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">286</span>
+<span class="linenos">287</span><span class="w">        </span><span class="c1">// Return the multiplicity of the ith prime factor.</span>
+<span class="linenos">288</span><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="nf">multiplicity</span><span class="p">(</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">289</span><span class="w">        </span>
+<span class="linenos">290</span><span class="w">        </span><span class="c1">// True if p  | (p - 1).</span>
+<span class="linenos">291</span><span class="w">        </span><span class="c1">//          i</span>
+<span class="linenos">292</span><span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nf">skipTest</span><span class="p">(</span><span class="w"> </span><span class="n">ppuint</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">293</span>
+<span class="linenos">294</span><span class="w">        </span><span class="c1">// Factoring with tables.</span>
+<span class="linenos">295</span><span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nf">factorTable</span><span class="p">(</span><span class="w"> </span><span class="n">ppuint</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">ppuint</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">296</span>
+<span class="linenos">297</span><span class="w">        </span><span class="c1">//                                     ---</span>
+<span class="linenos">298</span><span class="w">        </span><span class="c1">// Factoring by trial division up to \/ n</span>
+<span class="linenos">299</span><span class="w">        </span><span class="kt">void</span><span class="w"> </span><span class="nf">trialDivision</span><span class="p">()</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">300</span>
+<span class="linenos">301</span><span class="w">        </span><span class="c1">// Fast probabilistic factoring method.</span>
+<span class="linenos">302</span><span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="nf">pollardRho</span><span class="p">(</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">IntType</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">IntType</span><span class="o">&gt;</span><span class="p">(</span><span class="w"> </span><span class="mi">2u</span><span class="w"> </span><span class="p">))</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">303</span>
+<span class="linenos">304</span><span class="w">        </span><span class="c1">// Return a vector of only the distinct prime factors.</span>
+<span class="linenos">305</span><span class="w">        </span><span class="n">vector</span><span class="o">&lt;</span><span class="n">IntType</span><span class="o">&gt;</span><span class="w"> </span><span class="n">getDistinctPrimeFactors</span><span class="p">()</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">306</span><span class="w">        </span>
+<span class="linenos">307</span><span class="w">    </span><span class="c1">// Allow direct access to this simple data type for convenience.</span>
+<span class="linenos">308</span><span class="w">    </span><span class="k">public</span><span class="o">:</span>
+<span class="linenos">309</span><span class="w">        </span><span class="n">OperationCount</span><span class="w"> </span><span class="n">statistics_</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">310</span>
+<span class="linenos">311</span><span class="w">    </span><span class="k">private</span><span class="o">:</span>
+<span class="linenos">312</span><span class="w">        </span><span class="c1">// The unfactored remainder.</span>
+<span class="linenos">313</span><span class="w">        </span><span class="n">IntType</span><span class="w"> </span><span class="n">n_</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">314</span>
+<span class="linenos">315</span><span class="w">		</span><span class="c1">// Total number of distinct factors.</span>
+<span class="linenos">316</span><span class="w">		</span><span class="n">ppuint</span><span class="w"> </span><span class="n">numFactors_</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">317</span>
+<span class="linenos">318</span><span class="w">        </span><span class="c1">// Array of distinct prime factors of n with their multiplicities.</span>
+<span class="linenos">319</span><span class="w">		</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="n">PrimeFactor</span><span class="o">&lt;</span><span class="n">IntType</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">factor_</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">320</span>
+<span class="linenos">321</span><span class="w">        </span><span class="c1">// Distinct prime factors.</span>
+<span class="linenos">322</span><span class="w">        </span><span class="n">vector</span><span class="o">&lt;</span><span class="n">IntType</span><span class="o">&gt;</span><span class="w"> </span><span class="n">distinctPrimeFactors_</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">323</span><span class="p">}</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">324</span>
+<span class="linenos">325</span>
+<span class="linenos">326</span><span class="cm">/*=============================================================================</span>
+<span class="linenos">327</span><span class="cm">|</span>
+<span class="linenos">328</span><span class="cm">| NAME</span>
+<span class="linenos">329</span><span class="cm">|</span>
+<span class="linenos">330</span><span class="cm">|     Primality</span>
+<span class="linenos">331</span><span class="cm">|</span>
+<span class="linenos">332</span><span class="cm">| DESCRIPTION</span>
+<span class="linenos">333</span><span class="cm">|</span>
+<span class="linenos">334</span><span class="cm">|     What confidence a number is prime?</span>
+<span class="linenos">335</span><span class="cm">|</span>
+<span class="linenos">336</span><span class="cm">+============================================================================*/</span>
+<span class="linenos">337</span>
+<span class="linenos">338</span><span class="k">enum</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">Primality</span>
+<span class="linenos">339</span><span class="p">{</span>
+<span class="linenos">340</span><span class="w">    </span><span class="n">Prime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="linenos">341</span><span class="w">    </span><span class="n">Composite</span><span class="p">,</span>
+<span class="linenos">342</span><span class="w">    </span><span class="n">ProbablyPrime</span><span class="p">,</span><span class="w"> </span>
+<span class="linenos">343</span><span class="w">    </span><span class="n">Undefined</span>
+<span class="linenos">344</span>
+<span class="linenos">345</span><span class="p">}</span><span class="w">  </span><span class="p">;</span>
+<span class="linenos">346</span>
+<span class="linenos">347</span>
+<span class="linenos">348</span><span class="cm">/*=============================================================================</span>
+<span class="linenos">349</span><span class="cm"> |</span>
+<span class="linenos">350</span><span class="cm"> | NAME</span>
+<span class="linenos">351</span><span class="cm"> |</span>
+<span class="linenos">352</span><span class="cm"> |     isProbablyPrime</span>
+<span class="linenos">353</span><span class="cm"> |</span>
+<span class="linenos">354</span><span class="cm"> | DESCRIPTION</span>
+<span class="linenos">355</span><span class="cm"> |</span>
+<span class="linenos">356</span><span class="cm"> |     True if n is likely to be prime.  Tests on a random integer x.</span>
+<span class="linenos">357</span><span class="cm"> |</span>
+<span class="linenos">358</span><span class="cm"> +============================================================================*/</span>
+<span class="linenos">359</span>
+<span class="linenos">360</span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">IntType</span><span class="o">&gt;</span>
+<span class="linenos">361</span><span class="n">Primality</span><span class="w"> </span><span class="n">isProbablyPrime</span><span class="p">(</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">IntType</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">IntType</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">362</span>
+<span class="linenos">363</span>
+<span class="linenos">364</span><span class="cm">/*=============================================================================</span>
+<span class="linenos">365</span><span class="cm"> |</span>
+<span class="linenos">366</span><span class="cm"> | NAME</span>
+<span class="linenos">367</span><span class="cm"> |</span>
+<span class="linenos">368</span><span class="cm"> |     UniformRandomNumber</span>
+<span class="linenos">369</span><span class="cm"> |</span>
+<span class="linenos">370</span><span class="cm"> | DESCRIPTION</span>
+<span class="linenos">371</span><span class="cm"> |</span>
+<span class="linenos">372</span><span class="cm"> |     Return a uniform random integer in [0, range).</span>
+<span class="linenos">373</span><span class="cm"> |</span>
+<span class="linenos">374</span><span class="cm"> | NOTES</span>
+<span class="linenos">375</span><span class="cm"> |</span>
+<span class="linenos">376</span><span class="cm"> |     Use the JKISS random number generator from the article,</span>
+<span class="linenos">377</span><span class="cm"> |         Good Practice in (Pseudo) Random Number Generation for Bioinformatics Applications </span>
+<span class="linenos">378</span><span class="cm"> |         by David Jones, UCL Bioinformatics Group (E-mail: d.jones@cs.ucl.ac.uk) </span>
+<span class="linenos">379</span><span class="cm"> |         (Last revised May 7th 2010)</span>
+<span class="linenos">380</span><span class="cm"> |</span>
+<span class="linenos">381</span><span class="cm"> +============================================================================*/</span>
+<span class="linenos">382</span>
+<span class="linenos">383</span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">IntType</span><span class="o">&gt;</span>
+<span class="linenos">384</span><span class="k">class</span><span class="w"> </span><span class="nc">UniformRandomIntegers</span>
+<span class="linenos">385</span><span class="p">{</span>
+<span class="linenos">386</span><span class="w">    </span><span class="k">public</span><span class="o">:</span>
+<span class="linenos">387</span><span class="w">        </span><span class="c1">// Seed the JKISS generator parameters x, y, z, c, and set up the range of the generator [0, range)</span>
+<span class="linenos">388</span><span class="w">        </span><span class="k">explicit</span><span class="w"> </span><span class="n">UniformRandomIntegers</span><span class="p">(</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">IntType</span><span class="w"> </span><span class="n">range</span><span class="w"> </span><span class="p">)</span>
+<span class="linenos">389</span><span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="n">range</span><span class="p">(</span><span class="w"> </span><span class="n">range</span><span class="w"> </span><span class="p">)</span>
+<span class="linenos">390</span><span class="w">        </span><span class="p">{</span>
+<span class="linenos">391</span><span class="w">            </span><span class="o">++</span><span class="n">num_of_initializations</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">392</span><span class="w">            </span>
+<span class="linenos">393</span><span class="w">            </span><span class="c1">// Reseed at the first call to this class and only occasionally thereafter because it&#39;s slow.</span>
+<span class="linenos">394</span><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">num_of_initializations</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">how_often_to_reseed</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="linenos">395</span><span class="w">            </span><span class="p">{</span>
+<span class="linenos">396</span><span class="w">                </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">trueRandomNumberFromDevice</span><span class="p">()</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">397</span>
+<span class="linenos">398</span><span class="w">                </span><span class="c1">// Seed y must not be zero!</span>
+<span class="linenos">399</span><span class="w">                </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="o">!</span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">trueRandomNumberFromDevice</span><span class="p">())</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">400</span><span class="w">                </span>
+<span class="linenos">401</span><span class="w">                </span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">trueRandomNumberFromDevice</span><span class="p">()</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">402</span>
+<span class="linenos">403</span><span class="w">                </span><span class="c1">// We don’t really need to set c as well but let&#39;s anyway...</span>
+<span class="linenos">404</span><span class="w">                </span><span class="c1">// NOTE: offset c by 1 to avoid z = c = 0</span>
+<span class="linenos">405</span><span class="w">                </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">trueRandomNumberFromDevice</span><span class="p">()</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">JKISS_MAGIC_NUM</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="c1">// Should be less than 698769069</span>
+<span class="linenos">406</span><span class="w">            </span><span class="p">}</span>
+<span class="linenos">407</span><span class="w">         </span><span class="p">}</span>
+<span class="linenos">408</span>
+<span class="linenos">409</span><span class="w">        </span><span class="c1">// Destructor has nothing to do.</span>
+<span class="linenos">410</span><span class="w">        </span><span class="n">UniformRandomIntegers</span><span class="p">()</span>
+<span class="linenos">411</span><span class="w">        </span><span class="p">{</span>
+<span class="linenos">412</span><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">413</span>
+<span class="linenos">414</span><span class="w">        </span><span class="n">IntType</span><span class="w"> </span><span class="nf">rand</span><span class="p">()</span>
+<span class="linenos">415</span><span class="w">        </span><span class="p">{</span>
+<span class="linenos">416</span><span class="w">            </span><span class="n">ppuint32</span><span class="w"> </span><span class="n">kiss</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">jKiss</span><span class="p">()</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">417</span><span class="w">            </span>
+<span class="linenos">418</span><span class="w">            </span><span class="c1">// [0, range) falls within our generator&#39;s range [0, JKISSMAX).</span>
+<span class="linenos">419</span><span class="w">            </span><span class="c1">// To preserve a uniform distribution, map numbers in [0, JKISSMAX) down to [0, range) in the following way:</span>
+<span class="linenos">420</span><span class="w">            </span><span class="c1">// Map [0, range), =&gt; [0, range)</span>
+<span class="linenos">421</span><span class="w">            </span><span class="c1">// Map [range+1, 2 range) =&gt; [0, range)</span>
+<span class="linenos">422</span><span class="w">            </span><span class="c1">// ...</span>
+<span class="linenos">423</span><span class="w">            </span><span class="c1">// Map [(n-1) range + 1, n range) =&gt; [0, range)</span>
+<span class="linenos">424</span><span class="w">            </span><span class="c1">// Discard numbers in [n range + 1, JKISSMAX) because mapping numbers in this interval &lt; range would inject a non-uniform bias.</span>
+<span class="linenos">425</span><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">range</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">IntType</span><span class="p">(</span><span class="w"> </span><span class="n">JKISSMAX</span><span class="w"> </span><span class="p">))</span>
+<span class="linenos">426</span><span class="w">            </span><span class="p">{</span>
+<span class="linenos">427</span><span class="w">                </span><span class="c1">// It&#39;s safe to down convert the integer type.</span>
+<span class="linenos">428</span><span class="w">                </span><span class="n">ppuint32</span><span class="w"> </span><span class="n">range2</span><span class="p">{</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">ppuint32</span><span class="o">&gt;</span><span class="p">(</span><span class="w"> </span><span class="n">range</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">429</span><span class="w">                </span>
+<span class="linenos">430</span><span class="w">                </span><span class="c1">// Discard the random number unless it falls in a multiple of the range.</span>
+<span class="linenos">431</span><span class="w">                </span><span class="c1">// Retry with a new random number.  I hope we don&#39;t get an infinite loop!</span>
+<span class="linenos">432</span><span class="w">                </span><span class="n">ppuint32</span><span class="w"> </span><span class="n">within_multiple_of_range</span><span class="p">{</span><span class="w"> </span><span class="n">JKISSMAX</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="n">JKISSMAX</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">ppuint32</span><span class="o">&gt;</span><span class="p">(</span><span class="n">range</span><span class="p">))</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">433</span><span class="w">                </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">kiss</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">within_multiple_of_range</span><span class="p">)</span>
+<span class="linenos">434</span><span class="w">                    </span><span class="n">kiss</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">jKiss</span><span class="p">()</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">435</span><span class="w">                </span><span class="n">kiss</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">jKiss</span><span class="p">()</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">range2</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">436</span><span class="w">            </span><span class="p">}</span>
+<span class="linenos">437</span><span class="w">            </span><span class="c1">// If the range is larger than the maximum of our generator, do nothing.  We don&#39;t want to scale up</span>
+<span class="linenos">438</span><span class="w">            </span><span class="c1">// and have a non-uniform distribution.</span>
+<span class="linenos">439</span><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">IntType</span><span class="o">&gt;</span><span class="p">(</span><span class="w"> </span><span class="n">kiss</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">440</span><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">441</span>
+<span class="linenos">442</span><span class="w">        </span><span class="k">private</span><span class="o">:</span>
+<span class="linenos">443</span><span class="w">            </span><span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">num_of_initializations</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">444</span><span class="w">            </span><span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">how_often_to_reseed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10000</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">445</span><span class="w">            </span><span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">JKISS_MAGIC_NUM</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">698769068</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">446</span><span class="w">    </span>
+<span class="linenos">447</span><span class="w">            </span><span class="c1">// Default seeds for JKISS.</span>
+<span class="linenos">448</span><span class="w">            </span><span class="n">ppuint32</span><span class="w"> </span><span class="n">x</span><span class="p">{</span><span class="w"> </span><span class="mi">123456789</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">449</span><span class="w">            </span><span class="n">ppuint32</span><span class="w"> </span><span class="n">y</span><span class="p">{</span><span class="w"> </span><span class="mi">987654321</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">450</span><span class="w">            </span><span class="n">ppuint32</span><span class="w"> </span><span class="n">z</span><span class="p">{</span><span class="w">  </span><span class="mi">43219876</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">451</span><span class="w">            </span><span class="n">ppuint32</span><span class="w"> </span><span class="n">c</span><span class="p">{</span><span class="w">   </span><span class="mi">6543217</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">452</span>
+<span class="linenos">453</span><span class="w">            </span><span class="c1">// Top end of the jKiss() generator range.</span>
+<span class="linenos">454</span><span class="w">            </span><span class="k">const</span><span class="w"> </span><span class="n">ppuint32</span><span class="w"> </span><span class="n">JKISSMAX</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="n">ppuint32</span><span class="o">&gt;::</span><span class="n">max</span><span class="p">()</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">455</span><span class="w">    </span>
+<span class="linenos">456</span><span class="w">            </span><span class="c1">// Return uniform random numbers in the range [0, range).</span>
+<span class="linenos">457</span><span class="w">            </span><span class="n">IntType</span><span class="w"> </span><span class="n">range</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">458</span>
+<span class="linenos">459</span><span class="w">            </span><span class="c1">// Read from the pseudo device /dev/urandom which return true random integers.</span>
+<span class="linenos">460</span><span class="w">            </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">trueRandomNumberFromDevice</span><span class="p">()</span>
+<span class="linenos">461</span><span class="w">            </span><span class="p">{</span>
+<span class="linenos">462</span><span class="w">                </span><span class="c1">// The device /dev/urandom only returns bytes, so grab four at a time to make on 32-bit unsigned integer.</span>
+<span class="linenos">463</span><span class="w">                </span><span class="k">union</span><span class="w"> </span><span class="nc">RandomDeviceByteToInteger</span>
+<span class="linenos">464</span><span class="w">                </span><span class="p">{</span>
+<span class="linenos">465</span><span class="w">                    </span><span class="n">ppuint32</span><span class="w"> </span><span class="n">integer32</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">466</span><span class="w">                    </span><span class="kt">char</span><span class="w"> </span><span class="n">bytes4</span><span class="p">[</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">467</span><span class="w">                </span><span class="p">}</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">468</span><span class="w">                </span>
+<span class="linenos">469</span><span class="w">                </span><span class="n">RandomDeviceByteToInteger</span><span class="w"> </span><span class="n">numFromRandomDev</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">470</span><span class="w">                </span>
+<span class="linenos">471</span><span class="w">                </span><span class="n">ifstream</span><span class="w"> </span><span class="n">fin</span><span class="p">(</span><span class="w"> </span><span class="s">&quot;/dev/urandom&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ifstream</span><span class="o">::</span><span class="n">binary</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">472</span><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">fin</span><span class="p">.</span><span class="n">good</span><span class="p">())</span>
+<span class="linenos">473</span><span class="w">                </span><span class="p">{</span>
+<span class="linenos">474</span><span class="w">                    </span><span class="n">fin</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="w"> </span><span class="n">numFromRandomDev</span><span class="p">.</span><span class="n">bytes4</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">475</span><span class="w">                    </span>
+<span class="linenos">476</span><span class="w">                    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">fin</span><span class="p">)</span>
+<span class="linenos">477</span><span class="w">                    </span><span class="p">{</span>
+<span class="linenos">478</span><span class="w">                        </span><span class="n">ostringstream</span><span class="w"> </span><span class="n">os</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">479</span><span class="w">                        </span><span class="n">os</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Cannot read from random device /dev/urandom&quot;</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">480</span><span class="w">                        </span><span class="k">throw</span><span class="w"> </span><span class="n">FactorError</span><span class="p">(</span><span class="w"> </span><span class="n">os</span><span class="p">.</span><span class="n">str</span><span class="p">(),</span><span class="w"> </span><span class="n">__FILE__</span><span class="p">,</span><span class="w"> </span><span class="n">__LINE__</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">481</span><span class="w">                    </span><span class="p">}</span>
+<span class="linenos">482</span><span class="w">                </span><span class="p">}</span>
+<span class="linenos">483</span><span class="w">                </span><span class="k">else</span>
+<span class="linenos">484</span><span class="w">                </span><span class="p">{</span>
+<span class="linenos">485</span><span class="w">                    </span><span class="n">ostringstream</span><span class="w"> </span><span class="n">os</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">486</span><span class="w">                    </span><span class="n">os</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Cannot open random device /dev/urandom&quot;</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">487</span><span class="w">                    </span><span class="k">throw</span><span class="w"> </span><span class="n">FactorError</span><span class="p">(</span><span class="w"> </span><span class="n">os</span><span class="p">.</span><span class="n">str</span><span class="p">(),</span><span class="w"> </span><span class="n">__FILE__</span><span class="p">,</span><span class="w"> </span><span class="n">__LINE__</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">488</span><span class="w">                </span><span class="p">}</span>
+<span class="linenos">489</span>
+<span class="linenos">490</span><span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="n">numFromRandomDev</span><span class="p">.</span><span class="n">integer32</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">491</span><span class="w">            </span><span class="p">}</span>
+<span class="linenos">492</span>
+<span class="linenos">493</span><span class="w">            </span><span class="c1">// 32-bit integer random number generator.</span>
+<span class="linenos">494</span><span class="w">            </span><span class="n">ppuint32</span><span class="w"> </span><span class="nf">jKiss</span><span class="p">()</span>
+<span class="linenos">495</span><span class="w">            </span><span class="p">{</span>
+<span class="linenos">496</span><span class="w">                </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">314527869</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1234567</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">497</span>
+<span class="linenos">498</span><span class="w">                </span><span class="n">y</span><span class="w"> </span><span class="o">^=</span><span class="w"> </span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w">  </span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">499</span><span class="w">                </span><span class="n">y</span><span class="w"> </span><span class="o">^=</span><span class="w"> </span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w">  </span><span class="mi">7</span><span class="p">)</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">500</span><span class="w">                </span><span class="n">y</span><span class="w"> </span><span class="o">^=</span><span class="w"> </span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">22</span><span class="p">)</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">501</span>
+<span class="linenos">502</span><span class="w">                </span><span class="n">ppuint</span><span class="w"> </span><span class="n">t</span><span class="p">{</span><span class="w"> </span><span class="mi">4294584393ULL</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">z</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">;</span><span class="w">  </span><span class="c1">// This must be a 64-bit integer type.</span>
+<span class="linenos">503</span><span class="w">                </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="mi">32</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">504</span><span class="w">                </span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">ppuint32</span><span class="o">&gt;</span><span class="p">(</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">505</span>
+<span class="linenos">506</span><span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">z</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">507</span><span class="w">            </span><span class="p">}</span>
+<span class="linenos">508</span><span class="p">}</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">509</span>
+<span class="linenos">510</span>
+<span class="linenos">511</span><span class="cm">/*==============================================================================</span>
+<span class="linenos">512</span><span class="cm">|                     Static Class Variables Initialization                    |</span>
+<span class="linenos">513</span><span class="cm">==============================================================================*/</span>
+<span class="linenos">514</span>
+<span class="linenos">515</span><span class="c1">// Static class variables must be initialized outside the class.</span>
+<span class="linenos">516</span>
+<span class="linenos">517</span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">IntType</span><span class="o">&gt;</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">UniformRandomIntegers</span><span class="o">&lt;</span><span class="n">IntType</span><span class="o">&gt;::</span><span class="n">num_of_initializations</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">518</span>
+<span class="linenos">519</span>
+<span class="linenos">520</span><span class="cm">/*=============================================================================</span>
+<span class="linenos">521</span><span class="cm">|</span>
+<span class="linenos">522</span><span class="cm">| NAME</span>
+<span class="linenos">523</span><span class="cm">|</span>
+<span class="linenos">524</span><span class="cm">|     isAlmostSurelyPrime</span>
+<span class="linenos">525</span><span class="cm">|</span>
+<span class="linenos">526</span><span class="cm">| DESCRIPTION</span>
+<span class="linenos">527</span><span class="cm">|</span>
+<span class="linenos">528</span><span class="cm">|     True if n is probabilistically prime.</span>
+<span class="linenos">529</span><span class="cm">|</span>
+<span class="linenos">530</span><span class="cm">+============================================================================*/</span>
+<span class="linenos">531</span>
+<span class="linenos">532</span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">IntType</span><span class="o">&gt;</span>
+<span class="linenos">533</span><span class="kt">bool</span><span class="w"> </span><span class="n">isAlmostSurelyPrime</span><span class="p">(</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">IntType</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">534</span>
+<span class="linenos">535</span><span class="cp">#endif </span><span class="c1">// __PPFACTOR_H__</span>
+</pre></div>
+
+            </article>
+        </body>
+        
+        </html>
+        

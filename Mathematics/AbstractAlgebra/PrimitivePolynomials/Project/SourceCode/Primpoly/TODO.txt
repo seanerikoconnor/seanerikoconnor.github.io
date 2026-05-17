@@ -1,0 +1,18 @@
+Primitive Polynomial Generation
+
+TODO list
+
+* Disable irreducible polynomial testing for large p^n as an option?
+* Scrub code to do modern C++17 language features:
+	*	Custom iterator for polynomials
+	*	std::initializer_list
+	*	Complex<double> z {1.1, 2.2}
+	*	auto z {1.1,2.2}
+	*	nullptr
+	*	Constexpr
+	*	Class enum
+	*	throw;
+	*	=delete for move Member functions or Move member functions 
+	*	Functors
+	*	Lambdas
+	*	Vector range checking 

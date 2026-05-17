@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en-US">  <!-- Set language of this page to USA English. -->
+
+<!-- ===================================================================
+|
+| NAME
+| 
+|     userManual.html
+|
+| DESCRIPTION
+|
+|     This is the primitive polynomial user manual design web page.
+|     It is a hand-crafted HTML 5 W3C validated document.
+|
+| AUTHOR
+|
+|    Sean Erik O'Connor
+|
+=================================================================== -->
+
+    <head>
+        <!-- This page uses Unicode characters. -->
+        <meta charset="utf-8">
+
+        <!-- Set viewport to actual device width.  Any other settings makes the web page initially appear zoomed-in on mobile devices. -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Titles appear in the web browser and the browser's bookmarks. -->
+        <title>Software Design for a Program for Computing Primitive Polynomials.</title>
+
+        <!-- Search engines will show this description below the title. -->
+        <meta name="description" content="Design of the software for a program which computes primitive polynomials.">
+
+        <meta name="author" content="Sean Erik O'Connor" >
+
+        <meta name="copyright" content="Copyright (C) 1999-2026 by Sean Erik O'Connor.  All Rights Reserved.">
+
+         <!-- Configure and load MathJax -->
+         <script src="../../../Scripts/load-mathjax.js" async></script>
+
+        <!-- Cascading style sheet for this document. -->
+        <link rel="stylesheet" href="../../../StyleSheet.css" type="text/css" />
+
+        <!-- Favicons are 32x32 or 16x16, 8 or 24 bit PNG Images which show up left of the web page title in a browser.  -->
+        <link rel="icon" type="image/png" href="../../../Images/favicon.png" >
+
+        <!-- JavaScript email utility -->
+        <script src="../../../Scripts/email.js"></script>
+    </head>
+
+    <body class="technicalReport">
+
+        <!-- This wraps the whole body in a CSS grid. -->
+        <div class="wrapper technicalReport">
+
+            <!-- Title page at the top.  -->
+            <header class="title">
+                <h1>COMPUTING PRIMITIVE POLYNOMIALS - USER MANUAL</h1>
+                <hr>
+            </header>
+
+            <!-- Horizontal navigation bar to all top level pages. -->
+            <header class="navigation">
+                <a href="../../../index.html">
+                    <img src="../../../Images/home.png" alt="Home Page Button." width="32" height="32" >
+                     <em>Home</em>
+                 </a>
+
+                 <a href="../../../Mathematics/mathematicalSoftware.html">
+                     <img src="../../../Images/compactDisk.png" alt="Mathematical Software Button." width="32" height="32" >
+                      <em>Mathematical Software</em>
+                 </a>
+
+                 <a href="../../../Art/Art.html">
+                     <img src="../../../Images/sampleArtLowRes.png" alt="Art Button." width="32" height="32" >
+                      <em>Fine Arts</em>
+                 </a>
+
+                 <a href="../../../WebPageDesign/webPageDesign.html">
+                      <img src="../../../Images/webPage.png" alt="Web Page Design Button." height="32" width="32" >
+                      <em>Web Page Design</em>
+                 </a>
+
+                 <a href="../../../Electronics/Electronics.html">
+                     <img src="../../../Images/sparkCoil.png" alt="Hobby Electronics Button." width="32" height="32" >
+                      <em>Hobby Electronics</em>
+                 </a>
+
+                 <a href="../../../ReadingList/readingList.html">
+                      <img src="../../../Images/terraApollo17NASALowRes.png"
+                           alt="Reading List Button."
+                           width="32" height="32" />
+                      <em>Reading list</em>
+                </a>
+            </header>
+
+            <!-- Table of contents in a navigation side bar using local hyperlinks within the page to each section. -->
+            <nav>
+                <ul>
+                    <li><a href="#Introduction">Introduction</a></li>
+                    <li><a href="#AdditionalProgramSettings">Additional Program Settings</a></li>
+                    <li><a href="#Multiprecision">Multiple Precision Integer Arithmetic <i>C++ version</i></a></li>
+                    <li><a href="#LimitsOnPandN">Limit on the Sizes of p and n:  <i>C Version</i></a></li>
+                </ul>
+            </nav>            
+
+            <!-- A decorative border at the left side of the page. -->
+            <aside class=border>
+                  <img class="border"
+                       src="../../../Images/sinXYPlot.png"
+                       alt="Sin( x y ) Image Border." />
+            </aside>
+            
+            <!-- The main content of this page. -->
+            <article class="content">
+                <section>
+                    <h3 id="Introduction">Introduction</h3>
+
+                    <p>
+                    Let's find a primitive polynomial of degree 4 modulo 2
+                    </p>
+
+                    <div class="scrollBox"> <div class="scrollBoxContent">
+                    $ ./Primpoly.exe 2 4
+
+                    Primpoly Version 16.4 - A Program for Computing Primitive Polynomials.
+                    Copyright (C) 1999-2026 by Sean Erik O'Connor.  All Rights Reserved.
+
+                    Primpoly comes with ABSOLUTELY NO WARRANTY; for details see the
+                    GNU General Public License.  This is free software, and you are welcome
+                    to redistribute it under certain conditions; see the GNU General Public License
+                    for details.
+
+                    Self-check passes...
+
+                    Primitive polynomial modulo 2 of degree 4
+
+                    x ^ 4 + x + 1, 2
+                    </div> </div>
+
+                    <p>
+                    We can also do higher moduli.
+                    </p>
+
+                    <div class="scrollBox"> <div class="scrollBoxContent">
+                    $ ./Primpoly.exe 137 5
+
+                    Primpoly Version 16.4 - A Program for Computing Primitive Polynomials.
+                    Copyright (C) 1999-2026 by Sean Erik O'Connor.  All Rights Reserved.
+
+                    Primpoly comes with ABSOLUTELY NO WARRANTY; for details see the
+                    GNU General Public License.  This is free software, and you are welcome
+                    to redistribute it under certain conditions; see the GNU General Public License
+                    for details.
+
+                    Self-check passes...
+
+                    Primitive polynomial modulo 137 of degree 5
+
+                    x ^ 5 + x + 129, 137
+                    </div> </div>
+
+                    <p>
+                    You can also test a given polynomial for primitivity.
+                    Indicate the modulus after the comma.
+                    </p>
+
+                    <div class="scrollBox"> <div class="scrollBoxContent">
+                    ./Primpoly.exe -t "x^4 + x + 1, 2"
+
+                    Primpoly Version 16.4 - A Program for Computing Primitive Polynomials.
+                    Copyright (C) 1999-2026 by Sean Erik O'Connor.  All Rights Reserved.
+
+                    Primpoly comes with ABSOLUTELY NO WARRANTY; for details see the
+                    GNU General Public License.  This is free software, and you are welcome
+                    to redistribute it under certain conditions; see the GNU General Public License
+                    for details.
+
+                    Self-check passes...
+
+                    x ^ 4 + x + 1, 2 is primitive!
+                    </div> </div>
+
+                    <div class="scrollBox"> <div class="scrollBoxContent">
+                    ./Primpoly.exe -t "x^4 + x^2 + 1, 2"
+
+                    Primpoly Version 16.4 - A Program for Computing Primitive Polynomials.
+                    Copyright (C) 1999-2026 by Sean Erik O'Connor.  All Rights Reserved.
+
+                    Primpoly comes with ABSOLUTELY NO WARRANTY; for details see the
+                    GNU General Public License.  This is free software, and you are welcome
+                    to redistribute it under certain conditions; see the GNU General Public License
+                    for details.
+
+                    Self-check passes...
+
+                    x ^ 4 + x ^ 2 + 1, 2 is NOT primitive!
+                    </div> </div>
+                </section>
+
+                <section>
+                    <h4>Limits on the Size of the Prime p</h4>
+
+                    <p>
+                    The prime modulus p does have an upper bound, although a large one.
+                    p &lt; 2<sup>m/2 - 1</sup> where m = number of bits
+                    in the computer's integer type (defined in Primpoly.h).  
+                    On most machines this will be 64 bits:  p &lt; 2147483648.  
+                    </p>
+
+                    <div class="scrollBox"> <div class="scrollBoxContent">
+                    ./Primpoly.exe 65003 2
+
+                    Primpoly Version 16.4 - A Program for Computing Primitive Polynomials.
+                    Copyright (C) 1999-2026 by Sean Erik O'Connor.  All Rights Reserved.
+
+                    Primpoly comes with ABSOLUTELY NO WARRANTY; for details see the
+                    GNU General Public License.  This is free software, and you are welcome
+                    to redistribute it under certain conditions; see the GNU General Public License
+                    for details.
+
+                    Self-check passes...
+
+                    Primitive polynomial modulo 65003 of degree 2
+
+                    x ^ 2 + x + 15, 65003
+                    </div> </div>
+                </section>
+
+                <section>
+                    <h4>A Word about the Self-Check</h4>
+
+                    <p>
+                    We print out a self-check file in the same directory as <em>Primpoly.exe</em>
+                    called <em>unitTest.log</em>
+                    If the program fails, please send it to me to help diagnose any bugs.
+                    </p>
+
+                    <div class="scrollBox"> <div class="scrollBoxContent">
+                    Primpoly Version 16.4 - A Program for Computing Primitive Polynomials.
+                    Copyright (C) 1999-2026 by Sean Erik O'Connor.  All Rights Reserved.
+
+                    Primpoly comes with ABSOLUTELY NO WARRANTY; for details see the
+                    GNU General Public License.  This is free software, and you are welcome
+                    to redistribute it under certain conditions; see the GNU General Public License
+                    for details.
+
+                    Begin unit testing...
+                    TEST:  Parsing command line options for test polynomial x^4 + 1, 2 
+                    with -s -t and -c options..........PASS!
+                    TEST:  parsing constant 0.........PASS!
+                    TEST:  parsing polynomial with a specified modulus:  2 x ^ 3 + 3 x + 4, 5.........PASS!
+                    TEST:  parsing polynomial 2x without a modulus, which will be defaulted to p=2:  2x.........PASS!
+                    TEST:  parsing bad syntax x 1.........PASS!
+                    TEST:  BigInt switching from base = 2147483648 to new base = 10.........PASS!
+                    TEST:  BigInt u default constructor which gives u = 0..........PASS!
+                    TEST:  Constructor BigInt u( d ) from ppuint d = 1234.........PASS!
+                    TEST:  Constructor BigInt u( s ) from string s = "1234".........PASS!
+                    TEST:  Constructor BigInt u( s ) from INVALID string s = "12x34".........PASS!
+                    TEST:  Copy constructor BigInt v( u ) from BigInt u( 123 ).........PASS!
+                    TEST:  Assignment operator v = u from BigInt v and BigInt u( 123 ).........PASS!
+                    TEST:  Implicit casting ppuint d = u from BigInt u( "01234" ).........PASS!
+                    TEST:  Explicit casting static_cast&lt; ppuint &gt;( u ) from BigInt u( "01234" ).........PASS!
+                    TEST:  Check overflow during ui = static_cast&lt; ppuint &gt;(u) on 
+                    BigInt u( "3141592653589793238462643383279" ).........PASS!
+                    TEST:  Stream output os &lt;&lt; from BigInt u( "1234567890" ).........PASS!
+                    TEST:  Stream input is &gt;&gt; u for BigInt u where we've loaded the stream 
+                    is.str( "314159265358979323846264" ).........PASS!
+                    TEST:  Equality test BigInt u == ppuint d?.........PASS!
+                    TEST:  Equality test BigInt u == BigInt v.........PASS!
+                    TEST:  BigInt u &gt; BigInt v.........PASS!
+                    TEST:  BigInt u( "1234" ) -= ppuint d.........PASS!
+                    TEST:  BigInt u -= static_cast&lt;ppuint&gt;(5) underflow.........PASS!
+                    TEST:  BigInt u += ppuint d.........PASS!
+                    TEST:  BigInt v = BigInt u * ppuint d.........PASS!
+                    TEST:  BigInt u /= ppuint d.........PASS!
+                    TEST:  BigInt u /= ppuint d underflow to zero..........PASS!
+                    TEST:  BigInt v = ++BigInt u.........PASS!
+                    TEST:  BigInt v = --BigInt u.........PASS!
+                    TEST:  BigInt++.........PASS!
+                    TEST:  BigInt--.........PASS!
+                    TEST:  one digit BigInt + ppuint.........PASS!
+                    TEST:  two digit BigInt + ppuint.........PASS!
+                    TEST:  BigInt + BigInt.........PASS!
+                    TEST:  BigInt + BigInt.........PASS!
+                    TEST:  BigInt - BigInt.........PASS!
+                    TEST:  BigInt - BigInt &lt; 0.........PASS!
+                    TEST:  BigInt - ppuint.........PASS!
+                    TEST:  one digit BigInt * BigInt.........PASS!
+                    TEST:  two digit BigInt * BigInt.........PASS!
+                    TEST:  BigInt multidigit *.........PASS!
+                    TEST:  BigInt multidigit *=.........PASS!
+                    TEST:  BigInt / BigInt one digit divisor..........PASS!
+                    TEST:  BigInt / BigInt multidigit.........PASS!
+                    TEST:  BigInt / BigInt leading zero digit..........PASS!
+                    TEST:  BigInt / 0 .........PASS!
+                    TEST:  BigInt % BigInt with u &gt; v.........PASS!
+                    TEST:  BigInt multidigit mod with normalizing constant d = 1.........PASS!
+                    TEST:  BigInt % BigInt with u &lt; v.........PASS!
+                    TEST:  BigInt % ppuint = 314159 / 9 = 5 with ppuint &lt; base .........PASS!
+                    TEST:  BigInt % ppuint = 398765 % 3457u with ppuint &gt; base overflow?.........PASS!
+                    TEST:  BigInt / BigInt low probability if branch..........PASS!
+                    TEST:  Switching back from base 10 to oldBase 2147483648.........PASS!
+                    TEST:  Decimal string to BigInt conversion and back to decimal string using default base..........PASS!
+                    TEST:  BigInt z = x * y then x =? z / y multidigit with default base..........PASS!
+                    TEST:  BigInt testBit.........PASS!
+                    TEST:  testBit().........PASS!
+                    TEST:  BigInt power( ppuint 2, ppuint 100 ).........PASS!
+                    TEST:  BigInt ceilLg( 6 ).........PASS!
+                    TEST:  BigInt eval 2 ^ 1198 - 1 = 3 * 366994123 * 16659379034607403556537 * 
+                    148296291984475077955727317447564721950969097 * 
+                    8398047009001231954734680924979017504225305878286200635075545151446835102504\
+                    90874819119570309824866293030799718783 * 
+                    1884460498967805432001612672369307101507474835976431925948333387748670120353\
+                    629453261347843140212808570505767386771290423087216156597588216186445958479269565424431335013281
+                    .........PASS!
+                    TEST:  ModP 10 = 3 (mod 7).........PASS!
+                    TEST:  ModP -10 = 4 (mod 7).........PASS!
+                    TEST:  ModP( 0 ) throwing ArithModPException.........PASS!
+                    TEST:  ppuint gcd( 85, 25 ) = 5.........PASS!
+                    TEST:  BigInt gcd( 779953197883173551166308319545, 1282866356929526866866376009397 ) = 1.........PASS!
+                    TEST:  c,r = addMod( a, b, n ) for ppuint type of 64 bits .........PASS!
+                    TEST:  c,r = timesTwoMod( a, n ) for ppuint type of 64 bits .........PASS!
+                    TEST:  c,r = multiplyMod( a, b, n ) for ppuint type of 64 bits .........PASS!
+                    TEST:  PowerMod ppuint 3^10 = 4 (mod 7).........PASS!
+                    TEST:  c,r = PowerMod( a, b ) modulo n for ppuint type of 64 bits .........PASS!
+                    TEST:  PowerMod BigInt 3^10 = 4 (mod 7).........PASS!
+                    TEST:  PowerMod with out of range inputs..........PASS!
+                    TEST:  InverseModP 3 * 5 = 1 (mod 7).........PASS!
+                    TEST:  IsPrimitiveRoot.   3 is a primitive root of 7..........PASS!
+                    TEST:  IsPrimitiveRoot.   2 is a primitive root of 11..........PASS!
+                    TEST:  IsPrimitiveRoot.   3 is NOT a primitive root of 11..........PASS!
+                    TEST:  IsPrimitiveRoot.   5 is a primitive root of 65003..........PASS!
+                    TEST:  IsPrimitiveRoot.   8 is NOT a primitive root of 65003..........PASS!
+                    TEST:  constant coefficient test..........PASS!
+                    TEST:  constant coefficient is primitive root..........PASS!
+                    TEST:  isProbablyPrime on ppuint prime 97 with random x = 10.........PASS!
+                    TEST:  isAlmostSurelyPrime for ppuint prime 97.........PASS!
+                    TEST:  isAlmostSurelyPrime for BigInt prime 97.........PASS!
+                    TEST:  isAlmostSurelyPrime for non-prime BigInt 49.........PASS!
+                    TEST:  isAlmostSurelyPrime on the 10000th prime number 104729 of ppuint type.........PASS!
+                    TEST:  Factor table method used on unsigned int 3^20 - 1 = 
+                    3486784400 = 2^4 5^2 11^2 61 1181.........PASS!
+                    TEST:  Factor table method used on BigInt 3^20 - 1 = 3486784400 = 2^4 5^2 11^2 61 1181.........PASS!
+                    TEST:  Trial division factoring on unsigned int 337500 = 2^2 3^3 5^5..........PASS!
+                    TEST:  Trial division factoriing on BigInt 337500 = 2^2 3^3 5^5..........PASS!
+                    TEST:  Pollard Rho factorization on unsigned int 25852 = 2^2 23 281.........PASS!
+                    TEST:  Pollard Rho factorization on BigInt 25852 = 2^2 23 281.........PASS!
+                    TEST:  BigInt computation of p^n, r, factors of r, EulerPhi[ p^n - 1]/n for p = 2.........PASS!
+                    TEST:  Factor Copy constructor.........PASS!
+                    TEST:  Factor assignment operator.........PASS!
+                    TEST:  Polynomial() default constructor..........PASS!
+                    TEST:  Polynomial() from string..........PASS!
+                    TEST:  Polynomial = string..........PASS!
+                    TEST:  Polynomial() from string with negative constant..........PASS!
+                    TEST:  Polynomial() to string..........PASS!
+                    TEST:  Polynomial() copy constructor..........PASS!
+                    TEST:  Polynomial assignment operator..........PASS!
+                    TEST:  Polynomial()[] read only operator..........PASS!
+                    TEST:  Polynomial()[] accessing coeff higher than its degree..........PASS!
+                    TEST:  Polynomial()[] lvalue operator..........PASS!
+                    TEST:  Polynomial() += operator..........PASS!
+                    TEST:  Polynomial() += operator..........PASS!
+                    TEST:  Polynomial() + operator..........PASS!
+                    TEST:  Polynomial * scalar.........PASS!
+                    TEST:  Polynomial evaluation x^4 + 3x + 3 (mod 5).........PASS!
+                    TEST:  Polynomial evaluation x^4 + x + 1 (mod 2).........PASS!
+                    TEST:  Polynomial hasLinearFactor is true.........PASS!
+                    TEST:  Polynomial hasLinearFactor is false.........PASS!
+                    TEST:  Polynomial isInteger.........PASS!.........PASS!
+                    TEST:  Polynomial initial and next trial polynomials.........PASS!
+                    TEST:  PolyMod constructor from polynomials..........PASS!
+                    TEST:  PolyMod constructor from string and polynomial..........PASS!
+                    TEST:  PolyMod timesX..........PASS!
+                    TEST:  PolyMod autoconvolve..........PASS!
+                    TEST:  PolyMod convolve..........PASS!
+                    TEST:  PolyMod coeffOfSquare..........PASS!
+                    TEST:  PolyMod coeffOfProduct..........PASS!
+                    TEST:  PolyMod square..........PASS!
+                    TEST:  PolyMod operator* and implicitly, operator*=.........PASS!
+                    TEST:  PolyMod x_to_power and isInteger().........PASS!
+                    TEST:  PolyOrder reduced Q-I matrix.........PASS!
+                    TEST:  PolyOrder 3 distinct factors out of 4.........PASS!
+                    TEST:  PolyOrder, reducible polynomial x^3 + 3 mod 5 with 2 distinct factors.........PASS!
+                    TEST:  PolyOrder, irreducible polynomial x^4 + x^2 + 2x + 3 mod 5 (nullity = 1).........PASS!
+                    TEST:  PolyOrder 1 distinct factor 4 times.........PASS!
+                    TEST:  PolyOrder order_m().........PASS!
+                    TEST:  PolyOrder order_r() is true.........PASS!
+                    TEST:  PolyOrder order_r() is false.........PASS!
+                    TEST:  PolyOrder isPrimitive on non-primitive poly.........PASS!
+                    TEST:  PolyOrder isPrimitive on primitive poly.........PASS!
+                    TEST:  PolyOrder isPrimitive on primitive poly, part II.........PASS!
+                    End unit testing...
+                    CONGRATULATIONS!  All tests passed!
+                    </div> </div>
+                </section>
+
+                <section>
+                    <h3 id="AdditionalProgramSettings">Additional Program Settings</h3>
+
+                    <p>
+                    Setting the print statistics flag -s on the command line shows the progress of the program while 
+                    it is finding a primitive polynomial.
+                    </p>
+
+                    <div class="scrollBox"> <div class="scrollBoxContent">
+                    $ ./Primpoly.exe -s 200
+
+                    Primpoly Version 16.4 - A Program for Computing Primitive Polynomials.
+                    Copyright (C) 1999-2026 by Sean Erik O'Connor.  All Rights Reserved.
+
+                    Primpoly comes with ABSOLUTELY NO WARRANTY; for details see the
+                    GNU General Public License.  This is free software, and you are welcome
+                    to redistribute it under certain conditions; see the GNU General Public License
+                    for details.
+
+                    Self-check passes...
+                    Inputs are incorrect or out of range: ERROR:  Expecting two arguments, p and n.
+
+
+                    This program generates a primitive polynomial of degree n modulo p.
+
+                    Usage:  Primpoly p n
+                              where p is a prime &gt;= 2 and n is an integer &gt;= 2
+
+                            Primpoly -t &lt;Polynomial to test&gt;, p
+                              If you leave off the ,p we default to p = 2
+
+                            Primpoly -a p n
+                              Same, but list all primitive polynomials of degree n mod p
+
+                            Primpoly -s p n
+                              Same, but print search statistics too.
+
+                            Primpoly -h
+                              Print this help message.
+
+                    Examples:  
+                            Primpoly 2 4 
+                              Self-check passes...
+                              Primitive polynomial modulo 2 of degree 4
+                              x ^ 4 + x + 1, 2
+
+                            Primpoly -t x^4 + x + 1, 2
+                              Self-check passes...
+                              x ^ 4 + x + 1, 2 is primitive!
+
+                            Primpoly -a 2 4
+                              Self-check passes...
+                              Primitive polynomial modulo 2 of degree 4
+                              x ^ 4 + x + 1, 2
+                              Primitive polynomial modulo 2 of degree 4
+                              x ^ 4 + x ^ 3 + 1, 2
+
+                            Primpoly.exe -s 13 19
+                              Self-check passes...
+                              Primitive polynomial modulo 13 of degree 19
+                              x ^ 19 + 9 x + 2, 13
+
+                              +--------- OperationCount --------------------------------
+                              |
+                              | Integer factorization:  Table lookup + Trial division + Pollard Rho
+                              |
+                              | Number of trial divisions :           0
+                              | Number of gcd's computed :            9027
+                              | Number of primality tests :           2
+                              | Number of squarings:                  9026
+                              |
+                              | Polynomial Testing
+                              |
+                              | Total num. degree 19 poly mod 13 :      1461920290375446110677
+                              | Number of possible primitive poly:    6411930599771980992
+                              | Polynomials tested :                  120
+                              | Const. coeff. was primitive root :    46
+                              | Free of linear factors :              11
+                              | Irreducible to power &gt;=1 :            1
+                              | Had order r (x^r = integer) :         1
+                              | Passed const. coeff. test :           1
+                              | Had order m (x^m != integer) :        1
+                              |
+                              +-----------------------------------------------------
+
+
+                    Primitive polynomials find many uses in mathematics and communications
+                    engineering:
+                       * Generation of pseudonoise (PN) sequences for spread spectrum
+                         communications and chip fault testing.
+                       * Generating Sobol sequences for high dimensional numerical integration.
+                       * Generation of CRC and Hamming codes.
+                       * Generation of Galois (finite) fields for use in decoding Reed-Solomon
+                         and BCH error correcting codes.
+
+                    For detailed technical information, see my web page
+                        http://seanerikoconnor.freeservers.com/Mathematics/AbstractAlgebra/PrimitivePolynomials/overview.html
+                    </div> </div>
+
+                    <p>
+                    If the inputs are incorrect, the program will tell you, and give you a big lecture.
+                    </p>
+
+                    <div class="scrollBox"> <div class="scrollBoxContent">
+                    ./Primpoly.exe 138 5
+
+                    Primpoly Version 16.4 - A Program for Computing Primitive Polynomials.
+                    Copyright (C) 1999-2026 by Sean Erik O'Connor.  All Rights Reserved.
+
+                    Primpoly comes with ABSOLUTELY NO WARRANTY; for details see the
+                    GNU General Public License.  This is free software, and you are welcome
+                    to redistribute it under certain conditions; see the GNU General Public License
+                    for details.
+
+                    Self-check passes...
+                    Inputs are incorrect or out of range: ERROR:  p must be a prime number.
+
+
+                    This program generates a primitive polynomial of degree n modulo p.
+
+                    Usage:  Primpoly p n
+                              where p is a prime &gt;= 2 and n is an integer &gt;= 2
+
+                            Primpoly -t &lt;Polynomial to test&gt;, p
+                              If you leave off the ,p we default to p = 2
+
+                            Primpoly -a p n
+                              Same, but list all primitive polynomials of degree n mod p
+
+                            Primpoly -s p n
+                              Same, but print search statistics too.
+
+                            Primpoly -h
+                              Print this help message.
+
+                    Examples:  
+                            Primpoly 2 4 
+                              Self-check passes...
+                              Primitive polynomial modulo 2 of degree 4
+                              x ^ 4 + x + 1, 2
+
+                            Primpoly -t x^4 + x + 1, 2
+                              Self-check passes...
+                              x ^ 4 + x + 1, 2 is primitive!
+
+                            Primpoly -a 2 4
+                              Self-check passes...
+                              Primitive polynomial modulo 2 of degree 4
+                              x ^ 4 + x + 1, 2
+                              Primitive polynomial modulo 2 of degree 4
+                              x ^ 4 + x ^ 3 + 1, 2
+
+                            Primpoly.exe -s 13 19
+                              Self-check passes...
+                              Primitive polynomial modulo 13 of degree 19
+                              x ^ 19 + 9 x + 2, 13
+
+                              +--------- OperationCount --------------------------------
+                              |
+                              | Integer factorization:  Table lookup + Trial division + Pollard Rho
+                              |
+                              | Number of trial divisions :           0
+                              | Number of gcd's computed :            9027
+                              | Number of primality tests :           2
+                              | Number of squarings:                  9026
+                              |
+                              | Polynomial Testing
+                              |
+                              | Total num. degree 19 poly mod 13 :      1461920290375446110677
+                              | Number of possible primitive poly:    6411930599771980992
+                              | Polynomials tested :                  120
+                              | Const. coeff. was primitive root :    46
+                              | Free of linear factors :              11
+                              | Irreducible to power &gt;=1 :            1
+                              | Had order r (x^r = integer) :         1
+                              | Passed const. coeff. test :           1
+                              | Had order m (x^m != integer) :        1
+                              |
+                              +-----------------------------------------------------
+
+
+                    Primitive polynomials find many uses in mathematics and communications
+                    engineering:
+                       * Generation of pseudonoise (PN) sequences for spread spectrum
+                         communications and chip fault testing.
+                       * Generating Sobol sequences for high dimensional numerical integration.
+                       * Generation of CRC and Hamming codes.
+                       * Generation of Galois (finite) fields for use in decoding Reed-Solomon
+                         and BCH error correcting codes.
+
+                    For detailed technical information, see my web page
+                        http://seanerikoconnor.freeservers.com/Mathematics/AbstractAlgebra/PrimitivePolynomials/overview.html
+                    </div> </div>
+
+                    <p>
+                    Setting check flag -c on the command line runs an independent check on the
+                    primitive polynomial after it is found to confirm it is primitive.
+                    Default is off, because this test can take practically forever for large values
+                    of p<sup>n</sup>:
+                    using the definition of primitive polynomial, we simply check 
+                    x<sup>k</sup>(mod f(x), p) is not equal to 1 for 1 &le; k &le; p<sup>n</sup>-2,
+                    but that x<sup>k</sup>(mod f(x), p) = 1 for k = p<sup>n</sup> - 1.
+                    This flag is useful for debugging purposes.
+                    </p>
+
+                    <div class="scrollBox"> <div class="scrollBoxContent">
+                    ./Primpoly.exe -c 2 4
+
+                    Primpoly Version 16.4 - A Program for Computing Primitive Polynomials.
+                    Copyright (C) 1999-2026 by Sean Erik O'Connor.  All Rights Reserved.
+
+                    Primpoly comes with ABSOLUTELY NO WARRANTY; for details see the
+                    GNU General Public License.  This is free software, and you are welcome
+                    to redistribute it under certain conditions; see the GNU General Public License
+                    for details.
+
+                    Self-check passes...
+
+
+                    Primitive polynomial modulo 2 of degree 4
+
+                    x ^ 4 + x + 1, 2
+
+                    Confirming polynomial is primitive with an independent check.
+                    Warning:  You may wait an impossibly long time!  If you lose patience,
+                    you can hit control-C in your console window to stop this program.
+                    x ^ 4 + x + 1, 2 confirmed primitive!
+                    </div> </div>
+
+                    <p>
+                    To find and list all primitive polynomials, use the -a flag.
+                    </p>
+
+                    <div class="scrollBox"> <div class="scrollBoxContent">
+                    ./Primpoly.exe -a 2 4
+
+                    Primpoly Version 16.4 - A Program for Computing Primitive Polynomials.
+                    Copyright (C) 1999-2026 by Sean Erik O'Connor.  All Rights Reserved.
+
+                    Primpoly comes with ABSOLUTELY NO WARRANTY; for details see the
+                    GNU General Public License.  This is free software, and you are welcome
+                    to redistribute it under certain conditions; see the GNU General Public License
+                    for details.
+
+                    Self-check passes...
+
+                    There are 2 primitive polynomials modulo 2 of degree 4
+
+                    Primitive polynomial modulo 2 of degree 4
+
+                    x ^ 4 + x + 1, 2
+
+
+                    Primitive polynomial modulo 2 of degree 4
+
+                    x ^ 4 + x ^ 3 + 1, 2
+                    </div> </div>
+                </section>
+
+                <section>
+                    <h3 id="Multiprecision">Multiple Precision Integer Arithmetic <i>C++ version</i></h3>
+
+                    <p>
+                    The object oriented C++ version has no limit to on the degree of the
+                    polynomial, except system memory, though it will slow down for very
+                    high degree.
+                    </p>
+
+                    <p>
+                    The size of p is limited by the size of the base we use for multiple precision
+                    arithmetic which in turn depends on the native integer word size.  
+                    If you run the program with a value of p larger than we can
+                    handle, you get an error message:
+
+                    <div class="scrollBox"> <div class="scrollBoxContent">
+                    ./Primpoly.exe 948903284092384092384 2
+
+                    Primpoly Version 16.4 - A Program for Computing Primitive Polynomials.
+                    Copyright (C) 1999-2026 by Sean Erik O'Connor.  All Rights Reserved.
+
+                    Primpoly comes with ABSOLUTELY NO WARRANTY; for details see the
+                    GNU General Public License.  This is free software, and you are welcome
+                    to redistribute it under certain conditions; see the GNU General Public License
+                    for details.
+
+                    Self-check passes...
+                    Inputs are incorrect or out of range: Error.  Polynomial modulus p must be &lt; 2147483648
+
+                    This program generates a primitive polynomial of degree n modulo p.
+
+                    Usage:  Primpoly p n
+                              where p is a prime &gt;= 2 and n is an integer &gt;= 2
+
+                            Primpoly -t &lt;Polynomial to test&gt;, p
+                              If you leave off the ,p we default to p = 2
+
+                            Primpoly -a p n
+                              Same, but list all primitive polynomials of degree n mod p
+
+                            Primpoly -s p n
+                              Same, but print search statistics too.
+
+                            Primpoly -h
+                              Print this help message.
+
+                    Examples:  
+                            Primpoly 2 4 
+                              Self-check passes...
+                              Primitive polynomial modulo 2 of degree 4
+                              x ^ 4 + x + 1, 2
+
+                            Primpoly -t x^4 + x + 1, 2
+                              Self-check passes...
+                              x ^ 4 + x + 1, 2 is primitive!
+
+                            Primpoly -a 2 4
+                              Self-check passes...
+                              Primitive polynomial modulo 2 of degree 4
+                              x ^ 4 + x + 1, 2
+                              Primitive polynomial modulo 2 of degree 4
+                              x ^ 4 + x ^ 3 + 1, 2
+
+                            Primpoly.exe -s 13 19
+                              Self-check passes...
+                              Primitive polynomial modulo 13 of degree 19
+                              x ^ 19 + 9 x + 2, 13
+
+                              +--------- OperationCount --------------------------------
+                              |
+                              | Integer factorization:  Table lookup + Trial division + Pollard Rho
+                              |
+                              | Number of trial divisions :           0
+                              | Number of gcd's computed :            9027
+                              | Number of primality tests :           2
+                              | Number of squarings:                  9026
+                              |
+                              | Polynomial Testing
+                              |
+                              | Total num. degree 19 poly mod 13 :      1461920290375446110677
+                              | Number of possible primitive poly:    6411930599771980992
+                              | Polynomials tested :                  120
+                              | Const. coeff. was primitive root :    46
+                              | Free of linear factors :              11
+                              | Irreducible to power &gt;=1 :            1
+                              | Had order r (x^r = integer) :         1
+                              | Passed const. coeff. test :           1
+                              | Had order m (x^m != integer) :        1
+                              |
+                              +-----------------------------------------------------
+
+
+                    Primitive polynomials find many uses in mathematics and communications
+                    engineering:
+                       * Generation of pseudonoise (PN) sequences for spread spectrum
+                         communications and chip fault testing.
+                       * Generating Sobol sequences for high dimensional numerical integration.
+                       * Generation of CRC and Hamming codes.
+                       * Generation of Galois (finite) fields for use in decoding Reed-Solomon
+                         and BCH error correcting codes.
+
+                    For detailed technical information, see my web page
+                        http://seanerikoconnor.freeservers.com/Mathematics/AbstractAlgebra/PrimitivePolynomials/overview.html
+                    </div> </div>
+
+                    <p>
+                    The largest integer which needs to be computed anywhere in the 
+                    program is p<sup>n</sup>.
+                    Variables in the program which require extra precision are 
+                    defined to be of <b>BigInt</b> type.
+                    Our multiple precision integer arithmetic is for unsigned numbers only, and is taken from Knuth's book:
+                    </p>
+
+                    <p class="box">
+                    D. E. Knuth, THE ART OF COMPUTER PROGRAMMING, VOL. 2, 3rd ed., Addison-Wesley, 1981, pgs. 250-265.
+                    <a href = "https://www-cs-faculty.stanford.edu/~knuth/taocp.html">Errata for Volume 2:</a>
+                    </p>
+
+                    <p>
+                    Given p and n, we can find the maximum number of digits m and base b.
+                    </p>
+
+                    <p>
+                    First, the base b.
+                    Let N = number of bits in an integer type which we will
+                    use for our digits.
+                    The maximum unsigned integer is 2<sup>N</sup>-1.
+                    The largest number which is computed in 
+                    the multiple precision integer arithmetic algorithms is 
+                    b<sup>2</sup>.
+                    So if we let 
+                    b = 2<sup>N/2 - 1</sup>, 
+                    we'll guarantee 
+                    b<sup>2</sup> &lt; 2<sup>N</sup>-1.
+                    and b will be a power of 2, an N/2 digit binary number,
+                    which is needed to efficiently implement shifting and masking operations.
+                    </p>
+
+                    <p>
+                    The maximum integer which needs to be computed is
+                    p<sup>n</sup> = b<sup>m - 1</sup>.
+                    So p<sup>n</sup> + 1 = b<sup>m</sup>.
+                    A bound is then
+                    p<sup>n</sup> &lt; b<sup>m</sup>, or
+                    n lg p &lt; m lg b
+                    or
+                    (n lg p) / (lg b) &lt; m
+                    or
+                    m = &lceil; (n lg p) / lg b &rceil;
+                    </p>
+                </section>
+
+                <section>
+                    <h4>Lower Bounds for p<sup>n</sup></h4>
+
+                    <p>
+                    They are p &ge; 2, n &ge; 2.
+                    </p>
+                </section>
+
+                <section>
+                    <h3 id="LimitsOnPandN">Limit on the Sizes of p and n:  <i>C Version</i></h3>
+
+                    <p>
+                    Since we use the system hardware integer arithmetic,
+                    there are internal limits within program which restrict the size
+                    of the largest primitive polynomial which may be computed.
+                    We discuss bounds on various internal integer variables below.
+                    Most bounds are set in the source file pp.h and tested in pp.c.
+                    </p>
+                </section>
+
+                <section>
+                    <h4>Upper Bound on Size of Internal Integer Computations</h4>
+
+                    <p>
+                    The largest integer which needs to be computed anywhere in the 
+                    program is p<sup>n</sup>.
+                    Variables in the program which require this extra precision are 
+                    defined to be of <b>Bigint</b> type.
+                    </p>
+
+                    <p>
+                    This should be an unsigned integer type, since all
+                    computations with <b>Bigint</b> involve multiplication, division,
+                    modulo, masking and decrement by 1, so we don't use negative numbers.
+                    The alternative is to use a signed integer type, but reduce the
+                    number of bits used by 1, to avoid overflowing into the sign bit.
+                    </p>
+
+                    <p>
+                    For the Windows/Intel platform, the largest integer type in the Microsoft
+                    Visual C++ 6.0 SP3 compiler is the signed 64-bit __int64.
+                    For a Mac OS X, PC/cygwin or other Unix platform which uses the 
+                    GNU C compiler 4.0, we use the 64-bit long long type.  
+                    We play it safe and assume this is also a signed type.
+                    Thus we need to set the maximum size of p<sup>n</sup> to 2<sup>64-1</sup>-1.
+                    So, for example, when p = 2, the highest polynomial degree is n = 62.
+                    </p>
+                </section>
+
+                <section>
+                    <h4>A Bound for p<sup>n</sup> (MAXPTON)</h4>
+
+                    <p>
+                    The basic bounds are $p \le 2$, $n \ge 2$ and $p^n \le \text{MAXPTON}$.
+                    All other bounds are derived from these.
+                    </p>
+                </section>
+
+                <section>
+                    <h4>A Bound for r</h4>
+
+                    <p>
+                    $r = \frac{ p^n - 1 }{p - 1}$ so the upper bound is
+                    $r \le \frac{ p^n - 1 }{2 - 1} = p^n - 1 \le p^n = \text{MAXPTON}$
+                    And the lower bound is $r = \sum_{k=0}^{n-1} p^k \ge p + 1 \ge 3$
+                    </p>
+                </section>
+
+                <section>
+                    <h4>A Bound for the Number of Prime Factors (MAXNUMPRIMEFACTORS)</h4>
+
+                    <p>
+                    This is used for sizing the array containing the prime factors of r and their multiplicities.
+                    $r = p_1^{e_1} ... p_k^{e_k} \ge 2 ... 2 = 2^k$
+                    $r = p_1 ... p_k \ge 2 ... 2 = 2^k$
+                    </p>
+                    <p>
+                    Since the $p_i \ge 2$ are primes. 
+                    Since $r \ge 3$ from above, we must have at least one prime factor, and so $k \ge 1$.
+                    </p>
+                    <p>
+                    Thus $2^k \le r$ or $k  \le lg( r )$ where $lg$ is $log_2( r )$
+                    Then $k \le lg( MAXPTON )$.
+                    </p>
+                    <p>
+                    We need an integer value for the upper bound, so we play it safe and
+                    round up to MAXNUMPRIMEFACTORS = 1 + floor( lg( MAXPTON ) ).
+                    </p>
+                    <p>
+                    This is also used for the array containing the prime factors of p-1.
+                    As above, the maximum number of prime factors of 
+                    $p-1 \lt \text{max. num. prime factors of p} \lt$ max. num. prime factors of $p^n$
+                    So the upper bound above should work fine.
+                    </p>
+                </section>
+
+                <section>
+                    <h4>A Bound for n. (MAXDEGPOLY)</h4>
+
+                    <p>
+                    $2^n \le p^n \le MAXPTON$ so $n  \le \text{ lg MAXPTON}$.
+                    Again, to play it safe, we chop this bound to 
+                    MAXDEGPOLY = floor( lg MAXPTON ).  The bound is exact when p = 2.
+                    </p>
+                </section>
+
+                <section>
+                    <h4>Number of trials for probabilistic primality testing. (NUM_PRIME_TEST_TRIALS)</h4>
+
+                    <p>
+                    We error check the input parameter p, to see if it is prime.
+                    Our probabilistic primality test has the failure probabilities,
+
+                    P( test says p is not prime | p is prime ) $\le {\frac{1}{4}}^{\text{NUM_PRIME_TEST_TRIALS}}$
+                    </p>
+                    <p>
+                    The default is NUM_PRIME_TEST_TRIALS = 25.
+                    The test always succeeds in detecting if p is composite (non-prime).
+                    This depends somewhat on the quality of the system random number generator, rand().
+                    </p>
+                </section>
+            </article>
+
+            <footer class="footnote">
+                <hr>
+
+                <!-- A copyright to preserve my legal rights. -->
+                <p class="footnote">
+                    Copyright &copy; 1986-2026 by Sean Erik O'Connor.
+                    All Rights Reserved.
+                    &nbsp;&nbsp;&nbsp;
+                    last updated 27 Feb 26.
+                </p>
+            </footer>
+        </div> <!-- wrapper -->
+    </body>
+</html>

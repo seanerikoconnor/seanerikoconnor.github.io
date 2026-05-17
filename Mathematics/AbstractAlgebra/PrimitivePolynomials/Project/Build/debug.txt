@@ -1,0 +1,455 @@
+How to Debug using gdb,
+
+cat unitTest.log 
+
+Primpoly Version 16.4 - A Program for Computing Primitive Polynomials.
+Copyright (C) 1999-2026 by Sean Erik O'Connor.  All Rights Reserved.
+
+Primpoly comes with ABSOLUTELY NO WARRANTY; for details see the
+GNU General Public License.  This is free software, and you are welcome
+to redistribute it under certain conditions; see the GNU General Public License
+for details.
+
+Begin unit testing...
+TEST:  Parsing the command line options..........PASS!
+TEST:  parsing constant 0.........PASS!
+TEST:  parsing polynomial and modulus:  2 x ^ 3 + 3 x + 4, 5.........PASS!
+TEST:  parsing polynomial, modulus:  2x, 7..........PASS!
+TEST:  parsing constant 2.........PASS!
+TEST:  parsing bad syntax:  x + 1.........PASS!
+TEST:  Switching from base 2147483648 to new base 10.........PASS!
+TEST:  BigInt() default constructor..........PASS!
+TEST:  BigInt( 0 ) constructor from zero..........PASS!
+TEST:  BigInt( 1234 ) constructor from uint.........PASS!
+TEST:  BigInt u( "1234" ) constructor from <decimal number string>.........PASS!
+TEST:  BigInt u( "12x34" ) constructor from invalid <decimal number string>.........PASS!
+TEST:  BigInt copy constructor: u( 123 ) ; v( u )..........PASS!
+TEST:  BigInt u = v assignment for BigInt.........PASS!
+TEST:  cast BigInt to uint implicitly Bigint u ; uint d = u..........PASS!
+TEST:  cast BigInt to uint explicitly: BigInt u ; static_cast<uint>(u)..........PASS!
+TEST:  overflow during cast from BigInt to uint?.........PASS!
+TEST:  stream output << BigInt.........PASS!
+TEST:  stream input >> BigInt.........PASS!
+TEST:  BigInt == uint.........PASS!
+TEST:  BigInt == BigInt.........PASS!
+TEST:  BigInt > uint.........PASS!
+TEST:  BigInt -= uint.........PASS!
+TEST:  BigInt -= uint underflow.........PASS!
+TEST:  BigInt += uint.........PASS!
+TEST:  BigInt *= uint.........PASS!
+TEST:  BigInt /= uint.........PASS!
+TEST:  BigInt /= uint underflow to zero..........PASS!
+TEST:  ++BigInt.........PASS!
+TEST:  --BigInt.........PASS!
+TEST:  BigInt++.........PASS!
+TEST:  BigInt--.........PASS!
+TEST:  one digit BigInt + uint.........PASS!
+TEST:  two digit BigInt + uint.........PASS!
+TEST:  BigInt + BigInt.........PASS!
+TEST:  BigInt + BigInt.........PASS!
+TEST:  BigInt - BigInt.........PASS!
+TEST:  BigInt - BigInt < 0.........PASS!
+TEST:  BigInt - uint.........PASS!
+TEST:  one digit BigInt * BigInt.........PASS!
+TEST:  two digit BigInt * BigInt.........PASS!
+TEST:  BigInt multidigit *.........PASS!
+TEST:  BigInt multidigit *=.........PASS!
+TEST:  BigInt / BigInt one digit divisor..........PASS!
+TEST:  BigInt / BigInt multidigit.........PASS!
+TEST:  BigInt / BigInt leading zero digit..........PASS!
+TEST:  BigInt / 0 .........PASS!
+TEST:  BigInt % BigInt with u > v.........PASS!
+TEST:  BigInt multidigit mod with normalizing constant d = 1.........PASS!
+TEST:  BigInt % BigInt with u < v.........PASS!
+TEST:  BigInt % uint = 314159 / 9 = 5 with uint < base .........PASS!
+TEST:  BigInt % uint = 398765 % 3457u with uint > base overflow?.........PASS!
+TEST:  BigInt / BigInt low probability if branch..........PASS!
+TEST:  Switching back from base 10 to oldBase 2147483648.........PASS!
+TEST:  Decimal string to BigInt conversion and back to decimal string using default base..........PASS!
+TEST:  BigInt z = x * y then x =? z / y multidigit with default base..........PASS!
+TEST:  BigInt testBit.........PASS!
+TEST:  testBit().........PASS!
+TEST:  BigInt power( uint 2, uint 100 ).........PASS!
+TEST:  BigInt ceilLg( 6 ).........PASS!
+TEST:  ModP 10 = 3 (mod 7).........PASS!
+TEST:  ModP -10 = 4 (mod 7).........PASS!
+TEST:  uint gcd( 85, 25 ) = 5.........PASS!
+TEST:  BigInt gcd( 779953197883173551166308319545, 1282866356929526866866376009397 ) = 1.........PASS!
+TEST:  PowerMod uint 3^10 = 4 (mod 7).........PASS!
+TEST:  PowerMod BigInt 3^10 = 4 (mod 7).........PASS!
+TEST:  PowerMod with out of range inputs..........PASS!
+TEST:  InverseModP 3 * 5 = 1 (mod 7).........PASS!
+TEST:  IsPrimitiveRoot.   3 is a primitive root of 7..........PASS!
+TEST:  IsPrimitiveRoot.   2 is a primitive root of 11..........PASS!
+TEST:  IsPrimitiveRoot.   3 is NOT a primitive root of 11..........PASS!
+TEST:  IsPrimitiveRoot.   5 is a primitive root of 65003..........PASS!
+TEST:  IsPrimitiveRoot.   8 is NOT a primitive root of 65003..........PASS!
+TEST:  constant coefficient test..........PASS!
+TEST:  constant coefficient is primitive root..........PASS!
+TEST:  isProbablyPrime uint 97 with random x = 10 says yes..........PASS!
+TEST:  isAlmostSurelyPrime 97 says yes..........PASS!
+TEST:  isAlmostSurelyPrime BigInt 97 says yes.........PASS!
+TEST:  isAlmostSurelyPrime 49 says no..........PASS!
+TEST:  isAlmostSurelyPrime on the 10000th prime number 104729 which is >> 32768 = 2^(32/2-1) says yes..........PASS!
+TEST:  Trial division factoring on unsigned int..........PASS!
+TEST:  Trial division factor BigInt 337500 = 2^2 3^3 5^5..........PASS!
+TEST:  Pollard Rho factor unsigned int 25852 = 2^2 23 281.........PASS!
+TEST:  Pollard Rho factor BigInt 25852 = 2^2 23 281.........PASS!
+TEST:  Factor Copy constructor.........PASS!
+TEST:  Factor assignment operator.........PASS!
+TEST:  Factor BigInt 24018350267611933650627567399079537500 = 2^2 3^3 5^5 7^7 11^11 13^13..........PASS!
+TEST:  BigInt computation of p^n, r, factors of r, EulerPhi[ p^n - 1]/n for p = 2.........PASS!
+TEST:  BigInt computation of p^n, r, factors of r, EulerPhi[ p^n - 1]/n for p > 2
+	ERROR:  BigInt computation of p^n, r, factors of r, EulerPhi[ p^n - 1]/n for p > 2
+	ERROR:  BigIntMathError:  BigInt::operator-=  negative result for u - v = 0 - 1 at ../SourceCode/Primpoly/ppBigInt.cpp: line 1057
+
+TEST:  Factor tables for Factor<uint>.........PASS!
+TEST:  Factor tables for Factor<BigInt>.........PASS!
+TEST:  Polynomial() default constructor..........PASS!
+TEST:  Polynomial() from string..........PASS!
+TEST:  Polynomial = string..........PASS!
+TEST:  Polynomial() from string with negative constant..........PASS!
+TEST:  Polynomial() to string..........PASS!
+TEST:  Polynomial() copy constructor..........PASS!
+TEST:  Polynomial assignment operator..........PASS!
+TEST:  Polynomial()[] read only operator..........PASS!
+TEST:  Polynomial()[] accessing coeff higher than its degree..........PASS!
+TEST:  Polynomial()[] lvalue operator..........PASS!
+TEST:  Polynomial() += operator..........PASS!
+TEST:  Polynomial() += operator..........PASS!
+TEST:  Polynomial() + operator..........PASS!
+TEST:  Polynomial * scalar.........PASS!
+TEST:  Polynomial evaluation x^4 + 3x + 3 (mod 5).........PASS!
+TEST:  Polynomial evaluation x^4 + x + 1 (mod 2).........PASS!
+TEST:  Polynomial hasLinearFactor is true.........PASS!
+TEST:  Polynomial hasLinearFactor is false.........PASS!
+TEST:  Polynomial isInteger.........PASS!.........PASS!
+TEST:  Polynomial initial and next trial polynomials.........PASS!
+TEST:  PolyMod constructor from polynomials..........PASS!
+TEST:  PolyMod constructor from string and polynomial..........PASS!
+TEST:  PolyMod timesX..........PASS!
+TEST:  PolyMod autoconvolve..........PASS!
+TEST:  PolyMod convolve..........PASS!
+TEST:  PolyMod coeffOfSquare..........PASS!
+TEST:  PolyMod coeffOfProduct..........PASS!
+TEST:  PolyMod square..........PASS!
+TEST:  PolyMod operator* and implicitly, operator*=.........PASS!
+TEST:  PolyMod x_to_power and isInteger().........PASS!
+TEST:  PolyOrder reduced Q-I matrix
+	ERROR:  PolynomialRangeError error:  PolyOrder: problem computing p^n or r = (p^n - 1 )/ (p - 1), or factoring r, or finding EulerPhi( p^n - 1 )/ n  p = 5 n = 4 at ../SourceCode/Primpoly/ppPolynomial.cpp: line 2638BigInt::operator-=  negative result for u - v = 0 - 1 at ../SourceCode/Primpoly/ppBigInt.cpp: line 1057
+
+TEST:  PolyOrder 3 distinct factors out of 4
+	ERROR:  PolynomialRangeError error:  PolyOrder: problem computing p^n or r = (p^n - 1 )/ (p - 1), or factoring r, or finding EulerPhi( p^n - 1 )/ n  p = 5 n = 4 at ../SourceCode/Primpoly/ppPolynomial.cpp: line 2638BigInt::operator-=  negative result for u - v = 0 - 1 at ../SourceCode/Primpoly/ppBigInt.cpp: line 1057
+
+TEST:  PolyOrder 2 distinct factors.........PASS!
+TEST:  PolyOrder irreducible
+	ERROR:  PolynomialRangeError error:  PolyOrder: problem computing p^n or r = (p^n - 1 )/ (p - 1), or factoring r, or finding EulerPhi( p^n - 1 )/ n  p = 5 n = 4 at ../SourceCode/Primpoly/ppPolynomial.cpp: line 2638BigInt::operator-=  negative result for u - v = 0 - 1 at ../SourceCode/Primpoly/ppBigInt.cpp: line 1057
+
+TEST:  PolyOrder 1 distinct factor 4 times
+	ERROR:  PolynomialRangeError:  PolyOrder: problem computing p^n or r = (p^n - 1 )/ (p - 1), or factoring r, or finding EulerPhi( p^n - 1 )/ n  p = 5 n = 4 at ../SourceCode/Primpoly/ppPolynomial.cpp: line 2638BigInt::operator-=  negative result for u - v = 0 - 1 at ../SourceCode/Primpoly/ppBigInt.cpp: line 1057
+
+End unit testing...
+SORRY.  One or more unit tests failed!
+
+
+
+
+$ gdb Bin/Primpoly.exe
+
+GNU gdb 6.3.50-20050815 (Apple version gdb-1510) (Wed Sep 22 02:45:02 UTC 2010)
+Copyright 2004 Free Software Foundation, Inc.
+GDB is free software, covered by the GNU General Public License, and you are
+welcome to change it and/or distribute copies of it under certain conditions.
+Type "show copying" to see the conditions.
+There is absolutely no warranty for GDB.  Type "show warranty" for details.
+This GDB was configured as "x86_64-apple-darwin"...Reading symbols for shared libraries ... done
+
+(gdb) b ppBigInt.cpp:1057
+Breakpoint 1 at 0x10000d5f7: file ../SourceCode/Primpoly/ppBigInt.cpp, line 1057.
+
+(gdb) run 2 4
+Starting program: /Volumes/Sean/Sean/WebSite/Mathematics/AbstractAlgebra/PrimitivePolynomials/Project/Build/Bin/Primpoly.exe 2 4
+Reading symbols for shared libraries ++. done
+
+Primpoly Version 16.4 - A Program for Computing Primitive Polynomials.
+Copyright (C) 1999-2026 by Sean Erik O'Connor.  All Rights Reserved.
+
+Primpoly comes with ABSOLUTELY NO WARRANTY; for details see the
+GNU General Public License.  This is free software, and you are welcome
+to redistribute it under certain conditions; see the GNU General Public License
+for details.
+
+Pollard rho n = 25852 c = 2
+    inner while loop, gcd = g = 1 |x -xp| = 3 n_ = 25852 k = 1 l = 1
+    after division, n_ = 25852 x = 27 xp = 5
+    inner while loop, gcd = g = 2 |x -xp| = 22 n_ = 25852 k = 2 l = 2
+    >>>>>prime factor g = 2
+    after division, n_ = 12926 x = 27 xp = 5
+    inner while loop, gcd = g = 2 |x -xp| = 22 n_ = 12926 k = 2 l = 2
+    >>>>>prime factor g = 2
+    after division, n_ = 6463 x = 27 xp = 5
+    inner while loop, gcd = g = 1 |x -xp| = 22 n_ = 6463 k = 2 l = 2
+    after division, n_ = 6463 x = 731 xp = 5
+    inner while loop, gcd = g = 1 |x -xp| = 726 n_ = 6463 k = 1 l = 2
+    after division, n_ = 6463 x = 4397 xp = 731
+    inner while loop, gcd = g = 1 |x -xp| = 3666 n_ = 6463 k = 4 l = 4
+    after division, n_ = 6463 x = 2778 xp = 731
+    inner while loop, gcd = g = 23 |x -xp| = 2047 n_ = 6463 k = 3 l = 4
+    >>>>>prime factor g = 23
+    after division, n_ = 281 x = 249 xp = 169
+    >>>>>prime factor n_ = 281
+Pollard rho n = 25852 c = 2
+    inner while loop, gcd = g = 1 |x -xp| = 3 n_ = 25852 k = 1 l = 1
+    after division, n_ = 25852 x = 27 xp = 5
+    inner while loop, gcd = g = 2 |x -xp| = 22 n_ = 25852 k = 2 l = 2
+    >>>>>prime factor g = 2
+    after division, n_ = 12926 x = 27 xp = 5
+    inner while loop, gcd = g = 2 |x -xp| = 22 n_ = 12926 k = 2 l = 2
+    >>>>>prime factor g = 2
+    after division, n_ = 6463 x = 27 xp = 5
+    inner while loop, gcd = g = 1 |x -xp| = 22 n_ = 6463 k = 2 l = 2
+    after division, n_ = 6463 x = 731 xp = 5
+    inner while loop, gcd = g = 1 |x -xp| = 726 n_ = 6463 k = 1 l = 2
+    after division, n_ = 6463 x = 4397 xp = 731
+    inner while loop, gcd = g = 1 |x -xp| = 3666 n_ = 6463 k = 4 l = 4
+    after division, n_ = 6463 x = 2778 xp = 731
+    inner while loop, gcd = g = 23 |x -xp| = 2047 n_ = 6463 k = 3 l = 4
+    >>>>>prime factor g = 23
+    after division, n_ = 281 x = 249 xp = 169
+    >>>>>prime factor n_ = 281
+Pollard rho n = 24018350267611933650627567399079537500 c = 2
+    inner while loop, gcd = g = 3 |x -xp| = 3 n_ = 24018350267611933650627567399079537500 k = 1 l = 1
+    >>>>>prime factor g = 3
+    after division, n_ = 8006116755870644550209189133026512500 x = 5 xp = 2
+    inner while loop, gcd = g = 3 |x -xp| = 3 n_ = 8006116755870644550209189133026512500 k = 1 l = 1
+    >>>>>prime factor g = 3
+    after division, n_ = 2668705585290214850069729711008837500 x = 5 xp = 2
+    inner while loop, gcd = g = 3 |x -xp| = 3 n_ = 2668705585290214850069729711008837500 k = 1 l = 1
+    >>>>>prime factor g = 3
+    after division, n_ = 889568528430071616689909903669612500 x = 5 xp = 2
+    inner while loop, gcd = g = 1 |x -xp| = 3 n_ = 889568528430071616689909903669612500 k = 1 l = 1
+    after division, n_ = 889568528430071616689909903669612500 x = 27 xp = 5
+    inner while loop, gcd = g = 22 |x -xp| = 22 n_ = 889568528430071616689909903669612500 k = 2 l = 2
+    g = 22 isn't prime 
+Pollard rho n = 889568528430071616689909903669612500 c = 5
+    inner while loop, gcd = g = 1 |x -xp| = 3 n_ = 889568528430071616689909903669612500 k = 1 l = 1
+    after division, n_ = 889568528430071616689909903669612500 x = 30 xp = 5
+    inner while loop, gcd = g = 25 |x -xp| = 25 n_ = 889568528430071616689909903669612500 k = 2 l = 2
+    g = 25 isn't prime 
+Pollard rho n = 68719476735 c = 2
+    inner while loop, gcd = g = 3 |x -xp| = 3 n_ = 68719476735 k = 1 l = 1
+    >>>>>prime factor g = 3
+    after division, n_ = 22906492245 x = 5 xp = 2
+    inner while loop, gcd = g = 3 |x -xp| = 3 n_ = 22906492245 k = 1 l = 1
+    >>>>>prime factor g = 3
+    after division, n_ = 7635497415 x = 5 xp = 2
+    inner while loop, gcd = g = 3 |x -xp| = 3 n_ = 7635497415 k = 1 l = 1
+    >>>>>prime factor g = 3
+    after division, n_ = 2545165805 x = 5 xp = 2
+    inner while loop, gcd = g = 1 |x -xp| = 3 n_ = 2545165805 k = 1 l = 1
+    after division, n_ = 2545165805 x = 27 xp = 5
+    inner while loop, gcd = g = 1 |x -xp| = 22 n_ = 2545165805 k = 2 l = 2
+    after division, n_ = 2545165805 x = 731 xp = 5
+    inner while loop, gcd = g = 1 |x -xp| = 726 n_ = 2545165805 k = 1 l = 2
+    after division, n_ = 2545165805 x = 534363 xp = 731
+    inner while loop, gcd = g = 1 |x -xp| = 533632 n_ = 2545165805 k = 4 l = 4
+    after division, n_ = 2545165805 x = 485245611 xp = 731
+    inner while loop, gcd = g = 5 |x -xp| = 485244880 n_ = 2545165805 k = 3 l = 4
+    >>>>>prime factor g = 5
+    after division, n_ = 509033161 x = 485245611 xp = 731
+    inner while loop, gcd = g = 1 |x -xp| = 485244880 n_ = 509033161 k = 3 l = 4
+    after division, n_ = 509033161 x = 164836970 xp = 731
+    inner while loop, gcd = g = 1 |x -xp| = 164836239 n_ = 509033161 k = 2 l = 4
+    after division, n_ = 509033161 x = 144374675 xp = 731
+    inner while loop, gcd = g = 13 |x -xp| = 144373944 n_ = 509033161 k = 1 l = 4
+    >>>>>prime factor g = 13
+    after division, n_ = 39156397 x = 26905484 xp = 731
+    inner while loop, gcd = g = 1 |x -xp| = 26904753 n_ = 39156397 k = 1 l = 4
+    after division, n_ = 39156397 x = 5044848 xp = 26905484
+    inner while loop, gcd = g = 259 |x -xp| = 21860636 n_ = 39156397 k = 8 l = 8
+    g = 259 isn't prime 
+Pollard rho n = 39156397 c = 5
+    inner while loop, gcd = g = 1 |x -xp| = 3 n_ = 39156397 k = 1 l = 1
+    after division, n_ = 39156397 x = 30 xp = 5
+    inner while loop, gcd = g = 1 |x -xp| = 25 n_ = 39156397 k = 2 l = 2
+    after division, n_ = 39156397 x = 905 xp = 5
+    inner while loop, gcd = g = 1 |x -xp| = 900 n_ = 39156397 k = 1 l = 2
+    after division, n_ = 39156397 x = 819030 xp = 905
+    inner while loop, gcd = g = 7 |x -xp| = 818125 n_ = 39156397 k = 4 l = 4
+    >>>>>prime factor g = 7
+    after division, n_ = 5593771 x = 819030 xp = 905
+    inner while loop, gcd = g = 1 |x -xp| = 818125 n_ = 5593771 k = 4 l = 4
+    after division, n_ = 5593771 x = 5122585 xp = 905
+    inner while loop, gcd = g = 73 |x -xp| = 5121680 n_ = 5593771 k = 3 l = 4
+    >>>>>prime factor g = 73
+    after division, n_ = 76627 x = 65203 xp = 905
+    inner while loop, gcd = g = 1 |x -xp| = 64298 n_ = 76627 k = 3 l = 4
+    after division, n_ = 76627 x = 12000 xp = 905
+    inner while loop, gcd = g = 1 |x -xp| = 11095 n_ = 76627 k = 2 l = 4
+    after division, n_ = 76627 x = 17872 xp = 905
+    inner while loop, gcd = g = 19 |x -xp| = 16967 n_ = 76627 k = 1 l = 4
+    >>>>>prime factor g = 19
+    after division, n_ = 4033 x = 1740 xp = 905
+    inner while loop, gcd = g = 1 |x -xp| = 835 n_ = 4033 k = 1 l = 4
+    after division, n_ = 4033 x = 2855 xp = 1740
+    inner while loop, gcd = g = 1 |x -xp| = 1115 n_ = 4033 k = 8 l = 8
+    after division, n_ = 4033 x = 337 xp = 1740
+    inner while loop, gcd = g = 1 |x -xp| = 1403 n_ = 4033 k = 7 l = 8
+    after division, n_ = 4033 x = 650 xp = 1740
+    inner while loop, gcd = g = 109 |x -xp| = 1090 n_ = 4033 k = 6 l = 8
+    >>>>>prime factor g = 109
+    after division, n_ = 37 x = 21 xp = 1
+    >>>>>prime factor n_ = 37
+p = 2
+n = 36
+p^n = 68719476736
+r = (p^n-1)/(p-1) = 68719476735
+8 sorted unique factors of r
+3 ^ 3
+5 ^ 1
+7 ^ 1
+13 ^ 1
+19 ^ 1
+37 ^ 1
+73 ^ 1
+109 ^ 1
+8 distinct primes for p^n - 1
+3
+5
+7
+13
+19
+37
+73
+109
+numPrimitivePoly = 725594112
+Pollard rho n = 435984840 c = 2
+    inner while loop, gcd = g = 3 |x -xp| = 3 n_ = 435984840 k = 1 l = 1
+    >>>>>prime factor g = 3
+    after division, n_ = 145328280 x = 5 xp = 2
+    inner while loop, gcd = g = 3 |x -xp| = 3 n_ = 145328280 k = 1 l = 1
+    >>>>>prime factor g = 3
+    after division, n_ = 48442760 x = 5 xp = 2
+    inner while loop, gcd = g = 1 |x -xp| = 3 n_ = 48442760 k = 1 l = 1
+    after division, n_ = 48442760 x = 27 xp = 5
+    inner while loop, gcd = g = 2 |x -xp| = 22 n_ = 48442760 k = 2 l = 2
+    >>>>>prime factor g = 2
+    after division, n_ = 24221380 x = 27 xp = 5
+    inner while loop, gcd = g = 2 |x -xp| = 22 n_ = 24221380 k = 2 l = 2
+    >>>>>prime factor g = 2
+    after division, n_ = 12110690 x = 27 xp = 5
+    inner while loop, gcd = g = 2 |x -xp| = 22 n_ = 12110690 k = 2 l = 2
+    >>>>>prime factor g = 2
+    after division, n_ = 6055345 x = 27 xp = 5
+    inner while loop, gcd = g = 1 |x -xp| = 22 n_ = 6055345 k = 2 l = 2
+    after division, n_ = 6055345 x = 731 xp = 5
+    inner while loop, gcd = g = 1 |x -xp| = 726 n_ = 6055345 k = 1 l = 2
+    after division, n_ = 6055345 x = 534363 xp = 731
+    inner while loop, gcd = g = 1 |x -xp| = 533632 n_ = 6055345 k = 4 l = 4
+    after division, n_ = 6055345 x = 4022296 xp = 731
+    inner while loop, gcd = g = 5 |x -xp| = 4021565 n_ = 6055345 k = 3 l = 4
+    >>>>>prime factor g = 5
+    after division, n_ = 1211069 x = 389089 xp = 731
+    inner while loop, gcd = g = 1 |x -xp| = 388358 n_ = 1211069 k = 3 l = 4
+    after division, n_ = 1211069 x = 569578 xp = 731
+    inner while loop, gcd = g = 1 |x -xp| = 568847 n_ = 1211069 k = 2 l = 4
+    after division, n_ = 1211069 x = 356504 xp = 731
+    inner while loop, gcd = g = 1 |x -xp| = 355773 n_ = 1211069 k = 1 l = 4
+    after division, n_ = 1211069 x = 676882 xp = 356504
+    inner while loop, gcd = g = 1 |x -xp| = 320378 n_ = 1211069 k = 8 l = 8
+    after division, n_ = 1211069 x = 39984 xp = 356504
+    inner while loop, gcd = g = 1 |x -xp| = 316520 n_ = 1211069 k = 7 l = 8
+    after division, n_ = 1211069 x = 109178 xp = 356504
+    inner while loop, gcd = g = 1 |x -xp| = 247326 n_ = 1211069 k = 6 l = 8
+    after division, n_ = 1211069 x = 494588 xp = 356504
+    inner while loop, gcd = g = 1 |x -xp| = 138084 n_ = 1211069 k = 5 l = 8
+    after division, n_ = 1211069 x = 728850 xp = 356504
+    inner while loop, gcd = g = 1 |x -xp| = 372346 n_ = 1211069 k = 4 l = 8
+    after division, n_ = 1211069 x = 227411 xp = 356504
+    inner while loop, gcd = g = 1 |x -xp| = 129093 n_ = 1211069 k = 3 l = 8
+    after division, n_ = 1211069 x = 694485 xp = 356504
+    inner while loop, gcd = g = 1 |x -xp| = 337981 n_ = 1211069 k = 2 l = 8
+    after division, n_ = 1211069 x = 1185977 xp = 356504
+    inner while loop, gcd = g = 1 |x -xp| = 829473 n_ = 1211069 k = 1 l = 8
+    after division, n_ = 1211069 x = 1063655 xp = 1185977
+    inner while loop, gcd = g = 29 |x -xp| = 122322 n_ = 1211069 k = 16 l = 16
+    >>>>>prime factor g = 29
+    after division, n_ = 41761 x = 19630 xp = 16669
+    >>>>>prime factor n_ = 41761
+p = 17
+n = 8
+p^n = 6975757441
+r = (p^n-1)/(p-1) = 435984840
+5 sorted unique factors of r
+2 ^ 3
+3 ^ 2
+5 ^ 1
+29 ^ 1
+41761 ^ 1
+1 sorted unique factors of p-1
+2 ^ 4
+
+
+
+
+Breakpoint 1, BigInt::operator-= (this=0x7fff5fbf9170, v=@0x7fff5fbf95b0) at ../SourceCode/Primpoly/ppBigInt.cpp:1057
+1057	           << " at " << __FILE__ << ": line " << __LINE__ ;
+
+(gdb) up
+#1  0x000000010000d8f3 in operator- (u=@0x1002036d8, v=@0x7fff5fbf95b0) at ../SourceCode/Primpoly/ppBigInt.cpp:976
+976	    return BigInt( u ) -= v ;
+
+(gdb) up
+#2  0x0000000100047527 in factorRAndFindNumberOfPrimitivePolynomials (p=17, n=8, maxNumPossiblePoly=@0x7fff5fbfbcf0, r=@0x7fff5fbfb9f0, factorsOfR=@0x7fff5fbfaea0, numPrimitivePoly=@0x7fff5fbfbde0) at ../SourceCode/Primpoly/ppFactor.cpp:2513
+2513	        numPrimitivePoly *= (allDistinctPrimes[ i ] - static_cast<BigInt>( 1u )) ;
+
+(gdb) l
+2508	    //               i
+2509	    // Multiply by -------
+2510	    //               p
+2511	    //                i
+2512	    for (unsigned int i = 0u ;  i < allDistinctPrimes.size() ; ++i)
+2513	        numPrimitivePoly *= (allDistinctPrimes[ i ] - static_cast<BigInt>( 1u )) ;
+2514	
+2515	    for (unsigned int i = 0u ;  i < allDistinctPrimes.size() ; ++i)
+2516	        numPrimitivePoly /=  allDistinctPrimes[ i ] ;
+2517	
+
+(gdb) p p
+$1 = 17
+
+(gdb) p n
+$2 = 8
+
+(gdb) call printNumber(std::cout,r)            
+ BigInt number 435984840  (base b = 2147483648, number of digits = 1)
+
+(gdb) call printNumber(std::cout,maxNumPossiblePoly)
+ BigInt number 3 533306497  (base b = 2147483648, number of digits = 2)
+
+(gdb) p factorsOfR.num()
+$3 = 5
+
+(gdb) call printNumber(std::cout,allDistinctPrimes[i])
+ BigInt number 0  (base b = 2147483648, number of digits = 1)
+
+(gdb) p i
+$1 = 5
+
+(gdb) p allDistinctPrimes.size()
+$2 = 6
+
+(gdb) call printNumber(std::cout,allDistinctPrimes[0])
+ BigInt number 2  (base b = 2147483648, number of digits = 1)
+(gdb) call printNumber(std::cout,allDistinctPrimes[1])
+ BigInt number 3  (base b = 2147483648, number of digits = 1)
+(gdb) call printNumber(std::cout,allDistinctPrimes[2])
+ BigInt number 5  (base b = 2147483648, number of digits = 1)
+(gdb) call printNumber(std::cout,allDistinctPrimes[3])
+ BigInt number 29  (base b = 2147483648, number of digits = 1)
+(gdb) call printNumber(std::cout,allDistinctPrimes[4])
+ BigInt number 41761  (base b = 2147483648, number of digits = 1)
+(gdb) call printNumber(std::cout,allDistinctPrimes[5])
+ BigInt number 0  (base b = 2147483648, number of digits = 1)
+(gdb) q
+The program is running.  Exit anyway? (y or n) y

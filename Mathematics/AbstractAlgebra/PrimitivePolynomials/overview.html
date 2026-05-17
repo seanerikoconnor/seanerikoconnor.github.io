@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en-US">  <!-- Set language of this page to USA English. -->
+
+<!-- ===================================================================
+|
+| NAME
+|
+|     PrimitivePolynomials.html
+|
+| DESCRIPTION
+|
+|     This is the primitive polynomial web page.
+|     It is a hand-crafted HTML 5 W3C validated document.
+|
+| AUTHOR
+|
+|    Sean Erik O'Connor
+|
+=================================================================== -->
+
+    <head>
+        <!-- This page uses Unicode characters. -->
+        <meta charset="utf-8">
+
+        <!-- Set viewport to actual device width.  Any other settings makes the web page initially appear zoomed-in on mobile devices. -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Titles appear in the web browser and the browser's bookmarks. -->
+        <title>Software for Computing Primitive Polynomials.</title>
+
+        <!-- Search engines will show this description below the title. -->
+        <meta name="description" content="Free C++ software for computing primitive polynomials of degree n modulo p.">
+
+        <meta name="author" content="Sean Erik O'Connor">
+
+        <meta name="copyright" content="Copyright (C) 1999-2026 by Sean Erik O'Connor.  All Rights Reserved.">
+
+        <!-- Cascading style sheet for this document. -->
+        <link rel="stylesheet" href="../../../StyleSheet.css" type="text/css" />
+
+        <!-- Favicons are 32x32 or 16x16, 8 or 24 bit PNG Images which show up left of the web page title in a browser.  -->
+        <link rel="icon" type="image/png" href="../../../Images/favicon.png" >
+    </head>
+
+    <body>
+        <!-- This wraps the whole body in a CSS grid. -->
+        <div class="wrapper titlePage">
+        
+            <!-- Title page at the top.  -->
+            <header class="title">
+                <h1>COMPUTING PRIMITIVE POLYNOMIALS</h1>
+                <hr>
+            </header>
+
+            <!-- Horizontal navigation bar to all top level pages. -->
+            <header class="navigation">
+                <a href="../../../index.html">
+                    <img src="../../../Images/home.png" alt="Home Page Button." width="32" height="32" >
+                     <em>Home</em>
+                 </a>
+
+                 <a href="../../../Mathematics/mathematicalSoftware.html">
+                     <img src="../../../Images/compactDisk.png" alt="Mathematical Software Button." width="32" height="32" >
+                      <em>Mathematical Software</em>
+                 </a>
+
+                 <a href="../../../Art/Art.html">
+                     <img src="../../../Images/sampleArtLowRes.png" alt="Art Button." width="32" height="32" >
+                      <em>Fine Arts</em>
+                 </a>
+
+                 <a href="../../../WebPageDesign/webPageDesign.html">
+                     <img src="../../../Images/webPage.png" alt="Web Page Design Button." height="32" width="32" >
+                      <em>Web Page Design</em>
+                 </a>
+
+                 <a href="../../../Electronics/Electronics.html">
+                     <img src="../../../Images/sparkCoil.png" alt="Hobby Electronics Button." width="32" height="32" >
+                      <em>Hobby Electronics</em>
+                 </a>
+
+                 <a href="../../../ReadingList/readingList.html">
+                      <img src="../../../Images/terraApollo17NASALowRes.png"
+                           alt="Reading List Button."
+                           width="32" height="32" />
+                      <em>Reading list</em>
+                </a>
+            </header>
+
+            <!-- A decorative border at the left side of the page. -->
+            <aside class=border>
+                  <img class="border"
+                       src="../../../Images/sinXYPlot.png"
+                       alt="Sin( x y ) Image Border." />
+            </aside>
+            
+            <!-- The main content of this page. -->
+            <article class="content"> 
+
+                <section>
+                    <h3>Overview</h3>
+
+                    <p>
+                    We present C++ software for a program which generates a primitive polynomial of
+                    degree n modulo p.  You can also test a given polynomial for primitivity and find all primitive polynomials.
+                    </p>
+
+                    <p>
+                    A sample run from the command line:
+                    </p>
+
+                    <p class="fineprint">
+                    $ Primpoly 2 200
+                    </p>
+
+                    <p class="fineprint">
+                    Primpoly Version 16.4 - A Program for Computing Primitive Polynomials.
+                    Copyright (C) 1999-2026 by Sean Erik O'Connor.  All Rights Reserved.
+
+                    Primpoly comes with ABSOLUTELY NO WARRANTY; for details see the
+                    GNU General Public License.  This is free software, and you are welcome
+                    to redistribute it under certain conditions; see the GNU General Public License
+                    for details.
+                    </p>
+
+                    <p class="fineprint">
+                    Primitive polynomial modulo 2 of degree 200
+                    </p>
+
+                    <p class="fineprint">
+                    Self-check passes...
+                    </p>
+
+                    <p class="fineprint">
+                    x ^ 200 + x ^ 5 + x ^ 3 + x ^ 2 + 1, 2
+                    </p>
+
+                    <p>
+                    Total time: 2.0 seconds on my MacBook Pro.
+                    </p>
+
+                    <p>
+                    Now we try a prime modulus p &gt; 2,
+                    </p>
+
+                    <p class="fineprint">
+                    Primpoly 337  10
+                    </p>
+
+                    <p class="fineprint">
+                    Primitive polynomial modulo 337 of degree 10
+                    </p>
+
+                    <p class="fineprint">
+                    x ^ 10 + x + 10, 337
+                    </p>
+
+                    <p>
+                    Total time:  5.6 seconds.
+                    </p>
+    
+                    <p>
+                    For more timing analysis on various computers see 
+                    <a href="Project/Build/PrimpolyRunningTimeAnalysis.ipynb.html">Primpoly Timing Jupyter Notebook</a>
+                    which uses the Python functions in 
+                    <a href="Project/Build/PrimpolyRunningTimeAnalysis.py.html">Primpoly Timing Functions</a>
+                    </p>
+
+                    <p class="box">
+                    When polynomials are of very large degree, there are faster methods which use computer algebra software 
+                    to compute Conway and pseudo-Conway polynomials, which are primitive polynomials with additional nice properties.
+                    <a href="theory.html#PrimPolySageMath">Sage Math Notebook for Finding and Testing Primitive Polynomials</a>
+                    </p>
+                </section>
+
+                <section>
+                    <h3>Features</h3>
+
+                    <ul>
+                        <li>
+                        Finds primitive polynomials modulo p of degree n.
+                        </li>
+
+                        <li>The prime modulus p &lt; 2147483648 for 64-bit machines; p &lt; 32768 for 32-bit machines.  In general,
+                           p &lt; 2<sup>m/2 - 1</sup> where m = number of bits in the computer's integer type (defined in Primpoly.h).  
+                        </li>
+
+                        <li>No limit on n, but the program will start to slow for high degree due to the difficulty of factoring 
+                            large numbers (p<sup>n</sup>-1)/(p-1) when not using factor tables.  Factor tables are available for
+                            p = 2, 3, 5, 7, 11, courtesy of
+                        <!-- Original was at https://web.archive.org/web/20180308162657/http://members.iinet.net.au:80/~tmorrow/mathematics/cunningham/cunningham.html -->
+                            <a href="https://web.archive.org/web/20180308162657/http://members.iinet.net.au:80/~tmorrow/mathematics/cunningham/cunningham.html">Tim's Cunningham Numbers [WaybackMachine archive]</a> but see also 
+                            <a href="https://homes.cerias.purdue.edu/~ssw/cun/index.html">The Cunningham Project</a>
+                        </li>
+
+                        <li>
+                        Fast, clean implementation of the method of Alanen and Knuth with 
+                        enhancements due to Sugimoto.
+                        </li>
+
+                        <li>
+                        Please read the <a href="userManual.html"><em>user manual</em></a> which
+                        describes all the command line settings, points out some limits in the
+                        algorithm and has a detailed example of how to debug the source code.
+                        </li>
+
+                        <li>
+                        Detailed
+                        <a href="theory.html">
+                            <em>technical memo</em>
+                        </a>
+                        explaining the theory behind the algorithms.
+                        </li>
+                    </ul>
+
+                    <figure>
+                        <img src="./Images/RunningTimeVsDegree.jpg" 
+                             alt="RunningTimeVsDegree.jpg">
+                        <figcaption>Running time on Mac and PC</figcaption>
+                    </figure>
+                </section>
+
+                <section>
+                    <h3>Download</h3>
+
+                    <p>
+                    <em>Primpoly Version 16.4 - A Program for Computing Primitive Polynomials.</em>
+                    <a href="Project/Build/Primpoly.tar.gz" download="Project/Build/Primpoly.tar.gz">
+                        <img src="../../../Images/compactDisk.png" alt="Compact disk icon for source code download." width="25" height="25" >
+                    source code and executables zipped archive 
+                    </a>
+                    are distributed under the terms of the
+                    <a href="http://www.gnu.org/licenses/">GNU General Public License</a>.
+                    </p>
+
+                    <p>
+                    Source code is written in C++ and is in the directory <i>SourceCode/Primpoly</i>.
+                    The main program which runs on the command line is <i>Primpoly.cpp</i>.
+                    <i>Primpoly.h</i> contains all parameters and constants and doc strings.
+                    Integer arithmetic modulo p is in <i>ppArith.hpp</i> and <i>ppArith.cpp</i>.
+                    Polynomial arithmetic with coefficients in GF(p) is in <i>ppPolynomial.hpp</i> and <i>ppPolynomial.cpp</i>
+                    Multiple precision integer arithmetic for non-negative numbers is in <i>ppBigInt.hpp</i> and <i>ppBigInt.cpp</i>.
+                    Factoring into primes and primality testing is in <i>ppFactor.hpp</i> and <i>ppFactor.cpp</i>.
+                    Counting arithmetic operations is defined in <i>ppOperationCount.hpp</i> and <i>ppOperationCount.cpp</i>.
+                    Factor tables are in <i>c*.txt</i> files located in <i>SourceCode/Primpoly/FactorTables</i>.  These will need
+                    to be in the same directory as the executable <i>Primpoly.exe</i>.
+                    </p>
+
+                    <p>
+                    Parsing for polynomials and factor tables is handled in <i>ppParser.hpp</i> and <i>ppParser.cpp</i>
+                    I took the liberty of using my own
+                    <a href="../../..//ComputerScience/Compiler/ParserGeneratorAndParser/LRandLALRParserGeneratorAndParser.html">
+                        LALR(1) parser generator</a> for the polynomial input parser 
+                    and the factor table parser.
+                    Here is the
+                    <a href="../../../ComputerScience/Compiler/ParserGeneratorAndParser/Grammars/GrammarPoly.dat.html">polynomial grammar</a> 
+                    and its
+                    <a href="../../../ComputerScience/Compiler/ParserGeneratorAndParser/ParseTables/ParseTablesLALR(1)_Poly.dat.html">LALR(1) parse tables</a>.
+                    And here is the
+                    <a href="../../../ComputerScience/Compiler/ParserGeneratorAndParser/SourceCode/ParserGenerator/grammar.dat.html">factor table grammar</a>
+                    and the 
+                    <a href="../../../ComputerScience/Compiler/ParserGeneratorAndParser/SourceCode/ParserGenerator/parser.dat.html">factor table parse tables</a>
+                    The C++ LR parser isn't hard to implement using STL vectors and 
+                    the automatically generated parse tables above.
+                    </p>
+
+                    <p>I do a self-check every time we run implemented in <i>ppUnitTest.hpp</i> and <i>ppUnitTest.cpp</i>
+                    Test results print to a log file, <i>unitTest.log</i>.
+                    </p>
+
+                    <p>
+                    There's a <i>makefile</i> for macOS, Ubuntu Linux, and Windows/Cygwin.  
+                    I have not tested on Windows/Cygwin yet.
+                    </p>
+
+                    <p>
+                    The compressed archive link above gives you all the source files and tables.  But if you want to preview them you can do so here:
+                    </p>
+
+                    <ul class="download">
+                        <li class="downloadName">Primpoly.cpp</li>
+                        <li class="downloadDescription">Primpoly main program.</li>
+                        <li class="downloadView"> 
+                            <a href="Project/SourceCode/Primpoly/Primpoly.cpp.html">
+                                <img src="../../../Images/eye.png" alt="Eye icon for source code viewing." width="30" height="30" >View</a>
+                        </li>
+                        <li class="download"> 
+                            <a href="Project/SourceCode/Primpoly/Primpoly.cpp" download="Project/SourceCode/Primpoly/Primpoly.cpp">
+                                <img src="../../../Images/compactDisk.png" alt="Compact disk icon for source code download." width="25" height="25" >Download</a>
+                        </li>
+
+                        <li class="downloadName">Primpoly.hpp</li>
+                        <li class="downloadDescription">Primpoly main include file.</li>
+                        <li class="downloadView"> 
+                            <a href="Project/SourceCode/Primpoly/Primpoly.hpp.html">
+                                <img src="../../../Images/eye.png" alt="Eye icon for source code viewing." width="30" height="30" >View</a>
+                        </li>
+                        <li class="download"> 
+                            <a href="Project/SourceCode/Primpoly/Primpoly.hpp" download="Project/SourceCode/Primpoly/Primpoly.hpp">
+                                <img src="../../../Images/compactDisk.png" alt="Compact disk icon for source code download." width="25" height="25" >Download</a>
+                        </li>
+
+                        <li class="downloadName">ppArith.hpp</li>
+                        <li class="downloadDescription">Integer arithmetic classes.</li>
+                        <li class="downloadView"> 
+                            <a href="Project/SourceCode/Primpoly/ppArith.hpp.html">
+                                <img src="../../../Images/eye.png" alt="Eye icon for source code viewing." width="30" height="30" >View</a>
+                        </li>
+                        <li class="download"> 
+                            <a href="Project/SourceCode/Primpoly/ppArith.hpp" download="Project/SourceCode/Primpoly/ppArith.hpp">
+                                <img src="../../../Images/compactDisk.png" alt="Compact disk icon for source code download." width="25" height="25" >Download</a>
+                        </li>
+
+                        <li class="downloadName">ppArith.cpp</li>
+                        <li class="downloadDescription">Integer arithmetic implementation.</li>
+                        <li class="downloadView"> 
+                            <a href="Project/SourceCode/Primpoly/ppArith.cpp.html">
+                                <img src="../../../Images/eye.png" alt="Eye icon for source code viewing." width="30" height="30" >View</a>
+                        </li>
+                        <li class="download"> 
+                            <a href="Project/SourceCode/Primpoly/ppArith.cpp" download="Project/SourceCode/Primpoly/ppArith.cpp">
+                                <img src="../../../Images/compactDisk.png" alt="Compact disk icon for source code download." width="25" height="25" >Download</a>
+                        </li>
+
+                        <li class="downloadName">ppPolynomial.hpp</li>
+                        <li class="downloadDescription">Polynomial arithmetic classes.</li>
+                        <li class="downloadView"> 
+                            <a href="Project/SourceCode/Primpoly/ppPolynomial.hpp.html">
+                                <img src="../../../Images/eye.png" alt="Eye icon for source code viewing." width="30" height="30" >View</a>
+                        </li>
+                        <li class="download"> 
+                            <a href="Project/SourceCode/Primpoly/ppPolynomial.hpp" download="Project/SourceCode/Primpoly/ppPolynomial.hpp">
+                                <img src="../../../Images/compactDisk.png" alt="Compact disk icon for source code download." width="25" height="25" >Download</a>
+                        </li>
+
+                        <li class="downloadName">ppPolynomial.cpp</li>
+                        <li class="downloadDescription">Polynomial arithmetic implementation.</li>
+                        <li class="downloadView"> 
+                            <a href="Project/SourceCode/Primpoly/ppPolynomial.cpp.html">
+                                <img src="../../../Images/eye.png" alt="Eye icon for source code viewing." width="30" height="30" >View</a>
+                        </li>
+                        <li class="download"> 
+                            <a href="Project/SourceCode/Primpoly/ppPolynomial.cpp" download="Project/SourceCode/Primpoly/ppPolynomial.cpp">
+                                <img src="../../../Images/compactDisk.png" alt="Compact disk icon for source code download." width="25" height="25" >Download</a>
+                        </li>
+
+                        <li class="downloadName">ppBigInt.hpp</li>
+                        <li class="downloadDescription">Multiple precision integer arithmetic classes.</li>
+                        <li class="downloadView"> 
+                            <a href="Project/SourceCode/Primpoly/ppBigInt.hpp.html">
+                                <img src="../../../Images/eye.png" alt="Eye icon for source code viewing." width="30" height="30" >View</a>
+                        </li>
+                        <li class="download"> 
+                            <a href="Project/SourceCode/Primpoly/ppBigInt.hpp" download="Project/SourceCode/Primpoly/ppBigInt.hpp">
+                                <img src="../../../Images/compactDisk.png" alt="Compact disk icon for source code download." width="25" height="25" >Download</a>
+                        </li>
+
+                        <li class="downloadName">ppBigInt.cpp</li>
+                        <li class="downloadDescription">Multiple precision integer arithmetic implementation.</li>
+                        <li class="downloadView"> 
+                            <a href="Project/SourceCode/Primpoly/ppBigInt.cpp.html">
+                                <img src="../../../Images/eye.png" alt="Eye icon for source code viewing." width="30" height="30" >View</a>
+                        </li>
+                        <li class="download"> 
+                            <a href="Project/SourceCode/Primpoly/ppBigInt.cpp" download="Project/SourceCode/Primpoly/ppBigInt.cpp">
+                                <img src="../../../Images/compactDisk.png" alt="Compact disk icon for source code download." width="25" height="25" >Download</a>
+                        </li>
+
+                        <li class="downloadName">ppFactor.hpp</li>
+                        <li class="downloadDescription">Factoring into primes and primality testing classes.</li>
+                        <li class="downloadView"> 
+                            <a href="Project/SourceCode/Primpoly/ppFactor.hpp.html">
+                                <img src="../../../Images/eye.png" alt="Eye icon for source code viewing." width="30" height="30" >View</a>
+                        </li>
+                        <li class="download"> 
+                            <a href="Project/SourceCode/Primpoly/ppFactor.hpp" download="Project/SourceCode/Primpoly/ppFactor.hpp">
+                                <img src="../../../Images/compactDisk.png" alt="Compact disk icon for source code download." width="25" height="25" >Download</a>
+                        </li>
+
+                        <li class="downloadName">ppFactor.cpp</li>
+                        <li class="downloadDescription">Factoring into primes and primality testing implementation.</li>
+                        <li class="downloadView"> 
+                            <a href="Project/SourceCode/Primpoly/ppFactor.cpp.html">
+                                <img src="../../../Images/eye.png" alt="Eye icon for source code viewing." width="30" height="30" >View</a>
+                        </li>
+                        <li class="download"> 
+                            <a href="Project/SourceCode/Primpoly/ppFactor.cpp" download="Project/SourceCode/Primpoly/ppFactor.cpp">
+                                <img src="../../../Images/compactDisk.png" alt="Compact disk icon for source code download." width="25" height="25" >Download</a>
+                        </li>
+
+                        <li class="downloadName">ppOperationCount.hpp</li>
+                        <li class="downloadDescription">Counting operations classes.</li>
+                        <li class="downloadView"> 
+                            <a href="Project/SourceCode/Primpoly/ppOperationCount.hpp.html">
+                                <img src="../../../Images/eye.png" alt="Eye icon for source code viewing." width="30" height="30" >View</a>
+                        </li>
+                        <li class="download"> 
+                            <a href="Project/SourceCode/Primpoly/ppOperationCount.hpp" download="Project/SourceCode/Primpoly/ppOperationCount.hpp">
+                                <img src="../../../Images/compactDisk.png" alt="Compact disk icon for source code download." width="25" height="25" >Download</a>
+                        </li>
+
+                        <li class="downloadName">ppOperationCount.cpp</li>
+                        <li class="downloadDescription">Counting operations implementation.</li>
+                        <li class="downloadView"> 
+                            <a href="Project/SourceCode/Primpoly/ppOperationCount.cpp.html">
+                                <img src="../../../Images/eye.png" alt="Eye icon for source code viewing." width="30" height="30" >View</a>
+                        </li>
+                        <li class="download"> 
+                            <a href="Project/SourceCode/Primpoly/ppOperationCount.cpp" download="Project/SourceCode/Primpoly/ppOperationCount.cpp">
+                                <img src="../../../Images/compactDisk.png" alt="Compact disk icon for source code download." width="25" height="25" >Download</a>
+                        </li>
+
+                        <li class="downloadName">ppParser.hpp</li>
+                        <li class="downloadDescription">Parsing for polynomials and factor tables classes.</li>
+                        <li class="downloadView"> 
+                            <a href="Project/SourceCode/Primpoly/ppParser.hpp.html">
+                                <img src="../../../Images/eye.png" alt="Eye icon for source code viewing." width="30" height="30" >View</a>
+                        </li>
+                        <li class="download"> 
+                            <a href="Project/SourceCode/Primpoly/ppParser.hpp" download="Project/SourceCode/Primpoly/ppParser.hpp">
+                                <img src="../../../Images/compactDisk.png" alt="Compact disk icon for source code download." width="25" height="25" >Download</a>
+                        </li>
+
+                        <li class="downloadName">ppParser.cpp</li>
+                        <li class="downloadDescription">Parsing for polynomials and factor tables implementation.</li>
+                        <li class="downloadView"> 
+                            <a href="Project/SourceCode/Primpoly/ppParser.cpp.html">
+                                <img src="../../../Images/eye.png" alt="Eye icon for source code viewing." width="30" height="30" >View</a>
+                        </li>
+                        <li class="download"> 
+                            <a href="Project/SourceCode/Primpoly/ppParser.cpp" download="Project/SourceCode/Primpoly/ppParser.cpp">
+                                <img src="../../../Images/compactDisk.png" alt="Compact disk icon for source code download." width="25" height="25" >Download</a>
+                        </li>
+
+                        <li class="downloadName">ppUnitTest.hpp</li>
+                        <li class="downloadDescription">Unit Test classes.</li>
+                        <li class="downloadView"> 
+                            <a href="Project/SourceCode/Primpoly/ppUnitTest.hpp.html">
+                                <img src="../../../Images/eye.png" alt="Eye icon for source code viewing." width="30" height="30" >View</a>
+                        </li>
+                        <li class="download"> 
+                            <a href="Project/SourceCode/Primpoly/ppUnitTest.hpp" download="Project/SourceCode/Primpoly/ppUnitTest.hpp">
+                                <img src="../../../Images/compactDisk.png" alt="Compact disk icon for source code download." width="25" height="25" >Download</a>
+                        </li>
+
+                        <li class="downloadName">ppUnitTest.cpp</li>
+                        <li class="downloadDescription">Unit Test implementation.</li>
+                        <li class="downloadView"> 
+                            <a href="Project/SourceCode/Primpoly/ppUnitTest.cpp.html">
+                                <img src="../../../Images/eye.png" alt="Eye icon for source code viewing." width="30" height="30" >View</a>
+                        </li>
+                        <li class="download"> 
+                            <a href="Project/SourceCode/Primpoly/ppUnitTest.cpp" download="Project/SourceCode/Primpoly/ppUnitTest.cpp">
+                                <img src="../../../Images/compactDisk.png" alt="Compact disk icon for source code download." width="25" height="25" >Download</a>
+                        </li>
+
+                        <li class="downloadName">makefile</li>
+                        <li class="downloadDescription">compile, test, run</li>
+                        <li class="downloadView"> 
+                            <a href="Project/Build/makefile.html">
+                                <img src="../../../Images/eye.png" alt="Eye icon for source code viewing." width="30" height="30" >View</a>
+                        </li>
+                        <li class="download"> 
+                            <a href="Project/Build/makefile" download="Project/Build/makefile">
+                                <img src="../../../Images/compactDisk.png" alt="Compact disk icon for source code download." width="25" height="25" >Download</a>
+                        </li>
+
+                        <li class="downloadName">Factor Tables</li>
+                        <li class="downloadDescription">Tables of prime factors for prime powers</li>
+                        <li class="downloadFooter">
+                               <a href="Project/SourceCode/Primpoly/FactorTables/c02minus.txt.html"> <img src="../../../Images/eye.png" alt="Eye icon." width="30" height="30" > c02minus.txt </a>
+                               <a href="Project/SourceCode/Primpoly/FactorTables/c02plus.txt.html">  <img src="../../../Images/eye.png" alt="Eye icon." width="30" height="30" > c02plus.txt </a>
+                               <a href="Project/SourceCode/Primpoly/FactorTables/c03minus.txt.html"> <img src="../../../Images/eye.png" alt="Eye icon." width="30" height="30" > c03minus.txt </a>
+                               <a href="Project/SourceCode/Primpoly/FactorTables/c03plus.txt.html">  <img src="../../../Images/eye.png" alt="Eye icon." width="30" height="30" > c03plus.txt </a>
+                               <a href="Project/SourceCode/Primpoly/FactorTables/c05minus.txt.html"> <img src="../../../Images/eye.png" alt="Eye icon." width="30" height="30" > c05minus.txt </a>
+                               <a href="Project/SourceCode/Primpoly/FactorTables/c05plus.txt.html">  <img src="../../../Images/eye.png" alt="Eye icon." width="30" height="30" > c05plus.txt </a>
+                               <a href="Project/SourceCode/Primpoly/FactorTables/c06minus.txt.html"> <img src="../../../Images/eye.png" alt="Eye icon." width="30" height="30" > c06minus.txt </a>
+                               <a href="Project/SourceCode/Primpoly/FactorTables/c06plus.txt.html">  <img src="../../../Images/eye.png" alt="Eye icon." width="30" height="30" > c06plus.txt </a>
+                               <a href="Project/SourceCode/Primpoly/FactorTables/c07minus.txt.html"> <img src="../../../Images/eye.png" alt="Eye icon." width="30" height="30" > c07minus.txt </a>
+                               <a href="Project/SourceCode/Primpoly/FactorTables/c07plus.txt.html">  <img src="../../../Images/eye.png" alt="Eye icon." width="30" height="30" > c07plus.txt </a>
+                               <a href="Project/SourceCode/Primpoly/FactorTables/c10minus.txt.html"> <img src="../../../Images/eye.png" alt="Eye icon." width="30" height="30" > c10minus.txt </a>
+                               <a href="Project/SourceCode/Primpoly/FactorTables/c10plus.txt.html">  <img src="../../../Images/eye.png" alt="Eye icon." width="30" height="30" > c10plus.txt </a>
+                               <a href="Project/SourceCode/Primpoly/FactorTables/c11minus.txt.html"> <img src="../../../Images/eye.png" alt="Eye icon." width="30" height="30" > c11minus.txt </a>
+                               <a href="Project/SourceCode/Primpoly/FactorTables/c11plus.txt.html">  <img src="../../../Images/eye.png" alt="Eye icon." width="30" height="30" > c11plus.txt </a>
+                               <a href="Project/SourceCode/Primpoly/FactorTables/c12minus.txt.html"> <img src="../../../Images/eye.png" alt="Eye icon." width="30" height="30" > c12minus.txt </a>
+                               <a href="Project/SourceCode/Primpoly/FactorTables/c12plus.txt.html">  <img src="../../../Images/eye.png" alt="Eye icon." width="30" height="30" > c12plus.txt </a>
+                        </li>
+                    </ul>
+
+                    <section>
+
+                    <h4>C Language Version</h4>
+                    <p>
+                    The C language version is faster but has limits on the 
+                    size of p and n since it uses native integer arithmetic.
+                    See the 
+                    <a href="userManual.html"><em>user manual</em></a>
+                    for more details.
+                    For p=2 we can go as high as n=62.
+                    On my MacBook Pro, the time for p=2 and n=62 is 0.57 sec 
+                    for the C++ version above and 0.09 sec for the C version.  
+                    </p>
+                    <p>
+                    Source code is in the directory <i>SourceCode/PrimpolyC</i>.
+                    The main program is <i>Primpoly.c</i>. All parameters and constants are in <i>Primpoly.h</i>
+                    High level helper functions are in <i>ppHelperFunc.c</i>.  
+                    Integer arithmetic modulo p is in <i>ppArith.c</i>
+                    Factoring into primes and primality testing is done in <i>ppFactor.c</i>
+                    <i>ppIO.c</i> handles the polynomial I/O.
+                    <i>ppPolyArith.c</i> does the Polynomial arithmetic.
+                    Polynomial order testing is in <i>ppOrder.c</i>
+                    </p>
+                    </section>
+                </section>
+
+                <section>
+                    <h3>Install and Run</h3>
+
+                    <p>
+                    The source builds on Mac and Ubuntu Linux platforms.  Just unpack the file <i>Primpoly.tar.gz</i>, build and run.
+                    It may run on Cygwin/Windows 10 platforms, but I have not tested that yet.
+                    </p>
+
+                    <div class="scrollBox"> <div class="scrollBoxContent">
+                    cd ~/Desktop
+
+                    ls
+                        Primpoly.tar.gz 
+
+                    tar -xvf Primpoly.tar.gz 
+
+                    cd Project/Build
+                    make
+
+                    cd Bin
+                    ./Primpoly.exe 2 4
+
+                    Primpoly Version 16.4 - A Program for Computing Primitive Polynomials.
+                    Copyright (C) 1999-2026 by Sean Erik O'Connor.  All Rights Reserved.
+
+                    Primpoly comes with ABSOLUTELY NO WARRANTY; for details see the
+                    GNU General Public License.  This is free software, and you are welcome
+                    to redistribute it under certain conditions; see the GNU General Public License
+                    for details.
+
+                    Self-check passes...
+
+                    Primitive polynomial modulo 2 of degree 4
+
+                    x ^ 4 + x + 1, 2
+                    </div></div>
+
+                    </section>
+
+                    <section>
+                        <h4>Factor Tables (Primpoly C++ Version Only)</h4>
+
+                        <p>
+                        You'll need to have the factor tables <i>cNNminus.txt</i> in the same directory as the 
+                        executable <i>Primpoly.exe</i>.  You can also place them in a subdirectory.
+                        </p>
+
+                        <div class="scrollBoxMedium"> <div class="scrollBoxContent">
+                        cd ~/PrimitivePolynomials/Project/Build/Bin
+                        ls
+                        Primpoly.exe* c02minus.txt* c03minus.txt* c05minus.txt* c07minus.txt* c11minus.txt* 
+                        </div> </div>
+
+                        <p>
+                        If you run the program and it can't find the factor tables, it will fail the self check and tell you what happened
+                        in the unitTest.log file.
+                        </p>
+
+                        <div class="scrollBox"> <div class="scrollBoxContent">
+                        Bin/Primpoly.exe 2 4
+
+                        Primpoly Version 16.4 - A Program for Computing Primitive Polynomials.
+                        Copyright (C) 1999-2026 by Sean Erik O'Connor.  All Rights Reserved.
+
+                        Primpoly comes with ABSOLUTELY NO WARRANTY; for details see the
+                        GNU General Public License.  This is free software, and you are welcome
+                        to redistribute it under certain conditions; see the GNU General Public License
+                        for details.
+
+                        Top Level Error:  [ Self-check failed! ] 
+                        Dear User,
+                            Sorry you got an error message.  Please email the author at
+                                seanerikoconnor!AT!gmail!DOT!com
+                            with !DOT! replaced by . and the !AT! replaced by @
+                            Please send me all console output from this program.
+                            Attach the unitTest.log file which should be located in the current directory.
+                            However, if the self-check failed, there won't be a log file.
+                        Thanks for your help,
+                        Sean Erik O'Connor
+
+                        tail unitTest.log 
+
+                        TEST:  isAlmostSurelyPrime on the 10000th prime number 104729 of ppuint type.........PASS!
+                        TEST:  Factor table method used on unsigned int 3^20 - 1 = 3486784400 = 2^4 5^2 11^2 61 1181.........FAIL!
+                            caught FactorError: [ Missing the factor table for p = 3 named c03minus.txt 
+                            Please copy it into the current directory 
+                            /Users/seanoconnor/Desktop/Sean/WebSite/Mathematics/AbstractAlgebra/
+                            PrimitivePolynomials/Project/Build which contains the executable! 
+                            in file ../SourceCode/Primpoly/ppFactor.cpp at line 158 ] 
+                        End unit testing...
+                        SORRY.  One or more unit tests failed!
+                        </div> </div>
+                    </section>
+
+                    <section>
+                        <h4>Source Level Debugging and Profiling</h4>
+
+                        <p>
+                        On Mac OS X, I use the 
+                            <a href="../../../ComputerScience/DevelopmentEnvironment/macLinuxComputerSetupForDevelopers.html#xcode">Xcode IDE</a> 
+                        for debugging 
+
+                        <img class="centered" src="./Images/PrimpolyMacDevEnv.png"
+                                     width="700" height="600"
+                                                 alt="Apple Mac Development Environment" />
+
+                        and profiling
+
+                        <img class="centered" src="./Images/PrimpolyMacDevProfile.jpg"
+                                     width="800" height="600"
+                                                 alt="Apple Mac Development Profiling" />
+                        </p>
+
+                        <p>
+                        On Ubuntu Linux, I build with make and compile with clang and use the command line debugger lldb.
+                        </p>
+
+                        <p>
+                        On Windows platforms, I use the 
+                            <a href="../../../WebDesign/DevelopmentEnvironment/macLinuxComputerSetupForDevelopers.html#cygwincompiler">GNU Cygwin</a>
+                        toolset for command line compiling with g++
+                        I use
+                            <a href="../../../WebDesign/DevelopmentEnvironment/macLinuxComputerSetupForDevelopers.html#microsoftcppcompiler">Microsoft Visual Studio</a>.
+                        for debugging.
+                        </p>
+
+                        <img class="centered" src="./Images/PrimpolyWin7Bit64DevEnv.png"
+                                       width="700" height="500" alt="Windows Development System." />
+                        </section>
+                </section>
+
+                <section>
+                    <h3>Uses for Primitive Polynomials:</h3>
+
+                    <ul>
+                           <li>Generating pseudonoise (PN) sequences for spread spectrum
+                               communications and chip fault testing.</li>
+                           <li>Generating Sobol sequences for high dimensional numerical integration</li>
+                           <li>Generating
+                              <a href="../../../CommunicationTheory/ChannelCoding/Crc/CRC.html">
+                              CRC and Hamming codes.</a></li>
+                           <li>Generating Galois (finite) fields for use in implementing Reed-Solomon
+                               and BCH error correcting codes.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>Acknowledgements</h3>
+
+                    <ul>
+                        <li>
+                        Thanks to <em>Sergei Goncharov</em> who found a logic bug in my slow primitive polynomial verification test.  I was
+                        checking that x^k != 1 for k &lt; p^n-1, but didn't include the check that x^k = 1 (mod f(x), p) for k = p^n-1.
+                        </li>
+
+                        <li>
+                        Thanks to <em>Charlie Ross</em> for using my program and pointing out it slows down dramatically when p = 2 and n = 219.
+                        This is due to the integer factoring not being able to look up the factorization in a table, and running the Pollard Rho algorithm, which is slow.
+                        I found that SageMath has much faster methods for high degree polynomials, and posted an example.
+                        </li>
+
+                        <li>
+                        Thanks to <em>Martin Becker</em> for pointing out a bug when trying to do the primitive polynomial search on 
+                        p = 65003, n = 2 where the multiple precision arithmetic base is exceeded and also for pointing out a 
+                        bug in computing Euler Phi for the number of polynomials when p &gt; 2.
+                        </li>
+
+                        <li>
+                        Thanks to <em>K. Jambunathan</em> of the Indian Statistical Institute, Calcutta,
+                        India for first suggesting that I increase the numeric precision of the
+                        calculations, allowing higher degree polynomials to be generated.
+                        </li>
+
+                        <li>
+                        Thanks to <em>Ted Ford</em> of Hampshire, Britain for extending the program to print
+                        all primitive polynomials, for suggesting I replace the stored table of
+                        primitive roots with an algorithmic test, and many interesting observations
+                        on maximal length sequences.
+                        </li>
+
+                        <li>
+                        Thanks to <em>Tielin Liang</em> for pointing out a mistake in one of my Lemmas in the theoretical section.
+                        </li>
+
+                        <li>
+                        Thanks to <em>Majid Bakhtiari</em> for pointing out that Mersenne primes are an important special case 
+                        for which we can quickly find extremely high degree polynomials.
+                        </li>
+
+                        <li>
+                        Thanks to <em>Alan Meghrigian</em> for suggesting valuable corrections to the notes.
+                        </li>
+
+                        <li>
+                        Thanks to <em>John McKay</em> for mentioning Conway polynomials which are a special class of primitive 
+                        polynomial used to represent finite fields.
+                        </li>
+
+                        <li>
+                        Thanks to <em>Sid Paral</em> for pointing out bugs in array bounds checking in the polynomial parser.
+                        </li>
+
+                        <li>
+                        Thanks to <em>Subrata Nandi</em> for pointing out that I need instructions on how to set up the source
+                        code in the proper directory organization to so that the makefile will build properly.
+                        </li>
+
+                        <li>
+                        Thanks to <em>Tony Freitas</em> for pointing out two compile errors and how to fix them in 
+                        Visual Studio 2017 (Microsoft Windows).
+                        </li>
+
+                        <li>
+                        Thanks to <em>Martin Dowd</em> for pointing out methods for finding all primitive polynomials given a 
+                        single primitive polynomial.
+                        </li>
+
+                        <li>
+                        Thanks to <em>Max-Julian Jakobitsch</em> for pointing out MathJax rendering was broken and how to fix it.
+                        </li>
+
+                        <li>
+                        Thanks to <em>G&#0252;nter Rote</em> for pointing out errors in the quoted bounds for the Euler Phi function and
+                        for pointing out that downloading each source file separately was too cumbersome.
+                        </li>
+
+                        <li>
+                        And finally, thanks to <em>Eric W. Weisstein's World of Mathematics</em> for referencing this web page under
+                        <a href="http://mathworld.wolfram.com/PrimitivePolynomial.html">primitive polynomials</a>.
+                        </li>
+                    </ul>
+               </section>
+            </article>
+
+            <footer class="footnote">
+                <hr>
+
+                <!-- A copyright to preserve my legal rights. -->
+                <p class="footnote">
+                    Copyright &copy; 1986-2026 by Sean Erik O'Connor.
+                    All Rights Reserved.
+                    &nbsp;&nbsp;&nbsp;
+                    last updated 27 Feb 26.
+                </p>
+            </footer>
+        </div> <!-- wrapper -->
+    </body>
+</html>

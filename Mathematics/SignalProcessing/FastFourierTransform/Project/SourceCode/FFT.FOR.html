@@ -1,0 +1,633 @@
+
+        <!DOCTYPE html>
+        <html lang="en-US">  <!-- Set language of this page to USA English. -->
+        
+        <head>
+            <!-- This page uses Unicode characters. -->
+            <meta charset="utf-8">
+        
+            <!-- Set viewport to actual device width.  Any other settings makes the web page initially appear zoomed-in on mobile devices. -->
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+            <!-- Title appears in the web browser tab for this page.  The browser also uses it to bookmark this page. -->
+            <title>Sean Erik O'Connor - Home Page and Free Mathematical Software.</title>
+        
+            <!-- Search engines will search using words in this description.  They will also display title in their search results. -->
+            <meta name="description" content="Syntax Colored Source Code Listing">
+        
+            <!-- Some content management software uses the author's name. -->
+            <meta name="author" content="Sean Erik O'Connor">
+        
+            <meta name="copyright" content="Copyright (C) 1986-2026 by Sean Erik O'Connor.  All Rights Reserved.">   
+        
+            <!-- Begin style sheet insertion -->
+            <style>
+                /* Default settings for all my main web pages. */
+                body
+                {
+                    /* A wide sans-serif font is more readable on the web. */
+                    font-family:            Verdana, Geneva, "Trebuchet MS", sans-serif ;
+        
+                    /* Set the body font size a little smaller than the user's default browser setting. */
+                    font-size:              0.8em ; 
+        
+                    /* Black text is easier to read. */
+                    color:                  black ;
+        
+                    /*  More vertical space between lines for more pleasant reading.  Use a unitless font height multiplier.  
+                        Length and percentage percentage values can give scrunched text due to poor inheritance behavior. */
+                    line-height:            1.7 ;
+                }
+        
+                <!-- Now prepare to add the syntax coloring style sheet from Pygment -->
+        pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.highlight .hll { background-color: #ffffcc }
+.highlight { background: #f8f8f8; }
+.highlight .c { color: #3D7B7B; font-style: italic } /* Comment */
+.highlight .err { border: 1px solid #F00 } /* Error */
+.highlight .k { color: #008000; font-weight: bold } /* Keyword */
+.highlight .o { color: #666 } /* Operator */
+.highlight .ch { color: #3D7B7B; font-style: italic } /* Comment.Hashbang */
+.highlight .cm { color: #3D7B7B; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #9C6500 } /* Comment.Preproc */
+.highlight .cpf { color: #3D7B7B; font-style: italic } /* Comment.PreprocFile */
+.highlight .c1 { color: #3D7B7B; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #3D7B7B; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #A00000 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .ges { font-weight: bold; font-style: italic } /* Generic.EmphStrong */
+.highlight .gr { color: #E40000 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #008400 } /* Generic.Inserted */
+.highlight .go { color: #717171 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #04D } /* Generic.Traceback */
+.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #B00040 } /* Keyword.Type */
+.highlight .m { color: #666 } /* Literal.Number */
+.highlight .s { color: #BA2121 } /* Literal.String */
+.highlight .na { color: #687822 } /* Name.Attribute */
+.highlight .nb { color: #008000 } /* Name.Builtin */
+.highlight .nc { color: #00F; font-weight: bold } /* Name.Class */
+.highlight .no { color: #800 } /* Name.Constant */
+.highlight .nd { color: #A2F } /* Name.Decorator */
+.highlight .ni { color: #717171; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #CB3F38; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #00F } /* Name.Function */
+.highlight .nl { color: #767600 } /* Name.Label */
+.highlight .nn { color: #00F; font-weight: bold } /* Name.Namespace */
+.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #19177C } /* Name.Variable */
+.highlight .ow { color: #A2F; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #BBB } /* Text.Whitespace */
+.highlight .mb { color: #666 } /* Literal.Number.Bin */
+.highlight .mf { color: #666 } /* Literal.Number.Float */
+.highlight .mh { color: #666 } /* Literal.Number.Hex */
+.highlight .mi { color: #666 } /* Literal.Number.Integer */
+.highlight .mo { color: #666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
+.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
+.highlight .se { color: #AA5D1F; font-weight: bold } /* Literal.String.Escape */
+.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.highlight .si { color: #A45A77; font-weight: bold } /* Literal.String.Interpol */
+.highlight .sx { color: #008000 } /* Literal.String.Other */
+.highlight .sr { color: #A45A77 } /* Literal.String.Regex */
+.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #00F } /* Name.Function.Magic */
+.highlight .vc { color: #19177C } /* Name.Variable.Class */
+.highlight .vg { color: #19177C } /* Name.Variable.Global */
+.highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
+.highlight .il { color: #666 } /* Literal.Number.Integer.Long */
+            </style>
+        </head>
+        
+        <body>
+            <article class="content">
+        <div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="c">C    -------------------------------------------------------------------------</span>
+<span class="linenos">  2</span><span class="c">C    |  File name: fft.for               Sean O&#39;Connor               9-23-87 |</span>
+<span class="linenos">  3</span><span class="c">C    ------------------------------------------------------------------------- </span>
+<span class="linenos">  4</span>
+<span class="linenos">  5</span><span class="c">C    -------------------------------------------------------------------------</span>
+<span class="linenos">  6</span><span class="c">C    |  VAX 11/785                 VMS 4.5         VAX EXTENDED FORTRAN 77   |</span>
+<span class="linenos">  7</span><span class="c">C    -------------------------------------------------------------------------</span>
+<span class="linenos">  8</span>
+<span class="linenos">  9</span><span class="c">C </span>
+<span class="linenos"> 10</span><span class="c">C  ****************************************************************************</span>
+<span class="linenos"> 11</span><span class="c">C  *                                                                          *</span>
+<span class="linenos"> 12</span><span class="c">C  *                            FFT                                           *</span>
+<span class="linenos"> 13</span><span class="c">C  *                                                                          *</span>
+<span class="linenos"> 14</span><span class="c">C  ****************************************************************************</span>
+<span class="linenos"> 15</span><span class="c">C</span>
+<span class="linenos"> 16</span><span class="c">C</span>
+<span class="linenos"> 17</span><span class="c">C  DESCRIPTION</span>
+<span class="linenos"> 18</span><span class="c">C</span>
+<span class="linenos"> 19</span><span class="c">C      This program does an in-place one dimensional complex discrete Fourier</span>
+<span class="linenos"> 20</span><span class="c">C      transform.  It uses an FFT algorithm for a number of input points which</span>
+<span class="linenos"> 21</span><span class="c">C      is a power of two.</span>
+<span class="linenos"> 22</span><span class="c">C</span>
+<span class="linenos"> 23</span><span class="c">C</span>
+<span class="linenos"> 24</span><span class="c">C  INPUT </span>
+<span class="linenos"> 25</span><span class="c">C</span>
+<span class="linenos"> 26</span><span class="c">C      N,  The number of complex points to be transformed.</span>
+<span class="linenos"> 27</span><span class="c">C          N is a power of 2.  N must be at least 2;  it</span>
+<span class="linenos"> 28</span><span class="c">C          must not exceed the dimension of array X, or the </span>
+<span class="linenos"> 29</span><span class="c">C          maximum size of the sine and cosine table.  (See </span>
+<span class="linenos"> 30</span><span class="c">C          below).</span>
+<span class="linenos"> 31</span><span class="c">C</span>
+<span class="linenos"> 32</span><span class="c">C      X,  The array holding the complex data X( k )</span>
+<span class="linenos"> 33</span><span class="c">C          for k = 0, 1, . . ., N - 1 which is to be</span>
+<span class="linenos"> 34</span><span class="c">C          transformed.  It is dimensioned in the calling</span>
+<span class="linenos"> 35</span><span class="c">C          program.  Only the array address is passed to </span>
+<span class="linenos"> 36</span><span class="c">C          this subroutine.</span>
+<span class="linenos"> 37</span><span class="c">C</span>
+<span class="linenos"> 38</span><span class="c">C      D,  The direction of the FFT. D is 1 for a </span>
+<span class="linenos"> 39</span><span class="c">C          forward transform and -1 for an inverse</span>
+<span class="linenos"> 40</span><span class="c">C          transform.</span>
+<span class="linenos"> 41</span><span class="c">C</span>
+<span class="linenos"> 42</span><span class="c">C</span>
+<span class="linenos"> 43</span><span class="c">C  OUTPUT</span>
+<span class="linenos"> 44</span><span class="c">C</span>
+<span class="linenos"> 45</span><span class="c">C      X,  On output, X holds the complex Fourier coefficients</span>
+<span class="linenos"> 46</span><span class="c">C          ^</span>
+<span class="linenos"> 47</span><span class="c">C          X( k ) for k = 0, 1, . . ., N - 1.</span>
+<span class="linenos"> 48</span><span class="c">C</span>
+<span class="linenos"> 49</span><span class="c">C      Warning messages to the terminal under these conditions:</span>
+<span class="linenos"> 50</span><span class="c">C</span>
+<span class="linenos"> 51</span><span class="c">C          (1)  D is not 1 or -1</span>
+<span class="linenos"> 52</span><span class="c">C          (2)  N is less than 2.</span>
+<span class="linenos"> 53</span><span class="c">C          (3)  N is greater than the sine table can handle.</span>
+<span class="linenos"> 54</span><span class="c">C          (4)  N is not a power of 2.</span>
+<span class="linenos"> 55</span><span class="c">C</span>
+<span class="linenos"> 56</span><span class="c">C</span>
+<span class="linenos"> 57</span><span class="c">C  CALLING SEQUENCE</span>
+<span class="linenos"> 58</span><span class="c">C</span>
+<span class="linenos"> 59</span><span class="c">C         CALL FFT ( N, X, D )</span>
+<span class="linenos"> 60</span><span class="c">C</span>
+<span class="linenos"> 61</span><span class="c">C</span>
+<span class="linenos"> 62</span><span class="c">C  EXAMPLE </span>
+<span class="linenos"> 63</span><span class="c">C</span>
+<span class="linenos"> 64</span><span class="c">C      DIMENSION X( 0 : 3 )        ! 4 point FFT</span>
+<span class="linenos"> 65</span><span class="c">C</span>
+<span class="linenos"> 66</span><span class="c">C      N = 4                       ! 4 point FFT</span>
+<span class="linenos"> 67</span><span class="c">C      D = 1                       ! Forward transform</span>
+<span class="linenos"> 68</span><span class="c">C</span>
+<span class="linenos"> 69</span><span class="c">C      CALL FFT( N, X, D )         ! Do the FFT</span>
+<span class="linenos"> 70</span><span class="c">C</span>
+<span class="linenos"> 71</span><span class="c">C      D = -1                      ! Do an inverse FFT</span>
+<span class="linenos"> 72</span><span class="c">C</span>
+<span class="linenos"> 73</span><span class="c">C      CALL FFT( N, X, D )</span>
+<span class="linenos"> 74</span><span class="c">C</span>
+<span class="linenos"> 75</span><span class="c">C   Suppose X contains the data</span>
+<span class="linenos"> 76</span><span class="c">C</span>
+<span class="linenos"> 77</span><span class="c">C   X ( 0 )  =  1  +  i</span>
+<span class="linenos"> 78</span><span class="c">C   X ( 1 )  =  2  +  2 i</span>
+<span class="linenos"> 79</span><span class="c">C   X ( 2 )  =  3  +  3 i</span>
+<span class="linenos"> 80</span><span class="c">C   X ( 3 )  =  4  +  4 i</span>
+<span class="linenos"> 81</span><span class="c">C </span>
+<span class="linenos"> 82</span><span class="c">C   then the forward FFT returns</span>
+<span class="linenos"> 83</span><span class="c">C</span>
+<span class="linenos"> 84</span><span class="c">C   X ( 0 ) =   5  +  5 i</span>
+<span class="linenos"> 85</span><span class="c">C   X ( 1 ) =  -2</span>
+<span class="linenos"> 86</span><span class="c">C   X ( 2 ) =  -1  -    i</span>
+<span class="linenos"> 87</span><span class="c">C   X ( 3 ) =      -  2 i</span>
+<span class="linenos"> 88</span><span class="c">C</span>
+<span class="linenos"> 89</span><span class="c">C   and the inverse FFT returns the original data.</span>
+<span class="linenos"> 90</span><span class="c">C</span>
+<span class="linenos"> 91</span><span class="c">C</span>
+<span class="linenos"> 92</span><span class="c">C  METHOD</span>
+<span class="linenos"> 93</span><span class="c">C                                ^</span>
+<span class="linenos"> 94</span><span class="c">C       The Fourier coefficients X( k ) are defined for k = 0, . . ., N - 1</span>
+<span class="linenos"> 95</span><span class="c">C       by the formula</span>
+<span class="linenos"> 96</span><span class="c">C</span>
+<span class="linenos"> 97</span><span class="c">C                             N - 1               2 Pi i</span>
+<span class="linenos"> 98</span><span class="c">C       ^             1       ____             -  ------ j k</span>
+<span class="linenos"> 99</span><span class="c">C       X( k ) =  ---------   \                     N</span>
+<span class="linenos">100</span><span class="c">C                   -----     /      X( j )  e</span>
+<span class="linenos">101</span><span class="c">C                \ /  N       ----</span>
+<span class="linenos">102</span><span class="c">C                 v           j = 0</span>
+<span class="linenos">103</span><span class="c">C</span>
+<span class="linenos">104</span><span class="c">C       where e is 2.1718 . . ., Pi = 3.14159. . . and i is the square root</span>
+<span class="linenos">105</span><span class="c">C       of -1.</span>
+<span class="linenos">106</span><span class="c">C</span>
+<span class="linenos">107</span><span class="c">C       This is the formula for the forward transform.  The inverse transform</span>
+<span class="linenos">108</span><span class="c">C       is the same, except that the minus sign in the exponent above is a</span>
+<span class="linenos">109</span><span class="c">C       plus sign instead.</span>
+<span class="linenos">110</span><span class="c">C                                    ---</span>
+<span class="linenos">111</span><span class="c">C       The normalizing factor 1 / \/ N  in front was picked so that the</span>
+<span class="linenos">112</span><span class="c">C       forward and inverse transforms look the same.</span>
+<span class="linenos">113</span><span class="c">C</span>
+<span class="linenos">114</span><span class="c">C</span>
+<span class="linenos">115</span><span class="c">C  The particular type of FFT algorithm we use is a</span>
+<span class="linenos">116</span><span class="c">C</span>
+<span class="linenos">117</span><span class="c">C                             complex,</span>
+<span class="linenos">118</span><span class="c">C                           two to the N,</span>
+<span class="linenos">119</span><span class="c">C                     decimation in  frequency,</span>
+<span class="linenos">120</span><span class="c">C               input in order, output bit reversed</span>
+<span class="linenos">121</span><span class="c">C</span>
+<span class="linenos">122</span><span class="c">C  type of FFT.  It is described in the book</span>
+<span class="linenos">123</span><span class="c">C</span>
+<span class="linenos">124</span><span class="c">C               THE FAST FOURIER TRANSFORM,</span>
+<span class="linenos">125</span><span class="c">C               F. Oran Brigham, Prentice Hall, 1974</span>
+<span class="linenos">126</span><span class="c">C</span>
+<span class="linenos">127</span><span class="c">C</span>
+<span class="linenos">128</span><span class="c">C  BUGS</span>
+<span class="linenos">129</span><span class="c">C</span>
+<span class="linenos">130</span><span class="c">C      The bit-reversal routine could be made faster by using the</span>
+<span class="linenos">131</span><span class="c">C      VAX FORTRAN 77 library routines for testing, setting, clearing and</span>
+<span class="linenos">132</span><span class="c">C      shifting bits:  BTEST, IBSET, IBCLR, ISHFT.</span>
+<span class="linenos">133</span><span class="c">C</span>
+<span class="linenos">134</span><span class="c">C      You might want to use double precision complex numbers to get more</span>
+<span class="linenos">135</span><span class="c">C      accuracy.</span>
+<span class="linenos">136</span><span class="c">C</span>
+<span class="linenos">137</span><span class="c">C  ****************************************************************************</span>
+<span class="linenos">138</span><span class="c">C  *                                                                          *</span>
+<span class="linenos">139</span><span class="c">C  ****************************************************************************</span>
+<span class="linenos">140</span>
+<span class="linenos">141</span>
+<span class="linenos">142</span><span class="nl">     </span> <span class="w">  </span><span class="k">SUBROUTINE </span><span class="n">FFT</span><span class="p">(</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">D</span><span class="w"> </span><span class="p">)</span>
+<span class="linenos">143</span>
+<span class="linenos">144</span><span class="nl">     </span> <span class="w">  </span><span class="k">IMPLICIT NONE</span><span class="w">   </span><span class="c">! Force declaration of all variables.</span>
+<span class="linenos">145</span>
+<span class="linenos">146</span>
+<span class="linenos">147</span><span class="c">C    -------------------------------------------------------------------------</span>
+<span class="linenos">148</span><span class="c">C    |                            MACRO DEFINITIONS                          |</span>
+<span class="linenos">149</span><span class="c">C    ------------------------------------------------------------------------- </span>
+<span class="linenos">150</span>
+<span class="linenos">151</span><span class="nl">     </span> <span class="w">  </span><span class="kt">INTEGER </span><span class="n">MAX_TABLE_SIZE</span>
+<span class="linenos">152</span><span class="nl">     </span> <span class="w">  </span><span class="kt">REAL    </span><span class="n">PI</span>
+<span class="linenos">153</span>
+<span class="linenos">154</span><span class="nl">     </span> <span class="w">  </span><span class="k">PARAMETER</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">PI</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3.1415926535897932385</span><span class="w"> </span><span class="p">)</span>
+<span class="linenos">155</span>
+<span class="linenos">156</span><span class="c">C       We must set the size of the sine and cosine table used in the FFT.</span>
+<span class="linenos">157</span><span class="c">C       The table is called starting_multiplier.</span>
+<span class="linenos">158</span><span class="c">C     </span>
+<span class="linenos">159</span><span class="c">C       Suppose MAX is the largest FFT we would ever want</span>
+<span class="linenos">160</span><span class="c">C       to perform.  Then </span>
+<span class="linenos">161</span><span class="c">C</span>
+<span class="linenos">162</span><span class="c">C       MAX_TABLE_SIZE  =  LOG ( MAX ) - 1</span>
+<span class="linenos">163</span><span class="c">C                             2</span>
+<span class="linenos">164</span><span class="c">C</span>
+<span class="linenos">165</span><span class="c">C       is the size of the table.  This table can be used by the</span>
+<span class="linenos">166</span><span class="c">C       FFT for any number of points from 2 up to MAX.</span>
+<span class="linenos">167</span><span class="c">C</span>
+<span class="linenos">168</span><span class="c">C       For example, if MAX_TABLE_SIZE = 14, then we can transform</span>
+<span class="linenos">169</span><span class="c">C       anywhere from 2 to 2 ** 15 = 32,768 points, using the same </span>
+<span class="linenos">170</span><span class="c">C       sine and cosine table.</span>
+<span class="linenos">171</span><span class="c">C</span>
+<span class="linenos">172</span>
+<span class="linenos">173</span><span class="nl">     </span> <span class="w">  </span><span class="k">PARAMETER</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">MAX_TABLE_SIZE</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="w"> </span><span class="p">)</span>
+<span class="linenos">174</span><span class="nl">     </span> <span class="w">  </span>
+<span class="linenos">175</span>
+<span class="linenos">176</span><span class="c">C -------------------------------------------------------------------------</span>
+<span class="linenos">177</span><span class="c">C |                          CALLING ARGUMENTS                            |</span>
+<span class="linenos">178</span><span class="c">C -------------------------------------------------------------------------</span>
+<span class="linenos">179</span>
+<span class="linenos">180</span><span class="nl">     </span> <span class="w">  </span><span class="kt">INTEGER </span><span class="n">N</span><span class="w">            </span><span class="c">!  Number of points in transform</span>
+<span class="linenos">181</span>
+<span class="linenos">182</span><span class="nl">     </span> <span class="w">  </span><span class="kt">COMPLEX </span><span class="n">X</span><span class="p">(</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">)</span><span class="w">   </span><span class="c">!  Complex data to be transformed</span>
+<span class="linenos">183</span>
+<span class="linenos">184</span><span class="c">C    Array X is dimensioned in the calling program.  Only its starting </span>
+<span class="linenos">185</span><span class="c">C    address is passed into this subroutine.</span>
+<span class="linenos">186</span>
+<span class="linenos">187</span><span class="nl">     </span> <span class="w">  </span><span class="kt">INTEGER </span><span class="n">D</span><span class="w">            </span><span class="c">!  Transform direction:  1 for a forward </span>
+<span class="linenos">188</span><span class="nl">     </span> <span class="w">                       </span><span class="c">!  transform, -1 for an inverse transform.</span>
+<span class="linenos">189</span>
+<span class="linenos">190</span>
+<span class="linenos">191</span><span class="c">C -------------------------------------------------------------------------</span>
+<span class="linenos">192</span><span class="c">C |                          LOCAL VARIABLES                              |</span>
+<span class="linenos">193</span><span class="c">C -------------------------------------------------------------------------</span>
+<span class="linenos">194</span>
+<span class="linenos">195</span><span class="c">C  A column refers to a column of the FFT signal flow graph.  A group is</span>
+<span class="linenos">196</span><span class="c">C  a collection of butterflies which have the same multiplier W^p.  A</span>
+<span class="linenos">197</span><span class="c">C  butterfly is the basic computational unit of the FFT.</span>
+<span class="linenos">198</span>
+<span class="linenos">199</span><span class="nl">     </span> <span class="w">  </span><span class="kt">INTEGER </span><span class="n">log_of_n</span><span class="p">,</span><span class="w">          </span><span class="c">! Log base 2 of the number of points, N.</span>
+<span class="linenos">200</span><span class="nl">     </span><span class="gs">$</span><span class="w">          </span><span class="n">column</span><span class="p">,</span><span class="w">            </span><span class="c">! Current column.</span>
+<span class="linenos">201</span><span class="nl">     </span><span class="gs">$</span><span class="w">          </span><span class="n">number_of_groups</span><span class="p">,</span><span class="w">  </span><span class="c">! Number of groups in a column.</span>
+<span class="linenos">202</span><span class="nl">     </span><span class="gs">$</span><span class="w">          </span><span class="n">group</span><span class="p">,</span><span class="w">             </span><span class="c">! Current group number.</span>
+<span class="linenos">203</span><span class="nl">     </span><span class="gs">$</span><span class="w">          </span><span class="n">start_of_group</span><span class="p">,</span><span class="w">    </span><span class="c">! Array index of first butterfly in group.</span>
+<span class="linenos">204</span><span class="nl">     </span><span class="gs">$</span><span class="w">          </span><span class="n">end_of_group</span><span class="p">,</span><span class="w">      </span><span class="c">! Array index of last butterfly in group.</span>
+<span class="linenos">205</span><span class="nl">     </span><span class="gs">$</span><span class="w">          </span><span class="n">butterfly_height</span><span class="p">,</span><span class="w">  </span><span class="c">! Height of a butterfly.</span>
+<span class="linenos">206</span><span class="nl">     </span><span class="gs">$</span><span class="w">          </span><span class="n">offset</span><span class="p">,</span><span class="w">            </span><span class="c">! Lower branch of a butterfly.</span>
+<span class="linenos">207</span><span class="nl">     </span><span class="gs">$</span><span class="w">          </span><span class="n">i</span><span class="p">,</span><span class="w">                 </span><span class="c">! Loop counter.  Upper branch of butterfly.</span>
+<span class="linenos">208</span><span class="nl">     </span><span class="gs">$</span><span class="w">          </span><span class="n">rev_i</span><span class="p">,</span><span class="w">             </span><span class="c">! Bit-reversed array index i.</span>
+<span class="linenos">209</span><span class="nl">     </span><span class="gs">$</span><span class="w">          </span><span class="n">REVERSE_BITS</span><span class="w">       </span><span class="c">! Bit reversal function.</span>
+<span class="linenos">210</span>
+<span class="linenos">211</span>
+<span class="linenos">212</span><span class="nl">     </span> <span class="w">  </span><span class="kt">COMPLEX </span><span class="nb">product</span><span class="p">,</span><span class="w">     </span><span class="c">! Temporary storage in a butterfly calculation.</span>
+<span class="linenos">213</span><span class="nl">     </span><span class="gs">$</span><span class="w">          </span><span class="n">temp</span><span class="p">,</span><span class="w">        </span><span class="c">! Same as above.</span>
+<span class="linenos">214</span><span class="nl">     </span><span class="gs">$</span><span class="w">          </span><span class="n">increment</span><span class="p">,</span><span class="w">   </span><span class="c">! Difference between current multiplier and next.</span>
+<span class="linenos">215</span><span class="nl">     </span><span class="gs">$</span><span class="w">          </span><span class="n">multiplier</span><span class="w">   </span><span class="c">! The multiplier W^p for a group of butterflies.</span>
+<span class="linenos">216</span>
+<span class="linenos">217</span><span class="nl">     </span> <span class="w">  </span><span class="kt">COMPLEX </span><span class="n">starting_multiplier</span><span class="p">(</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">MAX_TABLE_SIZE</span><span class="w"> </span><span class="p">)</span><span class="w">   </span><span class="c">! Table of sines</span>
+<span class="linenos">218</span><span class="nl">     </span> <span class="w">                                                      </span><span class="c">! and cosines.</span>
+<span class="linenos">219</span>
+<span class="linenos">220</span><span class="nl">     </span> <span class="w">  </span><span class="kt">REAL </span><span class="n">normalizer</span><span class="p">,</span><span class="w">     </span><span class="c">! 1/\/N normalizing factor.</span>
+<span class="linenos">221</span><span class="nl">     </span><span class="gs">$</span><span class="w">       </span><span class="n">angle</span><span class="w">           </span><span class="c">! Current angle in sine and cosine table.</span>
+<span class="linenos">222</span>
+<span class="linenos">223</span>
+<span class="linenos">224</span><span class="nl">     </span> <span class="w">  </span><span class="kt">LOGICAL </span><span class="n">called_already</span><span class="w">   </span><span class="c">! .TRUE. if this is the second call or</span>
+<span class="linenos">225</span><span class="nl">     </span> <span class="w">                           </span><span class="c">! later call to this subroutine.</span>
+<span class="linenos">226</span>
+<span class="linenos">227</span>
+<span class="linenos">228</span><span class="c">C -------------------------------------------------------------------------</span>
+<span class="linenos">229</span><span class="c">C |                          SUBROUTINE CODE                              |</span>
+<span class="linenos">230</span><span class="c">C -------------------------------------------------------------------------</span>
+<span class="linenos">231</span>
+<span class="linenos">232</span><span class="c">C</span>
+<span class="linenos">233</span><span class="c">C  Initialize the variable called_already to .FALSE. at compile time.</span>
+<span class="linenos">234</span><span class="c">C  Change it to .TRUE. after the first call to this subroutine.</span>
+<span class="linenos">235</span><span class="c">C  Save the value so it does not get destroyed after returning from</span>
+<span class="linenos">236</span><span class="c">C  this subroutine.</span>
+<span class="linenos">237</span><span class="c">C</span>
+<span class="linenos">238</span><span class="nl">     </span> <span class="w">  </span><span class="k">SAVE </span><span class="n">called_already</span>
+<span class="linenos">239</span><span class="nl">     </span> <span class="w">  </span><span class="k">DATA </span><span class="n">called_already</span><span class="w"> </span><span class="o">/</span><span class="p">.</span><span class="n">FALSE</span><span class="p">.</span><span class="o">/</span>
+<span class="linenos">240</span>
+<span class="linenos">241</span>
+<span class="linenos">242</span><span class="c">C</span>
+<span class="linenos">243</span><span class="c">C       Compute log base 2 of N. Perturb slightly to avoid roundoff error.</span>
+<span class="linenos">244</span><span class="c">C       For example, INT( 4.99999999999 ) = 4 (wrong!), but</span>
+<span class="linenos">245</span><span class="c">C       INT( 4.999999999 + .01 ) = 5 (correct!)</span>
+<span class="linenos">246</span><span class="c">C</span>
+<span class="linenos">247</span><span class="nl">     </span> <span class="w">  </span><span class="n">log_of_n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">INT</span><span class="p">(</span><span class="w"> </span><span class="nb">ALOG</span><span class="p">(</span><span class="w"> </span><span class="nb">FLOAT</span><span class="p">(</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="nb">ALOG</span><span class="p">(</span><span class="w"> </span><span class="mf">2.0</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w">  </span><span class="o">+</span><span class="w"> </span><span class="p">.</span><span class="mi">01</span><span class="w"> </span><span class="p">)</span>
+<span class="linenos">248</span>
+<span class="linenos">249</span>
+<span class="linenos">250</span>
+<span class="linenos">251</span><span class="c">C</span>
+<span class="linenos">252</span><span class="c">C  Error checking.  Print a message to the terminal if any one of these</span>
+<span class="linenos">253</span><span class="c">C  conditions is true:</span>
+<span class="linenos">254</span><span class="c">C</span>
+<span class="linenos">255</span><span class="c">C      (1) D is not 1 or -1.</span>
+<span class="linenos">256</span><span class="c">C      (2) N &lt; 2.</span>
+<span class="linenos">257</span><span class="c">C      (3) log2( N ) &gt; MAX_TABLE_SIZE + 1.</span>
+<span class="linenos">258</span><span class="c">C      (4) N is not a power of 2.</span>
+<span class="linenos">259</span><span class="c">C</span>
+<span class="linenos">260</span>
+<span class="linenos">261</span><span class="nl">     </span> <span class="w">  </span><span class="k">IF</span><span class="w"> </span><span class="p">((</span><span class="n">D</span><span class="w"> </span><span class="p">.</span><span class="n">NE</span><span class="p">.</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">.</span><span class="nb">AND</span><span class="p">.</span><span class="w"> </span><span class="p">(</span><span class="n">D</span><span class="w"> </span><span class="p">.</span><span class="n">NE</span><span class="p">.</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="w"> </span><span class="k">THEN</span>
+<span class="linenos">262</span>
+<span class="linenos">263</span><span class="nl">     </span> <span class="w">      </span><span class="k">PRINT</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39; ERROR ---  D is not 1 or -1&#39;</span>
+<span class="linenos">264</span><span class="nl">     </span> <span class="w">      </span><span class="k">RETURN</span>
+<span class="linenos">265</span>
+<span class="linenos">266</span><span class="nl">     </span> <span class="w">  </span><span class="k">ELSE IF</span><span class="w"> </span><span class="p">(</span><span class="n">N</span><span class="w"> </span><span class="p">.</span><span class="n">LT</span><span class="p">.</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">THEN</span>
+<span class="linenos">267</span>
+<span class="linenos">268</span><span class="nl">     </span> <span class="w">      </span><span class="k">PRINT</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39; ERROR ---  N is less than 2. &#39;</span>
+<span class="linenos">269</span><span class="nl">     </span> <span class="w">      </span><span class="k">RETURN</span>
+<span class="linenos">270</span>
+<span class="linenos">271</span><span class="nl">     </span> <span class="w">  </span><span class="k">ELSE IF</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="p">(</span><span class="n">log_of_n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">.</span><span class="n">GT</span><span class="p">.</span><span class="w"> </span><span class="n">MAX_TABLE_SIZE</span><span class="p">)</span><span class="w"> </span><span class="k">THEN</span>
+<span class="linenos">272</span>
+<span class="linenos">273</span><span class="nl">     </span> <span class="w">      </span><span class="k">PRINT</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39; ERROR ---  N is larger than the sine table can&#39;</span>
+<span class="linenos">274</span><span class="nl">     </span> <span class="w">      </span><span class="k">PRINT</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39; handle.  Increase the parameter MAX_TABLE_SIZE&#39;</span>
+<span class="linenos">275</span><span class="nl">     </span> <span class="w">      </span><span class="k">PRINT</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39; in this subroutine and recompile.&#39;</span>
+<span class="linenos">276</span>
+<span class="linenos">277</span><span class="nl">     </span> <span class="w">      </span><span class="k">RETURN</span>
+<span class="linenos">278</span>
+<span class="linenos">279</span><span class="nl">     </span> <span class="w">  </span><span class="k">ELSE IF</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="w"> </span><span class="o">**</span><span class="w"> </span><span class="n">log_of_n</span><span class="p">)</span><span class="w"> </span><span class="p">.</span><span class="n">NE</span><span class="p">.</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="k">THEN</span>
+<span class="linenos">280</span>
+<span class="linenos">281</span><span class="nl">     </span> <span class="w">      </span><span class="k">PRINT</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39; ERROR --- N is not a power of 2.&#39;</span>
+<span class="linenos">282</span><span class="nl">     </span> <span class="w">      </span><span class="k">RETURN</span>
+<span class="linenos">283</span>
+<span class="linenos">284</span><span class="nl">     </span> <span class="w">  </span><span class="k">END IF</span>
+<span class="linenos">285</span>
+<span class="linenos">286</span>
+<span class="linenos">287</span><span class="c">C</span>
+<span class="linenos">288</span><span class="c">C  If called_already is false, generate the sine and cosine table for</span>
+<span class="linenos">289</span><span class="c">C  the first time, then set called_already to .TRUE.  Now later calls to </span>
+<span class="linenos">290</span><span class="c">C  the subroutine don&#39;t recreate the sine and cosine table.</span>
+<span class="linenos">291</span><span class="c">C</span>
+<span class="linenos">292</span>
+<span class="linenos">293</span><span class="nl">     </span> <span class="w">  </span><span class="k">IF</span><span class="w"> </span><span class="p">(.</span><span class="nb">NOT</span><span class="p">.</span><span class="w"> </span><span class="n">called_already</span><span class="p">)</span><span class="w"> </span><span class="k">THEN</span>
+<span class="linenos">294</span>
+<span class="linenos">295</span><span class="nl">     </span> <span class="w">      </span><span class="k">DO </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">MAX_TABLE_SIZE</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span>
+<span class="linenos">296</span><span class="nl">     </span> <span class="w">             </span>
+<span class="linenos">297</span><span class="nl">     </span> <span class="w">          </span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">PI</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">**</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="p">)</span>
+<span class="linenos">298</span><span class="nl">     </span> <span class="w">          </span><span class="n">starting_multiplier</span><span class="p">(</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">CEXP</span><span class="p">(</span><span class="w"> </span><span class="nb">CMPLX</span><span class="p">(</span><span class="mf">0.0</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">angle</span><span class="p">)</span><span class="w"> </span><span class="p">)</span>
+<span class="linenos">299</span>
+<span class="linenos">300</span><span class="nl">     </span> <span class="w">      </span><span class="k">END DO</span>
+<span class="linenos">301</span>
+<span class="linenos">302</span><span class="nl">     </span> <span class="w">      </span><span class="n">called_already</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">TRUE</span><span class="p">.</span>
+<span class="linenos">303</span>
+<span class="linenos">304</span><span class="nl">     </span> <span class="w">  </span><span class="k">END IF</span>
+<span class="linenos">305</span>
+<span class="linenos">306</span>
+<span class="linenos">307</span>
+<span class="linenos">308</span><span class="c">C</span>
+<span class="linenos">309</span><span class="c">C       Compute the FFT according to its signal flow graph with </span>
+<span class="linenos">310</span><span class="c">C       computations arranged into butterflies, groups of butterflies</span>
+<span class="linenos">311</span><span class="c">C       with the same multiplier, and columns.</span>
+<span class="linenos">312</span><span class="c">C</span>
+<span class="linenos">313</span><span class="nl">     </span> <span class="w">  </span><span class="n">butterfly_height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span>
+<span class="linenos">314</span><span class="nl">     </span> <span class="w">  </span><span class="n">number_of_groups</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span>
+<span class="linenos">315</span>
+<span class="linenos">316</span>
+<span class="linenos">317</span><span class="nl">     </span> <span class="w">  </span><span class="k">DO </span><span class="n">column</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">log_of_n</span>
+<span class="linenos">318</span>
+<span class="linenos">319</span><span class="nl">     </span> <span class="w">      </span><span class="n">multiplier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">starting_multiplier</span><span class="p">(</span><span class="w"> </span><span class="n">column</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">)</span>
+<span class="linenos">320</span>
+<span class="linenos">321</span><span class="c">C</span>
+<span class="linenos">322</span><span class="c">C       Modify starting multiplier W^p when computing the inverse transform.</span>
+<span class="linenos">323</span><span class="c">C</span>
+<span class="linenos">324</span><span class="nl">     </span> <span class="w">      </span><span class="k">IF</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">D</span><span class="w"> </span><span class="p">.</span><span class="n">EQ</span><span class="p">.</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="k">THEN</span>
+<span class="linenos">325</span>
+<span class="linenos">326</span><span class="nl">     </span> <span class="w">          </span><span class="n">multiplier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">CONJG</span><span class="p">(</span><span class="w"> </span><span class="n">multiplier</span><span class="w"> </span><span class="p">)</span>
+<span class="linenos">327</span>
+<span class="linenos">328</span><span class="nl">     </span> <span class="w">      </span><span class="k">END IF</span>
+<span class="linenos">329</span>
+<span class="linenos">330</span><span class="nl">     </span> <span class="w">      </span><span class="n">increment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">multiplier</span>
+<span class="linenos">331</span>
+<span class="linenos">332</span>
+<span class="linenos">333</span><span class="c">C</span>
+<span class="linenos">334</span><span class="c">C       Compute the first group.</span>
+<span class="linenos">335</span><span class="c">C</span>
+<span class="linenos">336</span><span class="nl">     </span> <span class="w">      </span><span class="k">DO </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">butterfly_height</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span>
+<span class="linenos">337</span>
+<span class="linenos">338</span><span class="nl">     </span> <span class="w">          </span><span class="n">offset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">butterfly_height</span>
+<span class="linenos">339</span>
+<span class="linenos">340</span><span class="nl">     </span> <span class="w">          </span><span class="n">temp</span><span class="w">        </span><span class="o">=</span><span class="w">  </span><span class="n">X</span><span class="p">(</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">X</span><span class="p">(</span><span class="w"> </span><span class="n">offset</span><span class="w"> </span><span class="p">)</span><span class="w"> </span>
+<span class="linenos">341</span><span class="nl">     </span> <span class="w">          </span><span class="n">X</span><span class="p">(</span><span class="w"> </span><span class="n">offset</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="n">X</span><span class="p">(</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">X</span><span class="p">(</span><span class="w"> </span><span class="n">offset</span><span class="w"> </span><span class="p">)</span>
+<span class="linenos">342</span><span class="nl">     </span> <span class="w">          </span><span class="n">X</span><span class="p">(</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="p">)</span><span class="w">      </span><span class="o">=</span><span class="w">  </span><span class="n">temp</span>
+<span class="linenos">343</span>
+<span class="linenos">344</span><span class="nl">     </span> <span class="w">      </span><span class="k">END DO</span><span class="w">  </span><span class="c">! i</span>
+<span class="linenos">345</span>
+<span class="linenos">346</span>
+<span class="linenos">347</span><span class="c">C</span>
+<span class="linenos">348</span><span class="c">C       Now do the remaining groups.</span>
+<span class="linenos">349</span><span class="c">C</span>
+<span class="linenos">350</span><span class="nl">     </span> <span class="w">      </span><span class="k">DO </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">number_of_groups</span>
+<span class="linenos">351</span>
+<span class="linenos">352</span><span class="nl">     </span> <span class="w">          </span><span class="n">start_of_group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">REVERSE_BITS</span><span class="p">(</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">log_of_n</span><span class="w"> </span><span class="p">)</span>
+<span class="linenos">353</span><span class="nl">     </span> <span class="w">          </span><span class="n">end_of_group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">start_of_group</span><span class="w"> </span><span class="o">+</span>
+<span class="linenos">354</span><span class="nl">     </span><span class="gs">$</span><span class="w">                         </span><span class="n">butterfly_height</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span>
+<span class="linenos">355</span>
+<span class="linenos">356</span>
+<span class="linenos">357</span><span class="c">C       Compute all butterflies in a group.</span>
+<span class="linenos">358</span>
+<span class="linenos">359</span><span class="nl">     </span> <span class="w">          </span><span class="k">DO </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">start_of_group</span><span class="p">,</span><span class="w"> </span><span class="n">end_of_group</span>
+<span class="linenos">360</span>
+<span class="linenos">361</span><span class="nl">     </span> <span class="w">              </span><span class="n">offset</span><span class="w">   </span><span class="o">=</span><span class="w">  </span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">butterfly_height</span>
+<span class="linenos">362</span><span class="nl">     </span> <span class="w">              </span><span class="nb">product</span><span class="w">  </span><span class="o">=</span><span class="w">  </span><span class="n">x</span><span class="p">(</span><span class="w"> </span><span class="n">offset</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">multiplier</span>
+<span class="linenos">363</span>
+<span class="linenos">364</span><span class="nl">     </span> <span class="w">              </span><span class="n">temp</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="n">X</span><span class="p">(</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">product</span>
+<span class="linenos">365</span><span class="nl">     </span> <span class="w">              </span><span class="n">X</span><span class="p">(</span><span class="w"> </span><span class="n">offset</span><span class="w"> </span><span class="p">)</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">X</span><span class="p">(</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nb">product</span>
+<span class="linenos">366</span><span class="nl">     </span> <span class="w">              </span><span class="n">X</span><span class="p">(</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="p">)</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="n">temp</span>
+<span class="linenos">367</span>
+<span class="linenos">368</span><span class="nl">     </span> <span class="w">          </span><span class="k">END DO</span><span class="w">  </span><span class="c">! i</span>
+<span class="linenos">369</span>
+<span class="linenos">370</span><span class="nl">     </span> <span class="w">          </span><span class="n">multiplier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">multiplier</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">increment</span>
+<span class="linenos">371</span>
+<span class="linenos">372</span><span class="nl">     </span> <span class="w">      </span><span class="k">END DO</span><span class="w"> </span><span class="c">! group</span>
+<span class="linenos">373</span>
+<span class="linenos">374</span><span class="nl">     </span> <span class="w">      </span><span class="n">butterfly_height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">butterfly_height</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span>
+<span class="linenos">375</span><span class="nl">     </span> <span class="w">      </span><span class="n">number_of_groups</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">number_of_groups</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span>
+<span class="linenos">376</span>
+<span class="linenos">377</span><span class="nl">     </span> <span class="w">  </span><span class="k">END DO</span><span class="w"> </span><span class="c">! column</span>
+<span class="linenos">378</span>
+<span class="linenos">379</span>
+<span class="linenos">380</span><span class="c">C</span>
+<span class="linenos">381</span><span class="c">C       Normalize the results and permute them into order, two at a time.</span>
+<span class="linenos">382</span><span class="c">C</span>
+<span class="linenos">383</span><span class="nl">     </span> <span class="w">  </span><span class="n">normalizer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nb">SQRT</span><span class="p">(</span><span class="w"> </span><span class="nb">FLOAT</span><span class="p">(</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">)</span>
+<span class="linenos">384</span>
+<span class="linenos">385</span>
+<span class="linenos">386</span><span class="nl">     </span> <span class="w">  </span><span class="k">DO </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span>
+<span class="linenos">387</span>
+<span class="linenos">388</span><span class="nl">     </span> <span class="w">      </span><span class="n">rev_i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">REVERSE_BITS</span><span class="p">(</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">log_of_n</span><span class="w"> </span><span class="p">)</span>
+<span class="linenos">389</span>
+<span class="linenos">390</span><span class="nl">     </span> <span class="w">      </span><span class="k">IF</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">rev_i</span><span class="w"> </span><span class="p">.</span><span class="n">GT</span><span class="p">.</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="k">THEN</span><span class="w">   </span><span class="c">! exchange not yet done.</span>
+<span class="linenos">391</span>
+<span class="linenos">392</span><span class="nl">     </span> <span class="w">          </span><span class="n">temp</span><span class="w">       </span><span class="o">=</span><span class="w">  </span><span class="n">X</span><span class="p">(</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="p">)</span><span class="w"> </span>
+<span class="linenos">393</span><span class="nl">     </span> <span class="w">          </span><span class="n">X</span><span class="p">(</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="p">)</span><span class="w">     </span><span class="o">=</span><span class="w">  </span><span class="n">X</span><span class="p">(</span><span class="w"> </span><span class="n">rev_i</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">normalizer</span>
+<span class="linenos">394</span><span class="nl">     </span> <span class="w">          </span><span class="n">X</span><span class="p">(</span><span class="w"> </span><span class="n">rev_i</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="n">temp</span><span class="w">       </span><span class="o">*</span><span class="w"> </span><span class="n">normalizer</span>
+<span class="linenos">395</span>
+<span class="linenos">396</span><span class="nl">     </span> <span class="w">     </span><span class="k">ELSE IF</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">rev_i</span><span class="w"> </span><span class="p">.</span><span class="n">EQ</span><span class="p">.</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="k">THEN</span><span class="w">  </span><span class="c">! exchange with itself.</span>
+<span class="linenos">397</span>
+<span class="linenos">398</span><span class="nl">     </span> <span class="w">          </span><span class="n">X</span><span class="p">(</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">X</span><span class="p">(</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">normalizer</span>
+<span class="linenos">399</span>
+<span class="linenos">400</span><span class="nl">     </span> <span class="w">     </span><span class="k">END IF</span>
+<span class="linenos">401</span><span class="nl">     </span> <span class="w">  </span>
+<span class="linenos">402</span><span class="nl">     </span> <span class="w">  </span><span class="k">END DO</span><span class="w"> </span><span class="c">! i</span>
+<span class="linenos">403</span>
+<span class="linenos">404</span>
+<span class="linenos">405</span><span class="nl">     </span> <span class="w">  </span><span class="k">RETURN</span>
+<span class="linenos">406</span><span class="nl">     </span> <span class="w">  </span><span class="k">END</span><span class="w">   </span><span class="c">!  subroutine FFT</span>
+<span class="linenos">407</span>
+<span class="linenos">408</span>
+<span class="linenos">409</span>
+<span class="linenos">410</span><span class="c">C  ****************************************************************************</span>
+<span class="linenos">411</span><span class="c">C  *                                                                          *</span>
+<span class="linenos">412</span><span class="c">C  *                            REVERSE_BITS                                  *</span>
+<span class="linenos">413</span><span class="c">C  *                                                                          *</span>
+<span class="linenos">414</span><span class="c">C  ****************************************************************************</span>
+<span class="linenos">415</span><span class="c">C</span>
+<span class="linenos">416</span><span class="c">C  DESCRIPTION</span>
+<span class="linenos">417</span><span class="c">C</span>
+<span class="linenos">418</span><span class="c">C      This function reverses the order of the bits in a number.</span>
+<span class="linenos">419</span><span class="c">C</span>
+<span class="linenos">420</span><span class="c">C  </span>
+<span class="linenos">421</span><span class="c">C  INPUT</span>
+<span class="linenos">422</span><span class="c">C      </span>
+<span class="linenos">423</span><span class="c">C       n              The number whose bits are to be reversed.</span>
+<span class="linenos">424</span><span class="c">C</span>
+<span class="linenos">425</span><span class="c">C       num_bits       The number of bits in N, counting leading zeros.</span>
+<span class="linenos">426</span><span class="c">C</span>
+<span class="linenos">427</span><span class="c">C</span>
+<span class="linenos">428</span><span class="c">C  OUTPUT</span>
+<span class="linenos">429</span><span class="c">C  </span>
+<span class="linenos">430</span><span class="c">C       REVERSE_BITS   The number N with all its num_bits bits reversed.</span>
+<span class="linenos">431</span><span class="c">C</span>
+<span class="linenos">432</span><span class="c">C</span>
+<span class="linenos">433</span><span class="c">C  EXAMPLE</span>
+<span class="linenos">434</span><span class="c">C</span>
+<span class="linenos">435</span><span class="c">C       REVERSE_BITS( (10)  , 2 ) = (01) = 1, but</span>
+<span class="linenos">436</span><span class="c">C                         2             2</span>
+<span class="linenos">437</span><span class="c">C</span>
+<span class="linenos">438</span><span class="c">C       REVERSE_BITS( (10)  , 3 ) = REVERSE_BITS( (010)  , 3 ) = (010)  = (10)</span>
+<span class="linenos">439</span><span class="c">C                         2                            2              2       2</span>
+<span class="linenos">440</span><span class="c">C</span>
+<span class="linenos">441</span><span class="c">C       = 10</span>
+<span class="linenos">442</span><span class="c">C</span>
+<span class="linenos">443</span><span class="c">C</span>
+<span class="linenos">444</span><span class="c">C  METHOD</span>
+<span class="linenos">445</span><span class="c">C</span>
+<span class="linenos">446</span><span class="c">C       The algorithm works by a method similar to base conversion.</span>
+<span class="linenos">447</span><span class="c">C       As the low order bits are broken off, one by one, they are</span>
+<span class="linenos">448</span><span class="c">C       multiplied by 2 and accumulated to generate the bit-reversed</span>
+<span class="linenos">449</span><span class="c">C       number.</span>
+<span class="linenos">450</span><span class="c">C</span>
+<span class="linenos">451</span><span class="c">C</span>
+<span class="linenos">452</span><span class="c">C  BUGS</span>
+<span class="linenos">453</span><span class="c">C</span>
+<span class="linenos">454</span><span class="c">C      The bit-reversal routine could be made faster by using the</span>
+<span class="linenos">455</span><span class="c">C      VAX FORTRAN 77 library routines for testing, setting, clearing and</span>
+<span class="linenos">456</span><span class="c">C      shifting bits:  BTEST, IBSET, IBCLR, ISHFT.</span>
+<span class="linenos">457</span><span class="c">C</span>
+<span class="linenos">458</span><span class="c">C</span>
+<span class="linenos">459</span><span class="c">C  ****************************************************************************</span>
+<span class="linenos">460</span><span class="c">C  *                                                                          *</span>
+<span class="linenos">461</span><span class="c">C  ****************************************************************************</span>
+<span class="linenos">462</span>
+<span class="linenos">463</span><span class="nl">     </span> <span class="w">  </span><span class="kt">INTEGER </span><span class="k">FUNCTION </span><span class="n">REVERSE_BITS</span><span class="p">(</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">num_bits</span><span class="w"> </span><span class="p">)</span>
+<span class="linenos">464</span>
+<span class="linenos">465</span><span class="nl">     </span> <span class="w">  </span><span class="k">IMPLICIT NONE</span>
+<span class="linenos">466</span>
+<span class="linenos">467</span>
+<span class="linenos">468</span><span class="c">C -------------------------------------------------------------------------</span>
+<span class="linenos">469</span><span class="c">C |                          CALLING ARGUMENTS                            |</span>
+<span class="linenos">470</span><span class="c">C -------------------------------------------------------------------------</span>
+<span class="linenos">471</span>
+<span class="linenos">472</span><span class="nl">     </span> <span class="w">  </span><span class="kt">INTEGER </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">num_bits</span>
+<span class="linenos">473</span>
+<span class="linenos">474</span>
+<span class="linenos">475</span><span class="c">C -------------------------------------------------------------------------</span>
+<span class="linenos">476</span><span class="c">C |                          LOCAL VARIABLES                              |</span>
+<span class="linenos">477</span><span class="c">C -------------------------------------------------------------------------</span>
+<span class="linenos">478</span>
+<span class="linenos">479</span><span class="nl">     </span> <span class="w">  </span><span class="kt">INTEGER </span><span class="n">bit_num</span><span class="p">,</span><span class="w">      </span><span class="c">! Current bit number.</span>
+<span class="linenos">480</span><span class="nl">     </span><span class="gs">$</span><span class="w">          </span><span class="n">remainder</span><span class="p">,</span><span class="w">    </span><span class="c">! Bits remaining to be reversed.</span>
+<span class="linenos">481</span><span class="nl">     </span><span class="gs">$</span><span class="w">          </span><span class="n">reversed_n</span><span class="p">,</span><span class="w">   </span><span class="c">! Bit-reversed value of n.</span>
+<span class="linenos">482</span><span class="nl">     </span><span class="gs">$</span><span class="w">          </span><span class="n">bit</span><span class="p">,</span><span class="w">          </span><span class="c">! The current least significant bit.</span>
+<span class="linenos">483</span><span class="nl">     </span><span class="gs">$</span><span class="w">          </span><span class="nb">MOD</span><span class="p">,</span><span class="w"> </span><span class="nb">INT</span><span class="w">      </span><span class="c">! Function return types.</span>
+<span class="linenos">484</span>
+<span class="linenos">485</span>
+<span class="linenos">486</span><span class="c">C -------------------------------------------------------------------------</span>
+<span class="linenos">487</span><span class="c">C |                          SUBROUTINE CODE                              |</span>
+<span class="linenos">488</span><span class="c">C -------------------------------------------------------------------------</span>
+<span class="linenos">489</span>
+<span class="linenos">490</span><span class="nl">     </span> <span class="w">  </span><span class="n">remainder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="w">                      </span><span class="c">! Load n.</span>
+<span class="linenos">491</span><span class="nl">     </span> <span class="w">  </span><span class="n">reversed_n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w">                     </span><span class="c">! Clear buffer for bit-reversed n.</span>
+<span class="linenos">492</span>
+<span class="linenos">493</span><span class="nl">     </span> <span class="w">  </span><span class="k">DO </span><span class="n">bit_num</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">num_bits</span>
+<span class="linenos">494</span>
+<span class="linenos">495</span><span class="nl">     </span> <span class="w">      </span><span class="n">bit</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="nb">MOD</span><span class="p">(</span><span class="w"> </span><span class="n">remainder</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="p">)</span><span class="w">   </span><span class="c">! Next least significant bit.</span>
+<span class="linenos">496</span><span class="nl">     </span> <span class="w">      </span><span class="n">reversed_n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bit</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">reversed_n</span><span class="w">  </span><span class="c">! Shift left and add to buffer.</span>
+<span class="linenos">497</span><span class="nl">     </span> <span class="w">      </span><span class="n">remainder</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="nb">INT</span><span class="p">(</span><span class="w"> </span><span class="n">remainder</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="p">)</span><span class="w">  </span><span class="c">! Remaining bits.</span>
+<span class="linenos">498</span>
+<span class="linenos">499</span><span class="nl">     </span> <span class="w">  </span><span class="k">END DO</span>
+<span class="linenos">500</span>
+<span class="linenos">501</span><span class="nl">     </span> <span class="w">  </span><span class="n">REVERSE_BITS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">reversed_n</span>
+<span class="linenos">502</span>
+<span class="linenos">503</span><span class="nl">     </span> <span class="w">  </span><span class="k">RETURN</span>
+<span class="linenos">504</span><span class="nl">     </span> <span class="w">  </span><span class="k">END</span><span class="w">     </span><span class="c">!  subroutine REVERSE_BITS</span>
+</pre></div>
+
+            </article>
+        </body>
+        
+        </html>
+        

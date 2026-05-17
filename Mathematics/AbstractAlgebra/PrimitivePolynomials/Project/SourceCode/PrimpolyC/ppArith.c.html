@@ -1,0 +1,602 @@
+
+        <!DOCTYPE html>
+        <html lang="en-US">  <!-- Set language of this page to USA English. -->
+        
+        <head>
+            <!-- This page uses Unicode characters. -->
+            <meta charset="utf-8">
+        
+            <!-- Set viewport to actual device width.  Any other settings makes the web page initially appear zoomed-in on mobile devices. -->
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+            <!-- Title appears in the web browser tab for this page.  The browser also uses it to bookmark this page. -->
+            <title>Sean Erik O'Connor - Home Page and Free Mathematical Software.</title>
+        
+            <!-- Search engines will search using words in this description.  They will also display title in their search results. -->
+            <meta name="description" content="Syntax Colored Source Code Listing">
+        
+            <!-- Some content management software uses the author's name. -->
+            <meta name="author" content="Sean Erik O'Connor">
+        
+            <meta name="copyright" content="Copyright (C) 1986-2026 by Sean Erik O'Connor.  All Rights Reserved.">   
+        
+            <!-- Begin style sheet insertion -->
+            <style>
+                /* Default settings for all my main web pages. */
+                body
+                {
+                    /* A wide sans-serif font is more readable on the web. */
+                    font-family:            Verdana, Geneva, "Trebuchet MS", sans-serif ;
+        
+                    /* Set the body font size a little smaller than the user's default browser setting. */
+                    font-size:              0.8em ; 
+        
+                    /* Black text is easier to read. */
+                    color:                  black ;
+        
+                    /*  More vertical space between lines for more pleasant reading.  Use a unitless font height multiplier.  
+                        Length and percentage percentage values can give scrunched text due to poor inheritance behavior. */
+                    line-height:            1.7 ;
+                }
+        
+                <!-- Now prepare to add the syntax coloring style sheet from Pygment -->
+        pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.highlight .hll { background-color: #ffffcc }
+.highlight { background: #f8f8f8; }
+.highlight .c { color: #3D7B7B; font-style: italic } /* Comment */
+.highlight .err { border: 1px solid #F00 } /* Error */
+.highlight .k { color: #008000; font-weight: bold } /* Keyword */
+.highlight .o { color: #666 } /* Operator */
+.highlight .ch { color: #3D7B7B; font-style: italic } /* Comment.Hashbang */
+.highlight .cm { color: #3D7B7B; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #9C6500 } /* Comment.Preproc */
+.highlight .cpf { color: #3D7B7B; font-style: italic } /* Comment.PreprocFile */
+.highlight .c1 { color: #3D7B7B; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #3D7B7B; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #A00000 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .ges { font-weight: bold; font-style: italic } /* Generic.EmphStrong */
+.highlight .gr { color: #E40000 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #008400 } /* Generic.Inserted */
+.highlight .go { color: #717171 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #04D } /* Generic.Traceback */
+.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #B00040 } /* Keyword.Type */
+.highlight .m { color: #666 } /* Literal.Number */
+.highlight .s { color: #BA2121 } /* Literal.String */
+.highlight .na { color: #687822 } /* Name.Attribute */
+.highlight .nb { color: #008000 } /* Name.Builtin */
+.highlight .nc { color: #00F; font-weight: bold } /* Name.Class */
+.highlight .no { color: #800 } /* Name.Constant */
+.highlight .nd { color: #A2F } /* Name.Decorator */
+.highlight .ni { color: #717171; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #CB3F38; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #00F } /* Name.Function */
+.highlight .nl { color: #767600 } /* Name.Label */
+.highlight .nn { color: #00F; font-weight: bold } /* Name.Namespace */
+.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #19177C } /* Name.Variable */
+.highlight .ow { color: #A2F; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #BBB } /* Text.Whitespace */
+.highlight .mb { color: #666 } /* Literal.Number.Bin */
+.highlight .mf { color: #666 } /* Literal.Number.Float */
+.highlight .mh { color: #666 } /* Literal.Number.Hex */
+.highlight .mi { color: #666 } /* Literal.Number.Integer */
+.highlight .mo { color: #666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
+.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
+.highlight .se { color: #AA5D1F; font-weight: bold } /* Literal.String.Escape */
+.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.highlight .si { color: #A45A77; font-weight: bold } /* Literal.String.Interpol */
+.highlight .sx { color: #008000 } /* Literal.String.Other */
+.highlight .sr { color: #A45A77 } /* Literal.String.Regex */
+.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #00F } /* Name.Function.Magic */
+.highlight .vc { color: #19177C } /* Name.Variable.Class */
+.highlight .vg { color: #19177C } /* Name.Variable.Global */
+.highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
+.highlight .il { color: #666 } /* Literal.Number.Integer.Long */
+            </style>
+        </head>
+        
+        <body>
+            <article class="content">
+        <div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="cm">/*==============================================================================</span>
+<span class="linenos">  2</span><span class="cm">|</span>
+<span class="linenos">  3</span><span class="cm">|  File Name:</span>
+<span class="linenos">  4</span><span class="cm">|</span>
+<span class="linenos">  5</span><span class="cm">|     ppArith.c</span>
+<span class="linenos">  6</span><span class="cm">|</span>
+<span class="linenos">  7</span><span class="cm">|  Description:</span>
+<span class="linenos">  8</span><span class="cm">|</span>
+<span class="linenos">  9</span><span class="cm">|     Routines for integer arithmetic modulo p.</span>
+<span class="linenos"> 10</span><span class="cm">|</span>
+<span class="linenos"> 11</span><span class="cm">|  Functions:</span>
+<span class="linenos"> 12</span><span class="cm">|</span>
+<span class="linenos"> 13</span><span class="cm">|      mod</span>
+<span class="linenos"> 14</span><span class="cm">|      power</span>
+<span class="linenos"> 15</span><span class="cm">|      power_mod</span>
+<span class="linenos"> 16</span><span class="cm">|      is_primitive_root</span>
+<span class="linenos"> 17</span><span class="cm">|</span>
+<span class="linenos"> 18</span><span class="cm">|  LEGAL</span>
+<span class="linenos"> 19</span><span class="cm">|</span>
+<span class="linenos"> 20</span><span class="cm">|     Primpoly Version 16.4 - A Program for Computing Primitive Polynomials.</span>
+<span class="linenos"> 21</span><span class="cm">|     Copyright (C) 1999-2026 by Sean Erik O&#39;Connor.  All Rights Reserved.</span>
+<span class="linenos"> 22</span><span class="cm">|</span>
+<span class="linenos"> 23</span><span class="cm">|     This program is free software: you can redistribute it and/or modify</span>
+<span class="linenos"> 24</span><span class="cm">|     it under the terms of the GNU General Public License as published by</span>
+<span class="linenos"> 25</span><span class="cm">|     the Free Software Foundation, either version 3 of the License, or</span>
+<span class="linenos"> 26</span><span class="cm">|     (at your option) any later version.</span>
+<span class="linenos"> 27</span><span class="cm">|</span>
+<span class="linenos"> 28</span><span class="cm">|     This program is distributed in the hope that it will be useful,</span>
+<span class="linenos"> 29</span><span class="cm">|     but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="linenos"> 30</span><span class="cm">|     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="linenos"> 31</span><span class="cm">|     GNU General Public License for more details.</span>
+<span class="linenos"> 32</span><span class="cm">|</span>
+<span class="linenos"> 33</span><span class="cm">|     You should have received a copy of the GNU General Public License</span>
+<span class="linenos"> 34</span><span class="cm">|     along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+<span class="linenos"> 35</span><span class="cm">|     </span>
+<span class="linenos"> 36</span><span class="cm">|     The author&#39;s address is seanerikoconnor!AT!gmail!DOT!com</span>
+<span class="linenos"> 37</span><span class="cm">|     with !DOT! replaced by . and the !AT! replaced by @</span>
+<span class="linenos"> 38</span><span class="cm">|</span>
+<span class="linenos"> 39</span><span class="cm">==============================================================================*/</span>
+<span class="linenos"> 40</span>
+<span class="linenos"> 41</span><span class="cm">/*------------------------------------------------------------------------------</span>
+<span class="linenos"> 42</span><span class="cm">|                                Include Files                                 |</span>
+<span class="linenos"> 43</span><span class="cm">------------------------------------------------------------------------------*/</span>
+<span class="linenos"> 44</span>
+<span class="linenos"> 45</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Primpoly.h&quot;</span>
+<span class="linenos"> 46</span>
+<span class="linenos"> 47</span><span class="cm">/*==============================================================================</span>
+<span class="linenos"> 48</span><span class="cm">|                                  mod                                         |</span>
+<span class="linenos"> 49</span><span class="cm">================================================================================</span>
+<span class="linenos"> 50</span>
+<span class="linenos"> 51</span><span class="cm">DESCRIPTION</span>
+<span class="linenos"> 52</span>
+<span class="linenos"> 53</span><span class="cm">     A mod function for both positive and negative arguments.</span>
+<span class="linenos"> 54</span>
+<span class="linenos"> 55</span><span class="cm">INPUT</span>
+<span class="linenos"> 56</span>
+<span class="linenos"> 57</span><span class="cm">    n (int, -infinity &lt; n &lt; infinity)</span>
+<span class="linenos"> 58</span><span class="cm">    p (int, p &gt; 0)</span>
+<span class="linenos"> 59</span>
+<span class="linenos"> 60</span><span class="cm">RETURNS</span>
+<span class="linenos"> 61</span>
+<span class="linenos"> 62</span><span class="cm">    n mod p (0 &lt;= n mod p &lt; p)</span>
+<span class="linenos"> 63</span>
+<span class="linenos"> 64</span><span class="cm">EXAMPLE</span>
+<span class="linenos"> 65</span>
+<span class="linenos"> 66</span><span class="cm">    The C language gives -5 % 3 = - ( -(-5) mod 3 ) = -( 5 mod 3 ) = -2.</span>
+<span class="linenos"> 67</span><span class="cm">    The result is nonzero, so we add p=3 to give 1.</span>
+<span class="linenos"> 68</span>
+<span class="linenos"> 69</span><span class="cm">    C computes -3 % 3 = - ( -(-3) mod 3  ) = 0, which we leave unchanged.</span>
+<span class="linenos"> 70</span>
+<span class="linenos"> 71</span><span class="cm">METHOD</span>
+<span class="linenos"> 72</span>
+<span class="linenos"> 73</span><span class="cm">     For n &gt;= 0, the C language defines r = n mod p by the equation</span>
+<span class="linenos"> 74</span>
+<span class="linenos"> 75</span><span class="cm">         n = kp + r    0 &lt;= r &lt; p</span>
+<span class="linenos"> 76</span>
+<span class="linenos"> 77</span><span class="cm">     but when n &lt; 0, C returns the quantity</span>
+<span class="linenos"> 78</span>
+<span class="linenos"> 79</span><span class="cm">         r = - ( (-n) mod p )</span>
+<span class="linenos"> 80</span>
+<span class="linenos"> 81</span><span class="cm">     To put the result into the correct range 0 to p-1, add p to r if</span>
+<span class="linenos"> 82</span><span class="cm">     r is non-zero.</span>
+<span class="linenos"> 83</span>
+<span class="linenos"> 84</span><span class="cm">     By the way, FORTRAN&#39;s MOD function does the same thing.</span>
+<span class="linenos"> 85</span>
+<span class="linenos"> 86</span><span class="cm">BUGS</span>
+<span class="linenos"> 87</span>
+<span class="linenos"> 88</span><span class="cm">     None.</span>
+<span class="linenos"> 89</span>
+<span class="linenos"> 90</span><span class="cm">--------------------------------------------------------------------------------</span>
+<span class="linenos"> 91</span><span class="cm">|                                Function Call                                 |</span>
+<span class="linenos"> 92</span><span class="cm">------------------------------------------------------------------------------*/</span>
+<span class="linenos"> 93</span>
+<span class="linenos"> 94</span><span class="kt">int</span>
+<span class="linenos"> 95</span><span class="w">    </span><span class="nf">mod</span><span class="p">(</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="p">)</span>
+<span class="linenos"> 96</span><span class="p">{</span>
+<span class="linenos"> 97</span>
+<span class="linenos"> 98</span><span class="cm">/*------------------------------------------------------------------------------</span>
+<span class="linenos"> 99</span><span class="cm">|                               Local Variables                                |</span>
+<span class="linenos">100</span><span class="cm">------------------------------------------------------------------------------*/</span>
+<span class="linenos">101</span>
+<span class="linenos">102</span><span class="k">register</span><span class="w"> </span><span class="kt">int</span>
+<span class="linenos">103</span><span class="w">    </span><span class="n">raw_mod</span><span class="w"> </span><span class="p">;</span><span class="w">      </span><span class="cm">/*  The value n % p computed by C&#39;s mod function.  */</span>
+<span class="linenos">104</span>
+<span class="linenos">105</span><span class="cm">/*------------------------------------------------------------------------------</span>
+<span class="linenos">106</span><span class="cm">|                                Function Body                                 |</span>
+<span class="linenos">107</span><span class="cm">------------------------------------------------------------------------------*/</span>
+<span class="linenos">108</span>
+<span class="linenos">109</span><span class="n">raw_mod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">110</span>
+<span class="linenos">111</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">raw_mod</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="linenos">112</span>
+<span class="linenos">113</span><span class="w">    </span><span class="k">return</span><span class="p">(</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">114</span>
+<span class="linenos">115</span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w">             </span><span class="cm">/*  mod is not 0.  n &gt;= 0. */</span>
+<span class="linenos">116</span>
+<span class="linenos">117</span><span class="w">    </span><span class="k">return</span><span class="p">(</span><span class="w"> </span><span class="n">raw_mod</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">118</span>
+<span class="linenos">119</span><span class="k">else</span>
+<span class="linenos">120</span>
+<span class="linenos">121</span><span class="w">    </span><span class="k">return</span><span class="p">(</span><span class="w"> </span><span class="n">raw_mod</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">;</span><span class="w">  </span><span class="cm">/* mod is not 0.  n &lt; 0. */</span>
+<span class="linenos">122</span>
+<span class="linenos">123</span><span class="p">}</span><span class="w"> </span><span class="cm">/* =========================== end of function mod ======================== */</span>
+<span class="linenos">124</span>
+<span class="linenos">125</span>
+<span class="linenos">126</span>
+<span class="linenos">127</span><span class="cm">/*==============================================================================</span>
+<span class="linenos">128</span><span class="cm">|                                       power                                  |</span>
+<span class="linenos">129</span><span class="cm">================================================================================</span>
+<span class="linenos">130</span>
+<span class="linenos">131</span><span class="cm">DESCRIPTION</span>
+<span class="linenos">132</span>
+<span class="linenos">133</span><span class="cm">     Raise a positive integer to a positive power exactly.</span>
+<span class="linenos">134</span>
+<span class="linenos">135</span><span class="cm">INPUT</span>
+<span class="linenos">136</span>
+<span class="linenos">137</span><span class="cm">     x (int, x &gt; 0)   The base.</span>
+<span class="linenos">138</span><span class="cm">     y (int, y &gt; 0)   The exponent.</span>
+<span class="linenos">139</span>
+<span class="linenos">140</span><span class="cm">RETURNS</span>
+<span class="linenos">141</span>
+<span class="linenos">142</span><span class="cm">     y</span>
+<span class="linenos">143</span><span class="cm">    x</span>
+<span class="linenos">144</span>
+<span class="linenos">145</span><span class="cm">EXAMPLE CALLING SEQUENCE</span>
+<span class="linenos">146</span>
+<span class="linenos">147</span><span class="cm">     power( 2, 3 ) =&gt; 8</span>
+<span class="linenos">148</span>
+<span class="linenos">149</span><span class="cm">METHOD</span>
+<span class="linenos">150</span>
+<span class="linenos">151</span><span class="cm">     Multiply x by itself y times.</span>
+<span class="linenos">152</span>
+<span class="linenos">153</span><span class="cm">BUGS</span>
+<span class="linenos">154</span>
+<span class="linenos">155</span><span class="cm">     None.</span>
+<span class="linenos">156</span>
+<span class="linenos">157</span><span class="cm">--------------------------------------------------------------------------------</span>
+<span class="linenos">158</span><span class="cm">|                                Function Call                                 |</span>
+<span class="linenos">159</span><span class="cm">------------------------------------------------------------------------------*/</span>
+<span class="linenos">160</span>
+<span class="linenos">161</span><span class="n">bigint</span><span class="w"> </span><span class="nf">power</span><span class="p">(</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="p">)</span>
+<span class="linenos">162</span><span class="p">{</span>
+<span class="linenos">163</span>
+<span class="linenos">164</span><span class="cm">/*------------------------------------------------------------------------------</span>
+<span class="linenos">165</span><span class="cm">|                               Local Variables                                |</span>
+<span class="linenos">166</span><span class="cm">------------------------------------------------------------------------------*/</span>
+<span class="linenos">167</span>
+<span class="linenos">168</span><span class="n">bigint</span>
+<span class="linenos">169</span><span class="w">    </span><span class="n">pow</span><span class="w"> </span><span class="p">;</span><span class="w">   </span><span class="cm">/*  x to the y.  */</span>
+<span class="linenos">170</span>
+<span class="linenos">171</span><span class="cm">/*------------------------------------------------------------------------------</span>
+<span class="linenos">172</span><span class="cm">|                                Function Body                                 |</span>
+<span class="linenos">173</span><span class="cm">------------------------------------------------------------------------------*/</span>
+<span class="linenos">174</span>
+<span class="linenos">175</span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">pow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">;</span><span class="w">  </span><span class="n">y</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">;</span><span class="w">  </span><span class="o">--</span><span class="n">y</span><span class="p">)</span>
+<span class="linenos">176</span>
+<span class="linenos">177</span><span class="w">    </span><span class="n">pow</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">178</span>
+<span class="linenos">179</span><span class="k">return</span><span class="p">(</span><span class="w"> </span><span class="n">pow</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">180</span>
+<span class="linenos">181</span><span class="p">}</span><span class="w"> </span><span class="cm">/* ========================= end of function power ======================== */</span>
+<span class="linenos">182</span>
+<span class="linenos">183</span>
+<span class="linenos">184</span>
+<span class="linenos">185</span><span class="cm">/*==============================================================================</span>
+<span class="linenos">186</span><span class="cm">|                                power_mod                                     |</span>
+<span class="linenos">187</span><span class="cm">================================================================================</span>
+<span class="linenos">188</span>
+<span class="linenos">189</span><span class="cm">DESCRIPTION</span>
+<span class="linenos">190</span>
+<span class="linenos">191</span><span class="cm">     Raise a positive integer to a positive power modulo an integer.</span>
+<span class="linenos">192</span>
+<span class="linenos">193</span><span class="cm">INPUT</span>
+<span class="linenos">194</span>
+<span class="linenos">195</span><span class="cm">     a (int, a &gt;= 0)   The base.</span>
+<span class="linenos">196</span><span class="cm">     n (int, n &gt;= 0)   The exponent.</span>
+<span class="linenos">197</span><span class="cm">     p (int, p &gt;= 2)   The modulus.</span>
+<span class="linenos">198</span>
+<span class="linenos">199</span><span class="cm">RETURNS</span>
+<span class="linenos">200</span>
+<span class="linenos">201</span><span class="cm">      n</span>
+<span class="linenos">202</span><span class="cm">     a  (modulo p)</span>
+<span class="linenos">203</span><span class="cm">    -1 if a &lt; 0, n &lt; 0, or p &lt;= 1, or 0^0 case.</span>
+<span class="linenos">204</span>
+<span class="linenos">205</span><span class="cm">EXAMPLE CALLING SEQUENCE</span>
+<span class="linenos">206</span>
+<span class="linenos">207</span><span class="cm">     power_mod( 2, 3, 7 ) =&gt; 1</span>
+<span class="linenos">208</span>
+<span class="linenos">209</span><span class="cm">METHOD</span>
+<span class="linenos">210</span>
+<span class="linenos">211</span><span class="cm">     Multiplication by repeated squaring.</span>
+<span class="linenos">212</span>
+<span class="linenos">213</span><span class="cm">BUGS</span>
+<span class="linenos">214</span>
+<span class="linenos">215</span><span class="cm">     None.</span>
+<span class="linenos">216</span>
+<span class="linenos">217</span><span class="cm">--------------------------------------------------------------------------------</span>
+<span class="linenos">218</span><span class="cm">|                                Function Call                                 |</span>
+<span class="linenos">219</span><span class="cm">------------------------------------------------------------------------------*/</span>
+<span class="linenos">220</span>
+<span class="linenos">221</span><span class="kt">int</span><span class="w"> </span><span class="nf">power_mod</span><span class="p">(</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="p">)</span>
+<span class="linenos">222</span><span class="p">{</span>
+<span class="linenos">223</span>
+<span class="linenos">224</span><span class="cm">/*------------------------------------------------------------------------------</span>
+<span class="linenos">225</span><span class="cm">|                               Local Variables                                |</span>
+<span class="linenos">226</span><span class="cm">------------------------------------------------------------------------------*/</span>
+<span class="linenos">227</span>
+<span class="linenos">228</span><span class="cm">/*</span>
+<span class="linenos">229</span><span class="cm">    mask = 1000 ... 000.  That is, all bits of mask are zero except for the</span>
+<span class="linenos">230</span><span class="cm">    most significant bit of the computer word holding its value.  Signed or</span>
+<span class="linenos">231</span><span class="cm">	unsigned type for bigint shouldn&#39;t matter here, since we just mask and</span>
+<span class="linenos">232</span><span class="cm">	compare bits.</span>
+<span class="linenos">233</span><span class="cm">*/</span>
+<span class="linenos">234</span>
+<span class="linenos">235</span><span class="kt">int</span>
+<span class="linenos">236</span><span class="w">    </span><span class="n">mask</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="mi">8</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)),</span>
+<span class="linenos">237</span><span class="w">    </span><span class="n">bit_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">;</span><span class="w">  </span><span class="cm">/* Number of bits in exponent to the right of the leading bit. */</span>
+<span class="linenos">238</span>
+<span class="linenos">239</span><span class="cm">/*  Use extra precision since we need to square an integer within the</span>
+<span class="linenos">240</span><span class="cm">    calculations below. */</span>
+<span class="linenos">241</span><span class="kt">long</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">product</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">242</span>
+<span class="linenos">243</span>
+<span class="linenos">244</span><span class="cm">/*------------------------------------------------------------------------------</span>
+<span class="linenos">245</span><span class="cm">|                                Function Body                                 |</span>
+<span class="linenos">246</span><span class="cm">------------------------------------------------------------------------------*/</span>
+<span class="linenos">247</span>
+<span class="linenos">248</span><span class="cm">/*</span>
+<span class="linenos">249</span><span class="cm">    Out of range conditions.</span>
+<span class="linenos">250</span><span class="cm">*/</span>
+<span class="linenos">251</span>
+<span class="linenos">252</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">))</span>
+<span class="linenos">253</span>
+<span class="linenos">254</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">-1</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">255</span>
+<span class="linenos">256</span><span class="cm">/*  Quick return for 0 ^ n, a^0 and a^1.  */</span>
+<span class="linenos">257</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="linenos">258</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">259</span>
+<span class="linenos">260</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="linenos">261</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">262</span>
+<span class="linenos">263</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">264</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">265</span>
+<span class="linenos">266</span><span class="cm">/*</span>
+<span class="linenos">267</span><span class="cm">    Advance the leading bit of the exponent up to the word&#39;s left</span>
+<span class="linenos">268</span><span class="cm">    hand boundary.  Count how many bits were to the right of the</span>
+<span class="linenos">269</span><span class="cm">    leading bit.</span>
+<span class="linenos">270</span><span class="cm">*/</span>
+<span class="linenos">271</span>
+<span class="linenos">272</span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">mask</span><span class="p">))</span>
+<span class="linenos">273</span><span class="p">{</span>
+<span class="linenos">274</span><span class="w">    </span><span class="n">n</span><span class="w"> </span><span class="o">&lt;&lt;=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">275</span><span class="w">    </span><span class="o">++</span><span class="n">bit_count</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">276</span><span class="p">}</span>
+<span class="linenos">277</span>
+<span class="linenos">278</span><span class="n">bit_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mi">8</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="p">))</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">bit_count</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">279</span>
+<span class="linenos">280</span>
+<span class="linenos">281</span><span class="cm">/*</span>
+<span class="linenos">282</span><span class="cm">    Exponentiation by repeated squaring.  Discard the leading 1 bit.</span>
+<span class="linenos">283</span><span class="cm">    Thereafter, square for every 0 bit;  square and multiply by x for</span>
+<span class="linenos">284</span><span class="cm">    every 1 bit.</span>
+<span class="linenos">285</span><span class="cm">*/</span>
+<span class="linenos">286</span>
+<span class="linenos">287</span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="o">--</span><span class="n">bit_count</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">)</span>
+<span class="linenos">288</span><span class="p">{</span>
+<span class="linenos">289</span><span class="w">    </span><span class="cm">/*  Expose the next bit. */</span>
+<span class="linenos">290</span><span class="w">    </span><span class="n">n</span><span class="w"> </span><span class="o">&lt;&lt;=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">291</span>
+<span class="linenos">292</span><span class="w">	</span><span class="cm">/* Square modulo p. */</span>
+<span class="linenos">293</span><span class="w">	</span><span class="n">product</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">product</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">product</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">294</span>
+<span class="linenos">295</span><span class="w">	</span><span class="cm">/*  Leading bit is 1: multiply by a modulo p. */</span>
+<span class="linenos">296</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">mask</span><span class="p">)</span>
+<span class="linenos">297</span><span class="w">        </span><span class="n">product</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">product</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">298</span><span class="p">}</span>
+<span class="linenos">299</span>
+<span class="linenos">300</span><span class="cm">/*  We don&#39;t lose precision because product is always reduced modulo p. */</span>
+<span class="linenos">301</span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="n">product</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">302</span>
+<span class="linenos">303</span><span class="p">}</span><span class="w"> </span><span class="cm">/* ========================= end of function power_mod ==================== */</span>
+<span class="linenos">304</span>
+<span class="linenos">305</span>
+<span class="linenos">306</span>
+<span class="linenos">307</span><span class="cm">/*==============================================================================</span>
+<span class="linenos">308</span><span class="cm">|                             is_primitive_root                                |</span>
+<span class="linenos">309</span><span class="cm">================================================================================</span>
+<span class="linenos">310</span>
+<span class="linenos">311</span><span class="cm">DESCRIPTION</span>
+<span class="linenos">312</span>
+<span class="linenos">313</span><span class="cm">     Test whether the number a is a primitive root of the prime p.</span>
+<span class="linenos">314</span>
+<span class="linenos">315</span><span class="cm">INPUT</span>
+<span class="linenos">316</span>
+<span class="linenos">317</span><span class="cm">     a      (int, a &gt;= 1)     The number to be tested.</span>
+<span class="linenos">318</span><span class="cm">     p      (int, p &gt;= 2)     A prime number.</span>
+<span class="linenos">319</span>
+<span class="linenos">320</span><span class="cm">RETURNS</span>
+<span class="linenos">321</span>
+<span class="linenos">322</span><span class="cm">     YES    If a is a primitive root of p.</span>
+<span class="linenos">323</span><span class="cm">     NO     If a isn&#39;t a primitive root of p or if inputs are out of range.</span>
+<span class="linenos">324</span>
+<span class="linenos">325</span><span class="cm">EXAMPLE</span>
+<span class="linenos">326</span><span class="cm">                                                     1      2      3</span>
+<span class="linenos">327</span><span class="cm">     3 is a primitive root of the prime p = 7 since 3 = 3, 3 = 2, 3 = 6,</span>
+<span class="linenos">328</span><span class="cm">      4      5                                       p-1    6</span>
+<span class="linenos">329</span><span class="cm">     3 = 4, 3 = 5 (mod 7); all not equal to 1 until 3    = 3 = 1 (mod 7).</span>
+<span class="linenos">330</span>
+<span class="linenos">331</span><span class="cm">     So 3 is a primitive root of 7 because it has maximal period.  a = 2</span>
+<span class="linenos">332</span><span class="cm">                                                      3</span>
+<span class="linenos">333</span><span class="cm">	 isn&#39;t a primitive root of p = 7 because already 2 = 1 (mod 7).</span>
+<span class="linenos">334</span>
+<span class="linenos">335</span><span class="cm">METHOD</span>
+<span class="linenos">336</span>
+<span class="linenos">337</span><span class="cm">    From number theory, a is a primitive root of the prime p iff</span>
+<span class="linenos">338</span><span class="cm">     (p-1)/q</span>
+<span class="linenos">339</span><span class="cm">    a        != 1 (mod p) for all prime divisors q of (p-1).</span>
+<span class="linenos">340</span><span class="cm">                            (p-1)</span>
+<span class="linenos">341</span><span class="cm">    Don&#39;t need to check if a     = 1 (mod p):  Fermat&#39;s little</span>
+<span class="linenos">342</span><span class="cm">    theorem guarantees it.</span>
+<span class="linenos">343</span>
+<span class="linenos">344</span><span class="cm">BUGS</span>
+<span class="linenos">345</span>
+<span class="linenos">346</span><span class="cm">    We don&#39;t check if p is not a prime.</span>
+<span class="linenos">347</span>
+<span class="linenos">348</span><span class="cm">--------------------------------------------------------------------------------</span>
+<span class="linenos">349</span><span class="cm">|                                Function Call                                 |</span>
+<span class="linenos">350</span><span class="cm">------------------------------------------------------------------------------*/</span>
+<span class="linenos">351</span>
+<span class="linenos">352</span><span class="kt">int</span><span class="w"> </span><span class="nf">is_primitive_root</span><span class="p">(</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="p">)</span>
+<span class="linenos">353</span><span class="p">{</span>
+<span class="linenos">354</span>
+<span class="linenos">355</span><span class="cm">/*------------------------------------------------------------------------------</span>
+<span class="linenos">356</span><span class="cm">|                               Local Variables                                |</span>
+<span class="linenos">357</span><span class="cm">------------------------------------------------------------------------------*/</span>
+<span class="linenos">358</span>
+<span class="linenos">359</span><span class="n">bigint</span>
+<span class="linenos">360</span><span class="w">    </span><span class="n">primes</span><span class="p">[</span><span class="w"> </span><span class="n">MAXNUMPRIMEFACTORS</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="cm">/* The distinct prime factors of p-1. */</span>
+<span class="linenos">361</span>
+<span class="linenos">362</span><span class="kt">int</span>
+<span class="linenos">363</span><span class="w">    </span><span class="n">count</span><span class="p">[</span><span class="w"> </span><span class="n">MAXNUMPRIMEFACTORS</span><span class="w"> </span><span class="p">],</span><span class="w">   </span><span class="cm">/* ... and their multiplicities.      */</span>
+<span class="linenos">364</span><span class="w">    </span><span class="n">t</span><span class="p">,</span><span class="w">                             </span><span class="cm">/*  Primes are indexed from 0 to t.   */</span>
+<span class="linenos">365</span><span class="w">	</span><span class="n">i</span><span class="w"> </span><span class="p">;</span><span class="w">                            </span><span class="cm">/*  Loop index.                       */</span>
+<span class="linenos">366</span>
+<span class="linenos">367</span><span class="cm">/*------------------------------------------------------------------------------</span>
+<span class="linenos">368</span><span class="cm">|                                Function Body                                 |</span>
+<span class="linenos">369</span><span class="cm">------------------------------------------------------------------------------*/</span>
+<span class="linenos">370</span>
+<span class="linenos">371</span><span class="cm">/*  Error for out of range inputs, including p</span>
+<span class="linenos">372</span><span class="cm">    being an even number greater than 2.</span>
+<span class="linenos">373</span><span class="cm">*/</span>
+<span class="linenos">374</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">p</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">(</span><span class="n">p</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">p</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)))</span>
+<span class="linenos">375</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">NO</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">376</span>
+<span class="linenos">377</span><span class="cm">/*  Special cases:</span>
+<span class="linenos">378</span><span class="cm">    1 is the only primitive root of 2;  i.e. 1 generates the unit elements</span>
+<span class="linenos">379</span><span class="cm">	of GF( 2 );  2 is the only primitive root of 3, and 2 and 3 are the only</span>
+<span class="linenos">380</span><span class="cm">	primitive roots of 5, etc.  See http://mathworld.wolfram.com/PrimitiveRoot.html</span>
+<span class="linenos">381</span><span class="cm">*/</span>
+<span class="linenos">382</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="p">(</span><span class="n">p</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2</span><span class="w">  </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">||</span>
+<span class="linenos">383</span><span class="w">     </span><span class="p">(</span><span class="n">p</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">3</span><span class="w">  </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">||</span>
+<span class="linenos">384</span><span class="w">     </span><span class="p">(</span><span class="n">p</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">5</span><span class="w">  </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">3</span><span class="p">))</span><span class="w"> </span><span class="o">||</span>
+<span class="linenos">385</span><span class="w">     </span><span class="p">(</span><span class="n">p</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">7</span><span class="w">  </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">5</span><span class="p">))</span><span class="w"> </span><span class="o">||</span>
+<span class="linenos">386</span><span class="w">     </span><span class="p">(</span><span class="n">p</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">11</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">6</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">7</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">==</span><span class="w">  </span><span class="mi">8</span><span class="p">))</span><span class="w"> </span><span class="o">||</span>
+<span class="linenos">387</span><span class="w">     </span><span class="p">(</span><span class="n">p</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">13</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">6</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">7</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">11</span><span class="p">))</span><span class="w"> </span><span class="p">)</span>
+<span class="linenos">388</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">YES</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">389</span>
+<span class="linenos">390</span>
+<span class="linenos">391</span><span class="cm">/*  Reduce a down modulo p. */</span>
+<span class="linenos">392</span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">393</span>
+<span class="linenos">394</span>
+<span class="linenos">395</span><span class="cm">/*  a = 0 (mod p);  Zero can&#39;t be a primitive root of p. */</span>
+<span class="linenos">396</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="linenos">397</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">NO</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">398</span>
+<span class="linenos">399</span><span class="cm">/*  Factor p-1 into primes. */</span>
+<span class="linenos">400</span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">factor</span><span class="p">(</span><span class="w"> </span><span class="p">(</span><span class="n">bigint</span><span class="p">)(</span><span class="n">p</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">primes</span><span class="p">,</span><span class="w"> </span><span class="n">count</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">401</span>
+<span class="linenos">402</span>
+<span class="linenos">403</span><span class="cm">/*  Check if a^(p-1)/q &lt;&gt; 1 (mod p) for all primes q | (p-1).</span>
+<span class="linenos">404</span><span class="cm">    If so, we have a primitive root of p, otherwise, we exit early.</span>
+<span class="linenos">405</span><span class="cm"> */</span>
+<span class="linenos">406</span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">;</span><span class="w">  </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="p">;</span><span class="w">  </span><span class="o">++</span><span class="n">i</span><span class="p">)</span>
+<span class="linenos">407</span><span class="p">{</span>
+<span class="linenos">408</span><span class="w">	</span><span class="cm">/*  The prime factors can be safely cast from bigint to int</span>
+<span class="linenos">409</span><span class="cm">	    because p-1 needs only integer precision.  */</span>
+<span class="linenos">410</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">power_mod</span><span class="p">(</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">p</span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">primes</span><span class="p">[</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="p">],</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">411</span><span class="w">		</span><span class="k">return</span><span class="w"> </span><span class="n">NO</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">412</span><span class="p">}</span>
+<span class="linenos">413</span>
+<span class="linenos">414</span><span class="k">return</span><span class="w"> </span><span class="n">YES</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">415</span>
+<span class="linenos">416</span><span class="p">}</span><span class="w"> </span><span class="cm">/* =============== end of function is_primitive_root ===================== */</span>
+<span class="linenos">417</span>
+<span class="linenos">418</span>
+<span class="linenos">419</span><span class="cm">/* Divide modulo p.</span>
+<span class="linenos">420</span>
+<span class="linenos">421</span><span class="cm">Do extended Euclid&#39;s algorithm on u and v to find u1, u2, and u3 such that</span>
+<span class="linenos">422</span>
+<span class="linenos">423</span><span class="cm">    u u1 + v u2 = u3 = gcd( u, v ).</span>
+<span class="linenos">424</span>
+<span class="linenos">425</span><span class="cm">Now let v = p = prime number, so gcd = u3 = 1.  Then we get</span>
+<span class="linenos">426</span>
+<span class="linenos">427</span><span class="cm">  u u1 + p ? = 1</span>
+<span class="linenos">428</span>
+<span class="linenos">429</span><span class="cm">or u u1 = 0 (mod p) which makes u (mod p) the unique multiplicative</span>
+<span class="linenos">430</span><span class="cm">inverse of u.</span>
+<span class="linenos">431</span>
+<span class="linenos">432</span>
+<span class="linenos">433</span><span class="cm">Assume 0 &lt;= u &lt; p, p is prime &gt;= 2.</span>
+<span class="linenos">434</span>
+<span class="linenos">435</span><span class="cm">*/</span>
+<span class="linenos">436</span><span class="kt">int</span><span class="w"> </span><span class="nf">inverse_mod_p</span><span class="p">(</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="p">)</span>
+<span class="linenos">437</span><span class="p">{</span>
+<span class="linenos">438</span><span class="w">    </span><span class="cm">/*  Do Euclid&#39;s algorithm to find the quantities */</span>
+<span class="linenos">439</span><span class="w">	</span><span class="kt">int</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">440</span><span class="w">	</span><span class="kt">int</span><span class="w"> </span><span class="n">t3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">441</span><span class="w">	</span><span class="kt">int</span><span class="w"> </span><span class="n">q</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">442</span>
+<span class="linenos">443</span><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">u1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">444</span><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">u3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">445</span><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">v1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">446</span><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">v3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">447</span>
+<span class="linenos">448</span><span class="w">	</span><span class="kt">int</span><span class="w"> </span><span class="n">inv_v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">449</span>
+<span class="linenos">450</span><span class="w">	</span><span class="k">while</span><span class="p">(</span><span class="w"> </span><span class="n">v3</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="linenos">451</span><span class="w">	</span><span class="p">{</span>
+<span class="linenos">452</span><span class="w">        </span><span class="n">q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)(</span><span class="n">u3</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">v3</span><span class="p">)</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">453</span>
+<span class="linenos">454</span><span class="w">		</span><span class="n">t1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">u1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">v1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">q</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">455</span><span class="w">		</span><span class="n">t3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">u3</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">v3</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">q</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">456</span>
+<span class="linenos">457</span><span class="w">		</span><span class="n">u1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v1</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">458</span><span class="w">		</span><span class="n">u3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v3</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">459</span>
+<span class="linenos">460</span><span class="w">		</span><span class="n">v1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">461</span><span class="w">		</span><span class="n">v3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t3</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">462</span><span class="w">	</span><span class="p">}</span>
+<span class="linenos">463</span>
+<span class="linenos">464</span><span class="w">    </span><span class="n">inv_v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mod</span><span class="p">(</span><span class="w"> </span><span class="n">u1</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">465</span>
+<span class="linenos">466</span><span class="w">	</span><span class="cm">/* Self check. */</span>
+<span class="linenos">467</span><span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">mod</span><span class="p">(</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">inv_v</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">468</span><span class="w">	</span><span class="p">{</span>
+<span class="linenos">469</span><span class="w">		</span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">470</span><span class="w">	</span><span class="p">}</span>
+<span class="linenos">471</span>
+<span class="linenos">472</span><span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="n">inv_v</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">473</span><span class="p">}</span>
+</pre></div>
+
+            </article>
+        </body>
+        
+        </html>
+        

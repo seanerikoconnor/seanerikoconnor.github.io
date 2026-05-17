@@ -1,0 +1,357 @@
+
+        <!DOCTYPE html>
+        <html lang="en-US">  <!-- Set language of this page to USA English. -->
+        
+        <head>
+            <!-- This page uses Unicode characters. -->
+            <meta charset="utf-8">
+        
+            <!-- Set viewport to actual device width.  Any other settings makes the web page initially appear zoomed-in on mobile devices. -->
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+            <!-- Title appears in the web browser tab for this page.  The browser also uses it to bookmark this page. -->
+            <title>Sean Erik O'Connor - Home Page and Free Mathematical Software.</title>
+        
+            <!-- Search engines will search using words in this description.  They will also display title in their search results. -->
+            <meta name="description" content="Syntax Colored Source Code Listing">
+        
+            <!-- Some content management software uses the author's name. -->
+            <meta name="author" content="Sean Erik O'Connor">
+        
+            <meta name="copyright" content="Copyright (C) 1986-2026 by Sean Erik O'Connor.  All Rights Reserved.">   
+        
+            <!-- Begin style sheet insertion -->
+            <style>
+                /* Default settings for all my main web pages. */
+                body
+                {
+                    /* A wide sans-serif font is more readable on the web. */
+                    font-family:            Verdana, Geneva, "Trebuchet MS", sans-serif ;
+        
+                    /* Set the body font size a little smaller than the user's default browser setting. */
+                    font-size:              0.8em ; 
+        
+                    /* Black text is easier to read. */
+                    color:                  black ;
+        
+                    /*  More vertical space between lines for more pleasant reading.  Use a unitless font height multiplier.  
+                        Length and percentage percentage values can give scrunched text due to poor inheritance behavior. */
+                    line-height:            1.7 ;
+                }
+        
+                <!-- Now prepare to add the syntax coloring style sheet from Pygment -->
+        pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.highlight .hll { background-color: #ffffcc }
+.highlight { background: #f8f8f8; }
+.highlight .c { color: #3D7B7B; font-style: italic } /* Comment */
+.highlight .err { border: 1px solid #F00 } /* Error */
+.highlight .k { color: #008000; font-weight: bold } /* Keyword */
+.highlight .o { color: #666 } /* Operator */
+.highlight .ch { color: #3D7B7B; font-style: italic } /* Comment.Hashbang */
+.highlight .cm { color: #3D7B7B; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #9C6500 } /* Comment.Preproc */
+.highlight .cpf { color: #3D7B7B; font-style: italic } /* Comment.PreprocFile */
+.highlight .c1 { color: #3D7B7B; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #3D7B7B; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #A00000 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .ges { font-weight: bold; font-style: italic } /* Generic.EmphStrong */
+.highlight .gr { color: #E40000 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #008400 } /* Generic.Inserted */
+.highlight .go { color: #717171 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #04D } /* Generic.Traceback */
+.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #B00040 } /* Keyword.Type */
+.highlight .m { color: #666 } /* Literal.Number */
+.highlight .s { color: #BA2121 } /* Literal.String */
+.highlight .na { color: #687822 } /* Name.Attribute */
+.highlight .nb { color: #008000 } /* Name.Builtin */
+.highlight .nc { color: #00F; font-weight: bold } /* Name.Class */
+.highlight .no { color: #800 } /* Name.Constant */
+.highlight .nd { color: #A2F } /* Name.Decorator */
+.highlight .ni { color: #717171; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #CB3F38; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #00F } /* Name.Function */
+.highlight .nl { color: #767600 } /* Name.Label */
+.highlight .nn { color: #00F; font-weight: bold } /* Name.Namespace */
+.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #19177C } /* Name.Variable */
+.highlight .ow { color: #A2F; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #BBB } /* Text.Whitespace */
+.highlight .mb { color: #666 } /* Literal.Number.Bin */
+.highlight .mf { color: #666 } /* Literal.Number.Float */
+.highlight .mh { color: #666 } /* Literal.Number.Hex */
+.highlight .mi { color: #666 } /* Literal.Number.Integer */
+.highlight .mo { color: #666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
+.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
+.highlight .se { color: #AA5D1F; font-weight: bold } /* Literal.String.Escape */
+.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.highlight .si { color: #A45A77; font-weight: bold } /* Literal.String.Interpol */
+.highlight .sx { color: #008000 } /* Literal.String.Other */
+.highlight .sr { color: #A45A77 } /* Literal.String.Regex */
+.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #00F } /* Name.Function.Magic */
+.highlight .vc { color: #19177C } /* Name.Variable.Class */
+.highlight .vg { color: #19177C } /* Name.Variable.Global */
+.highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
+.highlight .il { color: #666 } /* Literal.Number.Integer.Long */
+            </style>
+        </head>
+        
+        <body>
+            <article class="content">
+        <div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="c">#========================================================================</span>
+<span class="linenos">  2</span><span class="c">#</span>
+<span class="linenos">  3</span><span class="c"># NAME</span>
+<span class="linenos">  4</span><span class="c"># </span>
+<span class="linenos">  5</span><span class="c">#     makefile</span>
+<span class="linenos">  6</span><span class="c">#</span>
+<span class="linenos">  7</span><span class="c"># DESCRIPTION</span>
+<span class="linenos">  8</span><span class="c"># </span>
+<span class="linenos">  9</span><span class="c">#     Makefile for UNIX systems and Windows + Cygwin for compiling </span>
+<span class="linenos"> 10</span><span class="c">#     and testing CRCDemo.</span>
+<span class="linenos"> 11</span><span class="c">#</span>
+<span class="linenos"> 12</span><span class="c">#     Run from a command window by calling</span>
+<span class="linenos"> 13</span><span class="c">#</span>
+<span class="linenos"> 14</span><span class="c">#         make</span>
+<span class="linenos"> 15</span><span class="c">#</span>
+<span class="linenos"> 16</span><span class="c">#     To compile and test the program, type</span>
+<span class="linenos"> 17</span><span class="c">#</span>
+<span class="linenos"> 18</span><span class="c">#         make test</span>
+<span class="linenos"> 19</span><span class="c">#</span>
+<span class="linenos"> 20</span><span class="c">#</span>
+<span class="linenos"> 21</span><span class="c">#  LEGAL</span>
+<span class="linenos"> 22</span><span class="c">#</span>
+<span class="linenos"> 23</span><span class="c">#     FFT Version 1.6 -  An FFT utility library in C++.</span>
+<span class="linenos"> 24</span><span class="c">#     Copyright (C) 1999-2026 by Sean Erik O&#39;Connor.  All Rights Reserved.</span>
+<span class="linenos"> 25</span><span class="c">#</span>
+<span class="linenos"> 26</span><span class="c">#     This program is free software: you can redistribute it and/or modify</span>
+<span class="linenos"> 27</span><span class="c">#     it under the terms of the GNU General Public License as published by</span>
+<span class="linenos"> 28</span><span class="c">#     the Free Software Foundation, either version 3 of the License, or</span>
+<span class="linenos"> 29</span><span class="c">#     (at your option) any later version.</span>
+<span class="linenos"> 30</span><span class="c">#</span>
+<span class="linenos"> 31</span><span class="c">#     This program is distributed in the hope that it will be useful,</span>
+<span class="linenos"> 32</span><span class="c">#     but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="linenos"> 33</span><span class="c">#     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="linenos"> 34</span><span class="c">#     GNU General Public License for more details.</span>
+<span class="linenos"> 35</span><span class="c">#</span>
+<span class="linenos"> 36</span><span class="c">#     You should have received a copy of the GNU General Public License</span>
+<span class="linenos"> 37</span><span class="c">#     along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+<span class="linenos"> 38</span><span class="c">#    </span>
+<span class="linenos"> 39</span><span class="c">#     The author&#39;s address is seanerikoconnor!AT!gmail!DOT!com</span>
+<span class="linenos"> 40</span><span class="c">#     with the !DOT! replaced by . and the !AT! replaced by @</span>
+<span class="linenos"> 41</span><span class="c">#</span>
+<span class="linenos"> 42</span><span class="c">#=============================================================================</span>
+<span class="linenos"> 43</span>
+<span class="linenos"> 44</span><span class="c"># Put this pseudo-target first so make without command line options executes it.</span>
+<span class="linenos"> 45</span><span class="nf">all</span><span class="o">:</span><span class="w"> </span><span class="n">makeAllExes</span>
+<span class="linenos"> 46</span>
+<span class="linenos"> 47</span>
+<span class="linenos"> 48</span><span class="c">#============================== Configuration ================================</span>
+<span class="linenos"> 49</span>
+<span class="linenos"> 50</span><span class="c"># Find out which operating system we are running on:  macOS, Linux, etc.</span>
+<span class="linenos"> 51</span><span class="nv">UNAME</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">$(</span>shell<span class="w"> </span>uname<span class="w"> </span>-s<span class="k">)</span>
+<span class="linenos"> 52</span>
+<span class="linenos"> 53</span><span class="c"># macOS.  Tested on my MacBook Pro laptop mid-2015 model with Intel x86_64 architecture, also my MacBook Pro 2021 M1 Max ARM CPU.</span>
+<span class="linenos"> 54</span><span class="cp">ifeq ($(UNAME), Darwin)</span>
+<span class="linenos"> 55</span><span class="nv">PLATFORM</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>mac
+<span class="linenos"> 56</span><span class="cp">endif</span>
+<span class="linenos"> 57</span>
+<span class="linenos"> 58</span><span class="c"># Linux.  Tested on my Ubuntu Linux system running on my Cyperpower PC with a 64-bit AMD CPU.</span>
+<span class="linenos"> 59</span><span class="cp">ifeq ($(UNAME), Linux)</span>
+<span class="linenos"> 60</span><span class="nv">PLATFORM</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>linux
+<span class="linenos"> 61</span><span class="cp">endif</span>
+<span class="linenos"> 62</span>
+<span class="linenos"> 63</span><span class="c"># Cygwin.  For cygwin 2.2 64-bit on Windows 10 64-bit.  Not tested.  From https://en.wikipedia.org/wiki/Uname</span>
+<span class="linenos"> 64</span><span class="cp">ifeq ($(UNAME), CYGWIN_NT-10.0)</span>
+<span class="linenos"> 65</span><span class="nv">PLATFORM</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>cygwin
+<span class="linenos"> 66</span><span class="cp">endif</span>
+<span class="linenos"> 67</span>
+<span class="linenos"> 68</span><span class="c"># Default platform is macOS</span>
+<span class="linenos"> 69</span><span class="cp">ifndef PLATFORM</span>
+<span class="linenos"> 70</span><span class="nv">PLATFORM</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>mac
+<span class="linenos"> 71</span><span class="cp">endif</span>
+<span class="linenos"> 72</span>
+<span class="linenos"> 73</span>
+<span class="linenos"> 74</span><span class="c">#============================== Compiler, Linker, and CPU architecture =======================</span>
+<span class="linenos"> 75</span>
+<span class="linenos"> 76</span><span class="c"># Type of compiler to use.</span>
+<span class="linenos"> 77</span><span class="c"># Mac uses the clang C++/C compiler, same as XCode.</span>
+<span class="linenos"> 78</span><span class="cp">ifeq ($(PLATFORM), mac)</span>
+<span class="linenos"> 79</span><span class="nv">CPP</span><span class="w">     </span><span class="o">=</span><span class="w"> </span>clang++
+<span class="linenos"> 80</span><span class="nv">CPPLINK</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>clang++
+<span class="linenos"> 81</span><span class="nv">CC</span><span class="w">      </span><span class="o">=</span><span class="w"> </span>clang++<span class="w"> </span>-x<span class="w"> </span>c
+<span class="linenos"> 82</span><span class="nv">CCLINK</span><span class="w">  </span><span class="o">=</span><span class="w"> </span>clang<span class="w"> </span>
+<span class="linenos"> 83</span><span class="c"># Ubuntu Linux uses the gcc C++/C compiler.</span>
+<span class="linenos"> 84</span><span class="cp">else ifeq ($(PLATFORM), linux)</span>
+<span class="linenos"> 85</span><span class="nv">CPP</span><span class="w">     </span><span class="o">=</span><span class="w"> </span>g++
+<span class="linenos"> 86</span><span class="nv">CPPLINK</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>g++
+<span class="linenos"> 87</span><span class="nv">CC</span><span class="w">      </span><span class="o">=</span><span class="w"> </span>gcc<span class="w"> </span>-x<span class="w"> </span>c
+<span class="linenos"> 88</span><span class="nv">CCLINK</span><span class="w">  </span><span class="o">=</span><span class="w"> </span>gcc
+<span class="linenos"> 89</span><span class="c"># Windows uses the GNU C++/C compiler.</span>
+<span class="linenos"> 90</span><span class="cp">else ifeq ($(PLATFORM), cygwin)</span>
+<span class="linenos"> 91</span><span class="nv">CPP</span><span class="w">     </span><span class="o">=</span><span class="w"> </span>g++
+<span class="linenos"> 92</span><span class="nv">CPPLINK</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>g++
+<span class="linenos"> 93</span><span class="nv">CC</span><span class="w">      </span><span class="o">=</span><span class="w"> </span>gcc
+<span class="linenos"> 94</span><span class="nv">CCLINK</span><span class="w">  </span><span class="o">=</span><span class="w"> </span>gcc
+<span class="linenos"> 95</span><span class="cp">endif</span>
+<span class="linenos"> 96</span>
+<span class="linenos"> 97</span><span class="c"># Architecture (CPU type).</span>
+<span class="linenos"> 98</span><span class="cp">ifeq ($(PLATFORM), mac)</span>
+<span class="linenos"> 99</span><span class="c"># The new MacBook Pro uses Apple Silicon CPU based on ARM.  </span>
+<span class="linenos">100</span><span class="nv">ARCH</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>-arch<span class="w"> </span>arm64
+<span class="linenos">101</span><span class="c"># If you specify x86 architecture, the executable will still run due to Apple&#39;s Rosetta 2 Intel to ARM code translation, </span>
+<span class="linenos">102</span><span class="c"># but much more slowly than if you use the native CPU architecture.</span>
+<span class="linenos">103</span><span class="c">#ARCH = -arch x86_64</span>
+<span class="linenos">104</span><span class="cp">else ifeq ($(PLATFORM), linux)</span>
+<span class="linenos">105</span><span class="nv">ARCH</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>
+<span class="linenos">106</span><span class="cp">else ifeq ($(PLATFORM), cygwin)</span>
+<span class="linenos">107</span><span class="nv">ARCH</span><span class="w"> </span><span class="o">=</span>
+<span class="linenos">108</span><span class="cp">endif</span>
+<span class="linenos">109</span>
+<span class="linenos">110</span>
+<span class="linenos">111</span>
+<span class="linenos">112</span><span class="c">#============================== Compiler and Linker Settings, Libraries =======================</span>
+<span class="linenos">113</span>
+<span class="linenos">114</span><span class="c"># Compile the C++20 standard and its libraries.</span>
+<span class="linenos">115</span><span class="cp">ifeq ($(PLATFORM), cygwin)</span>
+<span class="linenos">116</span><span class="nv">CPP_OPTIONS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>-std<span class="o">=</span>c++20
+<span class="linenos">117</span><span class="nv">CPP_LIBS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>-L<span class="s2">&quot;/usr/lib&quot;</span><span class="w"> </span>
+<span class="linenos">118</span><span class="nv">C_OPTIONS</span><span class="w"> </span><span class="o">=</span>
+<span class="linenos">119</span><span class="nv">C_LIBS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>-L<span class="s2">&quot;/usr/lib&quot;</span><span class="w"> </span>
+<span class="linenos">120</span><span class="cp">else ifeq ($(PLATFORM), mac)</span>
+<span class="linenos">121</span><span class="nv">CPP_OPTIONS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>-std<span class="o">=</span>c++20<span class="w"> </span>-stdlib<span class="o">=</span>libc++
+<span class="linenos">122</span><span class="nv">C_OPTIONS</span><span class="w"> </span><span class="o">=</span>
+<span class="linenos">123</span><span class="nv">CPP_LIBS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>
+<span class="linenos">124</span><span class="nv">C_LIBS</span><span class="w"> </span><span class="o">=</span>
+<span class="linenos">125</span><span class="cp">else ifeq ($(PLATFORM), linux)</span>
+<span class="linenos">126</span><span class="nv">CPP_OPTIONS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>-std<span class="o">=</span>c++20<span class="w"> </span>-D<span class="w"> </span>USE_EXPERIMENTAL_FILESYSTEM_GNU_CPP
+<span class="linenos">127</span><span class="nv">C_OPTIONS</span><span class="w"> </span><span class="o">=</span>
+<span class="linenos">128</span><span class="nv">CPP_LIBS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>-lm<span class="w"> </span>-lstdc++fs<span class="w"> </span>
+<span class="linenos">129</span><span class="nv">C_LIBS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>-lm<span class="w"> </span>-lstdc++fs
+<span class="linenos">130</span><span class="cp">endif</span>
+<span class="linenos">131</span>
+<span class="linenos">132</span><span class="c"># Link flags.</span>
+<span class="linenos">133</span><span class="cp">ifeq ($(PLATFORM), mac)</span>
+<span class="linenos">134</span><span class="nv">LFLAGS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">$(</span>ARCH<span class="k">)</span>
+<span class="linenos">135</span><span class="cp">else ifeq ($(PLATFORM), linux)</span>
+<span class="linenos">136</span><span class="nv">LFLAGS</span><span class="w"> </span><span class="o">=</span>
+<span class="linenos">137</span><span class="cp">endif</span>
+<span class="linenos">138</span>
+<span class="linenos">139</span><span class="c">#============================== Optimization =======================</span>
+<span class="linenos">140</span>
+<span class="linenos">141</span><span class="c"># Select on = optimized code for speed.  off = compile for debugging</span>
+<span class="linenos">142</span><span class="nv">OPTIMIZATION</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>on
+<span class="linenos">143</span>
+<span class="linenos">144</span><span class="c"># Use the highest optimization level unless weird stuff happens.</span>
+<span class="linenos">145</span><span class="cp">ifeq ($(OPTIMIZATION), on)</span>
+<span class="linenos">146</span><span class="nv">CPP_DEBUG_FLAGS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>-O3
+<span class="linenos">147</span><span class="cp">else</span>
+<span class="linenos">148</span><span class="nv">CPP_DEBUG_FLAGS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>-g3
+<span class="linenos">149</span><span class="cp">endif</span>
+<span class="linenos">150</span>
+<span class="linenos">151</span>
+<span class="linenos">152</span><span class="c">#============================== ALL Compile and Link Flags =======================</span>
+<span class="linenos">153</span>
+<span class="linenos">154</span><span class="c"># Gather all C++ and C flags together.</span>
+<span class="linenos">155</span><span class="nv">CPP_FLAGS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">$(</span>ARCH<span class="k">)</span><span class="w"> </span><span class="k">$(</span>CPP_DEBUG_FLAGS<span class="k">)</span><span class="w"> </span><span class="k">$(</span>CPP_INC<span class="k">)</span><span class="w"> </span><span class="k">$(</span>CPP_OPTIONS<span class="k">)</span>
+<span class="linenos">156</span><span class="nv">C_FLAGS</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="k">$(</span>ARCH<span class="k">)</span><span class="w"> </span><span class="k">$(</span>C_DEBUG_FLAGS<span class="k">)</span><span class="w">   </span><span class="k">$(</span>C_INC<span class="k">)</span><span class="w"> </span>$<span class="o">)</span><span class="w"> </span><span class="k">$(</span>C_OPTIONS<span class="k">)</span>
+<span class="linenos">157</span>
+<span class="linenos">158</span>
+<span class="linenos">159</span><span class="c">#============================== Root directories =============================</span>
+<span class="linenos">160</span>
+<span class="linenos">161</span><span class="c"># Source file root directories.</span>
+<span class="linenos">162</span><span class="nv">CPP_SRC_DIR</span><span class="w">	</span><span class="o">=</span><span class="w"> </span>../SourceCode
+<span class="linenos">163</span>
+<span class="linenos">164</span><span class="c"># Object file root directories.</span>
+<span class="linenos">165</span><span class="nv">CPP_OBJ_DIR</span><span class="w"> 	</span><span class="o">=</span><span class="w"> </span>Bin
+<span class="linenos">166</span>
+<span class="linenos">167</span><span class="c"># Executable file root directories.</span>
+<span class="linenos">168</span><span class="nv">CPP_BIN_DIR</span><span class="w">		</span><span class="o">=</span><span class="w"> </span>Bin
+<span class="linenos">169</span>
+<span class="linenos">170</span>
+<span class="linenos">171</span><span class="c">#============================== Include Files =======================</span>
+<span class="linenos">172</span>
+<span class="linenos">173</span><span class="c"># Include files.</span>
+<span class="linenos">174</span><span class="cp">ifeq ($(PLATFORM), cygwin)</span>
+<span class="linenos">175</span><span class="nv">CPP_INC</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>-I<span class="w"> </span>/usr/include<span class="w"> </span>-I<span class="w"> </span><span class="s2">&quot;/usr/lib/gcc/x86_64-pc-cygwin/4.9.2/include/c++&quot;</span>
+<span class="linenos">176</span><span class="cp">endif</span>
+<span class="linenos">177</span>
+<span class="linenos">178</span>
+<span class="linenos">179</span><span class="c">#============================== List of Files ================================</span>
+<span class="linenos">180</span>
+<span class="linenos">181</span><span class="c"># Object files.</span>
+<span class="linenos">182</span><span class="nv">CPP_OBJ</span><span class="w">  		</span><span class="o">=</span><span class="w"> </span><span class="k">$(</span>CPP_OBJ_DIR<span class="k">)</span>/FFT.o
+<span class="linenos">183</span>
+<span class="linenos">184</span><span class="c"># Main program object files.</span>
+<span class="linenos">185</span><span class="nv">CPP_OBJ_MAIN</span><span class="w"> 	</span><span class="o">=</span><span class="w"> </span><span class="k">$(</span>CPP_OBJ_DIR<span class="k">)</span>/testFFT.o
+<span class="linenos">186</span>
+<span class="linenos">187</span><span class="c"># Main program executables.</span>
+<span class="linenos">188</span><span class="nv">CPP_BIN_MAIN</span><span class="w">		</span><span class="o">=</span><span class="w"> </span><span class="k">$(</span>CPP_BIN_DIR<span class="k">)</span>/testFFT.exe
+<span class="linenos">189</span>
+<span class="linenos">190</span>
+<span class="linenos">191</span><span class="c">#============================== Implicit Rules ===============================</span>
+<span class="linenos">192</span>
+<span class="linenos">193</span><span class="c"># Link all object files to executables.</span>
+<span class="linenos">194</span><span class="nf">$(CPP_BIN_MAIN)</span><span class="o">:</span><span class="w"> </span><span class="k">$(</span><span class="nv">CPP_OBJ_MAIN</span><span class="k">)</span> <span class="k">$(</span><span class="nv">CPP_OBJ</span><span class="k">)</span>
+<span class="linenos">195</span><span class="w">	</span><span class="k">$(</span>CPPLINK<span class="k">)</span><span class="w"> </span><span class="k">$(</span>LFLAGS<span class="k">)</span><span class="w"> </span><span class="k">$(</span>CPP_OBJ_MAIN<span class="k">)</span><span class="w"> </span><span class="k">$(</span>CPP_OBJ<span class="k">)</span><span class="w"> </span>-o<span class="w"> </span><span class="k">$(</span>CPP_BIN_MAIN<span class="k">)</span><span class="w"> </span><span class="k">$(</span>CPP_LIBS<span class="k">)</span>
+<span class="linenos">196</span>
+<span class="linenos">197</span><span class="c"># C++ and C source file compilation to object files.</span>
+<span class="linenos">198</span><span class="nf">$(CPP_BIN_DIR)/%.o </span><span class="o">:</span><span class="w"> </span><span class="k">$(</span><span class="nv">CPP_SRC_DIR</span><span class="k">)</span>/%.<span class="n">cpp</span>
+<span class="linenos">199</span><span class="w">	</span><span class="k">$(</span>CPP<span class="k">)</span><span class="w"> </span>-c<span class="w"> </span><span class="k">$(</span>CPP_FLAGS<span class="k">)</span><span class="w"> </span>$&lt;<span class="w"> </span>-o<span class="w"> </span><span class="nv">$@</span>
+<span class="linenos">200</span>
+<span class="linenos">201</span><span class="c"># List of all file.o : file.h dependencies.</span>
+<span class="linenos">202</span><span class="nf">FFT.o</span><span class="o">:</span><span class="w"> </span><span class="n">FFT</span>.<span class="n">cpp</span> <span class="n">fft</span>.<span class="n">h</span>
+<span class="linenos">203</span><span class="nf">testFFT.o</span><span class="o">:</span><span class="w"> </span><span class="n">testFFT</span>.<span class="n">cpp</span> <span class="n">fft</span>.<span class="n">h</span>
+<span class="linenos">204</span>
+<span class="linenos">205</span>
+<span class="linenos">206</span><span class="c">#============================== Targets ======================================</span>
+<span class="linenos">207</span>
+<span class="linenos">208</span><span class="c"># Make all the executables.</span>
+<span class="linenos">209</span><span class="nf">makeAllExes</span><span class="o">:</span><span class="w"> </span><span class="k">$(</span><span class="nv">CPP_BIN_MAIN</span><span class="k">)</span>
+<span class="linenos">210</span>
+<span class="linenos">211</span><span class="c"># Run tests.</span>
+<span class="linenos">212</span><span class="nf">test</span><span class="o">:</span><span class="w"> </span><span class="k">$(</span><span class="nv">CPP_BIN_MAIN</span><span class="k">)</span>
+<span class="linenos">213</span><span class="w">	</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Testing FFT.  Return status = 1 because test throws an exception, but ignore it.&quot;</span>
+<span class="linenos">214</span><span class="w">	</span>-<span class="k">$(</span>CPP_BIN_MAIN<span class="k">)</span><span class="w"> </span>fftIn.txt<span class="w"> </span>fftOut.txt
+<span class="linenos">215</span><span class="w">	</span>@echo<span class="w"> </span><span class="s2">&quot;Comparing output to MacBook results [you should see no differences]&quot;</span>
+<span class="linenos">216</span><span class="w">	</span>@diff<span class="w"> </span>fftOut.txt<span class="w"> </span>fftOut-macOS-ARM-M1max-clang.txt
+<span class="linenos">217</span><span class="w">	</span>@echo<span class="w"> </span><span class="s2">&quot;Done&quot;</span>
+<span class="linenos">218</span><span class="w">	</span>@echo<span class="w"> </span><span class="s2">&quot;Comparing output to Ubuntu results [you should see no differences]&quot;</span>
+<span class="linenos">219</span><span class="w">	</span>@diff<span class="w"> </span>fftOut.txt<span class="w"> </span>fftOut-UbuntuLinux-AMD-x86_64-gcc.txt
+<span class="linenos">220</span><span class="w">	</span>@echo<span class="w"> </span><span class="s2">&quot;Done&quot;</span>
+<span class="linenos">221</span>
+<span class="linenos">222</span><span class="c"># Remove all C and C++ object files and binaries and output files.</span>
+<span class="linenos">223</span><span class="c">#     - in front of the tells make to ignore a non-zero return code from a shell command.  So we don&#39;t stop if any files are missing.</span>
+<span class="linenos">224</span><span class="c">#     @ in front of the shell command line prevents it from being printed to the console as make runs.</span>
+<span class="linenos">225</span><span class="nf">clean</span><span class="o">:</span>
+<span class="linenos">226</span><span class="w">	</span>-@echo<span class="w"> </span><span class="s2">&quot;Cleaning up object files and executables&quot;</span>
+<span class="linenos">227</span><span class="w">	</span>-rm<span class="w"> </span>fftOut.txt
+<span class="linenos">228</span><span class="w">	</span>-rm<span class="w"> </span><span class="k">$(</span>CPP_OBJ<span class="k">)</span><span class="w"> </span><span class="k">$(</span>CPP_OBJ_MAIN<span class="k">)</span><span class="w"> </span><span class="k">$(</span>CPP_BIN_MAIN<span class="k">)</span><span class="w"> </span>
+</pre></div>
+
+            </article>
+        </body>
+        
+        </html>
+        

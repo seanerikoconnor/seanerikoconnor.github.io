@@ -1,0 +1,69 @@
+\documentclass{article}
+\begin{document}
+
+The Fast Fourier Transform (FFT) is a fast method for evaluating the complex exponential sum,
+
+\begin{displaymath}
+X_n = \sum_{j=0}^{N-1} x_k W^{nk} \quad n = 0 \ldots N-1
+\end{displaymath}
+
+in \begin{math} O(n \: lg \: n) \end{math} operations where \begin{math} W = e^{-2 \pi i / N} \end{math}
+is an nth root of unity and the symbol i denotes \begin{math} \sqrt {-1} \end{math}
+and N is a power of 2:  \begin{math}N = 2^g \end{math}.
+
+Express the summation indices in binary, 
+
+\begin{displaymath}
+n = 2^{g-1} n_{g-1} + 2^{g-2} n_{g-2} + \ldots + n_0
+\end{displaymath}
+
+\begin{displaymath}
+k = 2^{g-1} k_{g-1} + 2^{g-2} k_{g-2} + \ldots + k_0
+\end{displaymath}
+
+to expand the sum into
+
+\begin{displaymath}
+X(n_{g-1}, n_{g-2}, \ldots, n_0 ) = 
+\sum_{k_0=0}^1 \: \sum_{k_1=0}^1\ldots \sum_{k_{g-1}=0}^1 \quad x(k_{g-1}, k_{g-2}, \ldots , k_0) W^{nk}
+\end{displaymath}
+
+Expand out the complex exponential term
+
+\begin{eqnarray}
+W^{n k} = 
+W^{(2^{g-1} n_{g-1} + \ldots + n_0) (2^{g-1}k_{g-1})} \times \nonumber \\
+W^{(2^{g-1} n_{g-1} + \ldots + n_0) (2^{g-2}k_{g-2})}  \times \ldots \times \nonumber \\
+W^{(2^{g-1} n_{g-1} + \ldots + n_0) (k_0)} \nonumber
+\end{eqnarray}
+
+Simplify using
+
+\begin{displaymath}
+W^{(m 2^g)} = W^{mN} = (W^N)^m = 1^m = 1
+\end{displaymath}
+
+using
+
+\begin{displaymath}
+W^N = (e^{2 \pi i / N})^N = e^{2 \pi i}=1
+\end{displaymath}
+
+which gives us,
+
+\begin{displaymath}
+W^{n k} = 
+W^{ (n_0) (2^{g-1}k_{g-1})} 
+W^{(2 n_1 + n_0) (2^{g-2}k_{g-2})}  \ldots 
+W^{(2^{g-1} n_{g-1} + \ldots + n_0) (k_0)}
+\end{displaymath}
+
+Substitute back into the sum to give
+\begin{displaymath}
+\sum_{k_0=0}^1 \: \sum_{k_1=0}^1\ldots \sum_{k_{g-1}=0}^1 \quad x(k_{g-1}, k_{g-2}, \ldots , k_0)
+W^{ (n_0) (2^{g-1}k_{g-1})} 
+W^{(2 n_1 + n_0) (2^{g-2}k_{g-2})} 
+W^{(2^{g-1} n_{g-1} + \ldots + n_0) (k_0)}
+\end{displaymath}
+
+\end{document}

@@ -1,0 +1,584 @@
+
+        <!DOCTYPE html>
+        <html lang="en-US">  <!-- Set language of this page to USA English. -->
+        
+        <head>
+            <!-- This page uses Unicode characters. -->
+            <meta charset="utf-8">
+        
+            <!-- Set viewport to actual device width.  Any other settings makes the web page initially appear zoomed-in on mobile devices. -->
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+            <!-- Title appears in the web browser tab for this page.  The browser also uses it to bookmark this page. -->
+            <title>Sean Erik O'Connor - Home Page and Free Mathematical Software.</title>
+        
+            <!-- Search engines will search using words in this description.  They will also display title in their search results. -->
+            <meta name="description" content="Syntax Colored Source Code Listing">
+        
+            <!-- Some content management software uses the author's name. -->
+            <meta name="author" content="Sean Erik O'Connor">
+        
+            <meta name="copyright" content="Copyright (C) 1986-2026 by Sean Erik O'Connor.  All Rights Reserved.">   
+        
+            <!-- Begin style sheet insertion -->
+            <style>
+                /* Default settings for all my main web pages. */
+                body
+                {
+                    /* A wide sans-serif font is more readable on the web. */
+                    font-family:            Verdana, Geneva, "Trebuchet MS", sans-serif ;
+        
+                    /* Set the body font size a little smaller than the user's default browser setting. */
+                    font-size:              0.8em ; 
+        
+                    /* Black text is easier to read. */
+                    color:                  black ;
+        
+                    /*  More vertical space between lines for more pleasant reading.  Use a unitless font height multiplier.  
+                        Length and percentage percentage values can give scrunched text due to poor inheritance behavior. */
+                    line-height:            1.7 ;
+                }
+        
+                <!-- Now prepare to add the syntax coloring style sheet from Pygment -->
+        pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.highlight .hll { background-color: #ffffcc }
+.highlight { background: #f8f8f8; }
+.highlight .c { color: #3D7B7B; font-style: italic } /* Comment */
+.highlight .err { border: 1px solid #F00 } /* Error */
+.highlight .k { color: #008000; font-weight: bold } /* Keyword */
+.highlight .o { color: #666 } /* Operator */
+.highlight .ch { color: #3D7B7B; font-style: italic } /* Comment.Hashbang */
+.highlight .cm { color: #3D7B7B; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #9C6500 } /* Comment.Preproc */
+.highlight .cpf { color: #3D7B7B; font-style: italic } /* Comment.PreprocFile */
+.highlight .c1 { color: #3D7B7B; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #3D7B7B; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #A00000 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .ges { font-weight: bold; font-style: italic } /* Generic.EmphStrong */
+.highlight .gr { color: #E40000 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #008400 } /* Generic.Inserted */
+.highlight .go { color: #717171 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #04D } /* Generic.Traceback */
+.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #B00040 } /* Keyword.Type */
+.highlight .m { color: #666 } /* Literal.Number */
+.highlight .s { color: #BA2121 } /* Literal.String */
+.highlight .na { color: #687822 } /* Name.Attribute */
+.highlight .nb { color: #008000 } /* Name.Builtin */
+.highlight .nc { color: #00F; font-weight: bold } /* Name.Class */
+.highlight .no { color: #800 } /* Name.Constant */
+.highlight .nd { color: #A2F } /* Name.Decorator */
+.highlight .ni { color: #717171; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #CB3F38; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #00F } /* Name.Function */
+.highlight .nl { color: #767600 } /* Name.Label */
+.highlight .nn { color: #00F; font-weight: bold } /* Name.Namespace */
+.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #19177C } /* Name.Variable */
+.highlight .ow { color: #A2F; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #BBB } /* Text.Whitespace */
+.highlight .mb { color: #666 } /* Literal.Number.Bin */
+.highlight .mf { color: #666 } /* Literal.Number.Float */
+.highlight .mh { color: #666 } /* Literal.Number.Hex */
+.highlight .mi { color: #666 } /* Literal.Number.Integer */
+.highlight .mo { color: #666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
+.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
+.highlight .se { color: #AA5D1F; font-weight: bold } /* Literal.String.Escape */
+.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.highlight .si { color: #A45A77; font-weight: bold } /* Literal.String.Interpol */
+.highlight .sx { color: #008000 } /* Literal.String.Other */
+.highlight .sr { color: #A45A77 } /* Literal.String.Regex */
+.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #00F } /* Name.Function.Magic */
+.highlight .vc { color: #19177C } /* Name.Variable.Class */
+.highlight .vg { color: #19177C } /* Name.Variable.Global */
+.highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
+.highlight .il { color: #666 } /* Literal.Number.Integer.Long */
+            </style>
+        </head>
+        
+        <body>
+            <article class="content">
+        <div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="go">How to Debug using gdb,</span>
+<span class="linenos">  2</span>
+<span class="linenos">  3</span><span class="go">cat unitTest.log </span>
+<span class="linenos">  4</span>
+<span class="linenos">  5</span><span class="go">Primpoly Version 16.4 - A Program for Computing Primitive Polynomials.</span>
+<span class="linenos">  6</span><span class="go">Copyright (C) 1999-2026 by Sean Erik O&#39;Connor.  All Rights Reserved.</span>
+<span class="linenos">  7</span>
+<span class="linenos">  8</span><span class="go">Primpoly comes with ABSOLUTELY NO WARRANTY; for details see the</span>
+<span class="linenos">  9</span><span class="go">GNU General Public License.  This is free software, and you are welcome</span>
+<span class="linenos"> 10</span><span class="go">to redistribute it under certain conditions; see the GNU General Public License</span>
+<span class="linenos"> 11</span><span class="go">for details.</span>
+<span class="linenos"> 12</span>
+<span class="linenos"> 13</span><span class="go">Begin unit testing...</span>
+<span class="linenos"> 14</span><span class="go">TEST:  Parsing the command line options..........PASS!</span>
+<span class="linenos"> 15</span><span class="go">TEST:  parsing constant 0.........PASS!</span>
+<span class="linenos"> 16</span><span class="go">TEST:  parsing polynomial and modulus:  2 x ^ 3 + 3 x + 4, 5.........PASS!</span>
+<span class="linenos"> 17</span><span class="go">TEST:  parsing polynomial, modulus:  2x, 7..........PASS!</span>
+<span class="linenos"> 18</span><span class="go">TEST:  parsing constant 2.........PASS!</span>
+<span class="linenos"> 19</span><span class="go">TEST:  parsing bad syntax:  x + 1.........PASS!</span>
+<span class="linenos"> 20</span><span class="go">TEST:  Switching from base 2147483648 to new base 10.........PASS!</span>
+<span class="linenos"> 21</span><span class="go">TEST:  BigInt() default constructor..........PASS!</span>
+<span class="linenos"> 22</span><span class="go">TEST:  BigInt( 0 ) constructor from zero..........PASS!</span>
+<span class="linenos"> 23</span><span class="go">TEST:  BigInt( 1234 ) constructor from uint.........PASS!</span>
+<span class="linenos"> 24</span><span class="go">TEST:  BigInt u( &quot;1234&quot; ) constructor from &lt;decimal number string&gt;.........PASS!</span>
+<span class="linenos"> 25</span><span class="go">TEST:  BigInt u( &quot;12x34&quot; ) constructor from invalid &lt;decimal number string&gt;.........PASS!</span>
+<span class="linenos"> 26</span><span class="go">TEST:  BigInt copy constructor: u( 123 ) ; v( u )..........PASS!</span>
+<span class="linenos"> 27</span><span class="go">TEST:  BigInt u = v assignment for BigInt.........PASS!</span>
+<span class="linenos"> 28</span><span class="go">TEST:  cast BigInt to uint implicitly Bigint u ; uint d = u..........PASS!</span>
+<span class="linenos"> 29</span><span class="go">TEST:  cast BigInt to uint explicitly: BigInt u ; static_cast&lt;uint&gt;(u)..........PASS!</span>
+<span class="linenos"> 30</span><span class="go">TEST:  overflow during cast from BigInt to uint?.........PASS!</span>
+<span class="linenos"> 31</span><span class="go">TEST:  stream output &lt;&lt; BigInt.........PASS!</span>
+<span class="linenos"> 32</span><span class="go">TEST:  stream input &gt;&gt; BigInt.........PASS!</span>
+<span class="linenos"> 33</span><span class="go">TEST:  BigInt == uint.........PASS!</span>
+<span class="linenos"> 34</span><span class="go">TEST:  BigInt == BigInt.........PASS!</span>
+<span class="linenos"> 35</span><span class="go">TEST:  BigInt &gt; uint.........PASS!</span>
+<span class="linenos"> 36</span><span class="go">TEST:  BigInt -= uint.........PASS!</span>
+<span class="linenos"> 37</span><span class="go">TEST:  BigInt -= uint underflow.........PASS!</span>
+<span class="linenos"> 38</span><span class="go">TEST:  BigInt += uint.........PASS!</span>
+<span class="linenos"> 39</span><span class="go">TEST:  BigInt *= uint.........PASS!</span>
+<span class="linenos"> 40</span><span class="go">TEST:  BigInt /= uint.........PASS!</span>
+<span class="linenos"> 41</span><span class="go">TEST:  BigInt /= uint underflow to zero..........PASS!</span>
+<span class="linenos"> 42</span><span class="go">TEST:  ++BigInt.........PASS!</span>
+<span class="linenos"> 43</span><span class="go">TEST:  --BigInt.........PASS!</span>
+<span class="linenos"> 44</span><span class="go">TEST:  BigInt++.........PASS!</span>
+<span class="linenos"> 45</span><span class="go">TEST:  BigInt--.........PASS!</span>
+<span class="linenos"> 46</span><span class="go">TEST:  one digit BigInt + uint.........PASS!</span>
+<span class="linenos"> 47</span><span class="go">TEST:  two digit BigInt + uint.........PASS!</span>
+<span class="linenos"> 48</span><span class="go">TEST:  BigInt + BigInt.........PASS!</span>
+<span class="linenos"> 49</span><span class="go">TEST:  BigInt + BigInt.........PASS!</span>
+<span class="linenos"> 50</span><span class="go">TEST:  BigInt - BigInt.........PASS!</span>
+<span class="linenos"> 51</span><span class="go">TEST:  BigInt - BigInt &lt; 0.........PASS!</span>
+<span class="linenos"> 52</span><span class="go">TEST:  BigInt - uint.........PASS!</span>
+<span class="linenos"> 53</span><span class="go">TEST:  one digit BigInt * BigInt.........PASS!</span>
+<span class="linenos"> 54</span><span class="go">TEST:  two digit BigInt * BigInt.........PASS!</span>
+<span class="linenos"> 55</span><span class="go">TEST:  BigInt multidigit *.........PASS!</span>
+<span class="linenos"> 56</span><span class="go">TEST:  BigInt multidigit *=.........PASS!</span>
+<span class="linenos"> 57</span><span class="go">TEST:  BigInt / BigInt one digit divisor..........PASS!</span>
+<span class="linenos"> 58</span><span class="go">TEST:  BigInt / BigInt multidigit.........PASS!</span>
+<span class="linenos"> 59</span><span class="go">TEST:  BigInt / BigInt leading zero digit..........PASS!</span>
+<span class="linenos"> 60</span><span class="go">TEST:  BigInt / 0 .........PASS!</span>
+<span class="linenos"> 61</span><span class="go">TEST:  BigInt % BigInt with u &gt; v.........PASS!</span>
+<span class="linenos"> 62</span><span class="go">TEST:  BigInt multidigit mod with normalizing constant d = 1.........PASS!</span>
+<span class="linenos"> 63</span><span class="go">TEST:  BigInt % BigInt with u &lt; v.........PASS!</span>
+<span class="linenos"> 64</span><span class="go">TEST:  BigInt % uint = 314159 / 9 = 5 with uint &lt; base .........PASS!</span>
+<span class="linenos"> 65</span><span class="go">TEST:  BigInt % uint = 398765 % 3457u with uint &gt; base overflow?.........PASS!</span>
+<span class="linenos"> 66</span><span class="go">TEST:  BigInt / BigInt low probability if branch..........PASS!</span>
+<span class="linenos"> 67</span><span class="go">TEST:  Switching back from base 10 to oldBase 2147483648.........PASS!</span>
+<span class="linenos"> 68</span><span class="go">TEST:  Decimal string to BigInt conversion and back to decimal string using default base..........PASS!</span>
+<span class="linenos"> 69</span><span class="go">TEST:  BigInt z = x * y then x =? z / y multidigit with default base..........PASS!</span>
+<span class="linenos"> 70</span><span class="go">TEST:  BigInt testBit.........PASS!</span>
+<span class="linenos"> 71</span><span class="go">TEST:  testBit().........PASS!</span>
+<span class="linenos"> 72</span><span class="go">TEST:  BigInt power( uint 2, uint 100 ).........PASS!</span>
+<span class="linenos"> 73</span><span class="go">TEST:  BigInt ceilLg( 6 ).........PASS!</span>
+<span class="linenos"> 74</span><span class="go">TEST:  ModP 10 = 3 (mod 7).........PASS!</span>
+<span class="linenos"> 75</span><span class="go">TEST:  ModP -10 = 4 (mod 7).........PASS!</span>
+<span class="linenos"> 76</span><span class="go">TEST:  uint gcd( 85, 25 ) = 5.........PASS!</span>
+<span class="linenos"> 77</span><span class="go">TEST:  BigInt gcd( 779953197883173551166308319545, 1282866356929526866866376009397 ) = 1.........PASS!</span>
+<span class="linenos"> 78</span><span class="go">TEST:  PowerMod uint 3^10 = 4 (mod 7).........PASS!</span>
+<span class="linenos"> 79</span><span class="go">TEST:  PowerMod BigInt 3^10 = 4 (mod 7).........PASS!</span>
+<span class="linenos"> 80</span><span class="go">TEST:  PowerMod with out of range inputs..........PASS!</span>
+<span class="linenos"> 81</span><span class="go">TEST:  InverseModP 3 * 5 = 1 (mod 7).........PASS!</span>
+<span class="linenos"> 82</span><span class="go">TEST:  IsPrimitiveRoot.   3 is a primitive root of 7..........PASS!</span>
+<span class="linenos"> 83</span><span class="go">TEST:  IsPrimitiveRoot.   2 is a primitive root of 11..........PASS!</span>
+<span class="linenos"> 84</span><span class="go">TEST:  IsPrimitiveRoot.   3 is NOT a primitive root of 11..........PASS!</span>
+<span class="linenos"> 85</span><span class="go">TEST:  IsPrimitiveRoot.   5 is a primitive root of 65003..........PASS!</span>
+<span class="linenos"> 86</span><span class="go">TEST:  IsPrimitiveRoot.   8 is NOT a primitive root of 65003..........PASS!</span>
+<span class="linenos"> 87</span><span class="go">TEST:  constant coefficient test..........PASS!</span>
+<span class="linenos"> 88</span><span class="go">TEST:  constant coefficient is primitive root..........PASS!</span>
+<span class="linenos"> 89</span><span class="go">TEST:  isProbablyPrime uint 97 with random x = 10 says yes..........PASS!</span>
+<span class="linenos"> 90</span><span class="go">TEST:  isAlmostSurelyPrime 97 says yes..........PASS!</span>
+<span class="linenos"> 91</span><span class="go">TEST:  isAlmostSurelyPrime BigInt 97 says yes.........PASS!</span>
+<span class="linenos"> 92</span><span class="go">TEST:  isAlmostSurelyPrime 49 says no..........PASS!</span>
+<span class="linenos"> 93</span><span class="go">TEST:  isAlmostSurelyPrime on the 10000th prime number 104729 which is &gt;&gt; 32768 = 2^(32/2-1) says yes..........PASS!</span>
+<span class="linenos"> 94</span><span class="go">TEST:  Trial division factoring on unsigned int..........PASS!</span>
+<span class="linenos"> 95</span><span class="go">TEST:  Trial division factor BigInt 337500 = 2^2 3^3 5^5..........PASS!</span>
+<span class="linenos"> 96</span><span class="go">TEST:  Pollard Rho factor unsigned int 25852 = 2^2 23 281.........PASS!</span>
+<span class="linenos"> 97</span><span class="go">TEST:  Pollard Rho factor BigInt 25852 = 2^2 23 281.........PASS!</span>
+<span class="linenos"> 98</span><span class="go">TEST:  Factor Copy constructor.........PASS!</span>
+<span class="linenos"> 99</span><span class="go">TEST:  Factor assignment operator.........PASS!</span>
+<span class="linenos">100</span><span class="go">TEST:  Factor BigInt 24018350267611933650627567399079537500 = 2^2 3^3 5^5 7^7 11^11 13^13..........PASS!</span>
+<span class="linenos">101</span><span class="go">TEST:  BigInt computation of p^n, r, factors of r, EulerPhi[ p^n - 1]/n for p = 2.........PASS!</span>
+<span class="linenos">102</span><span class="go">TEST:  BigInt computation of p^n, r, factors of r, EulerPhi[ p^n - 1]/n for p &gt; 2</span>
+<span class="linenos">103</span><span class="go">	ERROR:  BigInt computation of p^n, r, factors of r, EulerPhi[ p^n - 1]/n for p &gt; 2</span>
+<span class="linenos">104</span><span class="go">	ERROR:  BigIntMathError:  BigInt::operator-=  negative result for u - v = 0 - 1 at ../SourceCode/Primpoly/ppBigInt.cpp: line 1057</span>
+<span class="linenos">105</span>
+<span class="linenos">106</span><span class="go">TEST:  Factor tables for Factor&lt;uint&gt;.........PASS!</span>
+<span class="linenos">107</span><span class="go">TEST:  Factor tables for Factor&lt;BigInt&gt;.........PASS!</span>
+<span class="linenos">108</span><span class="go">TEST:  Polynomial() default constructor..........PASS!</span>
+<span class="linenos">109</span><span class="go">TEST:  Polynomial() from string..........PASS!</span>
+<span class="linenos">110</span><span class="go">TEST:  Polynomial = string..........PASS!</span>
+<span class="linenos">111</span><span class="go">TEST:  Polynomial() from string with negative constant..........PASS!</span>
+<span class="linenos">112</span><span class="go">TEST:  Polynomial() to string..........PASS!</span>
+<span class="linenos">113</span><span class="go">TEST:  Polynomial() copy constructor..........PASS!</span>
+<span class="linenos">114</span><span class="go">TEST:  Polynomial assignment operator..........PASS!</span>
+<span class="linenos">115</span><span class="go">TEST:  Polynomial()[] read only operator..........PASS!</span>
+<span class="linenos">116</span><span class="go">TEST:  Polynomial()[] accessing coeff higher than its degree..........PASS!</span>
+<span class="linenos">117</span><span class="go">TEST:  Polynomial()[] lvalue operator..........PASS!</span>
+<span class="linenos">118</span><span class="go">TEST:  Polynomial() += operator..........PASS!</span>
+<span class="linenos">119</span><span class="go">TEST:  Polynomial() += operator..........PASS!</span>
+<span class="linenos">120</span><span class="go">TEST:  Polynomial() + operator..........PASS!</span>
+<span class="linenos">121</span><span class="go">TEST:  Polynomial * scalar.........PASS!</span>
+<span class="linenos">122</span><span class="go">TEST:  Polynomial evaluation x^4 + 3x + 3 (mod 5).........PASS!</span>
+<span class="linenos">123</span><span class="go">TEST:  Polynomial evaluation x^4 + x + 1 (mod 2).........PASS!</span>
+<span class="linenos">124</span><span class="go">TEST:  Polynomial hasLinearFactor is true.........PASS!</span>
+<span class="linenos">125</span><span class="go">TEST:  Polynomial hasLinearFactor is false.........PASS!</span>
+<span class="linenos">126</span><span class="go">TEST:  Polynomial isInteger.........PASS!.........PASS!</span>
+<span class="linenos">127</span><span class="go">TEST:  Polynomial initial and next trial polynomials.........PASS!</span>
+<span class="linenos">128</span><span class="go">TEST:  PolyMod constructor from polynomials..........PASS!</span>
+<span class="linenos">129</span><span class="go">TEST:  PolyMod constructor from string and polynomial..........PASS!</span>
+<span class="linenos">130</span><span class="go">TEST:  PolyMod timesX..........PASS!</span>
+<span class="linenos">131</span><span class="go">TEST:  PolyMod autoconvolve..........PASS!</span>
+<span class="linenos">132</span><span class="go">TEST:  PolyMod convolve..........PASS!</span>
+<span class="linenos">133</span><span class="go">TEST:  PolyMod coeffOfSquare..........PASS!</span>
+<span class="linenos">134</span><span class="go">TEST:  PolyMod coeffOfProduct..........PASS!</span>
+<span class="linenos">135</span><span class="go">TEST:  PolyMod square..........PASS!</span>
+<span class="linenos">136</span><span class="go">TEST:  PolyMod operator* and implicitly, operator*=.........PASS!</span>
+<span class="linenos">137</span><span class="go">TEST:  PolyMod x_to_power and isInteger().........PASS!</span>
+<span class="linenos">138</span><span class="go">TEST:  PolyOrder reduced Q-I matrix</span>
+<span class="linenos">139</span><span class="go">	ERROR:  PolynomialRangeError error:  PolyOrder: problem computing p^n or r = (p^n - 1 )/ (p - 1), or factoring r, or finding EulerPhi( p^n - 1 )/ n  p = 5 n = 4 at ../SourceCode/Primpoly/ppPolynomial.cpp: line 2638BigInt::operator-=  negative result for u - v = 0 - 1 at ../SourceCode/Primpoly/ppBigInt.cpp: line 1057</span>
+<span class="linenos">140</span>
+<span class="linenos">141</span><span class="go">TEST:  PolyOrder 3 distinct factors out of 4</span>
+<span class="linenos">142</span><span class="go">	ERROR:  PolynomialRangeError error:  PolyOrder: problem computing p^n or r = (p^n - 1 )/ (p - 1), or factoring r, or finding EulerPhi( p^n - 1 )/ n  p = 5 n = 4 at ../SourceCode/Primpoly/ppPolynomial.cpp: line 2638BigInt::operator-=  negative result for u - v = 0 - 1 at ../SourceCode/Primpoly/ppBigInt.cpp: line 1057</span>
+<span class="linenos">143</span>
+<span class="linenos">144</span><span class="go">TEST:  PolyOrder 2 distinct factors.........PASS!</span>
+<span class="linenos">145</span><span class="go">TEST:  PolyOrder irreducible</span>
+<span class="linenos">146</span><span class="go">	ERROR:  PolynomialRangeError error:  PolyOrder: problem computing p^n or r = (p^n - 1 )/ (p - 1), or factoring r, or finding EulerPhi( p^n - 1 )/ n  p = 5 n = 4 at ../SourceCode/Primpoly/ppPolynomial.cpp: line 2638BigInt::operator-=  negative result for u - v = 0 - 1 at ../SourceCode/Primpoly/ppBigInt.cpp: line 1057</span>
+<span class="linenos">147</span>
+<span class="linenos">148</span><span class="go">TEST:  PolyOrder 1 distinct factor 4 times</span>
+<span class="linenos">149</span><span class="go">	ERROR:  PolynomialRangeError:  PolyOrder: problem computing p^n or r = (p^n - 1 )/ (p - 1), or factoring r, or finding EulerPhi( p^n - 1 )/ n  p = 5 n = 4 at ../SourceCode/Primpoly/ppPolynomial.cpp: line 2638BigInt::operator-=  negative result for u - v = 0 - 1 at ../SourceCode/Primpoly/ppBigInt.cpp: line 1057</span>
+<span class="linenos">150</span>
+<span class="linenos">151</span><span class="go">End unit testing...</span>
+<span class="linenos">152</span><span class="go">SORRY.  One or more unit tests failed!</span>
+<span class="linenos">153</span>
+<span class="linenos">154</span>
+<span class="linenos">155</span>
+<span class="linenos">156</span>
+<span class="linenos">157</span><span class="go">$ gdb Bin/Primpoly.exe</span>
+<span class="linenos">158</span>
+<span class="linenos">159</span><span class="go">GNU gdb 6.3.50-20050815 (Apple version gdb-1510) (Wed Sep 22 02:45:02 UTC 2010)</span>
+<span class="linenos">160</span><span class="go">Copyright 2004 Free Software Foundation, Inc.</span>
+<span class="linenos">161</span><span class="go">GDB is free software, covered by the GNU General Public License, and you are</span>
+<span class="linenos">162</span><span class="go">welcome to change it and/or distribute copies of it under certain conditions.</span>
+<span class="linenos">163</span><span class="go">Type &quot;show copying&quot; to see the conditions.</span>
+<span class="linenos">164</span><span class="go">There is absolutely no warranty for GDB.  Type &quot;show warranty&quot; for details.</span>
+<span class="linenos">165</span><span class="go">This GDB was configured as &quot;x86_64-apple-darwin&quot;...Reading symbols for shared libraries ... done</span>
+<span class="linenos">166</span>
+<span class="linenos">167</span><span class="go">(gdb) b ppBigInt.cpp:1057</span>
+<span class="linenos">168</span><span class="go">Breakpoint 1 at 0x10000d5f7: file ../SourceCode/Primpoly/ppBigInt.cpp, line 1057.</span>
+<span class="linenos">169</span>
+<span class="linenos">170</span><span class="go">(gdb) run 2 4</span>
+<span class="linenos">171</span><span class="go">Starting program: /Volumes/Sean/Sean/WebSite/Mathematics/AbstractAlgebra/PrimitivePolynomials/Project/Build/Bin/Primpoly.exe 2 4</span>
+<span class="linenos">172</span><span class="go">Reading symbols for shared libraries ++. done</span>
+<span class="linenos">173</span>
+<span class="linenos">174</span><span class="go">Primpoly Version 16.4 - A Program for Computing Primitive Polynomials.</span>
+<span class="linenos">175</span><span class="go">Copyright (C) 1999-2026 by Sean Erik O&#39;Connor.  All Rights Reserved.</span>
+<span class="linenos">176</span>
+<span class="linenos">177</span><span class="go">Primpoly comes with ABSOLUTELY NO WARRANTY; for details see the</span>
+<span class="linenos">178</span><span class="go">GNU General Public License.  This is free software, and you are welcome</span>
+<span class="linenos">179</span><span class="go">to redistribute it under certain conditions; see the GNU General Public License</span>
+<span class="linenos">180</span><span class="go">for details.</span>
+<span class="linenos">181</span>
+<span class="linenos">182</span><span class="go">Pollard rho n = 25852 c = 2</span>
+<span class="linenos">183</span><span class="go">    inner while loop, gcd = g = 1 |x -xp| = 3 n_ = 25852 k = 1 l = 1</span>
+<span class="linenos">184</span><span class="go">    after division, n_ = 25852 x = 27 xp = 5</span>
+<span class="linenos">185</span><span class="go">    inner while loop, gcd = g = 2 |x -xp| = 22 n_ = 25852 k = 2 l = 2</span>
+<span class="linenos">186</span><span class="go">    &gt;&gt;&gt;&gt;&gt;prime factor g = 2</span>
+<span class="linenos">187</span><span class="go">    after division, n_ = 12926 x = 27 xp = 5</span>
+<span class="linenos">188</span><span class="go">    inner while loop, gcd = g = 2 |x -xp| = 22 n_ = 12926 k = 2 l = 2</span>
+<span class="linenos">189</span><span class="go">    &gt;&gt;&gt;&gt;&gt;prime factor g = 2</span>
+<span class="linenos">190</span><span class="go">    after division, n_ = 6463 x = 27 xp = 5</span>
+<span class="linenos">191</span><span class="go">    inner while loop, gcd = g = 1 |x -xp| = 22 n_ = 6463 k = 2 l = 2</span>
+<span class="linenos">192</span><span class="go">    after division, n_ = 6463 x = 731 xp = 5</span>
+<span class="linenos">193</span><span class="go">    inner while loop, gcd = g = 1 |x -xp| = 726 n_ = 6463 k = 1 l = 2</span>
+<span class="linenos">194</span><span class="go">    after division, n_ = 6463 x = 4397 xp = 731</span>
+<span class="linenos">195</span><span class="go">    inner while loop, gcd = g = 1 |x -xp| = 3666 n_ = 6463 k = 4 l = 4</span>
+<span class="linenos">196</span><span class="go">    after division, n_ = 6463 x = 2778 xp = 731</span>
+<span class="linenos">197</span><span class="go">    inner while loop, gcd = g = 23 |x -xp| = 2047 n_ = 6463 k = 3 l = 4</span>
+<span class="linenos">198</span><span class="go">    &gt;&gt;&gt;&gt;&gt;prime factor g = 23</span>
+<span class="linenos">199</span><span class="go">    after division, n_ = 281 x = 249 xp = 169</span>
+<span class="linenos">200</span><span class="go">    &gt;&gt;&gt;&gt;&gt;prime factor n_ = 281</span>
+<span class="linenos">201</span><span class="go">Pollard rho n = 25852 c = 2</span>
+<span class="linenos">202</span><span class="go">    inner while loop, gcd = g = 1 |x -xp| = 3 n_ = 25852 k = 1 l = 1</span>
+<span class="linenos">203</span><span class="go">    after division, n_ = 25852 x = 27 xp = 5</span>
+<span class="linenos">204</span><span class="go">    inner while loop, gcd = g = 2 |x -xp| = 22 n_ = 25852 k = 2 l = 2</span>
+<span class="linenos">205</span><span class="go">    &gt;&gt;&gt;&gt;&gt;prime factor g = 2</span>
+<span class="linenos">206</span><span class="go">    after division, n_ = 12926 x = 27 xp = 5</span>
+<span class="linenos">207</span><span class="go">    inner while loop, gcd = g = 2 |x -xp| = 22 n_ = 12926 k = 2 l = 2</span>
+<span class="linenos">208</span><span class="go">    &gt;&gt;&gt;&gt;&gt;prime factor g = 2</span>
+<span class="linenos">209</span><span class="go">    after division, n_ = 6463 x = 27 xp = 5</span>
+<span class="linenos">210</span><span class="go">    inner while loop, gcd = g = 1 |x -xp| = 22 n_ = 6463 k = 2 l = 2</span>
+<span class="linenos">211</span><span class="go">    after division, n_ = 6463 x = 731 xp = 5</span>
+<span class="linenos">212</span><span class="go">    inner while loop, gcd = g = 1 |x -xp| = 726 n_ = 6463 k = 1 l = 2</span>
+<span class="linenos">213</span><span class="go">    after division, n_ = 6463 x = 4397 xp = 731</span>
+<span class="linenos">214</span><span class="go">    inner while loop, gcd = g = 1 |x -xp| = 3666 n_ = 6463 k = 4 l = 4</span>
+<span class="linenos">215</span><span class="go">    after division, n_ = 6463 x = 2778 xp = 731</span>
+<span class="linenos">216</span><span class="go">    inner while loop, gcd = g = 23 |x -xp| = 2047 n_ = 6463 k = 3 l = 4</span>
+<span class="linenos">217</span><span class="go">    &gt;&gt;&gt;&gt;&gt;prime factor g = 23</span>
+<span class="linenos">218</span><span class="go">    after division, n_ = 281 x = 249 xp = 169</span>
+<span class="linenos">219</span><span class="go">    &gt;&gt;&gt;&gt;&gt;prime factor n_ = 281</span>
+<span class="linenos">220</span><span class="go">Pollard rho n = 24018350267611933650627567399079537500 c = 2</span>
+<span class="linenos">221</span><span class="go">    inner while loop, gcd = g = 3 |x -xp| = 3 n_ = 24018350267611933650627567399079537500 k = 1 l = 1</span>
+<span class="linenos">222</span><span class="go">    &gt;&gt;&gt;&gt;&gt;prime factor g = 3</span>
+<span class="linenos">223</span><span class="go">    after division, n_ = 8006116755870644550209189133026512500 x = 5 xp = 2</span>
+<span class="linenos">224</span><span class="go">    inner while loop, gcd = g = 3 |x -xp| = 3 n_ = 8006116755870644550209189133026512500 k = 1 l = 1</span>
+<span class="linenos">225</span><span class="go">    &gt;&gt;&gt;&gt;&gt;prime factor g = 3</span>
+<span class="linenos">226</span><span class="go">    after division, n_ = 2668705585290214850069729711008837500 x = 5 xp = 2</span>
+<span class="linenos">227</span><span class="go">    inner while loop, gcd = g = 3 |x -xp| = 3 n_ = 2668705585290214850069729711008837500 k = 1 l = 1</span>
+<span class="linenos">228</span><span class="go">    &gt;&gt;&gt;&gt;&gt;prime factor g = 3</span>
+<span class="linenos">229</span><span class="go">    after division, n_ = 889568528430071616689909903669612500 x = 5 xp = 2</span>
+<span class="linenos">230</span><span class="go">    inner while loop, gcd = g = 1 |x -xp| = 3 n_ = 889568528430071616689909903669612500 k = 1 l = 1</span>
+<span class="linenos">231</span><span class="go">    after division, n_ = 889568528430071616689909903669612500 x = 27 xp = 5</span>
+<span class="linenos">232</span><span class="go">    inner while loop, gcd = g = 22 |x -xp| = 22 n_ = 889568528430071616689909903669612500 k = 2 l = 2</span>
+<span class="linenos">233</span><span class="go">    g = 22 isn&#39;t prime </span>
+<span class="linenos">234</span><span class="go">Pollard rho n = 889568528430071616689909903669612500 c = 5</span>
+<span class="linenos">235</span><span class="go">    inner while loop, gcd = g = 1 |x -xp| = 3 n_ = 889568528430071616689909903669612500 k = 1 l = 1</span>
+<span class="linenos">236</span><span class="go">    after division, n_ = 889568528430071616689909903669612500 x = 30 xp = 5</span>
+<span class="linenos">237</span><span class="go">    inner while loop, gcd = g = 25 |x -xp| = 25 n_ = 889568528430071616689909903669612500 k = 2 l = 2</span>
+<span class="linenos">238</span><span class="go">    g = 25 isn&#39;t prime </span>
+<span class="linenos">239</span><span class="go">Pollard rho n = 68719476735 c = 2</span>
+<span class="linenos">240</span><span class="go">    inner while loop, gcd = g = 3 |x -xp| = 3 n_ = 68719476735 k = 1 l = 1</span>
+<span class="linenos">241</span><span class="go">    &gt;&gt;&gt;&gt;&gt;prime factor g = 3</span>
+<span class="linenos">242</span><span class="go">    after division, n_ = 22906492245 x = 5 xp = 2</span>
+<span class="linenos">243</span><span class="go">    inner while loop, gcd = g = 3 |x -xp| = 3 n_ = 22906492245 k = 1 l = 1</span>
+<span class="linenos">244</span><span class="go">    &gt;&gt;&gt;&gt;&gt;prime factor g = 3</span>
+<span class="linenos">245</span><span class="go">    after division, n_ = 7635497415 x = 5 xp = 2</span>
+<span class="linenos">246</span><span class="go">    inner while loop, gcd = g = 3 |x -xp| = 3 n_ = 7635497415 k = 1 l = 1</span>
+<span class="linenos">247</span><span class="go">    &gt;&gt;&gt;&gt;&gt;prime factor g = 3</span>
+<span class="linenos">248</span><span class="go">    after division, n_ = 2545165805 x = 5 xp = 2</span>
+<span class="linenos">249</span><span class="go">    inner while loop, gcd = g = 1 |x -xp| = 3 n_ = 2545165805 k = 1 l = 1</span>
+<span class="linenos">250</span><span class="go">    after division, n_ = 2545165805 x = 27 xp = 5</span>
+<span class="linenos">251</span><span class="go">    inner while loop, gcd = g = 1 |x -xp| = 22 n_ = 2545165805 k = 2 l = 2</span>
+<span class="linenos">252</span><span class="go">    after division, n_ = 2545165805 x = 731 xp = 5</span>
+<span class="linenos">253</span><span class="go">    inner while loop, gcd = g = 1 |x -xp| = 726 n_ = 2545165805 k = 1 l = 2</span>
+<span class="linenos">254</span><span class="go">    after division, n_ = 2545165805 x = 534363 xp = 731</span>
+<span class="linenos">255</span><span class="go">    inner while loop, gcd = g = 1 |x -xp| = 533632 n_ = 2545165805 k = 4 l = 4</span>
+<span class="linenos">256</span><span class="go">    after division, n_ = 2545165805 x = 485245611 xp = 731</span>
+<span class="linenos">257</span><span class="go">    inner while loop, gcd = g = 5 |x -xp| = 485244880 n_ = 2545165805 k = 3 l = 4</span>
+<span class="linenos">258</span><span class="go">    &gt;&gt;&gt;&gt;&gt;prime factor g = 5</span>
+<span class="linenos">259</span><span class="go">    after division, n_ = 509033161 x = 485245611 xp = 731</span>
+<span class="linenos">260</span><span class="go">    inner while loop, gcd = g = 1 |x -xp| = 485244880 n_ = 509033161 k = 3 l = 4</span>
+<span class="linenos">261</span><span class="go">    after division, n_ = 509033161 x = 164836970 xp = 731</span>
+<span class="linenos">262</span><span class="go">    inner while loop, gcd = g = 1 |x -xp| = 164836239 n_ = 509033161 k = 2 l = 4</span>
+<span class="linenos">263</span><span class="go">    after division, n_ = 509033161 x = 144374675 xp = 731</span>
+<span class="linenos">264</span><span class="go">    inner while loop, gcd = g = 13 |x -xp| = 144373944 n_ = 509033161 k = 1 l = 4</span>
+<span class="linenos">265</span><span class="go">    &gt;&gt;&gt;&gt;&gt;prime factor g = 13</span>
+<span class="linenos">266</span><span class="go">    after division, n_ = 39156397 x = 26905484 xp = 731</span>
+<span class="linenos">267</span><span class="go">    inner while loop, gcd = g = 1 |x -xp| = 26904753 n_ = 39156397 k = 1 l = 4</span>
+<span class="linenos">268</span><span class="go">    after division, n_ = 39156397 x = 5044848 xp = 26905484</span>
+<span class="linenos">269</span><span class="go">    inner while loop, gcd = g = 259 |x -xp| = 21860636 n_ = 39156397 k = 8 l = 8</span>
+<span class="linenos">270</span><span class="go">    g = 259 isn&#39;t prime </span>
+<span class="linenos">271</span><span class="go">Pollard rho n = 39156397 c = 5</span>
+<span class="linenos">272</span><span class="go">    inner while loop, gcd = g = 1 |x -xp| = 3 n_ = 39156397 k = 1 l = 1</span>
+<span class="linenos">273</span><span class="go">    after division, n_ = 39156397 x = 30 xp = 5</span>
+<span class="linenos">274</span><span class="go">    inner while loop, gcd = g = 1 |x -xp| = 25 n_ = 39156397 k = 2 l = 2</span>
+<span class="linenos">275</span><span class="go">    after division, n_ = 39156397 x = 905 xp = 5</span>
+<span class="linenos">276</span><span class="go">    inner while loop, gcd = g = 1 |x -xp| = 900 n_ = 39156397 k = 1 l = 2</span>
+<span class="linenos">277</span><span class="go">    after division, n_ = 39156397 x = 819030 xp = 905</span>
+<span class="linenos">278</span><span class="go">    inner while loop, gcd = g = 7 |x -xp| = 818125 n_ = 39156397 k = 4 l = 4</span>
+<span class="linenos">279</span><span class="go">    &gt;&gt;&gt;&gt;&gt;prime factor g = 7</span>
+<span class="linenos">280</span><span class="go">    after division, n_ = 5593771 x = 819030 xp = 905</span>
+<span class="linenos">281</span><span class="go">    inner while loop, gcd = g = 1 |x -xp| = 818125 n_ = 5593771 k = 4 l = 4</span>
+<span class="linenos">282</span><span class="go">    after division, n_ = 5593771 x = 5122585 xp = 905</span>
+<span class="linenos">283</span><span class="go">    inner while loop, gcd = g = 73 |x -xp| = 5121680 n_ = 5593771 k = 3 l = 4</span>
+<span class="linenos">284</span><span class="go">    &gt;&gt;&gt;&gt;&gt;prime factor g = 73</span>
+<span class="linenos">285</span><span class="go">    after division, n_ = 76627 x = 65203 xp = 905</span>
+<span class="linenos">286</span><span class="go">    inner while loop, gcd = g = 1 |x -xp| = 64298 n_ = 76627 k = 3 l = 4</span>
+<span class="linenos">287</span><span class="go">    after division, n_ = 76627 x = 12000 xp = 905</span>
+<span class="linenos">288</span><span class="go">    inner while loop, gcd = g = 1 |x -xp| = 11095 n_ = 76627 k = 2 l = 4</span>
+<span class="linenos">289</span><span class="go">    after division, n_ = 76627 x = 17872 xp = 905</span>
+<span class="linenos">290</span><span class="go">    inner while loop, gcd = g = 19 |x -xp| = 16967 n_ = 76627 k = 1 l = 4</span>
+<span class="linenos">291</span><span class="go">    &gt;&gt;&gt;&gt;&gt;prime factor g = 19</span>
+<span class="linenos">292</span><span class="go">    after division, n_ = 4033 x = 1740 xp = 905</span>
+<span class="linenos">293</span><span class="go">    inner while loop, gcd = g = 1 |x -xp| = 835 n_ = 4033 k = 1 l = 4</span>
+<span class="linenos">294</span><span class="go">    after division, n_ = 4033 x = 2855 xp = 1740</span>
+<span class="linenos">295</span><span class="go">    inner while loop, gcd = g = 1 |x -xp| = 1115 n_ = 4033 k = 8 l = 8</span>
+<span class="linenos">296</span><span class="go">    after division, n_ = 4033 x = 337 xp = 1740</span>
+<span class="linenos">297</span><span class="go">    inner while loop, gcd = g = 1 |x -xp| = 1403 n_ = 4033 k = 7 l = 8</span>
+<span class="linenos">298</span><span class="go">    after division, n_ = 4033 x = 650 xp = 1740</span>
+<span class="linenos">299</span><span class="go">    inner while loop, gcd = g = 109 |x -xp| = 1090 n_ = 4033 k = 6 l = 8</span>
+<span class="linenos">300</span><span class="go">    &gt;&gt;&gt;&gt;&gt;prime factor g = 109</span>
+<span class="linenos">301</span><span class="go">    after division, n_ = 37 x = 21 xp = 1</span>
+<span class="linenos">302</span><span class="go">    &gt;&gt;&gt;&gt;&gt;prime factor n_ = 37</span>
+<span class="linenos">303</span><span class="go">p = 2</span>
+<span class="linenos">304</span><span class="go">n = 36</span>
+<span class="linenos">305</span><span class="go">p^n = 68719476736</span>
+<span class="linenos">306</span><span class="go">r = (p^n-1)/(p-1) = 68719476735</span>
+<span class="linenos">307</span><span class="go">8 sorted unique factors of r</span>
+<span class="linenos">308</span><span class="go">3 ^ 3</span>
+<span class="linenos">309</span><span class="go">5 ^ 1</span>
+<span class="linenos">310</span><span class="go">7 ^ 1</span>
+<span class="linenos">311</span><span class="go">13 ^ 1</span>
+<span class="linenos">312</span><span class="go">19 ^ 1</span>
+<span class="linenos">313</span><span class="go">37 ^ 1</span>
+<span class="linenos">314</span><span class="go">73 ^ 1</span>
+<span class="linenos">315</span><span class="go">109 ^ 1</span>
+<span class="linenos">316</span><span class="go">8 distinct primes for p^n - 1</span>
+<span class="linenos">317</span><span class="go">3</span>
+<span class="linenos">318</span><span class="go">5</span>
+<span class="linenos">319</span><span class="go">7</span>
+<span class="linenos">320</span><span class="go">13</span>
+<span class="linenos">321</span><span class="go">19</span>
+<span class="linenos">322</span><span class="go">37</span>
+<span class="linenos">323</span><span class="go">73</span>
+<span class="linenos">324</span><span class="go">109</span>
+<span class="linenos">325</span><span class="go">numPrimitivePoly = 725594112</span>
+<span class="linenos">326</span><span class="go">Pollard rho n = 435984840 c = 2</span>
+<span class="linenos">327</span><span class="go">    inner while loop, gcd = g = 3 |x -xp| = 3 n_ = 435984840 k = 1 l = 1</span>
+<span class="linenos">328</span><span class="go">    &gt;&gt;&gt;&gt;&gt;prime factor g = 3</span>
+<span class="linenos">329</span><span class="go">    after division, n_ = 145328280 x = 5 xp = 2</span>
+<span class="linenos">330</span><span class="go">    inner while loop, gcd = g = 3 |x -xp| = 3 n_ = 145328280 k = 1 l = 1</span>
+<span class="linenos">331</span><span class="go">    &gt;&gt;&gt;&gt;&gt;prime factor g = 3</span>
+<span class="linenos">332</span><span class="go">    after division, n_ = 48442760 x = 5 xp = 2</span>
+<span class="linenos">333</span><span class="go">    inner while loop, gcd = g = 1 |x -xp| = 3 n_ = 48442760 k = 1 l = 1</span>
+<span class="linenos">334</span><span class="go">    after division, n_ = 48442760 x = 27 xp = 5</span>
+<span class="linenos">335</span><span class="go">    inner while loop, gcd = g = 2 |x -xp| = 22 n_ = 48442760 k = 2 l = 2</span>
+<span class="linenos">336</span><span class="go">    &gt;&gt;&gt;&gt;&gt;prime factor g = 2</span>
+<span class="linenos">337</span><span class="go">    after division, n_ = 24221380 x = 27 xp = 5</span>
+<span class="linenos">338</span><span class="go">    inner while loop, gcd = g = 2 |x -xp| = 22 n_ = 24221380 k = 2 l = 2</span>
+<span class="linenos">339</span><span class="go">    &gt;&gt;&gt;&gt;&gt;prime factor g = 2</span>
+<span class="linenos">340</span><span class="go">    after division, n_ = 12110690 x = 27 xp = 5</span>
+<span class="linenos">341</span><span class="go">    inner while loop, gcd = g = 2 |x -xp| = 22 n_ = 12110690 k = 2 l = 2</span>
+<span class="linenos">342</span><span class="go">    &gt;&gt;&gt;&gt;&gt;prime factor g = 2</span>
+<span class="linenos">343</span><span class="go">    after division, n_ = 6055345 x = 27 xp = 5</span>
+<span class="linenos">344</span><span class="go">    inner while loop, gcd = g = 1 |x -xp| = 22 n_ = 6055345 k = 2 l = 2</span>
+<span class="linenos">345</span><span class="go">    after division, n_ = 6055345 x = 731 xp = 5</span>
+<span class="linenos">346</span><span class="go">    inner while loop, gcd = g = 1 |x -xp| = 726 n_ = 6055345 k = 1 l = 2</span>
+<span class="linenos">347</span><span class="go">    after division, n_ = 6055345 x = 534363 xp = 731</span>
+<span class="linenos">348</span><span class="go">    inner while loop, gcd = g = 1 |x -xp| = 533632 n_ = 6055345 k = 4 l = 4</span>
+<span class="linenos">349</span><span class="go">    after division, n_ = 6055345 x = 4022296 xp = 731</span>
+<span class="linenos">350</span><span class="go">    inner while loop, gcd = g = 5 |x -xp| = 4021565 n_ = 6055345 k = 3 l = 4</span>
+<span class="linenos">351</span><span class="go">    &gt;&gt;&gt;&gt;&gt;prime factor g = 5</span>
+<span class="linenos">352</span><span class="go">    after division, n_ = 1211069 x = 389089 xp = 731</span>
+<span class="linenos">353</span><span class="go">    inner while loop, gcd = g = 1 |x -xp| = 388358 n_ = 1211069 k = 3 l = 4</span>
+<span class="linenos">354</span><span class="go">    after division, n_ = 1211069 x = 569578 xp = 731</span>
+<span class="linenos">355</span><span class="go">    inner while loop, gcd = g = 1 |x -xp| = 568847 n_ = 1211069 k = 2 l = 4</span>
+<span class="linenos">356</span><span class="go">    after division, n_ = 1211069 x = 356504 xp = 731</span>
+<span class="linenos">357</span><span class="go">    inner while loop, gcd = g = 1 |x -xp| = 355773 n_ = 1211069 k = 1 l = 4</span>
+<span class="linenos">358</span><span class="go">    after division, n_ = 1211069 x = 676882 xp = 356504</span>
+<span class="linenos">359</span><span class="go">    inner while loop, gcd = g = 1 |x -xp| = 320378 n_ = 1211069 k = 8 l = 8</span>
+<span class="linenos">360</span><span class="go">    after division, n_ = 1211069 x = 39984 xp = 356504</span>
+<span class="linenos">361</span><span class="go">    inner while loop, gcd = g = 1 |x -xp| = 316520 n_ = 1211069 k = 7 l = 8</span>
+<span class="linenos">362</span><span class="go">    after division, n_ = 1211069 x = 109178 xp = 356504</span>
+<span class="linenos">363</span><span class="go">    inner while loop, gcd = g = 1 |x -xp| = 247326 n_ = 1211069 k = 6 l = 8</span>
+<span class="linenos">364</span><span class="go">    after division, n_ = 1211069 x = 494588 xp = 356504</span>
+<span class="linenos">365</span><span class="go">    inner while loop, gcd = g = 1 |x -xp| = 138084 n_ = 1211069 k = 5 l = 8</span>
+<span class="linenos">366</span><span class="go">    after division, n_ = 1211069 x = 728850 xp = 356504</span>
+<span class="linenos">367</span><span class="go">    inner while loop, gcd = g = 1 |x -xp| = 372346 n_ = 1211069 k = 4 l = 8</span>
+<span class="linenos">368</span><span class="go">    after division, n_ = 1211069 x = 227411 xp = 356504</span>
+<span class="linenos">369</span><span class="go">    inner while loop, gcd = g = 1 |x -xp| = 129093 n_ = 1211069 k = 3 l = 8</span>
+<span class="linenos">370</span><span class="go">    after division, n_ = 1211069 x = 694485 xp = 356504</span>
+<span class="linenos">371</span><span class="go">    inner while loop, gcd = g = 1 |x -xp| = 337981 n_ = 1211069 k = 2 l = 8</span>
+<span class="linenos">372</span><span class="go">    after division, n_ = 1211069 x = 1185977 xp = 356504</span>
+<span class="linenos">373</span><span class="go">    inner while loop, gcd = g = 1 |x -xp| = 829473 n_ = 1211069 k = 1 l = 8</span>
+<span class="linenos">374</span><span class="go">    after division, n_ = 1211069 x = 1063655 xp = 1185977</span>
+<span class="linenos">375</span><span class="go">    inner while loop, gcd = g = 29 |x -xp| = 122322 n_ = 1211069 k = 16 l = 16</span>
+<span class="linenos">376</span><span class="go">    &gt;&gt;&gt;&gt;&gt;prime factor g = 29</span>
+<span class="linenos">377</span><span class="go">    after division, n_ = 41761 x = 19630 xp = 16669</span>
+<span class="linenos">378</span><span class="go">    &gt;&gt;&gt;&gt;&gt;prime factor n_ = 41761</span>
+<span class="linenos">379</span><span class="go">p = 17</span>
+<span class="linenos">380</span><span class="go">n = 8</span>
+<span class="linenos">381</span><span class="go">p^n = 6975757441</span>
+<span class="linenos">382</span><span class="go">r = (p^n-1)/(p-1) = 435984840</span>
+<span class="linenos">383</span><span class="go">5 sorted unique factors of r</span>
+<span class="linenos">384</span><span class="go">2 ^ 3</span>
+<span class="linenos">385</span><span class="go">3 ^ 2</span>
+<span class="linenos">386</span><span class="go">5 ^ 1</span>
+<span class="linenos">387</span><span class="go">29 ^ 1</span>
+<span class="linenos">388</span><span class="go">41761 ^ 1</span>
+<span class="linenos">389</span><span class="go">1 sorted unique factors of p-1</span>
+<span class="linenos">390</span><span class="go">2 ^ 4</span>
+<span class="linenos">391</span>
+<span class="linenos">392</span>
+<span class="linenos">393</span>
+<span class="linenos">394</span>
+<span class="linenos">395</span><span class="go">Breakpoint 1, BigInt::operator-= (this=0x7fff5fbf9170, v=@0x7fff5fbf95b0) at ../SourceCode/Primpoly/ppBigInt.cpp:1057</span>
+<span class="linenos">396</span><span class="go">1057	           &lt;&lt; &quot; at &quot; &lt;&lt; __FILE__ &lt;&lt; &quot;: line &quot; &lt;&lt; __LINE__ ;</span>
+<span class="linenos">397</span>
+<span class="linenos">398</span><span class="go">(gdb) up</span>
+<span class="linenos">399</span><span class="go">#1  0x000000010000d8f3 in operator- (u=@0x1002036d8, v=@0x7fff5fbf95b0) at ../SourceCode/Primpoly/ppBigInt.cpp:976</span>
+<span class="linenos">400</span><span class="go">976	    return BigInt( u ) -= v ;</span>
+<span class="linenos">401</span>
+<span class="linenos">402</span><span class="go">(gdb) up</span>
+<span class="linenos">403</span><span class="go">#2  0x0000000100047527 in factorRAndFindNumberOfPrimitivePolynomials (p=17, n=8, maxNumPossiblePoly=@0x7fff5fbfbcf0, r=@0x7fff5fbfb9f0, factorsOfR=@0x7fff5fbfaea0, numPrimitivePoly=@0x7fff5fbfbde0) at ../SourceCode/Primpoly/ppFactor.cpp:2513</span>
+<span class="linenos">404</span><span class="go">2513	        numPrimitivePoly *= (allDistinctPrimes[ i ] - static_cast&lt;BigInt&gt;( 1u )) ;</span>
+<span class="linenos">405</span>
+<span class="linenos">406</span><span class="go">(gdb) l</span>
+<span class="linenos">407</span><span class="go">2508	    //               i</span>
+<span class="linenos">408</span><span class="go">2509	    // Multiply by -------</span>
+<span class="linenos">409</span><span class="go">2510	    //               p</span>
+<span class="linenos">410</span><span class="go">2511	    //                i</span>
+<span class="linenos">411</span><span class="go">2512	    for (unsigned int i = 0u ;  i &lt; allDistinctPrimes.size() ; ++i)</span>
+<span class="linenos">412</span><span class="go">2513	        numPrimitivePoly *= (allDistinctPrimes[ i ] - static_cast&lt;BigInt&gt;( 1u )) ;</span>
+<span class="linenos">413</span><span class="go">2514	</span>
+<span class="linenos">414</span><span class="go">2515	    for (unsigned int i = 0u ;  i &lt; allDistinctPrimes.size() ; ++i)</span>
+<span class="linenos">415</span><span class="go">2516	        numPrimitivePoly /=  allDistinctPrimes[ i ] ;</span>
+<span class="linenos">416</span><span class="go">2517	</span>
+<span class="linenos">417</span>
+<span class="linenos">418</span><span class="go">(gdb) p p</span>
+<span class="linenos">419</span><span class="go">$1 = 17</span>
+<span class="linenos">420</span>
+<span class="linenos">421</span><span class="go">(gdb) p n</span>
+<span class="linenos">422</span><span class="go">$2 = 8</span>
+<span class="linenos">423</span>
+<span class="linenos">424</span><span class="go">(gdb) call printNumber(std::cout,r)            </span>
+<span class="linenos">425</span><span class="go"> BigInt number 435984840  (base b = 2147483648, number of digits = 1)</span>
+<span class="linenos">426</span>
+<span class="linenos">427</span><span class="go">(gdb) call printNumber(std::cout,maxNumPossiblePoly)</span>
+<span class="linenos">428</span><span class="go"> BigInt number 3 533306497  (base b = 2147483648, number of digits = 2)</span>
+<span class="linenos">429</span>
+<span class="linenos">430</span><span class="go">(gdb) p factorsOfR.num()</span>
+<span class="linenos">431</span><span class="go">$3 = 5</span>
+<span class="linenos">432</span>
+<span class="linenos">433</span><span class="go">(gdb) call printNumber(std::cout,allDistinctPrimes[i])</span>
+<span class="linenos">434</span><span class="go"> BigInt number 0  (base b = 2147483648, number of digits = 1)</span>
+<span class="linenos">435</span>
+<span class="linenos">436</span><span class="go">(gdb) p i</span>
+<span class="linenos">437</span><span class="go">$1 = 5</span>
+<span class="linenos">438</span>
+<span class="linenos">439</span><span class="go">(gdb) p allDistinctPrimes.size()</span>
+<span class="linenos">440</span><span class="go">$2 = 6</span>
+<span class="linenos">441</span>
+<span class="linenos">442</span><span class="go">(gdb) call printNumber(std::cout,allDistinctPrimes[0])</span>
+<span class="linenos">443</span><span class="go"> BigInt number 2  (base b = 2147483648, number of digits = 1)</span>
+<span class="linenos">444</span><span class="go">(gdb) call printNumber(std::cout,allDistinctPrimes[1])</span>
+<span class="linenos">445</span><span class="go"> BigInt number 3  (base b = 2147483648, number of digits = 1)</span>
+<span class="linenos">446</span><span class="go">(gdb) call printNumber(std::cout,allDistinctPrimes[2])</span>
+<span class="linenos">447</span><span class="go"> BigInt number 5  (base b = 2147483648, number of digits = 1)</span>
+<span class="linenos">448</span><span class="go">(gdb) call printNumber(std::cout,allDistinctPrimes[3])</span>
+<span class="linenos">449</span><span class="go"> BigInt number 29  (base b = 2147483648, number of digits = 1)</span>
+<span class="linenos">450</span><span class="go">(gdb) call printNumber(std::cout,allDistinctPrimes[4])</span>
+<span class="linenos">451</span><span class="go"> BigInt number 41761  (base b = 2147483648, number of digits = 1)</span>
+<span class="linenos">452</span><span class="go">(gdb) call printNumber(std::cout,allDistinctPrimes[5])</span>
+<span class="linenos">453</span><span class="go"> BigInt number 0  (base b = 2147483648, number of digits = 1)</span>
+<span class="linenos">454</span><span class="go">(gdb) q</span>
+<span class="linenos">455</span><span class="go">The program is running.  Exit anyway? (y or n) y</span>
+</pre></div>
+
+            </article>
+        </body>
+        
+        </html>
+        

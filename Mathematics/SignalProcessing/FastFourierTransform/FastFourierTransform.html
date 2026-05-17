@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en-US">  <!-- Set language of this page to USA English. -->
+
+<!-- ===================================================================
+|
+| NAME
+| 
+|     FastFourierTransform.html
+|
+| DESCRIPTION
+|
+|     This is the primitive polynomial web page.
+|     It is a hand-crafted HTML 5 W3C validated document.
+|
+| AUTHOR
+|
+|    Sean Erik O'Connor
+|
+=================================================================== -->
+
+    <head>
+        <!-- This page uses Unicode characters. -->
+        <meta charset="utf-8">
+
+        <!-- Set viewport to actual device width.  Any other settings makes the web page initially appear zoomed-in on mobile devices. -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Titles appear in the web browser and the browser's bookmarks. -->
+       <title>Fast Fourier Transform in C++</title>
+
+        <!-- Search engines will show this description below the title. -->
+       <meta name="description" content="Free C++ software for computing a power of 2 Fast Fourier transform.">
+
+       <meta name="author" content="Sean Erik O'Connor">
+
+       <!-- Configure and load MathJax -->
+       <script src="../../../Scripts/load-mathjax.js" async></script>
+
+       <!-- Cascading style sheet for this document. -->
+       <link rel="StyleSheet" href="../../../StyleSheet.css" type="text/css" /> 
+
+        <!-- Favicons are 32x32 or 16x16, 8 or 24 bit PNG Images which show up left of the web page title in a browser.  -->
+        <link rel="icon" type="image/png" href="../../../Images/favicon.png" />
+    </head>
+
+<body>
+        <!-- This wraps the whole body in a CSS grid. -->
+        <div class="wrapper titlePage">
+
+            <header class="title">
+                <h1>FAST FOURIER TRANSFORM IN C++</h1>
+                <hr>
+            </header>
+
+            <!-- A decorative border at the left side of the page. -->
+            <aside class=border>
+                  <img class="border"
+                       src="../../../Images/sinXYPlot.png"
+                       alt="Sin( x y ) Image Border." />
+            </aside>
+
+            <header class="navigation">
+                <a href="../../../index.html">
+                    <img src="../../../Images/home.png" alt="Home Page Button." width="32" height="32" >
+                     <em>Home</em>
+                 </a>
+
+                 <a href="../../../Mathematics/mathematicalSoftware.html">
+                     <img src="../../../Images/compactDisk.png" alt="Mathematical Software Button." width="32" height="32" >
+                      <em>Mathematical Software</em>
+                 </a>
+
+                 <a href="../../../Art/Art.html">
+                     <img src="../../../Images/sampleArtLowRes.png" alt="Art Button." width="32" height="32" >
+                      <em>Fine Arts</em>
+                 </a>
+
+                 <a href="../../../WebPageDesign/webPageDesign.html">
+                     <img src="../../../Images/webPage.png" alt="Web Page Design Button." height="32" width="32" >
+                      <em>Web Page Design</em>
+                 </a>
+
+                 <a href="../../../Electronics/Electronics.html">
+                     <img src="../../../Images/sparkCoil.png" alt="Hobby Electronics Button." width="32" height="32" >
+                      <em>Hobby Electronics</em>
+                 </a>
+
+                 <a href="../../../ReadingList/readingList.html">
+                      <img src="../../../Images/terraApollo17NASALowRes.png"
+                           alt="Reading List Button."
+                           width="32" height="32" />
+                      <em>Reading list</em>
+                </a>
+            </header>
+
+           <!-- The main content of this page. -->
+            <article class="content">
+                <section>
+                    <h3>Overview</h3>
+
+                    <p>
+                        The Fast Fourier Transform (FFT) is a fast method for evaluating the discrete Fourier transform (DFT) defined to be the
+                    complex exponential sum, 
+
+                    $$
+                    \hat{x}_n = {1 \over \sqrt{N}} \sum_{k=0}^{N-1} x_k W^{k n} \quad n = 0 \ldots N-1
+                    $$
+
+                    on the sequence $\{ x_n \: \vert \: n = 0 \ldots N-1 \}$ where $W = e^{-2 \pi i / N}$ is an nth root of unity, and i denotes $\sqrt {-1}$
+                    </p>
+
+                    <p>
+                    The FFT performs $O(n \: lg \: N)$ operations when N is a power of 2.
+                    </p>
+
+                    <p>
+                    Here's C++ software which implements a power of two FFT.  We create it as a derived class of the STL vector type.
+                    </p>
+                </section>
+
+                <section>
+                    <h3>Features</h3>
+
+                    <ul>
+                        <li>
+                        Clean C++ language implementation of a standard power of 2 FFT algorithm.  
+                        You can define single or double precision floating point.
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>Download</h3>
+
+                    <p>
+                    Source code <em>Version 1.5</em> and executables are distributed under the terms of the
+                        <a href="http://www.gnu.org/licenses/">GNU General Public License</a>.
+                    </p>
+
+                    <ul class="download">
+                        <li class="downloadName">FFT.cpp</li>
+                        <li class="downloadDescription">FFT classes implementation.</li>
+                        <li class="downloadView"> 
+                            <a href="Project/SourceCode/FFT.cpp.html">
+                                <img src="../../../Images/eye.png" alt="Eye icon for source code viewing." width="30" height="30" >View</a>
+                        </li>
+                        <li class="download"> 
+                            <a href="Project/SourceCode/FFT.cpp" download="Project/SourceCode/FFT.cpp">
+                                <img src="../../../Images/compactDisk.png" alt="Compact disk icon for source code download." width="25" height="25" >Download</a>
+                        </li>
+
+                        <li class="downloadName">FFT.hpp</li>
+                        <li class="downloadDescription">FFT include file.</li>
+                        <li class="downloadView"> 
+                            <a href="Project/SourceCode/FFT.hpp.html">
+                                <img src="../../../Images/eye.png" alt="Eye icon for source code viewing." width="30" height="30" >View</a>
+                        </li>
+                        <li class="download"> 
+                            <a href="Project/SourceCode/FFT.hpp" download="Project/SourceCode/FFT.hpp">
+                                <img src="../../../Images/compactDisk.png" alt="Compact disk icon for source code download." width="25" height="25" >Download</a>
+                        </li>
+
+                        <li class="downloadName">testFFT.cpp</li>
+                        <li class="downloadDescription">Main unit test or demo program.</li>
+                        <li class="downloadView"> 
+                            <a href="Project/SourceCode/testFFT.cpp.html">
+                                <img src="../../../Images/eye.png" alt="Eye icon for source code viewing." width="30" height="30" >View</a>
+                        </li>
+                        <li class="download"> 
+                            <a href="Project/SourceCode/testFFT.cpp" download="Project/SourceCode/testFFT.cpp">
+                                <img src="../../../Images/compactDisk.png" alt="Compact disk icon for source code download." width="25" height="25" >Download</a>
+                        </li>
+
+                        <li class="downloadName">makefile</li>
+                        <li class="downloadDescription">compile, test, run</li>
+                        <li class="downloadView"> 
+                            <a href="Project/Build/makefile.html">
+                                <img src="../../../Images/eye.png" alt="Eye icon for source code viewing." width="30" height="30" >View</a>
+                        </li>
+                        <li class="download"> 
+                            <a href="Project/Build/makefile" download="Project/Build/makefile">
+                                <img src="../../../Images/compactDisk.png" alt="Compact disk icon for source code download." width="25" height="25" >Download</a>
+                        </li>
+
+                        <li class="downloadName">fftIn.txt</li>
+                        <li class="downloadDescription">Input test file.</li>
+                        <li class="downloadView"> 
+                            <a href="Project/Build/fftIn.txt.html">
+                                <img src="../../../Images/eye.png" alt="Eye icon for source code viewing." width="30" height="30" >View</a>
+                        </li>
+                        <li class="download">
+                            <a href="Project/Build/fftIn.txt" download="Project/Build/fftIn.txt">
+                                <img src="../../../Images/compactDisk.png" alt="Compact disk icon for source code download." width="25" height="25" >Download</a>
+                        </li>
+
+                        <li class="downloadName">fftOut.txt</li>
+                        <li class="downloadDescription">Output test file.</li>
+                        <li class="downloadView"> 
+                            <a href="Project/Build/fftOut.txt.html">
+                                <img src="../../../Images/eye.png" alt="Eye icon for source code viewing." width="30" height="30" >View</a>
+                        </li>
+                        <li class="download">
+                            <a href="Project/Build/fftOut.txt" download="Project/Build/fftOut.txt">
+                                <img src="../../../Images/compactDisk.png" alt="Compact disk icon for source code download." width="25" height="25" >Download</a>
+                        </li>
+
+                        <li class="downloadName">FFT.FOR</li>
+                        <li class="downloadDescription">FFT in fixed format FORTRAN (not FORTRAN 90).</li>
+                        <li class="downloadView"> 
+                            <a href="Project/SourceCode/FFT.FOR.html">
+                                <img src="../../../Images/eye.png" alt="Eye icon for source code viewing." width="30" height="30" >View</a>
+                        </li>
+                        <li class="download"> 
+                            <a href="Project/SourceCode/FFT.FOR" download="Project/SourceCode/FFT.FOR">
+                                <img src="../../../Images/compactDisk.png" alt="Compact disk icon for source code download." width="25" height="25" >Download</a>
+                        </li>
+
+                        <li class="downloadName">FFTD.FOR</li>
+                        <li class="downloadDescription">FFT driver in fixed format FORTRAN (not FORTRAN 90).</li>
+                        <li class="downloadView"> 
+                            <a href="Project/SourceCode/FFTD.FOR.html">
+                                <img src="../../../Images/eye.png" alt="Eye icon for source code viewing." width="30" height="30" >View</a>
+                        </li>
+                        <li class="download"> 
+                            <a href="Project/SourceCode/FFTD.FOR" download="Project/SourceCode/FFTD.FOR">
+                                <img src="../../../Images/compactDisk.png" alt="Compact disk icon for source code download." width="25" height="25" >Download</a>
+                        </li>
+
+                        <li class="downloadName">fftOut-macOS-ARM-M1max-clang.txt, <br> fftOut-UbuntuLinux-AMD-x86_64-gcc.txt</li>
+                        <li class="downloadDescription">Same exact results on two quite different computers:  [MacOS, M1 max ARM CPU, Clang] and 
+                                [Ubuntu/Linux, AMD x86_64, gcc].  All hail the IEEE floating point standard.</li>
+                        <li class="downloadView"> 
+                            <a href="Project/Build/fftOut-macOS-ARM-M1max-clang.txt.html">
+                                <img src="../../../Images/eye.png" alt="Eye icon for source code viewing." width="30" height="30" >View</a>
+                        </li>
+                        <li class="download"> 
+                            <a href="Project/Build/fftOut-macOS-ARM-M1max-clang.txt" download="Project/Build/fftOut-macOS-ARM-M1max-clang.txt">
+                                <img src="../../../Images/compactDisk.png" alt="Compact disk icon for source code download." width="25" height="25" >Download</a>
+                        </li>
+                </ul>
+                </section>
+
+                <section>
+                    <h3>Install and Run</h3>
+
+                    <p>
+                    On Mac OS X, I use the 
+                    <a href="../../../WebDesign/DevelopmentEnvironment/macLinuxComputerSetupForDevelopers.html#xcode">Xcode IDE</a>;
+                    on Unix systems, I use the built-in gcc compiler and gdb debugger.
+                    For online C++ language tutorials, books and references, see
+                    <a href="../../../ComputerScience/DevelopmentEnvironment/macLinuxComputerSetupForDevelopers.html#cppnotes">links to C++ documentation</a>.
+                    </p>
+                </section>
+
+                <section>
+                    <h3>DFT on a Discretized Sine Wave, Sampling Theorem, and Windowing</h3>
+ 
+                    <p>
+                    <em>Theorem.</em>
+                    Let's show the DFT of a digitized sine wave with frequency $f$ and sampled at frequency $f_s$ which is 
+                    periodic on the interval $[0, N)$, i.e. $T = N T_s$, is zero 
+                    except when $n = 1$ when its value is $\frac{ N }{ 2i }$ and $n = N-1$ when its
+                    value is $-\frac{ N }{ 2i }$
+                    </p>
+
+                    <p>
+                    <em>Proof.</em>
+                    $$
+                    \mathcal{ DFT } \left( sin \left( 2 \pi \frac{ f }{ f_s } k \right) \right)(n) =
+                    $$
+                    $$
+                    \sum_{k=0}^{N-1} e^{ - \frac{ 2 \pi i }{ N } nk}
+                    \left[ \frac{ e^{ 2 \pi i \frac{ f }{ f_s } k} - e^{ -2 \pi i \frac{ f }{ f_s } k} }{ 2 i } \right]
+                    = 
+                    $$
+                    $$
+                    \frac{ 1 }{ 2 i } \sum_{k=0}^{N-1} 
+                    e^{ 2 \pi i k \left( \frac{ f }{ f_s} - \frac{ n }{ N } \right) } - 
+                    \frac{ 1 }{ 2 i } \sum_{k=0}^{N-1} 
+                    e^{ -2 \pi i k \left( \frac{ f }{ f_s} + \frac{ n }{ N } \right) }
+                    $$
+
+                    By the geometric series sum formula,
+
+                    $$
+                    \sum_{k=0}^{N-1} e ^{ 2 \pi i k \theta} = 
+                    $$
+                    $$
+                    1 + e^{2 \pi i \theta} + {(e^{2 \pi i \theta})}^2 + \ldots + {(e^{2 \pi i \theta})}^{N-1}
+                    $$
+                    $$
+                    = \Bigg\{
+                    \begin{array}{rl}
+                    \frac{ 1 - {e^{2 \pi i N \theta}} }{ 1 - e^{2 \pi i \theta}} \quad \text{ for } e^{2 \pi i \theta} \neq 1  \\
+                    N \quad \text{ for } e^{2 \pi i \theta} = 1 
+                    \end{array} 
+                    $$
+                    </p>
+
+                    <p>
+                    and let's suppose that the sine wave period and sampling period are related as
+                    $T = N T_s$ or $\frac{ f }{ f_s } = \frac{ 1 }{ N }$
+
+                    then
+
+                    $$
+                    \mathcal{ DFT } \left( sin \left( 2 \pi \frac{ f }{ f_s } k \right) \right)(n) = 
+                    $$
+                    $$
+                    \frac{ 1 }{ 2 i }
+                    \Bigg\{
+                    \begin{array}{rl}
+                    \frac{ 1 - {e^{2 \pi i (1-n)}} }{ 1 - e^{2 \pi i (1-n)/N}} \quad \text{ for } e^{2 \pi i (1-n)/N} \neq 1  \\
+                    N \quad \text{ for } e^{2 \pi i (1-n)/N} = 1 
+                    \end{array}
+                    \Bigg\}
+$$
+$$
+                    -
+                    \frac{ 1 }{ 2 i }
+                    \Bigg\{
+                    \begin{array}{rl}
+                    \frac{ 1 - {e^{2 \pi i (1+n)}} }{ 1 - e^{2 \pi i (1+n)/N}} \quad \text{ for } e^{2 \pi i (1+n)/N} \neq 1  \\
+                    N \quad \text{ for } e^{2 \pi i (1+n)/N} = 1 
+                    \end{array}
+                    \Bigg\}
+                    $$
+
+                    but
+                    $$e^{2 \pi i k} = 1 \Leftrightarrow k \in \mathbb{Z}$$
+
+                    so the numerators are zero except when setting $n = 1$ on the left and and $n = N-1$ on the right in which case
+                    the result is $\frac{ N }{ 2i }$ or $-\frac{ N }{ 2i }$
+                    $\blacksquare$
+                    </p>
+
+                    <p>
+                    The discrete Fourier transform (DFT) is a discrete time approximation to the Fourier integral over a finite domain.
+                    It assumes the data in the domain is periodic.  If it is not, any discontinuity at the beginning and end will 
+                    generate artificial high frequencies which mix in with the power spectrum, called spectral leakage.  
+                    To avoid that, people apply windowing functions to the data before applying the FFT.
+                    </p>
+
+                    <p>
+                    Here's an example of a DFT on a single frequency and how to use windowing to reduce spectral leakage,
+                    </p>
+
+                    <img class="centered" src="images//DFTSineWaveWindowing01.jpg" alt="" />
+                    <img class="centered" src="images//DFTSineWaveWindowing02.jpg" alt="" />
+                    <img class="centered" src="images//DFTSineWaveWindowing03.jpg" alt="" />
+                </section>
+
+                <section>
+                <h3>FFT Derivation</h3>
+
+                <p>
+                The Fast Fourier Transform (FFT) is a fast method for evaluating the complex exponential sum,
+
+                $$
+                X_n = \sum_{k=0}^{N-1} x_k W^{nk} \quad n = 0 \ldots N-1
+                $$
+
+                in $ O(n \: lg \: n) $ operations where $ W = e^{-2 \pi i / N} $
+                is an nth root of unity and the symbol i denotes $ \sqrt {-1} $
+                and N is a power of 2:  $N = 2^g $.
+
+                Express the summation indices in binary, 
+
+                $$
+                n = 2^{g-1} n_{g-1} + 2^{g-2} n_{g-2} + \ldots + n_0
+                $$
+
+                $$
+                k = 2^{g-1} k_{g-1} + 2^{g-2} k_{g-2} + \ldots + k_0
+                $$
+
+                to expand the sum into
+
+                $$
+                X(n_{g-1}, n_{g-2}, \ldots, n_0 ) = 
+                \sum_{k_0=0}^1 \: \sum_{k_1=0}^1\ldots \sum_{k_{g-1}=0}^1 \quad x(k_{g-1}, k_{g-2}, \ldots , k_0) W^{nk}
+                $$
+
+                Expand out the complex exponential term
+
+                $$
+                W^{n k} = 
+                W^{(2^{g-1} n_{g-1} + \ldots + n_0) (2^{g-1}k_{g-1})} \times \nonumber \\
+                W^{(2^{g-1} n_{g-1} + \ldots + n_0) (2^{g-2}k_{g-2})}  \times \ldots \times \nonumber \\
+                W^{(2^{g-1} n_{g-1} + \ldots + n_0) (k_0)} \nonumber
+                $$
+
+                Simplify using
+
+                $$
+                W^{(m 2^g)} = W^{mN} = (W^N)^m = 1^m = 1
+                $$
+
+                because
+
+                $$
+                W^N = (e^{2 \pi i / N})^N = e^{2 \pi i}=1
+                $$
+
+                which gives us
+
+                $$
+                W^{n k} = 
+                W^{ (n_0) (2^{g-1}k_{g-1})} 
+                W^{(2 n_1 + n_0) (2^{g-2}k_{g-2})}  \ldots 
+                W^{(2^{g-1} n_{g-1} + \ldots + n_0) (k_0)}
+                $$
+
+                Substitute back into the sum to give
+                $$
+                \sum_{k_0=0}^1 \: \sum_{k_1=0}^1\ldots \sum_{k_{g-1}=0}^1 \quad x(k_{g-1}, k_{g-2}, \ldots , k_0)
+                W^{ (n_0) (2^{g-1}k_{g-1})} 
+                W^{(2 n_1 + n_0) (2^{g-2}k_{g-2})} 
+                W^{(2^{g-1} n_{g-1} + \ldots + n_0) (k_0)}
+                $$
+
+                Break apart the sum into intermediate sums.  And the last equation is a permutation of the vector $X$.
+
+                $$
+                x_1( n_0, k_{g-2}, \ldots, k_0 ) = 
+                \sum_{k_{g-1}=0}^1 \: x_0(k_{g-1}, k_{g-2}, \ldots, k_0) W^{(n_0)(2^{g-1} k_{g-1})}
+                $$
+
+                $$
+                x_2( n_0, n_1, k_{g-3}, \ldots, k_0 ) = 
+                \sum_{k_{g-2}=0}^1 \: x_1(n_0, k_{g-2}, \ldots, k_0) W^{(2 n_1 + n_0)(2^{g-2} k_{g-2})}
+                $$
+
+                $$
+                \ldots
+                $$
+
+                $$
+                x_l( n_0, \ldots, n_{l-2}, n_{l-1}, k_{g-l-1}, \ldots, k_0 ) = 
+                \sum_{k_{g-l}=0}^1 \: x_{l-1}(n_0, \ldots, n_{l-2}, k_{g-l}, k_{g-l-1}\ldots, k_0) W^{(n_0 + 2 n_1 + \ldots + 2^{1-1} n_{l-1}) (2^{g-l} k_{g-l})}
+                $$
+
+                $$
+                \ldots
+                $$
+
+                $$
+                x_g( n_0, n_1, \ldots, n_{g-1}) = 
+                \sum_{k_0=0}^1 \: x_{g-1}(n_0, n_1, \ldots, k_0) W^{(2^{g-1} n_{g-1} \ldots + n_0)(2^{g-2} k_0)}
+                $$
+
+                $$
+                X(n) = X(n_{g-1}, n_{g-2}, \ldots, n_0 ) = x_g( n_0, n_1, \ldots, n_{g-1})
+                $$
+
+                The calculations can arranged into a signal flow graph. 
+                Each $l^{\text{th}}$ column corresponds to the $l^{th}$ sum.
+                Each $k^{\text{th}}$ row corresponds to a value of the index $k = n_0, \ldots, k_0$ in the output $x_l( k )$.
+
+                For the $l^{\text{th}}$ sum, the computations can be arranged into pairs called butterflies and these pairs, in turn, form larger collections called groups.
+
+                <img class="centeredsmaller" alt="X" src="Images/FFTSignalFlowGraph.jpg">
+                </p>
+            
+                <p>
+                The $l^{th}$ sum expands out to
+
+                $$
+                x_l( n_0, \ldots, n_{l-2}, n_{l-1}, k_{g-l-1}, \ldots, k_0 ) = 
+                x_{l-1}(n_0, \ldots, n_{l-2}, 0, k_{g-l-1}\ldots, k_0) W^{(n_0 + 2 n_1 + \ldots + (2^{1-1} n_{l-1}) (2^{g-l} 0)}
+                +
+                x_{l-1}(n_0, \ldots, n_{l-2}, 1, k_{g-l-1}\ldots, k_0) W^{(n_0 + 2 n_1 + \ldots + (2^{1-1} n_{l-1}) (2^{g-l} 1)}
+                $$
+
+                or 
+
+                $$
+                x_l( n_0, \ldots, n_{l-2}, n_{l-1}, k_{g-l-1}, \ldots, k_0 ) = 
+                x_{l-1}(n_0, \ldots, n_{l-2}, 0, k_{g-l-1}\ldots, k_0)
+                +
+                x_{l-1}(n_0, \ldots, n_{l-2}, 1, k_{g-l-1}\ldots, k_0) W^{(n_0 + 2 n_1 + \ldots + (2^{1-1} n_{l-1}) (2^{g-l})}
+                $$
+        
+                So now lets iterate over the indices $n_i$ and $k_i$ in order from lowest value $0$ to highest value $N-1$ and look at the patterns.
+                </p>
+
+
+<!--
+
+                Row Binary Reversed Binary Decimal value of reversed binary
+                0 0000 0000 0
+                1 0001 1000 8
+                2 0010 0100 4
+                3 0011 1100 12
+                4 0100 0010 2
+                5 0101 1010 10
+                6 0110 0110 6
+                7 0111 1110 14
+                8 1000 0001 1
+                9 1001 1001 9
+                10 1010 0101 5
+                11 1011 1101 13
+                12 1100 0011 3
+                13 1101 1011 11
+                14 1110 0111 7
+                15 1111 1111 15
+
+                i = 1 2 3 4
+
+                As carries occur, the term N/2^i appears and vanishes as the ith bit from the right in the binary value assumes the value 0 or 1.
+                The appearance and disappearance has a period of 2^(i-1) since it takes a that long for a carry to propagate to that bit position. This periodicity sets up a pattern which can be used to generate a new block of values from an old block.
+                Given the binary values which form an old block, add (1/2)*(N/2^(i-1)) to all its terms. Here, i is the highest bit which is not identically zero. These new numbers are appended to the old block to form a new block of twice the length.
+                The reversed binary numbers are formed recursively in this way starting with the block {0, N/2}.
+                11.4.5.5.2 Groove starting locations. Recall that for column 1, the number of groups is 2^(1-1), the groups are of length 2^(1-1)N/2 and the first group starts at row 0. For the next column, there are
+                12
+
+                twice the number of groups and each group is half as large. The first group starts at row 0 as before. To get the additional starting locations for the groups of the next column, use all the starting locations for the groups of the previous column and add one half the old group length N/2 to each of these numbers.
+                The process just described is the same as the process for generating the new reversed binary values from the old ones. As a result, the 2 values
+                $$\{ reverse(i) | i = 0, 1, \ldots, 2^{s-1} \}$$
+                give the 2 group starting locations of column 1.
+-->
+                                </section>
+
+                                <section>
+                                    <h3>References</h3>
+
+                                    <ul>
+                                       <li>
+                                        J. W. Cooley and J. W. Tukey, "An algorithm for the machine calculation of complex Fourier series," Math. Comp., vol. 19, pp. 297-301, April 1965.
+                                        </li>
+                                        <li>The standard text on signal processing is 
+                                        <a href="https://www.amazon.com/Discrete-Time-Signal-Processing-2nd-Prentice-hall/dp/0137549202/ref=sr_1_2?qid=1699666611&refinements=p_27%3A+SCHAFER%5CcA.V.%5CcR.W.+OPPENHEIM&s=books&sr=1-2&text=R.W.+OPPENHEIM%2CA.V.%2C+SCHAFER">Discrete Time Signal Processing by Oppenheim and Schafer</a>
+                                        <li>
+                                        My power of 2 implementation is derived from 
+                                        <a href="http://www.google.com/search?hs=lSS&hl=en&lr=&client=firefox-a&rls=org.mozilla%3Aen-US%3Aofficial&q=fast+fourier+transform+e+oran+brigham&btnG=Search">
+                                            E. Oran Brigham's book</a>
+                                        </li>
+
+                                        <li>
+                                        Fast implementations: 
+                                        <a href="http://www.fftw.org">Fastest Fourier Transform in the West</a>, 
+                                        <a href="https://github.com/kfrlib/kfr">KFR library</a> (I haven't tried these).
+                                        </li>
+                                        
+                                        <li>
+                                            A note on spectral leakage and windowing
+                                            <a href="http://www.ni.com/en-us/innovations/white-papers/06/understanding-ffts-and-windowing.html">Understanding FFTs and Windowing</a>
+                                        </li>
+                                    </ul>
+                               </section>
+                           </article>
+
+                            <footer class="footnote">
+                                <hr>
+                                <!-- A copyright footnote to preserve my legal rights. -->
+                                <p class="footnote">
+                                    Copyright &copy; 1986-2026 by Sean Erik O'Connor.  
+                                    All Rights Reserved.
+                                    &nbsp;&nbsp;&nbsp;
+                                    last updated 27 Feb 26.
+                                </p>
+
+                            </footer>
+                        </div> <!-- wrapper -->
+                    </body>
+                </html>
