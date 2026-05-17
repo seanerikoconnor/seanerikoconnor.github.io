@@ -1,0 +1,1853 @@
+<!DOCTYPE html>
+<html lang="en-US">  <!-- Set language of this page to USA English. -->
+
+    <!-- ===========================================================================================
+    |
+    | NAME
+    |
+    |     webDesign.html
+    |
+    | DESCRIPTION
+    |
+    |     Examples of my web page design.
+    |     It is a hand-crafted HTML 5 W3C validated document.
+    |
+    | AUTHOR
+    |
+    |    Sean Erik O'Connor
+    |
+    ============================================================================================ -->
+
+    <head>
+        <!-- This page uses Unicode characters. -->
+        <meta charset="utf-8">
+
+        <!-- Set viewport to actual device width.  Any other settings makes the web page initially appear zoomed-in on mobile devices. -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Titles appear in the web browser and the browser's bookmarks. -->
+        <title>DESIGN OF MY WEB PAGE</title>
+
+        <!-- Search engines will show this description below the title. -->
+        <meta name="description" content="Examples of HTML, CSS, JavaScript used in my web page design." >
+
+        <meta name="author" content="Sean Erik O'Connor" >
+
+        <meta name="copyright" content="Copyright (C) 1999-2026 by Sean Erik O'Connor.  All Rights Reserved.">
+
+        <!-- Configure and load MathJax -->
+        <script src="../Scripts/load-mathjax.js" async></script>
+
+        <!-- Cascading style sheet for this document. -->
+        <link rel="stylesheet" href="../StyleSheet.css" type="text/css">
+
+        <!-- Favicons are 32x32 or 16x16, 8 or 24 bit PNG Images which show up left of the web page title in a browser.  -->
+        <link rel="icon" type="image/png" href="../Images/favicon.png">
+
+        <!-- JavaScript email utility.  -->
+        <script src="../Scripts/email.js"></script>
+    </head>
+
+    <body class="technicalReport">
+
+        <!-- This wraps the whole body in a CSS grid. -->
+        <div class="wrapper technicalReport">
+
+            <!-- Title page at the top.  -->
+            <header class="title">
+                <h1 class="stylish">Web Page Design Examples</h1>
+                <hr>
+            </header>
+
+            <!-- Horizontal navigation bar to all top level pages. -->
+            <header class="navigation">
+                <a href="../index.html">
+                    <img src="../Images/home.png" alt="Home Page Button." width="32" height="32" >
+                     <em>Home</em>
+                 </a>
+
+                 <a href="../Mathematics/mathematicalSoftware.html">
+                     <img src="../Images/compactDisk.png" alt="Mathematical Software Button." width="32" height="32" >
+                      <em>Mathematical Software</em>
+                 </a>
+
+                 <a href="../Art/Art.html">
+                     <img src="../Images/sampleArtLowRes.png" alt="Art Button." width="32" height="32" >
+                      <em>Fine Arts</em>
+                 </a>
+
+                 <a href="webPageDesign.html">
+                     <img src="../Images/webPage.png" alt="Web Page Design Button." height="32" width="32" >
+                      <em>Web Page Design</em>
+                 </a>
+
+                 <a href="../Electronics/Electronics.html">
+                     <img src="../Images/sparkCoil.png" alt="Hobby Electronics Button." width="32" height="32" >
+                      <em>Hobby Electronics</em>
+                 </a>
+
+                 <a href="../ReadingList/readingList.html">
+                      <img src="../Images/terraApollo17NASALowRes.png" alt="Reading List Button." width="32" height="32">
+                      <em>Reading list</em>
+                </a>
+            </header>
+
+            <!-- A decorative border at the left side of the page. -->
+            <aside class=border>
+                  <img class="border" src="../Images/sinXYPlot.png" alt="Sin( x y ) Image Border.">
+            </aside>
+
+            <!-- Table of contents in a navigation side bar using local hyperlinks within the page to each section. -->
+            <nav>
+                <ul>
+                    <li><a href="#Introduction">Introduction</a></li>
+                    <li><a href="#ContentAndGraphicDesign">Content And Graphic Design</a></li>
+                    <li><a href="#DirectoryStructure">Directory Structure</a></li>
+                    <li><a href="#Hypertext">Hypertext</a></li>
+                    <li><a href="#JavaScript">JavaScript</a></li>
+                    <li><a href="#StyleSheets">StyleSheets</a></li>
+                    <li><a href="#ServerSide">Server Side</a></li>
+                    <li><a href="#Basics">Basics</a></li>
+                    <li><a href="#Headers">Headers</a></li>
+                    <li><a href="#Email">email</a></li>
+                    <li><a href="#Navigation">Navigation</a></li>
+                    <li><a href="#Hyperlinks">Hyperlinks</a></li>
+                    <li><a href="#InlineStyles">Inline Styles</a></li>
+                    <li><a href="#ParagraphStyles">Paragraph Styles</a></li>
+                    <li><a href="#Lists">Lists</a></li>
+                    <li><a href="#Scrollbox">Scroll Box</a></li>
+                    <li><a href="#Images">Images</a></li>
+                    <li><a href="#Tables">Tables</a></li>
+                    <li><a href="#Tooltips">Tooltips</a></li>
+                    <li><a href="#Gallery">Gallery</a></li>
+                    <li><a href="#Movies">Movies</a></li>
+                    <li><a href="#Forms">Forms</a></li>
+                    <li><a href="#SVG">SVG</a></li>
+                    <li><a href="#Canvas">Canvas</a></li>
+                    <li><a href="#GoogleSearch">Google Search</a></li>
+                    <li><a href="#TypesettingMathematics">Typesetting Mathematics</a></li>
+                    <li><a href="#Maintainance">Maintainance</a></li>
+                    <li><a href="#DevelopmentEnvironment">Development Environment</a></li>
+                    <li><a href="#Hosting">Hosting</a></li>
+                    <li><a href="#Viewing">Viewing</a></li>
+                    <li><a href="#GettingListed">Getting Listed</a></li>
+                    <li><a href="#Communicating">Communicating</a></li>
+                </ul>
+            </nav>
+
+            <!-- The main content of this page. -->
+            <article id="TopOfPage" class="content">
+                <h2 style="display: none ;">&nbsp;</h2> <!-- Keep the W3C HTML syntax police from arresting this article with a dummy heading. -->
+
+                <section>
+                    <h3 id="Introduction">Introduction</h3>
+
+                    <p>
+                        I explain all the steps involved in creating, designing, hosting and maintaining my web pages.
+                    </p>
+                </section>
+
+                <section>
+                    <h3 id="ContentAndGraphicDesign">Content and Graphic Design</h3>
+
+                    <p>
+                        <strong>Content</strong> is the most important, but your web page should be pleasant to read.  
+                        I use the design advice in
+                        <a href="https://learningwebdesign.com/">
+                        Learning Web Design, 6th Edition, A Beginner's Guide to HTML, CSS, JavaScript,
+                        and Web Graphics by Jennifer Niederst Robbins</a>
+                    </p>
+
+                    <p>
+                    <a href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Responsive_Design">Responsive Web Design</a>
+                    is a collection of fluid techniques which make web pages look good on both mobile or laptop screens.
+                    CSS tools such as <a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/">flexboxes</a> and
+                    <a href="https://css-tricks.com/snippets/css/complete-guide-grid/">grids</a> are a big part of fluid positioning.
+                    Web browsers have built-in developer tools which simulate different mobile and laptop screens.
+                    </p>
+
+                    <p>
+                    I've used Mathematica to create <a href="../Images/WebSiteBackgroundPictures.nb.pdf">graphic designs</a> 
+                    for my web pages and business cards.
+                    </p>
+                </section>
+
+                <section>
+                    <h3 id="DirectoryStructure">Directory Structure</h3>
+
+                    <p>
+                    The main web page <em>index.html</em> goes in the top level directory.
+                    All other items are sorted into subdirectories.  
+                    For example, images go into directories named <em>/Images</em>.  Image files are of type .png or .jpg.
+                    </p>
+                </section>
+
+                <section>
+                    <h3 id="Hypertext">Hypertext</h3>
+
+                    <p>
+                        Web pages are written in
+                        <a href="https://www.w3.org/TR/html/">HTML 5</a>
+                        using guidance from the book 
+                            <a href="http://diveintohtml5.it/">Diving into HTML 5</a>
+                        with occasional use of 
+                            <a href="http://www.unicode.org/charts/">unicode</a>
+                        I edit pages with the
+                            <a href="https://www.vim.org/">Vim</a>
+                        text editor for which I've written simple vim scripts to help edit html and css.
+                        I <a href="http://validator.w3.org">validate</a> the html using file upload and 
+                        <a href="https://validator.w3.org/checklink">link check</a> the web page once it's on my web server 
+                       using
+                            <a href="https://www.w3.org/">W3C</a>'s services.
+                    </p>
+                </section>
+
+                <section>
+                    <h3 id="JavaScript">JavaScript</h3>
+
+                    <p> 
+                        I use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">JavaScript</a> in my web pages.
+                        The JavaScript language has no classes, inheritance, constructors or instances;
+                        there are only objects and delegation along the prototype chain.  
+                        The commonly used <i>constructor function + new pattern</i> is very misleading and unnecessarily complex.
+                        So forget classes+instances and read about
+                        <a href="https://alistapart.com/article/prototypal-object-oriented-programming-using-JavaScript/">prototypal object oriented programming</a> 
+                        and 
+                        <a href="https://www.toptal.com/javascript/javascript-prototypes-scopes-and-performance-what-you-need-to-know">prototypes and performance</a> for an introduction.
+                        Then read this series of books which explain 
+                        <a href="https://github.com/getify/You-Dont-Know-JS">basic JS concepts</a>.
+                        Many textbooks like the excellent 
+                        <a href="https://eloquentjavascript.net/">Eloquent JavaScript</a>.
+                        use the syntactic sugar which makes JS appear to be an OO language like C++ when itst core behavior is very different.
+                    </p>
+                </section>
+
+                <section>
+                    <h3 id="StyleSheets">Style Sheets</h3>
+
+                    <p>
+                        My documents use 
+                        <a href="https://www.w3.org/Style/CSS/">CSS level 3 + SVG style sheets</a>.
+                        I have one CSS
+                            <a href="../StyleSheet.css.html">style sheet</a>
+                        for all my documents, which I
+                        <a href="https://jigsaw.w3.org/css-validator/">validate</a>.
+                        you can see an example of using styles in my HTML file
+                            <a href="webPageDesign.html.html">webPageDesign.html</a>
+                    </p>
+                    <p>
+                        You can use Firefox's web developer tools 
+                        <em class="hotkey">Tools &#10148; Browser Tools &#10148; Web Developer Tools &#10148; Inspector</em>
+                        to debug your CSS stylesheet.  You can point to HTML elements and see which style get inherited from which selectors.
+                    </p>
+                    <img class="centeredsmaller" src="Images/StyleSheetDebuggerFirefox.jpg" alt="Firefox web developer tools.">
+
+                </section>
+
+                <section>
+                    <h3 id="ServerSide">Server Side</h3>
+
+                    <p>
+                        My server uses <em>Apache</em>.  Here are some server side fixups and optimizations 
+                        which go into the 
+                            <a href="https://httpd.apache.org/docs/current/howto/htaccess.html">.htaccess</a>.
+                        file which in the top level directory of the web site.
+                    </p>
+
+                    <ol>
+                        <li>
+                            Specify a <a href="../error404.html">personal error 404 page</a> for broken links and
+                            <a href="http://nosuchpage.html">test it out here</a>
+                        </li>
+
+                        <li>
+                            My host's Apache web server didn't recognize the C language header .h and Mathematica .nb 
+                            file file types and was not allowing access to the files.
+                            So I added the file extension type into my top-level .htaccess file on the server,
+                        </li>
+
+                        <li>
+                            Server compresses web file types before sending.
+                            The client side browsers will decompress it.
+                        </li>
+
+                        <li>
+                            Server tells browsers to cache files locally for faster page loading.
+                        </li>
+                    </ol>
+
+                    <p>
+                    I use FileZilla ftp to manually upload the .htaccess file.  I upload all rest of the files with my
+                    Python script <a href="#Maintainance">updateweb.py</a>  And here are some additional 
+                    <a href="FreeserversFixes.pdf">Tips and Tricks</a> for my server.
+                    </p>
+
+                    <div class="scrollBox"> <div class="scrollBoxContent">
+                        # BEGIN ERROR DOCUMENT
+                        # Personalized error document for broken links.
+                        # See https://httpd.apache.org/docs/2.4/custom-error.html
+                        ErrorDocument 404 /error404.html
+                        # END ERROR DOCUMENT
+
+                        # BEGIN ADD MIME TYPE FOR FILES
+                        # Tell the server to support a particular MIME type.
+                        # See https://httpd.apache.org/docs/2.4/mod/mod_mime.html#addtype
+                        &amp;lt;FilesMatch "\.(h)$"&amp;gt;
+                        &amp;lt;IfModule mod_headers.c&amp;gt;
+                        Header set Access-Control-Allow-Origin "*"
+                        &amp;lt;IfModule&amp;gt;
+                        &amp;lt;FilesMatch&amp;gt;
+                        AddType text/plain h
+                        AddType text/plain nb
+                        Addtype text/plain for
+                        Addtype text/plain FOR
+                        # END ADD MIME TYPE FOR FILES
+
+                        # BEGIN DEFLATE COMPRESSION
+                        # Server will compress these MIME file types.  Browser will decompress.
+                        # See http://httpd.apache.org/docs/current/mod/mod_deflate.html
+                        &amp;lt;ifmodule mod_deflate.c&amp;gt;
+                        AddOutputFilterByType DEFLATE text/text text/html text/plain 
+                        text/xml text/css application/x-JavaScript application/JavaScript
+                        &amp;lt;ifmodule&amp;gt;
+                        # END DEFLATE COMPRESSION
+
+                        ## BEGIN BROWSER CACHING
+                        # Ask the user's browser to cache certain file types for a limited time after 
+                        # the first web page visit.  The server can then avoid resending them and page
+                        # loads will be faster.  After the expiration time, files will be sent again.
+                        # See http://httpd.apache.org/docs/current/mod/mod_expires.html
+                        &amp;lt;IfModule mod_expires.c&amp;gt;
+                        ExpiresActive On
+                        ExpiresByType image/jpg "access plus 1 day"
+                        ExpiresByType image/jpeg "access plus 1 day"
+                        ExpiresByType image/gif "access plus 1 week"
+                        ExpiresByType image/png "access plus 1 day"
+                        ExpiresByType text/css "access plus 1 week"
+                        ExpiresByType application/pdf "access plus 1 week"
+                        ExpiresByType text/x-JavaScript "access plus 1 day"
+                        ExpiresByType application/x-shockwave-flash "access plus 1 month"
+                        ExpiresByType image/x-icon "access plus 1 week"
+                        ExpiresDefault "access plus 2 days"
+                        &lt;IfModule&gt;
+                        ## END BROWSER CACHING
+                    </div> </div>
+                </section>
+
+                <section>
+                    <h3 id="Basics">Basics</h3>
+
+                    <p>
+                    You can't see the paragraph's margins, since they are transparent, but the top margin is from the bottom of this line 
+                    to the paragraph's dashed border below.  
+                    And the paragraph's left margin is from edge of page (the body) to the paragraph's left dashed border.
+                    </p>
+            
+                    <p class="example">
+                    This is a paragraph illlustrating contents, padding, border and margin.  Contents is white text with a blue
+                    background.  Padding surrounds the contents and is the same color as the background.  
+                    Padding extends into the light red dashed border by default.
+                    Margin surrounds the border and is transparent.
+                    I've turned on outlining (green dotted line) to show where the border ends and the margin begins.
+                    </p>
+
+                    <p class="example" style="background-clip: padding-box;">
+                    But now I've added the <small>CSS style modifier &lt;p class="example" style="background-clip: padding-box;"&gt;</small>A
+                    which makes the padding stop short of the border.  The margin surrounds the border and is transparent.
+                    </p>
+
+                </section>
+
+                <section>
+                    <h3 id="Headers">Headers</h3>
+                    
+                    <!-- For illustration only.  HTML checkers will bark about placing a heading out of order -->
+                    <h1 class="stylish">&lt;h1 class=&quot;stylish&quot;&gt;Stylish Header&lt;/h1&gt;</h1>
+
+                    <h2>&lt;h2&gt;h2 header&lt;/h2&gt;</h2>
+                    <h3>&lt;h3&gt;h3 header&lt;/h3&gt;</h3>
+                    <h4>&lt;h4&gt;h4 header&lt;/h4&gt;</h4>
+                    <h5>&lt;h5&gt;h5 header&lt;/h5&gt;</h5>
+                    <h6>&lt;h6&gt;h6 header&lt;/h6&gt;</h6>
+                </section>
+
+                <section>
+                    <h3 id="Email">Email</h3>
+
+                    This is an email header:
+
+                    <h2 class="email">
+                        <!-- JavaScript for hiding my email address from spambots yet it works as usual. -->
+                        <script>
+                            <!--
+                            // Insert email address into this file's HTML.
+                            var mailMessage = '<em>' + "email" + '</em>' ;
+                            document.write( mailto( mailMessage ) ) ;
+                            // -->
+                        </script> 
+                        me if you have questions or comments.
+                    </h2>
+
+                    produced with this code in the head:
+
+                    <div class="scrollBox"> <div class="scrollBoxContent">
+                        &lt;!-- JavaScript email utility --&gt;
+                        &lt;script src="../Scripts/email.js"&lt;&gt;/script&gt;
+                    </div> </div>
+
+                    and this code in the body:
+                    
+                    <div class="scrollBox"> <div class="scrollBoxContent">
+                        &lt;!-- JavaScript for hiding my email address from spambots yet it works as usual. --&gt;
+                        &lt;script&gt;
+                        &lt;!--
+                        // Insert email address into this file's HTML.
+                        var mailMessage = '&lt;em&gt;' + "email" + '&lt;/em&gt;' ;
+                        document.write( mailto( mailMessage ) ) ;
+                        // --&gt;
+                        &lt;/script&gt; 
+                        me if you have questions or comments.
+                    </div> </div>
+                </section>
+                
+                <section>
+                   <h3 id="Navigation">Navigation</h3>
+                  
+                   The navigation sidebar on the left was produced with this code:
+
+                   <div class="scrollBox"> <div class="scrollBoxContent">
+                       &lt;nav&gt;
+                       &lt;ul&gt;
+                       &lt;li&gt; List item &lt;/li&gt;
+                       ...
+                       &lt;li&gt; List item &lt;/li&gt;
+                       &lt;/ul&gt;
+                       &lt;/nav&gt;
+                   </div> </div>
+
+                A special "back to top" navigation button
+
+                <nav class="backtotop"><a href="#TopOfPage">Back to top</a></nav>
+
+                Used this way with a link:
+
+                <div class="scrollBox"> <div class="scrollBoxContent">
+                 &lt;article id="TopOfPage" class="content"&gt;
+                ...
+                &lt;nav class="backtotop"&gt; &lt;a href="#TopOfPage"&gt;Back to top&lt;/a&lt;&gt;&lt;/nav&gt;
+                </div></div>
+                </section>
+
+                <section>
+                    <h3 id="Hyperlinks">Hyperlinks</h3>
+
+                    <ul>
+                        <li>
+                        <a href="webPageDesign.html" title="I am the tooltip text!">Hyperlink to this page itself.</a>
+                        Hover over the link to see the tooltip! 
+                        </li>
+                    </ul>
+
+                    <img class="centeredsmallest" src="Images/htmlToolTip.jpg" alt="Tooltip image.">
+
+                    <div class="scrollBox"> <div class="scrollBoxContent">
+                        &lt;ul&gt;
+                        &lt;li&gt;
+                        &lt;a href="webDesign.html" title="I am the tooltip text!"&gt;Hyperlink to this page itself.&lt;a&gt;
+                        Hover over the link to see the tooltip!
+                        &lt;/li&gt;
+                        &lt;/ul&gt;
+                    </div> </div>
+
+                    <p class="box">
+                    Note that tooltips only work on devices which support hover, e.g. computers with mouse, stylus or trackpad.  
+                    They are not supported on mobile devices right now.
+                    </p>
+
+                </section>
+
+                <section>
+                    <h3 id="InlineStyles">Inline Styles</h3>
+
+                    <h4>Fonts and Font Styles</h4>
+
+                        <p>
+                        <span style="font-size: 1.8rem; font-family: var(--serif);"> serif</span> &blacklozenge;
+                        <span style="font-size: 1.5rem; font-family: var(--san-serif);"> san-serif</span> &blacklozenge;
+                        <span style="font-size: 1.7rem; font-family: var(--monospace);"> monospace</span> &blacklozenge;
+                        <span style="font-size: 2.1rem; font-family: var(--cursive);"> cursive</span> &blacklozenge;
+                        <span style="font-size: 1.5rem; font-family: var(--fantasy);"> fantasy</span>
+                        </p>
+
+                        <p>
+                        <i>
+                            &lt;i&gt; italic text &lt;/i&gt;
+                        </i> 
+                        <br>
+
+                        <strong>
+                            &lt;strong&gt; strong text &lt;/strong&gt;
+                        </strong>
+                        <br>
+
+                        <small>
+                            &lt;small&gt; small text &lt;/small&gt;
+                        </small>
+                        <br>
+
+                        <mark>
+                            &lt;mark&gt; colored marker &lt;/mark&gt;
+                        </mark>
+                        <br>
+
+                        <s>
+                         &lt;s&gt;strike out &lt;/s&gt;
+                        </s>
+                        </p>
+
+                        <p>
+                        <a href="https://www.compart.com/en/unicode/html">HTML Entities</a> 
+                        For example, 
+                        <span style="font-size: 3rem;"> &ContourIntegral; </span>
+                        <span style="font-size: 2rem;"> &infin; </span> 
+                        <span style="font-size: 2rem;"> &ctdot; </span>
+                        whose size is controlled like any font.
+                        </p>
+
+                        <div class="scrollBoxSmall"> <div class="scrollBoxContent">
+                        &lt;span style="font-size: 2rem;"&gt; &amp;ContourIntegral; &lt;/span&gt;
+                        &lt;span style="font-size: 2rem;"&gt; &amp;infin; &lt;/span&gt;
+                        &lt;span style="font-size: 2rem;"&gt; &amp;ctdot; &lt;/span&gt;
+                        </div></div>
+
+                    <h4>Emphasized Text</h4>
+
+                        <em>
+                            &lt;em&gt; emphasized text &lt;/em&gt;
+                        </em> 
+                        <br>
+
+                        <em class="warning">
+                            &lt;em class="warning"&gt; warning &lt;/em&gt;
+                        </em> 
+                        <br>
+
+                        <em class="caution">
+                            &lt;em class="caution"&gt; caution &lt;/em&gt;
+                        </em> 
+                        <br>
+
+                        <h3>&lt;h3&gt;h3 header&lt;/h3&gt; <em class="warning">&lt;em class="warning"&gt;emphasized text in header&lt;/em&gt;</em></h3>
+                        <h3>&lt;h3&gt;h3 header&lt;/h3&gt; <em class="caution">&lt;em class="caution"&gt;emphasized text in header&lt;/em&gt;</em></h3>
+
+                        <em class="wavy">
+                            &lt;em class="wavy"&gt; Wiggle Wiggle &lt;/em&gt;
+                        </em>
+                        <br>
+                        <br>
+
+                        <em class="hotkey">
+                            &lt;em class="hotkey"&gt; Blender hot key &lt;/em&gt;
+                        </em> 
+                        <br>
+
+                    <h4>Pseudocode</h4>
+
+                        <code>
+                            pseudocode <em>code comment</em>
+                            <i>indented once</i> 
+                            <i><i>indented twice</i></i>
+                            <i><i><i>indented thrice</i></i></i> <em>That's all the indents</em>
+                        </code> 
+
+                        <div class="scrollBoxMedium"> <div class="scrollBoxContent">
+                        &lt;code&gt;
+                        source code &lt;em&gt; Code Comment &lt;/em&gt; &lt;em&gt;
+                        &lt;i&gt;indented once&lt;/i&gt;
+                        &lt;i&gt;&lt;i&gt;indented twice&lt;/i&gt;&lt;/i&gt;
+                        &lt;i&gt;&lt;i&gt;&lt;i&gt;indented thrice&lt;/i&gt;&lt;/i&gt;&lt;/i&gt;
+                        &lt;/code&gt;
+                        </div></div>
+
+                    <h4>Colors</h4>
+                       <p>
+                       <span style="color: white; background-color: var(--kweilin-black);">--kweilin-black</span>
+                       <br>
+                       <span style="color: white; background-color: var(--warm-brown);">--warm-brown</span>
+                       <span style="color: white; background-color: var(--dark-brown);">--dark-brown</span>
+                       <br>
+                       <span style="color: white; background-color: var(--canvas-gray);">--canvas-gray</span>
+                       <span style="color: black; background-color: var(--light-gray);">--light-gray</span>
+                       <span style="color: black; background-color: var(--dark-blue-gray);">--dark-blue-gray</span>
+                       <span style="color: black; background-color: var(--light-blue-gray);">--light-blue-gray</span>
+                       <span style="color: white; background-color: var(--art-gallery-blue-gray);">--art-gallery-blue-gray</span>
+                       <br>
+                       <span style="color: black; background-color: var(--light-yellow-tint);">--light-yellow-tint</span>
+                       <br>
+                       <span style="color: black; background-color: var(--light-red);">--light-red</span>
+                       <br>
+                       <span style="color: white; background-color: var(--art-gallery-blue);">--art-gallery-blue</span>
+                       <span style="color: white; background-color: var(--light-blue);">--light-blue</span>
+                       <span style="color: white; background-color: var(--dark-blue);">--dark-blue</span>
+                       <span style="color: black; background-color: var(--cyan-tint);">--cyan-tint</span>
+                       <span style="color: black; background-color: var(--light-blue-tint);">--light-blue-tint</span>
+                       <span style="color: black; background-color: var(--very-light-blue);">--very-light-blue</span>
+                       <br>
+                       <span style="color: black; background-color: var(--light-blue-background);">--light-blue-background</span>
+                       <span style="color: black; background-color: var(--lighter-blue-background);">--lighter-blue-background</span>
+                       <span style="color: black; background-color: var(--light-blue-paper);">--light-blue-paper</span>
+                       <span style="color: black; background-color: var(--light-blue-body-background);">--light-blue-body-background</span>
+                       <p>
+
+                       <div class="scrollBoxTiny"> <div class="scrollBoxContent">
+                           &lt;span style="color: white; background-color: var(--warm-brown);"&gt;warm-brown&lt;span&gt; . . . and so on . . .
+                       </div></div>
+                        
+                </section>
+
+                <section>
+                    <h3 id="ParagraphStyles">Paragraph Styles</h3>
+
+                    <h4>Illustrated Paragraph</h4>
+
+                    <div class="illustratedparagraph">
+                        <p>
+                            <a href="webPageDesign.html">
+                                <img src="../Images/home.png" alt="Image of home." height="100" width="100" >
+                                <em>illustrated paragraph</em>
+                            </a>
+                            with a hyperlinked image and text plus extra paragraph filler.
+                            This image icon floats left within a paragraph as shown here.
+                            “Our ignorance can be divided into problems and mysteries. 
+                            When we face a problem, we may not know its solution, but we have insight, 
+                            increasing knowledge, and an inkling of what we are looking for. When we 
+                            face a mystery, however, we can only stare in wonder and bewilderment, 
+                            not knowing what an explanation would even look like.” ― Noam Chomsky
+                        </p>
+                    </div>
+
+                    <div class="scrollBox"> <div class="scrollBoxContent">
+                    &lt;div class="illustratedparagraph"&gt;
+                        &lt;p&gt;
+                            &lt;a href="hyperlink.html"&gt;
+                                &lt;img src="../Images/home.png" alt="Image of home." height="64" width="64" /&gt;
+                                &lt;em&gt;illustrated paragraph&lt;em&gt;&lt;/a&gt;
+                            with a hyperlinked image
+                            ...
+                        &lt;/p&gt;
+                    &lt;div&gt;
+                    </div> </div>
+
+                    <h4>Spaced out Paragraph</h4>
+
+                    <p class="spacedout">
+                        This paragraph of class "spacedout" has larger font and more vertical space between previous and next 
+                        paragraphs.  "Solitude is painful when one is young, but delightful when one is more 
+                        mature."  -Albert Einstein
+                    </p>
+
+                    <div class="scrollBox"> <div class="scrollBoxContent">
+                        This paragraph of class "spacedout" has larger font and more vertical space 
+                        between previous and next...
+                    </div></div>
+
+                    <h4>Paragraph with Floating Figure</h4>
+
+                    <figure>
+                        <img src="Images/Yoicks.jpg" alt="Yoicks">
+                        <img src="Images/CyberPowerPCUbuntuGauss.jpg" alt="CyberPowerPC">
+                        <figcaption>
+                            Fig 0.  Example of a figure.
+                       </figcaption>
+                    </figure>
+
+                    <p>
+                    The artist is the creator of beautiful things. 
+                    </p>
+                     
+                    <p>
+                    To reveal art and conceal the artist is art's aim. The critic is he who 
+                    can translate into another manner or a new material his impression of 
+                    beautiful things.
+                    </p>
+
+                    <p>
+                    The highest as the lowest form of criticism is a mode of autobiography. 
+                    Those who find ugly meanings in beautiful things are corrupt without being charming. This is a fault.
+                    </p>
+
+                    <p>
+                    Those who find beautiful meanings in beautiful things are the cultivated. For these there is hope. 
+                    They are the elect to whom beautiful things mean only beauty.
+                    </p>
+
+                    <p>
+                    There is no such thing as a moral or an immoral book. Books are well written, or badly written. That is all.
+                    </p>
+
+                    <p>
+                    The nineteenth century dislike of realism is the rage of Caliban seeing his own face in a glass.
+                    </p>
+
+                    <p>
+                    The nineteenth century dislike of romanticism is the rage of Caliban not seeing his own face in a glass. 
+                    The moral life of man forms part of the subject-matter of the artist, but the morality of art consists in the 
+                    perfect use of an imperfect medium.
+                    </p>
+
+                    <p>
+                    No artist desires to prove anything. Even things that are true can be proved. 
+                    No artist has ethical sympathies. An ethical sympathy in an artist is an unpardonable mannerism of style. 
+                    No artist is ever morbid. The artist can express everything.
+                    </p>
+
+                    <p>
+                    Thought and language are to the artist instruments of an art. Vice and virtue are to the artist materials 
+                    for an art. From the point of view of form, the type of all the arts is the art of the musician. 
+                    From the point of view of feeling, the actor's craft is the type. All art is at once surface and symbol. 
+                    Those who go beneath the surface do so at their peril.
+                    </p>
+
+                    <p>
+                    Those who read the symbol do so at their peril. It is the spectator, and not life, that art really mirrors. 
+                    Diversity of opinion about a work of art shows that the work is new, complex, and vital. 
+                    When critics disagree, the artist is in accord with himself. 
+                    </p>
+
+                    <p>
+                    We can forgive a man for making a useful thing as long as he does not admire it. 
+                    The only excuse for making a useless thing is that one admires it intensely.
+                    </p>
+
+                    <p> 
+                    All art is quite useless.
+                    </p>
+
+                    <i>
+                    -Oscar Wilde, Preface to The Picture of Dorian Grey.
+                    </i>
+
+                    <div class="scrollBox"> <div class="scrollBoxContent">
+                        &lt;figure&gt;
+                                &lt;img src="../Images/mailbox.png" alt="Mail Box Image" &gt;
+
+                            &lt;figcaption&gt;
+                                Fig 0.  Example of a figure.
+                           &lt;/figcaption&gt;
+                        &lt;/figure&gt;
+                    </div> </div>
+
+                    <h4>Block quote</h4>
+
+                    <blockquote>
+                        Politics is the art of looking for trouble, finding it everywhere, diagnosing it incorrectly 
+                        and applying the wrong remedies.
+                    <cite>Groucho Marx</cite>
+                    </blockquote>
+
+                    <div class="scrollBox"> <div class="scrollBoxContent">
+                        &lt;blockquote&gt;
+                        Politics is the art of looking for trouble, finding it everywhere, diagnosing it incorrectly 
+                        and applying the wrong remedies.
+                        &lt;cite&gt;Groucho Marx&lt;/cite&gt;
+                        &lt;/blockquote&gt;
+                    </div></div>
+
+                    <h4>Boxed Paragraph</h4>
+
+                    <p class="box">
+                    "To raise new questions, new possibilities, to regard old problems from a 
+                    new angle, requires creative imagination and marks real advance in 
+                    science."  -Albert Einstein
+                    </p>
+
+                    <div class="scrollBox"> <div class="scrollBoxContent">
+                        &lt;p class="box"&gt;
+                        "To raise new questions, new possibilities, to regard old problems from a 
+                        &lt;/p&gt;
+                    </div> </div>
+
+                    <h4>Paragraph with Change Bar</h4>
+
+                    <p class="changed">
+                    “Art is not what you see, but what you make others see.” ― Edgar Degas
+<br>
+                    “Art is the only serious thing in the world. And the artist is the only 
+                    person who is never serious.” ― Oscar Wilde
+                    </p>
+
+                    <div class="scrollBox"> <div class="scrollBoxContent">
+                        &lt;p class="changed"&gt;
+                        “Art is not what you see, but what you make others see.” ― Edgar Degas
+                        &lt;br&gt;
+                        “Art is the only serious thing in the world. And the artist is the only 
+                        person who is never serious.” ― Oscar Wilde
+                        &lt;/p&gt;
+                    </div> </div>
+
+                    <h4>Footnote Paragraph</h4>
+
+                    <p class="footnote">
+                    "We are all in the gutter, but some of us are looking at the 
+                    stars.” - Oscar Wilde
+                    </p>
+
+                    <div class="scrollBox"> <div class="scrollBoxContent">
+                        &lt;p class="footnote"&gt;
+                        "We are all in the gutter, but some of us are looking at the 
+                        &lt;/p&gt;
+                    </div> </div>
+
+                    <h4>Fine Print Paragraph</h4>
+
+                    <p class="fineprint">
+                    "If people did not sometimes do silly things, nothing intelligent would 
+                    ever get done."  -Ludwig Wittgenstein
+                    </p>
+
+                    <div class="scrollBox"> <div class="scrollBoxContent">
+                        &lt;p class="fineprint"&gt;
+                        "If people did not sometimes do silly things, nothing intelligent would 
+                        &lt;/p&gt;
+                    </div> </div>
+                </section>
+
+                <section>
+                    <h3 id="Lists">Lists</h3>
+
+                    <ul>
+                        <li>Unordered list</li>
+                        <li>Small image 
+                            <img src="../Images/home.png" alt="Home icon." height="16" width="16" >
+                        </li>
+                    </ul>
+
+                    <div class="scrollBox"> <div class="scrollBoxContent">
+                        &lt;ul&gt;
+                        &lt;li&gt;Unordered list&lt;li&gt;
+                        &lt;li&gt;img within a list 
+                            &lt;img src="../Images/home.png" alt="Home icon." height="16" width="16" /&gt;
+                        &lt;li&gt;
+                        &lt;/ul&gt;
+                    </div> </div>
+                    
+                    <ol>
+                        <li>Ordered list</li>
+                        <li>Ordered list</li>
+                    </ol>
+
+                    <div class="scrollBox"> <div class="scrollBoxContent">
+                         &lt;ol&gt;
+                        &lt;li&gt;Ordered list&lt;li&gt;
+                        &lt;li&gt;Ordered list&lt;li&gt;
+                        &lt;/ol&gt;
+                    </div> </div>
+
+                    <ul class="bullet">
+                        <li>Unordered list</li>
+                        <li>Unordered list</li>
+                        <li>Unordered list</li>
+                    </ul>
+
+                    <ul class="minorBullet">
+                        <li>Unordered list</li>
+                        <li>Unordered list</li>
+                        <li>Unordered list</li>
+                    </ul>
+
+                    <div class="scrollBox"> <div class="scrollBoxContent">
+                        &lt;ul class="bullet"&gt;
+                        &lt;li&gt;Unordered list&lt;li&gt;
+                        &lt;li&gt;Unordered list&lt;li&gt;
+                        &lt;li&gt;Unordered list&lt;li&gt;
+                        &lt;/ul&gt;
+
+                        &lt;ul class="minorBullet"&gt;
+                        &lt;li&gt;Unordered list&lt;li&gt;
+                        &lt;li&gt;Unordered list&lt;li&gt;
+                        &lt;li&gt;&gt;Unordered list&lt;li&gt;
+                    &lt;/ul&gt;
+                    </div> </div>
+                </section>
+                
+                <section>
+                    <h3 id="Scrollbox">Scroll Box</h3>
+
+                    <p>
+                    We have the classes scrollBox, scrollBoxTiny, scrollBoxSmall, scrollBoxMedium, scrollBoxLarge, scrollBoxHuge.
+                    The default is scrollBox, which are around 12 em high.  scrollBoxTiny is used for single lines, and scrollBoxHuge
+                    is used when we want to see most of the text and not have to scroll up and down so much.
+                    </p>
+
+                    <div class="scrollBox"> <div class="scrollBoxContent">
+                    &lt;div class="scrollBox"&gt; &lt;div class="scrollBoxContent"&gt;
+                    Default scroll box.
+                    Default scroll box.
+                    Default scroll box.
+                    Default scroll box.
+                    Default scroll box.
+                    Default scroll box.
+                    Default scroll box.
+                    &lt;/div&gt; &lt;/div&gt;
+                    </div> </div>
+
+                    <div class="scrollBoxTiny"> <div class="scrollBoxContent">
+                    &lt;div class="scrollBoxTiny"&gt; &lt;div class="scrollBoxContent"&gt;
+                    Tiny scroll box.
+                    &lt;/div&gt; &lt;/div&gt;
+                    </div></div>
+
+                    <div class="scrollBoxSmall"> <div class="scrollBoxContent">
+                    &lt;div class="scrollBoxSmall"&gt; &lt;div class="scrollBoxContent"&gt;
+                    Small scroll box.
+                    Small scroll box.
+                    Small scroll box.
+                    Small scroll box.
+                    Small scroll box.
+                    Small scroll box.
+                    Small scroll box.
+                    &lt;/div&gt; &lt;/div&gt;
+                    </div> </div>
+
+                    <div class="scrollBoxMedium"> <div class="scrollBoxContent">
+                    &lt;div class="scrollBoxMedium"&gt; &lt;div class="scrollBoxContent"&gt;
+                    Medium scroll box.
+                    Medium scroll box.
+                    Medium scroll box.
+                    Medium scroll box.
+                    Medium scroll box.
+                    Medium scroll box.
+                    Medium scroll box.
+                    &lt;/div&gt; &lt;/div&gt;
+                    </div> </div>
+
+                    <div class="scrollBoxLarge"> <div class="scrollBoxContent">
+                    &lt;div class="scrollBoxLarge"&gt; &lt;div class="scrollBoxContent"&gt;
+                    Large scroll box.
+                    Large scroll box.
+                    Large scroll box.
+                    Large scroll box.
+                    Large scroll box.
+                    Large scroll box.
+                    Large scroll box.
+                    &lt;/div&gt; &lt;/div&gt;
+                    </div> </div>
+
+                    <div class="scrollBoxHuge"> <div class="scrollBoxContent">
+                    &lt;div class="scrollBoxHuge"&gt; &lt;div class="scrollBoxContent"&gt;
+                    Huge scroll box.
+                    Huge scroll box.
+                    Huge scroll box.
+                    Huge scroll box.
+                    Huge scroll box.
+                    Huge scroll box.
+                    Huge scroll box.
+                    Huge scroll box.
+                    Huge scroll box.
+                    Huge scroll box.
+                    Huge scroll box.
+                    Huge scroll box.
+                    Huge scroll box.
+                    Huge scroll box.
+                    Huge scroll box.
+                    Huge scroll box.
+                    Huge scroll box.
+                    Huge scroll box.
+                    Huge scroll box.
+                    Huge scroll box.
+                    Huge scroll box.
+                    Huge scroll box.
+                    Huge scroll box.
+                    Huge scroll box.
+                    Huge scroll box.
+                    Huge scroll box.
+                    Huge scroll box.
+                    Huge scroll box.
+                    Huge scroll box.
+                    Huge scroll box.
+                    Huge scroll box.
+                    Huge scroll box.
+                    Huge scroll box.
+                    Huge scroll box.
+                    Huge scroll box.
+                    Huge scroll box.
+                    Huge scroll box.
+                    &lt;/div&gt; &lt;/div&gt;
+                    </div> </div>
+                </section>
+
+                <section>
+                    <h3 id="Images">Images</h3>
+
+                    <h4>Block Images</h4>
+
+                    <p>
+                    Centered images, from full width to smaller sizes.
+                    </p>
+                    <img class="centered" alt="artificer" src="Images/Artificer.jpg">
+                    <img class="centeredsmaller" alt="artificer" src="Images/Artificer.jpg">
+                    <img class="centeredsmallest" alt="artificer" src="Images/Artificer.jpg">
+
+                    <div class="scrollBox"> <div class="scrollBoxContent">
+                    &lt;img class="centered" alt="artificer" src="Images/Artificer.jpg"&gt;
+                    &lt;img class="centeredsmaller" alt="artificer" src="Images/Artificer.jpg"&gt;
+                    &lt;img class="centeredsmallest" alt="artificer" src="Images/Artificer.jpg"&gt;
+                    </div> </div>
+
+                    <h4>Inline images</h4>
+
+                    <p>
+                    Image inside a paragraph. <img src="Images/volcano.jpg" height="50rem">
+                    </p>
+
+                    <div class="scrollBoxTiny"> <div class="scrollBoxContent">
+                        &lt;img src="Images/volcano.jpg" height="50rem"&gt;
+                    </div></div>
+
+                    <ol>
+                        <li>Image inside a list. <img src="Images/volcano.jpg" height="50rem"></li>
+                        <li>Image inside a list. <img src="Images/volcano.jpg" height="50rem"></li>
+                    </ol>
+
+                    <div class="scrollBoxTiny"> <div class="scrollBoxContent">
+                        &lt;img src="Images/volcano.jpg" height="50rem"&gt;
+                    </div></div>
+
+
+                    <em class="hotkey">
+                    Image inside a hotkey. <img src="Images/volcano.jpg" height="50rem">
+                    </em>
+
+                    <div class="scrollBoxTiny"> <div class="scrollBoxContent">
+                        &lt;em class="hotkey"&gt;img src="Images/volcano.jpg" height="50rem"&gt;&lt;\em&gt;
+                    </div></div>
+
+                    <h4>Special Case Images</h4>
+
+                    <p>
+                    I also have special case images.  Please refer to my 
+                        <a href="../StyleSheet.css.html">style sheet</a>
+                    and search for <strong>img</strong>
+                    </p>
+
+                    <ol>
+                        <li>Images within hyperlinks if we hover over them.</li>
+                        <li>Images within a navigation list.</li>
+                        <li>Images within forms.</li>
+                        <li>Border images.</li>
+                        <li>Transparent background used with SVG images.</li>
+                        <li>Images within paragraphs, inside inline emphasized text, and in tables.</li>
+                        <li>Images within figures.</li>
+                        <li>Painting images within an art gallery.</li>
+                    </ol>
+                </section>
+
+                <section>
+                    <h3 id="Tables">Tables</h3>
+
+                    <table>
+                        <caption>This is a simple table</caption>
+
+                        <tr>
+                            <th>Table Header, Column 1</th>
+                            <th>Table Header, Column 2</th>
+                        </tr>
+
+                        <tr>
+                            <td>Row 1, Column 1.</td>
+                            <td>Row 1, Column 2.</td>
+                        </tr>
+
+                        <tr>
+                            <td>Row 1, Column 1.</td>
+                            <td>Row 2, Column 2.</td>
+                        </tr>
+                    </table>
+
+                    <div class="scrollBox"> <div class="scrollBoxContent">
+                        &lt;table&gt;
+                            &lt;caption&gt;This is a simple table&lt;/caption&gt;
+                            &lt;tr&gt;
+                                &lt;th&gt;Table Header, Column 1&lt;/th&gt;
+                                &lt;th&gt;Table Header, Column 2&lt;/th&gt;
+                            &lt;/tr&gt;
+                            &lt;tr&gt;
+                                &lt;td&gt;Row 1, Column 1.&lt;/td&gt;
+                                &lt;td&gt;Row 1, Column 2.&lt;/td&gt;
+                            &lt;/tr&gt;
+                            &lt;tr&gt;
+                                &lt;td&gt;Row 1, Column 1.&lt;/td&gt;
+                                &lt;td&gt;Row 2, Column 2.&lt;/td&gt;
+                            &lt;/tr&gt;
+                        &lt;/table&gt;
+                    </div> </div>
+                </section>
+
+                <section>
+                    <h3 id="Tooltips">Tooltips</h3>
+
+                    <p class="box">
+                    Note that tooltips only work on devices which support hover, e.g. computers with mouse, stylus or trackpad.  
+                    They are not supported on mobile devices right now.
+                    </p>
+
+                    <p>
+                    Here is an example tooltip modified a lot from
+                    <a href="https://blog.logrocket.com/creating-beautiful-tooltips-with-only-css/">creating beautiful tooltips using CSS</a>
+                    using the following HTML5 and CSS3+ technologies:
+                    </p>
+
+                    <ul>
+                        <li> 
+                            <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/position">static, relative, absolute and sticky position</a>
+                        </li>
+                        <li> 
+                            <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_display/Containing_block">layout and contiaing blocks</a>
+                        </li>
+                        <li> 
+                            <a href="https://www.smashingmagazine.com/2011/07/learning-to-use-the-before-and-after-pseudo-elements-in-css/">:before and :after pseudo-classes</a>
+                        </li>
+                        <li> 
+                            <a href="https://www.sitepoint.com/how-why-use-html5-custom-data-attributes/">custom data attributes</a>
+                        </li>
+                    </ul>
+
+                    <p>
+                    Your time is limited, so don't waste it living someone else's life. 
+                    Don't be trapped by dogma - which is living with the results of other people's thinking. 
+                    Don't let the noise of others' opinions drown out your own 
+                    <span data-text="-Steve Jobs" class="tooltip">inner voice</span>.
+                    And most important, have the courage to follow your heart and 
+                    <span data-text="Steve Jobs again!" class="tooltip">intuition</span>.
+                    </p>
+
+                    <div class="scrollBoxSmall"> <div class="scrollBoxContent">
+                    &lt;span data-text="-Steve Jobs" class="tooltip"&gt;inner voice&lt;span&gt;
+                    And most important, have the courage to follow your heart and 
+                    &lt;span data-text="-Steve Jobs again!" class="tooltip"&gt;inner voice&lt;span&gt;
+                    </div></div>
+
+                    <p>
+                    Most of the magic is in the CSS <a href="../StyleSheet.css.html">style sheet</a>.  
+                    </p> 
+                </section>
+
+                <section>
+                    <h3 id="Gallery">Art Gallery</h3>
+
+                    <p>
+                    An art gallery.
+                    </p>
+
+                    <div class="gallery">
+                        <div class="painting" title="Fast PC.">
+                            <a href="Images/CyberPowerPCUbuntuGauss.jpg">
+                                <img src="Images/CyberPowerPCUbuntuGauss.jpg" alt="Fast PC.">
+                            </a>
+                            <p>Fast PC</p>
+                        </div>
+
+                        <div class="painting" title="Black and Gray Chalk on Paper.">
+                            <a href="../Art/Images/ShiftSelectCornea.jpg">
+                                <img src="../Art/Images/ShiftSelectCornea.jpg" alt="3D eye.">
+                            </a>
+                            <p>3D eye</p>
+                        </div>
+
+                        <div class="painting" title="Black and Gray Chalk on Paper.">
+                            <a href="../Images/eye.png">
+                                <img src="../Images/eye.png" alt="2D eye.">
+                            </a>
+                            <p>2D eye</p>
+                        </div>
+
+                        <div class="painting" title="Black and Gray Chalk on Paper.">
+                            <a href="../Images/home.png">
+                                <img src="../Images/home.png" alt="Home">
+                            </a>
+                            <p>Home</p>
+                        </div>
+                    </div>
+
+                    <div class="scrollBox"> <div class="scrollBoxContent">
+                        &lt;div class="gallery"&gt;
+                            &lt;div class="painting" title="Fast PC."&gt;
+                                &lt;a href="Images/CyberPowerPCUbuntuGauss.jpg"&gt;
+                                    &lt;img src="Images/CyberPowerPCUbuntuGauss.jpg" alt="Fast PC."&gt;
+                                &lt;/a&gt;
+                                &lt;p&gt;Fast PC&lt;/p&gt;
+                            &lt;/div&gt;
+                            &lt;div class="painting" title="Black and Gray Chalk on Paper."&gt;
+                                &lt;a href="../Art/Images/ShiftSelectCornea.jpg"&gt;
+                                    &lt;img src="../Art/Images/ShiftSelectCornea.jpg" alt="3D eye."&gt;
+                                &lt;/a&gt;
+                                &lt;p&gt;3D eye&lt;/p&gt;
+                            &lt;/div&gt;
+                            &lt;div class="painting" title="Black and Gray Chalk on Paper."&gt;
+                                &lt;a href="../Images/eye.png"&gt;
+                                    &lt;img src="../Images/eye.png" alt="2D eye."&gt;
+                                &lt;/a&gt;
+                                &lt;p&gt;2D eye&lt;/p&gt;
+                            &lt;/div&gt;
+                            &lt;div class="painting" title="Black and Gray Chalk on Paper."&gt;
+                                &lt;a href="../Images/home.png"&gt;
+                                    &lt;img src="../Images/home.png" alt="Home"&gt;
+                                &lt;/a&gt;
+                                &lt;p&gt;Home&lt;/p&gt;
+                            &lt;/div&gt;
+                    </div> </div>
+                </section>
+
+                <section>
+                    <h3 id="Movies">Movies</h3>
+
+                        <video width="320" height="240" controls>
+                            <source src="Images/sean.mp4" type="video/mp4">
+                            Your browser does not support the HTML5 video tag.
+                        </video> 
+
+                        <video width="200" height="100" controls>
+                            <source src="Images/sean.mov" type="video/mp4">
+                            Your browser does not support the HTML5 video tag.
+                        </video> 
+
+                        <div class="scrollBox"> <div class="scrollBoxContent">
+                            &lt;video width="320" height="240" controls&gt;
+                            &lt;source src="Images/sean.mp4" type="video/mp4"&gt;
+                            Your browser does not support the HTML5 video tag.
+                            &lt;video&gt;
+
+                            &lt;video width="500" height="200" controls&gt;
+                            &lt;source src="Images/sean.mov" type="video/mp4"&gt;
+                            Your browser does not support the HTML5 video tag.
+                            &lt;video&gt;
+                        </div> </div>
+                </section>
+
+                <section>
+                    <h3 id="Forms">Forms</h3>
+
+                    <p>Form push button example showing my layout style and a very simple callback</p>
+
+                    <form>
+                        <ul>
+                            <li>
+                              <fieldset>
+                                  <legend>Form Button</legend>
+                                      <input type="button" onclick="alert( 'Do not push this button again!' )" value="Push Me!">
+                                 </fieldset>
+                            </li>
+                        </ul>
+                    </form>
+
+                    <div class="scrollBox"> <div class="scrollBoxContent">
+                    &lt;form&gt;
+                        &lt;ul&gt;
+                            &lt;li&gt;
+                              &lt;fieldset&gt;
+                                  &lt;legend&gt;Form Button&lt;/legend&gt;
+                                      &lt;input type="button" onclick="alert( 
+                                            'Do not push this button again!' )" value="Push Me!" /&gt;
+                                 &lt;/fieldset&gt;
+                            &lt;/li&gt;
+                        &lt;/ul&gt;
+                    &lt;/form&gt;
+                    </div> </div>
+                </section>
+
+                <section>
+                    <h3 id="SVG">SVG</h3>
+
+                    <p>
+                        <a href="https://www.w3.org/TR/SVG11/">Scalable Vector Graphics (SVG)</a> is a language for describing vector graphics.
+                        See the <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorials/SVG_from_scratch/Introduction">Mozilla SVG Tutorial</a>
+                    </p>
+
+                    <p>
+                        I use <a href="https://inkscape.org">Inkscape</a> to do the drawing and generate the SVG file.
+                        Here's an example, where I've drawn a picture in Inkscape, and saved it to an *.svg file.  
+                        Load the *.svg image as you would any image, except I have <em>background: transparent;</em> in the style sheet
+                        so the SVG draws on top of the page, just like a drawing on paper.
+
+                        <img class="transparent" alt="Yoicks" src="Images/Yoicks.svg" >
+                    </p>
+
+                    <p>
+                        <em>Yoicks</em> by Sean Erik O'Connor is licensed under the Creative Commons license
+
+                        <a href="https://creativecommons.org/licenses/by-nd/4.0/?ref=chooser-v1" 
+                           target="_blank" 
+                           rel="license noopener noreferrer" 
+                           style="display:inline-block;">CC BY-ND 4.0
+                            <img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" 
+                                src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" 
+                                alt="">
+                            <img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" 
+                                 src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" alt="">
+                            <img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" 
+                                 src="https://mirrors.creativecommons.org/presskit/icons/nd.svg?ref=chooser-v1" alt=""></a>
+                    </p>
+
+                    <p>
+                    In the HTML, load the SVG image,
+                    </p>
+
+                    <div class="scrollBoxSmall"> <div class="scrollBoxContent">
+                        &lt;img class="transparent" src="Images/Yoicks.svg" &gt;
+                    </div></div>
+
+                    <p>
+                    And in the style sheet, define
+                    </p>
+
+                    <div class="scrollBox"> <div class="scrollBoxContent">
+                        /* Make an SVG image look like a drawing on top of the paper. */
+                        img.transparent
+                        {
+                            background: transparent ;
+                            max-width:         100% ;   /* Image won't be larger than its containing block.*/
+                        }
+                    </div></div>
+
+                    <p>
+                        I used <a href="https://inkscape.org">Inkscape</a> to draw this diagram and 
+                        its pdflatex extension to create mathematical text in LaTeX,
+
+                        <img width="500rem" class="transparent" src="Images/Mathy.svg" alt="Math in Inkscape">
+                    </p>
+
+                </section>
+
+                <section>
+                    <h3 id="Canvas">Canvas</h3>
+
+                    <p>
+                        <a href="https://html.spec.whatwg.org/multipage/">Canvas Specification</a>
+                    </p>
+
+                    <canvas id="canvas" width="300" height="225">
+                        Your browser does not support the canvas API!
+                    </canvas>
+
+                    <script>
+                        function draw()
+                        {
+                            var canvas = document.getElementById( "canvas" ) ;
+                            var context = canvas.getContext( "2d" ) ;
+                            var gradient = context.createLinearGradient( 0, 0, 300, 0 ) ;
+                            gradient.addColorStop( 0, "green" ) ;
+                            gradient.addColorStop( 1, "red" ) ;
+                            context.fillStyle = gradient ;
+                            context.fillRect( 0, 0, 150, 100 ) ;
+                            context.fillStyle = "rgba( 0, 0, 100, 0.5 )" ;
+                            context.fillRect( 100, 50, 150, 100 ) ;
+                        }
+
+                        /* Or you can call from <body onload="draw();"> */
+                        draw() ;
+                    </script>
+
+                    <div class="scrollBox"> <div class="scrollBoxContent">
+                        &lt;canvas id="canvas" width="300" height="225"&gt;
+                        Your browser does not support the canvas API!
+                        &lt;canvas&gt;
+
+                        &lt;script&gt;
+                        function draw()
+                        {
+                            var canvas = document.getElementById( "canvas" ) ;
+                            var context = canvas.getContext( "2d" ) ;
+                            var gradient = context.createLinearGradient( 0, 0, 300, 0 ) ;
+                            gradient.addColorStop( 0, "green" ) ;
+                            gradient.addColorStop( 1, "red" ) ;
+                            context.fillStyle = gradient ;
+                            context.fillRect( 0, 0, 150, 100 ) ;
+                            context.fillStyle = "rgba( 0, 0, 100, 0.5 )" ;
+                            context.fillRect( 100, 50, 150, 100 ) ;
+                        }
+
+                        /* Or you can call from &lt;body onload="draw();"&gt; */
+                        draw() ;
+                        &lt;/script&gt;
+                    </div> </div>
+                </section>
+
+                <section>
+                    <h3 id="GoogleSearch">Google Search</h3>
+
+                    <!-- Form to search my site with Google.  From Google's free tools web page.  -->
+                    <form method="get" action="http://www.google.com/search">
+
+                        <div id="GoogleForm">
+                            <input type="hidden" name="ie" value="UTF-8">
+                            <input type="hidden" name="oe" value="UTF-8">
+
+                            <!-- Required Google logo -->
+                            <a href="http://www.google.com/"> <img src="http://www.google.com/logos/Logo_25wht.gif" alt="Google">
+                            </a>
+
+                            <!-- A text input control for the (q)uery search string. -->
+                            <input type="text" name="q" size="32" maxlength="255" value="Primitive Polynomial">
+
+                            <!-- Submit button:  submits this form when activated. -->
+                            <input type="submit" name="btnG" value="Search my site">
+
+                            <!-- The URL of my site to search.
+                                  Determine which server we are on and use the appropriate hyperlink.
+                                  Use comments to hide this JavaScript from older browsers.
+                            -->
+                            <script>
+                            <!-- 
+                                var hostname = location.href
+                                var prefix = "<input type=\"hidden\" name=\"sitesearch\" value=\"http://"
+                                var suffix = ".com\">"
+
+                                if (hostname.match( "atspace" ))
+                                {
+                                    document.write( prefix + "seanerikoconnor.atspace" + suffix )
+                                }
+                                else if (hostname.match( "freeservers" ))
+                                {
+                                    document.write( prefix + "seanerikoconnor.freeservers" + suffix )
+                                }
+                                else if (hostname.match( "file" ))
+                                {
+                                    document.write( prefix + "seanerikoconnor.freeservers" + suffix )
+                                }
+                             // -->
+                            </script> 
+                        </div>
+                    </form>
+
+                    <div class="scrollBox"> <div class="scrollBoxContent">
+                        &lt;!-- Form to search my site with Google.
+                             From Google's free tools web page.
+                          --&gt;
+                        &lt;form method="get" action="http://www.google.com/search"&gt;
+
+                            &lt;div id="GoogleForm"&gt;
+                                &lt;input type="hidden" name="ie" value="UTF-8" /&gt;
+                                &lt;input type="hidden" name="oe" value="UTF-8" /&gt;
+
+                                &lt; Required Google logo --&gt;
+                                &lt;a href="http://www.google.com/"&gt;
+                                        &lt;img src="http://www.google.com/logos/Logo_25wht.gif"
+                                             alt="Google" /&gt;
+                                &lt;a&gt;
+
+                                &lt; A text input control for the (q)uery search string. --&gt;
+                                &lt;input type="text" name="q" size="32" maxlength="255"
+                                       value="Primitive Polynomial" /&gt;
+
+                                &lt; Submit button:  submits this form when activated. --&gt;
+                                &lt;input type="submit" name="btnG" value="Search my site" /&gt;
+
+                                &lt; The URL of my site to search.
+                                      Determine which server we are on and use the appropriate hyperlink.
+                                      Use comments to hide this JavaScript from older browsers.
+                                --&gt;
+                                &lt;script&gt;
+                                &lt; 
+                                    var hostname = location.href
+                                    var prefix = "&lt;input type=\"hidden\" 
+                                        name=\"sitesearch\" value=\"http://"
+                                    var suffix = ".com\" /&gt;
+
+                                    if (hostname.match( "atspace" ))
+                                    {
+                                        document.write( prefix + "seanerikoconnor.atspace" + suffix )
+                                    }
+                                    else if (hostname.match( "freeservers" ))
+                                    {
+                                        document.write( prefix + "seanerikoconnor.freeservers" + suffix )
+                                    }
+                                    else if (hostname.match( "file" ))
+                                    {
+                                        document.write( prefix + "seanerikoconnor.freeservers" + suffix )
+                                    }
+                                     // --&gt;
+                                &lt;script&gt;
+                            &lt;div&gt;
+                        &lt;form&gt;
+                    </div> </div>
+               </section>
+
+               <section>
+                   <h3 id="TypesettingMathematics">Typesetting Mathematics</h3>
+
+                    <h4>Math on the Web</h4>
+
+                    <p>
+                        I use <a href="https://www.mathjax.org/">MathJax</a> to typeset equations.
+                        I write equations in $\LaTeX$ in both inline or display style, using single or double 
+                        dollar sign delimiters.
+                        Here's the wonderful <a href="../Finance/lshort.pdf">Not So Short Introduction to LATEX</a>
+                    </p>
+
+                    <p>
+                        For example, the Navier-Stokes equation is 
+                          ${{V} \over { \partial t }} + \left( V \bullet \nabla \right) V = 
+                          {{ - \nabla p} \over { \rho_0}} + \nu \triangle V + F$, $\quad \nabla \bullet 
+                            V = 0$, $\quad V |_{\partial \Omega} = 0$.
+                    </p>
+
+                    <div class="scrollBox"> <div class="scrollBoxContent">
+                      dollarsign dollarsign
+                      {{V} \over { \partial t }} + \left( V \bullet \nabla \right) V = 
+                      {{ - \nabla p} \over { \rho_0}} + \nu \triangle V + F, \quad \nabla \bullet V = 0
+                      \quad V |_{\partial \Omega} = 0
+                      dollarsign dollarsign
+                    </div> </div>
+
+                    <p>
+                    The Frobenius norm is 
+                    $\| A \|_2 \equiv  
+                    \sum_{ij} | A_{ij} |^2 \equiv 
+                    \sqrt { tr( A^T A ) }$.
+                    and the error function is defined to be
+                    $ \operatorname{erfc}(x) = 
+                    \frac{2}{\sqrt{\bar{\pi}}} \int_x^{\infty} e^{-t^2}\,dt 
+                    = \frac{e^{-x^2}}{x\sqrt{\pi}}\sum_{n=0}^\infty (-1)^n \frac{(2n)!}{n!(2x)^{2n}} 
+                    $
+                    </p>
+
+                    <p>
+                    The Frechet derivative of a vector norm, 
+                    $$
+                    Df(x)h =
+                     \lim_{t \rightarrow 0}
+                     { 
+                         {  f( x + t h) - f(x) }
+                         \over
+                         {t}
+                     } 
+                     $$
+                     $$
+                      = 
+                     \lim_{t \rightarrow 0}
+                     { 
+                        { \sqrt{ {\| x \|}^2 + 2 \lt x | t h \gt + {\| t h \|}^2 } - \| x \|}
+                         \over
+                         {t}
+                     } 
+                    $$
+                    </p>
+
+                    <p>
+                    A circulant matrix equation,
+                    $$
+                    \left( 
+                    \begin{array} { cccccc }
+                    a^{sn}     & a^{s(n-1)}  & \ldots &  a^s       & 1 \\
+                    a^{s(n+1)} & a^{sn}      & \ldots & a^{s+1}    & a^s \\
+                    \ldots \\
+                    a^{s(2n)}  & a^{s(2n-1)} &\ldots  & a^{s(n+1)} & a^{sn}
+                    \end{array} 
+                    \right)
+                    X
+                    =
+                    \left( 
+                    \begin{array} { c }
+                    c_{n} \\
+                    c_{n-1} \\
+                    \ldots \\
+                    c_0
+                    \end{array} 
+                    \right)
+                    $$   
+                    </p>
+
+                    <p>
+                    a Fourier transform sum,
+                    $$   
+                    \sum_{k_0=0}^1  \sum_{k_1=0}^1\ldots 
+                    \sum_{k_{g-1}=0}^1 
+                    \quad \times
+                    $$   
+                    $$   
+                    \bar{x}(k_{g-1}, k_{g-2}, \ldots , k_0)
+                    \quad \times
+                    $$   
+                    $$   
+                    W^{ (n_0) (2^{g-1}k_{g-1})} 
+                    W^{(2 n_1 + n_0) (2^{g-2}k_{g-2})} 
+                    W^{(2^{g-1} n_{g-1} + \ldots + n_0) (k_0)}
+                    $$   
+                    <p>
+
+                    <p>
+                    and a normalized cross-correlation,
+                    $$
+                    P = \frac{\displaystyle{
+                    \sum_{i=1}^n (x_i- x) (y_i- y)}} 
+                    {\displaystyle{\left[ \sum_{i=1}^n(x_i-x)^2 
+                    \sum_{i=1}^n(y_i- y)^2 \right]^{1/2}}}
+                    $$
+                    Update form for mean,
+                    $$
+                    M_{n+1}= {{\sum_{i=1}^{n+1} x_i} \over 
+                        {n+1}}
+                    ={M_n } {n \over n+1} + {x_{n+1} \over {n+1}}
+                    $$
+                    </p>    
+
+                    <div class="scrollBox"> <div class="scrollBoxContent">
+                    Update form for mean,
+                    dollarsign dollarsign
+                    M_{n+1}= {{\sum_{i=1}^{n+1} x_i} \over 
+                        {n+1}}
+                    ={M_n } {n \over n+1} + {x_{n+1} \over {n+1}}
+                    dollarsign dollarsign
+                    </div> </div>
+
+                    <p>
+                    MathJax will show you the source code for the equation with a right 
+                    click over the equation, or you can set hover to show the equation source.
+                    </p>
+
+                    <figure>
+                        <img src="Images/MathJaxShowMathAs.jpg" alt="MathJax Show Math As" >
+                        <img src="Images/MathJaxEquationsSource.jpg" alt="MathJax Equation Source" >
+
+                        <figcaption>
+                            Right click on the mathematical symbols to get a MathJax menu.
+                        </figcaption>
+                    </figure>
+
+                    <h4>Setting up MathJax</h4>
+
+                    <p>
+                    Follow the instructions in 
+                    <a href="https://docs.mathjax.org/en/latest/web/hosting.html#web-hosting">Hosting MathJax on Your Web Page</a>
+                    First create a directory <em>/mathjax</em> which contains the minimum necessary files (not source files) by cloning in git.
+                    Fetch the latest tagged version.
+                    </p>
+
+                    <div class="scrollBoxLarge"> <div class="scrollBoxContent">
+                    git clone https://github.com/mathjax/MathJax.git mathjax
+
+                    git tag
+                        . . .
+                        4.0.0
+                        . . .
+
+                    git checkout tags/4.0.0 -b 4.0.0 
+
+                    git branch
+                        * 4.0.0
+                        develop
+                        master
+                    </div></div>
+
+                    <p>
+                    Put this script into your <em>/Scripts</em> directory which configures and loads MathJax.
+                    See the instructions for 
+                    <a href="https://docs.mathjax.org/en/latest/web/configuration.html">Configuring and Loading in One Script</a>
+                    and 
+                    <a href="https://docs.mathjax.org/en/latest/web/hosting.html">hosting your own copy of MathJax on your server</a>
+                    and also 
+                    <a href="https://docs.mathjax.org/en/latest/web/configuration.html">configuring MathJax</a>
+                    This script loads MathJax in three different ways:
+                    </p>
+
+                    <ul>
+                        <li>From MathJax files in the /mathjax directory on my local development platform (MacBook Pro).</li>
+                        <li>From MathJax files in the /mathjax directory on my web host (after 
+                            uploading the directory to my web host).</li>
+                        <li>Otherwise from CDN URL for MathJax.</li>
+                    </ul>
+
+                    <ul class="download">
+                        <li class="downloadName">load-mathjax.js</li>
+                        <li class="downloadDescription">Load MathJax JavaScript.</li>
+                        <li class="downloadView"> 
+                            <a href="../Scripts/load-mathjax.js.html">
+                                <img src="../Images/eye.png" alt="Eye icon for source code viewing." width="30" height="30" >View</a>
+                        </li>
+                        <li class="download"> 
+                            <a href="../Scripts/load-mathjax.js" download="../Scripts/load-mathjax.js">
+                                <img src="../Images/compactDisk.png" alt="Compact disk icon for source code download." width="25" height="25" >Download</a>
+                        </li>
+                    </ul>
+
+                    <p>
+                    Then in each web page, put this into your &lt;head&gt; section before loading the style sheet,
+                    </p>
+
+                    <div class="scrollBoxSmall"> <div class="scrollBoxContent">
+                        &lt;!-- Configure and load MathJax --&gt;
+                        &lt;script src="../Scripts/load-mathjax.js" async&gt;&lt;/script&gt;
+                    </div></div>
+
+                    <p>
+                    Not happening now, but this used to happen with a 2018 version of MathJax:
+                    I was getting timeouts loading the italic font from my server, 
+                    but not for my local web page on my MacBook Pro host.  
+                    So I added the following .htaccess file in mathjax/fonts which fixed the 
+                    problem.
+                    My Apache web server didn't recognize the .woff font file type and was 
+                    not allowing access to the files as explained in
+                    <a href="http://httpd.apache.org/docs/current/howto/htaccess.html">
+                           Apache how to for htaccess</a>.
+                    </p>
+
+                    <div class="scrollBox"> <div class="scrollBoxContent">
+                        &lt;FilesMatch "\.(ttf|otf|eot|woff)$"&gt;
+                        &lt;IfModule mod_headers.c&gt;
+                        Header set Access-Control-Allow-Origin "*"
+                        &lt;/IfModule&gt;
+                        &lt;/FilesMatch&gt;
+                        AddType application/x-font-woff woff
+                    </div> </div>
+               </section>
+
+               <section>
+                    <h3 id="Maintainance">Maintainance</h3>
+
+                    <p>
+                    In the top level directory, I have a 
+                    <a href="../ComputerScience/DevelopmentEnvironment/macLinuxComputerSetupForDevelopers.html#PROGRAMMINGLANGUAGES">Python</a>
+                    script called <em>updateweb.py</em> which maintains this site.  Some of its features:
+                    </p>
+
+                    <ul>
+                        <li>Automatic generation of syntax highlighted source code listings.</li>
+                        <li>Automatic search and replace any type of text (e.g. old copyright notices) in all hypertext and source files.</li>
+                        <li>Delete temporary files and directories generated by compilers.</li>
+                        <li>Upload the changed web pages files to my host web site.</li>
+                    </ul>
+
+                    <p>
+                    <em>updateweb Version 7.3 - A Python utility program which maintains my web site</em> is distributed under the terms of the
+                    <a href="https://www.gnu.org/licenses/">GNU General Public License</a>.
+                    </p>
+                    
+                    <ul class="download">
+                        <li class="downloadName">updateweb.py</li>
+                        <li class="downloadDescription">Update Web Page Script</li>
+                        <li class="downloadView"> 
+                            <a href="MaintainWebPage/updateweb.py.html">
+                                <img src="../Images/eye.png" alt="Eye icon for source code viewing." width="30" height="30" >View</a>
+                        </li>
+                        <li class="download"> 
+                            <a href="MaintainWebPage/updateweb.py" download="MaintainWebPage/updateweb.pys">
+                                <img src="../Images/compactDisk.png" alt="Compact disk icon for source code download." width="25" height="25" >Download</a>
+                        </li>
+
+                        <li class="downloadName">updateweb.yaml</li>
+                        <li class="downloadDescription">Update Web Page YAML configuration file (demo example only).</li>
+                        <li class="downloadView"> 
+                            <a href="MaintainWebPage/updateweb.yaml.html">
+                                <img src="../Images/eye.png" alt="Eye icon for source code viewing." width="30" height="30" >View</a>
+                        </li>
+                        <li class="download"> 
+                            <a href="MaintainWebPage/updateweb.yaml" download="MaintainWebPage/updateweb.yaml">
+                                <img src="../Images/compactDisk.png" alt="Compact disk icon for source code download." width="25" height="25" >Download</a>
+                        </li>
+                    </ul>
+
+                    <p>
+                    I still need to submit each page to a final 
+                    <a href="https://validator.w3.org/checklink/">link check</a>
+                    as web links undergo software rot.
+                    </p>
+               </section>
+
+               <section>
+                    <h3 id="DevelopmentEnvironment">Development Environment</h3>
+
+                    <figure>
+                        <a href="Images/Artificer.jpg">
+                            <img src="Images/Artificer.jpg" 
+                                 height="250" width="400"
+                                 alt="Artificer laptop running macOS.">
+                        </a>
+                        <figcaption>MacBook Pro laptop running macOS.</figcaption>
+                    </figure>
+
+                    <p style="clear:both">
+                    I do my development on my MacBookPro 16-inch, 2021 Apple M1 Max laptop running macOS Sonoma 14.5 (23F79)
+                    on which I have loaded a variety of 
+                    <a href="../ComputerScience/DevelopmentEnvironment/macLinuxComputerSetupForDevelopers.html"><em>software designer's tools</em></a>
+                    I also develop on a CyberPowerPC Series C 2019 ET8880-1202 running Ubuntu Linux 20.04 LTS (Focal Fossa).
+                    </p>
+
+                    <figure>
+                        <a href="Images/CyberPowerPCUbuntuGauss.jpg">
+                            <img src="Images/CyberPowerPCUbuntuGauss.jpg" 
+                                 height="350" width="600"
+                                 alt="CyberPower PC running Ubuntu Linux">
+                        </a>
+                        <figcaption>CyberPower PC running Ubuntu Linux.</figcaption>
+                    </figure>
+               </section>
+
+               <section>
+                    <h3 id="Hosting">Hosting</h3>
+
+                    <p>
+                    I use Freeservers, which I have used for a number of years with
+                    excellent results.  I used to use the file manager in the 
+                    <a href="http://seanerikoconnor.freeservers.com/cgi-bin/login">
+                        member</a> 
+                    area, but now I use my 
+                    <a href="#Maintainance">automatic updater program</a>.
+                    </p>
+
+                    <p>
+                    I use AT&amp;T DSL with a wireless transceiver so I can communicate
+                    to my laptop.
+                    Once upon a time, I connected through the phone on a separate line 
+                    using a modem with 
+                    <a href="https://www.netzero.net/">Netzero</a>
+                    as my ISP.
+                    </p>
+               </section>
+
+               <section>
+                    <h3 id="Viewing">Viewing</h3>
+
+                    <p>
+                    I check my web page appearance in the 
+                    <a href="https://www.mozilla.org/en-US/">Firefox</a>,
+                    <a href="https://www.apple.com/safari/">Safari</a>,
+                    <a href="https://www.opera.com/">Opera</a>, and
+                    <a href="https://www.chromium.org/Home/">Chromium</a>
+                    internet browsers, and on iPad and iPhone devices.
+                    </p>
+               </section>
+
+               <section>
+                    <h3 id="GettingListed">Getting Listed</h3>
+
+                    <p>
+                    I test search for my site using 
+                    <a href="http://www.google.com/">Google</a>.
+                    </p>
+               </section>
+
+               <section>
+                    <h3 id="Communicating">Communicating</h3>
+                    
+                    <p>
+                    I also occasionally post on Google groups:
+                    <a href="https://support.google.com/groups/answer/46601?hl=en&ref_topic=9216&sjid=7362949141285024327-NC">newsgroups</a>.
+                    </p>
+               </section>
+
+            </article>
+
+            <footer class="footnote">
+                <hr>
+
+                <!-- A copyright to preserve my legal rights. -->
+                <p class="footnote">
+                    Copyright &copy; 1986-2026 by Sean Erik O'Connor.
+                    All Rights Reserved.
+                    &nbsp;&nbsp;&nbsp;
+                    last updated 07 May 26.
+                </p>
+            </footer>
+        </div> <!-- wrapper -->
+    </body>
+</html>
