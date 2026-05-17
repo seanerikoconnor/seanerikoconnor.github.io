@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <!-- Define the MIME type for this document. -->
+    <meta charset="utf-8">
+
+    <!-- Set viewport to actual device width.  Any other settings makes the web page initially appear zoomed-in on mobile devices. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>
+    Orbital
+    </title>
+
+    <link href="HTMLFiles/Orbital.css" rel="stylesheet" type="text/css"/>
+</head>
+
+<body style="font-size: 125%;">
+
+<p class="Title">
+ Perspective and Clipping Transforms
+</p>
+
+<p class='Subtitle' style='text-align: center;'>
+ Sean Erik O'Connor<br />November 2009-October 2010
+</p>
+
+<p class="Section">
+ Introduction
+</p>
+
+<p class='Subsection' style='text-indent: 0px;'>
+ This notebook displays wireframe models in perspective projection.
+</p>
+
+<p class='Text' style='text-indent: 0px;'>
+ First, some simple conversion functions.
+</p>
+
+<p class="CellLabel">
+ In[866]:=
+</p>
+
+<p class="Input">
+ <img src='HTMLFiles/Orbital_1.gif' alt='"Orbital_1.gif"' width='347' height='39' style='vertical-align:middle'>
+</p>
+
+<p class="CellLabel">
+ In[867]:=
+</p>
+
+
+
+<p class="Input">
+ <img src='HTMLFiles/Orbital_2.gif' alt='"Orbital_2.gif"' width='343' height='39' style='vertical-align:middle'>
+</p>
+
+<p class="CellLabel">
+ In[868]:=
+</p>
+
+
+
+<p class="Input">
+ <img src='HTMLFiles/Orbital_3.gif' alt='"Orbital_3.gif"' width='348' height='16' style='vertical-align:middle'>
+</p>
+
+<p class="CellLabel">
+ Out[868]=
+</p>
+
+
+
+<p class="Output">
+ <img src='HTMLFiles/Orbital_4.gif' alt='"Orbital_4.gif"' width='150' height='16' style='vertical-align:middle'>
+</p>
+
+<p class="CellLabel">
+ In[869]:=
+</p>
+
+
+
+<p class="Input">
+ <img src='HTMLFiles/Orbital_5.gif' alt='"Orbital_5.gif"' width='182' height='36' style='vertical-align:middle'>
+</p>
+
+<p class="CellLabel">
+ In[870]:=
+</p>
+
+
+
+<p class="Input">
+ <img src='HTMLFiles/Orbital_6.gif' alt='"Orbital_6.gif"' width='182' height='39' style='vertical-align:middle'>
+</p>
+
+<p class="CellLabel">
+ In[871]:=
+</p>
+
+
+
+<p class="Input">
+ <img src='HTMLFiles/Orbital_7.gif' alt='"Orbital_7.gif"' width='249' height='16' style='vertical-align:middle'>
+</p>
+
+<p class="CellLabel">
+ Out[871]=
+</p>
+
+
+
+<p class="Output">
+ <img src='HTMLFiles/Orbital_8.gif' alt='"Orbital_8.gif"' width='69' height='16' style='vertical-align:middle'>
+</p>
+
+<p class="Section">
+ Euclidean and Homogeneous Coordinates
+</p>
+
+
+
+<p class='Text' style='text-indent: 0px;'>
+ We'll use a left handed graphics coordinate system.
+</p>
+
+
+
+<p class="CellLabel">
+ In[872]:=
+</p>
+
+
+
+<p class="Input">
+ <img src='HTMLFiles/Orbital_9.gif' alt='"Orbital_9.gif"' width='1141' height='340' style='vertical-align:middle'>
+</p>
+
+<p class="CellLabel">
+ Out[872]=
+</p>
+
+
+
+<p class="Output">
+ <img src='HTMLFiles/Orbital_10.gif' alt='"Orbital_10.gif"' width='494' height='537' style='vertical-align:middle'>
+</p>
+
+<p class='Subsection' style='text-indent: 0px;'>
+ Convert between 3D Euclidean space and 4D homogeneous coordinates.
+</p>
+
+
+
+<p class='Text' style='text-indent: 0px;'>
+ The 3D Euclidean point <span style='font-size: 16px;'>(x, y, z) </span>transforms to<span style='font-size: 16px;'> (x, y, z, 1)</span> in homogeneous coordinates.
+</p>
+
+
+
+<p class="CellLabel">
+ In[873]:=
+</p>
+
+
+
+<p class="Input">
+ <img src='HTMLFiles/Orbital_11.gif' alt='"Orbital_11.gif"' width='505' height='16' style='vertical-align:middle'>
+</p>
+
+<p class="CellLabel">
+ In[874]:=
+</p>
+
+
+
+<p class="Input">
+ <img src='HTMLFiles/Orbital_12.gif' alt='"Orbital_12.gif"' width='408' height='16' style='vertical-align:middle'>
+</p>
+
+<p class="CellLabel">
+ Out[874]//MatrixForm=
+</p>
+
+
+
+<p class="Output">
+ <img src='HTMLFiles/Orbital_13.gif' alt='"Orbital_13.gif"' width='35' height='71' style='vertical-align:middle'>
+</p>
+
+<p class='Text' style='text-indent: 0px;'>
+ The homogeneous point <span style='font-size: 14px;'>(x, y, z, w)</span> transforms to<span style='font-size: 18px;'> (</span><span style='font-size: 18px;'><span><img src='HTMLFiles/Orbital_14.gif' alt='"Orbital_14.gif"' width='114' height='46' style='vertical-align:middle'></span></span><span style='font-size: 18px;'>)</span> in normalized homogeneous coordinates.
+</p>
+
+
+
+<p class="CellLabel">
+ In[875]:=
+</p>
+
+
+
+<p class="Input">
+ <img src='HTMLFiles/Orbital_15.gif' alt='"Orbital_15.gif"' width='489' height='41' style='vertical-align:middle'>
+</p>
+
+<p class="CellLabel">
+ In[876]:=
+</p>
+
+
+
+<p class="Input">
+ <img src='HTMLFiles/Orbital_16.gif' alt='"Orbital_16.gif"' width='435' height='16' style='vertical-align:middle'>
+</p>
+
+<p class="CellLabel">
+ Out[876]//MatrixForm=
+</p>
+
+
+
+<p class="Output">
+ <img src='HTMLFiles/Orbital_17.gif' alt='"Orbital_17.gif"' width='39' height='73' style='vertical-align:middle'>
+</p>
+
+<p class="CellLabel">
+ In[877]:=
+</p>
+
+
+
+<p class="Input">
+ <img src='HTMLFiles/Orbital_18.gif' alt='"Orbital_18.gif"' width='626' height='16' style='vertical-align:middle'>
+</p>
+
+<p class="CellLabel">
+ In[878]:=
+</p>
+
+
+
+<p class="Input">
+ <img src='HTMLFiles/Orbital_19.gif' alt='"Orbital_19.gif"' width='483' height='16' style='vertical-align:middle'>
+</p>
+
+<p class="CellLabel">
+ Out[878]=
+</p>
+
+
+
+<p class="Output">
+ <img src='HTMLFiles/Orbital_20.gif' alt='"Orbital_20.gif"' width='191' height='36' style='vertical-align:middle'>
+</p>
+
+<p class="Section">
+ Translation and Rotation
+</p>
+
+
+
+<p class='Subsection' style='text-indent: 0px;'>
+ Develop the 4D homogeneous matrices for translations and rotations.&nbsp;&nbsp;We translate/rotate the <span style='font-style: italic;'>coordinate system</span> origin.
+</p>
+
+
+
+<p class="CellLabel">
+ In[879]:=
+</p>
+
+
+
+<p class="Input">
+ <img src='HTMLFiles/Orbital_21.gif' alt='"Orbital_21.gif"' width='479' height='71' style='vertical-align:middle'>
+</p>
+
+<p class='Text' style='text-indent: 0px;'>
+ Translate the origin by vector v = (1,2,3).&nbsp;&nbsp;(1,2,3) should now map to (0,0,0).
+</p>
+
+
+
+<p class="CellLabel">
+ In[880]:=
+</p>
+
+
+
+<p class="Input">
+ <img src='HTMLFiles/Orbital_22.gif' alt='"Orbital_22.gif"' width='285' height='16' style='vertical-align:middle'>
+</p>
+
+<p class="CellLabel">
+ In[881]:=
+</p>
+
+
+
+<p class="Input">
+ <img src='HTMLFiles/Orbital_23.gif' alt='"Orbital_23.gif"' width='127' height='16' style='vertical-align:middle'>
+</p>
+
+<p class="CellLabel">
+ Out[881]//MatrixForm=
+</p>
+
+
+
+<p class="Output">
+ <img src='HTMLFiles/Orbital_24.gif' alt='"Orbital_24.gif"' width='116' height='71' style='vertical-align:middle'>
+</p>
+
+<p class="CellLabel">
+ In[882]:=
+</p>
+
+
+
+<p class="Input">
+ <img src='HTMLFiles/Orbital_25.gif' alt='"Orbital_25.gif"' width='123' height='16' style='vertical-align:middle'>
+</p>
+
+<p class="CellLabel">
+ Out[882]=
+</p>
+
+
+
+<p class="Output">
+ <img src='HTMLFiles/Orbital_26.gif' alt='"Orbital_26.gif"' width='98' height='16' style='vertical-align:middle'>
+</p>
+
+<p class="CellLabel">
+ In[883]:=
+</p>
+
+
+
+<p class="Input">
+ <img src='HTMLFiles/Orbital_27.gif' alt='"Orbital_27.gif"' width='253' height='16' style='vertical-align:middle'>
+</p>
+
+<p class="CellLabel">
+ Out[883]=
+</p>
+
+
+
+<p class="Output">
+ <img src='HTMLFiles/Orbital_28.gif' alt='"Orbital_28.gif"' width='227' height='16' style='vertical-align:middle'>
+</p>
+
+<p class='Text' style='text-indent: 0px;'>
+ <span style='font-weight: bold;'>Rotate the origin by </span><span style='font-weight: bold;'><span>&theta;</span></span><span style='font-weight: bold;'> counterclockwise about the z axis. </span>
+</p>
+
+
+
+<p class="CellLabel">
+ In[884]:=
+</p>
+
+
+
+<p class="Input">
+ <img src='HTMLFiles/Orbital_29.gif' alt='"Orbital_29.gif"' width='1209' height='378' style='vertical-align:middle'>
+</p>
+
+<p class="CellLabel">
+ Out[884]=
+</p>
+
+
+
+<p class="Output">
+ <img src='HTMLFiles/Orbital_30.gif' alt='"Orbital_30.gif"' width='450' height='396' style='vertical-align:middle'>
+</p>
+
+<p class="CellLabel">
+ In[885]:=
+</p>
+
+
+
+<p class="Input">
+ <img src='HTMLFiles/Orbital_31.gif' alt='"Orbital_31.gif"' width='323' height='73' style='vertical-align:middle'>
+</p>
+
+<p class='Text' style='text-indent: 0px;'>
+ Rotate the origin by <span style='font-size: 16px;'><span><img src='HTMLFiles/Orbital_32.gif' alt='"Orbital_32.gif"' width='28' height='23' style='vertical-align:middle'></span></span> counterclockwise about the z axis.&nbsp;&nbsp;The point<span style='font-size: 16px;'> (</span><span style='font-size: 16px;'><span><img src='HTMLFiles/Orbital_33.gif' alt='"Orbital_33.gif"' width='87' height='51' style='vertical-align:middle'></span></span><span style='font-size: 16px;'>, 0) </span>should map to<span style='font-size: 16px;'> (1,0,0).</span>
+</p>
+
+
+
+<p class="CellLabel">
+ In[886]:=
+</p>
+
+
+
+<p class="Input">
+ <img src='HTMLFiles/Orbital_34.gif' alt='"Orbital_34.gif"' width='703' height='44' style='vertical-align:middle'>
+</p>
+
+<p class="CellLabel">
+ Out[886]//MatrixForm=
+</p>
+
+
+
+<p class="Output">
+ <img src='HTMLFiles/Orbital_35.gif' alt='"Orbital_35.gif"' width='35' height='53' style='vertical-align:middle'>
+</p>
+
+<p class='Text' style='text-indent: 0px;'>
+ <span style='font-weight: bold;'>Rotate the origin by </span><span style='font-weight: bold;'><span>&theta;</span></span><span style='font-weight: bold;'> counterclockwise about the x axis. </span>
+</p>
+
+
+
+<p class="CellLabel">
+ In[887]:=
+</p>
+
+
+
+<p class="Input">
+ <img src='HTMLFiles/Orbital_36.gif' alt='"Orbital_36.gif"' width='1209' height='378' style='vertical-align:middle'>
+</p>
+
+<p class="CellLabel">
+ Out[887]=
+</p>
+
+
+
+<p class="Output">
+ <img src='HTMLFiles/Orbital_37.gif' alt='"Orbital_37.gif"' width='450' height='408' style='vertical-align:middle'>
+</p>
+
+<p class="CellLabel">
+ In[888]:=
+</p>
+
+
+
+<p class="Input">
+ <img src='HTMLFiles/Orbital_38.gif' alt='"Orbital_38.gif"' width='323' height='73' style='vertical-align:middle'>
+</p>
+
+<p class='Text' style='text-indent: 0px;'>
+ Rotate the origin by <span><span><img src='HTMLFiles/Orbital_39.gif' alt='"Orbital_39.gif"' width='22' height='18' style='vertical-align:middle'></span></span> counterclockwise about the x axis.&nbsp;&nbsp;The point<span style='font-size: 16px;'> (</span><span style='font-size: 16px;'><span><img src='HTMLFiles/Orbital_40.gif' alt='"Orbital_40.gif"' width='108' height='51' style='vertical-align:middle'></span></span><span style='font-size: 16px;'>) </span>should map to<span style='font-size: 16px;'> (0,0,1)</span> because<span style='font-size: 16px;'> </span><span><span><img src='HTMLFiles/Orbital_41.gif' alt='"Orbital_41.gif"' width='207' height='72' style='vertical-align:middle'></span></span>
+</p>
+
+
+
+<p class="CellLabel">
+ In[889]:=
+</p>
+
+
+
+<p class="Input">
+ <img src='HTMLFiles/Orbital_42.gif' alt='"Orbital_42.gif"' width='711' height='44' style='vertical-align:middle'>
+</p>
+
+<p class="CellLabel">
+ Out[889]//MatrixForm=
+</p>
+
+
+
+<p class="Output">
+ <img src='HTMLFiles/Orbital_43.gif' alt='"Orbital_43.gif"' width='35' height='53' style='vertical-align:middle'>
+</p>
+
+<p class='Text' style='text-indent: 0px;'>
+ Rotate the origin by <span><span><img src='HTMLFiles/Orbital_44.gif' alt='"Orbital_44.gif"' width='22' height='18' style='vertical-align:middle'></span></span> counterclockwise about the x axis.&nbsp;&nbsp;The point<span style='font-size: 16px;'> (</span><span style='font-size: 16px;'><span>0,0,1</span></span><span style='font-size: 16px;'>) </span>should map to<span style='font-size: 16px;'> (0,-1,0)</span>
+</p>
+
+
+
+<p class="CellLabel">
+ In[890]:=
+</p>
+
+
+
+<p class="Input">
+ <img src='HTMLFiles/Orbital_45.gif' alt='"Orbital_45.gif"' width='646' height='16' style='vertical-align:middle'>
+</p>
+
+<p class="CellLabel">
+ Out[890]//MatrixForm=
+</p>
+
+
+
+<p class="Output">
+ <img src='HTMLFiles/Orbital_46.gif' alt='"Orbital_46.gif"' width='45' height='53' style='vertical-align:middle'>
+</p>
+
+<p class='Text' style='text-indent: 0px;'>
+ <span style='font-weight: bold;'>Rotate the origin by </span><span style='font-weight: bold;'><span>&theta;</span></span><span style='font-weight: bold;'> counterclockwise about the y axis. </span>
+</p>
+
+
+
+<p class="CellLabel">
+ In[891]:=
+</p>
+
+
+
+<p class="Input">
+ <img src='HTMLFiles/Orbital_47.gif' alt='"Orbital_47.gif"' width='1209' height='378' style='vertical-align:middle'>
+</p>
+
+<p class="CellLabel">
+ Out[891]=
+</p>
+
+
+
+<p class="Output">
+ <img src='HTMLFiles/Orbital_48.gif' alt='"Orbital_48.gif"' width='450' height='396' style='vertical-align:middle'>
+</p>
+
+<p class="CellLabel">
+ In[892]:=
+</p>
+
+
+
+<p class="Input">
+ <img src='HTMLFiles/Orbital_49.gif' alt='"Orbital_49.gif"' width='323' height='73' style='vertical-align:middle'>
+</p>
+
+<p class='Text' style='text-indent: 0px;'>
+ Rotate the origin by <span><span><img src='HTMLFiles/Orbital_50.gif' alt='"Orbital_50.gif"' width='22' height='18' style='vertical-align:middle'></span></span> counterclockwise about the y axis.&nbsp;&nbsp;The point<span style='font-size: 14px;'> (</span><span style='font-size: 14px;'><span><img src='HTMLFiles/Orbital_51.gif' alt='"Orbital_51.gif"' width='95' height='45' style='vertical-align:middle'></span></span><span style='font-size: 14px;'>) </span>should map to <span style='font-size: 14px;'>(1,0,0).</span>
+</p>
+
+
+
+<p class="CellLabel">
+ In[893]:=
+</p>
+
+
+
+<p class="Input">
+ <img src='HTMLFiles/Orbital_52.gif' alt='"Orbital_52.gif"' width='711' height='44' style='vertical-align:middle'>
+</p>
+
+<p class="CellLabel">
+ Out[893]//MatrixForm=
+</p>
+
+
+
+<p class="Output">
+ <img src='HTMLFiles/Orbital_53.gif' alt='"Orbital_53.gif"' width='35' height='53' style='vertical-align:middle'>
+</p>
+
+<p class="Section">
+ Perspective Projection
+</p>
+
+
+
+<p class='Subsection' style='text-indent: 0px;'>
+ The perspective matrix lives in homogeneous coordinate space and maps the viewing frustrum to a unit parallelepiped for simplicity in clipping.<br />The eye is at the origin of the perspective view which forms a rectilinear cone.<br />The picture plane has width = wPP, height = hPP.<br />The distance from the eye to the picture plane is dPP and the distance from the eye to the far plane is dFP.
+</p>
+
+
+
+<p class='Text' style='text-indent: 0px;'>
+ Try out translation and rotation.&nbsp;&nbsp;
+</p>
+
+
+
+<p class="CellLabel">
+ In[894]:=
+</p>
+
+
+
+<p class="Input">
+ <img src='HTMLFiles/Orbital_54.gif' alt='"Orbital_54.gif"' width='270' height='31' style='vertical-align:middle'>
+</p>
+
+<p class="CellLabel">
+ In[895]:=
+</p>
+
+
+
+<p class="Input">
+ <img src='HTMLFiles/Orbital_55.gif' alt='"Orbital_55.gif"' width='426' height='139' style='vertical-align:middle'>
+</p>
+
+<p class="CellLabel">
+ In[896]:=
+</p>
+
+
+
+<p class="Input">
+ <img src='HTMLFiles/Orbital_56.gif' alt='"Orbital_56.gif"' width='271' height='16' style='vertical-align:middle'>
+</p>
+
+<p class="CellLabel">
+ Out[896]//MatrixForm=
+</p>
+
+
+
+<p class="Output">
+ <img src='HTMLFiles/Orbital_57.gif' alt='"Orbital_57.gif"' width='284' height='71' style='vertical-align:middle'>
+</p>
+
+<p class='Text' style='text-indent: 0px;'>
+ Helper function to project points<span style='font-size: 14px;'> (x,y,z)</span> in 3D to<span style='font-size: 14px;'> (x,y) </span>in 2D.
+</p>
+
+
+
+<p class="CellLabel">
+ In[897]:=
+</p>
+
+
+
+<p class="Input">
+ <img src='HTMLFiles/Orbital_58.gif' alt='"Orbital_58.gif"' width='327' height='16' style='vertical-align:middle'>
+</p>
+
+<p class="CellLabel">
+ In[898]:=
+</p>
+
+
+
+<p class="Input">
+ <img src='HTMLFiles/Orbital_59.gif' alt='"Orbital_59.gif"' width='209' height='16' style='vertical-align:middle'>
+</p>
+
+<p class="CellLabel">
+ Out[898]=
+</p>
+
+
+
+<p class="Output">
+ <img src='HTMLFiles/Orbital_60.gif' alt='"Orbital_60.gif"' width='51' height='16' style='vertical-align:middle'>
+</p>
+
+<p class='Text' style='text-indent: 0px;'>
+ Points on the near plane corners transform to normalized picture plane corners.
+</p>
+
+
+
+<p class="CellLabel">
+ In[899]:=
+</p>
+
+
+
+<p class="Input">
+ <img src='HTMLFiles/Orbital_61.gif' alt='"Orbital_61.gif"' width='775' height='16' style='vertical-align:middle'>
+</p>
+
+<p class="CellLabel">
+ Out[899]=
+</p>
+
+
+
+<p class="Output">
+ <img src='HTMLFiles/Orbital_62.gif' alt='"Orbital_62.gif"' width='79' height='16' style='vertical-align:middle'>
+</p>
+
+<p class='Text' style='text-indent: 0px;'>
+ Point on the far plane corners transform to normalized picture plane corners.
+</p>
+
+
+
+<p class="CellLabel">
+ In[900]:=
+</p>
+
+
+
+<p class="Input">
+ <img src='HTMLFiles/Orbital_63.gif' alt='"Orbital_63.gif"' width='645' height='16' style='vertical-align:middle'>
+</p>
+
+<p class="CellLabel">
+ Out[900]=
+</p>
+
+
+
+<p class="Output">
+ <img src='HTMLFiles/Orbital_64.gif' alt='"Orbital_64.gif"' width='79' height='16' style='vertical-align:middle'>
+</p>
+
+<p class='Text' style='text-indent: 0px;'>
+ General points<span style='font-size: 14px;'> (x,y,z) </span>transform to&nbsp;&nbsp;
+</p>
+
+
+
+<p class="CellLabel">
+ In[901]:=
+</p>
+
+
+
+<p class="Input">
+ <img src='HTMLFiles/Orbital_65.gif' alt='"Orbital_65.gif"' width='763' height='16' style='vertical-align:middle'>
+</p>
+
+<p class="CellLabel">
+ Out[901]=
+</p>
+
+
+
+<p class="Output">
+ <img src='HTMLFiles/Orbital_66.gif' alt='"Orbital_66.gif"' width='195' height='36' style='vertical-align:middle'>
+</p>
+
+<p class='Text' style='text-indent: 0px;'>
+ Points in normalized homogeneous perspective space project down the the 2D picture plane.
+</p>
+
+
+
+<p class="CellLabel">
+ In[902]:=
+</p>
+
+
+
+<p class="Input">
+ <img src='HTMLFiles/Orbital_67.gif' alt='"Orbital_67.gif"' width='1183' height='16' style='vertical-align:middle'>
+</p>
+
+<p class="CellLabel">
+ In[903]:=
+</p>
+
+
+
+<p class="Input">
+ <img src='HTMLFiles/Orbital_68.gif' alt='"Orbital_68.gif"' width='473' height='38' style='vertical-align:middle'>
+</p>
+
+<p class="CellLabel">
+ Out[903]=
+</p>
+
+
+
+<p class="Output">
+ <img src='HTMLFiles/Orbital_69.gif' alt='"Orbital_69.gif"' width='151' height='16' style='vertical-align:middle'>
+</p>
+
+<p class="Section">
+ 2. Clipping
+</p>
+
+
+
+<p class='Subsection' style='text-indent: 0px;'>
+ Clip a homogeneous point in perspective projection to the bounds of the viewing frustrum.
+</p>
+
+
+
+<p class="CellLabel">
+ In[904]:=
+</p>
+
+
+
+<p class="Input">
+ <img src='HTMLFiles/Orbital_70.gif' alt='"Orbital_70.gif"' width='529' height='283' style='vertical-align:middle'>
+</p>
+
+<p class='Text' style='text-indent: 0px;'>
+ Test it out.&nbsp;&nbsp;Clipping should be false, then true for this example.
+</p>
+
+
+
+<p class="CellLabel">
+ In[905]:=
+</p>
+
+
+
+<p class="Input">
+ <img src='HTMLFiles/Orbital_71.gif' alt='"Orbital_71.gif"' width='449' height='16' style='vertical-align:middle'>
+</p>
+
+<p class="CellLabel">
+ Out[905]=
+</p>
+
+
+
+<p class="Output">
+ <img src='HTMLFiles/Orbital_72.gif' alt='"Orbital_72.gif"' width='45' height='16' style='vertical-align:middle'>
+</p>
+
+<p class="CellLabel">
+ In[906]:=
+</p>
+
+
+
+<p class="Input">
+ <img src='HTMLFiles/Orbital_73.gif' alt='"Orbital_73.gif"' width='440' height='16' style='vertical-align:middle'>
+</p>
+
+<p class="CellLabel">
+ Out[906]=
+</p>
+
+
+
+<p class="Output">
+ <img src='HTMLFiles/Orbital_74.gif' alt='"Orbital_74.gif"' width='36' height='16' style='vertical-align:middle'>
+</p>
+
+<p class="Section">
+ Wire Frame Components
+</p>
+
+
+
+<p class='Text' style='text-indent: 0px;'>
+ Circle in yz plane using left handed coordinate system, with variable spacing of points.
+</p>
+
+
+
+<p class="CellLabel">
+ In[907]:=
+</p>
+
+
+
+<p class="Input">
+ <img src='HTMLFiles/Orbital_75.gif' alt='"Orbital_75.gif"' width='950' height='188' style='vertical-align:middle'>
+</p>
+
+<p class='Text' style='text-indent: 0px;'>
+ Arrange the graph with +x to the right, +y upwards, and -z into the picture so we model a left handed viewing coordinate system.
+</p>
+
+
+
+<p class="CellLabel">
+ In[908]:=
+</p>
+
+
+
+<p class="Input">
+ <img src='HTMLFiles/Orbital_76.gif' alt='"Orbital_76.gif"' width='931' height='16' style='vertical-align:middle'>
+</p>
+
+<p class="CellLabel">
+ Out[908]=
+</p>
+
+
+
+<p class="Output">
+ <img src='HTMLFiles/Orbital_77.gif' alt='"Orbital_77.gif"' width='450' height='349' style='vertical-align:middle'>
+</p>
+
+<p class="CellLabel">
+ In[909]:=
+</p>
+
+
+
+<p class="Input">
+ <img src='HTMLFiles/Orbital_78.gif' alt='"Orbital_78.gif"' width='949' height='150' style='vertical-align:middle'>
+</p>
+
+<p class="CellLabel">
+ In[910]:=
+</p>
+
+
+
+<p class="Input">
+ <img src='HTMLFiles/Orbital_79.gif' alt='"Orbital_79.gif"' width='946' height='188' style='vertical-align:middle'>
+</p>
+
+<p class='Text' style='text-indent: 0px;'>
+ Arrange the graph with +x to the right, +y upwards, and -z into the picture so we model a left handed viewing coordinate system.
+</p>
+
+
+
+<p class="CellLabel">
+ In[911]:=
+</p>
+
+
+
+<p class="Input">
+ <img src='HTMLFiles/Orbital_80.gif' alt='"Orbital_80.gif"' width='940' height='16' style='vertical-align:middle'>
+</p>
+
+<p class="CellLabel">
+ Out[911]=
+</p>
+
+
+
+<p class="Output">
+ <img src='HTMLFiles/Orbital_81.gif' alt='"Orbital_81.gif"' width='605' height='472' style='vertical-align:middle'>
+</p>
+
+<p class="Section">
+ Models and Views for a Real Table
+</p>
+
+
+
+<p class="CellLabel">
+ In[912]:=
+</p>
+
+
+
+<p class="Input">
+ <img src='HTMLFiles/Orbital_82.gif' alt='"Orbital_82.gif"' width='334' height='78' style='vertical-align:middle'>
+</p>
+
+<p class='Subsection' style='text-indent: 0px;'>
+ Calibrate by doing a simple view of a table top model.
+</p>
+
+
+
+<p class='Text' style='text-indent: 0px;'>
+ Wire frame model of table top.
+</p>
+
+
+
+<p class="CellLabel">
+ In[916]:=
+</p>
+
+
+
+<p class="Input">
+ <img src='HTMLFiles/Orbital_83.gif' alt='"Orbital_83.gif"' width='1183' height='237' style='vertical-align:middle'>
+</p>
+
+<p class='Text' style='text-indent: 0px;'>
+ Wire frame model of table top.&nbsp;&nbsp;Arrange the graph with +x to the right, +y upwards, and -z into the picture so we model a left handed viewing coordinate system.
+</p>
+
+
+
+<p class="CellLabel">
+ In[917]:=
+</p>
+
+
+
+<p class="Input">
+ <img src='HTMLFiles/Orbital_84.gif' alt='"Orbital_84.gif"' width='199' height='16' style='vertical-align:middle'>
+</p>
+
+<p class="CellLabel">
+ In[918]:=
+</p>
+
+
+
+<p class="Input">
+ <img src='HTMLFiles/Orbital_85.gif' alt='"Orbital_85.gif"' width='1023' height='16' style='vertical-align:middle'>
+</p>
+
+<p class="CellLabel">
+ Out[918]=
+</p>
+
+
+
+<p class="Output">
+ <img src='HTMLFiles/Orbital_86.gif' alt='"Orbital_86.gif"' width='450' height='354' style='vertical-align:middle'>
+</p>
+
+<p class='Text' style='text-indent: 0px;'>
+ Perspective view.
+</p>
+
+
+
+<p class="CellLabel">
+ In[919]:=
+</p>
+
+
+
+<p class="Input">
+ <img src='HTMLFiles/Orbital_87.gif' alt='"Orbital_87.gif"' width='1081' height='470' style='vertical-align:middle'>
+</p>
+
+<p class='Text' style='text-indent: 0px;'>
+ Quick test.&nbsp;&nbsp;Find a world coordinate point which maps to the center of the view.
+</p>
+
+
+
+<p class="CellLabel">
+ In[920]:=
+</p>
+
+
+
+<p class="Input">
+ <img src='HTMLFiles/Orbital_88.gif' alt='"Orbital_88.gif"' width='803' height='16' style='vertical-align:middle'>
+</p>
+
+<p class="CellLabel">
+ Out[920]=
+</p>
+
+
+
+<p class="Output">
+ <img src='HTMLFiles/Orbital_89.gif' alt='"Orbital_89.gif"' width='215' height='16' style='vertical-align:middle'>
+</p>
+
+<p class='Text' style='text-indent: 0px;'>
+ Perpective view of the table.
+</p>
+
+
+
+<p class="CellLabel">
+ In[921]:=
+</p>
+
+
+
+<p class="Input">
+ <img src='HTMLFiles/Orbital_90.gif' alt='"Orbital_90.gif"' width='1432' height='107' style='vertical-align:middle'>
+</p>
+
+<p class="CellLabel">
+ Out[921]=
+</p>
+
+
+
+<p class="Output">
+ <img src='HTMLFiles/Orbital_91.gif' alt='"Orbital_91.gif"' width='947' height='945' style='vertical-align:middle'>
+</p>
+
+<p class="Section">
+ Orbital Model and View
+</p>
+
+
+
+<p class='Text' style='text-indent: 0px;'>
+ Our orbital!
+</p>
+
+
+
+<p class="CellLabel">
+ In[922]:=
+</p>
+
+
+
+<p class="Input">
+ <img src='HTMLFiles/Orbital_92.gif' alt='"Orbital_92.gif"' width='267' height='21' style='vertical-align:middle'>
+</p>
+
+<p class='Text' style='text-indent: 0px;'>
+ Angular spacing between points on the orbital circle having a radial distance of 100 km.
+</p>
+
+
+
+<p class="CellLabel">
+ In[923]:=
+</p>
+
+
+
+<p class="Input">
+ <img src='HTMLFiles/Orbital_93.gif' alt='"Orbital_93.gif"' width='195' height='42' style='vertical-align:middle'>
+</p>
+
+<p class='Text' style='text-indent: 0px;'>
+ Check gravity on the orbital.
+</p>
+
+
+
+<p class="CellLabel">
+ In[924]:=
+</p>
+
+
+
+<p class="Input">
+ <img src='HTMLFiles/Orbital_94.gif' alt='"Orbital_94.gif"' width='410' height='82' style='vertical-align:middle'>
+</p>
+
+<p class="CellLabel">
+ Out[925]=
+</p>
+
+
+
+<p class="Output">
+ <img src='HTMLFiles/Orbital_95.gif' alt='"Orbital_95.gif"' width='72' height='16' style='vertical-align:middle'>
+</p>
+
+<p class='Text' style='text-indent: 0px;'>
+ Picture plane dimensions.&nbsp;&nbsp;Width and height are of my painting canvas.&nbsp;&nbsp;Distance to picture plane from eye seems reasonable.
+</p>
+
+
+
+<p class="CellLabel">
+ In[926]:=
+</p>
+
+
+
+<p class="Input">
+ <img src='HTMLFiles/Orbital_96.gif' alt='"Orbital_96.gif"' width='478' height='81' style='vertical-align:middle'>
+</p>
+
+<p class="CellLabel">
+ In[930]:=
+</p>
+
+
+
+<p class="Input">
+ <img src='HTMLFiles/Orbital_97.gif' alt='"Orbital_97.gif"' width='1342' height='1080' style='vertical-align:middle'>
+</p>
+
+<p class='Text' style='text-indent: 0px;'>
+ Arrange the graph with +x to the right, +y upwards, and -z into the picture so we model a left handed viewing coordinate system.
+</p>
+
+
+
+<p class="CellLabel">
+ In[931]:=
+</p>
+
+
+
+<p class="Input">
+ <img src='HTMLFiles/Orbital_98.gif' alt='"Orbital_98.gif"' width='1041' height='16' style='vertical-align:middle'>
+</p>
+
+<p class="CellLabel">
+ Out[931]=
+</p>
+
+
+
+<p class="Output">
+ <img src='HTMLFiles/Orbital_99.gif' alt='"Orbital_99.gif"' width='450' height='294' style='vertical-align:middle'>
+</p>
+
+<p class="CellLabel">
+ In[932]:=
+</p>
+
+
+
+<p class="Input">
+ <img src='HTMLFiles/Orbital_100.gif' alt='"Orbital_100.gif"' width='1123' height='542' style='vertical-align:middle'>
+</p>
+
+<p class='Text' style='text-indent: 0px;'>
+ Plot a few points on the midpoint of the orbital circle to debug the perspectivc clipping.
+</p>
+
+
+
+<p class="CellLabel">
+ In[933]:=
+</p>
+
+
+
+<p class="Input">
+ <img src='HTMLFiles/Orbital_101.gif' alt='"Orbital_101.gif"' width='1100' height='36' style='vertical-align:middle'>
+</p>
+
+<p class="CellLabel">
+ Out[934]//MatrixForm=
+</p>
+
+
+
+<p class="Output">
+ <img src='HTMLFiles/Orbital_102.gif' alt='"Orbital_102.gif"' width='284' height='219' style='vertical-align:middle'>
+</p>
+
+<p class="CellLabel">
+ In[935]:=
+</p>
+
+
+
+<p class="Input">
+ <img src='HTMLFiles/Orbital_103.gif' alt='"Orbital_103.gif"' width='649' height='16' style='vertical-align:middle'>
+</p>
+
+<p class="CellLabel">
+ Out[935]//MatrixForm=
+</p>
+
+
+
+<p class="Output">
+ <img src='HTMLFiles/Orbital_104.gif' alt='"Orbital_104.gif"' width='197' height='161' style='vertical-align:middle'>
+</p>
+
+<p class="CellLabel">
+ In[936]:=
+</p>
+
+<p class="Input">
+ <img src='HTMLFiles/Orbital_105.gif' alt='"Orbital_105.gif"' width='1199' height='264' style='vertical-align:middle'>
+</p>
+
+<p class="Print">
+ <img src='HTMLFiles/Orbital_106.gif' alt='"Orbital_106.gif"' width='510' height='15' style='vertical-align:middle'>
+</p>
+
+<p class="Print">
+ <img src='HTMLFiles/Orbital_107.gif' alt='"Orbital_107.gif"' width='420' height='15' style='vertical-align:middle'>
+</p>
+
+<p class='Text' style='text-indent: 0px;'>
+ View the orbital in perspective from our chosen vantage point.
+</p>
+
+<p class="CellLabel">
+ In[937]:=
+</p>
+
+<p class="Input">
+ <img src='HTMLFiles/Orbital_108.gif' alt='"Orbital_108.gif"' width='1311' height='169' style='vertical-align:middle'>
+</p>
+
+<p class="CellLabel">
+ Out[937]=
+</p>
+
+<p class="Output">
+ <img src='HTMLFiles/Orbital_109.gif' alt='"Orbital_109.gif"' width='935' height='1380' style='vertical-align:middle'>
+</p>
+
+<div style='font-family:Helvetica; font-size:11px; width:100%; border:1px none #999999; border-top-style:solid; padding-top:2px; margin-top:20px;'>
+ <a href='http://www.wolfram.com/mathematica/' style='color:#000; text-decoration:none;'>
+  <img src='HTMLFiles/spikeyIcon.jpg' alt='Spikey' width='20' height='21' style='padding-right:2px; border:0px solid white; vertical-align:middle;' >
+  <span style="color:#555555">Created with</span> Wolfram <span style="font-style: italic;">Mathematica</span> 6
+ </a>
+</div>
+
+</body>
+</html>

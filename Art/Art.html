@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en-US">  <!-- Set language of this page to USA English. -->
+
+<!-- ===================================================================
+|
+| NAME
+| 
+|     Art.html
+|
+| DESCRIPTION
+|
+|     This is a gallery of my artworks, both traditional and digital.
+|     It is a hand-crafted HTML 5 W3C validated document.
+|
+| USAGE
+|
+|     Goes into the /Art directory of the HTML server.
+|
+| AUTHOR
+|
+|    Sean Erik O'Connor
+|
+=================================================================== -->
+
+    <head>
+        <!-- This page uses Unicode characters. -->
+        <meta charset="utf-8">
+
+        <!-- Set viewport to actual device width.  Any other settings makes the web page initially appear zoomed-in on mobile devices. -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Titles appear in the web browser and the browser's bookmarks. -->
+        <title>Artwork by Sean Erik O'Connor.</title>
+
+        <!-- Search engines will show this description below the title. -->
+        <meta name="description" content="Original Art:  Acrylic and Pastel Paintings, Pencil Drawings, Digital Art.">
+
+        <meta name="author" content="Sean Erik O'Connor">
+
+        <meta name="copyright" content="Copyright (C) 1999-2026 by Sean Erik O'Connor.  All Rights Reserved.">
+
+         <!-- Configure and load MathJax -->
+         <script src="../Scripts/load-mathjax.js" async></script>
+
+        <!-- Cascading style sheet for this document. -->
+        <link rel="stylesheet" href="../StyleSheet.css" type="text/css">
+
+        <!-- Favicons are 32x32 or 16x16, 8 or 24 bit PNG Images which show up left of the web page title in a browser.  -->
+        <link rel="icon" type="image/png" href="../Images/favicon.png">
+
+        <!-- JavaScript email utility -->
+        <script src="../Scripts/email.js"></script>
+    </head>
+
+    <body>
+        <!-- This wraps the whole body in a CSS grid. -->
+        <div class="wrapper titlePage">
+
+            <!-- Title page at the top.  -->
+            <header class="title">
+                <h1 class="stylish">Sean Erik O'Connor - Portfolio</h1>
+                <hr>
+            </header>
+
+            <!-- Horizontal navigation bar to all top level pages. -->
+            <header class="navigation">
+                <a href="../index.html">
+                    <img src="../Images/home.png" alt="Home Page Button." width="32" height="32" >
+                     <em>Home</em>
+                 </a>
+
+                 <a href="../Mathematics/mathematicalSoftware.html">
+                     <img src="../Images/compactDisk.png" alt="Mathematical Software Button." width="32" height="32" >
+                      <em>Mathematical Software</em>
+                 </a>
+
+                 <a href="Art.html">
+                     <img src="../Images/sampleArtLowRes.png" alt="Art Button." width="32" height="32" >
+                      <em>Fine Arts</em>
+                 </a>
+
+                 <a href="../WebPageDesign/webPageDesign.html">
+                     <img src="../Images/webPage.png" alt="Web Page Design Button." height="32" width="32" >
+                      <em>Web Page Design</em>
+                 </a>
+
+                 <a href="../Electronics/Electronics.html">
+                     <img src="../Images/sparkCoil.png" alt="Hobby Electronics Button." width="32" height="32" >
+                      <em>Hobby Electronics</em>
+                 </a>
+
+                 <a href="../ReadingList/readingList.html">
+                      <img src="../Images/terraApollo17NASALowRes.png" alt="Reading List Button." width="32" height="32" >
+                      <em>Reading list</em>
+                </a>
+            </header>
+            
+            <!-- A decorative border at the left side of the page. -->
+            <aside class=border>
+                  <img class="border" src="../Images/sinXYPlot.png" alt="Sin( x y ) Image Border.">
+            </aside>
+
+           <!-- The main content of this page. -->
+            <article class="content">
+                <blockquote>
+                    „Ach Gott! die Kunst ist lang! / Und kurz ist unser Leben.“
+                    <cite>Goethe</cite>
+                </blockquote>
+
+                <section>
+                    <h3 id="Gallery">Gallery (Traditional)</h3>
+
+                    <p>
+                    Some of my paintings in acrylic, pastel and colored pencil and pen.  Click on a painting to enlarge.
+                    <i>All works are Copyright &copy; 1986-2026 by Sean Erik O'Connor.  All Rights Reserved</i>
+                    except those works which are noted as being licensed under the Creative Commons license
+                    <a href="https://creativecommons.org/licenses/by-nd/4.0/?ref=chooser-v1" 
+                       target="_blank" 
+                       rel="license noopener noreferrer" 
+                       style="display:inline-block;">CC BY-ND 4.0
+                        <img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" 
+                            src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" 
+                            alt="">
+                        <img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" 
+                             src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" alt="">
+                        <img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" 
+                             src="https://mirrors.creativecommons.org/presskit/icons/nd.svg?ref=chooser-v1" alt=""></a>
+                    </p>
+
+                    <p>
+                    See my more of my paintings on <a href="https://www.artstation.com/seanerikoconnor">ArtStation</a>
+                    </p>
+
+                    <div class="gallery">
+                            <!-- Add a tooltip when hovering over the image -->
+                            <div class="painting" title="Black and Gray Chalk on Paper.">
+                                <a href="OriginalWorks/TechGirl-Pastel-SeanErikOConnor.jpg">
+                                    <img src="OriginalWorks/TechGirl-Pastel-SeanErikOConnor.jpg"
+                                         alt="Black and white pastel drawing of girl.">
+                                </a>
+                                <p>Tech Girl</p>
+                            </div>
+
+                            <div class="painting" title="Pastel on Paper">
+                                <a href="OriginalWorks/GirlInKweilin-Pastel-SeanErikOConnor.jpg">
+                                    <img id="GirlFromKweilin"
+                                         src="OriginalWorks/GirlInKweilin-Pastel-SeanErikOConnor.jpg" 
+                                         alt="Color pastel drawing of Chinese girl in Kweilin.">
+                                </a>
+                                <p>Girl in Kweilin I by Sean Erik O'Connor<br> is licensed under CC BY-ND 4.0 </p>
+                            </div>
+
+                            <div class="painting" title="Pastel and Colored Pencil on Paper">
+                                <a href="OriginalWorks/ChineseGirlInKweilin-Pastel-SeanErikOConnor.jpg">
+                                    <img src="OriginalWorks/ChineseGirlInKweilin-Pastel-SeanErikOConnor.jpg" 
+                                     alt="Color pastel drawing of Chinese girl in Kweilin.">
+                                </a>
+                                <p>Girl in Kweilin II by Sean Erik O'Connor<br> is licensed under CC BY-ND 4.0 </p>
+                            </div>
+
+                            <div class="painting" title="Acrylic on Canvas">
+                                <a href="OriginalWorks/IrishGirl-Acrylic-SeanErikOConnor.jpg">
+                                    <img src="OriginalWorks/IrishGirl-Acrylic-SeanErikOConnor.jpg" 
+                                         alt="Acrylic painting of Irish girl.">
+                                </a>
+                                <p>Irish Girl</p>
+                            </div>
+
+                            <div class="painting" title="Pastel on Paper">
+                                 <a href="OriginalWorks/PrincessCaroline-Pastel-SeanErikOConnor.jpg">
+                                 <img src="OriginalWorks/PrincessCaroline-Pastel-SeanErikOConnor.jpg"
+                                     alt="Princess Caroline">
+                                 </a>
+                                <p>Princess Caroline</p>
+                             </div>
+
+                             <div class="painting" title="Pencil on Paper">
+                                 <a href="OriginalWorks/Sayuri-Pencil-SeanErikOConnor.jpg">
+                                 <img src="OriginalWorks/Sayuri-Pencil-SeanErikOConnor.jpg"
+                                     alt="Sayuri">
+                                 </a>
+                                <p>Sayuri</p>
+                             </div>
+
+                             <div class="painting" title="Pencil on Paper">
+                                 <a href="OriginalWorks/MichikoShoda-Pencil-SeanErikOConnor.jpg">
+                                 <img src="OriginalWorks/MichikoShoda-Pencil-SeanErikOConnor.jpg"
+                                     alt="Michiko">
+                                 </a>
+                                <p>Michiko</p>
+                             </div> 
+
+                             <div class="painting" title="Pencil on Paper">
+                                <a href="OriginalWorks/ChuuLianTerng-Pencil-SeanErikOConnor.jpg">
+                                     <img src="OriginalWorks/ChuuLianTerng-Pencil-SeanErikOConnor.jpg"
+                                         alt="Teacher">
+                                </a>
+                                <p>Teacher</p>
+
+                             </div>
+
+                             <div class="painting" title="Black Ink on Paper">
+                                 <a href="OriginalWorks/WearyStudent-Rapidograph-SeanErikOConnor.jpg">
+                                 <img src="OriginalWorks/WearyStudent-Rapidograph-SeanErikOConnor.jpg"
+                                     alt="Student">
+                                 </a>
+                                <p>Student</p>
+                             </div>
+
+                             <div class="painting" title="Acrylic on Canvas">
+                                 <a href="OriginalWorks/SpiralCityByTheSea-SeanErikOConnor.jpg">
+                                     <img src="OriginalWorks/SpiralCityByTheSea-SeanErikOConnor.jpg"
+                                          alt="Spiral City by the Sea-SeanErikOConnor">
+                                </a>
+                                <p>Spiral City by the Sea by Sean Erik O'Connor<br> is licensed under CC BY-ND 4.0 </p>
+                            </div>
+
+                            <div class="painting" title="Pencil on Paper">
+                                    <a href="OriginalWorks/JapaneseGirlProfile-SeanErikOConnor.jpeg">
+                                        <img src="OriginalWorks/JapaneseGirlProfile-SeanErikOConnor.jpeg" 
+                                             alt="Japanese Girl Profile.">
+                                </a>   
+                                <p>Japanese Girl Profile</p>
+                            </div>
+
+                            <div class="painting" title="Acrylic on Gessoed Wood">
+                                    <a href="OriginalWorks/Hinterlands-Acrylic-SeanErikOConnor.jpg">
+                                        <img src="OriginalWorks/Hinterlands-Acrylic-SeanErikOConnor.jpg" 
+                                             alt="Hinterlands.">
+                                </a>   
+                                <p>Hinterlands by Sean Erik O'Connor is<br> licensed under CC BY-ND 4.0 </p>
+                            </div>
+
+                            <div class="painting" title="Pastel on Paper">
+                                <a href="OriginalWorks/CalculatorCase-Pastel-SeanErikOConnor.jpg">
+                                    <img src="OriginalWorks/CalculatorCase-Pastel-SeanErikOConnor.jpg" 
+                                         alt="Pastel still life of a calculator case.">
+                                </a>
+                                <p>Calculator Case Still Life by Sean Erik O'Connor<br> is licensed under CC BY-ND 4.0 </p>
+                            </div>
+                            <div class="painting" title="Pastel and Colored Pencil on Paper">
+                                 <a href="OriginalWorks/ElectronicsAndOptics-PastelColoredPencil-SeanErikOConnor.jpg">
+                                    <img src="OriginalWorks/ElectronicsAndOptics-PastelColoredPencil-SeanErikOConnor.jpg" 
+                                         alt="Still life of several gadgets.">
+                                </a>   
+                                <p>Still Life Hardware by Sean Erik O'Connor is<br> licensed under CC BY-ND 4.0 </p>
+                            </div>
+                            <div class="painting" title="Acrylic on Canvas">
+                                    <a href="OriginalWorks/RedOrchid-Acrylic-SeanErikOConnor.jpg">
+                                        <img src="OriginalWorks/RedOrchid-Acrylic-SeanErikOConnor.jpg" 
+                                             alt="Acrylic painting of orchids in a pot.">
+                                </a>   
+                                <p>Orchid Sean Erik O'Connor is<br> licensed under CC BY-ND 4.0 </p>
+                            </div>
+
+                            <div class="painting" title="Acrylic on Paper">
+                                 <a href="OriginalWorks/Volcano-Acrylic-SeanErikOConnor.jpg">
+                                 <img src="OriginalWorks/Volcano-Acrylic-SeanErikOConnor.jpg"
+                                     alt="Volcano">
+                                  </a>
+                                <p>Volcano by Sean Erik O'Connor is<br> licensed under CC BY-ND 4.0 </p>
+                            </div>
+
+                            <div class="painting" title="Pastel and Colored Pencil on Paper">
+                                 <a href="OriginalWorks/Widget-PastelAndColoredPencil-SeanErikOConnor.jpg">
+                                 <img src="OriginalWorks/Widget-PastelAndColoredPencil-SeanErikOConnor.jpg"
+                                     alt="Widget">
+                                 </a>
+                                <p>Widgets</p>
+                             </div>
+
+                            <div class="painting" title="Acrylic on Canvas">
+                                <a href="OriginalWorks/Squirrel-Acrylic-SeanErikOConnor.jpg">
+                                    <img src="OriginalWorks/Squirrel-Acrylic-SeanErikOConnor.jpg" 
+                                         alt="Acrylic painting of Squirrel.">
+                                </a>
+                                <p>Squirrel Eating by Sean Erik O'Connor is<br> licensed under CC BY-ND 4.0 </p>
+                            </div>
+
+                            <div class="painting" title="Black Ink on Paper">
+                                <a href="OriginalWorks/BerkeleyPhysicsDoodle-Rapidograph-SeanErikOConnor.jpg">
+                                    <img src="OriginalWorks/BerkeleyPhysicsDoodle-Rapidograph-SeanErikOConnor.jpg" 
+                                         alt="Doodling while learning physics.">
+                                </a>
+                                <p>Physics Doodle</p>
+                            </div>
+
+                            <div class="painting" title="Pencil on Paper">
+                                <a href="OriginalWorks/SelfPortraitCollege-Pencil-SeanErikOConnor.jpg">
+                                    <img src="OriginalWorks/SelfPortraitCollege-Pencil-SeanErikOConnor.jpg"
+                                         alt="OriginalWorks/SelfPortraitCollege-Pencil-SeanErikOConnor.jpg">
+                                </a>
+                                <p>Self-Portrait by Sean Erik O'Connor is<br> licensed under CC BY-ND 4.0 </p>
+                            </div>
+
+                            <div class="painting" title="Acrylic on Paper">
+                                    <a href="OriginalWorks/Ocean-Acrylic-SeanErikOConnor.jpg">
+                                        <img src="OriginalWorks/Ocean-Acrylic-SeanErikOConnor.jpg" 
+                                             alt="Phantasy Maui ocean.">
+                                </a>   
+                                <p>Phantasy Maui ocean.</p>
+                            </div>
+
+                            <div class="painting" title="Acrylic on Paper">
+                                    <a href="OriginalWorks/PaloAltoTreeAndFlowerStudy-SeanErikOConnor.jpeg">
+                                        <img src="OriginalWorks/PaloAltoTreeAndFlowerStudy-SeanErikOConnor.jpeg" 
+                                             alt="Palo Alto Tree and Flower Study.">
+                                </a>   
+                                <p>Palo Alto Tree and Flower Study by Sean Erik O'Connor is<br> licensed under CC BY-ND 4.0 </p>
+                            </div>
+
+                            <div class="painting" title="Acrylic on Canvas">
+                                <a href="OriginalWorks/MemoryOfSummer-Acrylic-SeanErikOConnor.jpeg">
+                                    <img src="OriginalWorks/MemoryOfSummer-Acrylic-SeanErikOConnor.jpeg" alt="Memory of Summer">
+                                </a>   
+                                <p>Memory of Summer by Sean Erik O'Connor is<br> licensed under CC BY-ND 4.0 </p>
+                            </div>
+<!--
+                            <div class="painting" title="Digital">
+                                    <a href="OriginalWorks/SoftwareResearchAndDevelopmentHumorBumperStickers-SeanErikOConnor.jpg">
+                                        <img src="OriginalWorks/SoftwareResearchAndDevelopmentHumorBumperStickers-SeanErikOConnor.jpg" 
+                                             alt="Software R&amp;D Humor Bumper Stickers">
+                                </a>   
+                                <p>Software R&amp;D Humor Bumper Stickers by Sean Erik O'Connor is<br> licensed under CC BY-ND 4.0 </p>
+                            </div>
+-->
+                            <div class="painting" title="Digital 3D Blender 3.5">
+                                    <a href="OriginalWorks/OctopoidI.jpg">
+                                        <img src="OriginalWorks/OctopoidI.jpg"
+                                             alt="Octopoid I">
+                                </a>   
+                                <p>Octopoid I by Sean Erik O'Connor is<br> licensed under CC BY-ND 4.0 </p>
+                            </div>
+
+                            <div class="painting" title="Digital 3D Blender 3.5">
+                                    <a href="OriginalWorks/OctopoidII.jpg">
+                                        <img src="OriginalWorks/OctopoidII.jpg"
+                                             alt="Octopoid II">
+                                </a>   
+                                <p>Octopoid II by Sean Erik O'Connor is<br> licensed under CC BY-ND 4.0 </p>
+                            </div>
+
+                            <div class="painting" title="Digital 2D Inkscape">
+                                    <a href="../WebPageDesign/Images/Yoicks.jpg">
+                                        <img src="../WebPageDesign/Images/Yoicks.jpg"
+                                             alt="Yoicks">
+                                </a>   
+                                <p>Yoicks by Sean Erik O'Connor is<br> licensed under CC BY-ND 4.0 </p>
+                            </div>
+
+                            <div class="painting" title="Pencil Sketch">
+                                    <a href="OriginalWorks/ArmHoldingGlass.jpeg">
+                                        <img src="OriginalWorks/ArmHoldingGlass.jpeg"
+                                             alt="Arm Holding a Glass">
+                                </a>   
+                                <p>Arm Holding a Glass by Sean Erik O'Connor is<br> licensed under CC BY-ND 4.0 </p>
+                            </div>
+
+                            <div class="painting" title="Pencil Sketch">
+                                    <a href="OriginalWorks/HollyInVase.jpeg">
+                                        <img src="OriginalWorks/HollyInVase.jpeg"
+                                             alt="Holly In Vase">
+                                </a>   
+                                <p>Holly In Vase by Sean Erik O'Connor is<br> licensed under CC BY-ND 4.0 </p>
+                            </div>
+
+                            <div class="painting" title="Acrylic on Canvas">
+                                    <a href="OriginalWorks/StillLifeInBrown.jpeg">
+                                        <img src="OriginalWorks/StillLifeInBrown.jpeg"
+                                             alt="Still Life in Brown">
+                                </a>   
+                                <p>Still Life in Brown by Sean Erik O'Connor is<br> licensed under CC BY-ND 4.0 </p>
+                            </div>
+
+                            <div class="painting" title="Acrylic on Canvas">
+                                    <a href="OriginalWorks/StillLifeInRed.jpeg">
+                                        <img src="OriginalWorks/StillLifeInRed.jpeg"
+                                             alt="Still Life in Red">
+                                </a>   
+                                <p>Still Life in Red by Sean Erik O'Connor is<br> licensed under CC BY-ND 4.0 </p>
+                            </div>
+
+                            <div class="painting" title="Acrylic on Canvas">
+                                    <a href="OriginalWorks/LandscapeStudy.jpeg">
+                                        <img src="OriginalWorks/LandscapeStudy.jpeg"
+                                             alt="Landscape Study">
+                                </a>   
+                                <p>Landscape Study by Sean Erik O'Connor is<br> licensed under CC BY-ND 4.0 </p>
+                            </div>
+                     </div> 
+                 </section>
+
+                <section>
+                    <h3 id="TradPaintTech">Traditional Painting Techniques</h3>
+
+                    <p>
+                        I'm self-taught.  On these pages, let me share some advice I've learned from experience and from various artists.  
+                        There's surely a lot of terrible advice on how to draw and paint out there!
+                    </p>
+
+                    <p>
+                        I paint in acrylics on canvas.  Here's my outdoor easel sitting in my indoor studio with a white daylight LED floodlight, 
+                        and a computer with my reference photographs.
+                    </p>
+
+                    <img class="centeredsmaller" alt="Artist's Easel" src="Images/ArtistsEasel.jpg">
+
+                    <img class="centeredsmaller" alt="Artist's Studio" src="Images/IndoorStudio.jpg">
+
+                    <p>
+                        I also paint in pastels, draw in colored pencils and graphite pencil.
+                    </p>
+
+                    <p class="changed">
+                        I'm currently working on a painting of an <i>orbital</i>.
+                        I've calculated the 
+                        <a href="Orbital.html">wireframe model and perspective view</a>
+                        in Mathematica using homogeneous coordinates and matrix algebra.
+                    </p>
+                </section>
+
+                <section>
+                    <h4>Draftsmanship</h4>
+
+                    <p>
+                        Good draftsmanship is the foundation of your artistic skill.
+                        Carry a sketchpad and pencil everywhere you go.  Draw freehand from life and from imagination every day to train your 
+                        hand and eye.  Do lots of thumbnail sketches.
+                    </p>
+
+                    <p>
+                        Absolute basics which you must master:
+                    </p>
+
+                    <ul>
+                        <li>Perspective geometry
+                            <a href="https://www.amazon.com/Successful-Drawing-Andrew-Loomis/dp/0857687611/ref=sr_1_5?ie=UTF8&qid=1447132707&sr=8-5&keywords=andrew+loomis">Successful Drawing, Andrew Loomis</a>
+                        </li>
+
+                        <li>Figure drawing
+                            <a href="https://www.amazon.com/Figure-Drawing-All-Its-Worth/dp/0857680986/ref=sr_1_1?ie=UTF8&qid=1447132378&sr=8-1&keywords=Figure+Drawing+for+All+It%27s+Worth+Andrew+Loomis">Figure Drawing for All It's Worth, Andrew Loomis</a>
+                        </li>
+
+                        <li>More figure drawing
+                    <a href="https://www.amazon.com/Drawing-Head-Hands-Andrew-Loomis/dp/0857680978/ref=pd_bxgy_14_img_2?ie=UTF8&refRID=1EWM41JDNZTF9E93G2FK">Drawing the Head and Hands, Andrew Loomis</a>
+                        </li>
+
+                        <li>Anatomy for artists
+                        <a href="https://www.amazon.com/Atlas-Anatomy-Artist-Stephen-Rogers/dp/0195030958/ref=asap_bc?ie=UTF8">Atlas of Human Anatomy for the Artist, Stephen Rogers Peck</a>
+                        </li>
+                    </ul>
+
+                    <p>
+                    <strong>Practice!</strong>
+                    </p>
+                </section>
+
+                <section>
+                    <h4>Brushwork Technique</h4>
+
+                    <p>
+                        You need to master the basics of brushwork technique, including washes, drybrush, etc.  I've found this book to be good: 
+
+                        <a href="https://www.amazon.com/Brushwork-Essentials-Mark-Christopher-Weber/dp/1440306745/ref=la_B001JP2M2Y_1_1?s=books&amp;ie=UTF8&amp;qid=1403330795&amp;sr=1-1">Brushwork Essentials</a>
+                        </p>
+                </section>
+
+                <section>
+                    <h4>Color Mixing</h4>
+
+                    <p>
+                    I found it best to make my own color chart from a limited palette of acrylic colors.
+                    The color chart has pure colors across the top.
+                    There are exercises in mixing various browns, greens and blues for landscapes.
+                    For flesh tones, I use a slight modification of 
+                    <a href="http://portraitinstitute.com/premiercoup/colorsystem-palette.htm">
+                        Portrait Painter Howard Sanden's palette</a>.
+                    After mixing the basic flesh tones, adjust the tint with the different primary colors.
+                    </p>
+
+                    <img class="centered" alt="Color Mixing Chart" src="Images/ColorChart.jpg">
+
+                    <h3 id="DigitalArt">Gallery (Digital)</h3>
+
+                    <p>
+                    All work in progress so far as I learn Blender...
+                    </p>
+
+                    <div class="gallery">
+                        <div class="painting">
+                            <a href="OriginalWorks/TreeHouse-SeanErikOConnor.jpg">
+                                <img src="OriginalWorks/TreeHouse-SeanErikOConnor.jpg" alt="Tree House Painting">
+                            </a>
+                            <p>Tree House Painting</p>
+                        </div>
+
+                        <div class="painting">
+                            <a href="OriginalWorks/LauraTorso-SeanErikOConnor.jpg">
+                                <img src="OriginalWorks/LauraTorso-SeanErikOConnor.jpg" alt="Laura CGI Painting">
+                            </a>
+                            <p>Laura CGI Painting</p>
+                        </div>
+                    </div> 
+                </section>
+
+                <section>
+                    <h3 id="DigitalArtTech">Digital Art Techniques</h3>
+
+                    <p>
+                    For <em>CGI</em> I use <a href="https://www.blender.org">Blender</a>.
+                    It's free software, and can be downloaded as executable or built from source.
+                    </p>
+
+                    <p class="box" id="BlenderWorkedExamples">
+                    I have a collection of detailed <a href="BlenderWorkedExamples.html">Blender worked examples</a>.
+                    </p>
+
+                    <img class="centered" alt="Blender Example" src="Images/BlenderExample.jpg">
+                    <img class="centered" alt="Quick Render Example" src="Images/treeHouseQuickRender.jpg">
+
+                    <p>
+                    For digital painting, and doing quick studies for traditional painting, I use 
+                    <a href="https://www.gimp.org/">Gimp</a>
+                    </p>
+
+                    <img class="centered" alt="Gimp example" src="Images/GimpScreenShot.jpg">
+                </section>
+
+                <section>
+                    <h3 id="ArtOnline">Art Online</h3>
+
+                    <ul>
+                        <li><a href="https://blenderartists.org/">Blender Artists</a></li>
+                        <li><a href="https://gurneyjourney.blogspot.com/">James Gurney</a></li>
+                        <li><a href="https://www.artrenewal.org/">ArtRenewal</a></li>
+                        <li><a href="https://www.michaelwhelan.com/">Michael Whelan</a></li>
+                        <li><a href="https://www.tednasmith.com/">Ted Nasmith</a></li>
+                        <li><a href="https://www.sandrachang.com/">Sandra Chang</a></li>
+                        <li><a href="https://www.mutopiaproject.org/">Mutopia sheet music</a></li>
+                        <li><a href="http://lilypond.org/">Lilypond sheet music software</a></li>
+                    </ul>
+                </section>
+            </article>
+
+            <footer class="footnote">
+                <hr>
+
+                <!-- A copyright to preserve my legal rights. -->
+                <p class="footnote">
+                    Copyright &copy; 1986-2026 by Sean Erik O'Connor.
+                    All Rights Reserved.
+                    &nbsp;&nbsp;&nbsp;
+                    last updated 29 Mar 26.
+                </p>
+            </footer>
+        </div> <!-- wrapper -->
+    </body>
+</html>

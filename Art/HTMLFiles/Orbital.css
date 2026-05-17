@@ -1,0 +1,528 @@
+/* Notebook:*/
+html {
+  font-size: 12px;
+  padding: 8px;
+}
+/* Title:*/
+.Title {
+  font-size: 60px;
+  font-style: italic;
+  color: #9EAA69;
+  text-align: left;
+  line-height: 0.916667;
+  padding: 8px;
+  margin-left: 36px;
+  margin-right: 20px;
+  margin-top: 10px;
+  margin-bottom: 2px;
+}
+.TitleInline {
+  font-size: 60px;
+  font-style: italic;
+  color: #9EAA69;
+  text-align: left;
+  line-height: 0.916667;
+}
+/* Subtitle:*/
+.Subtitle {
+  font-size: 24px;
+  font-style: italic;
+  color: #53A866;
+  padding: 8px;
+  margin-left: 144px;
+  margin-right: 20px;
+  margin-top: 10px;
+  margin-bottom: 2px;
+}
+.SubtitleInline {
+  font-size: 24px;
+  font-style: italic;
+  color: #53A866;
+}
+/* Subsubtitle:*/
+.Subsubtitle {
+  font-size: 15px;
+  font-family: Helvetica;
+  font-style: italic;
+  padding: 8px;
+  margin-left: 144px;
+  margin-right: 20px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+.SubsubtitleInline {
+  font-size: 15px;
+  font-family: Helvetica;
+  font-style: italic;
+}
+/* Section:*/
+.Section {
+  font-size: 14px;
+  font-weight: bold;
+  color: #C56643;
+  padding-left: 10px;
+  padding-right: 4px;
+  padding-top: 2px;
+  padding-bottom: 6px;
+  margin-left: 36px;
+  margin-right: 20px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  border-left: 0px;
+  border-right: 0px;
+  border-top: 1px;
+  border-bottom: 0px;
+  border-style: solid;
+  border-color: #000000;
+}
+.SectionInline {
+  font-size: 14px;
+  font-weight: bold;
+  color: #C56643;
+}
+/* Subsection:*/
+.Subsection {
+  font-size: 12px;
+  font-weight: bold;
+  padding: 8px;
+  margin-left: 36px;
+  margin-right: 20px;
+  margin-top: 18px;
+}
+.SubsectionInline {
+  font-size: 12px;
+  font-weight: bold;
+}
+/* Subsubsection:*/
+.Subsubsection {
+  font-size: 10px;
+  font-family: Helvetica;
+  padding: 8px;
+  margin-left: 36px;
+  margin-top: 12px;
+  display: list-item;
+  list-style-type: square;
+}
+.SubsubsectionInline {
+  font-size: 10px;
+  font-family: Helvetica;
+}
+/* Text:*/
+.Text {
+  line-height: 1.5;
+  padding: 8px;
+  margin-left: 36px;
+  margin-right: 20px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  border: 0px;
+  border-style: solid;
+  border-color: #000000;
+}
+.TextInline {
+  line-height: 1.5;
+}
+/* SmallText:*/
+.SmallText {
+  font-size: 10px;
+  line-height: 1.35;
+  padding: 8px;
+  margin-left: 100px;
+  margin-right: 38px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+.SmallTextInline {
+  font-size: 10px;
+  line-height: 1.35;
+}
+/* Input:*/
+.Input {
+  font-weight: bold;
+  color: #000000;
+  background-color: #CCE6FF;
+  padding: 8px;
+  margin-left: 36px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+}
+.InputInline {
+  font-weight: bold;
+  color: #000000;
+  background-color: #CCE6FF;
+}
+/* InlineInput:*/
+.InlineInput {
+  font-weight: bold;
+  padding: 8px;
+}
+.InlineInputInline {
+  font-weight: bold;
+}
+/* Output:*/
+.Output {
+  color: #000000;
+  background-color: #E6B380;
+  padding: 8px;
+  margin-left: 36px;
+  margin-right: 0px;
+  margin-top: 0px;
+}
+.OutputInline {
+  color: #000000;
+  background-color: #E6B380;
+}
+/* Message:*/
+.Message {
+  font-size: 10px;
+  font-family: Helvetica;
+  font-style: oblique;
+  padding: 8px;
+  margin-left: 64px;
+  display: list-item;
+  list-style-type: square;
+}
+.MessageInline {
+  font-size: 10px;
+  font-family: Helvetica;
+  font-style: oblique;
+}
+/* Print:*/
+.Print {
+  background-color: #E6E6E6;
+  text-align: left;
+  padding: 8px;
+  margin-left: 36px;
+  margin-right: 20px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+.PrintInline {
+  background-color: #E6E6E6;
+  text-align: left;
+}
+/* Graphics:*/
+.Graphics {
+  background-color: #F2F2F2;
+  padding: 8px;
+  margin-left: 36px;
+  margin-right: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+.GraphicsInline {
+  background-color: #F2F2F2;
+}
+/* CellLabel:*/
+.CellLabel {
+  font-size: 9px;
+  font-family: Helvetica;
+  color: #8D3B50;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+/* Hyperlink:*/
+.Hyperlink {
+  text-decoration: underline;
+  color: #0000FF;
+  padding: 8px;
+}
+.HyperlinkInline {
+  text-decoration: underline;
+  color: #0000FF;
+}
+/* MainBookLink:*/
+.MainBookLink {
+  text-decoration: underline;
+  color: #0000FF;
+  padding: 8px;
+}
+.MainBookLinkInline {
+  text-decoration: underline;
+  color: #0000FF;
+}
+/* AddOnsLink:*/
+.AddOnsLink {
+  font-family: Courier;
+  text-decoration: underline;
+  color: #0000FF;
+  padding: 8px;
+}
+.AddOnsLinkInline {
+  font-family: Courier;
+  text-decoration: underline;
+  color: #0000FF;
+}
+/* RefGuideLink:*/
+.RefGuideLink {
+  font-family: Courier;
+  text-decoration: underline;
+  color: #0000FF;
+  padding: 8px;
+}
+.RefGuideLinkInline {
+  font-family: Courier;
+  text-decoration: underline;
+  color: #0000FF;
+}
+/* GettingStartedLink:*/
+.GettingStartedLink {
+  text-decoration: underline;
+  color: #0000FF;
+  padding: 8px;
+}
+.GettingStartedLinkInline {
+  text-decoration: underline;
+  color: #0000FF;
+}
+/* OtherInformationLink:*/
+.OtherInformationLink {
+  text-decoration: underline;
+  color: #0000FF;
+  padding: 8px;
+}
+.OtherInformationLinkInline {
+  text-decoration: underline;
+  color: #0000FF;
+}
+/* Paste:*/
+.Paste {
+  padding: 8px;
+}
+.PasteInline {
+}
+/* Evaluate:*/
+.Evaluate {
+  padding: 8px;
+}
+.EvaluateInline {
+}
+/* EvaluateCell:*/
+.EvaluateCell {
+  padding: 8px;
+}
+.EvaluateCellInline {
+}
+/* CopyEvaluate:*/
+.CopyEvaluate {
+  padding: 8px;
+}
+.CopyEvaluateInline {
+}
+/* CopyEvaluateCell:*/
+.CopyEvaluateCell {
+  padding: 8px;
+}
+.CopyEvaluateCellInline {
+}
+
+@media screen{
+/* All:Working*/
+html {
+}
+}
+
+@media print{
+/* All:Printout*/
+html {
+}
+/* Title:Printout*/
+.Title {
+  font-size: 48pt;
+  color: #666666;
+  padding: 8pt;
+}
+.TitleInline {
+  font-size: 48pt;
+  color: #666666;
+}
+/* Subtitle:Printout*/
+.Subtitle {
+  font-size: 18pt;
+  color: #4D4D4D;
+  padding: 8pt;
+}
+.SubtitleInline {
+  font-size: 18pt;
+  color: #4D4D4D;
+}
+/* Subsubtitle:Printout*/
+.Subsubtitle {
+  font-size: 12pt;
+  padding: 8pt;
+}
+.SubsubtitleInline {
+  font-size: 12pt;
+}
+/* Section:Printout*/
+.Section {
+  font-size: 14pt;
+  color: #4D4D4D;
+  padding: 8pt;
+}
+.SectionInline {
+  font-size: 14pt;
+  color: #4D4D4D;
+}
+/* Subsection:Printout*/
+.Subsection {
+  padding: 8pt;
+}
+.SubsectionInline {
+}
+/* Subsubsection:Printout*/
+.Subsubsection {
+  padding: 8pt;
+}
+.SubsubsectionInline {
+}
+/* Text:Printout*/
+.Text {
+  font-size: 10pt;
+  line-height: 1.5;
+  padding: 8pt;
+}
+.TextInline {
+  font-size: 10pt;
+  line-height: 1.5;
+}
+/* SmallText:Printout*/
+.SmallText {
+  font-size: 9pt;
+  padding: 8pt;
+}
+.SmallTextInline {
+  font-size: 9pt;
+}
+/* Input:Printout*/
+.Input {
+  font-size: 10pt;
+  background-color: #E6E6E6;
+  padding: 8pt;
+}
+.InputInline {
+  font-size: 10pt;
+  background-color: #E6E6E6;
+}
+/* Output:Printout*/
+.Output {
+  font-size: 10pt;
+  background-color: #CCCCCC;
+  padding: 8pt;
+}
+.OutputInline {
+  font-size: 10pt;
+  background-color: #CCCCCC;
+}
+/* Message:Printout*/
+.Message {
+  font-size: 8pt;
+  padding: 8pt;
+}
+.MessageInline {
+  font-size: 8pt;
+}
+/* Print:Printout*/
+.Print {
+  font-size: 10pt;
+  background-color: #E6E6E6;
+  padding: 8pt;
+}
+.PrintInline {
+  font-size: 10pt;
+  background-color: #E6E6E6;
+}
+/* Graphics:Printout*/
+.Graphics {
+  font-size: 10pt;
+  background-color: #CCCCCC;
+  padding: 8pt;
+}
+.GraphicsInline {
+  font-size: 10pt;
+  background-color: #CCCCCC;
+}
+/* CellLabel:Printout*/
+.CellLabel {
+  font-size: 8pt;
+  color: #000000;
+  margin-top: 0pt;
+  margin-bottom: 0pt;
+}
+/* Hyperlink:Printout*/
+.Hyperlink {
+  font-size: 10pt;
+  text-decoration: none;
+  color: #000000;
+  padding: 8pt;
+}
+.HyperlinkInline {
+  font-size: 10pt;
+  text-decoration: none;
+  color: #000000;
+}
+/* MainBookLink:Printout*/
+.MainBookLink {
+  font-size: 10pt;
+  text-decoration: none;
+  color: #000000;
+  padding: 8pt;
+}
+.MainBookLinkInline {
+  font-size: 10pt;
+  text-decoration: none;
+  color: #000000;
+}
+/* AddOnsLink:Printout*/
+.AddOnsLink {
+  font-size: 10pt;
+  text-decoration: none;
+  color: #000000;
+  padding: 8pt;
+}
+.AddOnsLinkInline {
+  font-size: 10pt;
+  text-decoration: none;
+  color: #000000;
+}
+/* RefGuideLink:Printout*/
+.RefGuideLink {
+  font-size: 10pt;
+  text-decoration: none;
+  color: #000000;
+  padding: 8pt;
+}
+.RefGuideLinkInline {
+  font-size: 10pt;
+  text-decoration: none;
+  color: #000000;
+}
+/* GettingStartedLink:Printout*/
+.GettingStartedLink {
+  font-size: 10pt;
+  text-decoration: none;
+  color: #000000;
+  padding: 8pt;
+}
+.GettingStartedLinkInline {
+  font-size: 10pt;
+  text-decoration: none;
+  color: #000000;
+}
+/* OtherInformationLink:Printout*/
+.OtherInformationLink {
+  font-size: 10pt;
+  text-decoration: none;
+  color: #000000;
+  padding: 8pt;
+}
+.OtherInformationLinkInline {
+  font-size: 10pt;
+  text-decoration: none;
+  color: #000000;
+}
+}
+
+.script {font-family: Mathematica5, cursive}
+.gothic {font-family: Mathematica6, Century Gothic}
+.doublestruck {font-family: Mathematica7}
