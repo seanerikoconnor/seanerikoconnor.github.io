@@ -1,0 +1,325 @@
+% ================================================================
+% MortgageLoanDerivation.tex
+% ================================================================
+%
+%  Used as an example of how to write a short mathematical article.
+
+% ------------------------------------------ Initial Setup --------------------------------------
+
+%  Run the "Typeset" command twice in TexShop, otherwise you won't get the table of contents.
+
+\tracinglostchars=3  % Generate an error message if a UTF-8 character is not supported.
+
+
+% ------------------------------ This document is an Article -------------------------------
+
+\documentclass{article}
+
+\author{ Sean E. O'Connor}
+\title{Mortgage Loan Derivation}
+
+
+% ------------------------ Packages for theorems et. al., tables, hyperlinks --------------------------------------
+% For more packages, see  https://www.ctan.org/
+
+\usepackage{amssymb}  % American Mathematical Society math symbols. https://www.ams.org/arc/resources/amslatex-about.html
+
+\usepackage{amsthm}     % Help in writing theorems:  https://www.ams.org/arc/tex/amscls/amsthdoc.pdf
+
+% Define styles for lemmas, theorems, definitions, remarks.
+
+\newtheorem{lemma}{Lemma}[section]  % variable name, caption, section number.
+\theoremstyle{definition} % Bold title, Roman text body.
+
+\newtheorem{theorem}{Theorem}[section]
+\theoremstyle{definition} % Bold title, Roman body.
+\RenewDocumentCommand{ \qedsymbol }{}{ \(\blacksquare\)  }  % Redefine the Q.E.D. symbol as a mathematical black square.
+
+\newtheorem{remark}{Remark}
+\theoremstyle{remark} % Italic title, Roman body.
+
+% Tables of good quality: https://ctan.mirrors.hoobly.com/macros/latex/contrib/booktabs/booktabs.pdf
+
+\usepackage{booktabs}
+
+% Hyperlinks:  https://ctan.math.illinois.edu/macros/latex/contrib/hyperref/doc/hyperref-doc.html
+
+\usepackage[
+  colorlinks
+]{hyperref} % Hyperlinks.  This must be the last package loaded.
+
+\hypersetup{   % Which colors to use.
+   urlcolor=red,
+   citecolor=purple,
+   linkcolor=blue
+ }
+  
+% ----------------- Document begins:  title, abstract, table of contents --------------------
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We derive the equations for a \emph{mortgage} loan and give several useful formulas.
+\end{abstract} 
+
+\footnote{I'm using \LaTeX and \TeX Shop.  See \url{https://www.ctan.org}. See source code for more documentation.} 
+
+\tableofcontents
+
+\bigskip % Put extra line space after the contents.
+
+% ------------------------------------------ First section begins --------------------------------------
+
+\pagebreak 
+
+\section{The Repayment Structure of a Mortgage Loan}
+
+\subsection{Definition of Interest Rate}
+
+The interest rate on the loan note is quoted as a yearly amount but is applied periodically for $m$ periods per year, giving
+
+\begin{equation}
+i =  {{Annual  \: interest    \:  percent / 100} \over m}
+\end{equation}
+
+Most house and car loans have a monthly period, $m = 12$.    % Inline math can use dollar sign delimiters like MathJax
+
+\emph{NOTE:}  This is NOT the APR, which is the interest percentage as if the loan were compounded yearly instead of monthly.  I would ignore the APR.
+
+\subsection{Periodic Payments of Principal + Interest}
+
+The $j^{th}$ payment PMT consists of interest $I_j$ on the previous unpaid balance $BAL_{j-1}$
+
+This payment is a fixed amount every month by design.
+
+Only the remainder of the payment after interest  $R_j$ actually reduces the principal of the loan.
+
+Payments from the initial payment to the end payment have the form,
+
+\bigskip % Put extra line space before and after the table.
+
+\begin{tabular}{ clll }
+\toprule
+Payment Number & Payment Amount  & Interest & Balance \\
+\midrule
+${1^{st}}$   &   $PMT = R_1 + I_1$   &   $I_1 = i \: BAL_0$   &  $BAL_1 = BAL_0 - R_1$  \\
+$2^{nd}$    &   $PMT = R_2 + I_2$   &  $I_2 = i \: BAL_1 $   & $BAL_2 = BAL_1 - R_2$ \\
+\ldots & \ldots & \ldots & \ldots \\
+$j^{th}$      &  $PMT = R_j + I_j$      & $I_j = i \: BAL_{j-1}$  &  $BAL_j = BAL_{j-1} - R_j$ \\
+\ldots & \ldots & \ldots & \ldots \\
+$n^{th}$      &  $PMT = R_n + I_n$  & $I_n = i \: BAL_{n-1}$ &  $BAL_n= BAL_{n-1} - R_n = 0 $ \\
+\bottomrule
+\end{tabular}
+
+\bigskip
+
+n = the number of periods of the loan
+
+\begin{remark}
+The loan amount is $PV = BAL_0$ which is the original balance before any payments are made.
+\end{remark}
+
+\begin{remark}
+The last balance is 0 because the loan is paid off, $BAL_n = 0$.
+\end{remark}
+
+We could write an Excel, Perl or Python script to compute this, but there are closed form solutions as we'll show.
+
+\pagebreak 
+
+\section{Closed Form Solution}
+
+\subsection{Difference Equation}
+
+Substituting we get a difference equation for the balances in terms of interest i and constant periodic payment PMT,
+
+\begin{equation}
+BAL_j = BAL_{j-1} - PMT + I_j
+\end{equation}
+
+\begin{equation}
+BAL_j = BAL_{j-1} - PMT + i BAL_{j-1}
+\end{equation}
+
+\begin{equation}
+BAL_j = (1+i) BAL_{j-1} - PMT
+\end{equation}
+
+Let's solve this difference equation.  But first, some lemmas,
+
+\begin{lemma}{}
+The geometric progression
+
+\begin{equation}
+g = 1 +  b + b^2 + \ldots + b^{n-1}
+\end{equation}
+
+has the formula,
+
+\begin{equation}
+g = {{1 - b^n} \over {1 - b}}
+\end{equation}
+
+\end{lemma}
+
+\begin{proof}
+
+Multiply by b and subtract,
+
+\begin{equation}
+g - b g = g(1 - b) = \left( 1 +  b + b^2 + \ldots + b^{n-1}  \right) - \left( b +  b^2 + b^3 + \ldots + b^n \right) = 1 - b^n
+\end{equation}
+
+to get
+
+\begin{equation}
+g = {{1 - b^n} \over {1 - b}}
+\end{equation}
+
+\end{proof}
+
+\begin{lemma}{}
+ If
+
+\begin{equation}
+u_k = a + b u_{k-1}
+\end{equation}
+
+then 
+
+\begin{equation}
+u_n = a {1 - b^n  \over 1-b } + b^n u_0
+\end{equation}
+
+\end{lemma}
+
+\begin{proof}   Expand out terms to see the pattern and use mathematical induction if you like,
+
+\begin{equation}
+u_1 = a  + b u_0
+\end{equation}
+
+\begin{equation}
+u_2 = a  + b u_1 = a + b(a + b u_0) = a (1 +  b) + b^2 u_0
+\end{equation}
+
+\begin{equation}
+u_3 = a  + b u_2 = a + b [ (1+b) + b^2 u_0] = a (1 +  b + b^2) + b^3 u_0
+\end{equation}
+
+The general formula is
+
+\begin{equation}
+u_n = a (1 +  b + b^2 + \ldots + b^{n-1}) + b^n u_0
+\end{equation}
+
+Now use the geometric progression lemma above.
+
+\end{proof}
+
+\subsection{Closed Form Solution for $BAL_k$}
+
+To solve the balance difference equation let $u_k = BAL_k$, $a = -PMT$, and $b = i+1$
+
+The balance AFTER payment k is then
+
+\begin{equation}
+BAL_k = {(-PMT) {1 - (1+i)^k \over 1 - (1+i) } + (1+i)^k BAL_0}
+\end{equation}
+
+rearranging,
+
+\begin{equation}
+BAL_k =  {1 \over  (1+i)^{-k} }   \left(  PV + PMT  { (1+i)^{-k} -1 \over i }   \right)
+\end{equation}
+
+Now set $BAL_n = 0$ because the last nth payment PMT finishes the mortgage.
+Check:  $BAL_0 = PV$
+
+\pagebreak 
+
+\section{Other Useful Closed Form Solutions}
+
+\subsection{Periodic Payment PMT From PV, n and i}
+
+The constant periodic payment is then
+
+\begin{equation}
+PMT =  {i PV \over  1-(1+i)^{-n}} 
+\end{equation}
+
+\subsection{Number of Periods n from PV, i and PMT}
+
+The number of periods (months) comes from the loan amount PV and the periodic payment PMT after inverting,
+
+\begin{equation}
+n = -{ ln \left(     {1 - i {PV \over PMT}}    \right) \over { ln( 1 + i ) } }
+\end{equation}
+
+where we're using the natural logarithm, but any log will work.
+
+\subsection{Reduced Number of Periods $n'$ from Increasing the PMT}
+
+You can use this to determine the reduced number of periods if you prepay principal.  Change $PMT$ to $(PMT + additional\:  principal \: prepayment)$
+
+\begin{equation}
+n' = -{ ln \left(     {1 - i {PV \over {PMT + additional\:  principal \: prepayment}}}       \right) \over { ln( 1 + i ) } }
+\end{equation}
+
+\subsection{Equivalent Simple Interest $i'$}
+
+Equivalent simple interest $i'$ on the loan is how much interest would have been had it been payable up front immediately.
+
+We use this formula to deduce it,
+
+\begin{equation}
+PV + i' PV = n PMT
+\end{equation}
+
+Equivalent simple interest is then
+
+\begin{equation}
+i' =  {n i \over  1-(1+i)^{-n}} -1
+\end{equation}
+
+\subsection{Accumulated Interest Payments j though k}
+
+What is the accumulated interest for payments j though k inclusive?
+
+\begin{equation}
+Int_{j \rightarrow k} = I_j + \ldots + I_k
+\end{equation}
+
+\begin{equation}
+Int_{j \rightarrow k} = \left( k - j + 1 \right) PMT - \sum_{l=j}^k R_l
+\end{equation}
+
+but
+
+\begin{equation}
+BAL_l - BAL_{l-1} = -R_l
+\end{equation}
+
+We get a telescoping sum
+
+\begin{equation}
+- \sum_{l=j}^k R_l = BAL_k - BAL_{j-1}
+\end{equation}
+
+Interest AFTER the kth payment is
+
+\begin{equation}
+Int_{1 \rightarrow k}  = k PMT + BAL_k - PV
+\end{equation}
+
+Check:  When $k=n$,
+
+\begin{equation}
+Int_{1 \rightarrow n}  = n PMT + BAL_n - PV = n PMT - PV
+\end{equation}
+
+as expected because the total n payments of PMT include repaying PV plus interest.
+
+\end{document}

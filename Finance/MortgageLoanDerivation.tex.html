@@ -1,0 +1,454 @@
+
+        <!DOCTYPE html>
+        <html lang="en-US">  <!-- Set language of this page to USA English. -->
+        
+        <head>
+            <!-- This page uses Unicode characters. -->
+            <meta charset="utf-8">
+        
+            <!-- Set viewport to actual device width.  Any other settings makes the web page initially appear zoomed-in on mobile devices. -->
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+            <!-- Title appears in the web browser tab for this page.  The browser also uses it to bookmark this page. -->
+            <title>Sean Erik O'Connor - Home Page and Free Mathematical Software.</title>
+        
+            <!-- Search engines will search using words in this description.  They will also display title in their search results. -->
+            <meta name="description" content="Syntax Colored Source Code Listing">
+        
+            <!-- Some content management software uses the author's name. -->
+            <meta name="author" content="Sean Erik O'Connor">
+        
+            <meta name="copyright" content="Copyright (C) 1986-2026 by Sean Erik O'Connor.  All Rights Reserved.">   
+        
+            <!-- Begin style sheet insertion -->
+            <style>
+                /* Default settings for all my main web pages. */
+                body
+                {
+                    /* A wide sans-serif font is more readable on the web. */
+                    font-family:            Verdana, Geneva, "Trebuchet MS", sans-serif ;
+        
+                    /* Set the body font size a little smaller than the user's default browser setting. */
+                    font-size:              0.8em ; 
+        
+                    /* Black text is easier to read. */
+                    color:                  black ;
+        
+                    /*  More vertical space between lines for more pleasant reading.  Use a unitless font height multiplier.  
+                        Length and percentage percentage values can give scrunched text due to poor inheritance behavior. */
+                    line-height:            1.7 ;
+                }
+        
+                <!-- Now prepare to add the syntax coloring style sheet from Pygment -->
+        pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.highlight .hll { background-color: #ffffcc }
+.highlight { background: #f8f8f8; }
+.highlight .c { color: #3D7B7B; font-style: italic } /* Comment */
+.highlight .err { border: 1px solid #F00 } /* Error */
+.highlight .k { color: #008000; font-weight: bold } /* Keyword */
+.highlight .o { color: #666 } /* Operator */
+.highlight .ch { color: #3D7B7B; font-style: italic } /* Comment.Hashbang */
+.highlight .cm { color: #3D7B7B; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #9C6500 } /* Comment.Preproc */
+.highlight .cpf { color: #3D7B7B; font-style: italic } /* Comment.PreprocFile */
+.highlight .c1 { color: #3D7B7B; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #3D7B7B; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #A00000 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .ges { font-weight: bold; font-style: italic } /* Generic.EmphStrong */
+.highlight .gr { color: #E40000 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #008400 } /* Generic.Inserted */
+.highlight .go { color: #717171 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #04D } /* Generic.Traceback */
+.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #B00040 } /* Keyword.Type */
+.highlight .m { color: #666 } /* Literal.Number */
+.highlight .s { color: #BA2121 } /* Literal.String */
+.highlight .na { color: #687822 } /* Name.Attribute */
+.highlight .nb { color: #008000 } /* Name.Builtin */
+.highlight .nc { color: #00F; font-weight: bold } /* Name.Class */
+.highlight .no { color: #800 } /* Name.Constant */
+.highlight .nd { color: #A2F } /* Name.Decorator */
+.highlight .ni { color: #717171; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #CB3F38; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #00F } /* Name.Function */
+.highlight .nl { color: #767600 } /* Name.Label */
+.highlight .nn { color: #00F; font-weight: bold } /* Name.Namespace */
+.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #19177C } /* Name.Variable */
+.highlight .ow { color: #A2F; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #BBB } /* Text.Whitespace */
+.highlight .mb { color: #666 } /* Literal.Number.Bin */
+.highlight .mf { color: #666 } /* Literal.Number.Float */
+.highlight .mh { color: #666 } /* Literal.Number.Hex */
+.highlight .mi { color: #666 } /* Literal.Number.Integer */
+.highlight .mo { color: #666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
+.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
+.highlight .se { color: #AA5D1F; font-weight: bold } /* Literal.String.Escape */
+.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.highlight .si { color: #A45A77; font-weight: bold } /* Literal.String.Interpol */
+.highlight .sx { color: #008000 } /* Literal.String.Other */
+.highlight .sr { color: #A45A77 } /* Literal.String.Regex */
+.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #00F } /* Name.Function.Magic */
+.highlight .vc { color: #19177C } /* Name.Variable.Class */
+.highlight .vg { color: #19177C } /* Name.Variable.Global */
+.highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
+.highlight .il { color: #666 } /* Literal.Number.Integer.Long */
+            </style>
+        </head>
+        
+        <body>
+            <article class="content">
+        <div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="c">% ================================================================</span>
+<span class="linenos">  2</span><span class="c">% MortgageLoanDerivation.tex</span>
+<span class="linenos">  3</span><span class="c">% ================================================================</span>
+<span class="linenos">  4</span><span class="c">%</span>
+<span class="linenos">  5</span><span class="c">%  Used as an example of how to write a short mathematical article.</span>
+<span class="linenos">  6</span>
+<span class="linenos">  7</span><span class="c">% ------------------------------------------ Initial Setup --------------------------------------</span>
+<span class="linenos">  8</span>
+<span class="linenos">  9</span><span class="c">%  Run the &quot;Typeset&quot; command twice in TexShop, otherwise you won&#39;t get the table of contents.</span>
+<span class="linenos"> 10</span>
+<span class="linenos"> 11</span><span class="k">\tracinglostchars</span>=3  <span class="c">% Generate an error message if a UTF-8 character is not supported.</span>
+<span class="linenos"> 12</span>
+<span class="linenos"> 13</span>
+<span class="linenos"> 14</span><span class="c">% ------------------------------ This document is an Article -------------------------------</span>
+<span class="linenos"> 15</span>
+<span class="linenos"> 16</span><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span>
+<span class="linenos"> 17</span>
+<span class="linenos"> 18</span><span class="k">\author</span><span class="nb">{</span> Sean E. O&#39;Connor<span class="nb">}</span>
+<span class="linenos"> 19</span><span class="k">\title</span><span class="nb">{</span>Mortgage Loan Derivation<span class="nb">}</span>
+<span class="linenos"> 20</span>
+<span class="linenos"> 21</span>
+<span class="linenos"> 22</span><span class="c">% ------------------------ Packages for theorems et. al., tables, hyperlinks --------------------------------------</span>
+<span class="linenos"> 23</span><span class="c">% For more packages, see  https://www.ctan.org/</span>
+<span class="linenos"> 24</span>
+<span class="linenos"> 25</span><span class="k">\usepackage</span><span class="nb">{</span>amssymb<span class="nb">}</span>  <span class="c">% American Mathematical Society math symbols. https://www.ams.org/arc/resources/amslatex-about.html</span>
+<span class="linenos"> 26</span>
+<span class="linenos"> 27</span><span class="k">\usepackage</span><span class="nb">{</span>amsthm<span class="nb">}</span>     <span class="c">% Help in writing theorems:  https://www.ams.org/arc/tex/amscls/amsthdoc.pdf</span>
+<span class="linenos"> 28</span>
+<span class="linenos"> 29</span><span class="c">% Define styles for lemmas, theorems, definitions, remarks.</span>
+<span class="linenos"> 30</span>
+<span class="linenos"> 31</span><span class="k">\newtheorem</span><span class="nb">{</span>lemma<span class="nb">}{</span>Lemma<span class="nb">}</span>[section]  <span class="c">% variable name, caption, section number.</span>
+<span class="linenos"> 32</span><span class="k">\theoremstyle</span><span class="nb">{</span>definition<span class="nb">}</span> <span class="c">% Bold title, Roman text body.</span>
+<span class="linenos"> 33</span>
+<span class="linenos"> 34</span><span class="k">\newtheorem</span><span class="nb">{</span>theorem<span class="nb">}{</span>Theorem<span class="nb">}</span>[section]
+<span class="linenos"> 35</span><span class="k">\theoremstyle</span><span class="nb">{</span>definition<span class="nb">}</span> <span class="c">% Bold title, Roman body.</span>
+<span class="linenos"> 36</span><span class="k">\RenewDocumentCommand</span><span class="nb">{</span> <span class="k">\qedsymbol</span> <span class="nb">}{}{</span> <span class="s">\(</span><span class="nv">\blacksquare</span><span class="s">\)</span>  <span class="nb">}</span>  <span class="c">% Redefine the Q.E.D. symbol as a mathematical black square.</span>
+<span class="linenos"> 37</span>
+<span class="linenos"> 38</span><span class="k">\newtheorem</span><span class="nb">{</span>remark<span class="nb">}{</span>Remark<span class="nb">}</span>
+<span class="linenos"> 39</span><span class="k">\theoremstyle</span><span class="nb">{</span>remark<span class="nb">}</span> <span class="c">% Italic title, Roman body.</span>
+<span class="linenos"> 40</span>
+<span class="linenos"> 41</span><span class="c">% Tables of good quality: https://ctan.mirrors.hoobly.com/macros/latex/contrib/booktabs/booktabs.pdf</span>
+<span class="linenos"> 42</span>
+<span class="linenos"> 43</span><span class="k">\usepackage</span><span class="nb">{</span>booktabs<span class="nb">}</span>
+<span class="linenos"> 44</span>
+<span class="linenos"> 45</span><span class="c">% Hyperlinks:  https://ctan.math.illinois.edu/macros/latex/contrib/hyperref/doc/hyperref-doc.html</span>
+<span class="linenos"> 46</span>
+<span class="linenos"> 47</span><span class="k">\usepackage</span>[
+<span class="linenos"> 48</span>  colorlinks
+<span class="linenos"> 49</span>]<span class="nb">{</span>hyperref<span class="nb">}</span> <span class="c">% Hyperlinks.  This must be the last package loaded.</span>
+<span class="linenos"> 50</span>
+<span class="linenos"> 51</span><span class="k">\hypersetup</span><span class="nb">{</span>   <span class="c">% Which colors to use.</span>
+<span class="linenos"> 52</span>   urlcolor=red,
+<span class="linenos"> 53</span>   citecolor=purple,
+<span class="linenos"> 54</span>   linkcolor=blue
+<span class="linenos"> 55</span> <span class="nb">}</span>
+<span class="linenos"> 56</span>  
+<span class="linenos"> 57</span><span class="c">% ----------------- Document begins:  title, abstract, table of contents --------------------</span>
+<span class="linenos"> 58</span>
+<span class="linenos"> 59</span><span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
+<span class="linenos"> 60</span>
+<span class="linenos"> 61</span><span class="k">\maketitle</span>
+<span class="linenos"> 62</span>
+<span class="linenos"> 63</span><span class="k">\begin</span><span class="nb">{</span>abstract<span class="nb">}</span>
+<span class="linenos"> 64</span>We derive the equations for a <span class="k">\emph</span><span class="nb">{</span>mortgage<span class="nb">}</span> loan and give several useful formulas.
+<span class="linenos"> 65</span><span class="k">\end</span><span class="nb">{</span>abstract<span class="nb">}</span> 
+<span class="linenos"> 66</span>
+<span class="linenos"> 67</span><span class="k">\footnote</span><span class="nb">{</span>I&#39;m using <span class="k">\LaTeX</span> and <span class="k">\TeX</span> Shop.  See <span class="k">\url</span><span class="nb">{</span>https://www.ctan.org<span class="nb">}</span>. See source code for more documentation.<span class="nb">}</span> 
+<span class="linenos"> 68</span>
+<span class="linenos"> 69</span><span class="k">\tableofcontents</span>
+<span class="linenos"> 70</span>
+<span class="linenos"> 71</span><span class="k">\bigskip</span> <span class="c">% Put extra line space after the contents.</span>
+<span class="linenos"> 72</span>
+<span class="linenos"> 73</span><span class="c">% ------------------------------------------ First section begins --------------------------------------</span>
+<span class="linenos"> 74</span>
+<span class="linenos"> 75</span><span class="k">\pagebreak</span> 
+<span class="linenos"> 76</span>
+<span class="linenos"> 77</span><span class="k">\section</span><span class="nb">{</span>The Repayment Structure of a Mortgage Loan<span class="nb">}</span>
+<span class="linenos"> 78</span>
+<span class="linenos"> 79</span><span class="k">\subsection</span><span class="nb">{</span>Definition of Interest Rate<span class="nb">}</span>
+<span class="linenos"> 80</span>
+<span class="linenos"> 81</span>The interest rate on the loan note is quoted as a yearly amount but is applied periodically for <span class="s">$</span><span class="nb">m</span><span class="s">$</span> periods per year, giving
+<span class="linenos"> 82</span>
+<span class="linenos"> 83</span><span class="k">\begin</span><span class="nb">{</span>equation<span class="nb">}</span>
+<span class="linenos"> 84</span>i =  <span class="nb">{{</span>Annual  <span class="k">\:</span> interest    <span class="k">\:</span>  percent / 100<span class="nb">}</span> <span class="k">\over</span> m<span class="nb">}</span>
+<span class="linenos"> 85</span><span class="k">\end</span><span class="nb">{</span>equation<span class="nb">}</span>
+<span class="linenos"> 86</span>
+<span class="linenos"> 87</span>Most house and car loans have a monthly period, <span class="s">$</span><span class="nb">m </span><span class="o">=</span><span class="nb"> </span><span class="m">12</span><span class="s">$</span>.    <span class="c">% Inline math can use dollar sign delimiters like MathJax</span>
+<span class="linenos"> 88</span>
+<span class="linenos"> 89</span><span class="k">\emph</span><span class="nb">{</span>NOTE:<span class="nb">}</span>  This is NOT the APR, which is the interest percentage as if the loan were compounded yearly instead of monthly.  I would ignore the APR.
+<span class="linenos"> 90</span>
+<span class="linenos"> 91</span><span class="k">\subsection</span><span class="nb">{</span>Periodic Payments of Principal + Interest<span class="nb">}</span>
+<span class="linenos"> 92</span>
+<span class="linenos"> 93</span>The <span class="s">$</span><span class="nb">j^{th}</span><span class="s">$</span> payment PMT consists of interest <span class="s">$</span><span class="nb">I_j</span><span class="s">$</span> on the previous unpaid balance <span class="s">$</span><span class="nb">BAL_{j</span><span class="o">-</span><span class="m">1</span><span class="nb">}</span><span class="s">$</span>
+<span class="linenos"> 94</span>
+<span class="linenos"> 95</span>This payment is a fixed amount every month by design.
+<span class="linenos"> 96</span>
+<span class="linenos"> 97</span>Only the remainder of the payment after interest  <span class="s">$</span><span class="nb">R_j</span><span class="s">$</span> actually reduces the principal of the loan.
+<span class="linenos"> 98</span>
+<span class="linenos"> 99</span>Payments from the initial payment to the end payment have the form,
+<span class="linenos">100</span>
+<span class="linenos">101</span><span class="k">\bigskip</span> <span class="c">% Put extra line space before and after the table.</span>
+<span class="linenos">102</span>
+<span class="linenos">103</span><span class="k">\begin</span><span class="nb">{</span>tabular<span class="nb">}{</span> clll <span class="nb">}</span>
+<span class="linenos">104</span><span class="k">\toprule</span>
+<span class="linenos">105</span>Payment Number <span class="nb">&amp;</span> Payment Amount  <span class="nb">&amp;</span> Interest <span class="nb">&amp;</span> Balance <span class="k">\\</span>
+<span class="linenos">106</span><span class="k">\midrule</span>
+<span class="linenos">107</span><span class="s">$</span><span class="nb">{</span><span class="m">1</span><span class="nb">^{st}}</span><span class="s">$</span>   <span class="nb">&amp;</span>   <span class="s">$</span><span class="nb">PMT </span><span class="o">=</span><span class="nb"> R_</span><span class="m">1</span><span class="nb"> </span><span class="o">+</span><span class="nb"> I_</span><span class="m">1</span><span class="s">$</span>   <span class="nb">&amp;</span>   <span class="s">$</span><span class="nb">I_</span><span class="m">1</span><span class="nb"> </span><span class="o">=</span><span class="nb"> i </span><span class="nv">\:</span><span class="nb"> BAL_</span><span class="m">0</span><span class="s">$</span>   <span class="nb">&amp;</span>  <span class="s">$</span><span class="nb">BAL_</span><span class="m">1</span><span class="nb"> </span><span class="o">=</span><span class="nb"> BAL_</span><span class="m">0</span><span class="nb"> </span><span class="o">-</span><span class="nb"> R_</span><span class="m">1</span><span class="s">$</span>  <span class="k">\\</span>
+<span class="linenos">108</span><span class="s">$</span><span class="m">2</span><span class="nb">^{nd}</span><span class="s">$</span>    <span class="nb">&amp;</span>   <span class="s">$</span><span class="nb">PMT </span><span class="o">=</span><span class="nb"> R_</span><span class="m">2</span><span class="nb"> </span><span class="o">+</span><span class="nb"> I_</span><span class="m">2</span><span class="s">$</span>   <span class="nb">&amp;</span>  <span class="s">$</span><span class="nb">I_</span><span class="m">2</span><span class="nb"> </span><span class="o">=</span><span class="nb"> i </span><span class="nv">\:</span><span class="nb"> BAL_</span><span class="m">1</span><span class="nb"> </span><span class="s">$</span>   <span class="nb">&amp;</span> <span class="s">$</span><span class="nb">BAL_</span><span class="m">2</span><span class="nb"> </span><span class="o">=</span><span class="nb"> BAL_</span><span class="m">1</span><span class="nb"> </span><span class="o">-</span><span class="nb"> R_</span><span class="m">2</span><span class="s">$</span> <span class="k">\\</span>
+<span class="linenos">109</span><span class="k">\ldots</span> <span class="nb">&amp;</span> <span class="k">\ldots</span> <span class="nb">&amp;</span> <span class="k">\ldots</span> <span class="nb">&amp;</span> <span class="k">\ldots</span> <span class="k">\\</span>
+<span class="linenos">110</span><span class="s">$</span><span class="nb">j^{th}</span><span class="s">$</span>      <span class="nb">&amp;</span>  <span class="s">$</span><span class="nb">PMT </span><span class="o">=</span><span class="nb"> R_j </span><span class="o">+</span><span class="nb"> I_j</span><span class="s">$</span>      <span class="nb">&amp;</span> <span class="s">$</span><span class="nb">I_j </span><span class="o">=</span><span class="nb"> i </span><span class="nv">\:</span><span class="nb"> BAL_{j</span><span class="o">-</span><span class="m">1</span><span class="nb">}</span><span class="s">$</span>  <span class="nb">&amp;</span>  <span class="s">$</span><span class="nb">BAL_j </span><span class="o">=</span><span class="nb"> BAL_{j</span><span class="o">-</span><span class="m">1</span><span class="nb">} </span><span class="o">-</span><span class="nb"> R_j</span><span class="s">$</span> <span class="k">\\</span>
+<span class="linenos">111</span><span class="k">\ldots</span> <span class="nb">&amp;</span> <span class="k">\ldots</span> <span class="nb">&amp;</span> <span class="k">\ldots</span> <span class="nb">&amp;</span> <span class="k">\ldots</span> <span class="k">\\</span>
+<span class="linenos">112</span><span class="s">$</span><span class="nb">n^{th}</span><span class="s">$</span>      <span class="nb">&amp;</span>  <span class="s">$</span><span class="nb">PMT </span><span class="o">=</span><span class="nb"> R_n </span><span class="o">+</span><span class="nb"> I_n</span><span class="s">$</span>  <span class="nb">&amp;</span> <span class="s">$</span><span class="nb">I_n </span><span class="o">=</span><span class="nb"> i </span><span class="nv">\:</span><span class="nb"> BAL_{n</span><span class="o">-</span><span class="m">1</span><span class="nb">}</span><span class="s">$</span> <span class="nb">&amp;</span>  <span class="s">$</span><span class="nb">BAL_n</span><span class="o">=</span><span class="nb"> BAL_{n</span><span class="o">-</span><span class="m">1</span><span class="nb">} </span><span class="o">-</span><span class="nb"> R_n </span><span class="o">=</span><span class="nb"> </span><span class="m">0</span><span class="nb"> </span><span class="s">$</span> <span class="k">\\</span>
+<span class="linenos">113</span><span class="k">\bottomrule</span>
+<span class="linenos">114</span><span class="k">\end</span><span class="nb">{</span>tabular<span class="nb">}</span>
+<span class="linenos">115</span>
+<span class="linenos">116</span><span class="k">\bigskip</span>
+<span class="linenos">117</span>
+<span class="linenos">118</span>n = the number of periods of the loan
+<span class="linenos">119</span>
+<span class="linenos">120</span><span class="k">\begin</span><span class="nb">{</span>remark<span class="nb">}</span>
+<span class="linenos">121</span>The loan amount is <span class="s">$</span><span class="nb">PV </span><span class="o">=</span><span class="nb"> BAL_</span><span class="m">0</span><span class="s">$</span> which is the original balance before any payments are made.
+<span class="linenos">122</span><span class="k">\end</span><span class="nb">{</span>remark<span class="nb">}</span>
+<span class="linenos">123</span>
+<span class="linenos">124</span><span class="k">\begin</span><span class="nb">{</span>remark<span class="nb">}</span>
+<span class="linenos">125</span>The last balance is 0 because the loan is paid off, <span class="s">$</span><span class="nb">BAL_n </span><span class="o">=</span><span class="nb"> </span><span class="m">0</span><span class="s">$</span>.
+<span class="linenos">126</span><span class="k">\end</span><span class="nb">{</span>remark<span class="nb">}</span>
+<span class="linenos">127</span>
+<span class="linenos">128</span>We could write an Excel, Perl or Python script to compute this, but there are closed form solutions as we&#39;ll show.
+<span class="linenos">129</span>
+<span class="linenos">130</span><span class="k">\pagebreak</span> 
+<span class="linenos">131</span>
+<span class="linenos">132</span><span class="k">\section</span><span class="nb">{</span>Closed Form Solution<span class="nb">}</span>
+<span class="linenos">133</span>
+<span class="linenos">134</span><span class="k">\subsection</span><span class="nb">{</span>Difference Equation<span class="nb">}</span>
+<span class="linenos">135</span>
+<span class="linenos">136</span>Substituting we get a difference equation for the balances in terms of interest i and constant periodic payment PMT,
+<span class="linenos">137</span>
+<span class="linenos">138</span><span class="k">\begin</span><span class="nb">{</span>equation<span class="nb">}</span>
+<span class="linenos">139</span>BAL<span class="nb">_</span>j = BAL<span class="nb">_{</span>j-1<span class="nb">}</span> - PMT + I<span class="nb">_</span>j
+<span class="linenos">140</span><span class="k">\end</span><span class="nb">{</span>equation<span class="nb">}</span>
+<span class="linenos">141</span>
+<span class="linenos">142</span><span class="k">\begin</span><span class="nb">{</span>equation<span class="nb">}</span>
+<span class="linenos">143</span>BAL<span class="nb">_</span>j = BAL<span class="nb">_{</span>j-1<span class="nb">}</span> - PMT + i BAL<span class="nb">_{</span>j-1<span class="nb">}</span>
+<span class="linenos">144</span><span class="k">\end</span><span class="nb">{</span>equation<span class="nb">}</span>
+<span class="linenos">145</span>
+<span class="linenos">146</span><span class="k">\begin</span><span class="nb">{</span>equation<span class="nb">}</span>
+<span class="linenos">147</span>BAL<span class="nb">_</span>j = (1+i) BAL<span class="nb">_{</span>j-1<span class="nb">}</span> - PMT
+<span class="linenos">148</span><span class="k">\end</span><span class="nb">{</span>equation<span class="nb">}</span>
+<span class="linenos">149</span>
+<span class="linenos">150</span>Let&#39;s solve this difference equation.  But first, some lemmas,
+<span class="linenos">151</span>
+<span class="linenos">152</span><span class="k">\begin</span><span class="nb">{</span>lemma<span class="nb">}{}</span>
+<span class="linenos">153</span>The geometric progression
+<span class="linenos">154</span>
+<span class="linenos">155</span><span class="k">\begin</span><span class="nb">{</span>equation<span class="nb">}</span>
+<span class="linenos">156</span>g = 1 +  b + b<span class="nb">^</span>2 + <span class="k">\ldots</span> + b<span class="nb">^{</span>n-1<span class="nb">}</span>
+<span class="linenos">157</span><span class="k">\end</span><span class="nb">{</span>equation<span class="nb">}</span>
+<span class="linenos">158</span>
+<span class="linenos">159</span>has the formula,
+<span class="linenos">160</span>
+<span class="linenos">161</span><span class="k">\begin</span><span class="nb">{</span>equation<span class="nb">}</span>
+<span class="linenos">162</span>g = <span class="nb">{{</span>1 - b<span class="nb">^</span>n<span class="nb">}</span> <span class="k">\over</span> <span class="nb">{</span>1 - b<span class="nb">}}</span>
+<span class="linenos">163</span><span class="k">\end</span><span class="nb">{</span>equation<span class="nb">}</span>
+<span class="linenos">164</span>
+<span class="linenos">165</span><span class="k">\end</span><span class="nb">{</span>lemma<span class="nb">}</span>
+<span class="linenos">166</span>
+<span class="linenos">167</span><span class="k">\begin</span><span class="nb">{</span>proof<span class="nb">}</span>
+<span class="linenos">168</span>
+<span class="linenos">169</span>Multiply by b and subtract,
+<span class="linenos">170</span>
+<span class="linenos">171</span><span class="k">\begin</span><span class="nb">{</span>equation<span class="nb">}</span>
+<span class="linenos">172</span>g - b g = g(1 - b) = <span class="k">\left</span>( 1 +  b + b<span class="nb">^</span>2 + <span class="k">\ldots</span> + b<span class="nb">^{</span>n-1<span class="nb">}</span>  <span class="k">\right</span>) - <span class="k">\left</span>( b +  b<span class="nb">^</span>2 + b<span class="nb">^</span>3 + <span class="k">\ldots</span> + b<span class="nb">^</span>n <span class="k">\right</span>) = 1 - b<span class="nb">^</span>n
+<span class="linenos">173</span><span class="k">\end</span><span class="nb">{</span>equation<span class="nb">}</span>
+<span class="linenos">174</span>
+<span class="linenos">175</span>to get
+<span class="linenos">176</span>
+<span class="linenos">177</span><span class="k">\begin</span><span class="nb">{</span>equation<span class="nb">}</span>
+<span class="linenos">178</span>g = <span class="nb">{{</span>1 - b<span class="nb">^</span>n<span class="nb">}</span> <span class="k">\over</span> <span class="nb">{</span>1 - b<span class="nb">}}</span>
+<span class="linenos">179</span><span class="k">\end</span><span class="nb">{</span>equation<span class="nb">}</span>
+<span class="linenos">180</span>
+<span class="linenos">181</span><span class="k">\end</span><span class="nb">{</span>proof<span class="nb">}</span>
+<span class="linenos">182</span>
+<span class="linenos">183</span><span class="k">\begin</span><span class="nb">{</span>lemma<span class="nb">}{}</span>
+<span class="linenos">184</span> If
+<span class="linenos">185</span>
+<span class="linenos">186</span><span class="k">\begin</span><span class="nb">{</span>equation<span class="nb">}</span>
+<span class="linenos">187</span>u<span class="nb">_</span>k = a + b u<span class="nb">_{</span>k-1<span class="nb">}</span>
+<span class="linenos">188</span><span class="k">\end</span><span class="nb">{</span>equation<span class="nb">}</span>
+<span class="linenos">189</span>
+<span class="linenos">190</span>then 
+<span class="linenos">191</span>
+<span class="linenos">192</span><span class="k">\begin</span><span class="nb">{</span>equation<span class="nb">}</span>
+<span class="linenos">193</span>u<span class="nb">_</span>n = a <span class="nb">{</span>1 - b<span class="nb">^</span>n  <span class="k">\over</span> 1-b <span class="nb">}</span> + b<span class="nb">^</span>n u<span class="nb">_</span>0
+<span class="linenos">194</span><span class="k">\end</span><span class="nb">{</span>equation<span class="nb">}</span>
+<span class="linenos">195</span>
+<span class="linenos">196</span><span class="k">\end</span><span class="nb">{</span>lemma<span class="nb">}</span>
+<span class="linenos">197</span>
+<span class="linenos">198</span><span class="k">\begin</span><span class="nb">{</span>proof<span class="nb">}</span>   Expand out terms to see the pattern and use mathematical induction if you like,
+<span class="linenos">199</span>
+<span class="linenos">200</span><span class="k">\begin</span><span class="nb">{</span>equation<span class="nb">}</span>
+<span class="linenos">201</span>u<span class="nb">_</span>1 = a  + b u<span class="nb">_</span>0
+<span class="linenos">202</span><span class="k">\end</span><span class="nb">{</span>equation<span class="nb">}</span>
+<span class="linenos">203</span>
+<span class="linenos">204</span><span class="k">\begin</span><span class="nb">{</span>equation<span class="nb">}</span>
+<span class="linenos">205</span>u<span class="nb">_</span>2 = a  + b u<span class="nb">_</span>1 = a + b(a + b u<span class="nb">_</span>0) = a (1 +  b) + b<span class="nb">^</span>2 u<span class="nb">_</span>0
+<span class="linenos">206</span><span class="k">\end</span><span class="nb">{</span>equation<span class="nb">}</span>
+<span class="linenos">207</span>
+<span class="linenos">208</span><span class="k">\begin</span><span class="nb">{</span>equation<span class="nb">}</span>
+<span class="linenos">209</span>u<span class="nb">_</span>3 = a  + b u<span class="nb">_</span>2 = a + b [ (1+b) + b<span class="nb">^</span>2 u<span class="nb">_</span>0] = a (1 +  b + b<span class="nb">^</span>2) + b<span class="nb">^</span>3 u<span class="nb">_</span>0
+<span class="linenos">210</span><span class="k">\end</span><span class="nb">{</span>equation<span class="nb">}</span>
+<span class="linenos">211</span>
+<span class="linenos">212</span>The general formula is
+<span class="linenos">213</span>
+<span class="linenos">214</span><span class="k">\begin</span><span class="nb">{</span>equation<span class="nb">}</span>
+<span class="linenos">215</span>u<span class="nb">_</span>n = a (1 +  b + b<span class="nb">^</span>2 + <span class="k">\ldots</span> + b<span class="nb">^{</span>n-1<span class="nb">}</span>) + b<span class="nb">^</span>n u<span class="nb">_</span>0
+<span class="linenos">216</span><span class="k">\end</span><span class="nb">{</span>equation<span class="nb">}</span>
+<span class="linenos">217</span>
+<span class="linenos">218</span>Now use the geometric progression lemma above.
+<span class="linenos">219</span>
+<span class="linenos">220</span><span class="k">\end</span><span class="nb">{</span>proof<span class="nb">}</span>
+<span class="linenos">221</span>
+<span class="linenos">222</span><span class="k">\subsection</span><span class="nb">{</span>Closed Form Solution for <span class="s">$</span><span class="nb">BAL_k</span><span class="s">$</span><span class="nb">}</span>
+<span class="linenos">223</span>
+<span class="linenos">224</span>To solve the balance difference equation let <span class="s">$</span><span class="nb">u_k </span><span class="o">=</span><span class="nb"> BAL_k</span><span class="s">$</span>, <span class="s">$</span><span class="nb">a </span><span class="o">=</span><span class="nb"> </span><span class="o">-</span><span class="nb">PMT</span><span class="s">$</span>, and <span class="s">$</span><span class="nb">b </span><span class="o">=</span><span class="nb"> i</span><span class="o">+</span><span class="m">1</span><span class="s">$</span>
+<span class="linenos">225</span>
+<span class="linenos">226</span>The balance AFTER payment k is then
+<span class="linenos">227</span>
+<span class="linenos">228</span><span class="k">\begin</span><span class="nb">{</span>equation<span class="nb">}</span>
+<span class="linenos">229</span>BAL<span class="nb">_</span>k = <span class="nb">{</span>(-PMT) <span class="nb">{</span>1 - (1+i)<span class="nb">^</span>k <span class="k">\over</span> 1 - (1+i) <span class="nb">}</span> + (1+i)<span class="nb">^</span>k BAL<span class="nb">_</span>0<span class="nb">}</span>
+<span class="linenos">230</span><span class="k">\end</span><span class="nb">{</span>equation<span class="nb">}</span>
+<span class="linenos">231</span>
+<span class="linenos">232</span>rearranging,
+<span class="linenos">233</span>
+<span class="linenos">234</span><span class="k">\begin</span><span class="nb">{</span>equation<span class="nb">}</span>
+<span class="linenos">235</span>BAL<span class="nb">_</span>k =  <span class="nb">{</span>1 <span class="k">\over</span>  (1+i)<span class="nb">^{</span>-k<span class="nb">}</span> <span class="nb">}</span>   <span class="k">\left</span>(  PV + PMT  <span class="nb">{</span> (1+i)<span class="nb">^{</span>-k<span class="nb">}</span> -1 <span class="k">\over</span> i <span class="nb">}</span>   <span class="k">\right</span>)
+<span class="linenos">236</span><span class="k">\end</span><span class="nb">{</span>equation<span class="nb">}</span>
+<span class="linenos">237</span>
+<span class="linenos">238</span>Now set <span class="s">$</span><span class="nb">BAL_n </span><span class="o">=</span><span class="nb"> </span><span class="m">0</span><span class="s">$</span> because the last nth payment PMT finishes the mortgage.
+<span class="linenos">239</span>Check:  <span class="s">$</span><span class="nb">BAL_</span><span class="m">0</span><span class="nb"> </span><span class="o">=</span><span class="nb"> PV</span><span class="s">$</span>
+<span class="linenos">240</span>
+<span class="linenos">241</span><span class="k">\pagebreak</span> 
+<span class="linenos">242</span>
+<span class="linenos">243</span><span class="k">\section</span><span class="nb">{</span>Other Useful Closed Form Solutions<span class="nb">}</span>
+<span class="linenos">244</span>
+<span class="linenos">245</span><span class="k">\subsection</span><span class="nb">{</span>Periodic Payment PMT From PV, n and i<span class="nb">}</span>
+<span class="linenos">246</span>
+<span class="linenos">247</span>The constant periodic payment is then
+<span class="linenos">248</span>
+<span class="linenos">249</span><span class="k">\begin</span><span class="nb">{</span>equation<span class="nb">}</span>
+<span class="linenos">250</span>PMT =  <span class="nb">{</span>i PV <span class="k">\over</span>  1-(1+i)<span class="nb">^{</span>-n<span class="nb">}}</span> 
+<span class="linenos">251</span><span class="k">\end</span><span class="nb">{</span>equation<span class="nb">}</span>
+<span class="linenos">252</span>
+<span class="linenos">253</span><span class="k">\subsection</span><span class="nb">{</span>Number of Periods n from PV, i and PMT<span class="nb">}</span>
+<span class="linenos">254</span>
+<span class="linenos">255</span>The number of periods (months) comes from the loan amount PV and the periodic payment PMT after inverting,
+<span class="linenos">256</span>
+<span class="linenos">257</span><span class="k">\begin</span><span class="nb">{</span>equation<span class="nb">}</span>
+<span class="linenos">258</span>n = -<span class="nb">{</span> ln <span class="k">\left</span>(     <span class="nb">{</span>1 - i <span class="nb">{</span>PV <span class="k">\over</span> PMT<span class="nb">}}</span>    <span class="k">\right</span>) <span class="k">\over</span> <span class="nb">{</span> ln( 1 + i ) <span class="nb">}</span> <span class="nb">}</span>
+<span class="linenos">259</span><span class="k">\end</span><span class="nb">{</span>equation<span class="nb">}</span>
+<span class="linenos">260</span>
+<span class="linenos">261</span>where we&#39;re using the natural logarithm, but any log will work.
+<span class="linenos">262</span>
+<span class="linenos">263</span><span class="k">\subsection</span><span class="nb">{</span>Reduced Number of Periods <span class="s">$</span><span class="nb">n&#39;</span><span class="s">$</span> from Increasing the PMT<span class="nb">}</span>
+<span class="linenos">264</span>
+<span class="linenos">265</span>You can use this to determine the reduced number of periods if you prepay principal.  Change <span class="s">$</span><span class="nb">PMT</span><span class="s">$</span> to <span class="s">$</span><span class="o">(</span><span class="nb">PMT </span><span class="o">+</span><span class="nb"> additional</span><span class="nv">\:</span><span class="nb">  principal </span><span class="nv">\:</span><span class="nb"> prepayment</span><span class="o">)</span><span class="s">$</span>
+<span class="linenos">266</span>
+<span class="linenos">267</span><span class="k">\begin</span><span class="nb">{</span>equation<span class="nb">}</span>
+<span class="linenos">268</span>n&#39; = -<span class="nb">{</span> ln <span class="k">\left</span>(     <span class="nb">{</span>1 - i <span class="nb">{</span>PV <span class="k">\over</span> <span class="nb">{</span>PMT + additional<span class="k">\:</span>  principal <span class="k">\:</span> prepayment<span class="nb">}}}</span>       <span class="k">\right</span>) <span class="k">\over</span> <span class="nb">{</span> ln( 1 + i ) <span class="nb">}</span> <span class="nb">}</span>
+<span class="linenos">269</span><span class="k">\end</span><span class="nb">{</span>equation<span class="nb">}</span>
+<span class="linenos">270</span>
+<span class="linenos">271</span><span class="k">\subsection</span><span class="nb">{</span>Equivalent Simple Interest <span class="s">$</span><span class="nb">i&#39;</span><span class="s">$</span><span class="nb">}</span>
+<span class="linenos">272</span>
+<span class="linenos">273</span>Equivalent simple interest <span class="s">$</span><span class="nb">i&#39;</span><span class="s">$</span> on the loan is how much interest would have been had it been payable up front immediately.
+<span class="linenos">274</span>
+<span class="linenos">275</span>We use this formula to deduce it,
+<span class="linenos">276</span>
+<span class="linenos">277</span><span class="k">\begin</span><span class="nb">{</span>equation<span class="nb">}</span>
+<span class="linenos">278</span>PV + i&#39; PV = n PMT
+<span class="linenos">279</span><span class="k">\end</span><span class="nb">{</span>equation<span class="nb">}</span>
+<span class="linenos">280</span>
+<span class="linenos">281</span>Equivalent simple interest is then
+<span class="linenos">282</span>
+<span class="linenos">283</span><span class="k">\begin</span><span class="nb">{</span>equation<span class="nb">}</span>
+<span class="linenos">284</span>i&#39; =  <span class="nb">{</span>n i <span class="k">\over</span>  1-(1+i)<span class="nb">^{</span>-n<span class="nb">}}</span> -1
+<span class="linenos">285</span><span class="k">\end</span><span class="nb">{</span>equation<span class="nb">}</span>
+<span class="linenos">286</span>
+<span class="linenos">287</span><span class="k">\subsection</span><span class="nb">{</span>Accumulated Interest Payments j though k<span class="nb">}</span>
+<span class="linenos">288</span>
+<span class="linenos">289</span>What is the accumulated interest for payments j though k inclusive?
+<span class="linenos">290</span>
+<span class="linenos">291</span><span class="k">\begin</span><span class="nb">{</span>equation<span class="nb">}</span>
+<span class="linenos">292</span>Int<span class="nb">_{</span>j <span class="k">\rightarrow</span> k<span class="nb">}</span> = I<span class="nb">_</span>j + <span class="k">\ldots</span> + I<span class="nb">_</span>k
+<span class="linenos">293</span><span class="k">\end</span><span class="nb">{</span>equation<span class="nb">}</span>
+<span class="linenos">294</span>
+<span class="linenos">295</span><span class="k">\begin</span><span class="nb">{</span>equation<span class="nb">}</span>
+<span class="linenos">296</span>Int<span class="nb">_{</span>j <span class="k">\rightarrow</span> k<span class="nb">}</span> = <span class="k">\left</span>( k - j + 1 <span class="k">\right</span>) PMT - <span class="k">\sum_</span><span class="nb">{</span>l=j<span class="nb">}^</span>k R<span class="nb">_</span>l
+<span class="linenos">297</span><span class="k">\end</span><span class="nb">{</span>equation<span class="nb">}</span>
+<span class="linenos">298</span>
+<span class="linenos">299</span>but
+<span class="linenos">300</span>
+<span class="linenos">301</span><span class="k">\begin</span><span class="nb">{</span>equation<span class="nb">}</span>
+<span class="linenos">302</span>BAL<span class="nb">_</span>l - BAL<span class="nb">_{</span>l-1<span class="nb">}</span> = -R<span class="nb">_</span>l
+<span class="linenos">303</span><span class="k">\end</span><span class="nb">{</span>equation<span class="nb">}</span>
+<span class="linenos">304</span>
+<span class="linenos">305</span>We get a telescoping sum
+<span class="linenos">306</span>
+<span class="linenos">307</span><span class="k">\begin</span><span class="nb">{</span>equation<span class="nb">}</span>
+<span class="linenos">308</span>- <span class="k">\sum_</span><span class="nb">{</span>l=j<span class="nb">}^</span>k R<span class="nb">_</span>l = BAL<span class="nb">_</span>k - BAL<span class="nb">_{</span>j-1<span class="nb">}</span>
+<span class="linenos">309</span><span class="k">\end</span><span class="nb">{</span>equation<span class="nb">}</span>
+<span class="linenos">310</span>
+<span class="linenos">311</span>Interest AFTER the kth payment is
+<span class="linenos">312</span>
+<span class="linenos">313</span><span class="k">\begin</span><span class="nb">{</span>equation<span class="nb">}</span>
+<span class="linenos">314</span>Int<span class="nb">_{</span>1 <span class="k">\rightarrow</span> k<span class="nb">}</span>  = k PMT + BAL<span class="nb">_</span>k - PV
+<span class="linenos">315</span><span class="k">\end</span><span class="nb">{</span>equation<span class="nb">}</span>
+<span class="linenos">316</span>
+<span class="linenos">317</span>Check:  When <span class="s">$</span><span class="nb">k</span><span class="o">=</span><span class="nb">n</span><span class="s">$</span>,
+<span class="linenos">318</span>
+<span class="linenos">319</span><span class="k">\begin</span><span class="nb">{</span>equation<span class="nb">}</span>
+<span class="linenos">320</span>Int<span class="nb">_{</span>1 <span class="k">\rightarrow</span> n<span class="nb">}</span>  = n PMT + BAL<span class="nb">_</span>n - PV = n PMT - PV
+<span class="linenos">321</span><span class="k">\end</span><span class="nb">{</span>equation<span class="nb">}</span>
+<span class="linenos">322</span>
+<span class="linenos">323</span>as expected because the total n payments of PMT include repaying PV plus interest.
+<span class="linenos">324</span>
+<span class="linenos">325</span><span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
+</pre></div>
+
+            </article>
+        </body>
+        
+        </html>
+        
