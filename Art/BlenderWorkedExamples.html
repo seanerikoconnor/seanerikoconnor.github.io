@@ -309,7 +309,9 @@
                     The fonts are the <em class="caution">Mac</em> system fonts.  Each project has directories of 
                     texture images, python scripts,
                     sounds, and render results.  Use double slash <em>//</em> for paths relative to the directory
-                    containing the <em>.blend</em> file.  I use <em>Gimp</em> as my image editor.
+                    containing the <em>.blend</em> file.
+                    <a href="../ComputerScience/DevelopmentEnvironment/macLinuxComputerSetupForDevelopers.html#GIMP">Gimp</a> 
+                    is my image editor.
                     </p>
 
                     <p>
@@ -702,10 +704,13 @@
 
                     <p>
                     I'll talk about lighting for outdoor scenes.  We'll need both light from the sun and from the environment (sky and ground).
-                    A scene with a simulated ocean is a tough case which won't look right at all unless you have environment lighting enabled and use
-                    a sky scene.
+                    A scene with a simulated ocean is a tough case which won't look right at all unless you have environment lighting 
+                    enabled and use a sky scene.
+                    In the next sections, we'll show environment lighting by itself, then sunlight by itself, and finally
+                    combined sun + environment lighting.
 
-                    Refer to <a href="https://www.youtube.com/watch?v=ENnEYoUpFfU">Fundamentals of Lighting in Blender by Blender Guru</a>
+                    For an introduction to lighting refer to 
+                    <a href="https://www.youtube.com/watch?v=ENnEYoUpFfU">Fundamentals of Lighting in Blender by Blender Guru</a>
                     </p>
 
                     <nav class="backtotop"><a href="#TopOfPage">Back to top</a></nav>
@@ -717,8 +722,13 @@
                     <p>
                     Environment lighting comes from a panoramic image with a high dynamic range (HDR).
                     I took an HDR Pano image with an iPhone 7+ camera of an outdoor scene at 
-                    Palo Alto Foothills park.  If Blender is spending a lot of time <em class="hotkey">Updating Lights</em> whenever you switch between Evee and Cycles,
-                    you can increase the speed by scaling down the image width and height at the cost of detail using <em>Gimp</em>.
+                    Palo Alto Foothills park.  
+                    </p>
+
+                    <p>
+                    If Blender is spending a lot of time <em class="hotkey">Updating Lights</em> whenever you switch between Evee and 
+                    Cycles, you can increase the speed by scaling down the image width and height at the cost of detail using 
+                    <a href="../ComputerScience/DevelopmentEnvironment/macLinuxComputerSetupForDevelopers.html#GIMP">Gimp</a>.
 
                     <img class="centered" alt="" src="Images/PaloAltoFoothillsPark.jpg">
                     </p>
@@ -741,11 +751,10 @@
                     <p>
                     To show only the environment lighting, in the 3D viewport, select
                     <em class="hotkey">Viewport Shading &#10148; Scene World</em>.
+                    but deselect <em class="hotkey">Viewport Shading &#10148; Scene Lights</em>.
 
-                    Here is Cycles render:
+                    Here is the Cycles render:
                     <img class="centered" alt="" src="Images/EnvironmentLightingOnlyCycles.jpg">
-
-                    In the next sections, we'll add sunlight and then show sun + environment lighting.
                     </p>
 
                     <nav class="backtotop"><a href="#TopOfPage">Back to top</a></nav>
@@ -756,24 +765,21 @@
                     <h4 id="Sunlight">Sunlight</h4>
 
                     <p>
-                    Adjust the angle of the sun relative to the objects.  For sunlight, only the angle, not the position matters.
+                    For sunlight, only the angle, not the position matters.
+                    Adjust the angle of the sun relative to the objects.  
                     Enable multiple importance sampling to reduce noise.
                     </p>
 
                     <p>
-                    When rendering with evee, only the sun strength in the panel changes the sun intensity; 
-                    the emission node values are not used.
+                    To see the sun lighting only, in the 3D viewport, select <em class="hotkey">Viewport Shading &#10148; Scene Lights</em>.
+                    but deselect <em class="hotkey">Viewport Shading &#10148; Scene World</em>.
                     </p>
 
                     <p>
-                    To see the sun lighting only, in the 3D viewport, select <em class="hotkey">Viewport Shading &#10148; Scene Lights</em>.
-
-                    <img class="centered" src="Images/SunlightOnlyEevee.jpg" alt="">
-                    </p>
-
-                     <p>
-                     When rendering with Cycles, both the sun strength and the emission node strength matter.  I usually keep the sun
-                     strength = 1 and adjust the emission strength.
+                    When rendering with evee, only the sun strength in the panel changes the sun intensity; 
+                    the emission node values don't seem to have any effect.
+                    When rendering with Cycles, both the sun strength and the emission node strength matter.  I usually keep the sun
+                    strength = 1 and adjust the emission strength.
 
                      <img class="centered" src="Images/SunlightOnlyCycles.jpg" alt="">
                      </p>
@@ -4156,8 +4162,9 @@
                     <h4>Background Image</h4>
 
                     <p>
-                    We can do a matt painting for the background scene in <em>Gimp</em> to save rendering time for large and distant
-                    objects.  This will let us do two things:
+                    We can do a matt painting for the background scene in 
+                    <a href="../ComputerScience/DevelopmentEnvironment/macLinuxComputerSetupForDevelopers.html#GIMP">Gimp</a>
+                    to save rendering time for large and distant objects.  This will let us do two things:
                     </p>
 
                     <ol>
