@@ -673,7 +673,7 @@
 
                     <p>
                     Following <i>Blender Guru's recommendations</i> I always make sure an object's scale is set to 1 and the rotations are zero 
-                    <em class="hotkey">Ctrl A &#10148; Select Rotation and Scale</em> 
+                    <em class="hotkey">Ctrl A &#10148; Apply Rotation and Scale</em> 
                     as shown in the properties window toggled by <em class="hotkey">N</em>.
 
                     <img class="centeredsmaller" alt="" src="Images/ApplyObjectScaleAndRotation.jpg">
@@ -1079,7 +1079,7 @@
 
                     <p>
                     But before you do this, first set the body object scale is set to 1 and the rotations to zero using 
-                    <em class="hotkey">Ctrl A &#10148; Select Rotation and Scale</em> 
+                    <em class="hotkey">Ctrl A &#10148; Apply Rotation and Scale</em> 
                     </p>
 
                     <p id="setobjectlocalorigin">
@@ -1097,8 +1097,11 @@
                     </p>
 
                     <p>
-                    After adding the mirror modifier, in the <em class="hotkey">Mirror Modifier Panel</em> I set the <em class="hotkey">Merge Limit</em> to 1mm which is
-                    the smallest value which enables <em class="hotkey">Clipping</em> vertices along the mirror line to snap together without a seam.
+                    Add the mirror modifier.  
+                    In the <em class="hotkey">Mirror Modifier Panel</em>, enable <em class="hotkey">Clipping</em>, and
+                    set the <em class="hotkey">Merge Limit</em> to 1mm which is
+                    the smallest value which causes vertices along the mirror line to snap together without a seam.  
+
 
                     <img class="centeredsmaller" alt="Add Mirror Modifier" src="Images/AddMirrorModifier.jpg">
                     </p>
@@ -1166,7 +1169,7 @@
                     <em>Recalculate Normals</em> with  <em class="hotkey">Shift N</em>
                     You can double check in <em>3D View</em> by toggling on 
                     <em class="hotkey">Viewport Overlays &#10148; Face Orientation</em>
-                    You should see a blue color for the object indicating normals point outwards.
+                    You should see a the object color as usual, but you will see a red color where normals are pointing the wrong way to the inside.
 
                     <img class="centeredsmaller" src="Images/ConsistentNormalsView.jpg" alt="">
                     </p>
@@ -1629,7 +1632,7 @@
                     <em class="warning">In case you have problems later, try this</em>
                     Since the high and low resolution meshes must be aligned perfectly in order to map the normals, get rid of any
                     local transforms by doing 
-                    <em class="hotkey">Ctrl A &#10148; Select Rotation and Scale</em> 
+                    <em class="hotkey">Ctrl A &#10148; Apply Rotation and Scale</em> 
                     to both meshes.
                     </p>
 
@@ -1831,7 +1834,7 @@
                         </li>
                         <li>
                             Meshes must be aligned perfectly in order to map the normals, get rid of any local transforms by doing 
-                            <em class="hotkey">Ctrl A &#10148; Select Rotation and Scale</em> 
+                            <em class="hotkey">Ctrl A &#10148; Apply Rotation and Scale</em> 
                             to both meshes.  You'll need to select both meshes!
                         </li>
                     </ul>
@@ -3034,15 +3037,15 @@
                     </p>
 
                     <p>
-                    Select the <em class="hotkey">Hair Curves</em> object under the Wig object in the <em class="hotkey">Outliner Panel</em>.
+                    Go into <em class="hotkey">Object Mode</em>, then select the <em class="hotkey">Hair Curves</em> object under the Wig object in the 
+                    <em class="hotkey">Outliner Panel</em>.
+                    Then switch into <em class="hotkey">Sculpt Mode</em>.  
+                    <strong>You must select the curves object, or you won't see the hair sculpting controls, but rather the default sculpting controls</strong>
                     <img class="centeredsmaller" alt="select the hair curves object" src="Images/SelectHairCurvesObject.jpg">
-
-                    <strong>You must select the curves object, or you won't see the hair sculpting controls, 
-                    but rather the default sculpting controls</strong>
                     </p>
 
                     <p>
-                    Switch into <em class="hotkey">Sculpt Mode</em>.  Select the <em class="hotkey">density brush</em>, 
+Select the <em class="hotkey">density brush</em>, 
                     set <em class="hotkey">Distance Minimum</em> (the distance between hair roots) to 0.1m, set 
                     <em class="hotkey">Curve Shape &#10148; Length</em> to 5m
                     and number of control 
@@ -3662,7 +3665,7 @@
                     <img class="centeredsmaller" src="Images/InitialOrbitalPositionAndSize.jpg" alt="">
 
                     Apply the rotation factor to the object with 
-                    <em class="hotkey">Ctrl A &#10148; Select Rotation and Scale</em> 
+                    <em class="hotkey">Ctrl A &#10148; Apply Rotation and Scale</em> 
                    so the rotations return to 0 and the torus lines up with the coordinate axis in its rotated position.
 
                     <img class="centeredsmaller" src="Images/InitialOrbitalPositionAndSizeAfterApplyingTransform.jpg" alt="">
@@ -3917,7 +3920,7 @@
                     <img class="centeredsmaller" src="Images/NurbsRailingProperties.png" alt="">
 
                     Clear the object's rotation and scale to defaults (zero angles, scale = 1) with 
-                    <em class="hotkey">Ctrl A &#10148; Select Rotation and Scale</em> 
+                    <em class="hotkey">Ctrl A &#10148; Apply Rotation and Scale</em> 
                     This is because the array modifier uses offsets based on rotation and scale of the object.
 
 
@@ -3927,7 +3930,7 @@
 
                     Now create an <em>Empty</em> object using <em>Shift A Empty Plain Axes</em>.  
                     Clear the empty's rotation and scale to defaults (zero angles, scale = 1) with
-                    <em class="hotkey">Ctrl A &#10148; Select Rotation and Scale</em> 
+                    <em class="hotkey">Ctrl A &#10148; Apply Rotation and Scale</em> 
 
                     Now some contortions to match the origins of both the empty and the curve.
 
@@ -4383,7 +4386,7 @@
                     Copyright &copy; 1986-2026 by Sean Erik O'Connor.
                     All Rights Reserved.
                     &nbsp;&nbsp;&nbsp;
-                    last updated 04 Jun 26.
+                    last updated 10 Jun 26.
                 </p>
             </footer>
         </div> <!-- wrapper -->
