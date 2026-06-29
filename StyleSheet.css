@@ -20,7 +20,7 @@
 | LEGAL
 |
 |   Copyright (C) 1999-2026 by Sean Erik O'Connor.  All Rights Reserved.
-|   last updated 24 Apr 26
+|   last updated 28 Jun 26
 |
 =============================================================================*/
 
@@ -1378,7 +1378,7 @@ figure
     border-radius:     1rem ;                        /* Rounded corners. */
     margin:            1.5rem 1.5rem 1.5rem 1.5rem ; /* Space it away from the other elements in the page. */
     float:             left ;                        /* Float the figure to the left and have text flow around it to the right. */
-    max-width:         35% ;                         /* Text flows around the figure. */
+    max-width:         45% ;                         /* Text flows around the figure. */
 }
 
 /* Figure background in a technical report has a lighter color to match the lighter body. */
