@@ -315,6 +315,7 @@
                     </p>
 
                     <p>
+                    Brushes and other assets are saved in the Asset Library directory.
                     <em class="warning">I tried to use a relative path <strong>//Assets</strong> to save brushes on <em class="caution">macOS</em>, 
                     but Blender gave an error message saying the files in the <strong>/Assets</strong> subdirectory were read only.</em>.
                     So I changed to an absolute path instead.
@@ -1544,7 +1545,25 @@
                     </p>
 
                     <p>
-                    For more realistic skin, we want to paint a texture the solid color.
+                    Sometimes you need to paint outside the boundaries of the UV map to fill in the color, especially if the mesh is low poly and
+                    you have the mirror modifier turned on.
+                    </p>
+
+                    <img class="centeredsmaller" alt="X" src="Images/SkinColorPaintingUnpaintedArea.jpg">
+                    
+                    <p>
+                    Do this by painting on the left side image.
+                    </p>
+
+                    <figure>
+                        <img src="Images/SkinBeforePaintingOutsideUVIsland.jpg"  alt="Before painting outside UV island" > 
+                        <img src="Images/SkinAfterPaintingOutsideUVIsland.jpg"   alt="After painting outside UV island" > 
+                        
+                        <figcaption>Before and After Painting the Skin Outside the UV Mesh Island Boundary</figcaption> 
+                    </figure> 
+
+                    <p style="clear: left ; ">
+                    For more realistic skin, we want to paint a texture over the solid color.
                     So we will create a new brush.  Starting with the skin color brush we just did, now we will add a new texture.
                     In the left panel, create a new <em class="hotkey">Texture Mask</em> and name it.  Then push the toggle which will show the texture map
                     settings in the right pahel.
@@ -4427,7 +4446,7 @@ Select the <em class="hotkey">density brush</em>,
                     Copyright &copy; 1986-2026 by Sean Erik O'Connor.
                     All Rights Reserved.
                     &nbsp;&nbsp;&nbsp;
-                    last updated 05 Jul 26.
+                    last updated 06 Jul 26.
                 </p>
             </footer>
         </div> <!-- wrapper -->
