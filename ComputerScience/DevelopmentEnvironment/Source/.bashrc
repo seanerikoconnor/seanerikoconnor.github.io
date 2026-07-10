@@ -33,6 +33,7 @@
 #
 
 alias desk='cd ${desk_dir}'
+alias sean='cd ${desk_dir}/Sean'
 
 alias app='cd ${app_dir}'
 
