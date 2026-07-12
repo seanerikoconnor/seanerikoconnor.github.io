@@ -1,468 +1,597 @@
-#----------------------------------------------------------------------------
-#
-#  TITLE
-#
-#      .bashrc
-#
-#  DESCRIPTION
-#
-#
-#     Bourne Again Shell (bash) startup file for Unix systems.  Executed 
-#     everytime we start a subshell.  Install into your home directory ~.
-#     Put aliases and functions here.
-#    
-#     Use source .bashrc to reset the environment after you are in a
-#     terminal window.  Place the line "source .bashrc" into .bash_profile
-#     to execute this file's commands upon login.
-#
-#     To debug, use sh -x .bashrc
-#
-#  DATE
-#
-#      20 Jul 25
-#
-#  AUTHOR
-#
-#      Sean E. O'Connor
-#
-#----------------------------------------------------------------------------
 
-#------------- Aliases ------------------------------------------------------
-#
-#   Be sure to put useful scripts and executables into the home bin directory, ~/bin or global /usr/local/bin
-#
-
-alias desk='cd ${desk_dir}'
-alias sean='cd ${desk_dir}/Sean'
-
-alias app='cd ${app_dir}'
-
-alias art='cd ${arts_dir}/Visual/Painting/OriginalWorks'
-alias bus='cd ${business_dir}'
-alias acc='cd ${business_dir}/Accounts'
-alias fam='cd ${family_dir}'
-alias lit='cd ${arts_dir}/Literature'
-alias sci='cd ${science_dir}'
-alias math='cd ${science_dir}/Mathematics'
-alias comp='cd ${science_dir}/ComputerScience'
-alias fuk='cd ${science_dir}/ComputerScience/ObsoleteSoftware/Fruit/MTWikiNew'
-
-#------------- Git ------------------------------------------------
-
-# Location of git repository.
-export GITREPOS="${web_dir}/private/repos"
-
-# These are all my git repositories.
-alias weba='cd ${web_dir}/Art'
-alias webcrc='cd ${web_dir}/CommunicationTheory/ChannelCoding/CyclicRedundancyCheckCodes'
-alias webc='cd ${web_dir}/ComputerScience/DevelopmentEnvironment'
-alias webfft='cd ${web_dir}/Mathematics/SignalProcessing/FastFourierTransform'
-alias webf='cd ${web_dir}/Finance'
-alias webl='cd ${web_dir}/ComputerScience/Automata/Life'
-alias webp='cd ${web_dir}/ComputerScience/Compiler/ParserGeneratorAndParser'
-alias webpp='cd ${web_dir}/Mathematics/AbstractAlgebra/PrimitivePolynomials'
-alias webps='cd ${web_dir}/CommunicationTheory/PseudoNoiseSequences'
-alias webu='cd ${web_dir}/private'
-alias webd='cd ${web_dir}/WebPageDesign'
-alias web='cd ${web_dir}'
-alias webj='cd ${web_dir}/mathjax'
-
-# Subdir of WebPageDesign git repo.
-alias webm='cd ${web_dir}/WebPageDesign/MaintainWebPage'
-
-# View the status of a git repository.
-function gitshow()
-{
-    if [ $# == 0 ]
-    then
-        echo "Usage:  gitshow <git directory>"
-    fi
-
-    # Grab the function argument, bash style.
-    gitdir=$1
-
-    # Parent directory on my machine.
-    parentDir=${HOME}/Desktop/Sean
-
-    printf "\n\n"
-    printf "${blueonyellow} git repository ${gitdir} ${resetcolor}\n"
-    printf "\n\n"
-    
-    # Go into the git local snapshot.
-    pushds ${parentDir}/${gitdir}
-
-    # Pull the remote branch to get local snapshot up to date.
-    printf "${redongreen}pulling:${resetcolor}\n\t"
-    git pull
-
-    # Clean and recurse into directories.  Don't babble the status.
-    git clean -f -d --quiet
-
-    # Collect garbage.  Don't babble the status.
-    git gc --quiet
-
-    # Show the branches, status, stash lists, most recent commit.
-    printf "${redongreen}branches:${resetcolor}\n\t"
-    git branch
-
-    printf "${redongreen}status:${resetcolor}\n\t"
-    git status
-
-    printf "${redongreen}stashes:${resetcolor}\n\t"
-    git stash list
-    printf "\n"
-
-    printf "${redongreen}last commit${resetcolor}:\n\t"
-    git log -1 --name-only
-    printf "${redongreen}---${resetcolor}\n\n"
-    popds
-}
-
-# View all my Git repositories.
-function gita()
-{
-    # How did I find them all on my system?
-    #     find . -name '*.git' 
-
-    # Ascii terminal colors.   Example: printf "\u1b[31;42mRedOnGreen\u1b[0mNormal"
-    redongreen="\u1b[31;42m"
-    redonblue="\u1b[31;44m"
-    blueonyellow="\u1b[34;43m"
-    whiteonblue="\u1b[37;44m"
-    resetcolor="\u1b[0m"
-
-    clear
-
-    # Show each repository and its status.
-    gitshow WebSite;                                                                                    continueOrQuit ; if [ $? == 1 ] ; then return ; else clear ; fi
-    gitshow WebSite/Art ;                                                                               continueOrQuit ; if [ $? == 1 ] ; then return ; else clear ; fi
-    gitshow WebSite/CommunicationTheory/ChannelCoding/CyclicRedundancyCheckCodes;                       continueOrQuit ; if [ $? == 1 ] ; then return ; else clear ; fi
-    gitshow WebSite/CommunicationTheory/PseudoNoiseSequences;                                           continueOrQuit ; if [ $? == 1 ] ; then return ; else clear ; fi
-    gitshow WebSite/ComputerScience/DevelopmentEnvironment;                                             continueOrQuit ; if [ $? == 1 ] ; then return ; else clear ; fi
-    gitshow WebSite/Mathematics/SignalProcessing/FastFourierTransform;                                  continueOrQuit ; if [ $? == 1 ] ; then return ; else clear ; fi
-    gitshow WebSite/Finance;                                                                            continueOrQuit ; if [ $? == 1 ] ; then return ; else clear ; fi
-    gitshow WebSite/ComputerScience/Automata/Life;                                                      continueOrQuit ; if [ $? == 1 ] ; then return ; else clear ; fi
-    gitshow WebSite/ComputerScience/Compiler/ParserGeneratorAndParser;                                  continueOrQuit ; if [ $? == 1 ] ; then return ; else clear ; fi
-    gitshow WebSite/Mathematics/AbstractAlgebra/PrimitivePolynomials;                                   continueOrQuit ; if [ $? == 1 ] ; then return ; else clear ; fi
-    gitshow WebSite/private;                                                                            continueOrQuit ; if [ $? == 1 ] ; then return ; else clear ; fi
-    gitshow WebSite/WebPageDesign;                                                                      continueOrQuit ; if [ $? == 1 ] ; then return ; else clear ; fi
-}
-
-
-#------------- Blender ------------------------------------------------
-
-# Developer version compiled from source.
-alias blender='/Users/seanoconnor/blender-git/build_darwin/bin/Blender.app/Contents/MacOS/Blender'
-
-#------------- Set prompt ---------------------------------------------
-#
-# Define colors for the text in a prompt.
-#
-startcolor="\[\e["
-black="30"
-red="31"
-green="32"
-yellow="33"
-blue="34"
-magenta="35"
-teal="36"
-white="37"
-separator=";"
-blackbackground="40"
-redbackground="41"
-greenbackground="42"
-yellowbackground="43"
-bluebackground="44"
-magentabackground="45"
-tealbackground="46"
-whitebackground="47"
-reset="0"
-boldtext="1"
-underline="4"
-blink="5"
-inverted="7"
-endcolor="m\]"
-resetcolor="\e[0m"
-whiteonblue="${startcolor}${white}${separator}${bluebackground}${endcolor}"
-redonblue="${startcolor}${red}${separator}${bluebackground}${endcolor}"
-
-# Set the prompt to
-# time \@, date \d, user name \u, host name \h, current directory \w
-# \W basename of current directory, \$ if UID = 0 (root), use # instead of $
-export PS1="${redonblue}\u:${whiteonblue}\w${resetcolor}\$ "
-###echo ${PS1}
-
-
-#------------- Shell options ------------------------------------------------
-#
-# Set vi edit mode for the command line.
-# Hit <ESC> to go into vi's edit command mode:
-#   h   Move cursor left
-#   l   Move cursor right
-#   A   Move cursor to end of line and put in insert mode
-#   0   (zero) Move cursor to beginning of line (doesn't put in insert mode)
-#   i   Put into insert mode at current position
-#   a   Put into insert mode after current position
-#   dd  Delete line (saved for pasting)
-#   D   Delete text after current cursor position (saved for pasting)
-#   p   Paste text that was deleted
-#   j   Move up through history commands
-#   k   Move down through history commands
-#   u   Undo
-set -o vi
-
-# Don't wait for job termination notification
-set -o notify
-
-# Don't use ^D to exit
-set -o ignoreeof
-
-# Use case-insensitive filename globbing
-shopt -s nocaseglob
-
-# Make bash append rather than overwrite the history on disk
-shopt -s histappend
-
-# When changing directory small typos can be ignored by bash
-# for example, cd /vr/lgo/apaache would find /var/log/apache
-shopt -s cdspell
-
-shopt -s cdable_vars
-
-#------------- Completion options ------------------------------------------------
-#
-# These completion tuning parameters change the
-# default behavior of bash_completion:
-
-# Define to avoid stripping description in --option=description of './configure --help'
-COMP_CONFIGURE_HINTS=1
-
-# Define to avoid flattening internal contents of tar files
-COMP_TAR_INTERNAL_PATHS=1
-
-# If this shell is interactive, turn on programmable completion enhancements.
-# Any completions you add in ~/.bash_completion are sourced last.
-case $- in
-  *i*) [[ -f /etc/bash_completion ]] && . /etc/bash_completion ;;
-esac
-
-
-#------------- History options ------------------------------------------------
-#
-# Don't put duplicate lines in the history.
-export HISTCONTROL="ignoredups"
-
-# Ignore some controlling instructions
-export HISTIGNORE="ls:ls *:[   ]*:&:cd:cd ..:exit:hi:s:f:m:um"
-
-# Whenever displaying the prompt, write the previous line to disk
-export PROMPT_COMMAND="history -a"
-
-
-#------------- Aliases ------------------------------------------------
-#
-#   If these are enabled they will be used instead of any instructions
-#   they may mask.  For example, alias rm='rm -i' will mask the rm
-#   application.
-#
-#   To override the alias instruction use a \ before, ie
-#   \rm will call the real rm not the alias.
-#
-#   To see all aliases, type alias.
-#   Use unalias to remove a definition.
-
-# Interactive operation...
-alias rm='rm -i'
-alias cp='cp -i'
-alias mv='mv -i'
-alias up='cd ..'
-
-# Default to human readable figures
-alias df='df -h'
-alias du='du -hac'
-
-# Misc :)
-alias less='less -r'                          # raw control characters
-alias whence='type -a'                        # where, of a sort
-alias grep='grep --color'                     # show differences in colour
-alias hi=history
-
-# Some shortcuts for different directory listings
-alias ls='ls -hF ${ls_color_option}'
-alias dir='ls --color=auto --format=vertical'
-alias ll='ls -l'                              # long list
-alias la='ls -A'                              # all but . and ..
-alias l='ls -CF'                              #
-
-
-#------------- Utility functions ------------------------------------------------
-
-# Push and pop directory without error messages.
-function pushds
-{
-    command pushd "$1" > /dev/null
-}
-
-function popds
-{
-    command popd "$1" > /dev/null
-}
-
-# Recursive search for a string in a file.
-function grepall()
-{
-    if [ $# == 0 ]
-    then
-        echo "Usage:  grepall <string>"
-    fi
-
-    # Grab the function argument, bash style.
-    pat=$1
-
-    echo "Searching all subdirectories for pattern ${pat}"
-
-    find . -name '*.[ch]'   -exec grep -iH "${pat}" {} ';'
-    find . -name '*.hpp'    -exec grep -iH "${pat}" {} ';'
-    find . -name '*.cpp'    -exec grep -iH "${pat}" {} ';'
-    find . -name '*.py'     -exec grep -iH "${pat}" {} ';'
-    find . -name '*.lsp'    -exec grep -iH "${pat}" {} ';'
-    find . -name '*.m'      -exec grep -iH "${pat}" {} ';'
-    find . -name '*.js'     -exec grep -iH "${pat}" {} ';'
-    find . -name '*.java'   -exec grep -iH "${pat}" {} ';'
-    find . -name '*.pl'     -exec grep -iH "${pat}" {} ';'
-    find . -name '*.prl'    -exec grep -iH "${pat}" {} ';'
-    find . -name '*.html'   -exec grep -iH "${pat}" {} ';'
-    find . -name '*.css'    -exec grep -iH "${pat}" {} ';'
-    find . -name 'makefile' -exec grep -iH "${pat}" {} ';'
-    find . -name '*.dat'    -exec grep -iH "${pat}" {} ';'
-    find . -name '*.txt'    -exec grep -iH "${pat}" {} ';'
-}
-
-function touchall()
-{
-    find . -exec touch {} ';'
-}
-
-function testOptions()
-{
-    if [ $# == 0 ]
-    then
-        echo "Number of arguments to testOptions is $#"
-    fi
-
-    # No spaces around the equals allowed in bash!
-    a1=$1
-
-    echo "You said |${a1}|"
-
-    # Compare the first 3 letters.
-    if [ "${a1:0:3}" == "tes" ]
-    then
-        echo "You said testOptions tes"
-    else
-        echo "What did you say?"
-    fi
-}
-
-# Launch gvim editor.
-function gvim()
-{
-    # No file name given?
-    if [ $# == 0 ]
-    then
-        # Remove the old file.
-        fileName="${HOME}/temp.txt"
-        if [ -f "${fileName}" ] ; then
-            echo "Removing file ${fileName}"
-            rm -rf ${fileName}
-        fi
-
-        # Remove any swap file.
-        fileNameSwap="${HOME}.vim/.swp/temp.txt.swp"
-        if [ -f "${fileNameSwap}" ] ; then
-            echo "Removing swap file ${fileNameSwap}"
-            rm -rf ${fileNameSwap}
-        fi
-
-        # Create a new file.
-        echo -n > ${fileName}
-        echo "Opening temporary file ${fileName}"
-    else
-        fileName=$1
-    fi
-
-    # Find out which operating system we are running on:  macOS, Linux, Windows/Cygwin, etc.
-    uname=`uname -s`
-
-    # macOS.  Tested on my MacBook Pro laptop mid-2015 model with Intel x86_64 architecture.
-    if [ "${uname}" == "Darwin" ] ; then
-        platform="macos"
-    # Linux.  Tested on my Ubuntu Linux system running on my Cyperpower PC with a 64-bit AMD CPU.
-    elif [ "${uname}" == "Linux" ] ; then
-        platform="linux"
-    # Cygwin.  For cygwin 2.2 64-bit on Windows 10 64-bit.  Not tested.  From https://en.wikipedia.org/wiki/Uname
-    elif [ "${uname}" == "CYGWIN_NT-10.0" ] ; then
-        platform="cygwin"
-    fi
-    #echo "Using platform = ${platform}"
-
-    # Launch GUI Vim on my macOS machine.
-    if [ "${platform}" == "macos" ] ; then
-        open -a MacVim "${fileName}"
-    # Launch GUI Vim on my Ubuntu Linux machines.
-    elif [ "${platform}" == "linux" ] ; then
-        /usr/bin/vim "${fileName}"
-    # Cygwin
-    elif [ "${platform}" == "cygwin" ] ; then
-        /usr/bin/vim "${fileName}"
-    else
-        echo "Could not get a platform.  Guessing Linux."
-        /usr/bin/vim "${fileName}"
-    fi
-}
-
-# Remove temporary files.
-function cleanall()
-{
-    if [ $# != 0 ]
-    then
-        echo "Usage:  cleanall"
-    fi
-
-    find . -name '*~'          -print -exec rm -f {} \;
-    find . -name '._*'         -print -exec rm -f {} \;
-    find . -name '.DS_Store*'  -print -exec rm -f {} \;
-    find . -name 'Thumbs.db'   -print -exec rm -f {} \;
-    find . -name '*.swp'       -print -exec rm -f {} \;
-    find . -name '*.o'         -print -exec rm -f {} \;
-    find . -name '*.class'     -print -exec rm -f {} \;
-    find . -name '*.o~$'       -print -exec rm -f {} \;
-    find . -name '*.o~>'       -print -exec rm -f {} \;
-    find . -name '*.dSYM'      -print -exec rm -rf {} \;
-    find . -name '*.obj'       -print -exec rm -rf {} \;
-    find . -name '*.ncb'       -print -exec rm -rf {} \;
-    find . -name '*.suo'       -print -exec rm -rf {} \;
-    find . -name '*.idb'       -print -exec rm -rf {} \;
-    find . -name '*.pdb'       -print -exec rm -rf {} \;
-    find . -name '*.manifest'  -print -exec rm -rf {} \;
-    find . -name '*.Spotlight-V100'  -print -exec rm -rf {} \;
-    find . -name '*.Trash*'          -print -exec rm -rf {} \;
-    find . -name '*.fseventsd'       -print -exec rm -rf {} \;
-}
-
-# Return status 0 if we hit the SPACE BAR or 1 if we hit q for QUIT.
-function continueOrQuit()
-{
-    # See https://www.computerhope.com/unix/bash/read.htm
-    #  -n1   Read only one character.
-    #   -s   Don't echo keystrokes.
-    #   -r   Raw input.  read backslashes and don't interpret them as escape characters.
-    #   -p   Print the string prompt first before reading the line.
-    read -n1 -s -r -p $'Press space to continue or q to quit...\n' key
-    if [ "$key" = ' ' ]; then
-        return 0
-    elif [ "$key" = 'q' ]; then
-        return 1
-    fi
-    printf "\n\n"
-}
+        <!DOCTYPE html>
+        <html lang="en-US">  <!-- Set language of this page to USA English. -->
+        
+        <head>
+            <!-- This page uses Unicode characters. -->
+            <meta charset="utf-8">
+        
+            <!-- Set viewport to actual device width.  Any other settings makes the web page initially appear zoomed-in on mobile devices. -->
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+            <!-- Title appears in the web browser tab for this page.  The browser also uses it to bookmark this page. -->
+            <title>Sean Erik O'Connor - Home Page and Free Mathematical Software.</title>
+        
+            <!-- Search engines will search using words in this description.  They will also display title in their search results. -->
+            <meta name="description" content="Syntax Colored Source Code Listing">
+        
+            <!-- Some content management software uses the author's name. -->
+            <meta name="author" content="Sean Erik O'Connor">
+        
+            <meta name="copyright" content="Copyright (C) 1986-2026 by Sean Erik O'Connor.  All Rights Reserved.">   
+        
+            <!-- Begin style sheet insertion -->
+            <style>
+                /* Default settings for all my main web pages. */
+                body
+                {
+                    /* A wide sans-serif font is more readable on the web. */
+                    font-family:            Verdana, Geneva, "Trebuchet MS", sans-serif ;
+        
+                    /* Set the body font size a little smaller than the user's default browser setting. */
+                    font-size:              0.8em ; 
+        
+                    /* Black text is easier to read. */
+                    color:                  black ;
+        
+                    /*  More vertical space between lines for more pleasant reading.  Use a unitless font height multiplier.  
+                        Length and percentage percentage values can give scrunched text due to poor inheritance behavior. */
+                    line-height:            1.7 ;
+                }
+        
+                <!-- Now prepare to add the syntax coloring style sheet from Pygment -->
+        pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.highlight .hll { background-color: #ffffcc }
+.highlight { background: #f8f8f8; }
+.highlight .c { color: #3D7B7B; font-style: italic } /* Comment */
+.highlight .err { border: 1px solid #F00 } /* Error */
+.highlight .k { color: #008000; font-weight: bold } /* Keyword */
+.highlight .o { color: #666 } /* Operator */
+.highlight .ch { color: #3D7B7B; font-style: italic } /* Comment.Hashbang */
+.highlight .cm { color: #3D7B7B; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #9C6500 } /* Comment.Preproc */
+.highlight .cpf { color: #3D7B7B; font-style: italic } /* Comment.PreprocFile */
+.highlight .c1 { color: #3D7B7B; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #3D7B7B; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #A00000 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .ges { font-weight: bold; font-style: italic } /* Generic.EmphStrong */
+.highlight .gr { color: #E40000 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #008400 } /* Generic.Inserted */
+.highlight .go { color: #717171 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #04D } /* Generic.Traceback */
+.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #B00040 } /* Keyword.Type */
+.highlight .m { color: #666 } /* Literal.Number */
+.highlight .s { color: #BA2121 } /* Literal.String */
+.highlight .na { color: #687822 } /* Name.Attribute */
+.highlight .nb { color: #008000 } /* Name.Builtin */
+.highlight .nc { color: #00F; font-weight: bold } /* Name.Class */
+.highlight .no { color: #800 } /* Name.Constant */
+.highlight .nd { color: #A2F } /* Name.Decorator */
+.highlight .ni { color: #717171; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #CB3F38; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #00F } /* Name.Function */
+.highlight .nl { color: #767600 } /* Name.Label */
+.highlight .nn { color: #00F; font-weight: bold } /* Name.Namespace */
+.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #19177C } /* Name.Variable */
+.highlight .ow { color: #A2F; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #BBB } /* Text.Whitespace */
+.highlight .mb { color: #666 } /* Literal.Number.Bin */
+.highlight .mf { color: #666 } /* Literal.Number.Float */
+.highlight .mh { color: #666 } /* Literal.Number.Hex */
+.highlight .mi { color: #666 } /* Literal.Number.Integer */
+.highlight .mo { color: #666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
+.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
+.highlight .se { color: #AA5D1F; font-weight: bold } /* Literal.String.Escape */
+.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.highlight .si { color: #A45A77; font-weight: bold } /* Literal.String.Interpol */
+.highlight .sx { color: #008000 } /* Literal.String.Other */
+.highlight .sr { color: #A45A77 } /* Literal.String.Regex */
+.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #00F } /* Name.Function.Magic */
+.highlight .vc { color: #19177C } /* Name.Variable.Class */
+.highlight .vg { color: #19177C } /* Name.Variable.Global */
+.highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
+.highlight .il { color: #666 } /* Literal.Number.Integer.Long */
+            </style>
+        </head>
+        
+        <body>
+            <article class="content">
+        <div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="c1">#----------------------------------------------------------------------------</span>
+<span class="linenos">  2</span><span class="c1">#</span>
+<span class="linenos">  3</span><span class="c1">#  TITLE</span>
+<span class="linenos">  4</span><span class="c1">#</span>
+<span class="linenos">  5</span><span class="c1">#      .bashrc</span>
+<span class="linenos">  6</span><span class="c1">#</span>
+<span class="linenos">  7</span><span class="c1">#  DESCRIPTION</span>
+<span class="linenos">  8</span><span class="c1">#</span>
+<span class="linenos">  9</span><span class="c1">#</span>
+<span class="linenos"> 10</span><span class="c1">#     Bourne Again Shell (bash) startup file for Unix systems.  Executed </span>
+<span class="linenos"> 11</span><span class="c1">#     everytime we start a subshell.  Install into your home directory ~.</span>
+<span class="linenos"> 12</span><span class="c1">#     Put aliases and functions here.</span>
+<span class="linenos"> 13</span><span class="c1">#    </span>
+<span class="linenos"> 14</span><span class="c1">#     Use source .bashrc to reset the environment after you are in a</span>
+<span class="linenos"> 15</span><span class="c1">#     terminal window.  Place the line &quot;source .bashrc&quot; into .bash_profile</span>
+<span class="linenos"> 16</span><span class="c1">#     to execute this file&#39;s commands upon login.</span>
+<span class="linenos"> 17</span><span class="c1">#</span>
+<span class="linenos"> 18</span><span class="c1">#     To debug, use sh -x .bashrc</span>
+<span class="linenos"> 19</span><span class="c1">#</span>
+<span class="linenos"> 20</span><span class="c1">#  DATE</span>
+<span class="linenos"> 21</span><span class="c1">#</span>
+<span class="linenos"> 22</span><span class="c1">#      20 Jul 25</span>
+<span class="linenos"> 23</span><span class="c1">#</span>
+<span class="linenos"> 24</span><span class="c1">#  AUTHOR</span>
+<span class="linenos"> 25</span><span class="c1">#</span>
+<span class="linenos"> 26</span><span class="c1">#      Sean E. O&#39;Connor</span>
+<span class="linenos"> 27</span><span class="c1">#</span>
+<span class="linenos"> 28</span><span class="c1">#----------------------------------------------------------------------------</span>
+<span class="linenos"> 29</span>
+<span class="linenos"> 30</span><span class="c1">#------------- Aliases ------------------------------------------------------</span>
+<span class="linenos"> 31</span><span class="c1">#</span>
+<span class="linenos"> 32</span><span class="c1">#   Be sure to put useful scripts and executables into the home bin directory, ~/bin or global /usr/local/bin</span>
+<span class="linenos"> 33</span><span class="c1">#</span>
+<span class="linenos"> 34</span>
+<span class="linenos"> 35</span><span class="nb">alias</span><span class="w"> </span><span class="nv">desk</span><span class="o">=</span><span class="s1">&#39;cd ${desk_dir}&#39;</span>
+<span class="linenos"> 36</span><span class="nb">alias</span><span class="w"> </span><span class="nv">sean</span><span class="o">=</span><span class="s1">&#39;cd ${desk_dir}/Sean&#39;</span>
+<span class="linenos"> 37</span>
+<span class="linenos"> 38</span><span class="nb">alias</span><span class="w"> </span><span class="nv">app</span><span class="o">=</span><span class="s1">&#39;cd ${app_dir}&#39;</span>
+<span class="linenos"> 39</span>
+<span class="linenos"> 40</span><span class="nb">alias</span><span class="w"> </span><span class="nv">art</span><span class="o">=</span><span class="s1">&#39;cd ${arts_dir}/Visual/Painting/OriginalWorks&#39;</span>
+<span class="linenos"> 41</span><span class="nb">alias</span><span class="w"> </span><span class="nv">bus</span><span class="o">=</span><span class="s1">&#39;cd ${business_dir}&#39;</span>
+<span class="linenos"> 42</span><span class="nb">alias</span><span class="w"> </span><span class="nv">acc</span><span class="o">=</span><span class="s1">&#39;cd ${business_dir}/Accounts&#39;</span>
+<span class="linenos"> 43</span><span class="nb">alias</span><span class="w"> </span><span class="nv">fam</span><span class="o">=</span><span class="s1">&#39;cd ${family_dir}&#39;</span>
+<span class="linenos"> 44</span><span class="nb">alias</span><span class="w"> </span><span class="nv">lit</span><span class="o">=</span><span class="s1">&#39;cd ${arts_dir}/Literature&#39;</span>
+<span class="linenos"> 45</span><span class="nb">alias</span><span class="w"> </span><span class="nv">sci</span><span class="o">=</span><span class="s1">&#39;cd ${science_dir}&#39;</span>
+<span class="linenos"> 46</span><span class="nb">alias</span><span class="w"> </span><span class="nv">math</span><span class="o">=</span><span class="s1">&#39;cd ${science_dir}/Mathematics&#39;</span>
+<span class="linenos"> 47</span><span class="nb">alias</span><span class="w"> </span><span class="nv">comp</span><span class="o">=</span><span class="s1">&#39;cd ${science_dir}/ComputerScience&#39;</span>
+<span class="linenos"> 48</span><span class="nb">alias</span><span class="w"> </span><span class="nv">fuk</span><span class="o">=</span><span class="s1">&#39;cd ${science_dir}/ComputerScience/ObsoleteSoftware/Fruit/MTWikiNew&#39;</span>
+<span class="linenos"> 49</span>
+<span class="linenos"> 50</span><span class="c1">#------------- Git ------------------------------------------------</span>
+<span class="linenos"> 51</span>
+<span class="linenos"> 52</span><span class="c1"># Location of git repository.</span>
+<span class="linenos"> 53</span><span class="nb">export</span><span class="w"> </span><span class="nv">GITREPOS</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">web_dir</span><span class="si">}</span><span class="s2">/private/repos&quot;</span>
+<span class="linenos"> 54</span>
+<span class="linenos"> 55</span><span class="c1"># These are all my git repositories.</span>
+<span class="linenos"> 56</span><span class="nb">alias</span><span class="w"> </span><span class="nv">weba</span><span class="o">=</span><span class="s1">&#39;cd ${web_dir}/Art&#39;</span>
+<span class="linenos"> 57</span><span class="nb">alias</span><span class="w"> </span><span class="nv">webcrc</span><span class="o">=</span><span class="s1">&#39;cd ${web_dir}/CommunicationTheory/ChannelCoding/CyclicRedundancyCheckCodes&#39;</span>
+<span class="linenos"> 58</span><span class="nb">alias</span><span class="w"> </span><span class="nv">webc</span><span class="o">=</span><span class="s1">&#39;cd ${web_dir}/ComputerScience/DevelopmentEnvironment&#39;</span>
+<span class="linenos"> 59</span><span class="nb">alias</span><span class="w"> </span><span class="nv">webfft</span><span class="o">=</span><span class="s1">&#39;cd ${web_dir}/Mathematics/SignalProcessing/FastFourierTransform&#39;</span>
+<span class="linenos"> 60</span><span class="nb">alias</span><span class="w"> </span><span class="nv">webf</span><span class="o">=</span><span class="s1">&#39;cd ${web_dir}/Finance&#39;</span>
+<span class="linenos"> 61</span><span class="nb">alias</span><span class="w"> </span><span class="nv">webl</span><span class="o">=</span><span class="s1">&#39;cd ${web_dir}/ComputerScience/Automata/Life&#39;</span>
+<span class="linenos"> 62</span><span class="nb">alias</span><span class="w"> </span><span class="nv">webp</span><span class="o">=</span><span class="s1">&#39;cd ${web_dir}/ComputerScience/Compiler/ParserGeneratorAndParser&#39;</span>
+<span class="linenos"> 63</span><span class="nb">alias</span><span class="w"> </span><span class="nv">webpp</span><span class="o">=</span><span class="s1">&#39;cd ${web_dir}/Mathematics/AbstractAlgebra/PrimitivePolynomials&#39;</span>
+<span class="linenos"> 64</span><span class="nb">alias</span><span class="w"> </span><span class="nv">webps</span><span class="o">=</span><span class="s1">&#39;cd ${web_dir}/CommunicationTheory/PseudoNoiseSequences&#39;</span>
+<span class="linenos"> 65</span><span class="nb">alias</span><span class="w"> </span><span class="nv">webu</span><span class="o">=</span><span class="s1">&#39;cd ${web_dir}/private&#39;</span>
+<span class="linenos"> 66</span><span class="nb">alias</span><span class="w"> </span><span class="nv">webd</span><span class="o">=</span><span class="s1">&#39;cd ${web_dir}/WebPageDesign&#39;</span>
+<span class="linenos"> 67</span><span class="nb">alias</span><span class="w"> </span><span class="nv">web</span><span class="o">=</span><span class="s1">&#39;cd ${web_dir}&#39;</span>
+<span class="linenos"> 68</span><span class="nb">alias</span><span class="w"> </span><span class="nv">webj</span><span class="o">=</span><span class="s1">&#39;cd ${web_dir}/mathjax&#39;</span>
+<span class="linenos"> 69</span>
+<span class="linenos"> 70</span><span class="c1"># Subdir of WebPageDesign git repo.</span>
+<span class="linenos"> 71</span><span class="nb">alias</span><span class="w"> </span><span class="nv">webm</span><span class="o">=</span><span class="s1">&#39;cd ${web_dir}/WebPageDesign/MaintainWebPage&#39;</span>
+<span class="linenos"> 72</span>
+<span class="linenos"> 73</span><span class="c1"># View the status of a git repository.</span>
+<span class="linenos"> 74</span><span class="k">function</span><span class="w"> </span>gitshow<span class="o">()</span>
+<span class="linenos"> 75</span><span class="o">{</span>
+<span class="linenos"> 76</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$#</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span>
+<span class="linenos"> 77</span><span class="w">    </span><span class="k">then</span>
+<span class="linenos"> 78</span><span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Usage:  gitshow &lt;git directory&gt;&quot;</span>
+<span class="linenos"> 79</span><span class="w">    </span><span class="k">fi</span>
+<span class="linenos"> 80</span>
+<span class="linenos"> 81</span><span class="w">    </span><span class="c1"># Grab the function argument, bash style.</span>
+<span class="linenos"> 82</span><span class="w">    </span><span class="nv">gitdir</span><span class="o">=</span><span class="nv">$1</span>
+<span class="linenos"> 83</span>
+<span class="linenos"> 84</span><span class="w">    </span><span class="c1"># Parent directory on my machine.</span>
+<span class="linenos"> 85</span><span class="w">    </span><span class="nv">parentDir</span><span class="o">=</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/Desktop/Sean
+<span class="linenos"> 86</span>
+<span class="linenos"> 87</span><span class="w">    </span><span class="nb">printf</span><span class="w"> </span><span class="s2">&quot;\n\n&quot;</span>
+<span class="linenos"> 88</span><span class="w">    </span><span class="nb">printf</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">blueonyellow</span><span class="si">}</span><span class="s2"> git repository </span><span class="si">${</span><span class="nv">gitdir</span><span class="si">}</span><span class="s2"> </span><span class="si">${</span><span class="nv">resetcolor</span><span class="si">}</span><span class="s2">\n&quot;</span>
+<span class="linenos"> 89</span><span class="w">    </span><span class="nb">printf</span><span class="w"> </span><span class="s2">&quot;\n\n&quot;</span>
+<span class="linenos"> 90</span><span class="w">    </span>
+<span class="linenos"> 91</span><span class="w">    </span><span class="c1"># Go into the git local snapshot.</span>
+<span class="linenos"> 92</span><span class="w">    </span>pushds<span class="w"> </span><span class="si">${</span><span class="nv">parentDir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">gitdir</span><span class="si">}</span>
+<span class="linenos"> 93</span>
+<span class="linenos"> 94</span><span class="w">    </span><span class="c1"># Pull the remote branch to get local snapshot up to date.</span>
+<span class="linenos"> 95</span><span class="w">    </span><span class="nb">printf</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">redongreen</span><span class="si">}</span><span class="s2">pulling:</span><span class="si">${</span><span class="nv">resetcolor</span><span class="si">}</span><span class="s2">\n\t&quot;</span>
+<span class="linenos"> 96</span><span class="w">    </span>git<span class="w"> </span>pull
+<span class="linenos"> 97</span>
+<span class="linenos"> 98</span><span class="w">    </span><span class="c1"># Clean and recurse into directories.  Don&#39;t babble the status.</span>
+<span class="linenos"> 99</span><span class="w">    </span>git<span class="w"> </span>clean<span class="w"> </span>-f<span class="w"> </span>-d<span class="w"> </span>--quiet
+<span class="linenos">100</span>
+<span class="linenos">101</span><span class="w">    </span><span class="c1"># Collect garbage.  Don&#39;t babble the status.</span>
+<span class="linenos">102</span><span class="w">    </span>git<span class="w"> </span>gc<span class="w"> </span>--quiet
+<span class="linenos">103</span>
+<span class="linenos">104</span><span class="w">    </span><span class="c1"># Show the branches, status, stash lists, most recent commit.</span>
+<span class="linenos">105</span><span class="w">    </span><span class="nb">printf</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">redongreen</span><span class="si">}</span><span class="s2">branches:</span><span class="si">${</span><span class="nv">resetcolor</span><span class="si">}</span><span class="s2">\n\t&quot;</span>
+<span class="linenos">106</span><span class="w">    </span>git<span class="w"> </span>branch
+<span class="linenos">107</span>
+<span class="linenos">108</span><span class="w">    </span><span class="nb">printf</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">redongreen</span><span class="si">}</span><span class="s2">status:</span><span class="si">${</span><span class="nv">resetcolor</span><span class="si">}</span><span class="s2">\n\t&quot;</span>
+<span class="linenos">109</span><span class="w">    </span>git<span class="w"> </span>status
+<span class="linenos">110</span>
+<span class="linenos">111</span><span class="w">    </span><span class="nb">printf</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">redongreen</span><span class="si">}</span><span class="s2">stashes:</span><span class="si">${</span><span class="nv">resetcolor</span><span class="si">}</span><span class="s2">\n\t&quot;</span>
+<span class="linenos">112</span><span class="w">    </span>git<span class="w"> </span>stash<span class="w"> </span>list
+<span class="linenos">113</span><span class="w">    </span><span class="nb">printf</span><span class="w"> </span><span class="s2">&quot;\n&quot;</span>
+<span class="linenos">114</span>
+<span class="linenos">115</span><span class="w">    </span><span class="nb">printf</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">redongreen</span><span class="si">}</span><span class="s2">last commit</span><span class="si">${</span><span class="nv">resetcolor</span><span class="si">}</span><span class="s2">:\n\t&quot;</span>
+<span class="linenos">116</span><span class="w">    </span>git<span class="w"> </span>log<span class="w"> </span>-1<span class="w"> </span>--name-only
+<span class="linenos">117</span><span class="w">    </span><span class="nb">printf</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">redongreen</span><span class="si">}</span><span class="s2">---</span><span class="si">${</span><span class="nv">resetcolor</span><span class="si">}</span><span class="s2">\n\n&quot;</span>
+<span class="linenos">118</span><span class="w">    </span>popds
+<span class="linenos">119</span><span class="o">}</span>
+<span class="linenos">120</span>
+<span class="linenos">121</span><span class="c1"># View all my Git repositories.</span>
+<span class="linenos">122</span><span class="k">function</span><span class="w"> </span>gita<span class="o">()</span>
+<span class="linenos">123</span><span class="o">{</span>
+<span class="linenos">124</span><span class="w">    </span><span class="c1"># How did I find them all on my system?</span>
+<span class="linenos">125</span><span class="w">    </span><span class="c1">#     find . -name &#39;*.git&#39; </span>
+<span class="linenos">126</span>
+<span class="linenos">127</span><span class="w">    </span><span class="c1"># Ascii terminal colors.   Example: printf &quot;\u1b[31;42mRedOnGreen\u1b[0mNormal&quot;</span>
+<span class="linenos">128</span><span class="w">    </span><span class="nv">redongreen</span><span class="o">=</span><span class="s2">&quot;\u1b[31;42m&quot;</span>
+<span class="linenos">129</span><span class="w">    </span><span class="nv">redonblue</span><span class="o">=</span><span class="s2">&quot;\u1b[31;44m&quot;</span>
+<span class="linenos">130</span><span class="w">    </span><span class="nv">blueonyellow</span><span class="o">=</span><span class="s2">&quot;\u1b[34;43m&quot;</span>
+<span class="linenos">131</span><span class="w">    </span><span class="nv">whiteonblue</span><span class="o">=</span><span class="s2">&quot;\u1b[37;44m&quot;</span>
+<span class="linenos">132</span><span class="w">    </span><span class="nv">resetcolor</span><span class="o">=</span><span class="s2">&quot;\u1b[0m&quot;</span>
+<span class="linenos">133</span>
+<span class="linenos">134</span><span class="w">    </span>clear
+<span class="linenos">135</span>
+<span class="linenos">136</span><span class="w">    </span><span class="c1"># Show each repository and its status.</span>
+<span class="linenos">137</span><span class="w">    </span>gitshow<span class="w"> </span>WebSite<span class="p">;</span><span class="w">                                                                                    </span>continueOrQuit<span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$?</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">else</span><span class="w"> </span>clear<span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">fi</span>
+<span class="linenos">138</span><span class="w">    </span>gitshow<span class="w"> </span>WebSite/Art<span class="w"> </span><span class="p">;</span><span class="w">                                                                               </span>continueOrQuit<span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$?</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">else</span><span class="w"> </span>clear<span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">fi</span>
+<span class="linenos">139</span><span class="w">    </span>gitshow<span class="w"> </span>WebSite/CommunicationTheory/ChannelCoding/CyclicRedundancyCheckCodes<span class="p">;</span><span class="w">                       </span>continueOrQuit<span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$?</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">else</span><span class="w"> </span>clear<span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">fi</span>
+<span class="linenos">140</span><span class="w">    </span>gitshow<span class="w"> </span>WebSite/CommunicationTheory/PseudoNoiseSequences<span class="p">;</span><span class="w">                                           </span>continueOrQuit<span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$?</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">else</span><span class="w"> </span>clear<span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">fi</span>
+<span class="linenos">141</span><span class="w">    </span>gitshow<span class="w"> </span>WebSite/ComputerScience/DevelopmentEnvironment<span class="p">;</span><span class="w">                                             </span>continueOrQuit<span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$?</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">else</span><span class="w"> </span>clear<span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">fi</span>
+<span class="linenos">142</span><span class="w">    </span>gitshow<span class="w"> </span>WebSite/Mathematics/SignalProcessing/FastFourierTransform<span class="p">;</span><span class="w">                                  </span>continueOrQuit<span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$?</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">else</span><span class="w"> </span>clear<span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">fi</span>
+<span class="linenos">143</span><span class="w">    </span>gitshow<span class="w"> </span>WebSite/Finance<span class="p">;</span><span class="w">                                                                            </span>continueOrQuit<span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$?</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">else</span><span class="w"> </span>clear<span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">fi</span>
+<span class="linenos">144</span><span class="w">    </span>gitshow<span class="w"> </span>WebSite/ComputerScience/Automata/Life<span class="p">;</span><span class="w">                                                      </span>continueOrQuit<span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$?</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">else</span><span class="w"> </span>clear<span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">fi</span>
+<span class="linenos">145</span><span class="w">    </span>gitshow<span class="w"> </span>WebSite/ComputerScience/Compiler/ParserGeneratorAndParser<span class="p">;</span><span class="w">                                  </span>continueOrQuit<span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$?</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">else</span><span class="w"> </span>clear<span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">fi</span>
+<span class="linenos">146</span><span class="w">    </span>gitshow<span class="w"> </span>WebSite/Mathematics/AbstractAlgebra/PrimitivePolynomials<span class="p">;</span><span class="w">                                   </span>continueOrQuit<span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$?</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">else</span><span class="w"> </span>clear<span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">fi</span>
+<span class="linenos">147</span><span class="w">    </span>gitshow<span class="w"> </span>WebSite/private<span class="p">;</span><span class="w">                                                                            </span>continueOrQuit<span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$?</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">else</span><span class="w"> </span>clear<span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">fi</span>
+<span class="linenos">148</span><span class="w">    </span>gitshow<span class="w"> </span>WebSite/WebPageDesign<span class="p">;</span><span class="w">                                                                      </span>continueOrQuit<span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$?</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">else</span><span class="w"> </span>clear<span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">fi</span>
+<span class="linenos">149</span><span class="o">}</span>
+<span class="linenos">150</span>
+<span class="linenos">151</span>
+<span class="linenos">152</span><span class="c1">#------------- Blender ------------------------------------------------</span>
+<span class="linenos">153</span>
+<span class="linenos">154</span><span class="c1"># Developer version compiled from source.</span>
+<span class="linenos">155</span><span class="nb">alias</span><span class="w"> </span><span class="nv">blender</span><span class="o">=</span><span class="s1">&#39;/Users/seanoconnor/blender-git/build_darwin/bin/Blender.app/Contents/MacOS/Blender&#39;</span>
+<span class="linenos">156</span>
+<span class="linenos">157</span><span class="c1">#------------- Set prompt ---------------------------------------------</span>
+<span class="linenos">158</span><span class="c1">#</span>
+<span class="linenos">159</span><span class="c1"># Define colors for the text in a prompt.</span>
+<span class="linenos">160</span><span class="c1">#</span>
+<span class="linenos">161</span><span class="nv">startcolor</span><span class="o">=</span><span class="s2">&quot;\[\e[&quot;</span>
+<span class="linenos">162</span><span class="nv">black</span><span class="o">=</span><span class="s2">&quot;30&quot;</span>
+<span class="linenos">163</span><span class="nv">red</span><span class="o">=</span><span class="s2">&quot;31&quot;</span>
+<span class="linenos">164</span><span class="nv">green</span><span class="o">=</span><span class="s2">&quot;32&quot;</span>
+<span class="linenos">165</span><span class="nv">yellow</span><span class="o">=</span><span class="s2">&quot;33&quot;</span>
+<span class="linenos">166</span><span class="nv">blue</span><span class="o">=</span><span class="s2">&quot;34&quot;</span>
+<span class="linenos">167</span><span class="nv">magenta</span><span class="o">=</span><span class="s2">&quot;35&quot;</span>
+<span class="linenos">168</span><span class="nv">teal</span><span class="o">=</span><span class="s2">&quot;36&quot;</span>
+<span class="linenos">169</span><span class="nv">white</span><span class="o">=</span><span class="s2">&quot;37&quot;</span>
+<span class="linenos">170</span><span class="nv">separator</span><span class="o">=</span><span class="s2">&quot;;&quot;</span>
+<span class="linenos">171</span><span class="nv">blackbackground</span><span class="o">=</span><span class="s2">&quot;40&quot;</span>
+<span class="linenos">172</span><span class="nv">redbackground</span><span class="o">=</span><span class="s2">&quot;41&quot;</span>
+<span class="linenos">173</span><span class="nv">greenbackground</span><span class="o">=</span><span class="s2">&quot;42&quot;</span>
+<span class="linenos">174</span><span class="nv">yellowbackground</span><span class="o">=</span><span class="s2">&quot;43&quot;</span>
+<span class="linenos">175</span><span class="nv">bluebackground</span><span class="o">=</span><span class="s2">&quot;44&quot;</span>
+<span class="linenos">176</span><span class="nv">magentabackground</span><span class="o">=</span><span class="s2">&quot;45&quot;</span>
+<span class="linenos">177</span><span class="nv">tealbackground</span><span class="o">=</span><span class="s2">&quot;46&quot;</span>
+<span class="linenos">178</span><span class="nv">whitebackground</span><span class="o">=</span><span class="s2">&quot;47&quot;</span>
+<span class="linenos">179</span><span class="nv">reset</span><span class="o">=</span><span class="s2">&quot;0&quot;</span>
+<span class="linenos">180</span><span class="nv">boldtext</span><span class="o">=</span><span class="s2">&quot;1&quot;</span>
+<span class="linenos">181</span><span class="nv">underline</span><span class="o">=</span><span class="s2">&quot;4&quot;</span>
+<span class="linenos">182</span><span class="nv">blink</span><span class="o">=</span><span class="s2">&quot;5&quot;</span>
+<span class="linenos">183</span><span class="nv">inverted</span><span class="o">=</span><span class="s2">&quot;7&quot;</span>
+<span class="linenos">184</span><span class="nv">endcolor</span><span class="o">=</span><span class="s2">&quot;m\]&quot;</span>
+<span class="linenos">185</span><span class="nv">resetcolor</span><span class="o">=</span><span class="s2">&quot;\e[0m&quot;</span>
+<span class="linenos">186</span><span class="nv">whiteonblue</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">startcolor</span><span class="si">}${</span><span class="nv">white</span><span class="si">}${</span><span class="nv">separator</span><span class="si">}${</span><span class="nv">bluebackground</span><span class="si">}${</span><span class="nv">endcolor</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="linenos">187</span><span class="nv">redonblue</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">startcolor</span><span class="si">}${</span><span class="nv">red</span><span class="si">}${</span><span class="nv">separator</span><span class="si">}${</span><span class="nv">bluebackground</span><span class="si">}${</span><span class="nv">endcolor</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="linenos">188</span>
+<span class="linenos">189</span><span class="c1"># Set the prompt to</span>
+<span class="linenos">190</span><span class="c1"># time \@, date \d, user name \u, host name \h, current directory \w</span>
+<span class="linenos">191</span><span class="c1"># \W basename of current directory, \$ if UID = 0 (root), use # instead of $</span>
+<span class="linenos">192</span><span class="nb">export</span><span class="w"> </span><span class="nv">PS1</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">redonblue</span><span class="si">}</span><span class="s2">\u:</span><span class="si">${</span><span class="nv">whiteonblue</span><span class="si">}</span><span class="s2">\w</span><span class="si">${</span><span class="nv">resetcolor</span><span class="si">}</span><span class="s2">\$ &quot;</span>
+<span class="linenos">193</span><span class="c1">###echo ${PS1}</span>
+<span class="linenos">194</span>
+<span class="linenos">195</span>
+<span class="linenos">196</span><span class="c1">#------------- Shell options ------------------------------------------------</span>
+<span class="linenos">197</span><span class="c1">#</span>
+<span class="linenos">198</span><span class="c1"># Set vi edit mode for the command line.</span>
+<span class="linenos">199</span><span class="c1"># Hit &lt;ESC&gt; to go into vi&#39;s edit command mode:</span>
+<span class="linenos">200</span><span class="c1">#   h   Move cursor left</span>
+<span class="linenos">201</span><span class="c1">#   l   Move cursor right</span>
+<span class="linenos">202</span><span class="c1">#   A   Move cursor to end of line and put in insert mode</span>
+<span class="linenos">203</span><span class="c1">#   0   (zero) Move cursor to beginning of line (doesn&#39;t put in insert mode)</span>
+<span class="linenos">204</span><span class="c1">#   i   Put into insert mode at current position</span>
+<span class="linenos">205</span><span class="c1">#   a   Put into insert mode after current position</span>
+<span class="linenos">206</span><span class="c1">#   dd  Delete line (saved for pasting)</span>
+<span class="linenos">207</span><span class="c1">#   D   Delete text after current cursor position (saved for pasting)</span>
+<span class="linenos">208</span><span class="c1">#   p   Paste text that was deleted</span>
+<span class="linenos">209</span><span class="c1">#   j   Move up through history commands</span>
+<span class="linenos">210</span><span class="c1">#   k   Move down through history commands</span>
+<span class="linenos">211</span><span class="c1">#   u   Undo</span>
+<span class="linenos">212</span><span class="nb">set</span><span class="w"> </span>-o<span class="w"> </span>vi
+<span class="linenos">213</span>
+<span class="linenos">214</span><span class="c1"># Don&#39;t wait for job termination notification</span>
+<span class="linenos">215</span><span class="nb">set</span><span class="w"> </span>-o<span class="w"> </span>notify
+<span class="linenos">216</span>
+<span class="linenos">217</span><span class="c1"># Don&#39;t use ^D to exit</span>
+<span class="linenos">218</span><span class="nb">set</span><span class="w"> </span>-o<span class="w"> </span>ignoreeof
+<span class="linenos">219</span>
+<span class="linenos">220</span><span class="c1"># Use case-insensitive filename globbing</span>
+<span class="linenos">221</span><span class="nb">shopt</span><span class="w"> </span>-s<span class="w"> </span>nocaseglob
+<span class="linenos">222</span>
+<span class="linenos">223</span><span class="c1"># Make bash append rather than overwrite the history on disk</span>
+<span class="linenos">224</span><span class="nb">shopt</span><span class="w"> </span>-s<span class="w"> </span>histappend
+<span class="linenos">225</span>
+<span class="linenos">226</span><span class="c1"># When changing directory small typos can be ignored by bash</span>
+<span class="linenos">227</span><span class="c1"># for example, cd /vr/lgo/apaache would find /var/log/apache</span>
+<span class="linenos">228</span><span class="nb">shopt</span><span class="w"> </span>-s<span class="w"> </span>cdspell
+<span class="linenos">229</span>
+<span class="linenos">230</span><span class="nb">shopt</span><span class="w"> </span>-s<span class="w"> </span>cdable_vars
+<span class="linenos">231</span>
+<span class="linenos">232</span><span class="c1">#------------- Completion options ------------------------------------------------</span>
+<span class="linenos">233</span><span class="c1">#</span>
+<span class="linenos">234</span><span class="c1"># These completion tuning parameters change the</span>
+<span class="linenos">235</span><span class="c1"># default behavior of bash_completion:</span>
+<span class="linenos">236</span>
+<span class="linenos">237</span><span class="c1"># Define to avoid stripping description in --option=description of &#39;./configure --help&#39;</span>
+<span class="linenos">238</span><span class="nv">COMP_CONFIGURE_HINTS</span><span class="o">=</span><span class="m">1</span>
+<span class="linenos">239</span>
+<span class="linenos">240</span><span class="c1"># Define to avoid flattening internal contents of tar files</span>
+<span class="linenos">241</span><span class="nv">COMP_TAR_INTERNAL_PATHS</span><span class="o">=</span><span class="m">1</span>
+<span class="linenos">242</span>
+<span class="linenos">243</span><span class="c1"># If this shell is interactive, turn on programmable completion enhancements.</span>
+<span class="linenos">244</span><span class="c1"># Any completions you add in ~/.bash_completion are sourced last.</span>
+<span class="linenos">245</span><span class="k">case</span><span class="w"> </span><span class="nv">$-</span><span class="w"> </span><span class="k">in</span>
+<span class="linenos">246</span><span class="w">  </span>*i*<span class="o">)</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span>-f<span class="w"> </span>/etc/bash_completion<span class="w"> </span><span class="o">]]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>.<span class="w"> </span>/etc/bash_completion<span class="w"> </span><span class="p">;;</span>
+<span class="linenos">247</span><span class="k">esac</span>
+<span class="linenos">248</span>
+<span class="linenos">249</span>
+<span class="linenos">250</span><span class="c1">#------------- History options ------------------------------------------------</span>
+<span class="linenos">251</span><span class="c1">#</span>
+<span class="linenos">252</span><span class="c1"># Don&#39;t put duplicate lines in the history.</span>
+<span class="linenos">253</span><span class="nb">export</span><span class="w"> </span><span class="nv">HISTCONTROL</span><span class="o">=</span><span class="s2">&quot;ignoredups&quot;</span>
+<span class="linenos">254</span>
+<span class="linenos">255</span><span class="c1"># Ignore some controlling instructions</span>
+<span class="linenos">256</span><span class="nb">export</span><span class="w"> </span><span class="nv">HISTIGNORE</span><span class="o">=</span><span class="s2">&quot;ls:ls *:[   ]*:&amp;:cd:cd ..:exit:hi:s:f:m:um&quot;</span>
+<span class="linenos">257</span>
+<span class="linenos">258</span><span class="c1"># Whenever displaying the prompt, write the previous line to disk</span>
+<span class="linenos">259</span><span class="nb">export</span><span class="w"> </span><span class="nv">PROMPT_COMMAND</span><span class="o">=</span><span class="s2">&quot;history -a&quot;</span>
+<span class="linenos">260</span>
+<span class="linenos">261</span>
+<span class="linenos">262</span><span class="c1">#------------- Aliases ------------------------------------------------</span>
+<span class="linenos">263</span><span class="c1">#</span>
+<span class="linenos">264</span><span class="c1">#   If these are enabled they will be used instead of any instructions</span>
+<span class="linenos">265</span><span class="c1">#   they may mask.  For example, alias rm=&#39;rm -i&#39; will mask the rm</span>
+<span class="linenos">266</span><span class="c1">#   application.</span>
+<span class="linenos">267</span><span class="c1">#</span>
+<span class="linenos">268</span><span class="c1">#   To override the alias instruction use a \ before, ie</span>
+<span class="linenos">269</span><span class="c1">#   \rm will call the real rm not the alias.</span>
+<span class="linenos">270</span><span class="c1">#</span>
+<span class="linenos">271</span><span class="c1">#   To see all aliases, type alias.</span>
+<span class="linenos">272</span><span class="c1">#   Use unalias to remove a definition.</span>
+<span class="linenos">273</span>
+<span class="linenos">274</span><span class="c1"># Interactive operation...</span>
+<span class="linenos">275</span><span class="nb">alias</span><span class="w"> </span><span class="nv">rm</span><span class="o">=</span><span class="s1">&#39;rm -i&#39;</span>
+<span class="linenos">276</span><span class="nb">alias</span><span class="w"> </span><span class="nv">cp</span><span class="o">=</span><span class="s1">&#39;cp -i&#39;</span>
+<span class="linenos">277</span><span class="nb">alias</span><span class="w"> </span><span class="nv">mv</span><span class="o">=</span><span class="s1">&#39;mv -i&#39;</span>
+<span class="linenos">278</span><span class="nb">alias</span><span class="w"> </span><span class="nv">up</span><span class="o">=</span><span class="s1">&#39;cd ..&#39;</span>
+<span class="linenos">279</span>
+<span class="linenos">280</span><span class="c1"># Default to human readable figures</span>
+<span class="linenos">281</span><span class="nb">alias</span><span class="w"> </span><span class="nv">df</span><span class="o">=</span><span class="s1">&#39;df -h&#39;</span>
+<span class="linenos">282</span><span class="nb">alias</span><span class="w"> </span><span class="nv">du</span><span class="o">=</span><span class="s1">&#39;du -hac&#39;</span>
+<span class="linenos">283</span>
+<span class="linenos">284</span><span class="c1"># Misc :)</span>
+<span class="linenos">285</span><span class="nb">alias</span><span class="w"> </span><span class="nv">less</span><span class="o">=</span><span class="s1">&#39;less -r&#39;</span><span class="w">                          </span><span class="c1"># raw control characters</span>
+<span class="linenos">286</span><span class="nb">alias</span><span class="w"> </span><span class="nv">whence</span><span class="o">=</span><span class="s1">&#39;type -a&#39;</span><span class="w">                        </span><span class="c1"># where, of a sort</span>
+<span class="linenos">287</span><span class="nb">alias</span><span class="w"> </span><span class="nv">grep</span><span class="o">=</span><span class="s1">&#39;grep --color&#39;</span><span class="w">                     </span><span class="c1"># show differences in colour</span>
+<span class="linenos">288</span><span class="nb">alias</span><span class="w"> </span><span class="nv">hi</span><span class="o">=</span><span class="nb">history</span>
+<span class="linenos">289</span>
+<span class="linenos">290</span><span class="c1"># Some shortcuts for different directory listings</span>
+<span class="linenos">291</span><span class="nb">alias</span><span class="w"> </span><span class="nv">ls</span><span class="o">=</span><span class="s1">&#39;ls -hF ${ls_color_option}&#39;</span>
+<span class="linenos">292</span><span class="nb">alias</span><span class="w"> </span><span class="nv">dir</span><span class="o">=</span><span class="s1">&#39;ls --color=auto --format=vertical&#39;</span>
+<span class="linenos">293</span><span class="nb">alias</span><span class="w"> </span><span class="nv">ll</span><span class="o">=</span><span class="s1">&#39;ls -l&#39;</span><span class="w">                              </span><span class="c1"># long list</span>
+<span class="linenos">294</span><span class="nb">alias</span><span class="w"> </span><span class="nv">la</span><span class="o">=</span><span class="s1">&#39;ls -A&#39;</span><span class="w">                              </span><span class="c1"># all but . and ..</span>
+<span class="linenos">295</span><span class="nb">alias</span><span class="w"> </span><span class="nv">l</span><span class="o">=</span><span class="s1">&#39;ls -CF&#39;</span><span class="w">                              </span><span class="c1">#</span>
+<span class="linenos">296</span>
+<span class="linenos">297</span>
+<span class="linenos">298</span><span class="c1">#------------- Utility functions ------------------------------------------------</span>
+<span class="linenos">299</span>
+<span class="linenos">300</span><span class="c1"># Push and pop directory without error messages.</span>
+<span class="linenos">301</span><span class="k">function</span><span class="w"> </span>pushds
+<span class="linenos">302</span><span class="o">{</span>
+<span class="linenos">303</span><span class="w">    </span><span class="nb">command</span><span class="w"> </span><span class="nb">pushd</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>/dev/null
+<span class="linenos">304</span><span class="o">}</span>
+<span class="linenos">305</span>
+<span class="linenos">306</span><span class="k">function</span><span class="w"> </span>popds
+<span class="linenos">307</span><span class="o">{</span>
+<span class="linenos">308</span><span class="w">    </span><span class="nb">command</span><span class="w"> </span><span class="nb">popd</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>/dev/null
+<span class="linenos">309</span><span class="o">}</span>
+<span class="linenos">310</span>
+<span class="linenos">311</span><span class="c1"># Recursive search for a string in a file.</span>
+<span class="linenos">312</span><span class="k">function</span><span class="w"> </span>grepall<span class="o">()</span>
+<span class="linenos">313</span><span class="o">{</span>
+<span class="linenos">314</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$#</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span>
+<span class="linenos">315</span><span class="w">    </span><span class="k">then</span>
+<span class="linenos">316</span><span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Usage:  grepall &lt;string&gt;&quot;</span>
+<span class="linenos">317</span><span class="w">    </span><span class="k">fi</span>
+<span class="linenos">318</span>
+<span class="linenos">319</span><span class="w">    </span><span class="c1"># Grab the function argument, bash style.</span>
+<span class="linenos">320</span><span class="w">    </span><span class="nv">pat</span><span class="o">=</span><span class="nv">$1</span>
+<span class="linenos">321</span>
+<span class="linenos">322</span><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Searching all subdirectories for pattern </span><span class="si">${</span><span class="nv">pat</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="linenos">323</span>
+<span class="linenos">324</span><span class="w">    </span>find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span><span class="s1">&#39;*.[ch]&#39;</span><span class="w">   </span>-exec<span class="w"> </span>grep<span class="w"> </span>-iH<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">pat</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="s1">&#39;;&#39;</span>
+<span class="linenos">325</span><span class="w">    </span>find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span><span class="s1">&#39;*.hpp&#39;</span><span class="w">    </span>-exec<span class="w"> </span>grep<span class="w"> </span>-iH<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">pat</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="s1">&#39;;&#39;</span>
+<span class="linenos">326</span><span class="w">    </span>find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span><span class="s1">&#39;*.cpp&#39;</span><span class="w">    </span>-exec<span class="w"> </span>grep<span class="w"> </span>-iH<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">pat</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="s1">&#39;;&#39;</span>
+<span class="linenos">327</span><span class="w">    </span>find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span><span class="s1">&#39;*.py&#39;</span><span class="w">     </span>-exec<span class="w"> </span>grep<span class="w"> </span>-iH<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">pat</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="s1">&#39;;&#39;</span>
+<span class="linenos">328</span><span class="w">    </span>find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span><span class="s1">&#39;*.lsp&#39;</span><span class="w">    </span>-exec<span class="w"> </span>grep<span class="w"> </span>-iH<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">pat</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="s1">&#39;;&#39;</span>
+<span class="linenos">329</span><span class="w">    </span>find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span><span class="s1">&#39;*.m&#39;</span><span class="w">      </span>-exec<span class="w"> </span>grep<span class="w"> </span>-iH<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">pat</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="s1">&#39;;&#39;</span>
+<span class="linenos">330</span><span class="w">    </span>find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span><span class="s1">&#39;*.js&#39;</span><span class="w">     </span>-exec<span class="w"> </span>grep<span class="w"> </span>-iH<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">pat</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="s1">&#39;;&#39;</span>
+<span class="linenos">331</span><span class="w">    </span>find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span><span class="s1">&#39;*.java&#39;</span><span class="w">   </span>-exec<span class="w"> </span>grep<span class="w"> </span>-iH<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">pat</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="s1">&#39;;&#39;</span>
+<span class="linenos">332</span><span class="w">    </span>find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span><span class="s1">&#39;*.pl&#39;</span><span class="w">     </span>-exec<span class="w"> </span>grep<span class="w"> </span>-iH<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">pat</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="s1">&#39;;&#39;</span>
+<span class="linenos">333</span><span class="w">    </span>find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span><span class="s1">&#39;*.prl&#39;</span><span class="w">    </span>-exec<span class="w"> </span>grep<span class="w"> </span>-iH<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">pat</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="s1">&#39;;&#39;</span>
+<span class="linenos">334</span><span class="w">    </span>find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span><span class="s1">&#39;*.html&#39;</span><span class="w">   </span>-exec<span class="w"> </span>grep<span class="w"> </span>-iH<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">pat</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="s1">&#39;;&#39;</span>
+<span class="linenos">335</span><span class="w">    </span>find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span><span class="s1">&#39;*.css&#39;</span><span class="w">    </span>-exec<span class="w"> </span>grep<span class="w"> </span>-iH<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">pat</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="s1">&#39;;&#39;</span>
+<span class="linenos">336</span><span class="w">    </span>find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span><span class="s1">&#39;makefile&#39;</span><span class="w"> </span>-exec<span class="w"> </span>grep<span class="w"> </span>-iH<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">pat</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="s1">&#39;;&#39;</span>
+<span class="linenos">337</span><span class="w">    </span>find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span><span class="s1">&#39;*.dat&#39;</span><span class="w">    </span>-exec<span class="w"> </span>grep<span class="w"> </span>-iH<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">pat</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="s1">&#39;;&#39;</span>
+<span class="linenos">338</span><span class="w">    </span>find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span><span class="s1">&#39;*.txt&#39;</span><span class="w">    </span>-exec<span class="w"> </span>grep<span class="w"> </span>-iH<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">pat</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="s1">&#39;;&#39;</span>
+<span class="linenos">339</span><span class="o">}</span>
+<span class="linenos">340</span>
+<span class="linenos">341</span><span class="k">function</span><span class="w"> </span>touchall<span class="o">()</span>
+<span class="linenos">342</span><span class="o">{</span>
+<span class="linenos">343</span><span class="w">    </span>find<span class="w"> </span>.<span class="w"> </span>-exec<span class="w"> </span>touch<span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="s1">&#39;;&#39;</span>
+<span class="linenos">344</span><span class="o">}</span>
+<span class="linenos">345</span>
+<span class="linenos">346</span><span class="k">function</span><span class="w"> </span>testOptions<span class="o">()</span>
+<span class="linenos">347</span><span class="o">{</span>
+<span class="linenos">348</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$#</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span>
+<span class="linenos">349</span><span class="w">    </span><span class="k">then</span>
+<span class="linenos">350</span><span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Number of arguments to testOptions is </span><span class="nv">$#</span><span class="s2">&quot;</span>
+<span class="linenos">351</span><span class="w">    </span><span class="k">fi</span>
+<span class="linenos">352</span>
+<span class="linenos">353</span><span class="w">    </span><span class="c1"># No spaces around the equals allowed in bash!</span>
+<span class="linenos">354</span><span class="w">    </span><span class="nv">a1</span><span class="o">=</span><span class="nv">$1</span>
+<span class="linenos">355</span>
+<span class="linenos">356</span><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;You said |</span><span class="si">${</span><span class="nv">a1</span><span class="si">}</span><span class="s2">|&quot;</span>
+<span class="linenos">357</span>
+<span class="linenos">358</span><span class="w">    </span><span class="c1"># Compare the first 3 letters.</span>
+<span class="linenos">359</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">a1</span><span class="p">:</span><span class="nv">0</span><span class="p">:</span><span class="nv">3</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;tes&quot;</span><span class="w"> </span><span class="o">]</span>
+<span class="linenos">360</span><span class="w">    </span><span class="k">then</span>
+<span class="linenos">361</span><span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;You said testOptions tes&quot;</span>
+<span class="linenos">362</span><span class="w">    </span><span class="k">else</span>
+<span class="linenos">363</span><span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;What did you say?&quot;</span>
+<span class="linenos">364</span><span class="w">    </span><span class="k">fi</span>
+<span class="linenos">365</span><span class="o">}</span>
+<span class="linenos">366</span>
+<span class="linenos">367</span><span class="c1"># Launch gvim editor.</span>
+<span class="linenos">368</span><span class="k">function</span><span class="w"> </span>gvim<span class="o">()</span>
+<span class="linenos">369</span><span class="o">{</span>
+<span class="linenos">370</span><span class="w">    </span><span class="c1"># No file name given?</span>
+<span class="linenos">371</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$#</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span>
+<span class="linenos">372</span><span class="w">    </span><span class="k">then</span>
+<span class="linenos">373</span><span class="w">        </span><span class="c1"># Remove the old file.</span>
+<span class="linenos">374</span><span class="w">        </span><span class="nv">fileName</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span><span class="s2">/temp.txt&quot;</span>
+<span class="linenos">375</span><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-f<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">fileName</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="linenos">376</span><span class="w">            </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Removing file </span><span class="si">${</span><span class="nv">fileName</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="linenos">377</span><span class="w">            </span>rm<span class="w"> </span>-rf<span class="w"> </span><span class="si">${</span><span class="nv">fileName</span><span class="si">}</span>
+<span class="linenos">378</span><span class="w">        </span><span class="k">fi</span>
+<span class="linenos">379</span>
+<span class="linenos">380</span><span class="w">        </span><span class="c1"># Remove any swap file.</span>
+<span class="linenos">381</span><span class="w">        </span><span class="nv">fileNameSwap</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span><span class="s2">.vim/.swp/temp.txt.swp&quot;</span>
+<span class="linenos">382</span><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-f<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">fileNameSwap</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="linenos">383</span><span class="w">            </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Removing swap file </span><span class="si">${</span><span class="nv">fileNameSwap</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="linenos">384</span><span class="w">            </span>rm<span class="w"> </span>-rf<span class="w"> </span><span class="si">${</span><span class="nv">fileNameSwap</span><span class="si">}</span>
+<span class="linenos">385</span><span class="w">        </span><span class="k">fi</span>
+<span class="linenos">386</span>
+<span class="linenos">387</span><span class="w">        </span><span class="c1"># Create a new file.</span>
+<span class="linenos">388</span><span class="w">        </span><span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span>&gt;<span class="w"> </span><span class="si">${</span><span class="nv">fileName</span><span class="si">}</span>
+<span class="linenos">389</span><span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Opening temporary file </span><span class="si">${</span><span class="nv">fileName</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="linenos">390</span><span class="w">    </span><span class="k">else</span>
+<span class="linenos">391</span><span class="w">        </span><span class="nv">fileName</span><span class="o">=</span><span class="nv">$1</span>
+<span class="linenos">392</span><span class="w">    </span><span class="k">fi</span>
+<span class="linenos">393</span>
+<span class="linenos">394</span><span class="w">    </span><span class="c1"># Find out which operating system we are running on:  macOS, Linux, Windows/Cygwin, etc.</span>
+<span class="linenos">395</span><span class="w">    </span><span class="nv">uname</span><span class="o">=</span><span class="sb">`</span>uname<span class="w"> </span>-s<span class="sb">`</span>
+<span class="linenos">396</span>
+<span class="linenos">397</span><span class="w">    </span><span class="c1"># macOS.  Tested on my MacBook Pro laptop mid-2015 model with Intel x86_64 architecture.</span>
+<span class="linenos">398</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">uname</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;Darwin&quot;</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="linenos">399</span><span class="w">        </span><span class="nv">platform</span><span class="o">=</span><span class="s2">&quot;macos&quot;</span>
+<span class="linenos">400</span><span class="w">    </span><span class="c1"># Linux.  Tested on my Ubuntu Linux system running on my Cyperpower PC with a 64-bit AMD CPU.</span>
+<span class="linenos">401</span><span class="w">    </span><span class="k">elif</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">uname</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;Linux&quot;</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="linenos">402</span><span class="w">        </span><span class="nv">platform</span><span class="o">=</span><span class="s2">&quot;linux&quot;</span>
+<span class="linenos">403</span><span class="w">    </span><span class="c1"># Cygwin.  For cygwin 2.2 64-bit on Windows 10 64-bit.  Not tested.  From https://en.wikipedia.org/wiki/Uname</span>
+<span class="linenos">404</span><span class="w">    </span><span class="k">elif</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">uname</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;CYGWIN_NT-10.0&quot;</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="linenos">405</span><span class="w">        </span><span class="nv">platform</span><span class="o">=</span><span class="s2">&quot;cygwin&quot;</span>
+<span class="linenos">406</span><span class="w">    </span><span class="k">fi</span>
+<span class="linenos">407</span><span class="w">    </span><span class="c1">#echo &quot;Using platform = ${platform}&quot;</span>
+<span class="linenos">408</span>
+<span class="linenos">409</span><span class="w">    </span><span class="c1"># Launch GUI Vim on my macOS machine.</span>
+<span class="linenos">410</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">platform</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;macos&quot;</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="linenos">411</span><span class="w">        </span>open<span class="w"> </span>-a<span class="w"> </span>MacVim<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">fileName</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="linenos">412</span><span class="w">    </span><span class="c1"># Launch GUI Vim on my Ubuntu Linux machines.</span>
+<span class="linenos">413</span><span class="w">    </span><span class="k">elif</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">platform</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;linux&quot;</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="linenos">414</span><span class="w">        </span>/usr/bin/vim<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">fileName</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="linenos">415</span><span class="w">    </span><span class="c1"># Cygwin</span>
+<span class="linenos">416</span><span class="w">    </span><span class="k">elif</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">platform</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;cygwin&quot;</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="linenos">417</span><span class="w">        </span>/usr/bin/vim<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">fileName</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="linenos">418</span><span class="w">    </span><span class="k">else</span>
+<span class="linenos">419</span><span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Could not get a platform.  Guessing Linux.&quot;</span>
+<span class="linenos">420</span><span class="w">        </span>/usr/bin/vim<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">fileName</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="linenos">421</span><span class="w">    </span><span class="k">fi</span>
+<span class="linenos">422</span><span class="o">}</span>
+<span class="linenos">423</span>
+<span class="linenos">424</span><span class="c1"># Remove temporary files.</span>
+<span class="linenos">425</span><span class="k">function</span><span class="w"> </span>cleanall<span class="o">()</span>
+<span class="linenos">426</span><span class="o">{</span>
+<span class="linenos">427</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$#</span><span class="w"> </span>!<span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span>
+<span class="linenos">428</span><span class="w">    </span><span class="k">then</span>
+<span class="linenos">429</span><span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Usage:  cleanall&quot;</span>
+<span class="linenos">430</span><span class="w">    </span><span class="k">fi</span>
+<span class="linenos">431</span>
+<span class="linenos">432</span><span class="w">    </span>find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span><span class="s1">&#39;*~&#39;</span><span class="w">          </span>-print<span class="w"> </span>-exec<span class="w"> </span>rm<span class="w"> </span>-f<span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="se">\;</span>
+<span class="linenos">433</span><span class="w">    </span>find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span><span class="s1">&#39;._*&#39;</span><span class="w">         </span>-print<span class="w"> </span>-exec<span class="w"> </span>rm<span class="w"> </span>-f<span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="se">\;</span>
+<span class="linenos">434</span><span class="w">    </span>find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span><span class="s1">&#39;.DS_Store*&#39;</span><span class="w">  </span>-print<span class="w"> </span>-exec<span class="w"> </span>rm<span class="w"> </span>-f<span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="se">\;</span>
+<span class="linenos">435</span><span class="w">    </span>find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span><span class="s1">&#39;Thumbs.db&#39;</span><span class="w">   </span>-print<span class="w"> </span>-exec<span class="w"> </span>rm<span class="w"> </span>-f<span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="se">\;</span>
+<span class="linenos">436</span><span class="w">    </span>find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span><span class="s1">&#39;*.swp&#39;</span><span class="w">       </span>-print<span class="w"> </span>-exec<span class="w"> </span>rm<span class="w"> </span>-f<span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="se">\;</span>
+<span class="linenos">437</span><span class="w">    </span>find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span><span class="s1">&#39;*.o&#39;</span><span class="w">         </span>-print<span class="w"> </span>-exec<span class="w"> </span>rm<span class="w"> </span>-f<span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="se">\;</span>
+<span class="linenos">438</span><span class="w">    </span>find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span><span class="s1">&#39;*.class&#39;</span><span class="w">     </span>-print<span class="w"> </span>-exec<span class="w"> </span>rm<span class="w"> </span>-f<span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="se">\;</span>
+<span class="linenos">439</span><span class="w">    </span>find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span><span class="s1">&#39;*.o~$&#39;</span><span class="w">       </span>-print<span class="w"> </span>-exec<span class="w"> </span>rm<span class="w"> </span>-f<span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="se">\;</span>
+<span class="linenos">440</span><span class="w">    </span>find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span><span class="s1">&#39;*.o~&gt;&#39;</span><span class="w">       </span>-print<span class="w"> </span>-exec<span class="w"> </span>rm<span class="w"> </span>-f<span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="se">\;</span>
+<span class="linenos">441</span><span class="w">    </span>find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span><span class="s1">&#39;*.dSYM&#39;</span><span class="w">      </span>-print<span class="w"> </span>-exec<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="se">\;</span>
+<span class="linenos">442</span><span class="w">    </span>find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span><span class="s1">&#39;*.obj&#39;</span><span class="w">       </span>-print<span class="w"> </span>-exec<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="se">\;</span>
+<span class="linenos">443</span><span class="w">    </span>find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span><span class="s1">&#39;*.ncb&#39;</span><span class="w">       </span>-print<span class="w"> </span>-exec<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="se">\;</span>
+<span class="linenos">444</span><span class="w">    </span>find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span><span class="s1">&#39;*.suo&#39;</span><span class="w">       </span>-print<span class="w"> </span>-exec<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="se">\;</span>
+<span class="linenos">445</span><span class="w">    </span>find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span><span class="s1">&#39;*.idb&#39;</span><span class="w">       </span>-print<span class="w"> </span>-exec<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="se">\;</span>
+<span class="linenos">446</span><span class="w">    </span>find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span><span class="s1">&#39;*.pdb&#39;</span><span class="w">       </span>-print<span class="w"> </span>-exec<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="se">\;</span>
+<span class="linenos">447</span><span class="w">    </span>find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span><span class="s1">&#39;*.manifest&#39;</span><span class="w">  </span>-print<span class="w"> </span>-exec<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="se">\;</span>
+<span class="linenos">448</span><span class="w">    </span>find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span><span class="s1">&#39;*.Spotlight-V100&#39;</span><span class="w">  </span>-print<span class="w"> </span>-exec<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="se">\;</span>
+<span class="linenos">449</span><span class="w">    </span>find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span><span class="s1">&#39;*.Trash*&#39;</span><span class="w">          </span>-print<span class="w"> </span>-exec<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="se">\;</span>
+<span class="linenos">450</span><span class="w">    </span>find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span><span class="s1">&#39;*.fseventsd&#39;</span><span class="w">       </span>-print<span class="w"> </span>-exec<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="se">\;</span>
+<span class="linenos">451</span><span class="o">}</span>
+<span class="linenos">452</span>
+<span class="linenos">453</span><span class="c1"># Return status 0 if we hit the SPACE BAR or 1 if we hit q for QUIT.</span>
+<span class="linenos">454</span><span class="k">function</span><span class="w"> </span>continueOrQuit<span class="o">()</span>
+<span class="linenos">455</span><span class="o">{</span>
+<span class="linenos">456</span><span class="w">    </span><span class="c1"># See https://www.computerhope.com/unix/bash/read.htm</span>
+<span class="linenos">457</span><span class="w">    </span><span class="c1">#  -n1   Read only one character.</span>
+<span class="linenos">458</span><span class="w">    </span><span class="c1">#   -s   Don&#39;t echo keystrokes.</span>
+<span class="linenos">459</span><span class="w">    </span><span class="c1">#   -r   Raw input.  read backslashes and don&#39;t interpret them as escape characters.</span>
+<span class="linenos">460</span><span class="w">    </span><span class="c1">#   -p   Print the string prompt first before reading the line.</span>
+<span class="linenos">461</span><span class="w">    </span><span class="nb">read</span><span class="w"> </span>-n1<span class="w"> </span>-s<span class="w"> </span>-r<span class="w"> </span>-p<span class="w"> </span><span class="s1">$&#39;Press space to continue or q to quit...\n&#39;</span><span class="w"> </span>key
+<span class="linenos">462</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$key</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39; &#39;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="linenos">463</span><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="m">0</span>
+<span class="linenos">464</span><span class="w">    </span><span class="k">elif</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$key</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;q&#39;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="linenos">465</span><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="m">1</span>
+<span class="linenos">466</span><span class="w">    </span><span class="k">fi</span>
+<span class="linenos">467</span><span class="w">    </span><span class="nb">printf</span><span class="w"> </span><span class="s2">&quot;\n\n&quot;</span>
+<span class="linenos">468</span><span class="o">}</span>
+</pre></div>
+
+            </article>
+        </body>
+        
+        </html>
+        
