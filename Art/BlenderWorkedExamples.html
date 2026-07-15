@@ -1967,11 +1967,23 @@
 
                     <p>
                     We create three plane meshes.
-                    We subdivide a plane mesh to make it high resolution, then sculpt bumps on it (dark blue).
-                    We create two simple plane meshes with no subdivisions (light blue and purple).
-                    Light blue is the low res target mesh for the baking of the large sculpted bump.  
-                    Purple is the result of combining two normal maps, one for the large bump and another for a small bump which is repeatedly tiled.
-   
+                    </p>
+
+                    <ol>
+                        <li> 
+                            We subdivide a plane mesh to make it very high resolution, ~500,000 faces, then sculpt bumps on it (dark blue).
+                            <img class="centeredsmaller" alt="X" src="Images/HiResBumpMesh.jpg">
+                        </li>
+                        <li> 
+                            The second light blue mesh is the low res target mesh for the baking of the large sculpted bump.  The mesh has only one face with 4 vertices.
+                        </li>
+                        <li> 
+                            Purple is the result of combining two normal maps, one for the large bump and another for a small bump which is repeatedly tiled.  
+                            The meash has only one face with 4 vertices.
+                        </li>
+                    </ol>
+
+                    <p>
                     When baking, you select the dark blue mesh first (orange line), then the light blue mesh (yellow line),
                     <img class="centeredsmaller" alt="X" src="Images/NormalMappingMeshes.jpg">
 
@@ -2007,6 +2019,8 @@
 
                     <img class="centered" alt="X" src="Images/RNMMethodNodeGroup.jpg">
                     </p>
+
+
                     <h6 id="MathematicsOfRNMMethod">Mathematics of RNM Method</h6> 
 
                     <p>
@@ -4441,7 +4455,7 @@ Select the <em class="hotkey">density brush</em>,
                     Copyright &copy; 1986-2026 by Sean Erik O'Connor.
                     All Rights Reserved.
                     &nbsp;&nbsp;&nbsp;
-                    last updated 09 Jul 26.
+                    last updated 14 Jul 26.
                 </p>
             </footer>
         </div> <!-- wrapper -->
