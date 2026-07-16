@@ -1971,15 +1971,15 @@
 
                     <ol>
                         <li> 
-                            We subdivide a plane mesh to make it very high resolution, ~500,000 faces, then sculpt bumps on it (dark blue).
+                            We subdivide a plane mesh to make it very high resolution, ~500,000 faces, then sculpt bumps on it (dark blue mesh).
                             <img class="centeredsmaller" alt="X" src="Images/HiResBumpMesh.jpg">
                         </li>
                         <li> 
                             The second light blue mesh is the low res target mesh for the baking of the large sculpted bump.  The mesh has only one face with 4 vertices.
                         </li>
                         <li> 
-                            Purple is the result of combining two normal maps, one for the large bump and another for a small bump which is repeatedly tiled.  
-                            The meash has only one face with 4 vertices.
+                            The purple mesh is for showing the result of combining two normal maps:  one is the large bump map and the other is for a very small bump which is repeatedly tiled.  
+                            This mesh has only one face with 4 vertices.
                         </li>
                     </ol>
 
@@ -1995,7 +1995,7 @@
 
                     <img class="centeredsmaller" alt="X" src="Images/DarkBlueMeshNodes.jpg">
                    
-                    The light blue mesh as an image texture node, which we select so that it gets the normal image as a target when we bake. 
+                    The light blue mesh has an image texture node, which we select so that it gets the normal image as a target when we bake. 
 
                     <img class="centeredsmaller" alt="X" src="Images/LightBlueMeshNodes.jpg">
 
@@ -2011,11 +2011,12 @@
                     
                     <img class="centeredsmaller" alt="X" src="Images/NormalMapExampleImageTiny.jpg">
 
-                    These are the nodes for the purple mesh,
+                    These are the nodes for the purple mesh.  We tile the small bump image repeatedly to create a larger image.  This detail is added onto
+                    the large bump.
 
                     <img class="centered" alt="X" src="Images/PurpleMeshNodes.jpg">
 
-                    and the normal map mixing nodes,
+                    and the normal map mixing nodes, which are explained in the <a href="#MathematicsOfRNMMethod">next section</a>.
 
                     <img class="centered" alt="X" src="Images/RNMMethodNodeGroup.jpg">
                     </p>
@@ -2911,6 +2912,10 @@
                     $$
 
                     Pulling the square root constant out of the dot product, we get the final rotation
+                    </p>
+
+                    <p class="box">
+                    
                     $$
                     \mathbf{ p_\theta } =
                     \left[ 0, \mathbf{ r_\theta } \right]
@@ -2930,18 +2935,23 @@
                     </p>
 
                     <p>
-                    Normal vectors are encoded in three different ways:
+                    <em class="wavy">Converting normal vector components to Blender node components and normal map image components</em>
+                    </p>
+
+                    <p>
+                    Normal vector components range is $n_x, n_y, n_z \in [-1,1]$  However, normal vectors are encoded in Blender in two different ways:
                     </p>
 
                     <ul>
-                    <li>Normal vector components range is $n_x, n_y, n_z \in [-1,1]$</li>
-                    <li>
-                    On the other hand, in Blender shader nodes, normal vector components range is $n_{x,node}, n_{y,node}, n_{z,node} \in [0, 1]$ using the linear mapping 
-                    $n_{x,y,z} = 2 n_{x,y,z,node} - 1$ and its inverse
-                    $n_{x,y,z,node} = \frac{1}{2} \: n_{x,y,z,node} + \frac{1}{2}$.
-                    </li>
-                    <li>In Blender normal images, normal vector components are in the range $n_{x,image}, n_{y,image}, n_{z,image} \in [0, 256)$ 
-                    using the mapping $n_{x,y,z,image color} = 256 \: n_{x,y,z,node}$</li>
+                        <li>
+                            In shader nodes, normal vector components range is $n_{x,node}, n_{y,node}, n_{z,node} \in [0, 1]$ using the linear mapping 
+                            $n_{x,y,z} = 2 n_{x,y,z,node} - 1$ and its inverse
+                            $n_{x,y,z,node} = \frac{1}{2} \: n_{x,y,z} + \frac{1}{2}$.
+                        </li>
+                        <li>
+                            In normal images, normal vector components are in the range $n_{x,image}, n_{y,image}, n_{z,image} \in [0, 256)$ 
+                            using the mapping $n_{x,y,z,image color} = 256 \: n_{x,y,z,node}$
+                        </li>
                     </ul>
 
                     <p>
@@ -4455,7 +4465,7 @@ Select the <em class="hotkey">density brush</em>,
                     Copyright &copy; 1986-2026 by Sean Erik O'Connor.
                     All Rights Reserved.
                     &nbsp;&nbsp;&nbsp;
-                    last updated 14 Jul 26.
+                    last updated 15 Jul 26.
                 </p>
             </footer>
         </div> <!-- wrapper -->
