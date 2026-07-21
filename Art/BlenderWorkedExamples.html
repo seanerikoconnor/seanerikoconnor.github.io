@@ -1272,14 +1272,16 @@
                             and be sure to read <a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/shader/principled.html#subsurface/">Blender User Manual - Principled BSDF material node.</a>.
                         </li>
                         <li>
-                            <a href="#skinnormalmapping">Skin Texture using Normal Mapping</a> Real skin has pores, bumps and wrinkles, especially on the lips.  Texture painting is too flat 
-                            and not realistic.
+                            <a href="#skinnormalmappingwrinkles">Skin Texture using Normal Mapping - Wrinkes</a> Real skin has pores, bumps and wrinkles, especially on the lips.
+                            Texture painting is too flat and not realistic.
                             So we need to duplicate the head mesh, create a high res copy of it, sculpt the hi res head to make wrinkles and other coarse skin texture.
                             Then we bake this into a normal map image which we feed into all the skin shaders which apply this to the low-res head mesh.
                             In other words, "faking" an actual hi-res mesh with its subtle height displacements, by perturbing the rendering
                             ray tracing equations.
                         </li>
-                    
+                        <li>
+                            <a href="#skinnormalmappingpores">Skin Texture using Normal Mapping - Pores</a>.  We will do a different approach with skin pores.
+                        </li>
                         <li>
                         <i>Displacement Mapping</i> would be more accurate than normal mapping.  In particular, the silhouette of the head 
                         would be realistic, whereas the normal map silhouette will show up incorrectly as flat.  
@@ -1626,7 +1628,7 @@
                 </section>
 
                 <section>
-                    <h4 id="skinnormalmapping">Simulating Pores and Wrinkles with Normal Maps</h4>
+                    <h4 id="skinnormalmappingwrinkles">Simulating Pores and Wrinkles with Normal Maps</h4>
 
                     <p>
                     Texture painting will not be enough for realistic skin.  We need to create a high resolution surface and sculpt it 
@@ -1935,7 +1937,7 @@
                 </section>
 
                 <section>
-                    <h5 id="skinpores">Skin Pores</h5>
+                    <h5 id="skinnormalmappingpores">Skin Pores</h5>
 
                     <p>
                     It would take too much computation to create skin pores by baking a hi res sculpted mesh to a normal map image.
@@ -1946,7 +1948,7 @@
                         <li>Sculpt human skin pores, which are about are about $250\mu \: \text{to} \: 500\mu$, on a plane.  The mesh should be a square 
                             width = height = 1cm = 100 pixels.  Each pixel will then be 0.1 mm wide;  sufficient for the Nyquist sampling theorm.</li>
                         <li>Bake to a normal map image.</li>
-                        <li>Use an image scaling node to tile copies of this small normal image over the entire object.  Make sure pores are
+                        <li>Use generated coordinates mapping and image repeating to tile copies of this small normal image over the entire object.  Make sure pores are
                             positioned randomly enough at the edges so tiling won't show seams.</li>
                     </ul>
                     </p>
@@ -4465,7 +4467,7 @@ Select the <em class="hotkey">density brush</em>,
                     Copyright &copy; 1986-2026 by Sean Erik O'Connor.
                     All Rights Reserved.
                     &nbsp;&nbsp;&nbsp;
-                    last updated 15 Jul 26.
+                    last updated 21 Jul 26.
                 </p>
             </footer>
         </div> <!-- wrapper -->
