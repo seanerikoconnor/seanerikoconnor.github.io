@@ -465,6 +465,8 @@
                     For speed, Eevee doesn't render transparent or reflective objects by default.
                     So the first thing is to enable ray tracing in Eevee.
                     <img class="centeredsmaller" alt="" src="Images/EnableEeveeRaytraceSettings.jpg">
+                    and you will probably need to increase the  <em class="hotkey">Thickness</em> a lot to get transparency such
+                    objects as eyes or glasses.
 
                     You need to tweak a lot of settings to get renders which are closer to Cycles, refer to 
                     <a href="https://www.youtube.com/watch?v=-gW6vk_OuNQ">How to user Eevee by Blender Guru</a>
@@ -2013,8 +2015,8 @@
                     
                     <img class="centeredsmaller" alt="X" src="Images/NormalMapExampleImageTiny.jpg">
 
-                    These are the nodes for the purple mesh.  We tile the small bump image repeatedly to create a larger image.  This detail is added onto
-                    the large bump.
+                    These are the nodes for the purple mesh.  We tile the small bump image repeatedly to create a larger image by scaling the
+                    texture mapping and by repeating the texture image.  This detail is added onto the large bump.
 
                     <img class="centered" alt="X" src="Images/PurpleMeshNodes.jpg">
 
@@ -4470,7 +4472,7 @@ Select the <em class="hotkey">density brush</em>,
                     Copyright &copy; 1986-2026 by Sean Erik O'Connor.
                     All Rights Reserved.
                     &nbsp;&nbsp;&nbsp;
-                    last updated 21 Jul 26.
+                    last updated 26 Jul 26.
                 </p>
             </footer>
         </div> <!-- wrapper -->
