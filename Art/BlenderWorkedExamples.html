@@ -355,8 +355,8 @@
                     One of the most useful add-on <em>Node Wrangler</em>.
                     Now you can <em class="hotkey">Ctrl Shift Left Mouse Button</em> on any shading node to see its output in the 3D window.
                     Node wrangler temporarily routes the output of the selected node, in this example the normal map node,
-                    to a <em>Viewer</em> node,
-                    <img class="centeredsmaller" alt="node wrangler" src="Images/NodeWranglerOnNormalMap.jpg">
+                    to a <em>Viewer</em>node,
+                    <img class="centered" alt="node wrangler" src="Images/NodeWranglerOnNormalMap.jpg">
                     You can click on the final shader node to see the normal output again.
                     </p>
 
@@ -1946,16 +1946,35 @@
                     Instead we do this:
 
                     <ul>
-                        <li>Create a pair of small mesh planes with high resolution.</li>
+                        <li>Create a small mesh plane with high resolution.</li>
                         <li>Sculpt human skin pores, which are about are about $250\mu \: \text{to} \: 500\mu$, on a plane.  The mesh should be a square 
                             width = height = 1cm = 100 pixels.  Each pixel will then be 0.1 mm wide;  sufficient for the Nyquist sampling theorm.</li>
                         <li>Bake to a normal map image.</li>
                         <li>Use generated coordinates mapping and image repeating to tile copies of this small normal image over the entire object.  Make sure pores are
-                            positioned randomly enough at the edges so tiling won't show seams.</li>
+                            positioned randomly enough at the edges so tiling won't show seams.
+                        </li>
+                        <li>
+                        Combine the skin pore normal map with the hi res head normal map for the head.  To combine we use the
+                        <a href="#RNM">Reoriented Normal Mapping</a>
+                        technique.
+                        </li>
+                        <li>
+                        Apply the skin pore normal map over the entire body.
+                        </li>
                     </ul>
                     </p>
 
-                    <h6>Simple Example for Reoriented Normal Mapping (RNM) Method</h6> 
+                    <p>
+                    Here is the normal map node group: 
+                    <img class="centered" alt="X" src="Images/SkinPoresCombined.jpg">
+                    </p>
+
+                    <p>
+                    The skin pores are scaled until they measure the correct diameter.
+                    <img class="centeredsmaller" alt="X" src="Images/SkinPoresNormalRenderEevee.jpg">
+                    </p>
+
+                    <h6 id="RNM">Simple Example for Reoriented Normal Mapping (RNM) Method</h6> 
 
                     <p>
                         I've used the following references:
@@ -4472,7 +4491,7 @@ Select the <em class="hotkey">density brush</em>,
                     Copyright &copy; 1986-2026 by Sean Erik O'Connor.
                     All Rights Reserved.
                     &nbsp;&nbsp;&nbsp;
-                    last updated 26 Jul 26.
+                    last updated 28 Jul 26.
                 </p>
             </footer>
         </div> <!-- wrapper -->
