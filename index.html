@@ -65,10 +65,11 @@
                   <img class="border" src="Images/sinXYPlot.png" alt="Sin( x y ) Image Border.">
             </aside>
 
-           <!-- The main content of this page.  Articles and sections need nonblank headers but I dont' want to
-                display them.  Thus I put a space into them and turn off the display. -->
+           <!-- The main content of this page.  Articles (and sections) need nonblank headers.  I don't want a
+                header in my article, yet HTML validators will complain if I don't have one.  Therefore, I create a dummy 
+               h2 header with a space and turn off the display.  I don't use an h1, since articles are not top level. -->
             <article class="content">
-                    <h3 style="display: none;">&nbsp;</h3> <!-- non displaying empty header to stop complaints from HTML validators. -->
+                    <h2 style="display: none;">&nbsp;</h2>
                     <div class="illustratedparagraph">
                         <p>
                             <!-- Title is the tooltip shown when you hover over the link. -->
@@ -171,7 +172,7 @@
                     Copyright &copy; 1999-2026 by Sean Erik O'Connor.
                     All Rights Reserved.
                     &nbsp;&nbsp;&nbsp;
-                    last updated 29 Jul 26.
+                    last updated 03 Aug 26.
                 </p>
 
                 <!-- Form to search my site with Google.  From Google's free tools web page.  -->
