@@ -1951,7 +1951,8 @@
                             width = height = 1cm = 100 pixels.  Each pixel will then be 0.1 mm wide;  sufficient for the Nyquist sampling theorm.</li>
                         <li>Bake to a normal map image.</li>
                         <li>Use generated coordinates mapping and image repeating to tile copies of this small normal image over the entire object.  Make sure pores are
-                            positioned randomly enough at the edges so tiling won't show seams.
+                            positioned randomly enough at the edges, or periodically continued across the x and y directions, so tiling won't show seams.
+                            We use a body UV map.  Since we tile the image, the UV coordinates extend beyond the body into the head.
                         </li>
                         <li>
                         Combine the skin pore normal map with the hi res head normal map for the head.  To combine we use the
@@ -4491,7 +4492,7 @@ Select the <em class="hotkey">density brush</em>,
                     Copyright &copy; 1986-2026 by Sean Erik O'Connor.
                     All Rights Reserved.
                     &nbsp;&nbsp;&nbsp;
-                    last updated 29 Jul 26.
+                    last updated 05 Jul 26.
                 </p>
             </footer>
         </div> <!-- wrapper -->
