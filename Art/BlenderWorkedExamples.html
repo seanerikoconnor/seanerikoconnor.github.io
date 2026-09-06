@@ -1951,32 +1951,57 @@
                     Instead we do this:
 
                     <ul>
-                        <li>Create a small mesh plane with high resolution.</li>
-                        <li>Sculpt human skin pores, which are about are about $250\mu \: \text{to} \: 500\mu$, or 0.25mm to 0.5mm diameter, on a plane.  The mesh should be a square 
-                            width = height = 1cm = 100 pixels.  Each pixel will then be 0.1 mm wide;  sufficient for the Nyquist sampling theorm.</li>
-                        <li>Bake to a normal map image.</li>
+                        <li>
+                            Create a small mesh plane with high resolution.
+                            <img class="centeredsmallest" alt="X" src="Images/MeshPlane1cm.jpg">
+                        </li>
+                        <li>
+                            Human skin pores are about are about $250\mu \: \text{to} \: 500\mu$, or 0.25mm to 0.5mm diameter, on a plane.  The mesh should be a square 
+                            width = height = 1cm = 100 pixels.  Each pixel will then be 0.1 mm wide;  sufficient for the Nyquist sampling theorm.  Go into 
+                            <em class="hotkey">Edit Mode &#10148; Control -E &#10148; subdivide &#10148; Number of cuts = 100</em>
+                            <img class="centeredsmallest" alt="X" src="Images/SubdivideMesh_EditMode_CtrlE_NumberOfCuts100.jpg">
+                            <img class="centeredsmallest" alt="X" src="Images/SubdividedMesh.jpg">
+                        </li>
+                        <li>
+                        Sculpt pores on the high res mesh (dark blue).  The low res target mesh for normal map baking is the top light blue plane, which has no subdivisions.       
+                        You can measure the distance between hires and lowres meshes to set your bake settings for extrusion and max ray distance.
+                        </li>
+                        <li>
+                            <img class="centeredsmaller" alt="X" src="Images/SculptedHiResPoresOntoLowResMesh.jpg">
+                            Here are my brush settings.
+                            Use xy tiling and tile offset settings to make left/right and top/bottom edges periodic to avoid seams.  
+                            Tinker with the noise texture settings.  I do two low strength brush passes for better uniformity.
+                            <img class="centeredsmallest" alt="X" src="Images/SculpingNoiseBrush.jpg">
+                            <img class="centeredsmallest" alt="X" src="Images/SculptingNoiseBrushSettings1.jpg">
+                            <img class="centeredsmallest" alt="X" src="Images/SculptingNoiseBrushSettings2.jpg">
+                        </li>
+                        <li>
+                            Bake to a normal map image.
+                            <img class="centeredsmallest" alt="X" src="Images/BakingPores.jpg">
+                            <img class="centeredsmallest" alt="X" src="Images/PoresNormalImage.jpg">
+                        </li>
                         <li>Use generated coordinates mapping and image repeating to tile copies of this small normal image over the entire object.  Make sure pores are
                             positioned randomly enough at the edges, or periodically continued across the x and y directions, so tiling won't show seams.
                             We use a body UV map.  Since we tile the image, the UV coordinates extend beyond the body into the head.
                         </li>
                         <li>
-                        Combine the skin pore normal map with the hi res head normal map for the head.  To combine we use the
-                        <a href="#RNM">Reoriented Normal Mapping</a>
-                        technique.
+                            Combine the skin pore normal map with the hi res head normal map for the head.  To combine we use the
+                            <a href="#RNM">Reoriented Normal Mapping</a> technique.
                         </li>
                         <li>
-                        Apply the skin pore normal map over the entire body.
+                            Apply the skin pore normal map over the entire body.
                         </li>
                     </ul>
                     </p>
 
                     <p>
-                    Here is the normal map node group: 
-                    <img class="centered" alt="X" src="Images/SkinPoresCombined.jpeg">
+                    Here is the normal map node group.  
+                    <img class="centered" alt="X" src="Images/SkinPoresCombined.jpeg"
                     </p>
 
                     <p>
-                    The skin pores are scaled until they measure the correct diameter.
+                    Skin pores are scaled until they measure the correct diameter on the object using the measuring tool.
+                    Adjust the Normal Map strength just barely enough to see pores.
                     <img class="centeredsmaller" alt="X" src="Images/SkinPoresNormalRenderEevee.jpg">
                     </p>
 
@@ -4497,7 +4522,7 @@ Select the <em class="hotkey">density brush</em>,
                     Copyright &copy; 1986-2026 by Sean Erik O'Connor.
                     All Rights Reserved.
                     &nbsp;&nbsp;&nbsp;
-                    last updated 10 Aug 26.
+                    last updated 05 Sep 26.
                 </p>
             </footer>
         </div> <!-- wrapper -->
