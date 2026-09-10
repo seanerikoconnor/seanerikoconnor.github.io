@@ -1279,21 +1279,22 @@
                             and be sure to read <a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/shader/principled.html#subsurface/">Blender User Manual - Principled BSDF material node.</a>.
                         </li>
                         <li>
-                            <a href="#skinnormalmappingwrinkles">Skin Texture using Normal Mapping - Wrinkes</a> Real skin has pores, bumps and wrinkles, especially on the lips.
-                            Texture painting is too flat and not realistic.
-                            So we need to duplicate the head mesh, create a high res copy of it, sculpt the hi res head to make wrinkles and other coarse skin texture.
-                            Then we bake this into a normal map image which we feed into all the skin shaders which apply this to the low-res head mesh.
-                            In other words, "faking" an actual hi-res mesh with its subtle height displacements, by perturbing the rendering
-                            ray tracing equations.
+                            <a href="#skinnormalmappingpores">Skin Texture using Normal Mapping - Pores</a> 
+                            Real skin has pores, bumps and wrinkles which deform the surface.
+                            Rather than sculpting these on a high res body mesh, we take a shortcut:
+                            we sculpt pores on a small piece of high res mesh, then bake to a small piece of low res mesh, generating a small normal image which is tiled to the entire low res body mesh.
+                            In other words, we are "faking" an actual hi-res mesh with its subtle height displacements, by perturbing the rendering ray tracing equations.
                         </li>
                         <li>
-                            <a href="#skinnormalmappingpores">Skin Texture using Normal Mapping - Pores</a>.  We will do a different approach with skin pores.
+                            <a href="#skinnormalmappingwrinkles">Skin Texture using Normal Mapping - Lips</a> 
+                            We duplicate the low res head mesh, create a high res copy of it, then sculpt the hi res head to make wrinkles on the lips.
+                            We bake this onto the low res mesh generating a normal map image which we feed into all the skin shaders.
                         </li>
                         <li>
-                        <i>Displacement Mapping</i> would be more accurate than normal mapping.  In particular, the silhouette of the head 
-                        would be realistic, whereas the normal map silhouette will show up incorrectly as flat.  
-                        But then, I'd have to use a hi-res mesh along with a corresponding hi-res grayscale displacement image where each pixel 
-                        is the delta height of the object mesh.  That would be slow to render, and a hi-res head mesh would be difficult to modify.
+                            <i>Displacement Mapping</i> would be more accurate than normal mapping.  In particular, the silhouette of the head 
+                            would be realistic, whereas the normal map silhouette will show up incorrectly as flat.  
+                            But then, I'd have to use a hi-res mesh along with a corresponding hi-res grayscale displacement image where each pixel 
+                            is the delta height of the object mesh.  That would be slow to render, and a hi-res head mesh would be difficult to modify.
                         </li>
                     </ol>
 
@@ -1635,320 +1636,19 @@
                 </section>
 
                 <section>
-                    <h4 id="skinnormalmappingwrinkles">Simulating Pores and Wrinkles with Normal Maps</h4>
+                    <h5 id="skinnormalmappingpores">Skin Pores using Normal Maps</h5>
 
                     <p>
-                    Texture painting will not be enough for realistic skin.  We need to create a high resolution surface and sculpt it 
-                    with the skin wrinkles.  Skin <a href="#skinpores">pores</a> are handled differently.
-                    We are not going to render a high resolution mesh directly (that would take forever to render).
-                    Instead, we'll cheat by mapping the high resolution surface normals to the low resolution mesh to perturb the
-                    light paths during rendering and make it appear as if we had the actual high res surface.
+                    It would take too much computation to create skin pores by sculping a high resolution mesh.
 
-                    The process is called texture 
-                    <a href="https://docs.blender.org/manual/en/latest/render/cycles/baking.html">Baking</a>.
-                    Good but not perfect:  realism breaks down at sharp viewing angles; in particular the silhouette of the object won't show texture, but will be smooth.
+                    We take a shortcut by creating a small high resolution planar mesh, and a corresponding small low resolution planar mesh, then
+                    <a href="https://docs.blender.org/manual/en/latest/render/cycles/baking.html">Baking</a>
+                    to generate a small normal map image which we tile over the entire body.
+
+                    This is good but not perfect:  realism breaks down at sharp viewing angles; in particular the silhouette of the object won't show texture, but will be smooth.
                     Refer to <a href="https://www.youtube.com/watch?v=0r-cGjVKvGw">Andrew Price Normal Baking Tutorial</a>.
                     Also see the explanation at <a href="https://graphics-programming.org/blog/blender-baking">One True Guide to Baking Materials in Blender</a>.
                     </p>
-
-                    <p>
-                    Instead of retopologizing a high resolution sculpted mesh to create a low resolution mesh, 
-                    I went in the reverse direction by duplicating the low res mesh, and creating a hi res sculpted duplicate.
-
-                    <img class="centeredsmaller" src="Images/NormalMapWorkflow.jpg" alt="">
-                    </p>
-
-                    <nav class="backtotop"><a href="#TopOfPage">Back to top</a></nav>
-                </section>
-
-                <section>
-                    <h5>Creating a Duplicate Hi Res Mesh</h5>
-
-                    <p>
-                    In your <em class="hotkey">Modeling Workspace</em> go into edit mode with <em class="hotkey">TAB</em>, then enable
-                    <em class="hotkey">Face Select Mode</em>
-                    Select any vertex on the the head portion of the mesh, say the cheek, and type <em class="hotkey">L</em> to 
-                    select all connected parts of the mesh bounded by the UV seams (red edges).
-                    Add other connected parts of the head mesh such as ears to the 
-                    selection with <em class="hotkey">SHIFT select</em> on a vertex then <em class="hotkey">L</em>.
-
-                    <img class="centeredsmaller" src="Images/SelectHeadMesh.jpg" alt="">
-
-                    Duplicate the head mesh using <em class="hotkey">SHIFT D</em>, confirm with <em class="hotkey">RETURN</em>, then 
-                    separate the mesh with <em class="hotkey">P separate &#10148; selection</em>.  
-                    Now the new head mesh will show up as separate item in the
-                    <em class="hotkey">Outliner Panel</em>.  It will be displayed on top of the old mesh, 
-                    as you can see by toggling <em class="hotkey">Hide/Unhide</em>
-
-                    <img class="centeredsmaller" src="Images/DuplicateHeadLowResMesh.jpg" alt="">
-                    </p>
-
-                    <p>
-                    <em class="hotkey">Select</em> the hi res head, then <em class="hotkey">Shift Select</em>low res head, 
-                    then parent it with <em class="hotkey">Ctrl P &#10148; Set Parent to Object &#10148; (Keep transform)</em>
-                    This will anchor it in place.  You'll see the <em class="hotkey">Outliner Panel</em> show the parent &#10148; child
-                    relationship.
-                    </p>
-
-                    <p>
-                    <em class="warning">In case you have problems later, try this</em>
-                    Since the high and low resolution meshes must be aligned perfectly in order to map the normals, get rid of any
-                    local transforms by doing 
-                    <em class="hotkey">Ctrl A &#10148; Apply Rotation and Scale</em> 
-                    to both meshes.
-                    </p>
-
-                    <nav class="backtotop"><a href="#TopOfPage">Back to top</a></nav>
-                </section>
-
-                <section>
-                    <h5>Sculpting the Hi Res Mesh</h5>
-
-                    <p>
-                    Go to the <em class="hotkey">Sculpting Workspace</em> and select  <em class="hotkey">Sculpt Mode</em>.
-
-                    <em class="hotkey">Shift H</em> to hide all other objects except the hi-res head.
-                    </p>
-
-                    <p>
-                    This object will only be used for creating the normal map, so delete the materials in 
-                    <em class="hotkey">Material Properties</em>.
-                    Also clear any UV seams and freestyle edges: <em class="hotkey">TAB</em> into edit mode, select the entire mesh with <em class="hotkey">A</em> 
-                    and do <em class="hotkey">Ctrl E &#10148; Clear Seam</em>, then <em class="hotkey">Ctrl E &#10148; Clear Freestyle Edge</em>, then go back into object mode.
-                    The hi res head will appear white now.
-
-                    <img class="centeredsmaller" src="Images/Sculpting.jpg" alt="">
-
-                    At this point, save a copy of this hi res head by doing  <em class="hotkey">Shift D Return</em> then
-                    <em class="hotkey">M</em> to move it to a new collection which you can rename <em class="hotkey">Saved Objects</em>.
-                    Disconnect from the parent using  <em class="hotkey">Alt P &#10148; Clear Parent</em>
-                    Toggle the filters to turn off its display in viewport and render.
-                    If we mess up the next steps, we can recover using this saved object.
-                    </p>
-
-                    <p>
-                        Apply the mirror modifier (which is irreversible, which is why we made a copy of the head), 
-                        and also apply the subsurf modifier.  At this point, go into edit mode to check the mesh resolution.  
-                        If it is not fine enough to support sculping fine detail, select 
-                        <em class="hotkey">Add Modifier &#10148; Generate &#10148; Multiresolution</em>.  
-                        Subdivide 2 or more times to get fine enough 
-                        resolution for the lips when sculpting, and hit <em class="hotkey">Apply</em> to make the subdivisions permanent and
-                        remove the Multiresolution modifier from the modifier stack.  You can always  <em class="hotkey">Ctrl-Z</em> to undo if you                                            have subdivided too much or too little.
-
-                        <img class="centeredsmaller" src="Images/MultiresolutionSettings.jpg" alt="">
-                    </p>
-
-                    <p>
-                        If you enable <em class="hotkey">Edit Mode</em> you can see just how fine the mesh is:
-                    </p>
-
-                    <img class="centeredsmaller" src="Images/HiResHeadWireframe.jpg" alt="">
-
-                    <p>
-                        Go into the <em class="hotkey">Sculpting Workspace</em> and select  <em class="hotkey">Sculpt Mode</em>.
-
-                        Turn off the X-mirror property so you can draw without duplicating your brush strokes in the x-direction.
-                        Select <em>T</em> to bring up the brushes if they are not already present.
-                        Select the <em class="hotkey">Draw Brush</em>
-                        Under <em class="hotkey">Texture</em>, create a new texture for the brush. 
-                        Over in the <em class="hotkey">Properties Panel &#10148; Texture Properties</em>, 
-                        select a noise texture of type <em class="hotkey">Clouds</em>
-                        
-                        <img class="centeredsmaller" src="Images/SculptBrushTexture.jpg" alt="">
-
-                        Adjust the brush radius with <em class="hotkey">F</em> and the mouse.  
-                        Brush strength is <em class="hotkey">Shift F</em>.
-
-                        Sculpt the high res mesh for the head in the area of the lips,  
-
-                        <img class="centeredsmaller" src="Images/LauraHeadHiResHeadSculping.jpg" alt="">
-                    </p>
-
-                    <nav class="backtotop"><a href="#TopOfPage">Back to top</a></nav>
-                </section>
-
-                <section>
-                    <h5>Baking Normals for Skin Coarse Texture</h5>
-                    This has several steps.
-
-                    <h6>Creating the Normal Map Nodes</h6>
-
-                    <p>
-                    Create three new nodes for the normal map in the compositing window with <em class="hotkey">Shift A</em>.
-
-                    <ul>
-                        <li>
-                        In the UV Map node, select the low res head mesh;  normal baking needs to know the coordinate system.
-                        </li>
-
-                        <li>
-                            We'll create the image texture later.  
-                        </li>
-
-                        <li>
-                            Use <em>Tangent Space</em> and leave the <em class="hotkey">Strength</em> later.
-                            Don't connect the output yet --- if you do, you'll get a "circular dependency" warning later when baking.  
-                            If you insist, you <i>can</i> connect the outputs but simply ignore the warning.
-                        </li>
-                    </ul>
-
-                    <img class="centeredsmaller" src="Images/LauraHiResHeadNormalNodes.jpg" alt=""> </p>
-
-                    <p>
-                    Baking assumes we have a UV map for the low res mesh already in place, and we do.  
-                    But since we have multiple UV maps, we will need to explicitly select the UV Map for head to be active.  
-                    Do that in the 
-                    <em class="hotkey">Outliner &#10148; Object Data Properties</em>,
-
-                    <img class="centeredsmaller" src="Images/LauraHiResHeadSelectHeadUVMap.jpg" alt="">
-
-                    Also you need to make visible the layers containing both hi res and low res meshes (or you'll get a warning).
-                    </p>
-
-                    <h6>Create a Blank Hi Res Normal Map Image</h6>
-
-                    <p>
-                    Go to the <em class="hotkey">UV Editing Workspace</em>.  
-
-                    In the in the left pane create a new hi res normal image texture, 4096 x 4096, which is defaulted to black.
-                    You can do math inside Blender's input fields such as typing <em class="hotkey">* 4</em> in the input field.
-                    You can drag downwards to copy the value to other fields.
-                    Give it a name also, "LauraHeadHiRes"
-
-                    <img class="centeredsmaller" src="Images/BlankNormalImage1.jpg" alt="">
-                    <img class="centeredsmaller" src="Images/BlankNormalImage2.jpg" alt="">
-                    <img class="centeredsmaller" src="Images/BlankNormalImage3.jpg" alt="">
-                    <img class="centeredsmaller" src="Images/BlankNormalImage4.jpg" alt="">
-
-                    It's important to have the normal map image loaded in the Image Texture - Normals node and the left pane of the UV Editor show the 
-                    corresponding same name for the active normal map image to avoid getting a warning.
-                    </p>
-
-                    <p>
-                    Hit <em class="hotkey">Alt S</em> to bring up a dialog window, then rename and save the blank image to the /textures folder,
-
-                    <img class="centeredsmaller" src="Images/LauraHiResImageSave.jpg" alt="">
-
-                    Now go to the <em class="hotkey">Shading Workspace</em>.  
-                    Select the normal texture node and open the blank texture image you've just created,
-
-                    <img class="centeredsmaller" src="Images/LauraHiResHeadNormalTextureNodeBlank.jpg" alt="">
-
-                    Select <em class="hotkey">Non-color Data</em> because it's color coded normal vectors components.  
-                    <em class="hotkey">Extend</em> paints normals of zero beyond the normal map image applied to the head.
-                    A bit of trial and error here to avoid the normal map being applied to the rest of the body.
-                    </p>
-
-                    <h6>Baking:  Hi Res Mesh &#10148; Normal Map Image</h6>
-
-                    <p>
-                    In <em class="hotkey">Render Properties &#10148; Bake</em> select <em class="hotkey">Bake Type &#10148; Normal</em>,
-                    <em class="hotkey">Influence &#10148; Space &#10148; Tangent</em>, <em class="hotkey">Selected to Active</em>.
-                    </p>
-
-                    <p>
-                    During baking, rays are cast from the low-res mesh to the high-res mesh.
-                    This assumes the high-res mesh is contained inside the low-res mesh.
-                    Since this won't normally be the case, the <em class="hotkey">Extrusion</em> parameter moves the low-res mesh outwards 
-                    until this condition holds.  I assume your texture is not too extreme, so you can try <em>1cm</em> to begin with.
-                    You'll want to limit the <em class="hotkey">Max Ray Distance</em> to about 2x the extrusion.
-                    If you don't, rays may intercept distant geometry and you'll get a normal map appearing far outside your mesh.
-
-                    <img class="centeredsmaller" src="Images/LauraBakeSettings.jpg" alt="">
-                    </p>
-
-                    <p>
-                    In the 3D viewport panel at the right, first <em class="hotkey">select</em> the hi res head, 
-                    and keeping the mouse in the same spot, <em class="hotkey">shift select</em> the low res head (must be in that order!).  
-                    The active object is the one last selected.  You can look at the outliner panel to confirm the order of the selections are correct by
-                    seeing an orange color for the hi res head and a yellow color for the low res head.
-                    </p>
-
-                    <p>
-                    Make sure your <em class="wavy">texture image node is selected</em> and is named to the blank image created above.
-                    Baking's default output goes to the active texture image node file.
-                    </p>
-
-                    <p>
-                    Now hit the <em class="hotkey">Bake</em> button in the render
-                    panel.  This will take a few minutes.  
-                    Once baking finishes, in the image editor window, hit <em class="hotkey">Alt S</em> to save the image 
-                    (Blender save won't automatically save your images).  
-                    You may see Blender remind you to do the saving right after the bake finishes.
-                    Here is the normal map image:
-
-                    <img class="centeredsmaller" src="Images/LauraBake.jpg" alt="">
-                    </p>
-
-                    <p>
-                    Normals pointing straight up from a flat surface show up as blue;  this is your background color.  
-                    See <a href="#MathematicsOfRNMMethod">mathematics of normals</a> for the normal vector mathematics and color
-                    interpretation.
-                    </p>
-                    
-                    <p>
-                    <em class="warning">Troubleshooting:  If you just see a completely blank blueish image after baking and yet no error messages...</em>
-                    </p>
-
-                    <ul>
-                        <li>
-                            Check that your objects have UV maps, i.e. you've reset and unwrapped vertices in the UV editor, and named the UV map.
-                        </li>
-                        <li>
-                            Meshes must be aligned perfectly in order to map the normals, get rid of any local transforms by doing 
-                            <em class="hotkey">Ctrl A &#10148; Apply Rotation and Scale</em> 
-                            to both meshes.  You'll need to select both meshes!
-                        </li>
-                    </ul>
-
-                    <p>
-                    You will probably have to iterate, so open a new active workspace as an <em class="hotkey">Image Editor</em> window.  
-                    Select the name of the normal map.
-                    After baking the image, you should see fine textured purples, blue and pink, but not large mustard green and red blotches, and
-                    no black holes.
-                    If not, you need to adjust the extrusion and ray distance parameters, and possibly reduce the size of the texture.
-
-                    If you still get artifacts in the normal image, one workaround is to use 
-                    <a href="../ComputerScience/DevelopmentEnvironment/macLinuxComputerSetupForDevelopers.html#GIMP">Gimp</a>,
-                    to paint them out using a clone brush set to the background color (zero normals).
-                    and resave the image.
-                    </p>
-
-                    <p>
-                    <figure style="max-width: 30%"> 
-                        <img src="Images/badNormals.jpg" alt="Bad Normals"> 
-                        <img src="Images/goodNormals.jpg" alt="Good Normals"> 
-                        
-                        <figcaption>Bad vs Good Normals After Adjusting Extrusion and Max Ray Distance Parameters.</figcaption> 
-                    </figure>
-                    </p>
-
-                    <p style="clear:both;">
-                    Go back to the <em class="hotkey">Shading Workspace</em>.  
-                    Reconnect the normal output to the shader nodes inputs,
-
-                    <img class="centeredsmaller" src="Images/ConnectNormalMapNodesToShaders.jpg" alt="">
-                    </p>
-
-                    <h6>Tweaking the Normal Map Strength</h6>
-
-                    <p>
-                    Hide the hi res image with <em class="hotkey">H</em>.
-                    Switch into render mode and adjust the <em class="hotkey">Strength</em> up from zero while rendering.  I finally used a strength of
-                    <em>3.3</em> to show the roughness of the lips but not cause artifacts in the rest of the face.
-
-                    <img class="centeredsmaller" src="Images/NormalMapStrengthTestRender.jpg" alt="">
-                    </p>
-
-                    <nav class="backtotop"><a href="#TopOfPage">Back to top</a></nav>
-                </section>
-
-                <section>
-                    <h5 id="skinnormalmappingpores">Skin Pores</h5>
-
-                    <p>
-                    It would take too much computation to create skin pores by baking a hi res sculpted mesh to a normal map image.
-                    Instead we do this:
 
                     <ul>
                         <li>
@@ -1963,11 +1663,14 @@
                             <img class="centeredsmallest" alt="X" src="Images/SubdividedMesh.jpg">
                         </li>
                         <li>
-                        Sculpt pores on the high res mesh (dark blue).  The low res target mesh for normal map baking is the top light blue plane, which has no subdivisions.       
-                        You can measure the distance between hires and lowres meshes to set your bake settings for extrusion and max ray distance.
+                            Sculpt pores on the high res mesh (dark blue).  The low res target mesh for normal map baking is the top light blue plane, which has no subdivisions.       
+                            Measure the distance between hires and lowres meshes, which is $\approx 0.001$ m.  
+                            Extrusion = 0 because we don't need to inflate the active object;  we have enough separation between low and hi res meshes.  Set the max ray distance to twice that at 0.002m.
+                            Not critical since our rays won't run into any other nearby objects.
+                            <img class="centeredsmaller" alt="X" src="Images/SculptedHiResPoresOntoLowResMesh.jpg">
+                            <img class="centeredsmallest" alt="X" src="Images/BakeSettings.jpg">
                         </li>
                         <li>
-                            <img class="centeredsmaller" alt="X" src="Images/SculptedHiResPoresOntoLowResMesh.jpg">
                             Here are my brush settings.
                             Use xy tiling and tile offset settings to make left/right and top/bottom edges periodic to avoid seams.  
                             Tinker with the noise texture settings.  I do two low strength brush passes for better uniformity.
@@ -3054,6 +2757,304 @@
                     <nav class="backtotop"><a href="#TopOfPage">Back to top</a></nav>
                 </section>
 
+                <section>
+                    <h4 id="skinnormalmappingwrinkles">Skin Wrinkles and Lips using Normal Mappping</h4>
+
+                    <p>
+                    We are not going to sculpt wrinkles and lips and render a high resolution mesh directly (that would take forever to render).
+                    Instead, we'll cheat by mapping high resolution surface normals to a low resolution mesh to perturb the
+                    light paths during rendering and make it appear as if we had the actual high res surface.
+            
+                    Instead of retopologizing a high resolution sculpted mesh to create a low resolution mesh, 
+                    I went in the reverse direction by duplicating the low res mesh, and creating a hi res sculpted duplicate.
+
+                    <img class="centeredsmaller" src="Images/NormalMapWorkflow.jpg" alt="">
+                    </p>
+
+                    <nav class="backtotop"><a href="#TopOfPage">Back to top</a></nav>
+                </section>
+
+                <section>
+                    <h5>Creating a Duplicate Hi Res Mesh</h5>
+
+                    <p>
+                    In your <em class="hotkey">Modeling Workspace</em> go into edit mode with <em class="hotkey">TAB</em>, then enable
+                    <em class="hotkey">Face Select Mode</em>
+                    Select any vertex on the the head portion of the mesh, say the cheek, and type <em class="hotkey">L</em> to 
+                    select all connected parts of the mesh bounded by the UV seams (red edges).
+                    Add other connected parts of the head mesh such as ears to the 
+                    selection with <em class="hotkey">SHIFT select</em> on a vertex then <em class="hotkey">L</em>.
+
+                    <img class="centeredsmaller" src="Images/SelectHeadMesh.jpg" alt="">
+
+                    Duplicate the head mesh using <em class="hotkey">SHIFT D</em>, confirm with <em class="hotkey">RETURN</em>, then 
+                    separate the mesh with <em class="hotkey">P separate &#10148; selection</em>.  
+                    Now the new head mesh will show up as separate item in the
+                    <em class="hotkey">Outliner Panel</em>.  It will be displayed on top of the old mesh, 
+                    as you can see by toggling <em class="hotkey">Hide/Unhide</em>
+
+                    <img class="centeredsmaller" src="Images/DuplicateHeadLowResMesh.jpg" alt="">
+                    </p>
+
+                    <p>
+                    <em class="hotkey">Select</em> the hi res head, then <em class="hotkey">Shift Select</em>low res head, 
+                    then parent it with <em class="hotkey">Ctrl P &#10148; Set Parent to Object &#10148; (Keep transform)</em>
+                    This will anchor it in place.  You'll see the <em class="hotkey">Outliner Panel</em> show the parent &#10148; child
+                    relationship.
+                    </p>
+
+                    <p>
+                    <em class="warning">In case you have problems later, try this</em>
+                    Since the high and low resolution meshes must be aligned perfectly in order to map the normals, get rid of any
+                    local transforms by doing 
+                    <em class="hotkey">Ctrl A &#10148; Apply Rotation and Scale</em> 
+                    to both meshes.
+                    </p>
+
+                    <nav class="backtotop"><a href="#TopOfPage">Back to top</a></nav>
+                </section>
+
+                <section>
+                    <h5>Sculpting the Hi Res Mesh</h5>
+
+                    <p>
+                    Go to the <em class="hotkey">Sculpting Workspace</em> and select  <em class="hotkey">Sculpt Mode</em>.
+
+                    <em class="hotkey">Shift H</em> to hide all other objects except the hi-res head.
+                    </p>
+
+                    <p>
+                    This object will only be used for creating the normal map, so delete the materials in 
+                    <em class="hotkey">Material Properties</em>.
+                    Also clear any UV seams and freestyle edges: <em class="hotkey">TAB</em> into edit mode, select the entire mesh with <em class="hotkey">A</em> 
+                    and do <em class="hotkey">Ctrl E &#10148; Clear Seam</em>, then <em class="hotkey">Ctrl E &#10148; Clear Freestyle Edge</em>, then go back into object mode.
+                    The hi res head will appear white now.
+
+                    <img class="centeredsmaller" src="Images/Sculpting.jpg" alt="">
+
+                    At this point, save a copy of this hi res head by doing  <em class="hotkey">Shift D Return</em> then
+                    <em class="hotkey">M</em> to move it to a new collection which you can rename <em class="hotkey">Saved Objects</em>.
+                    Disconnect from the parent using  <em class="hotkey">Alt P &#10148; Clear Parent</em>
+                    Toggle the filters to turn off its display in viewport and render.
+                    If we mess up the next steps, we can recover using this saved object.
+                    </p>
+
+                    <p>
+                        Apply the mirror modifier (which is irreversible, which is why we made a copy of the head), 
+                        and also apply the subsurf modifier.  At this point, go into edit mode to check the mesh resolution.  
+                        If it is not fine enough to support sculping fine detail, select 
+                        <em class="hotkey">Add Modifier &#10148; Generate &#10148; Multiresolution</em>.  
+                        Subdivide 2 or more times to get fine enough 
+                        resolution for the lips when sculpting, and hit <em class="hotkey">Apply</em> to make the subdivisions permanent and
+                        remove the Multiresolution modifier from the modifier stack.  You can always  <em class="hotkey">Ctrl-Z</em> to undo if you                                            have subdivided too much or too little.
+
+                        <img class="centeredsmaller" src="Images/MultiresolutionSettings.jpg" alt="">
+                    </p>
+
+                    <p>
+                        If you enable <em class="hotkey">Edit Mode</em> you can see just how fine the mesh is:
+                    </p>
+
+                    <img class="centeredsmaller" src="Images/HiResHeadWireframe.jpg" alt="">
+
+                    <p>
+                        Go into the <em class="hotkey">Sculpting Workspace</em> and select  <em class="hotkey">Sculpt Mode</em>.
+
+                        Turn off the X-mirror property so you can draw without duplicating your brush strokes in the x-direction.
+                        Select <em>T</em> to bring up the brushes if they are not already present.
+                        Select the <em class="hotkey">Draw Brush</em>
+                        Under <em class="hotkey">Texture</em>, create a new texture for the brush. 
+                        Over in the <em class="hotkey">Properties Panel &#10148; Texture Properties</em>, 
+                        select a noise texture of type <em class="hotkey">Clouds</em>
+                        
+                        <img class="centeredsmaller" src="Images/SculptBrushTexture.jpg" alt="">
+
+                        Adjust the brush radius with <em class="hotkey">F</em> and the mouse.  
+                        Brush strength is <em class="hotkey">Shift F</em>.
+
+                        Sculpt the high res mesh for the head in the area of the lips,  
+
+                        <img class="centeredsmaller" src="Images/LauraHeadHiResHeadSculping.jpg" alt="">
+                    </p>
+
+                    <nav class="backtotop"><a href="#TopOfPage">Back to top</a></nav>
+                </section>
+
+                <section>
+                    <h5>Baking Normals for Skin Coarse Texture</h5>
+                    This has several steps.
+
+                    <h6>Creating the Normal Map Nodes</h6>
+
+                    <p>
+                    Create three new nodes for the normal map in the compositing window with <em class="hotkey">Shift A</em>.
+
+                    <ul>
+                        <li>
+                        In the UV Map node, select the low res head mesh;  normal baking needs to know the coordinate system.
+                        </li>
+
+                        <li>
+                            We'll create the image texture later.  
+                        </li>
+
+                        <li>
+                            Use <em>Tangent Space</em> and leave the <em class="hotkey">Strength</em> later.
+                            Don't connect the output yet --- if you do, you'll get a "circular dependency" warning later when baking.  
+                            If you insist, you <i>can</i> connect the outputs but simply ignore the warning.
+                        </li>
+                    </ul>
+
+                    <img class="centeredsmaller" src="Images/LauraHiResHeadNormalNodes.jpg" alt=""> </p>
+
+                    <p>
+                    Baking assumes we have a UV map for the low res mesh already in place, and we do.  
+                    But since we have multiple UV maps, we will need to explicitly select the UV Map for head to be active.  
+                    Do that in the 
+                    <em class="hotkey">Outliner &#10148; Object Data Properties</em>,
+
+                    <img class="centeredsmaller" src="Images/LauraHiResHeadSelectHeadUVMap.jpg" alt="">
+
+                    Also you need to make visible the layers containing both hi res and low res meshes (or you'll get a warning).
+                    </p>
+
+                    <h6>Create a Blank Hi Res Normal Map Image</h6>
+
+                    <p>
+                    Go to the <em class="hotkey">UV Editing Workspace</em>.  
+
+                    In the in the left pane create a new hi res normal image texture, 4096 x 4096, which is defaulted to black.
+                    You can do math inside Blender's input fields such as typing <em class="hotkey">* 4</em> in the input field.
+                    You can drag downwards to copy the value to other fields.
+                    Give it a name also, "LauraHeadHiRes"
+
+                    <img class="centeredsmaller" src="Images/BlankNormalImage1.jpg" alt="">
+                    <img class="centeredsmaller" src="Images/BlankNormalImage2.jpg" alt="">
+                    <img class="centeredsmaller" src="Images/BlankNormalImage3.jpg" alt="">
+                    <img class="centeredsmaller" src="Images/BlankNormalImage4.jpg" alt="">
+
+                    It's important to have the normal map image loaded in the Image Texture - Normals node and the left pane of the UV Editor show the 
+                    corresponding same name for the active normal map image to avoid getting a warning.
+                    </p>
+
+                    <p>
+                    Hit <em class="hotkey">Alt S</em> to bring up a dialog window, then rename and save the blank image to the /textures folder,
+
+                    <img class="centeredsmaller" src="Images/LauraHiResImageSave.jpg" alt="">
+
+                    Now go to the <em class="hotkey">Shading Workspace</em>.  
+                    Select the normal texture node and open the blank texture image you've just created,
+
+                    <img class="centeredsmaller" src="Images/LauraHiResHeadNormalTextureNodeBlank.jpg" alt="">
+
+                    Select <em class="hotkey">Non-color Data</em> because it's color coded normal vectors components.  
+                    <em class="hotkey">Extend</em> paints normals of zero beyond the normal map image applied to the head.
+                    A bit of trial and error here to avoid the normal map being applied to the rest of the body.
+                    </p>
+
+                    <h6>Baking:  Hi Res Mesh &#10148; Normal Map Image</h6>
+
+                    <p>
+                    In <em class="hotkey">Render Properties &#10148; Bake</em> select <em class="hotkey">Bake Type &#10148; Normal</em>,
+                    <em class="hotkey">Influence &#10148; Space &#10148; Tangent</em>, <em class="hotkey">Selected to Active</em>.
+                    </p>
+
+                    <p>
+                    During baking, rays are cast from the low-res mesh to the high-res mesh along the normals. But if the high-res mesh is below the low-res mesh,
+                    
+                    If this isn't the case, the <em class="hotkey">Extrusion</em> parameter moves the low-res mesh outwards until this condition holds.  
+                    Use the measurement tool to find the distance between low-res and high-res meshes, and do a bit more distance  you can try <em>1cm</em> to begin with.
+                    You'll want to limit the <em class="hotkey">Max Ray Distance</em> to about 2x the extrusion.
+                    If you don't, rays may intercept distant geometry and you'll get a normal map appearing far outside your mesh.
+
+                    <img class="centeredsmaller" src="Images/LauraBakeSettings.jpg" alt="">
+                    </p>
+
+                    <p>
+                    In the 3D viewport panel at the right, first <em class="hotkey">select</em> the hi res head, 
+                    and keeping the mouse in the same spot, <em class="hotkey">shift select</em> the low res head (must be in that order!).  
+                    The active object, the low res head, is the one last selected.  You can look at the outliner panel to confirm the order of the selections are correct by
+                    seeing an orange color for the hi res head and a yellow color for the low res head.
+                    </p>
+
+                    <p>
+                    Make sure your <em class="wavy">texture image node is selected</em> and is named to the blank image created above.
+                    Baking's default output goes to the active texture image node file.
+                    </p>
+
+                    <p>
+                    Now hit the <em class="hotkey">Bake</em> button in the render
+                    panel.  This will take a few minutes.  
+                    Once baking finishes, in the image editor window, hit <em class="hotkey">Alt S</em> to save the image 
+                    (Blender save won't automatically save your images).  
+                    You may see Blender remind you to do the saving right after the bake finishes.
+                    Here is the normal map image:
+
+                    <img class="centeredsmaller" src="Images/LauraBake.jpg" alt="">
+                    </p>
+
+                    <p>
+                    Normals pointing straight up from a flat surface show up as blue;  this is your background color.  
+                    See <a href="#MathematicsOfRNMMethod">mathematics of normals</a> for the normal vector mathematics and color
+                    interpretation.
+                    </p>
+                    
+                    <p>
+                    <em class="warning">Troubleshooting:  If you just see a completely blank blueish image after baking and yet no error messages...</em>
+                    </p>
+
+                    <ul>
+                        <li>
+                            Check that your objects have UV maps, i.e. you've reset and unwrapped vertices in the UV editor, and named the UV map.
+                        </li>
+                        <li>
+                            Meshes must be aligned perfectly in order to map the normals, get rid of any local transforms by doing 
+                            <em class="hotkey">Ctrl A &#10148; Apply Rotation and Scale</em> 
+                            to both meshes.  You'll need to select both meshes!
+                        </li>
+                    </ul>
+
+                    <p>
+                    You will probably have to iterate, so open a new active workspace as an <em class="hotkey">Image Editor</em> window.  
+                    Select the name of the normal map.
+                    After baking the image, you should see fine textured purples, blue and pink, but not large mustard green and red blotches, and
+                    no black holes.
+                    If not, you need to adjust the extrusion and ray distance parameters, and possibly reduce the size of the texture.
+
+                    If you still get artifacts in the normal image, one workaround is to use 
+                    <a href="../ComputerScience/DevelopmentEnvironment/macLinuxComputerSetupForDevelopers.html#GIMP">Gimp</a>,
+                    to paint them out using a clone brush set to the background color (zero normals).
+                    and resave the image.
+                    </p>
+
+                    <p>
+                    <figure style="max-width: 30%"> 
+                        <img src="Images/badNormals.jpg" alt="Bad Normals"> 
+                        <img src="Images/goodNormals.jpg" alt="Good Normals"> 
+                        
+                        <figcaption>Bad vs Good Normals After Adjusting Extrusion and Max Ray Distance Parameters.</figcaption> 
+                    </figure>
+                    </p>
+
+                    <p style="clear:both;">
+                    Go back to the <em class="hotkey">Shading Workspace</em>.  
+                    Reconnect the normal output to the shader nodes inputs,
+
+                    <img class="centeredsmaller" src="Images/ConnectNormalMapNodesToShaders.jpg" alt="">
+                    </p>
+
+                    <h6>Tweaking the Normal Map Strength</h6>
+
+                    <p>
+                    Hide the hi res image with <em class="hotkey">H</em>.
+                    Switch into render mode and adjust the <em class="hotkey">Strength</em> up from zero while rendering.  I finally used a strength of
+                    <em>3.3</em> to show the roughness of the lips but not cause artifacts in the rest of the face.
+
+                    <img class="centeredsmaller" src="Images/NormalMapStrengthTestRender.jpg" alt="">
+                    </p>
+
+                    <nav class="backtotop"><a href="#TopOfPage">Back to top</a></nav>
+                </section>
                 <section>
                     <h3 id="Hair">Hair</h3>
 
@@ -4530,7 +4531,7 @@ Select the <em class="hotkey">density brush</em>,
                     Copyright &copy; 1986-2026 by Sean Erik O'Connor.
                     All Rights Reserved.
                     &nbsp;&nbsp;&nbsp;
-                    last updated 07 Sep 26.
+                    last updated 09 Sep 26.
                 </p>
             </footer>
         </div> <!-- wrapper -->
