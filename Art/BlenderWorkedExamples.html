@@ -1665,8 +1665,9 @@
                         <li>
                             Sculpt pores on the high res mesh (dark blue).  The low res target mesh for normal map baking is the top light blue plane, which has no subdivisions.       
                             Measure the distance between hires and lowres meshes, which is $\approx 0.001$ m.  
-                            Extrusion = 0 because we don't need to inflate the active object;  we have enough separation between low and hi res meshes.  Set the max ray distance to twice that at 0.002m.
-                            Not critical since our rays won't run into any other nearby objects.
+                            Extrusion = 0 because we don't need to inflate the active object;  we have enough separation between low and hi res meshes.  
+                            Set the max ray distance to twice the separation = 0.002m.
+                            Not critical since our rays won't run into nearby objects.
                             <img class="centeredsmaller" alt="X" src="Images/SculptedHiResPoresOntoLowResMesh.jpg">
                             <img class="centeredsmallest" alt="X" src="Images/BakeSettings.jpg">
                         </li>
@@ -2960,10 +2961,10 @@
                     </p>
 
                     <p>
-                    During baking, rays are cast from the low-res mesh to the high-res mesh along the normals. But if the high-res mesh is below the low-res mesh,
-                    
-                    If this isn't the case, the <em class="hotkey">Extrusion</em> parameter moves the low-res mesh outwards until this condition holds.  
-                    Use the measurement tool to find the distance between low-res and high-res meshes, and do a bit more distance  you can try <em>1cm</em> to begin with.
+                    During baking, rays are cast from the active low res mesh to the selected high res mesh along the negative low res normal direction. 
+                    Since the high res mesh is aligned with the low res mesh we need to move the low res mesh outwards along its normal by the <em class="hotkey">Extrusion</em> distance so
+                    the rays can have room to travel to the rough surface.
+                    Use the measurement tool to find the distance between low res and high res meshes, and do a bit more distance.  You can try <em>1cm</em> to begin with.
                     You'll want to limit the <em class="hotkey">Max Ray Distance</em> to about 2x the extrusion.
                     If you don't, rays may intercept distant geometry and you'll get a normal map appearing far outside your mesh.
 
