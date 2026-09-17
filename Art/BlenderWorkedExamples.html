@@ -1279,14 +1279,14 @@
                             and be sure to read <a href="https://docs.blender.org/manual/en/latest/render/shader_nodes/shader/principled.html#subsurface/">Blender User Manual - Principled BSDF material node.</a>.
                         </li>
                         <li>
-                            <a href="#skinnormalmappingpores">Skin Texture using Normal Mapping - Pores</a> 
+                            <a href="#skinnormalmappingpores">Skin Texture for Pores</a> 
                             Real skin has pores, bumps and wrinkles which deform the surface.
                             Rather than sculpting these on a high res body mesh, we take a shortcut:
                             we sculpt pores on a small piece of high res mesh, then bake to a small piece of low res mesh, generating a small normal image which is tiled to the entire low res body mesh.
                             In other words, we are "faking" an actual hi-res mesh with its subtle height displacements, by perturbing the rendering ray tracing equations.
                         </li>
                         <li>
-                            <a href="#skinnormalmappingwrinkles">Skin Texture using Normal Mapping - Lips</a> 
+                            <a href="#skinnormalmappingwrinkles">Skin Texture for Lips</a> 
                             We duplicate the low res head mesh, create a high res copy of it, then sculpt the hi res head to make wrinkles on the lips.
                             We bake this onto the low res mesh generating a normal map image which we feed into all the skin shaders.
                         </li>
@@ -1666,7 +1666,7 @@
                             Sculpt pores on the high res mesh (dark blue).  The low res target mesh for normal map baking is the top light blue plane, which has no subdivisions.       
                             Measure the distance between hires and lowres meshes, which is $\approx 0.001$ m.  
                             Extrusion = 0 because we don't need to inflate the active object;  we have enough separation between low and hi res meshes.  
-                            Set the max ray distance to twice the separation = 0.002m.
+                            Set the max ray distance to twice the separation at 0.002m.
                             Not critical since our rays won't run into nearby objects.
                             <img class="centeredsmaller" alt="X" src="Images/SculptedHiResPoresOntoLowResMesh.jpg">
                             <img class="centeredsmallest" alt="X" src="Images/BakeSettings.jpg">
@@ -4532,7 +4532,7 @@ Select the <em class="hotkey">density brush</em>,
                     Copyright &copy; 1986-2026 by Sean Erik O'Connor.
                     All Rights Reserved.
                     &nbsp;&nbsp;&nbsp;
-                    last updated 09 Sep 26.
+                    last updated 17 Sep 26.
                 </p>
             </footer>
         </div> <!-- wrapper -->
