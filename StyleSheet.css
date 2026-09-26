@@ -20,7 +20,7 @@
 | LEGAL
 |
 |   Copyright (C) 1999-2026 by Sean Erik O'Connor.  All Rights Reserved.
-|   last updated 28 Jun 26
+|   last updated 25 Sep 26
 |
 =============================================================================*/
 
@@ -1798,6 +1798,18 @@ div.painting img#GirlFromKweilin
     }
 
     nav
+    {
+        display: none ;
+    }
+}
+
+
+/*
+ * For a screen we have a navigation sidebar, so don't need a table of contents.
+ */
+@media screen
+{
+    section.TableOfContents
     {
         display: none ;
     }

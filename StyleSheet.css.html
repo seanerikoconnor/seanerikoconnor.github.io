@@ -142,7 +142,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="linenos">  20</span><span class="c">| LEGAL</span>
 <span class="linenos">  21</span><span class="c">|</span>
 <span class="linenos">  22</span><span class="c">|   Copyright (C) 1999-2026 by Sean Erik O&#39;Connor.  All Rights Reserved.</span>
-<span class="linenos">  23</span><span class="c">|   last updated 28 Jun 26</span>
+<span class="linenos">  23</span><span class="c">|   last updated 25 Sep 26</span>
 <span class="linenos">  24</span><span class="c">|</span>
 <span class="linenos">  25</span><span class="c">=============================================================================*/</span>
 <span class="linenos">  26</span>
@@ -1925,64 +1925,76 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="linenos">1803</span><span class="w">    </span><span class="p">}</span>
 <span class="linenos">1804</span><span class="p">}</span>
 <span class="linenos">1805</span>
-<span class="linenos">1806</span><span class="c">/*</span>
-<span class="linenos">1807</span><span class="c"> * ------------------------------ Printing ----------------------------------</span>
-<span class="linenos">1808</span><span class="c"> */</span>
-<span class="linenos">1809</span>
-<span class="linenos">1810</span><span class="c">/* For printing, omit the navigation and borders.</span>
-<span class="linenos">1811</span><span class="c"> * To test, do print preview from a web browser to see the pdf file.</span>
-<span class="linenos">1812</span><span class="c"> * Or to test on a browser in display mode, temporarily replace &quot;print&quot; with &quot;screen&quot;.</span>
-<span class="linenos">1813</span><span class="c"> */</span>
-<span class="linenos">1814</span><span class="p">@</span><span class="k">media</span><span class="w"> </span><span class="nt">print</span>
-<span class="linenos">1815</span><span class="p">{</span>
-<span class="linenos">1816</span><span class="w">    </span><span class="c">/* Turn off the grid. */</span>
-<span class="linenos">1817</span><span class="w">    </span><span class="nt">div</span><span class="p">.</span><span class="nc">wrapper</span>
-<span class="linenos">1818</span><span class="w">    </span><span class="p">{</span>
-<span class="linenos">1819</span><span class="w">        </span><span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="kc">block</span><span class="w"> </span><span class="p">;</span>
-<span class="linenos">1820</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">1806</span>
+<span class="linenos">1807</span><span class="c">/*</span>
+<span class="linenos">1808</span><span class="c"> * For a screen we have a navigation sidebar, so don&#39;t need a table of contents.</span>
+<span class="linenos">1809</span><span class="c"> */</span>
+<span class="linenos">1810</span><span class="p">@</span><span class="k">media</span><span class="w"> </span><span class="nt">screen</span>
+<span class="linenos">1811</span><span class="p">{</span>
+<span class="linenos">1812</span><span class="w">    </span><span class="nt">section</span><span class="p">.</span><span class="nc">TableOfContents</span>
+<span class="linenos">1813</span><span class="w">    </span><span class="p">{</span>
+<span class="linenos">1814</span><span class="w">        </span><span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="kc">none</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">1815</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">1816</span><span class="p">}</span>
+<span class="linenos">1817</span>
+<span class="linenos">1818</span><span class="c">/*</span>
+<span class="linenos">1819</span><span class="c"> * ------------------------------ Printing ----------------------------------</span>
+<span class="linenos">1820</span><span class="c"> */</span>
 <span class="linenos">1821</span>
-<span class="linenos">1822</span><span class="w">    </span><span class="c">/* Turn off the navigation sidebars. */</span>
-<span class="linenos">1823</span><span class="w">    </span><span class="nt">nav</span><span class="o">,</span><span class="w"> </span><span class="nt">header</span><span class="p">.</span><span class="nc">navigation</span>
-<span class="linenos">1824</span><span class="w">    </span><span class="p">{</span>
-<span class="linenos">1825</span><span class="w">        </span><span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="kc">none</span><span class="w"> </span><span class="p">;</span>
-<span class="linenos">1826</span><span class="w">    </span><span class="p">}</span>
-<span class="linenos">1827</span>
-<span class="linenos">1828</span><span class="w">    </span><span class="c">/* Turn off decorative border Images. */</span>
-<span class="linenos">1829</span><span class="w">    </span><span class="nt">aside</span><span class="p">.</span><span class="nc">border</span>
+<span class="linenos">1822</span><span class="c">/* For printing, omit the navigation and borders.</span>
+<span class="linenos">1823</span><span class="c"> * To test, do print preview from a web browser to see the pdf file.</span>
+<span class="linenos">1824</span><span class="c"> * Or to test on a browser in display mode, temporarily replace &quot;print&quot; with &quot;screen&quot;.</span>
+<span class="linenos">1825</span><span class="c"> */</span>
+<span class="linenos">1826</span><span class="p">@</span><span class="k">media</span><span class="w"> </span><span class="nt">print</span>
+<span class="linenos">1827</span><span class="p">{</span>
+<span class="linenos">1828</span><span class="w">    </span><span class="c">/* Turn off the grid. */</span>
+<span class="linenos">1829</span><span class="w">    </span><span class="nt">div</span><span class="p">.</span><span class="nc">wrapper</span>
 <span class="linenos">1830</span><span class="w">    </span><span class="p">{</span>
-<span class="linenos">1831</span><span class="w">        </span><span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="kc">none</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">1831</span><span class="w">        </span><span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="kc">block</span><span class="w"> </span><span class="p">;</span>
 <span class="linenos">1832</span><span class="w">    </span><span class="p">}</span>
 <span class="linenos">1833</span>
-<span class="linenos">1834</span><span class="w">    </span><span class="c">/*  Leave less margin on the left of the page since border image is gone. </span>
-<span class="linenos">1835</span><span class="c">     *  Remove all background images (printers don&#39;t print white).</span>
-<span class="linenos">1836</span><span class="c">     */</span>
-<span class="linenos">1837</span><span class="w">    </span><span class="nt">body</span>
-<span class="linenos">1838</span><span class="w">    </span><span class="p">{</span>
-<span class="linenos">1839</span><span class="w">        </span><span class="k">background</span><span class="p">:</span><span class="w">    </span><span class="kc">white</span><span class="w"> </span><span class="p">;</span>
-<span class="linenos">1840</span><span class="w">        </span><span class="k">margin-left</span><span class="p">:</span><span class="w">   </span><span class="mi">3</span><span class="kt">rem</span><span class="w"> </span><span class="p">;</span>
-<span class="linenos">1841</span><span class="w">        </span><span class="k">margin-right</span><span class="p">:</span><span class="w">  </span><span class="mi">2</span><span class="kt">rem</span><span class="w"> </span><span class="p">;</span>
-<span class="linenos">1842</span><span class="w">    </span><span class="p">}</span>
-<span class="linenos">1843</span>
-<span class="linenos">1844</span><span class="w">    </span><span class="c">/* Turn off scrolling in scroll boxes and show the whole content. */</span>
-<span class="linenos">1845</span><span class="w">    </span><span class="nt">div</span><span class="p">.</span><span class="nc">scrollBox</span><span class="o">,</span><span class="w"> </span><span class="nt">div</span><span class="p">.</span><span class="nc">scrollBoxContent</span>
-<span class="linenos">1846</span><span class="w">    </span><span class="p">{</span>
-<span class="linenos">1847</span><span class="w">        </span><span class="k">background</span><span class="p">:</span><span class="w">    </span><span class="kc">white</span><span class="w"> </span><span class="p">;</span><span class="w">    </span><span class="c">/* Remove background color (printers don&#39;t print white). */</span>
-<span class="linenos">1848</span><span class="w">        </span><span class="k">overflow</span><span class="p">:</span><span class="w">      </span><span class="kc">visible</span><span class="w"> </span><span class="p">;</span><span class="w">  </span><span class="c">/* No scrollbars;  just show the whole content, even if it goes outside the container. */</span>
-<span class="linenos">1849</span><span class="w">        </span><span class="k">white-space</span><span class="p">:</span><span class="w">   </span><span class="kc">pre-wrap</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="c">/* Preserve whitespace.  Wrap when necessary and on newlines. */</span>
-<span class="linenos">1850</span><span class="w">        </span><span class="k">width</span><span class="p">:</span><span class="w">         </span><span class="kc">auto</span><span class="w"> </span><span class="p">;</span><span class="w">     </span><span class="c">/* Expand the box size to whatever necessary. */</span>
-<span class="linenos">1851</span><span class="w">        </span><span class="k">height</span><span class="p">:</span><span class="w">        </span><span class="kc">auto</span><span class="w"> </span><span class="p">;</span><span class="w">     </span><span class="c">/* Expand the box size to whatever necessary. */</span>
-<span class="linenos">1852</span><span class="w">    </span><span class="p">}</span>
-<span class="linenos">1853</span>
-<span class="linenos">1854</span><span class="w">    </span><span class="nt">figure</span>
-<span class="linenos">1855</span><span class="w">    </span><span class="p">{</span>
-<span class="linenos">1856</span><span class="w">        </span><span class="k">background</span><span class="p">:</span><span class="w">    </span><span class="kc">white</span><span class="w"> </span><span class="p">;</span><span class="w">    </span><span class="c">/* Remove background color (printers don&#39;t print white). */</span>
-<span class="linenos">1857</span><span class="w">    </span><span class="p">}</span>
-<span class="linenos">1858</span>
-<span class="linenos">1859</span><span class="w">    </span><span class="nt">div</span><span class="p">.</span><span class="nc">gallery</span>
-<span class="linenos">1860</span><span class="w">    </span><span class="p">{</span>
-<span class="linenos">1861</span><span class="w">        </span><span class="k">background</span><span class="p">:</span><span class="w">    </span><span class="kc">white</span><span class="w"> </span><span class="p">;</span><span class="w">    </span><span class="c">/* Remove background color (printers don&#39;t print white). */</span>
-<span class="linenos">1862</span><span class="w">    </span><span class="p">}</span>
-<span class="linenos">1863</span><span class="p">}</span>
+<span class="linenos">1834</span><span class="w">    </span><span class="c">/* Turn off the navigation sidebars. */</span>
+<span class="linenos">1835</span><span class="w">    </span><span class="nt">nav</span><span class="o">,</span><span class="w"> </span><span class="nt">header</span><span class="p">.</span><span class="nc">navigation</span>
+<span class="linenos">1836</span><span class="w">    </span><span class="p">{</span>
+<span class="linenos">1837</span><span class="w">        </span><span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="kc">none</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">1838</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">1839</span>
+<span class="linenos">1840</span><span class="w">    </span><span class="c">/* Turn off decorative border Images. */</span>
+<span class="linenos">1841</span><span class="w">    </span><span class="nt">aside</span><span class="p">.</span><span class="nc">border</span>
+<span class="linenos">1842</span><span class="w">    </span><span class="p">{</span>
+<span class="linenos">1843</span><span class="w">        </span><span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="kc">none</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">1844</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">1845</span>
+<span class="linenos">1846</span><span class="w">    </span><span class="c">/*  Leave less margin on the left of the page since border image is gone. </span>
+<span class="linenos">1847</span><span class="c">     *  Remove all background images (printers don&#39;t print white).</span>
+<span class="linenos">1848</span><span class="c">     */</span>
+<span class="linenos">1849</span><span class="w">    </span><span class="nt">body</span>
+<span class="linenos">1850</span><span class="w">    </span><span class="p">{</span>
+<span class="linenos">1851</span><span class="w">        </span><span class="k">background</span><span class="p">:</span><span class="w">    </span><span class="kc">white</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">1852</span><span class="w">        </span><span class="k">margin-left</span><span class="p">:</span><span class="w">   </span><span class="mi">3</span><span class="kt">rem</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">1853</span><span class="w">        </span><span class="k">margin-right</span><span class="p">:</span><span class="w">  </span><span class="mi">2</span><span class="kt">rem</span><span class="w"> </span><span class="p">;</span>
+<span class="linenos">1854</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">1855</span>
+<span class="linenos">1856</span><span class="w">    </span><span class="c">/* Turn off scrolling in scroll boxes and show the whole content. */</span>
+<span class="linenos">1857</span><span class="w">    </span><span class="nt">div</span><span class="p">.</span><span class="nc">scrollBox</span><span class="o">,</span><span class="w"> </span><span class="nt">div</span><span class="p">.</span><span class="nc">scrollBoxContent</span>
+<span class="linenos">1858</span><span class="w">    </span><span class="p">{</span>
+<span class="linenos">1859</span><span class="w">        </span><span class="k">background</span><span class="p">:</span><span class="w">    </span><span class="kc">white</span><span class="w"> </span><span class="p">;</span><span class="w">    </span><span class="c">/* Remove background color (printers don&#39;t print white). */</span>
+<span class="linenos">1860</span><span class="w">        </span><span class="k">overflow</span><span class="p">:</span><span class="w">      </span><span class="kc">visible</span><span class="w"> </span><span class="p">;</span><span class="w">  </span><span class="c">/* No scrollbars;  just show the whole content, even if it goes outside the container. */</span>
+<span class="linenos">1861</span><span class="w">        </span><span class="k">white-space</span><span class="p">:</span><span class="w">   </span><span class="kc">pre-wrap</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="c">/* Preserve whitespace.  Wrap when necessary and on newlines. */</span>
+<span class="linenos">1862</span><span class="w">        </span><span class="k">width</span><span class="p">:</span><span class="w">         </span><span class="kc">auto</span><span class="w"> </span><span class="p">;</span><span class="w">     </span><span class="c">/* Expand the box size to whatever necessary. */</span>
+<span class="linenos">1863</span><span class="w">        </span><span class="k">height</span><span class="p">:</span><span class="w">        </span><span class="kc">auto</span><span class="w"> </span><span class="p">;</span><span class="w">     </span><span class="c">/* Expand the box size to whatever necessary. */</span>
+<span class="linenos">1864</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">1865</span>
+<span class="linenos">1866</span><span class="w">    </span><span class="nt">figure</span>
+<span class="linenos">1867</span><span class="w">    </span><span class="p">{</span>
+<span class="linenos">1868</span><span class="w">        </span><span class="k">background</span><span class="p">:</span><span class="w">    </span><span class="kc">white</span><span class="w"> </span><span class="p">;</span><span class="w">    </span><span class="c">/* Remove background color (printers don&#39;t print white). */</span>
+<span class="linenos">1869</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">1870</span>
+<span class="linenos">1871</span><span class="w">    </span><span class="nt">div</span><span class="p">.</span><span class="nc">gallery</span>
+<span class="linenos">1872</span><span class="w">    </span><span class="p">{</span>
+<span class="linenos">1873</span><span class="w">        </span><span class="k">background</span><span class="p">:</span><span class="w">    </span><span class="kc">white</span><span class="w"> </span><span class="p">;</span><span class="w">    </span><span class="c">/* Remove background color (printers don&#39;t print white). */</span>
+<span class="linenos">1874</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">1875</span><span class="p">}</span>
 </pre></div>
 
             </article>
