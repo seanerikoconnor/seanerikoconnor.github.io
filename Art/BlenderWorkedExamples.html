@@ -2723,10 +2723,15 @@
                                         </ul>
 
                                         <p>
+                                            First we need to map the inputs $n_{base,geometry,x}$ , $n_{base,geometry,y}$, $n_{base,geometry,z}$
+                                            $n'_{detail,texture,x}$ , $n'_{detail,texture,y}$ and $n'_{detail,texture,z}$ from the Blender
+                                            shader node range of $[0, 1]$ to the mathematical range $[-1, 1]$ using the mapping 
+                                            $n_{x,y,z} = 2 \: n_{x,y,z,node} - 1$
+                                        
+
                                             Let's modify the quaternion 
                                             $\mathbf{ q'' }$ and vector $n'_{detail,texture}$ 
-                                            to map normal vector components to the input range $[0,1] \rightarrow [-1, 1]$
-                                            in the rotation formula for $\mathbf{ p_\theta }$ above,
+                                            in the rotation formula for $\mathbf{ p_\theta }$ above directly.
 
                                             $$
                                             \mathbf{ q'' } \rightarrow 
@@ -4481,7 +4486,7 @@
                     Copyright &copy; 1986-2026 by Sean Erik O'Connor.
                     All Rights Reserved.
                     &nbsp;&nbsp;&nbsp;
-                    last updated 29 Sep 26.
+                    last updated 04 Oct 26.
                 </p>
             </footer>
         </div> <!-- wrapper -->
