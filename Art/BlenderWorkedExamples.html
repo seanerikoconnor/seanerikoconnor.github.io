@@ -2749,9 +2749,14 @@
                                             -2n'_{detail,texture,y}+1, 2n'_{detail,texture,z} - 1 \right) }
                                             $$
 
-                                            Now map the output range back to $[0,1]$ in $\mathbf{ r_\theta}$,
+                                            Now map the output range back to $[0,1]$ in $\mathbf{ r_\theta }$,
                                             $$
-                                            \mathbf{ r_\theta } \rightarrow \frac{1}{2} \mathbf{ r_\theta } + \overrightarrow{ (\frac{1}{2},\frac{1}{2},\frac{1}{2} )}
+                                            \mathbf{ r_\theta }
+                                            \rightarrow 
+                                            \overrightarrow{ \left( 
+                                                \frac{r_{\theta,x}}{2} + \frac{1}{2}, 
+                                                \frac{r_{\theta,y}}{2} + \frac{1}{2}, \frac{r_{\theta,z}}{2} + \frac{1}{2}
+                                                \right) }
                                             $$
 
                                             And the formulas become the Blender geometry node group for the RNM method.
