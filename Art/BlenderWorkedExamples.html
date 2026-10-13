@@ -1263,6 +1263,13 @@
                                 We bake this onto the low res mesh generating a normal map image which we feed into all the skin shaders.
                             </li>
                             <li>
+                            To combine normal pore and lip normal maps we use the <a href="#RNM">Reoriented Normal Mapping</a> method which is based on 
+                            <a href="#MathematicsOfRNMMethod">quaternion rotation of normal vectors</a>.
+
+                            We <a href="#AdjustingNormalMapStrength">adjust the normal strength</a> for pore map and lip map separately.
+                            Then finally <a href="#TweakingNormalMapStrength">tweak the combined normal map strength</a>
+                            </li>
+                            <li>
                                 <i>Displacement Mapping</i> would be more accurate than normal mapping.  In particular, the silhouette of the head 
                                 would be realistic, whereas the normal map silhouette will show up incorrectly as flat.  
                                 But then, I'd have to use a hi-res mesh along with a corresponding hi-res grayscale displacement image where each pixel 
@@ -2748,43 +2755,6 @@
 
                                     <nav class="backtotop"><a href="#TopOfPage">Back to top</a></nav>
 
-                                <h6 id="RNM">Adjusting Normal Map Strength</h6> 
-                                    <p>
-                                        Since we are combining two normal maps, we may need to tweak the strength of each separately before combining.
-                                        Blender's normal map strength node won't work for this.  The idea is to change the angle the normal vector makes
-                                        with the local vertical as suggested in 
-                                        <a href="https://www.youtube.com/watch?v=yEe52hRuFCA">Adjust Normal Map Strength</a>.
-                                    </p>
-
-                                    <p>
-                                        What I'm doing in this node group is mapping the normals from $[0,1]$ to $[-1,1]$, mapping to 
-                                        <a href="https://docs.blender.org/manual/en/latest/compositing/types/utilities/vector/separate_spherical.html">spherical coordinates</a>, 
-                                        adjusting vertical inclination $\theta$ by $\theta \rightarrow m \theta + a$, 
-                                        then doing the inverse mappings.
-                                        Multiplying alone creates artifacts in the images; by experiment I found adding to the angle smoothes these out.
-
-                                        <img class="centered" alt="X" src="Images/NormalStrengthGroup.jpg">
-                                    </p>
-
-                                    <p>
-                                        The node group is applied like this:
-
-                                        <img class="centered" alt="X" src="Images/ApplyNormalMapStrength.jpg">
-                                    </p>
-
-                                    <p>
-                                        You can see the difference between no normal map strength adjustment, $m = 1, a = 0$
-                                        <img class="centeredsmaller" alt="X" src="Images/NormalMapExampleDefault.jpg">
-
-                                        and weakened normal map adjustment, $m = 0.2 \: \text{and} \: a = 1.08 \: \text{radians} \: = 61.9 \: \text{degrees}$
-                                        <img class="centeredsmaller" alt="X" src="Images/NormalMapExampleWeaker.jpg">
-                                    </p>
-
-                                    <p>
-                                        I think Blender just multiplies the x and y components of the normal vectors by a scale factor to do
-                                        the normal map strength:  I asked Google Gemini and looked at some Blender source code it referenced.
-                                    </p>
-
                         <h4 id="skinnormalmappingwrinkles">Skin Wrinkles and Lips using Normal Mappping</h4>
                             <p>
                                 We are not going to sculpt wrinkles and lips and render a high resolution mesh directly (that would take forever to render).
@@ -3057,13 +3027,51 @@
                                         <img class="centeredsmaller" src="Images/ConnectNormalMapNodesToShaders.jpg" alt="">
                                     </p>
 
-                                <h6>Tweaking the Normal Map Strength</h6>
+                                <h6 id="AdjustingNormalMapStrength">Adjusting Normal Map Strength</h6> 
+                                    <p>
+                                        Since we are combining two normal maps for pores and lips, using the RNM method, 
+                                        we probably will need to tweak the strength of each map separately before combining.
+                                        Blender's normal map strength node won't work for this.  The idea is to change the angle the normal vector makes
+                                        with the local vertical as suggested in 
+                                        <a href="https://www.youtube.com/watch?v=yEe52hRuFCA">Adjust Normal Map Strength</a>.
+                                    </p>
+
+                                    <p>
+                                        What I'm doing in this node group is mapping the normals from $[0,1]$ to $[-1,1]$, mapping to 
+                                        <a href="https://docs.blender.org/manual/en/latest/compositing/types/utilities/vector/separate_spherical.html">spherical coordinates</a>, 
+                                        adjusting vertical inclination $\theta$ by $\theta \rightarrow m \theta + a$, 
+                                        then doing the inverse mappings.
+                                        Multiplying alone creates artifacts in the images; by experiment I found adding to the angle smoothes these out.
+
+                                        <img class="centered" alt="X" src="Images/NormalStrengthGroup.jpg">
+                                    </p>
+
+                                    <p>
+                                        The node group is applied like this:
+
+                                        <img class="centered" alt="X" src="Images/ApplyNormalMapStrength.jpg">
+                                    </p>
+
+                                    <p>
+                                        You can see the difference between no normal map strength adjustment, $m = 1, a = 0$
+                                        <img class="centeredsmaller" alt="X" src="Images/NormalMapExampleDefault.jpg">
+
+                                        and weakened normal map adjustment, $m = 0.2 \: \text{and} \: a = 1.08 \: \text{radians} \: = 61.9 \: \text{degrees}$
+                                        <img class="centeredsmaller" alt="X" src="Images/NormalMapExampleWeaker.jpg">
+                                    </p>
+
+                                <h6 id="TweakingNormalMapStrength">Tweaking the Normal Map Strength</h6>
                                     <p>
                                         Hide the hi res image with <em class="hotkey">H</em>.
                                         Switch into render mode and adjust the <em class="hotkey">Strength</em> up from zero while rendering.  I finally used a strength of
                                         <em>3.3</em> to show the roughness of the lips but not cause artifacts in the rest of the face.
 
                                         <img class="centeredsmaller" src="Images/NormalMapStrengthTestRender.jpg" alt="">
+                                    </p>
+
+                                    <p>
+                                        I think Blender just multiplies the x and y components of the normal vectors by a scale factor to do
+                                        the normal map strength:  I asked Google Gemini and looked at some Blender source code it referenced.
                                     </p>
 
                                     <nav class="backtotop"><a href="#TopOfPage">Back to top</a></nav>
@@ -4498,7 +4506,7 @@
                     Copyright &copy; 1986-2026 by Sean Erik O'Connor.
                     All Rights Reserved.
                     &nbsp;&nbsp;&nbsp;
-                    last updated 09 Oct 26.
+                    last updated 13 Oct 26.
                 </p>
             </footer>
         </div> <!-- wrapper -->
