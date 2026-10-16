@@ -7,13 +7,14 @@ printf "Clean up all Xcode files which are not needed\n"
 # You only need /Primpoly/Primpoly.xcodeproj which is the Xcode project 
 # and /Primpoly which contains a duplicate copy of the source code.
 
-printf "Removing /Build /ModuleCache.noindex /CompilationCache.noindex /Primpoly-RANDOMLETTERS /SymbolCache.noindex / SDKStatCaches.noindex\n"
+printf "Removing /Build /ModuleCache.noindex /CompilationCache.noindex /Primpoly-RANDOMLETTERS /SymbolCache.noindex /SDKStatCaches.noindex /SDKExplicitPrecompiledModules\n"
 rm -rf Build
 rm -rf ModuleCache.noindex
 rm -rf CompilationCache.noindex
 rm -rf Primpoly-*
 rm -rf SymbolCache.noindex
 rm -rf SDKStatCaches.noindex
+rm -rf SDKExplicitPrecompiledModules
 
 printf "Copying over the source files to XCode's local copy of the source code.\n"
 
