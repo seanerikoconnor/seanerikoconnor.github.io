@@ -1674,16 +1674,20 @@
                                     <li>
                                         Combine the skin pore normal map with the hi res head normal map for the head.  To combine we use the
                                         <a href="#RNM">Reoriented Normal Mapping</a> technique.
+                                        Before combining, we <a href="#AdjustingNormalMapStrength">adjust the relative strength of the normal maps</a> for both pores and wrinkles.
                                     </li>
                                     <li>
-                                        Apply the skin pore normal map over the entire body.
+                                        We extrapolate the skin pore normal map outside the body beyond the neck into the head.  The head normal map only applies to the head.
+                                    </li>
+                                    <li>
+                                        We do a final <a href="#TweakingNormalMapStrength">overall normal strength adjustment</a>
                                     </li>
                                 </ul>
 
                                 <p>
                                     Here is the normal map node group.  
                                     <img class="centered" alt="X" src="Images/SkinPoresCombined.jpg">
-                                    You'll need to adust the <em class="hotkey">normal map strength</em> in tandem with the subsurface scattering scale, weight and radius settings since SSS washes out the pores.
+                                    You'll need to adust the <em class="hotkey">normal map strengths</em> in tandem with the subsurface scattering scale, weight and radius settings since SSS washes out the pores.
                                 </p>
 
                                 <p>
@@ -4506,7 +4510,7 @@
                     Copyright &copy; 1986-2026 by Sean Erik O'Connor.
                     All Rights Reserved.
                     &nbsp;&nbsp;&nbsp;
-                    last updated 15 Oct 26.
+                    last updated 16 Oct 26.
                 </p>
             </footer>
         </div> <!-- wrapper -->
