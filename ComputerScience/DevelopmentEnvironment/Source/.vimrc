@@ -213,12 +213,12 @@ nnoremap ,bhot a <em class="hotkey"></em><ESC>4hi
 nnoremap ,em a <em></em><ESC>4hi
 
 " Insert an HTML element with the indentation at the same level as the neighbors.
-"     First CR finishes the call to function HTMLParagraph()
+"     First CR finishes the call to function HTMLElement()
 "     Second CR takes us out of command mode :
 "     To see the echom debug statements, type :messages.  To clear all
 "     messages type :messages clear
 function! InsertHTMLElement( prefix, suffix )
-    echom "HTMLParagraph"
+    echom "InsertHTMLElement"
     " Scan the previous few lines until you see a line which has an indent > 0.  
     " An indent value of -1 means the line does not exist (past the top or bottom of the file.  Zero means a blank line.
     let current_line_num = line(".")
@@ -254,10 +254,10 @@ nnoremap <leader>sb :call InsertHTMLElement( '<div class="scrollBox"> <div class
 nnoremap <leader>par :call InsertHTMLElement( '<p>', '</p>' )<CR><CR>jjA
 
 " Insert hyperlink.
-nnoremap <leader>hr :call InsertHTMLElement('<a href="', '</a>')<CR><CR>kA<ESC>jj$JJa"><ESC>hhxi
+nnoremap <leader>hr :call InsertHTMLElement('<a href="">', '</a>')<CR><CR>JJhhi
 
 " Insert an image.
-nnoremap <leader>im :call InsertHTMLElement('<img class="centeredsmaller" alt="X" src="Images/X.jpg">','')<CR><CR>jfXfXxi
+nnoremap <leader>im :call InsertHTMLElement('<img class="centeredsmaller" alt="X" src="Images/X.jpg">','')<CR><CR>fXfXxi
 
 " Insert a mathematical thingies.
 nnoremap <leader>def  :call InsertHTMLElement('<em>Definition</em>','')<CR><CR>jA  
@@ -279,7 +279,7 @@ nnoremap ,s i&nbsp;<ESC>
 inoremap jk <esc>
 
 " Reload this VIM resource file.
-nnoremap ,sou :source $MYVIMRC<CR>
+nnoremap ,sou :source ~/.vimrc<CR>
 
 " Save the file.
 nnoremap ,sa   :w<CR>
