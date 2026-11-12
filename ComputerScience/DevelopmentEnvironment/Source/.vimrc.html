@@ -335,12 +335,12 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="linenos">213</span><span class="nb">nnoremap</span> <span class="p">,</span><span class="k">em</span> <span class="k">a</span> <span class="p">&lt;</span><span class="k">em</span><span class="p">&gt;&lt;</span>/<span class="k">em</span><span class="p">&gt;&lt;</span>ESC<span class="p">&gt;</span><span class="m">4</span>hi
 <span class="linenos">214</span>
 <span class="linenos">215</span><span class="c">&quot; Insert an HTML element with the indentation at the same level as the neighbors.</span>
-<span class="linenos">216</span><span class="c">&quot;     First CR finishes the call to function HTMLParagraph()</span>
+<span class="linenos">216</span><span class="c">&quot;     First CR finishes the call to function HTMLElement()</span>
 <span class="linenos">217</span><span class="c">&quot;     Second CR takes us out of command mode :</span>
 <span class="linenos">218</span><span class="c">&quot;     To see the echom debug statements, type :messages.  To clear all</span>
 <span class="linenos">219</span><span class="c">&quot;     messages type :messages clear</span>
 <span class="linenos">220</span><span class="k">function</span><span class="p">!</span> InsertHTMLElement<span class="p">(</span> prefix<span class="p">,</span> suffix <span class="p">)</span>
-<span class="linenos">221</span>    <span class="k">echom</span> <span class="s2">&quot;HTMLParagraph&quot;</span>
+<span class="linenos">221</span>    <span class="k">echom</span> <span class="s2">&quot;InsertHTMLElement&quot;</span>
 <span class="linenos">222</span><span class="c">    &quot; Scan the previous few lines until you see a line which has an indent &gt; 0.  </span>
 <span class="linenos">223</span><span class="c">    &quot; An indent value of -1 means the line does not exist (past the top or bottom of the file.  Zero means a blank line.</span>
 <span class="linenos">224</span>    <span class="k">let</span> current_line_num <span class="p">=</span> line<span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
@@ -376,10 +376,10 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="linenos">254</span><span class="nb">nnoremap</span> <span class="p">&lt;</span>leader<span class="p">&gt;</span>par :<span class="k">call</span> InsertHTMLElement<span class="p">(</span> <span class="s1">&#39;&lt;p&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;/p&gt;&#39;</span> <span class="p">)&lt;</span>CR<span class="p">&gt;&lt;</span>CR<span class="p">&gt;</span>jjA
 <span class="linenos">255</span>
 <span class="linenos">256</span><span class="c">&quot; Insert hyperlink.</span>
-<span class="linenos">257</span><span class="nb">nnoremap</span> <span class="p">&lt;</span>leader<span class="p">&gt;</span>hr :<span class="k">call</span> InsertHTMLElement<span class="p">(</span><span class="s1">&#39;&lt;a href=&quot;&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;/a&gt;&#39;</span><span class="p">)&lt;</span>CR<span class="p">&gt;&lt;</span>CR<span class="p">&gt;</span>kA<span class="p">&lt;</span>ESC<span class="p">&gt;</span>jj$JJa&quot;<span class="p">&gt;&lt;</span>ESC<span class="p">&gt;</span>hhxi
+<span class="linenos">257</span><span class="nb">nnoremap</span> <span class="p">&lt;</span>leader<span class="p">&gt;</span>hr :<span class="k">call</span> InsertHTMLElement<span class="p">(</span><span class="s1">&#39;&lt;a href=&quot;&quot;&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;/a&gt;&#39;</span><span class="p">)&lt;</span>CR<span class="p">&gt;&lt;</span>CR<span class="p">&gt;</span>JJhhi
 <span class="linenos">258</span>
 <span class="linenos">259</span><span class="c">&quot; Insert an image.</span>
-<span class="linenos">260</span><span class="nb">nnoremap</span> <span class="p">&lt;</span>leader<span class="p">&gt;</span><span class="nb">im</span> :<span class="k">call</span> InsertHTMLElement<span class="p">(</span><span class="s1">&#39;&lt;img class=&quot;centeredsmaller&quot; alt=&quot;X&quot; src=&quot;Images/X.jpg&quot;&gt;&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)&lt;</span>CR<span class="p">&gt;&lt;</span>CR<span class="p">&gt;</span>jfXfXxi
+<span class="linenos">260</span><span class="nb">nnoremap</span> <span class="p">&lt;</span>leader<span class="p">&gt;</span><span class="nb">im</span> :<span class="k">call</span> InsertHTMLElement<span class="p">(</span><span class="s1">&#39;&lt;img class=&quot;centeredsmaller&quot; alt=&quot;X&quot; src=&quot;Images/X.jpg&quot;&gt;&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)&lt;</span>CR<span class="p">&gt;&lt;</span>CR<span class="p">&gt;</span>fXfXxi
 <span class="linenos">261</span>
 <span class="linenos">262</span><span class="c">&quot; Insert a mathematical thingies.</span>
 <span class="linenos">263</span><span class="nb">nnoremap</span> <span class="p">&lt;</span>leader<span class="p">&gt;</span><span class="nb">def</span>  :<span class="k">call</span> InsertHTMLElement<span class="p">(</span><span class="s1">&#39;&lt;em&gt;Definition&lt;/em&gt;&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)&lt;</span>CR<span class="p">&gt;&lt;</span>CR<span class="p">&gt;</span>jA  
@@ -401,7 +401,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="linenos">279</span><span class="nb">inoremap</span> jk <span class="p">&lt;</span>esc<span class="p">&gt;</span>
 <span class="linenos">280</span>
 <span class="linenos">281</span><span class="c">&quot; Reload this VIM resource file.</span>
-<span class="linenos">282</span><span class="nb">nnoremap</span> <span class="p">,</span>sou :source $MYVIMRC<span class="p">&lt;</span>CR<span class="p">&gt;</span>
+<span class="linenos">282</span><span class="nb">nnoremap</span> <span class="p">,</span>sou :source <span class="p">~</span>/.vimrc<span class="p">&lt;</span>CR<span class="p">&gt;</span>
 <span class="linenos">283</span>
 <span class="linenos">284</span><span class="c">&quot; Save the file.</span>
 <span class="linenos">285</span><span class="nb">nnoremap</span> <span class="p">,</span><span class="k">sa</span>   :<span class="k">w</span><span class="p">&lt;</span>CR<span class="p">&gt;</span>
