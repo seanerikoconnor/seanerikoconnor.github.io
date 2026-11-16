@@ -3640,7 +3640,7 @@
                             </p>
 
                             <p>
-                                Create two new eye bones with <em>Shift A</em>. Go to bone properties and leave <em class="hotkey">Deform</em>
+                                Create two new eye bones with <em class="hotkey">Shift A</em>. Go to bone properties and leave <em class="hotkey">Deform</em>
                                 off because we don't want the bone to change the eye shape.
                                 <img class="centeredsmaller" src="Images/EyeboneDeformOff.jpg" alt="">
 
@@ -3668,7 +3668,7 @@
                         </p>
 
                         <p>
-                            To create the rig, I first do <em>Shift A</em> to create a single root bone and move it between the feet.  This will position the whole figure.
+                            To create the rig, I first do <em class="hotkey">Shift A</em> to create a single root bone and move it between the feet.  This will position the whole figure.
                             Then selecting the root bone in edit mode, duplicate it using <em>Shift D</em> and move it up to the pelvis to be the first bone in the spine.
                             Next use <em>E</em> to extrude the second bone in the spine, and so on for all the bones including the head bone.
 
@@ -3795,7 +3795,7 @@
 
                             The side walls are 500km up, the trees are 100km tall, and the base of the orbital is 400km wide.
 
-                            Create the orbital with <em>Shift A</em> <em>select mesh torus</em>.  Rotate it 90 degrees.
+                            Create the orbital with <em class="hotkey">Shift A</em> <em>select mesh torus</em>.  Rotate it 90 degrees.
 
                             <img class="centeredsmaller" src="Images/InitialOrbitalPositionAndSize.jpg" alt="">
 
@@ -3841,9 +3841,12 @@
                 <section>
                     <h3 id="Trees">Trees</h3>
                        <p>
-                            Who doesn't like trees?  I will use the 
-                            <a href="https://extensions.blender.org/add-ons/modular-tree">Modular Tree (MTree) Addon</a>
-                            which has a very nice <a href="https://www.youtube.com/watch?v=xy0eZ1VU_is">MTree tutorial</a>
+                            Who doesn't like trees?  I will use the very flexible and new version of the 
+                            <a href="https://extensions.blender.org/add-ons/modular-tree">Modular Tree (MTree) Addon</a>.
+                            We can generate many types of trees with dozens of knobs to turn for branch and leaf shapes.
+                            The tree model is implemented in geometry nodes.
+                            MTree generates meshes for leaves, branches + trunk and also UV maps.
+                            See the recent very helpful <a href="https://www.youtube.com/watch?v=xy0eZ1VU_is">MTree tutorial</a>
                             I'll go through a worked example for a painting I'm working on.
                         </p>
 
@@ -3887,6 +3890,79 @@
                             <p>
                             First allow online access.
 
+                            <img class="centeredsmaller" alt="X" src="Images/MTree01AllowInternetAccessForAddon.jpg">
+
+                            Delete the old version (if any),
+                            <img class="centeredsmaller" alt="X" src="Images/MTree02UninstallOldMTree.jpg">
+
+                            Open the web page for <a href="https://extensions.blender.org/add-ons/modular-tree">Modular Tree (MTree) Addon</a>,
+                            drag and drop the extension into on open instance of Blender,
+
+                            <img class="centeredsmaller" alt="X" src="Images/MTree03WebPage.jpg">
+                            <img class="centeredsmaller" alt="X" src="Images/MTree04DragAndDropInstall.jpg">
+                            <img class="centeredsmaller" alt="X" src="Images/MTree05DragAndDropInstall.jpg">
+
+                            You will see the MTree controls in the 3D window,
+
+                            <img class="centeredsmaller" alt="X" src="Images/MTree06Controls.jpg">
+                            
+                            You can quickly generate a tree as a set of geometry nodes,
+                            
+                            <img class="centeredsmaller" alt="X" src="Images/MTree07GeneratePineTreeWithLeaves.jpg">
+                            <img class="centeredsmaller" alt="X" src="Images/MTree08TreeAndItsGeometryNodes.jpg">
+
+                            But we will do it a more another way which has more control.  Open a new editor pane and you will find an MTree selection,
+                            (three circles overlapping icon),
+
+                            <img class="centeredsmaller" alt="X" src="Images/MTree09EditorPane.jpg">
+
+                            In the MTree pane, in the top middle of the pane, type in a new name for the tree node collection.
+                            
+                            <img class="centeredsmaller" alt="X" src="Images/MTree11ClickOnNewToCreateMTree.jpg">
+
+                            Then <em class="hotkey">Shift A</em> will allow you to add MTree nodes,
+
+                            <img class="centeredsmaller" alt="X" src="Images/MTree11ShiftATreeMesherNode.jpg">
+
+                            Here's a minimum set of nodes to add and how to hook them up.  The tree mesher lets you automaticall update the
+                            whole tree if you change any parameters.  You also want to click <em class="hotkey">Add leaves</em>.  
+                            The leaf shape is not connected.  It will generate the leaf object called <b>leaf</b> which will be put next to the
+                            preexisting <b>MTree_Default_Leaf</b> object.
+                            
+                            <img class="centered" alt="X" src="Images/MTree12AllNodes.jpg">
+                            
+                            Select the default leaf,
+
+                            <img class="centeredsmaller" alt="X" src="Images/MTree13DefaultLeaf.jpg">
+                            
+                            add shading nodes, point to the leaf image, and hook up the UV coordinates (which MTree has already created),
+
+                            <img class="centered" alt="X" src="Images/MTree14DefaultLeafShading.jpg">
+
+                            In the UV editor, arrange the UV mapping to follow the leaf image,
+                            
+                            <img class="centeredsmaller" alt="X" src="Images/MTree15DefaultLeafUVEdit.jpg">
+
+                            Here is what we get, 
+
+                            <img class="centeredsmaller" alt="X" src="Images/MTree16Leaves.jpg">
+                            
+                            Do the same process for the tree and branches.  
+                            
+                            <img class="centered" alt="X" src="Images/MTree18TrunkShading.jpg">
+
+                            The UV map will be complex.  I tried a cylindrical unwrap, and scaled down the UV islands to fit the bark image,
+                            then did some texture painting.
+                            
+                            <img class="centeredsmaller" alt="X" src="Images/MTree17TrunkUVEdit.jpg">
+
+                            Since MTree generates meshes, once you are done generating the tree, you can change the shapes of trunk and branches,
+                            <figure> 
+                                <img class="centeredsmaller" alt="X" src="Images/MTree19TrunkBeforeMeshEdit.jpg"> 
+                                <img class="centeredsmaller" alt="X" src="Images/MTree20TrunkAfterMeshEdit.jpg">
+                                <figcaption>Before and after editing the tree trunk mesh</figcaption> 
+                            </figure> 
+
                             </p>
 
                         <nav class="backtotop"><a href="#TopOfPage">Back to top</a></nav>
@@ -3921,7 +3997,7 @@
                         <p>
                             Now let's do a fence using the array modifier.  First create a segment of the railing by adding
                             a Nurbs curve with
-                            <em>Shift A</em>
+                            <em class="hotkey">Shift A</em>
 
                             <img class="centeredsmaller" src="Images/NurbsRailing.png" alt="">
 
@@ -3942,7 +4018,7 @@
                             The object’s (0,0,0) is the
                             center of the object, bounding box center, I think?  You'll see it marked with a small yellow dot.
 
-                            Now create an <em>Empty</em> object using <em>Shift A Empty Plain Axes</em>.
+                            Now create an <em>Empty</em> object using <em class="hotkey">Shift A Empty Plain Axes</em>.
                             Clear the empty's rotation and scale to defaults (zero angles, scale = 1) with
                             <em class="hotkey">Ctrl A &#10148; Apply Rotation and Scale</em>
 
@@ -4390,7 +4466,7 @@
                     Copyright &copy; 1986-2026 by Sean Erik O'Connor.
                     All Rights Reserved.
                     &nbsp;&nbsp;&nbsp;
-                    last updated 18 Oct 26.
+                    last updated 15 Nov 26.
                 </p>
             </footer>
         </div> <!-- wrapper -->
