@@ -172,7 +172,7 @@
                     Copyright &copy; 1999-2026 by Sean Erik O'Connor.
                     All Rights Reserved.
                     &nbsp;&nbsp;&nbsp;
-                    last updated 04 Oct 26.
+                    last updated 15 Nov 26.
                 </p>
 
                 <!-- Form to search my site with Google.  From Google's free tools web page.  -->
@@ -233,15 +233,29 @@
                     var webSite = "" ;
                     var suffix = "\">Go to my personal web site</a><\/em>" ;
 
+                    // List both my personal and mirror web sites from the local computer copy of the web page.
                     if (hostname.match( "file" ))
                     {
                         webSite = "http://seanerikoconnor.freeservers.com" ;
+                        document.write( prefix + webSite + suffix ) ;
+
+                        document.write( "&nbsp;&nbsp;&nbsp;" ) ;
+
+                        suffix = "\">Go to my mirror web site</a><\/em>" ;
+                        webSite = "https://seanerikoconnor.github.io" ;
                         document.write( prefix + webSite + suffix ) ;
                     }
                     // List my personal web site from my GitHub mirror web site.
                     else if (hostname.match( "https://seanerikoconnor.github.io/"))
                     {
                         webSite = "http://seanerikoconnor.freeservers.com" ;
+                        document.write( prefix + webSite + suffix ) ;
+                    }
+                    // List my GitHub mirror web site from my personal web site.
+                    else if (hostname.match( "http://seanerikoconnor.freeservers.com/"))
+                    {
+                        webSite = "https://seanerikoconnor.github.io" ;
+                        suffix = "\">Go to my mirror web site</a><\/em>" ;
                         document.write( prefix + webSite + suffix ) ;
                     }
                 </script> 
